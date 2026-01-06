@@ -584,7 +584,7 @@ export interface DeleteStoreRequest {
     storeId: string;
 }
 
-export interface DeleteUserRequest {
+export interface DeleteUserApiRequest {
     userId: number;
 }
 
@@ -3631,7 +3631,7 @@ export class ManagementApi extends runtime.BaseAPI {
      * Delete a specific user.
      * Delete user
      */
-    async deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteUserRaw(requestParameters: DeleteUserApiRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -3673,7 +3673,7 @@ export class ManagementApi extends runtime.BaseAPI {
      * Delete a specific user.
      * Delete user
      */
-    async deleteUser(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteUser(requestParameters: DeleteUserApiRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteUserRaw(requestParameters, initOverrides);
     }
 
