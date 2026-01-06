@@ -1,18 +1,19 @@
-import * as TalonOne from "./dist";
+import { IntegrationApi, Configuration, NewCustomerSessionV2, IntegrationRequest } from "./src";
 
-const defaultClient = TalonOne.ApiClient.instance;
-defaultClient.basePath = "http://localhost:9000";
-
-// Configure API key authorization: api_key_v1
-const api_key_v1 = defaultClient.authentications["api_key_v1"];
-api_key_v1.apiKey = process.env.TALON_API_KEY;
-api_key_v1.apiKeyPrefix = "ApiKey-v1";
+// Configure API client
+const configuration = new Configuration({
+    basePath: "http://localhost:9000",
+    apiKey: process.env.TALON_API_KEY || "your-api-key-here",
+    headers: {
+        "Authorization": `ApiKey-v1 ${process.env.TALON_API_KEY || "your-api-key-here"}`
+    }
+});
 
 // Integration API example to send a session update
-const integrationApi = new TalonOne.IntegrationApi();
+const integrationApi = new IntegrationApi(configuration);
 
 // Initializing a customer session object
-const customerSession = TalonOne.NewCustomerSessionV2.constructFromObject({
+const customerSession: NewCustomerSessionV2 = {
     profileId: 'example_prof_id',
     cartItems: [
         {
@@ -47,38 +48,40 @@ const customerSession = TalonOne.NewCustomerSessionV2.constructFromObject({
     couponCodes: [
         'Cool-Summer!'
     ]
-});
+};
 
-//Initializing an integration request wrapping the customer session
-const integrationRequest = new TalonOne.IntegrationRequest(customerSession);
+// Initializing an integration request wrapping the customer session
+const integrationRequest: IntegrationRequest = {
+    customerSession
+};
 
 // Optional list of requested information to be present on the response.
 // See src/model/IntegrationRequest#ResponseContentEnum for full list of supported values
 // integrationRequest.responseContent = [
-//   TalonOne.IntegrationRequest.ResponseContentEnum.customerSession,
-//   TalonOne.IntegrationRequest.ResponseContentEnum.customerProfile
+//   'customerSession',
+//   'customerProfile'
 // ]
 
 integrationApi
-    .updateCustomerSessionV2("example_integration_v2_id", integrationRequest)
+    .updateCustomerSessionV2({
+        customerSessionId: "example_integration_v2_id",
+        integrationRequest
+    })
     .then(
         data => {
             console.log(JSON.stringify(data, null, 2));
 
             // Parsing the returned effects list, please consult https://developers.talon.one/Integration-API/handling-effects-v2 for the full list of effects and their corresponding properties
-            data.effects.forEach(effect => {
+            data.effects?.forEach(effect => {
                 switch (effect.effectType) {
                     case 'setDiscount':
-                        // Initiating right props instance according to the effect type
-                        const setDiscountProps = TalonOne.SetDiscountEffectProps.constructFromObject(effect.props)
-                        // Initiating the right props class is not a necessity, it is only a suggestion here that could help in case of unexpected returned values from the API
-
                         // Access the specific effect's properties
-                        console.log(`Set a discount '${setDiscountProps.name}' of ${setDiscountProps.value}`)
+                        console.log(`Set a discount '${effect.props.name}' of ${effect.props.value}`)
                         break
                     case 'rejectCoupon':
-                    // Work with AcceptCouponEffectProps' properties
-                    // ...
+                        // Work with rejectCoupon effect properties
+                        console.log('Coupon rejected')
+                        break
                 }
             })
         },
