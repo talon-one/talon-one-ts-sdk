@@ -1,11 +1,14 @@
-import { IntegrationApi, Configuration, NewCustomerSessionV2, IntegrationRequest } from "./src";
+import pkg from "./dist/index.js";
+const { IntegrationApi, Configuration } = pkg;
 
 // Configure API client
 const configuration = new Configuration({
     basePath: "http://localhost:9000",
-    apiKey: process.env.TALON_API_KEY || "your-api-key-here",
-    headers: {
-        "Authorization": `ApiKey-v1 ${process.env.TALON_API_KEY || "your-api-key-here"}`
+    apiKey: (name: string) => {
+        if (name === "Authorization") {
+            return `ApiKey-v1 ${process.env.TALON_API_KEY || "your-api-key-here"}`;
+        }
+        return "";
     }
 });
 
@@ -13,7 +16,7 @@ const configuration = new Configuration({
 const integrationApi = new IntegrationApi(configuration);
 
 // Initializing a customer session object
-const customerSession: NewCustomerSessionV2 = {
+const customerSession = {
     profileId: 'example_prof_id',
     cartItems: [
         {
@@ -51,7 +54,7 @@ const customerSession: NewCustomerSessionV2 = {
 };
 
 // Initializing an integration request wrapping the customer session
-const integrationRequest: IntegrationRequest = {
+const integrationRequest = {
     customerSession
 };
 
