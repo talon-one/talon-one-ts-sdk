@@ -1,6 +1,7 @@
 .github/workflows/autorelease.yml
 .github/workflows/test.yml
 .gitignore
+.gitignore
 .npmignore
 .openapi-generator-ignore
 README.md
