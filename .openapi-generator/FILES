@@ -1,7 +1,10 @@
+.github/workflows/autorelease.yml
+.github/workflows/test.yml
 .gitignore
 .npmignore
 .openapi-generator-ignore
 README.md
+docker-compose.yml
 docs/APIError.md
 docs/AcceptCouponEffectProps.md
 docs/AcceptReferralEffectProps.md
@@ -613,6 +616,7 @@ docs/WebhookAuthenticationDataCustom.md
 docs/WebhookAuthenticationWebhookRef.md
 docs/WebhookWithOutgoingIntegrationDetails.md
 docs/WillAwardGiveawayEffectProps.md
+example.ts
 package.json
 src/apis/IntegrationApi.ts
 src/apis/ManagementApi.ts
