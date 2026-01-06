@@ -1,0 +1,20 @@
+{
+  "name": "talon_one_sdk",
+  "version": "25.26",
+  "description": "Talon.One SDK for TypeScript",
+  "author": "Talon.One",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/talon-one/talon-one-ts-sdk.git"
+  },
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^4.0 || ^5.0"
+  }
+}

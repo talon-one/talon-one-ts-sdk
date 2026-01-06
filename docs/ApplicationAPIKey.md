@@ -1,0 +1,52 @@
+
+# ApplicationAPIKey
+
+
+## Properties
+
+Name | Type
+------------ | -------------
+`title` | string
+`expires` | Date
+`platform` | string
+`type` | string
+`timeOffset` | number
+`id` | number
+`createdBy` | number
+`accountID` | number
+`applicationID` | number
+`created` | Date
+
+## Example
+
+```typescript
+import type { ApplicationAPIKey } from 'talon_one_sdk'
+
+// TODO: Update the object below with actual values
+const example = {
+  "title": My generated key,
+  "expires": 2023-08-24T14:00:00Z,
+  "platform": none,
+  "type": staging,
+  "timeOffset": 100000,
+  "id": 34,
+  "createdBy": 280,
+  "accountID": 13,
+  "applicationID": 54,
+  "created": 2022-03-02T16:46:17.758585Z,
+} satisfies ApplicationAPIKey
+
+console.log(example)
+
+// Convert the instance to a JSON string
+const exampleJSON: string = JSON.stringify(example)
+console.log(exampleJSON)
+
+// Parse the JSON string back to an object
+const exampleParsed = JSON.parse(exampleJSON) as ApplicationAPIKey
+console.log(exampleParsed)
+```
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+

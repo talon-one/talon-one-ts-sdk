@@ -1,0 +1,37 @@
+
+# BestPriorPriceRequestTarget
+
+Specifies the target for which the best prior price calculation is taken into consideration.
+
+## Properties
+
+Name | Type
+------------ | -------------
+`targetType` | string
+`audienceID` | number
+
+## Example
+
+```typescript
+import type { BestPriorPriceRequestTarget } from 'talon_one_sdk'
+
+// TODO: Update the object below with actual values
+const example = {
+  "targetType": AUDIENCE,
+  "audienceID": 4,
+} satisfies BestPriorPriceRequestTarget
+
+console.log(example)
+
+// Convert the instance to a JSON string
+const exampleJSON: string = JSON.stringify(example)
+console.log(exampleJSON)
+
+// Parse the JSON string back to an object
+const exampleParsed = JSON.parse(exampleJSON) as BestPriorPriceRequestTarget
+console.log(exampleParsed)
+```
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
