@@ -54,23 +54,26 @@ is `https://yourbaseurl.talon.one/v2/customer_sessions/{Id}`.
 
 The following code shows an example of using the Integration API:
 
-```javascript
-const TalonOne = require("talon_one");
+```typescript
+import pkg from "talon_one_sdk";
+const { IntegrationApi, Configuration } = pkg;
 
-const defaultClient = TalonOne.ApiClient.instance;
-defaultClient.basePath = "https://yourbaseurl.talon.one"; // No trailing slash!
-
-// Configure API key authorization: api_key_v1
-const api_key_v1 = defaultClient.authentications["api_key_v1"];
-api_key_v1.apiKey =
-  "dbc644d33aa74d582bd9479c59e16f970fe13bf34a208c39d6c7fa7586968468";
-api_key_v1.apiKeyPrefix = "ApiKey-v1";
+// Configure API client
+const configuration = new Configuration({
+    basePath: "https://yourbaseurl.talon.one",
+    apiKey: (name: string) => {
+        if (name === "Authorization") {
+            return "ApiKey-v1 dbc644d33aa74d582bd9479c59e16f970fe13bf34a208c39d6c7fa7586968468";
+        }
+        return "";
+    }
+});
 
 // Integration API example to send a session update
-const integrationApi = new TalonOne.IntegrationApi();
+const integrationApi = new IntegrationApi(configuration);
 
 // Initializing a customer session object
-const customerSession = TalonOne.NewCustomerSessionV2.constructFromObject({
+const customerSession = {
   profileId: 'example_prof_id',
   cartItems: [
     {
@@ -105,40 +108,40 @@ const customerSession = TalonOne.NewCustomerSessionV2.constructFromObject({
   couponCodes: [
     'Cool-Summer!'
   ]
-});
+};
 
-//Initializing an integration request wrapping the customer session
-const integrationRequest = new TalonOne.IntegrationRequest(customerSession);
+// Initializing an integration request wrapping the customer session
+const integrationRequest = {
+    customerSession
+};
 
 // Optional list of requested information to be present on the response.
 // See src/model/IntegrationRequest#ResponseContentEnum for full list of supported values
 // integrationRequest.responseContent = [
-//   TalonOne.IntegrationRequest.ResponseContentEnum.customerSession,
-//   TalonOne.IntegrationRequest.ResponseContentEnum.customerProfile
+//   'customerSession',
+//   'customerProfile'
 // ]
 
 integrationApi
-  .updateCustomerSessionV2("example_integration_v2_id", integrationRequest)
+  .updateCustomerSessionV2({
+      customerSessionId: "example_integration_v2_id",
+      integrationRequest
+  })
   .then(
     data => {
       console.log(JSON.stringify(data, null, 2));
 
       // Parsing the returned effects list, please consult https://developers.talon.one/Integration-API/handling-effects-v2 for the full list of effects and their corresponding properties
-      data.effects.forEach(effect => {
-        switch(effect.effectType) {
+      data.effects?.forEach(effect => {
+        switch (effect.effectType) {
           case 'setDiscount':
-            // Initiating right props instance according to the effect type
-            const setDiscountProps = TalonOne.SetDiscountEffectProps.constructFromObject(effect.props)
-            // Initiating the right props class is not a necessity, it is only a suggestion here that could help in case of unexpected returned values from the API
-
             // Access the specific effect's properties
-            console.log(`Set a discount '${setDiscountProps.name}' of ${setDiscountProps.value}`)
+            console.log(`Set a discount '${effect.props.name}' of ${effect.props.value}`)
             break
-          case 'acceptCoupon':
-            // Work with AcceptCouponEffectProps' properties
-            // ...
-          default:
-            throw new Error(`Unhandled effect type from Talon.One integration: ${effect.effectType}`)
+          case 'rejectCoupon':
+            // Work with rejectCoupon effect properties
+            console.log('Coupon rejected')
+            break
         }
       })
     },
@@ -152,29 +155,32 @@ integrationApi
 
 The following code shows an example of using the Management API:
 
-```javascript
-const TalonOne = require("talon_one");
+```typescript
+import pkg from "talon_one_sdk";
+const { ManagementApi, Configuration } = pkg;
 
-const defaultClient = TalonOne.ApiClient.instance;
-defaultClient.basePath = "https://yourbaseurl.talon.one"; // No trailing slash!
-
-// Configure API key authorization: management_key
-const management_key = defaultClient.authentications["management_key"];
-management_key.apiKey =
-  "2f0dce055da01ae595005d7d79154bae7448d319d5fc7c5b2951fadd6ba1ea07";
-management_key.apiKeyPrefix = "ManagementKey-v1";
+// Configure API client
+const configuration = new Configuration({
+    basePath: "https://yourbaseurl.talon.one",
+    apiKey: (name: string) => {
+        if (name === "Authorization") {
+            return "ManagementKey-v1 2f0dce055da01ae595005d7d79154bae7448d319d5fc7c5b2951fadd6ba1ea07";
+        }
+        return "";
+    }
+});
 
 // Management API example to load application with id 7
-const managementApi = new TalonOne.ManagementApi();
+const managementApi = new ManagementApi(configuration);
 
 // Calling `getApplication` function with the desired id (7)
-managementApi.getApplication(7).then(
-  function(data) {
+managementApi.getApplication({ applicationId: 7 }).then(
+  data => {
     console.log(
       "API called successfully. Returned data:\n" + JSON.stringify(data)
     );
   },
-  function(error) {
+  error => {
     console.error("Error while fetching the application:\n" + error);
   }
 );
