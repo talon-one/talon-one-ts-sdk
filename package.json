@@ -1,6 +1,6 @@
 {
   "name": "talon_one_sdk",
-  "version": "25.26",
+  "version": "25.26.0",
   "description": "Talon.One SDK for TypeScript",
   "author": "Talon.One",
   "repository": {
