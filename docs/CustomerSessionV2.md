@@ -22,6 +22,7 @@ Name | Type
 `identifiers` | Array&lt;string&gt;
 `attributes` | object
 `firstSession` | boolean
+`updateCount` | number
 `total` | number
 `cartItemTotal` | number
 `additionalCostTotal` | number
@@ -50,6 +51,7 @@ const example = {
   "identifiers": [d41306257915f83fe01e54092ae470f631161ea16fcf4415842eed41470386ea],
   "attributes": {ShippingCity=Berlin},
   "firstSession": true,
+  "updateCount": 3,
   "total": 119.99,
   "cartItemTotal": 99.99,
   "additionalCostTotal": 20,

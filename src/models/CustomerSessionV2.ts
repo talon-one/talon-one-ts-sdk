@@ -180,6 +180,12 @@ export interface CustomerSessionV2 {
      */
     firstSession: boolean;
     /**
+     * The number of times the session was updated. When the session is created, this value is initialized to `1`.
+     * @type {number}
+     * @memberof CustomerSessionV2
+     */
+    updateCount: number;
+    /**
      * The total value of cart items and additional costs in the session, before any discounts are applied.
      * @type {number}
      * @memberof CustomerSessionV2
@@ -227,6 +233,7 @@ export function instanceOfCustomerSessionV2(value: object): value is CustomerSes
     if (!('integrationId' in value) || value['integrationId'] === undefined) return false;
     if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
     if (!('firstSession' in value) || value['firstSession'] === undefined) return false;
+    if (!('updateCount' in value) || value['updateCount'] === undefined) return false;
     if (!('total' in value) || value['total'] === undefined) return false;
     if (!('cartItemTotal' in value) || value['cartItemTotal'] === undefined) return false;
     if (!('additionalCostTotal' in value) || value['additionalCostTotal'] === undefined) return false;
@@ -260,6 +267,7 @@ export function CustomerSessionV2FromJSONTyped(json: any, ignoreDiscriminator: b
         'identifiers': json['identifiers'] == null ? undefined : json['identifiers'],
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'firstSession': json['firstSession'],
+        'updateCount': json['updateCount'],
         'total': json['total'],
         'cartItemTotal': json['cartItemTotal'],
         'additionalCostTotal': json['additionalCostTotal'],
@@ -294,6 +302,7 @@ export function CustomerSessionV2ToJSONTyped(value?: CustomerSessionV2 | null, i
         'identifiers': value['identifiers'],
         'attributes': value['attributes'],
         'firstSession': value['firstSession'],
+        'updateCount': value['updateCount'],
         'total': value['total'],
         'cartItemTotal': value['cartItemTotal'],
         'additionalCostTotal': value['additionalCostTotal'],

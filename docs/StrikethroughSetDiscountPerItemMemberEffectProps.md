@@ -1,25 +1,25 @@
 
-# JWT
+# StrikethroughSetDiscountPerItemMemberEffectProps
 
-JSON web token used for accessing integrations in Prismatic
+setDiscountPerItem member effect in strikethrough pricing payload.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`accessToken` | string
-`expiresIn` | number
+`name` | string
+`value` | any
 
 ## Example
 
 ```typescript
-import type { JWT } from 'talon_one_sdk'
+import type { StrikethroughSetDiscountPerItemMemberEffectProps } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "accessToken": eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9,
-  "expiresIn": 1000,
-} satisfies JWT
+  "name": 10% off members only,
+  "value": null,
+} satisfies StrikethroughSetDiscountPerItemMemberEffectProps
 
 console.log(example)
 
@@ -28,7 +28,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as JWT
+const exampleParsed = JSON.parse(exampleJSON) as StrikethroughSetDiscountPerItemMemberEffectProps
 console.log(exampleParsed)
 ```
 

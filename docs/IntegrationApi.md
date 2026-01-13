@@ -1408,7 +1408,7 @@ example().catch(console.error);
 
 ## getLoyaltyCardTransactions
 
-> GetLoyaltyCardTransactions200Response getLoyaltyCardTransactions(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation)
+> GetLoyaltyCardTransactions200Response getLoyaltyCardTransactions(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip)
 
 List card\&#39;s transactions
 
@@ -1452,8 +1452,6 @@ async function example() {
     pageSize: 789,
     // number | The number of items to skip when paging through large result sets. (optional)
     skip: 789,
-    // boolean | If `true`: Filters results to include only point transactions that have action-based activation and have not expired. If `false`: Returns an error.  (optional)
-    awaitsActivation: true,
   } satisfies GetLoyaltyCardTransactionsRequest;
 
   try {
@@ -1483,7 +1481,6 @@ example().catch(console.error);
 | **transactionUUIDs** | `Array<string>` | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | [Optional] |
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `50`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
-| **awaitsActivation** | `boolean` | If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -1610,7 +1607,7 @@ example().catch(console.error);
 
 ## getLoyaltyProgramProfileTransactions
 
-> GetLoyaltyProgramProfileTransactions200Response getLoyaltyProgramProfileTransactions(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation)
+> GetLoyaltyProgramProfileTransactions200Response getLoyaltyProgramProfileTransactions(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip)
 
 List customer\&#39;s loyalty transactions
 
@@ -1654,8 +1651,6 @@ async function example() {
     pageSize: 789,
     // number | The number of items to skip when paging through large result sets. (optional)
     skip: 789,
-    // boolean | If `true`: Filters results to include only point transactions that have action-based activation and have not expired. If `false`: Returns an error.  (optional)
-    awaitsActivation: true,
   } satisfies GetLoyaltyProgramProfileTransactionsRequest;
 
   try {
@@ -1685,7 +1680,6 @@ example().catch(console.error);
 | **endDate** | `Date` | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `50`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
-| **awaitsActivation** | `boolean` | If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

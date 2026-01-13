@@ -8,7 +8,7 @@ Name | Type
 ------------ | -------------
 `attributes` | object
 `evaluableCampaignIds` | Array&lt;number&gt;
-`audiencesChanges` | [ProfileAudiencesChanges](ProfileAudiencesChanges.md)
+`audiencesChanges` | any
 `responseContent` | Array&lt;string&gt;
 
 ## Example

@@ -13,14 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ProfileAudiencesChanges } from './ProfileAudiencesChanges';
-import {
-    ProfileAudiencesChangesFromJSON,
-    ProfileAudiencesChangesFromJSONTyped,
-    ProfileAudiencesChangesToJSON,
-    ProfileAudiencesChangesToJSONTyped,
-} from './ProfileAudiencesChanges';
-
 /**
  * 
  * @export
@@ -44,10 +36,10 @@ export interface CustomerProfileIntegrationRequestV2 {
     evaluableCampaignIds?: Array<number>;
     /**
      * Audiences memberships changes for this profile.
-     * @type {ProfileAudiencesChanges}
+     * @type {any}
      * @memberof CustomerProfileIntegrationRequestV2
      */
-    audiencesChanges?: ProfileAudiencesChanges;
+    audiencesChanges?: any | null;
     /**
      * Extends the response with the chosen data entities. Use this property to get as much data
      * as you need in one _Update customer profile_ request instead of sending extra requests to other endpoints.
@@ -92,7 +84,7 @@ export function CustomerProfileIntegrationRequestV2FromJSONTyped(json: any, igno
         
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'evaluableCampaignIds': json['evaluableCampaignIds'] == null ? undefined : json['evaluableCampaignIds'],
-        'audiencesChanges': json['audiencesChanges'] == null ? undefined : ProfileAudiencesChangesFromJSON(json['audiencesChanges']),
+        'audiencesChanges': json['audiencesChanges'] == null ? undefined : json['audiencesChanges'],
         'responseContent': json['responseContent'] == null ? undefined : json['responseContent'],
     };
 }
@@ -110,7 +102,7 @@ export function CustomerProfileIntegrationRequestV2ToJSONTyped(value?: CustomerP
         
         'attributes': value['attributes'],
         'evaluableCampaignIds': value['evaluableCampaignIds'],
-        'audiencesChanges': ProfileAudiencesChangesToJSON(value['audiencesChanges']),
+        'audiencesChanges': value['audiencesChanges'],
         'responseContent': value['responseContent'],
     };
 }

@@ -12,9 +12,10 @@ Name | Type
 `applicationId` | number
 `currentBatch` | number
 `totalBatches` | number
-`trigger` | [StrikethroughTrigger](StrikethroughTrigger.md)
+`trigger` | [StrikethroughTrigger](.md)
 `changedItems` | [Array&lt;StrikethroughChangedItem&gt;](StrikethroughChangedItem.md)
 `notificationType` | string
+`sentAt` | Date
 
 ## Example
 
@@ -31,6 +32,7 @@ const example = {
   "trigger": null,
   "changedItems": null,
   "notificationType": null,
+  "sentAt": null,
 } satisfies StrikethroughLabelingNotification
 
 console.log(example)

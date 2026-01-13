@@ -13,21 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Ruleset } from './Ruleset';
-import {
-    RulesetFromJSON,
-    RulesetFromJSONTyped,
-    RulesetToJSON,
-    RulesetToJSONTyped,
-} from './Ruleset';
-import type { Campaign } from './Campaign';
-import {
-    CampaignFromJSON,
-    CampaignFromJSONTyped,
-    CampaignToJSON,
-    CampaignToJSONTyped,
-} from './Campaign';
-
 /**
  * 
  * @export
@@ -43,22 +28,22 @@ export interface CampaignEditedNotificationItem {
     event: string;
     /**
      * The campaign whose state changed.
-     * @type {Campaign}
+     * @type {any}
      * @memberof CampaignEditedNotificationItem
      */
-    campaign: Campaign;
+    campaign: any | null;
     /**
      * The campaign before the change.
-     * @type {Campaign}
+     * @type {any}
      * @memberof CampaignEditedNotificationItem
      */
-    oldCampaign: Campaign;
+    oldCampaign: any | null;
     /**
      * The current ruleset.
-     * @type {Ruleset}
+     * @type {any}
      * @memberof CampaignEditedNotificationItem
      */
-    ruleset?: Ruleset;
+    ruleset?: any | null;
 }
 
 /**
@@ -82,9 +67,9 @@ export function CampaignEditedNotificationItemFromJSONTyped(json: any, ignoreDis
     return {
         
         'event': json['Event'],
-        'campaign': CampaignFromJSON(json['campaign']),
-        'oldCampaign': CampaignFromJSON(json['oldCampaign']),
-        'ruleset': json['ruleset'] == null ? undefined : RulesetFromJSON(json['ruleset']),
+        'campaign': json['campaign'],
+        'oldCampaign': json['oldCampaign'],
+        'ruleset': json['ruleset'] == null ? undefined : json['ruleset'],
     };
 }
 
@@ -100,9 +85,9 @@ export function CampaignEditedNotificationItemToJSONTyped(value?: CampaignEdited
     return {
         
         'Event': value['event'],
-        'campaign': CampaignToJSON(value['campaign']),
-        'oldCampaign': CampaignToJSON(value['oldCampaign']),
-        'ruleset': RulesetToJSON(value['ruleset']),
+        'campaign': value['campaign'],
+        'oldCampaign': value['oldCampaign'],
+        'ruleset': value['ruleset'],
     };
 }
 

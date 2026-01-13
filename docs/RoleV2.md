@@ -14,6 +14,7 @@ Name | Type
 `description` | string
 `permissions` | [RoleV2Permissions](RoleV2Permissions.md)
 `members` | Array&lt;number&gt;
+`isReadonly` | boolean
 
 ## Example
 
@@ -30,6 +31,7 @@ const example = {
   "description": Allows you to create and edit campaigns for specific Applications, delete specific campaign access groups, and view loyalty programs.,
   "permissions": null,
   "members": [10, 12],
+  "isReadonly": false,
 } satisfies RoleV2
 
 console.log(example)

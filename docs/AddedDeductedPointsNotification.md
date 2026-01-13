@@ -6,19 +6,19 @@
 
 Name | Type
 ------------ | -------------
-`profileIntegrationID` | string
-`loyaltyProgramID` | number
-`subledgerID` | string
-`amount` | number
-`reason` | string
-`typeOfChange` | string
 `employeeName` | string
-`userID` | number
-`operation` | string
-`startDate` | Date
-`expiryDate` | Date
-`sessionIntegrationID` | string
+`loyaltyProgramID` | number
 `notificationType` | string
+`profileIntegrationID` | string
+`sessionIntegrationID` | string
+`subledgerID` | string
+`typeOfChange` | string
+`userID` | number
+`amount` | number
+`expiryDate` | Date
+`operation` | string
+`reason` | string
+`startDate` | Date
 
 ## Example
 
@@ -27,19 +27,19 @@ import type { AddedDeductedPointsNotification } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "profileIntegrationID": URNGV8294NV,
-  "loyaltyProgramID": 5,
-  "subledgerID": sub-123,
-  "amount": 10.99,
-  "reason": Compensation,
-  "typeOfChange": null,
   "employeeName": Franziska Schneider,
-  "userID": 25,
-  "operation": null,
-  "startDate": 2023-01-24T14:15:22Z,
-  "expiryDate": 2024-01-24T14:15:22Z,
-  "sessionIntegrationID": cc53e4fa-547f-4f5e-8333-76e05c381f67,
+  "loyaltyProgramID": 5,
   "notificationType": null,
+  "profileIntegrationID": URNGV8294NV,
+  "sessionIntegrationID": cc53e4fa-547f-4f5e-8333-76e05c381f67,
+  "subledgerID": sub-123,
+  "typeOfChange": null,
+  "userID": 25,
+  "amount": 10.99,
+  "expiryDate": 2024-01-24T14:15:22Z,
+  "operation": null,
+  "reason": Compensation,
+  "startDate": 2023-01-24T14:15:22Z,
 } satisfies AddedDeductedPointsNotification
 
 console.log(example)

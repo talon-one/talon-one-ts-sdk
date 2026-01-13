@@ -21,6 +21,8 @@ Name | Type
 `cardIdentifier` | string
 `bundleIndex` | number
 `bundleName` | string
+`awaitsActivation` | boolean
+`validityDuration` | string
 
 ## Example
 
@@ -43,6 +45,8 @@ const example = {
   "cardIdentifier": summer-loyalty-card-0543,
   "bundleIndex": null,
   "bundleName": null,
+  "awaitsActivation": null,
+  "validityDuration": null,
 } satisfies AddLoyaltyPointsEffectProps
 
 console.log(example)

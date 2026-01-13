@@ -7,9 +7,9 @@
 Name | Type
 ------------ | -------------
 `event` | string
-`campaign` | [Campaign](Campaign.md)
-`oldCampaign` | [Campaign](Campaign.md)
-`ruleset` | [Ruleset](Ruleset.md)
+`campaign` | any
+`oldCampaign` | any
+`ruleset` | any
 
 ## Example
 

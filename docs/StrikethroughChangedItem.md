@@ -27,7 +27,7 @@ const example = {
   "catalogId": 10,
   "sku": SKU1241028,
   "version": 6,
-  "price": 99.99,
+  "price": 100,
   "prices": {member={price=90, adjustmentReferenceId=68851723-e6fa-488f-ace9-112581e6c19b, adjustmentEffectiveFrom=2025-05-25T00:00:00Z, adjustmentEffectiveUntil=2025-05-30T00:00:00Z}, base={price=100}},
   "evaluatedAt": 2020-06-10T09:05:27.993483Z,
   "effects": null,

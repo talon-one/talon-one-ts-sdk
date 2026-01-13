@@ -75,6 +75,12 @@ export interface RoleV2 {
      * @memberof RoleV2
      */
     members?: Array<number>;
+    /**
+     * Identifies if the role is read-only. For read-only roles, you can only assign or unassign users. You cannot edit any other properties, such as the name, description, or permissions. The 'isReadonly' property cannot be set for new or existing roles. It is reserved for predefined roles, such as the Talon.One support role.
+     * @type {boolean}
+     * @memberof RoleV2
+     */
+    isReadonly?: boolean;
 }
 
 /**
@@ -106,6 +112,7 @@ export function RoleV2FromJSONTyped(json: any, ignoreDiscriminator: boolean): Ro
         'description': json['description'] == null ? undefined : json['description'],
         'permissions': json['permissions'] == null ? undefined : RoleV2PermissionsFromJSON(json['permissions']),
         'members': json['members'] == null ? undefined : json['members'],
+        'isReadonly': json['isReadonly'] == null ? undefined : json['isReadonly'],
     };
 }
 
@@ -128,6 +135,7 @@ export function RoleV2ToJSONTyped(value?: RoleV2 | null, ignoreDiscriminator: bo
         'description': value['description'],
         'permissions': RoleV2PermissionsToJSON(value['permissions']),
         'members': value['members'],
+        'isReadonly': value['isReadonly'],
     };
 }
 

@@ -20,13 +20,6 @@ import {
     RulesetToJSON,
     RulesetToJSONTyped,
 } from './Ruleset';
-import type { Campaign } from './Campaign';
-import {
-    CampaignFromJSON,
-    CampaignFromJSONTyped,
-    CampaignToJSON,
-    CampaignToJSONTyped,
-} from './Campaign';
 
 /**
  * 
@@ -43,10 +36,10 @@ export interface CampaignRulesetChangedNotificationItem {
     event: string;
     /**
      * The campaign whose state changed.
-     * @type {Campaign}
+     * @type {any}
      * @memberof CampaignRulesetChangedNotificationItem
      */
-    campaign: Campaign;
+    campaign: any | null;
     /**
      * The old ruleset, if the ruleset was changed.
      * @type {Ruleset}
@@ -81,7 +74,7 @@ export function CampaignRulesetChangedNotificationItemFromJSONTyped(json: any, i
     return {
         
         'event': json['Event'],
-        'campaign': CampaignFromJSON(json['campaign']),
+        'campaign': json['campaign'],
         'oldRuleset': json['oldRuleset'] == null ? undefined : RulesetFromJSON(json['oldRuleset']),
         'ruleset': json['ruleset'] == null ? undefined : RulesetFromJSON(json['ruleset']),
     };
@@ -99,7 +92,7 @@ export function CampaignRulesetChangedNotificationItemToJSONTyped(value?: Campai
     return {
         
         'Event': value['event'],
-        'campaign': CampaignToJSON(value['campaign']),
+        'campaign': value['campaign'],
         'oldRuleset': RulesetToJSON(value['oldRuleset']),
         'ruleset': RulesetToJSON(value['ruleset']),
     };

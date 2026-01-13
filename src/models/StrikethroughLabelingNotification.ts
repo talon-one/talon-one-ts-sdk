@@ -78,11 +78,17 @@ export interface StrikethroughLabelingNotification {
      */
     changedItems: Array<StrikethroughChangedItem>;
     /**
-     * The type of the notification
+     * The type of notification.
      * @type {string}
      * @memberof StrikethroughLabelingNotification
      */
     notificationType: StrikethroughLabelingNotificationNotificationTypeEnum;
+    /**
+     * Timestamp at which the notification was sent.
+     * @type {Date}
+     * @memberof StrikethroughLabelingNotification
+     */
+    sentAt: Date;
 }
 
 
@@ -113,6 +119,7 @@ export function instanceOfStrikethroughLabelingNotification(value: object): valu
     if (!('trigger' in value) || value['trigger'] === undefined) return false;
     if (!('changedItems' in value) || value['changedItems'] === undefined) return false;
     if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
+    if (!('sentAt' in value) || value['sentAt'] === undefined) return false;
     return true;
 }
 
@@ -131,9 +138,10 @@ export function StrikethroughLabelingNotificationFromJSONTyped(json: any, ignore
         'applicationId': json['applicationId'],
         'currentBatch': json['currentBatch'],
         'totalBatches': json['totalBatches'],
-        'trigger': StrikethroughTriggerFromJSON(json['trigger']),
+        'trigger': json['trigger'],
         'changedItems': ((json['changedItems'] as Array<any>).map(StrikethroughChangedItemFromJSON)),
         'notificationType': json['NotificationType'],
+        'sentAt': (new Date(json['sentAt'])),
     };
 }
 
@@ -153,9 +161,10 @@ export function StrikethroughLabelingNotificationToJSONTyped(value?: Strikethrou
         'applicationId': value['applicationId'],
         'currentBatch': value['currentBatch'],
         'totalBatches': value['totalBatches'],
-        'trigger': StrikethroughTriggerToJSON(value['trigger']),
+        'trigger': value['trigger'],
         'changedItems': ((value['changedItems'] as Array<any>).map(StrikethroughChangedItemToJSON)),
         'NotificationType': value['notificationType'],
+        'sentAt': value['sentAt'].toISOString(),
     };
 }
 

@@ -29,7 +29,6 @@ Name | Type
 `timezone` | string
 `cardBased` | boolean
 `canUpdateTiers` | boolean
-`canUpdateJoinPolicy` | boolean
 `canUpdateTierExpirationPolicy` | boolean
 `canUpgradeToAdvancedTiers` | boolean
 `canUpdateSubledgers` | boolean
@@ -64,7 +63,6 @@ const example = {
   "timezone": Europe/Berlin,
   "cardBased": true,
   "canUpdateTiers": true,
-  "canUpdateJoinPolicy": true,
   "canUpdateTierExpirationPolicy": true,
   "canUpgradeToAdvancedTiers": true,
   "canUpdateSubledgers": true,

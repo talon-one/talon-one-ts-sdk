@@ -13,28 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Ruleset } from './Ruleset';
-import {
-    RulesetFromJSON,
-    RulesetFromJSONTyped,
-    RulesetToJSON,
-    RulesetToJSONTyped,
-} from './Ruleset';
-import type { Campaign } from './Campaign';
-import {
-    CampaignFromJSON,
-    CampaignFromJSONTyped,
-    CampaignToJSON,
-    CampaignToJSONTyped,
-} from './Campaign';
-import type { CollectionWithoutPayload } from './CollectionWithoutPayload';
-import {
-    CollectionWithoutPayloadFromJSON,
-    CollectionWithoutPayloadFromJSONTyped,
-    CollectionWithoutPayloadToJSON,
-    CollectionWithoutPayloadToJSONTyped,
-} from './CollectionWithoutPayload';
-
 /**
  * 
  * @export
@@ -50,22 +28,22 @@ export interface CampaignCollectionEditedNotificationItem {
     event: string;
     /**
      * The current campaign.
-     * @type {Campaign}
+     * @type {any}
      * @memberof CampaignCollectionEditedNotificationItem
      */
-    campaign: Campaign;
+    campaign: any | null;
     /**
      * The current ruleset.
-     * @type {Ruleset}
+     * @type {any}
      * @memberof CampaignCollectionEditedNotificationItem
      */
-    ruleset?: Ruleset;
+    ruleset?: any | null;
     /**
      * The collection that was edited.
-     * @type {CollectionWithoutPayload}
+     * @type {any}
      * @memberof CampaignCollectionEditedNotificationItem
      */
-    collection: CollectionWithoutPayload;
+    collection: any | null;
 }
 
 /**
@@ -89,9 +67,9 @@ export function CampaignCollectionEditedNotificationItemFromJSONTyped(json: any,
     return {
         
         'event': json['Event'],
-        'campaign': CampaignFromJSON(json['campaign']),
-        'ruleset': json['ruleset'] == null ? undefined : RulesetFromJSON(json['ruleset']),
-        'collection': CollectionWithoutPayloadFromJSON(json['collection']),
+        'campaign': json['campaign'],
+        'ruleset': json['ruleset'] == null ? undefined : json['ruleset'],
+        'collection': json['collection'],
     };
 }
 
@@ -107,9 +85,9 @@ export function CampaignCollectionEditedNotificationItemToJSONTyped(value?: Camp
     return {
         
         'Event': value['event'],
-        'campaign': CampaignToJSON(value['campaign']),
-        'ruleset': RulesetToJSON(value['ruleset']),
-        'collection': CollectionWithoutPayloadToJSON(value['collection']),
+        'campaign': value['campaign'],
+        'ruleset': value['ruleset'],
+        'collection': value['collection'],
     };
 }
 

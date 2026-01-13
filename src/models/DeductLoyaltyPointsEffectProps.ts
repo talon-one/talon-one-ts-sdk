@@ -57,8 +57,7 @@ export interface DeductLoyaltyPointsEffectProps {
      */
     name: string;
     /**
-     * The alphanumeric identifier of the loyalty card.
-     * 
+     * The card on which these points were added.
      * @type {string}
      * @memberof DeductLoyaltyPointsEffectProps
      */

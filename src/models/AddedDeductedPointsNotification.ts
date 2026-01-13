@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface AddedDeductedPointsNotification {
     /**
-     * The integration ID of the customer profile to whom points were added or deducted.
+     * The name of the employee who added or deducted points.
      * @type {string}
      * @memberof AddedDeductedPointsNotification
      */
-    profileIntegrationID: string;
+    employeeName: string;
     /**
      * The ID of the loyalty program.
      * @type {number}
@@ -32,23 +32,29 @@ export interface AddedDeductedPointsNotification {
      */
     loyaltyProgramID: number;
     /**
+     * The type of notification.
+     * @type {string}
+     * @memberof AddedDeductedPointsNotification
+     */
+    notificationType: AddedDeductedPointsNotificationNotificationTypeEnum;
+    /**
+     * The integration ID of the customer profile to whom points were added or deducted.
+     * @type {string}
+     * @memberof AddedDeductedPointsNotification
+     */
+    profileIntegrationID: string;
+    /**
+     * The integration ID of the session through which the points were earned or lost.
+     * @type {string}
+     * @memberof AddedDeductedPointsNotification
+     */
+    sessionIntegrationID: string;
+    /**
      * The ID of the subledger within the loyalty program where these points were added.
      * @type {string}
      * @memberof AddedDeductedPointsNotification
      */
     subledgerID: string;
-    /**
-     * The amount of added or deducted loyalty points.
-     * @type {number}
-     * @memberof AddedDeductedPointsNotification
-     */
-    amount: number;
-    /**
-     * The reason for the points addition or deduction.
-     * @type {string}
-     * @memberof AddedDeductedPointsNotification
-     */
-    reason: string;
     /**
      * The notification source, that is, it indicates
      * whether the points were added or deducted via one of the following routes:
@@ -64,29 +70,17 @@ export interface AddedDeductedPointsNotification {
      */
     typeOfChange: AddedDeductedPointsNotificationTypeOfChangeEnum;
     /**
-     * The name of the employee who added or deducted points.
-     * @type {string}
-     * @memberof AddedDeductedPointsNotification
-     */
-    employeeName: string;
-    /**
      * The ID of the employee who added or deducted points.
      * @type {number}
      * @memberof AddedDeductedPointsNotification
      */
     userID: number;
     /**
-     * The action (addition or deduction) made with loyalty points.
-     * @type {string}
+     * The amount of added or deducted loyalty points.
+     * @type {number}
      * @memberof AddedDeductedPointsNotification
      */
-    operation: AddedDeductedPointsNotificationOperationEnum;
-    /**
-     * The start date for loyalty points.
-     * @type {Date}
-     * @memberof AddedDeductedPointsNotification
-     */
-    startDate?: Date;
+    amount: number;
     /**
      * The expiration date for loyalty points.
      * @type {Date}
@@ -94,19 +88,34 @@ export interface AddedDeductedPointsNotification {
      */
     expiryDate?: Date;
     /**
-     * The integration ID of the session through which the points were earned or lost.
+     * The action (addition or deduction) made with loyalty points.
      * @type {string}
      * @memberof AddedDeductedPointsNotification
      */
-    sessionIntegrationID: string;
+    operation: AddedDeductedPointsNotificationOperationEnum;
     /**
-     * The type of notification.
+     * The reason for the points addition or deduction.
      * @type {string}
      * @memberof AddedDeductedPointsNotification
      */
-    notificationType: AddedDeductedPointsNotificationNotificationTypeEnum;
+    reason: string;
+    /**
+     * The start date for loyalty points.
+     * @type {Date}
+     * @memberof AddedDeductedPointsNotification
+     */
+    startDate?: Date;
 }
 
+
+/**
+ * @export
+ */
+export const AddedDeductedPointsNotificationNotificationTypeEnum = {
+    LoyaltyPointsDeducted: 'LoyaltyPointsDeducted',
+    LoyaltyPointsAdded: 'LoyaltyPointsAdded'
+} as const;
+export type AddedDeductedPointsNotificationNotificationTypeEnum = typeof AddedDeductedPointsNotificationNotificationTypeEnum[keyof typeof AddedDeductedPointsNotificationNotificationTypeEnum];
 
 /**
  * @export
@@ -127,31 +136,22 @@ export const AddedDeductedPointsNotificationOperationEnum = {
 } as const;
 export type AddedDeductedPointsNotificationOperationEnum = typeof AddedDeductedPointsNotificationOperationEnum[keyof typeof AddedDeductedPointsNotificationOperationEnum];
 
-/**
- * @export
- */
-export const AddedDeductedPointsNotificationNotificationTypeEnum = {
-    LoyaltyPointsDeducted: 'LoyaltyPointsDeducted',
-    LoyaltyPointsAdded: 'LoyaltyPointsAdded'
-} as const;
-export type AddedDeductedPointsNotificationNotificationTypeEnum = typeof AddedDeductedPointsNotificationNotificationTypeEnum[keyof typeof AddedDeductedPointsNotificationNotificationTypeEnum];
-
 
 /**
  * Check if a given object implements the AddedDeductedPointsNotification interface.
  */
 export function instanceOfAddedDeductedPointsNotification(value: object): value is AddedDeductedPointsNotification {
-    if (!('profileIntegrationID' in value) || value['profileIntegrationID'] === undefined) return false;
-    if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
-    if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
-    if (!('amount' in value) || value['amount'] === undefined) return false;
-    if (!('reason' in value) || value['reason'] === undefined) return false;
-    if (!('typeOfChange' in value) || value['typeOfChange'] === undefined) return false;
     if (!('employeeName' in value) || value['employeeName'] === undefined) return false;
-    if (!('userID' in value) || value['userID'] === undefined) return false;
-    if (!('operation' in value) || value['operation'] === undefined) return false;
-    if (!('sessionIntegrationID' in value) || value['sessionIntegrationID'] === undefined) return false;
+    if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
     if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
+    if (!('profileIntegrationID' in value) || value['profileIntegrationID'] === undefined) return false;
+    if (!('sessionIntegrationID' in value) || value['sessionIntegrationID'] === undefined) return false;
+    if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
+    if (!('typeOfChange' in value) || value['typeOfChange'] === undefined) return false;
+    if (!('userID' in value) || value['userID'] === undefined) return false;
+    if (!('amount' in value) || value['amount'] === undefined) return false;
+    if (!('operation' in value) || value['operation'] === undefined) return false;
+    if (!('reason' in value) || value['reason'] === undefined) return false;
     return true;
 }
 
@@ -165,19 +165,19 @@ export function AddedDeductedPointsNotificationFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'profileIntegrationID': json['ProfileIntegrationID'],
-        'loyaltyProgramID': json['LoyaltyProgramID'],
-        'subledgerID': json['SubledgerID'],
-        'amount': json['Amount'],
-        'reason': json['Reason'],
-        'typeOfChange': json['TypeOfChange'],
         'employeeName': json['EmployeeName'],
-        'userID': json['UserID'],
-        'operation': json['Operation'],
-        'startDate': json['StartDate'] == null ? undefined : (new Date(json['StartDate'])),
-        'expiryDate': json['ExpiryDate'] == null ? undefined : (new Date(json['ExpiryDate'])),
-        'sessionIntegrationID': json['SessionIntegrationID'],
+        'loyaltyProgramID': json['LoyaltyProgramID'],
         'notificationType': json['NotificationType'],
+        'profileIntegrationID': json['ProfileIntegrationID'],
+        'sessionIntegrationID': json['SessionIntegrationID'],
+        'subledgerID': json['SubledgerID'],
+        'typeOfChange': json['TypeOfChange'],
+        'userID': json['UserID'],
+        'amount': json['Amount'],
+        'expiryDate': json['ExpiryDate'] == null ? undefined : (new Date(json['ExpiryDate'])),
+        'operation': json['Operation'],
+        'reason': json['Reason'],
+        'startDate': json['StartDate'] == null ? undefined : (new Date(json['StartDate'])),
     };
 }
 
@@ -192,19 +192,19 @@ export function AddedDeductedPointsNotificationToJSONTyped(value?: AddedDeducted
 
     return {
         
-        'ProfileIntegrationID': value['profileIntegrationID'],
-        'LoyaltyProgramID': value['loyaltyProgramID'],
-        'SubledgerID': value['subledgerID'],
-        'Amount': value['amount'],
-        'Reason': value['reason'],
-        'TypeOfChange': value['typeOfChange'],
         'EmployeeName': value['employeeName'],
-        'UserID': value['userID'],
-        'Operation': value['operation'],
-        'StartDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'ExpiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
-        'SessionIntegrationID': value['sessionIntegrationID'],
+        'LoyaltyProgramID': value['loyaltyProgramID'],
         'NotificationType': value['notificationType'],
+        'ProfileIntegrationID': value['profileIntegrationID'],
+        'SessionIntegrationID': value['sessionIntegrationID'],
+        'SubledgerID': value['subledgerID'],
+        'TypeOfChange': value['typeOfChange'],
+        'UserID': value['userID'],
+        'Amount': value['amount'],
+        'ExpiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'Operation': value['operation'],
+        'Reason': value['reason'],
+        'StartDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
     };
 }
 

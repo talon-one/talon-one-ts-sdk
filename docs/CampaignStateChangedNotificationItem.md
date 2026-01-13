@@ -7,10 +7,10 @@
 Name | Type
 ------------ | -------------
 `event` | string
-`campaign` | [Campaign](Campaign.md)
+`campaign` | any
 `oldState` | string
 `newState` | string
-`ruleset` | [Ruleset](Ruleset.md)
+`ruleset` | any
 
 ## Example
 

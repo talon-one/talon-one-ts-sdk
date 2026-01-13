@@ -88,8 +88,7 @@ export interface AddLoyaltyPointsEffectProps {
      */
     cartItemSubPosition?: number;
     /**
-     * The alphanumeric identifier of the loyalty card.
-     * 
+     * The card on which these points were added.
      * @type {string}
      * @memberof AddLoyaltyPointsEffectProps
      */
@@ -106,6 +105,24 @@ export interface AddLoyaltyPointsEffectProps {
      * @memberof AddLoyaltyPointsEffectProps
      */
     bundleName?: string;
+    /**
+     * If `true`, the loyalty points remain pending until a specific action is complete. The `startDate` parameter automatically sets to `on_action`.
+     * 
+     * @type {boolean}
+     * @memberof AddLoyaltyPointsEffectProps
+     */
+    awaitsActivation?: boolean;
+    /**
+     * The duration for which the points remain active, calculated relative to the 
+     * activation date.  
+     * 
+     * **Note**: This value is returned only if `awaitsActivation` is `true` 
+     * and `expiryDate` is not set.
+     * 
+     * @type {string}
+     * @memberof AddLoyaltyPointsEffectProps
+     */
+    validityDuration?: string;
 }
 
 /**
@@ -145,6 +162,8 @@ export function AddLoyaltyPointsEffectPropsFromJSONTyped(json: any, ignoreDiscri
         'cardIdentifier': json['cardIdentifier'] == null ? undefined : json['cardIdentifier'],
         'bundleIndex': json['bundleIndex'] == null ? undefined : json['bundleIndex'],
         'bundleName': json['bundleName'] == null ? undefined : json['bundleName'],
+        'awaitsActivation': json['awaitsActivation'] == null ? undefined : json['awaitsActivation'],
+        'validityDuration': json['validityDuration'] == null ? undefined : json['validityDuration'],
     };
 }
 
@@ -173,6 +192,8 @@ export function AddLoyaltyPointsEffectPropsToJSONTyped(value?: AddLoyaltyPointsE
         'cardIdentifier': value['cardIdentifier'],
         'bundleIndex': value['bundleIndex'],
         'bundleName': value['bundleName'],
+        'awaitsActivation': value['awaitsActivation'],
+        'validityDuration': value['validityDuration'],
     };
 }
 

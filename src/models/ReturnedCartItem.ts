@@ -24,7 +24,7 @@ export interface ReturnedCartItem {
      * @type {number}
      * @memberof ReturnedCartItem
      */
-    position: number;
+    position?: number;
     /**
      * Number of cart items to return.
      * 
@@ -32,13 +32,18 @@ export interface ReturnedCartItem {
      * @memberof ReturnedCartItem
      */
     quantity?: number;
+    /**
+     * The SKU of the cart item in the provided customer session's `cartItems` property.
+     * @type {string}
+     * @memberof ReturnedCartItem
+     */
+    sku?: string;
 }
 
 /**
  * Check if a given object implements the ReturnedCartItem interface.
  */
 export function instanceOfReturnedCartItem(value: object): value is ReturnedCartItem {
-    if (!('position' in value) || value['position'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +57,9 @@ export function ReturnedCartItemFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'position': json['position'],
+        'position': json['position'] == null ? undefined : json['position'],
         'quantity': json['quantity'] == null ? undefined : json['quantity'],
+        'sku': json['sku'] == null ? undefined : json['sku'],
     };
 }
 
@@ -70,6 +76,7 @@ export function ReturnedCartItemToJSONTyped(value?: ReturnedCartItem | null, ign
         
         'position': value['position'],
         'quantity': value['quantity'],
+        'sku': value['sku'],
     };
 }
 
