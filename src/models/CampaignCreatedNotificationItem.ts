@@ -13,28 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Ruleset } from './Ruleset';
-import {
-    RulesetFromJSON,
-    RulesetFromJSONTyped,
-    RulesetToJSON,
-    RulesetToJSONTyped,
-} from './Ruleset';
-import type { Campaign } from './Campaign';
-import {
-    CampaignFromJSON,
-    CampaignFromJSONTyped,
-    CampaignToJSON,
-    CampaignToJSONTyped,
-} from './Campaign';
-import type { CampaignEvaluationPosition } from './CampaignEvaluationPosition';
-import {
-    CampaignEvaluationPositionFromJSON,
-    CampaignEvaluationPositionFromJSONTyped,
-    CampaignEvaluationPositionToJSON,
-    CampaignEvaluationPositionToJSONTyped,
-} from './CampaignEvaluationPosition';
-
 /**
  * 
  * @export
@@ -50,22 +28,22 @@ export interface CampaignCreatedNotificationItem {
     event: string;
     /**
      * The campaign whose state changed.
-     * @type {Campaign}
+     * @type {any}
      * @memberof CampaignCreatedNotificationItem
      */
-    campaign: Campaign;
+    campaign: any | null;
     /**
      * The current ruleset.
-     * @type {Ruleset}
+     * @type {any}
      * @memberof CampaignCreatedNotificationItem
      */
-    ruleset?: Ruleset;
+    ruleset?: any | null;
     /**
      * The campaign position within the evaluation tree.
-     * @type {CampaignEvaluationPosition}
+     * @type {any}
      * @memberof CampaignCreatedNotificationItem
      */
-    evaluationPosition: CampaignEvaluationPosition;
+    evaluationPosition: any | null;
 }
 
 /**
@@ -89,9 +67,9 @@ export function CampaignCreatedNotificationItemFromJSONTyped(json: any, ignoreDi
     return {
         
         'event': json['Event'],
-        'campaign': CampaignFromJSON(json['campaign']),
-        'ruleset': json['ruleset'] == null ? undefined : RulesetFromJSON(json['ruleset']),
-        'evaluationPosition': CampaignEvaluationPositionFromJSON(json['evaluationPosition']),
+        'campaign': json['campaign'],
+        'ruleset': json['ruleset'] == null ? undefined : json['ruleset'],
+        'evaluationPosition': json['evaluationPosition'],
     };
 }
 
@@ -107,9 +85,9 @@ export function CampaignCreatedNotificationItemToJSONTyped(value?: CampaignCreat
     return {
         
         'Event': value['event'],
-        'campaign': CampaignToJSON(value['campaign']),
-        'ruleset': RulesetToJSON(value['ruleset']),
-        'evaluationPosition': CampaignEvaluationPositionToJSON(value['evaluationPosition']),
+        'campaign': value['campaign'],
+        'ruleset': value['ruleset'],
+        'evaluationPosition': value['evaluationPosition'],
     };
 }
 

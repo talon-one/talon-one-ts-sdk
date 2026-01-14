@@ -226,13 +226,6 @@ export interface LoyaltyProgram {
      */
     canUpdateTiers?: boolean;
     /**
-     * `True` if the program join policy can be updated.
-     * 
-     * @type {boolean}
-     * @memberof LoyaltyProgram
-     */
-    canUpdateJoinPolicy?: boolean;
-    /**
      * `True` if the tier expiration policy can be updated.
      * 
      * @type {boolean}
@@ -343,7 +336,6 @@ export function LoyaltyProgramFromJSONTyped(json: any, ignoreDiscriminator: bool
         'timezone': json['timezone'],
         'cardBased': json['cardBased'],
         'canUpdateTiers': json['canUpdateTiers'] == null ? undefined : json['canUpdateTiers'],
-        'canUpdateJoinPolicy': json['canUpdateJoinPolicy'] == null ? undefined : json['canUpdateJoinPolicy'],
         'canUpdateTierExpirationPolicy': json['canUpdateTierExpirationPolicy'] == null ? undefined : json['canUpdateTierExpirationPolicy'],
         'canUpgradeToAdvancedTiers': json['canUpgradeToAdvancedTiers'] == null ? undefined : json['canUpgradeToAdvancedTiers'],
         'canUpdateSubledgers': json['canUpdateSubledgers'] == null ? undefined : json['canUpdateSubledgers'],
@@ -384,7 +376,6 @@ export function LoyaltyProgramToJSONTyped(value?: LoyaltyProgram | null, ignoreD
         'timezone': value['timezone'],
         'cardBased': value['cardBased'],
         'canUpdateTiers': value['canUpdateTiers'],
-        'canUpdateJoinPolicy': value['canUpdateJoinPolicy'],
         'canUpdateTierExpirationPolicy': value['canUpdateTierExpirationPolicy'],
         'canUpgradeToAdvancedTiers': value['canUpgradeToAdvancedTiers'],
         'canUpdateSubledgers': value['canUpdateSubledgers'],

@@ -8,6 +8,7 @@ Name | Type
 ------------ | -------------
 `position` | number
 `quantity` | number
+`sku` | string
 
 ## Example
 
@@ -18,6 +19,7 @@ import type { ReturnedCartItem } from 'talon_one_sdk'
 const example = {
   "position": 2,
   "quantity": 1,
+  "sku": SKU1241028,
 } satisfies ReturnedCartItem
 
 console.log(example)

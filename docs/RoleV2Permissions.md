@@ -7,7 +7,7 @@
 Name | Type
 ------------ | -------------
 `permissionSets` | [Array&lt;RoleV2PermissionSet&gt;](RoleV2PermissionSet.md)
-`roles` | [RoleV2RolesGroup](RoleV2RolesGroup.md)
+`roles` | [RoleV2RolesGroup](.md)
 
 ## Example
 

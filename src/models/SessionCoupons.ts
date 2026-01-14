@@ -14,62 +14,61 @@
 
 import { mapValues } from '../runtime';
 /**
- * JSON web token used for accessing integrations in Prismatic
+ * 
  * @export
- * @interface JWT
+ * @interface SessionCoupons
  */
-export interface JWT {
+export interface SessionCoupons {
     /**
-     * Access token used to authenticate a user in Talon.One.
+     * The integration ID of the session in which the coupons were applied.
      * @type {string}
-     * @memberof JWT
+     * @memberof SessionCoupons
      */
-    accessToken: string;
+    sessionIntegrationId: string;
     /**
-     * Time until the token expires (in seconds).
-     * @type {number}
-     * @memberof JWT
+     * The coupon codes for which rejection reason is needed.
+     * @type {string}
+     * @memberof SessionCoupons
      */
-    expiresIn: number;
+    couponCode?: string;
 }
 
 /**
- * Check if a given object implements the JWT interface.
+ * Check if a given object implements the SessionCoupons interface.
  */
-export function instanceOfJWT(value: object): value is JWT {
-    if (!('accessToken' in value) || value['accessToken'] === undefined) return false;
-    if (!('expiresIn' in value) || value['expiresIn'] === undefined) return false;
+export function instanceOfSessionCoupons(value: object): value is SessionCoupons {
+    if (!('sessionIntegrationId' in value) || value['sessionIntegrationId'] === undefined) return false;
     return true;
 }
 
-export function JWTFromJSON(json: any): JWT {
-    return JWTFromJSONTyped(json, false);
+export function SessionCouponsFromJSON(json: any): SessionCoupons {
+    return SessionCouponsFromJSONTyped(json, false);
 }
 
-export function JWTFromJSONTyped(json: any, ignoreDiscriminator: boolean): JWT {
+export function SessionCouponsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SessionCoupons {
     if (json == null) {
         return json;
     }
     return {
         
-        'accessToken': json['accessToken'],
-        'expiresIn': json['expiresIn'],
+        'sessionIntegrationId': json['sessionIntegrationId'],
+        'couponCode': json['couponCode'] == null ? undefined : json['couponCode'],
     };
 }
 
-export function JWTToJSON(json: any): JWT {
-    return JWTToJSONTyped(json, false);
+export function SessionCouponsToJSON(json: any): SessionCoupons {
+    return SessionCouponsToJSONTyped(json, false);
 }
 
-export function JWTToJSONTyped(value?: JWT | null, ignoreDiscriminator: boolean = false): any {
+export function SessionCouponsToJSONTyped(value?: SessionCoupons | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'accessToken': value['accessToken'],
-        'expiresIn': value['expiresIn'],
+        'sessionIntegrationId': value['sessionIntegrationId'],
+        'couponCode': value['couponCode'],
     };
 }
 

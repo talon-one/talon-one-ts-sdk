@@ -89,6 +89,7 @@ export interface AchievementBase {
      * 
      * @type {TimePoint}
      * @memberof AchievementBase
+     * @deprecated
      */
     periodEndOverride?: TimePoint;
     /**

@@ -27,6 +27,8 @@ docs/AchievementBase.md
 docs/AchievementProgress.md
 docs/AchievementProgressWithDefinition.md
 docs/AchievementStatusEntry.md
+docs/ActivateLoyaltyPoints.md
+docs/ActivateLoyaltyPointsResponse.md
 docs/ActivateUserRequest.md
 docs/AddFreeItemEffectProps.md
 docs/AddItemCatalogAction.md
@@ -34,6 +36,8 @@ docs/AddLoyaltyPoints.md
 docs/AddLoyaltyPointsEffectProps.md
 docs/AddPriceAdjustmentCatalogAction.md
 docs/AddToAudienceEffectProps.md
+docs/AddedDeductedPointsBalancesAction.md
+docs/AddedDeductedPointsBalancesNotification.md
 docs/AddedDeductedPointsBalancesNotificationPolicy.md
 docs/AddedDeductedPointsNotification.md
 docs/AddedDeductedPointsNotificationPolicy.md
@@ -135,6 +139,7 @@ docs/CampaignTemplateCollection.md
 docs/CampaignTemplateCouponReservationSettings.md
 docs/CampaignTemplateParams.md
 docs/CampaignVersions.md
+docs/CardAddedDeductedPointsBalancesNotification.md
 docs/CardAddedDeductedPointsBalancesNotificationPolicy.md
 docs/CardAddedDeductedPointsNotification.md
 docs/CardAddedDeductedPointsNotificationPolicy.md
@@ -163,8 +168,10 @@ docs/CouponCreationJob.md
 docs/CouponDeletionFilters.md
 docs/CouponDeletionJob.md
 docs/CouponEntity.md
+docs/CouponFailureSummary.md
 docs/CouponLimitConfigs.md
 docs/CouponRejectionReason.md
+docs/CouponRejections.md
 docs/CouponReservations.md
 docs/CouponSearch.md
 docs/CouponValue.md
@@ -233,6 +240,7 @@ docs/FuncArgDef.md
 docs/FunctionDef.md
 docs/GenerateAuditLogSummary.md
 docs/GenerateCampaignDescription.md
+docs/GenerateCampaignSummary.md
 docs/GenerateCampaignTags.md
 docs/GenerateCouponFailureDetailedSummary.md
 docs/GenerateCouponFailureSummary.md
@@ -310,7 +318,6 @@ docs/IntegrationStoreEntity.md
 docs/InventoryCoupon.md
 docs/InventoryReferral.md
 docs/ItemAttribute.md
-docs/JWT.md
 docs/LabelTargetAudience.md
 docs/LabelTargetNone.md
 docs/LedgerEntry.md
@@ -463,6 +470,15 @@ docs/PriceDetail.md
 docs/PriceType.md
 docs/PriceTypeReferenceDetail.md
 docs/PriceTypeReferences.md
+docs/PrismaticConfig.md
+docs/PrismaticEventPayloadCouponBasedNotifications.md
+docs/PrismaticEventPayloadCouponBasedNotificationsLimits.md
+docs/PrismaticEventPayloadLoyaltyProfileBasedNotifications.md
+docs/PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction.md
+docs/PrismaticFlow.md
+docs/PrismaticFlowConfig.md
+docs/PrismaticFlowWithConfig.md
+docs/PrismaticPaginatedEventPayload.md
 docs/Product.md
 docs/ProductSearchMatch.md
 docs/ProductUnitAnalytics.md
@@ -497,6 +513,7 @@ docs/RoleV2ApplicationDetails.md
 docs/RoleV2Base.md
 docs/RoleV2PermissionSet.md
 docs/RoleV2Permissions.md
+docs/RoleV2Readonly.md
 docs/RoleV2RolesGroup.md
 docs/RollbackAddedLoyaltyPointsEffectProps.md
 docs/RollbackCouponEffectProps.md
@@ -535,6 +552,7 @@ docs/ScimUser.md
 docs/ScimUsersListResponse.md
 docs/SecondaryDeployment.md
 docs/Session.md
+docs/SessionCoupons.md
 docs/SetDiscountEffectProps.md
 docs/SetDiscountPerAdditionalCostEffectProps.md
 docs/SetDiscountPerAdditionalCostPerItemEffectProps.md
@@ -552,6 +570,7 @@ docs/StrikethroughDebugResponse.md
 docs/StrikethroughEffect.md
 docs/StrikethroughLabelingNotification.md
 docs/StrikethroughSetDiscountPerItemEffectProps.md
+docs/StrikethroughSetDiscountPerItemMemberEffectProps.md
 docs/StrikethroughTrigger.md
 docs/SummarizeCampaignStoreBudget200Response.md
 docs/SummaryCampaignStoreBudget.md
@@ -644,6 +663,8 @@ src/models/AchievementBase.ts
 src/models/AchievementProgress.ts
 src/models/AchievementProgressWithDefinition.ts
 src/models/AchievementStatusEntry.ts
+src/models/ActivateLoyaltyPoints.ts
+src/models/ActivateLoyaltyPointsResponse.ts
 src/models/ActivateUserRequest.ts
 src/models/AddFreeItemEffectProps.ts
 src/models/AddItemCatalogAction.ts
@@ -651,6 +672,8 @@ src/models/AddLoyaltyPoints.ts
 src/models/AddLoyaltyPointsEffectProps.ts
 src/models/AddPriceAdjustmentCatalogAction.ts
 src/models/AddToAudienceEffectProps.ts
+src/models/AddedDeductedPointsBalancesAction.ts
+src/models/AddedDeductedPointsBalancesNotification.ts
 src/models/AddedDeductedPointsBalancesNotificationPolicy.ts
 src/models/AddedDeductedPointsNotification.ts
 src/models/AddedDeductedPointsNotificationPolicy.ts
@@ -752,6 +775,7 @@ src/models/CampaignTemplateCollection.ts
 src/models/CampaignTemplateCouponReservationSettings.ts
 src/models/CampaignTemplateParams.ts
 src/models/CampaignVersions.ts
+src/models/CardAddedDeductedPointsBalancesNotification.ts
 src/models/CardAddedDeductedPointsBalancesNotificationPolicy.ts
 src/models/CardAddedDeductedPointsNotification.ts
 src/models/CardAddedDeductedPointsNotificationPolicy.ts
@@ -780,8 +804,10 @@ src/models/CouponCreationJob.ts
 src/models/CouponDeletionFilters.ts
 src/models/CouponDeletionJob.ts
 src/models/CouponEntity.ts
+src/models/CouponFailureSummary.ts
 src/models/CouponLimitConfigs.ts
 src/models/CouponRejectionReason.ts
+src/models/CouponRejections.ts
 src/models/CouponReservations.ts
 src/models/CouponSearch.ts
 src/models/CouponValue.ts
@@ -850,6 +876,7 @@ src/models/FuncArgDef.ts
 src/models/FunctionDef.ts
 src/models/GenerateAuditLogSummary.ts
 src/models/GenerateCampaignDescription.ts
+src/models/GenerateCampaignSummary.ts
 src/models/GenerateCampaignTags.ts
 src/models/GenerateCouponFailureDetailedSummary.ts
 src/models/GenerateCouponFailureSummary.ts
@@ -926,7 +953,6 @@ src/models/IntegrationStoreEntity.ts
 src/models/InventoryCoupon.ts
 src/models/InventoryReferral.ts
 src/models/ItemAttribute.ts
-src/models/JWT.ts
 src/models/LabelTargetAudience.ts
 src/models/LabelTargetNone.ts
 src/models/LedgerEntry.ts
@@ -1078,6 +1104,15 @@ src/models/PriceDetail.ts
 src/models/PriceType.ts
 src/models/PriceTypeReferenceDetail.ts
 src/models/PriceTypeReferences.ts
+src/models/PrismaticConfig.ts
+src/models/PrismaticEventPayloadCouponBasedNotifications.ts
+src/models/PrismaticEventPayloadCouponBasedNotificationsLimits.ts
+src/models/PrismaticEventPayloadLoyaltyProfileBasedNotifications.ts
+src/models/PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction.ts
+src/models/PrismaticFlow.ts
+src/models/PrismaticFlowConfig.ts
+src/models/PrismaticFlowWithConfig.ts
+src/models/PrismaticPaginatedEventPayload.ts
 src/models/Product.ts
 src/models/ProductSearchMatch.ts
 src/models/ProductUnitAnalytics.ts
@@ -1112,6 +1147,7 @@ src/models/RoleV2ApplicationDetails.ts
 src/models/RoleV2Base.ts
 src/models/RoleV2PermissionSet.ts
 src/models/RoleV2Permissions.ts
+src/models/RoleV2Readonly.ts
 src/models/RoleV2RolesGroup.ts
 src/models/RollbackAddedLoyaltyPointsEffectProps.ts
 src/models/RollbackCouponEffectProps.ts
@@ -1150,6 +1186,7 @@ src/models/ScimUser.ts
 src/models/ScimUsersListResponse.ts
 src/models/SecondaryDeployment.ts
 src/models/Session.ts
+src/models/SessionCoupons.ts
 src/models/SetDiscountEffectProps.ts
 src/models/SetDiscountPerAdditionalCostEffectProps.ts
 src/models/SetDiscountPerAdditionalCostPerItemEffectProps.ts
@@ -1167,6 +1204,7 @@ src/models/StrikethroughDebugResponse.ts
 src/models/StrikethroughEffect.ts
 src/models/StrikethroughLabelingNotification.ts
 src/models/StrikethroughSetDiscountPerItemEffectProps.ts
+src/models/StrikethroughSetDiscountPerItemMemberEffectProps.ts
 src/models/StrikethroughTrigger.ts
 src/models/SummarizeCampaignStoreBudget200Response.ts
 src/models/SummaryCampaignStoreBudget.ts

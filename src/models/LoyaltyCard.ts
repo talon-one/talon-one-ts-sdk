@@ -117,15 +117,13 @@ export interface LoyaltyCard {
      */
     modified?: Date;
     /**
-     * The alphanumeric identifier of the loyalty card.
-     * 
+     * The identifier of the card from which the points were transferred.
      * @type {string}
      * @memberof LoyaltyCard
      */
     oldCardIdentifier?: string;
     /**
-     * The alphanumeric identifier of the loyalty card.
-     * 
+     * The identifier of the card to which the points were transferred.
      * @type {string}
      * @memberof LoyaltyCard
      */

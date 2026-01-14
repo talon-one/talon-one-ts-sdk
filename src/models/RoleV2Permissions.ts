@@ -66,7 +66,7 @@ export function RoleV2PermissionsFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'permissionSets': json['permissionSets'] == null ? undefined : ((json['permissionSets'] as Array<any>).map(RoleV2PermissionSetFromJSON)),
-        'roles': json['roles'] == null ? undefined : RoleV2RolesGroupFromJSON(json['roles']),
+        'roles': json['roles'] == null ? undefined : json['roles'],
     };
 }
 
@@ -82,7 +82,7 @@ export function RoleV2PermissionsToJSONTyped(value?: RoleV2Permissions | null, i
     return {
         
         'permissionSets': value['permissionSets'] == null ? undefined : ((value['permissionSets'] as Array<any>).map(RoleV2PermissionSetToJSON)),
-        'roles': RoleV2RolesGroupToJSON(value['roles']),
+        'roles': value['roles'],
     };
 }
 

@@ -6,7 +6,7 @@
 
 Name | Type
 ------------ | -------------
-`store` | [ListCampaignStoreBudgetsStore](ListCampaignStoreBudgetsStore.md)
+`store` | [ListCampaignStoreBudgetsStore](.md)
 `limit` | number
 `action` | string
 `period` | string

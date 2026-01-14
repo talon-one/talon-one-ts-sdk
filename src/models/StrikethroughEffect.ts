@@ -50,7 +50,7 @@ export interface StrikethroughEffect {
      */
     type: string;
     /**
-     * 
+     * Arbitrary properties associated with this effect type.
      * @type {object}
      * @memberof StrikethroughEffect
      */

@@ -20,11 +20,17 @@ import { mapValues } from '../runtime';
  */
 export interface CardAddedDeductedPointsNotification {
     /**
-     * The integration ID of the customer profile to whom points were added or deducted.
-     * @type {Array<string>}
+     * Loyalty card identification number.
+     * @type {string}
      * @memberof CardAddedDeductedPointsNotification
      */
-    profileIntegrationIDs: Array<string>;
+    cardIdentifier: string;
+    /**
+     * The name of the employee who added or deducted points.
+     * @type {string}
+     * @memberof CardAddedDeductedPointsNotification
+     */
+    employeeName: string;
     /**
      * The ID of the loyalty program.
      * @type {number}
@@ -32,23 +38,29 @@ export interface CardAddedDeductedPointsNotification {
      */
     loyaltyProgramID: number;
     /**
+     * The type of notification.
+     * @type {string}
+     * @memberof CardAddedDeductedPointsNotification
+     */
+    notificationType: CardAddedDeductedPointsNotificationNotificationTypeEnum;
+    /**
+     * The integration ID of the customer profile to whom points were added or deducted.
+     * @type {Array<string>}
+     * @memberof CardAddedDeductedPointsNotification
+     */
+    profileIntegrationIDs: Array<string>;
+    /**
+     * The integration ID of the session through which the points were earned or lost.
+     * @type {string}
+     * @memberof CardAddedDeductedPointsNotification
+     */
+    sessionIntegrationID: string;
+    /**
      * The ID of the subledger within the loyalty program where these points were added or deducted.
      * @type {string}
      * @memberof CardAddedDeductedPointsNotification
      */
     subledgerID: string;
-    /**
-     * The amount of added or deducted loyalty points.
-     * @type {number}
-     * @memberof CardAddedDeductedPointsNotification
-     */
-    amount: number;
-    /**
-     * The reason for the points addition or deduction.
-     * @type {string}
-     * @memberof CardAddedDeductedPointsNotification
-     */
-    reason: string;
     /**
      * The notification source, that is, it indicates
      * whether the points were added or deducted via one of the following routes:
@@ -64,29 +76,23 @@ export interface CardAddedDeductedPointsNotification {
      */
     typeOfChange: CardAddedDeductedPointsNotificationTypeOfChangeEnum;
     /**
-     * The name of the employee who added or deducted points.
-     * @type {string}
-     * @memberof CardAddedDeductedPointsNotification
-     */
-    employeeName: string;
-    /**
      * The ID of the employee who added or deducted points.
      * @type {number}
      * @memberof CardAddedDeductedPointsNotification
      */
     userID: number;
     /**
-     * The action (addition or deduction) made with loyalty points.
-     * @type {string}
+     * The max amount of user profiles with whom a card can be shared. This can be set to `0` for no limit.
+     * @type {number}
      * @memberof CardAddedDeductedPointsNotification
      */
-    operation: CardAddedDeductedPointsNotificationOperationEnum;
+    usersPerCardLimit: number;
     /**
-     * The start date for loyalty points.
-     * @type {Date}
+     * The amount of added or deducted loyalty points.
+     * @type {number}
      * @memberof CardAddedDeductedPointsNotification
      */
-    startDate?: Date;
+    amount: number;
     /**
      * The expiration date for loyalty points.
      * @type {Date}
@@ -94,31 +100,34 @@ export interface CardAddedDeductedPointsNotification {
      */
     expiryDate?: Date;
     /**
-     * The integration ID of the session through which the points were earned or lost.
+     * The action (addition or deduction) made with loyalty points.
      * @type {string}
      * @memberof CardAddedDeductedPointsNotification
      */
-    sessionIntegrationID: string;
+    operation: CardAddedDeductedPointsNotificationOperationEnum;
     /**
-     * The type of notification.
+     * The reason for the points addition or deduction.
      * @type {string}
      * @memberof CardAddedDeductedPointsNotification
      */
-    notificationType: CardAddedDeductedPointsNotificationNotificationTypeEnum;
+    reason: string;
     /**
-     * Loyalty card identification number.
-     * @type {string}
+     * The start date for loyalty points.
+     * @type {Date}
      * @memberof CardAddedDeductedPointsNotification
      */
-    cardIdentifier: string;
-    /**
-     * The max amount of user profiles with whom a card can be shared. This can be set to `0` for no limit.
-     * @type {number}
-     * @memberof CardAddedDeductedPointsNotification
-     */
-    usersPerCardLimit: number;
+    startDate?: Date;
 }
 
+
+/**
+ * @export
+ */
+export const CardAddedDeductedPointsNotificationNotificationTypeEnum = {
+    LoyaltyCardPointsDeducted: 'LoyaltyCardPointsDeducted',
+    LoyaltyCardPointsAdded: 'LoyaltyCardPointsAdded'
+} as const;
+export type CardAddedDeductedPointsNotificationNotificationTypeEnum = typeof CardAddedDeductedPointsNotificationNotificationTypeEnum[keyof typeof CardAddedDeductedPointsNotificationNotificationTypeEnum];
 
 /**
  * @export
@@ -139,33 +148,24 @@ export const CardAddedDeductedPointsNotificationOperationEnum = {
 } as const;
 export type CardAddedDeductedPointsNotificationOperationEnum = typeof CardAddedDeductedPointsNotificationOperationEnum[keyof typeof CardAddedDeductedPointsNotificationOperationEnum];
 
-/**
- * @export
- */
-export const CardAddedDeductedPointsNotificationNotificationTypeEnum = {
-    LoyaltyCardPointsDeducted: 'LoyaltyCardPointsDeducted',
-    LoyaltyCardPointsAdded: 'LoyaltyCardPointsAdded'
-} as const;
-export type CardAddedDeductedPointsNotificationNotificationTypeEnum = typeof CardAddedDeductedPointsNotificationNotificationTypeEnum[keyof typeof CardAddedDeductedPointsNotificationNotificationTypeEnum];
-
 
 /**
  * Check if a given object implements the CardAddedDeductedPointsNotification interface.
  */
 export function instanceOfCardAddedDeductedPointsNotification(value: object): value is CardAddedDeductedPointsNotification {
-    if (!('profileIntegrationIDs' in value) || value['profileIntegrationIDs'] === undefined) return false;
-    if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
-    if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
-    if (!('amount' in value) || value['amount'] === undefined) return false;
-    if (!('reason' in value) || value['reason'] === undefined) return false;
-    if (!('typeOfChange' in value) || value['typeOfChange'] === undefined) return false;
-    if (!('employeeName' in value) || value['employeeName'] === undefined) return false;
-    if (!('userID' in value) || value['userID'] === undefined) return false;
-    if (!('operation' in value) || value['operation'] === undefined) return false;
-    if (!('sessionIntegrationID' in value) || value['sessionIntegrationID'] === undefined) return false;
-    if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
     if (!('cardIdentifier' in value) || value['cardIdentifier'] === undefined) return false;
+    if (!('employeeName' in value) || value['employeeName'] === undefined) return false;
+    if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
+    if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
+    if (!('profileIntegrationIDs' in value) || value['profileIntegrationIDs'] === undefined) return false;
+    if (!('sessionIntegrationID' in value) || value['sessionIntegrationID'] === undefined) return false;
+    if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
+    if (!('typeOfChange' in value) || value['typeOfChange'] === undefined) return false;
+    if (!('userID' in value) || value['userID'] === undefined) return false;
     if (!('usersPerCardLimit' in value) || value['usersPerCardLimit'] === undefined) return false;
+    if (!('amount' in value) || value['amount'] === undefined) return false;
+    if (!('operation' in value) || value['operation'] === undefined) return false;
+    if (!('reason' in value) || value['reason'] === undefined) return false;
     return true;
 }
 
@@ -179,21 +179,21 @@ export function CardAddedDeductedPointsNotificationFromJSONTyped(json: any, igno
     }
     return {
         
-        'profileIntegrationIDs': json['ProfileIntegrationIDs'],
-        'loyaltyProgramID': json['LoyaltyProgramID'],
-        'subledgerID': json['SubledgerID'],
-        'amount': json['Amount'],
-        'reason': json['Reason'],
-        'typeOfChange': json['TypeOfChange'],
-        'employeeName': json['EmployeeName'],
-        'userID': json['UserID'],
-        'operation': json['Operation'],
-        'startDate': json['StartDate'] == null ? undefined : (new Date(json['StartDate'])),
-        'expiryDate': json['ExpiryDate'] == null ? undefined : (new Date(json['ExpiryDate'])),
-        'sessionIntegrationID': json['SessionIntegrationID'],
-        'notificationType': json['NotificationType'],
         'cardIdentifier': json['CardIdentifier'],
+        'employeeName': json['EmployeeName'],
+        'loyaltyProgramID': json['LoyaltyProgramID'],
+        'notificationType': json['NotificationType'],
+        'profileIntegrationIDs': json['ProfileIntegrationIDs'],
+        'sessionIntegrationID': json['SessionIntegrationID'],
+        'subledgerID': json['SubledgerID'],
+        'typeOfChange': json['TypeOfChange'],
+        'userID': json['UserID'],
         'usersPerCardLimit': json['UsersPerCardLimit'],
+        'amount': json['Amount'],
+        'expiryDate': json['ExpiryDate'] == null ? undefined : (new Date(json['ExpiryDate'])),
+        'operation': json['Operation'],
+        'reason': json['Reason'],
+        'startDate': json['StartDate'] == null ? undefined : (new Date(json['StartDate'])),
     };
 }
 
@@ -208,21 +208,21 @@ export function CardAddedDeductedPointsNotificationToJSONTyped(value?: CardAdded
 
     return {
         
-        'ProfileIntegrationIDs': value['profileIntegrationIDs'],
-        'LoyaltyProgramID': value['loyaltyProgramID'],
-        'SubledgerID': value['subledgerID'],
-        'Amount': value['amount'],
-        'Reason': value['reason'],
-        'TypeOfChange': value['typeOfChange'],
-        'EmployeeName': value['employeeName'],
-        'UserID': value['userID'],
-        'Operation': value['operation'],
-        'StartDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'ExpiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
-        'SessionIntegrationID': value['sessionIntegrationID'],
-        'NotificationType': value['notificationType'],
         'CardIdentifier': value['cardIdentifier'],
+        'EmployeeName': value['employeeName'],
+        'LoyaltyProgramID': value['loyaltyProgramID'],
+        'NotificationType': value['notificationType'],
+        'ProfileIntegrationIDs': value['profileIntegrationIDs'],
+        'SessionIntegrationID': value['sessionIntegrationID'],
+        'SubledgerID': value['subledgerID'],
+        'TypeOfChange': value['typeOfChange'],
+        'UserID': value['userID'],
         'UsersPerCardLimit': value['usersPerCardLimit'],
+        'Amount': value['amount'],
+        'ExpiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'Operation': value['operation'],
+        'Reason': value['reason'],
+        'StartDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
     };
 }
 

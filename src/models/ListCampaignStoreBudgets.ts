@@ -73,7 +73,7 @@ export function ListCampaignStoreBudgetsFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'store': ListCampaignStoreBudgetsStoreFromJSON(json['store']),
+        'store': json['store'],
         'limit': json['limit'],
         'action': json['action'],
         'period': json['period'] == null ? undefined : json['period'],
@@ -91,7 +91,7 @@ export function ListCampaignStoreBudgetsToJSONTyped(value?: ListCampaignStoreBud
 
     return {
         
-        'store': ListCampaignStoreBudgetsStoreToJSON(value['store']),
+        'store': value['store'],
         'limit': value['limit'],
         'action': value['action'],
         'period': value['period'],

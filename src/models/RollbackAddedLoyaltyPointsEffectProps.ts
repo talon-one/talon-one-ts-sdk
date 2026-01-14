@@ -63,8 +63,7 @@ export interface RollbackAddedLoyaltyPointsEffectProps {
      */
     cartItemSubPosition?: number;
     /**
-     * The alphanumeric identifier of the loyalty card.
-     * 
+     * The card on which these points were originally added.
      * @type {string}
      * @memberof RollbackAddedLoyaltyPointsEffectProps
      */

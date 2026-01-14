@@ -262,7 +262,6 @@ export interface GetLoyaltyCardTransactionsRequest {
     transactionUUIDs?: Array<string>;
     pageSize?: number;
     skip?: number;
-    awaitsActivation?: boolean;
 }
 
 export interface GetLoyaltyProgramProfilePointsRequest {
@@ -288,7 +287,6 @@ export interface GetLoyaltyProgramProfileTransactionsRequest {
     endDate?: Date;
     pageSize?: number;
     skip?: number;
-    awaitsActivation?: boolean;
 }
 
 export interface GetReservedCustomersRequest {
@@ -870,11 +868,11 @@ export class IntegrationApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['startDate'] != null) {
-            queryParameters['startDate'] = requestParameters['startDate'];
+            queryParameters['startDate'] = (requestParameters['startDate'] as any).toISOString();
         }
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = requestParameters['endDate'];
+            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
         if (requestParameters['pageSize'] != null) {
@@ -1114,7 +1112,7 @@ export class IntegrationApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = requestParameters['endDate'];
+            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
         if (requestParameters['subledgerId'] != null) {
@@ -1181,7 +1179,7 @@ export class IntegrationApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = requestParameters['endDate'];
+            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
         if (requestParameters['subledgerId'] != null) {
@@ -1327,11 +1325,11 @@ export class IntegrationApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['startDate'] != null) {
-            queryParameters['startDate'] = requestParameters['startDate'];
+            queryParameters['startDate'] = (requestParameters['startDate'] as any).toISOString();
         }
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = requestParameters['endDate'];
+            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
         if (requestParameters['customerSessionIDs'] != null) {
@@ -1348,10 +1346,6 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         if (requestParameters['skip'] != null) {
             queryParameters['skip'] = requestParameters['skip'];
-        }
-
-        if (requestParameters['awaitsActivation'] != null) {
-            queryParameters['awaitsActivation'] = requestParameters['awaitsActivation'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1501,11 +1495,11 @@ export class IntegrationApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['startDate'] != null) {
-            queryParameters['startDate'] = requestParameters['startDate'];
+            queryParameters['startDate'] = (requestParameters['startDate'] as any).toISOString();
         }
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = requestParameters['endDate'];
+            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
         if (requestParameters['pageSize'] != null) {
@@ -1514,10 +1508,6 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         if (requestParameters['skip'] != null) {
             queryParameters['skip'] = requestParameters['skip'];
-        }
-
-        if (requestParameters['awaitsActivation'] != null) {
-            queryParameters['awaitsActivation'] = requestParameters['awaitsActivation'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2149,7 +2139,7 @@ export class IntegrationApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['now'] != null) {
-            queryParameters['now'] = requestParameters['now'];
+            queryParameters['now'] = (requestParameters['now'] as any).toISOString();
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

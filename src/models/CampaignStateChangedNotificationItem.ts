@@ -13,21 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Ruleset } from './Ruleset';
-import {
-    RulesetFromJSON,
-    RulesetFromJSONTyped,
-    RulesetToJSON,
-    RulesetToJSONTyped,
-} from './Ruleset';
-import type { Campaign } from './Campaign';
-import {
-    CampaignFromJSON,
-    CampaignFromJSONTyped,
-    CampaignToJSON,
-    CampaignToJSONTyped,
-} from './Campaign';
-
 /**
  * 
  * @export
@@ -43,10 +28,10 @@ export interface CampaignStateChangedNotificationItem {
     event: string;
     /**
      * The campaign whose state changed.
-     * @type {Campaign}
+     * @type {any}
      * @memberof CampaignStateChangedNotificationItem
      */
-    campaign: Campaign;
+    campaign: any | null;
     /**
      * The campaign's old state. Can be one of the following: ['running', 'disabled', 'scheduled', 'expired', 'archived']
      * 
@@ -63,10 +48,10 @@ export interface CampaignStateChangedNotificationItem {
     newState: string;
     /**
      * The current ruleset.
-     * @type {Ruleset}
+     * @type {any}
      * @memberof CampaignStateChangedNotificationItem
      */
-    ruleset?: Ruleset;
+    ruleset?: any | null;
 }
 
 /**
@@ -91,10 +76,10 @@ export function CampaignStateChangedNotificationItemFromJSONTyped(json: any, ign
     return {
         
         'event': json['Event'],
-        'campaign': CampaignFromJSON(json['campaign']),
+        'campaign': json['campaign'],
         'oldState': json['oldState'],
         'newState': json['newState'],
-        'ruleset': json['ruleset'] == null ? undefined : RulesetFromJSON(json['ruleset']),
+        'ruleset': json['ruleset'] == null ? undefined : json['ruleset'],
     };
 }
 
@@ -110,10 +95,10 @@ export function CampaignStateChangedNotificationItemToJSONTyped(value?: Campaign
     return {
         
         'Event': value['event'],
-        'campaign': CampaignToJSON(value['campaign']),
+        'campaign': value['campaign'],
         'oldState': value['oldState'],
         'newState': value['newState'],
-        'ruleset': RulesetToJSON(value['ruleset']),
+        'ruleset': value['ruleset'],
     };
 }
 

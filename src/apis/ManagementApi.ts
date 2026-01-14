@@ -943,6 +943,10 @@ export interface GetCampaignsRequest {
     tags?: string;
     createdBefore?: Date;
     createdAfter?: Date;
+    startBefore?: Date;
+    startAfter?: Date;
+    endBefore?: Date;
+    endAfter?: Date;
     campaignGroupId?: number;
     templateId?: number;
     storeId?: number;
@@ -1122,7 +1126,6 @@ export interface GetLoyaltyProgramTransactionsRequest {
     endDate?: Date;
     pageSize?: number;
     skip?: number;
-    awaitsActivation?: boolean;
 }
 
 export interface GetLoyaltyStatisticsRequest {
@@ -3361,27 +3364,27 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         if (requestParameters['startsAfter'] != null) {
-            queryParameters['startsAfter'] = requestParameters['startsAfter'];
+            queryParameters['startsAfter'] = (requestParameters['startsAfter'] as any).toISOString();
         }
 
         if (requestParameters['startsBefore'] != null) {
-            queryParameters['startsBefore'] = requestParameters['startsBefore'];
+            queryParameters['startsBefore'] = (requestParameters['startsBefore'] as any).toISOString();
         }
 
         if (requestParameters['expiresAfter'] != null) {
-            queryParameters['expiresAfter'] = requestParameters['expiresAfter'];
+            queryParameters['expiresAfter'] = (requestParameters['expiresAfter'] as any).toISOString();
         }
 
         if (requestParameters['expiresBefore'] != null) {
-            queryParameters['expiresBefore'] = requestParameters['expiresBefore'];
+            queryParameters['expiresBefore'] = (requestParameters['expiresBefore'] as any).toISOString();
         }
 
         if (requestParameters['valid'] != null) {
@@ -4242,11 +4245,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         if (requestParameters['valid'] != null) {
@@ -4341,11 +4344,11 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         if (requestParameters['profileIntegrationId'] != null) {
@@ -4483,11 +4486,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         if (requestParameters['dateFormat'] != null) {
@@ -4551,7 +4554,7 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = requestParameters['endDate'];
+            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -4611,7 +4614,7 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = requestParameters['endDate'];
+            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -4670,7 +4673,7 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = requestParameters['endDate'];
+            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -4750,11 +4753,11 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = requestParameters['rangeStart'];
+            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = requestParameters['rangeEnd'];
+            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
         }
 
         if (requestParameters['dateFormat'] != null) {
@@ -4822,11 +4825,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         if (requestParameters['dateFormat'] != null) {
@@ -4910,11 +4913,11 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = requestParameters['rangeStart'];
+            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = requestParameters['rangeEnd'];
+            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
         }
 
         if (requestParameters['dateFormat'] != null) {
@@ -4978,11 +4981,11 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -5045,11 +5048,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         if (requestParameters['valid'] != null) {
@@ -5150,11 +5153,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = requestParameters['rangeStart'];
+            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = requestParameters['rangeEnd'];
+            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
         }
 
         if (requestParameters['pageSize'] != null) {
@@ -6002,11 +6005,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         if (requestParameters['session'] != null) {
@@ -6176,11 +6179,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         if (requestParameters['coupon'] != null) {
@@ -6696,11 +6699,11 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = requestParameters['rangeStart'];
+            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = requestParameters['rangeEnd'];
+            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
         }
 
         if (requestParameters['granularity'] != null) {
@@ -7038,11 +7041,27 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+        }
+
+        if (requestParameters['startBefore'] != null) {
+            queryParameters['startBefore'] = (requestParameters['startBefore'] as any).toISOString();
+        }
+
+        if (requestParameters['startAfter'] != null) {
+            queryParameters['startAfter'] = (requestParameters['startAfter'] as any).toISOString();
+        }
+
+        if (requestParameters['endBefore'] != null) {
+            queryParameters['endBefore'] = (requestParameters['endBefore'] as any).toISOString();
+        }
+
+        if (requestParameters['endAfter'] != null) {
+            queryParameters['endAfter'] = (requestParameters['endAfter'] as any).toISOString();
         }
 
         if (requestParameters['campaignGroupId'] != null) {
@@ -7126,11 +7145,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         if (requestParameters['withTotalResultSize'] != null) {
@@ -7345,11 +7364,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         if (requestParameters['valid'] != null) {
@@ -7381,19 +7400,19 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['expiresBefore'] != null) {
-            queryParameters['expiresBefore'] = requestParameters['expiresBefore'];
+            queryParameters['expiresBefore'] = (requestParameters['expiresBefore'] as any).toISOString();
         }
 
         if (requestParameters['expiresAfter'] != null) {
-            queryParameters['expiresAfter'] = requestParameters['expiresAfter'];
+            queryParameters['expiresAfter'] = (requestParameters['expiresAfter'] as any).toISOString();
         }
 
         if (requestParameters['startsBefore'] != null) {
-            queryParameters['startsBefore'] = requestParameters['startsBefore'];
+            queryParameters['startsBefore'] = (requestParameters['startsBefore'] as any).toISOString();
         }
 
         if (requestParameters['startsAfter'] != null) {
-            queryParameters['startsAfter'] = requestParameters['startsAfter'];
+            queryParameters['startsAfter'] = (requestParameters['startsAfter'] as any).toISOString();
         }
 
         if (requestParameters['valuesOnly'] != null) {
@@ -7482,11 +7501,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = requestParameters['rangeStart'];
+            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = requestParameters['rangeEnd'];
+            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -7568,11 +7587,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = requestParameters['rangeStart'];
+            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = requestParameters['rangeEnd'];
+            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
         }
 
         if (requestParameters['name'] != null) {
@@ -7978,11 +7997,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = requestParameters['rangeStart'];
+            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = requestParameters['rangeEnd'];
+            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -8229,11 +8248,11 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['startDate'] != null) {
-            queryParameters['startDate'] = requestParameters['startDate'];
+            queryParameters['startDate'] = (requestParameters['startDate'] as any).toISOString();
         }
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = requestParameters['endDate'];
+            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
         if (requestParameters['pageSize'] != null) {
@@ -8510,11 +8529,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['startDate'] != null) {
-            queryParameters['startDate'] = requestParameters['startDate'];
+            queryParameters['startDate'] = (requestParameters['startDate'] as any).toISOString();
         }
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = requestParameters['endDate'];
+            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
         if (requestParameters['pageSize'] != null) {
@@ -8523,10 +8542,6 @@ export class ManagementApi extends runtime.BaseAPI {
 
         if (requestParameters['skip'] != null) {
             queryParameters['skip'] = requestParameters['skip'];
-        }
-
-        if (requestParameters['awaitsActivation'] != null) {
-            queryParameters['awaitsActivation'] = requestParameters['awaitsActivation'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -8689,11 +8704,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         if (requestParameters['cursor'] != null) {
@@ -8806,11 +8821,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         if (requestParameters['valid'] != null) {
@@ -10026,7 +10041,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - `customerprofileid` (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - `identifier` (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - `amount`: The amount of points to award to the customer profile. - `startdate` (optional): The earliest date when the points can be redeemed. The points are `active` from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - `immediate`   - `on_action`      **Note**:   Empty or missing values default to `immediate`. - `expirydate` (optional): The latest date when the points can be redeemed. The points are `expired` after this date.    **Note**: It must be an RFC3339 timestamp string or string `unlimited`. Empty or missing values are considered `unlimited`. - `subledgerid` (optional): The ID of the subledger that should received the points. - `reason` (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for `startdate`. If `startdate` matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for `startdate` is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  ```text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ```  **Example for card-based programs:**  ```text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ``` 
+     * Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - `customerprofileid` (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - `identifier` (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - `amount`: The amount of points to award to the customer profile. - `startdate` (optional): The earliest date when the points can be redeemed. The points are `active` from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - `immediate`   - `on_action`      **Note**:   Empty or missing values default to `immediate`. - `expirydate` (optional): The latest date when the points can be redeemed. The points are `expired` after this date.    **Note**: It must be an RFC3339 timestamp string or string `unlimited`. Empty or missing values are considered `unlimited`.      If passed, `validityDuration` should be omitted. - `validityDuration` (optional): The duration for which the points remain active, relative to the    activation date.    The time format is an **integer** followed by one letter indicating the time unit.     Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.     Available units:     - `s`: seconds   - `m`: minutes   - `h`: hours   - `D`: days   - `W`: weeks   - `M`: months   - `Y`: years     You can round certain units up or down:    - `_D` for rounding down days only. Signifies the start of the day.   - `_U` for rounding up days, weeks, months and years. Signifies the end of   the day, week, month or year.    If passed, `expirydate` should be omitted. - `subledgerid` (optional): The ID of the subledger that should received the points. - `reason` (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for `startdate`. If `startdate` matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for `startdate` is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  ```text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ```  **Example for card-based programs:**  ```text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ``` 
      * Import loyalty points
      */
     async importLoyaltyPointsRaw(requestParameters: ImportLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
@@ -10091,7 +10106,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - `customerprofileid` (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - `identifier` (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - `amount`: The amount of points to award to the customer profile. - `startdate` (optional): The earliest date when the points can be redeemed. The points are `active` from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - `immediate`   - `on_action`      **Note**:   Empty or missing values default to `immediate`. - `expirydate` (optional): The latest date when the points can be redeemed. The points are `expired` after this date.    **Note**: It must be an RFC3339 timestamp string or string `unlimited`. Empty or missing values are considered `unlimited`. - `subledgerid` (optional): The ID of the subledger that should received the points. - `reason` (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for `startdate`. If `startdate` matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for `startdate` is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  ```text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ```  **Example for card-based programs:**  ```text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ``` 
+     * Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - `customerprofileid` (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - `identifier` (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - `amount`: The amount of points to award to the customer profile. - `startdate` (optional): The earliest date when the points can be redeemed. The points are `active` from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - `immediate`   - `on_action`      **Note**:   Empty or missing values default to `immediate`. - `expirydate` (optional): The latest date when the points can be redeemed. The points are `expired` after this date.    **Note**: It must be an RFC3339 timestamp string or string `unlimited`. Empty or missing values are considered `unlimited`.      If passed, `validityDuration` should be omitted. - `validityDuration` (optional): The duration for which the points remain active, relative to the    activation date.    The time format is an **integer** followed by one letter indicating the time unit.     Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.     Available units:     - `s`: seconds   - `m`: minutes   - `h`: hours   - `D`: days   - `W`: weeks   - `M`: months   - `Y`: years     You can round certain units up or down:    - `_D` for rounding down days only. Signifies the start of the day.   - `_U` for rounding up days, weeks, months and years. Signifies the end of   the day, week, month or year.    If passed, `expirydate` should be omitted. - `subledgerid` (optional): The ID of the subledger that should received the points. - `reason` (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for `startdate`. If `startdate` matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for `startdate` is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  ```text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ```  **Example for card-based programs:**  ```text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ``` 
      * Import loyalty points
      */
     async importLoyaltyPoints(requestParameters: ImportLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Import> {
@@ -11815,11 +11830,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         if (requestParameters['valid'] != null) {
@@ -11935,11 +11950,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = requestParameters['createdBefore'];
+            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = requestParameters['createdAfter'];
+            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
         }
 
         if (requestParameters['valid'] != null) {

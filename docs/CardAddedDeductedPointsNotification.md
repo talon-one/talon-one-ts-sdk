@@ -6,21 +6,21 @@
 
 Name | Type
 ------------ | -------------
-`profileIntegrationIDs` | Array&lt;string&gt;
-`loyaltyProgramID` | number
-`subledgerID` | string
-`amount` | number
-`reason` | string
-`typeOfChange` | string
-`employeeName` | string
-`userID` | number
-`operation` | string
-`startDate` | Date
-`expiryDate` | Date
-`sessionIntegrationID` | string
-`notificationType` | string
 `cardIdentifier` | string
+`employeeName` | string
+`loyaltyProgramID` | number
+`notificationType` | string
+`profileIntegrationIDs` | Array&lt;string&gt;
+`sessionIntegrationID` | string
+`subledgerID` | string
+`typeOfChange` | string
+`userID` | number
 `usersPerCardLimit` | number
+`amount` | number
+`expiryDate` | Date
+`operation` | string
+`reason` | string
+`startDate` | Date
 
 ## Example
 
@@ -29,21 +29,21 @@ import type { CardAddedDeductedPointsNotification } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "profileIntegrationIDs": ["yJSObdNNtOetCHWHPFuz","test-user-4zoj1c"],
-  "loyaltyProgramID": 5,
-  "subledgerID": sub-123,
-  "amount": 10.99,
-  "reason": Compensation,
-  "typeOfChange": null,
-  "employeeName": Franziska Schneider,
-  "userID": 25,
-  "operation": null,
-  "startDate": 2023-01-24T14:15:22Z,
-  "expiryDate": 2024-01-24T14:15:22Z,
-  "sessionIntegrationID": cc53e4fa-547f-4f5e-8333-76e05c381f67,
-  "notificationType": null,
   "cardIdentifier": 123-456-789ATBC,
+  "employeeName": Franziska Schneider,
+  "loyaltyProgramID": 5,
+  "notificationType": null,
+  "profileIntegrationIDs": ["yJSObdNNtOetCHWHPFuz","test-user-4zoj1c"],
+  "sessionIntegrationID": cc53e4fa-547f-4f5e-8333-76e05c381f67,
+  "subledgerID": sub-123,
+  "typeOfChange": null,
+  "userID": 25,
   "usersPerCardLimit": 10,
+  "amount": 10.99,
+  "expiryDate": 2024-01-24T14:15:22Z,
+  "operation": null,
+  "reason": Compensation,
+  "startDate": 2023-01-24T14:15:22Z,
 } satisfies CardAddedDeductedPointsNotification
 
 console.log(example)
