@@ -114,6 +114,7 @@ jobs:
       - name: Publish the package
         run: npm publish --provenance --access public
         if: ${{ steps.get_version.outputs.version != '' }}
+        continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
