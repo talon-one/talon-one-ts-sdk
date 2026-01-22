@@ -66,13 +66,7 @@ export interface CouponFailureSummary {
      * @type {string}
      * @memberof CouponFailureSummary
      */
-    shortSummary: string;
-    /**
-     * A detailed summary of the reasons for coupon redemption failure based on events of the entire session.
-     * @type {string}
-     * @memberof CouponFailureSummary
-     */
-    longSummary: string;
+    summary: string;
     /**
      * Timestamp when the request was made.
      * @type {Date}
@@ -96,8 +90,7 @@ export function instanceOfCouponFailureSummary(value: object): value is CouponFa
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('couponCode' in value) || value['couponCode'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
-    if (!('shortSummary' in value) || value['shortSummary'] === undefined) return false;
-    if (!('longSummary' in value) || value['longSummary'] === undefined) return false;
+    if (!('summary' in value) || value['summary'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
@@ -120,8 +113,7 @@ export function CouponFailureSummaryFromJSONTyped(json: any, ignoreDiscriminator
         'status': json['status'],
         'couponCode': json['couponCode'],
         'language': json['language'],
-        'shortSummary': json['shortSummary'],
-        'longSummary': json['longSummary'],
+        'summary': json['summary'],
         'createdAt': (new Date(json['createdAt'])),
         'updatedAt': (new Date(json['updatedAt'])),
     };
@@ -145,8 +137,7 @@ export function CouponFailureSummaryToJSONTyped(value?: CouponFailureSummary | n
         'status': value['status'],
         'couponCode': value['couponCode'],
         'language': value['language'],
-        'shortSummary': value['shortSummary'],
-        'longSummary': value['longSummary'],
+        'summary': value['summary'],
         'createdAt': value['createdAt'].toISOString(),
         'updatedAt': value['updatedAt'].toISOString(),
     };

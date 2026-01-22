@@ -135,6 +135,18 @@ export interface PrismaticEventPayloadCouponBasedNotifications {
      * @memberof PrismaticEventPayloadCouponBasedNotifications
      */
     limits?: Array<PrismaticEventPayloadCouponBasedNotificationsLimits>;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrismaticEventPayloadCouponBasedNotifications
+     */
+    sourceOfEvent: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrismaticEventPayloadCouponBasedNotifications
+     */
+    employeeName: string;
 }
 
 /**
@@ -147,6 +159,8 @@ export function instanceOfPrismaticEventPayloadCouponBasedNotifications(value: o
     if (!('value' in value) || value['value'] === undefined) return false;
     if (!('usageLimit' in value) || value['usageLimit'] === undefined) return false;
     if (!('usageCounter' in value) || value['usageCounter'] === undefined) return false;
+    if (!('sourceOfEvent' in value) || value['sourceOfEvent'] === undefined) return false;
+    if (!('employeeName' in value) || value['employeeName'] === undefined) return false;
     return true;
 }
 
@@ -178,6 +192,8 @@ export function PrismaticEventPayloadCouponBasedNotificationsFromJSONTyped(json:
         'batchId': json['BatchId'] == null ? undefined : json['BatchId'],
         'attributes': json['Attributes'] == null ? undefined : json['Attributes'],
         'limits': json['Limits'] == null ? undefined : ((json['Limits'] as Array<any>).map(PrismaticEventPayloadCouponBasedNotificationsLimitsFromJSON)),
+        'sourceOfEvent': json['SourceOfEvent'],
+        'employeeName': json['EmployeeName'],
     };
 }
 
@@ -210,6 +226,8 @@ export function PrismaticEventPayloadCouponBasedNotificationsToJSONTyped(value?:
         'BatchId': value['batchId'],
         'Attributes': value['attributes'],
         'Limits': value['limits'] == null ? undefined : ((value['limits'] as Array<any>).map(PrismaticEventPayloadCouponBasedNotificationsLimitsToJSON)),
+        'SourceOfEvent': value['sourceOfEvent'],
+        'EmployeeName': value['employeeName'],
     };
 }
 

@@ -121,6 +121,15 @@ export interface LedgerTransactionLogEntryIntegrationAPI {
      * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     flags?: LoyaltyLedgerEntryFlags;
+    /**
+     * The duration for which the points remain active, relative to the  activation date.
+     * 
+     * **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
+     * 
+     * @type {string}
+     * @memberof LedgerTransactionLogEntryIntegrationAPI
+     */
+    validityDuration?: string;
 }
 
 
@@ -175,6 +184,7 @@ export function LedgerTransactionLogEntryIntegrationAPIFromJSONTyped(json: any, 
         'rulesetId': json['rulesetId'] == null ? undefined : json['rulesetId'],
         'ruleName': json['ruleName'] == null ? undefined : json['ruleName'],
         'flags': json['flags'] == null ? undefined : LoyaltyLedgerEntryFlagsFromJSON(json['flags']),
+        'validityDuration': json['validityDuration'] == null ? undefined : json['validityDuration'],
     };
 }
 
@@ -203,6 +213,7 @@ export function LedgerTransactionLogEntryIntegrationAPIToJSONTyped(value?: Ledge
         'rulesetId': value['rulesetId'],
         'ruleName': value['ruleName'],
         'flags': LoyaltyLedgerEntryFlagsToJSON(value['flags']),
+        'validityDuration': value['validityDuration'],
     };
 }
 

@@ -22,6 +22,7 @@ Name | Type
 `userID` | number
 `archived` | boolean
 `flags` | [LoyaltyLedgerEntryFlags](LoyaltyLedgerEntryFlags.md)
+`validityDuration` | string
 
 ## Example
 
@@ -45,6 +46,7 @@ const example = {
   "userID": 499,
   "archived": false,
   "flags": null,
+  "validityDuration": 30D,
 } satisfies LoyaltyLedgerEntry
 
 console.log(example)

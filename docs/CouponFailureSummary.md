@@ -14,8 +14,7 @@ Name | Type
 `status` | string
 `couponCode` | string
 `language` | string
-`shortSummary` | string
-`longSummary` | string
+`summary` | string
 `createdAt` | Date
 `updatedAt` | Date
 
@@ -33,8 +32,7 @@ const example = {
   "status": rejected,
   "couponCode": ABC123,
   "language": en,
-  "shortSummary": Session total was less than the required total.,
-  "longSummary": There were 5 items in the cart with SKUs 1,2,3,4,5 and the total is $60 which is less than the required cart total.,
+  "summary": Session total was less than the required total.,
   "createdAt": 2021-07-20T21:59:00Z,
   "updatedAt": 2021-07-20T21:59:00Z,
 } satisfies CouponFailureSummary

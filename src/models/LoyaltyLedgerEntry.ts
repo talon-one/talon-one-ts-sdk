@@ -122,6 +122,15 @@ export interface LoyaltyLedgerEntry {
      * @memberof LoyaltyLedgerEntry
      */
     flags?: LoyaltyLedgerEntryFlags;
+    /**
+     * The duration for which the points remain active, relative to the  activation date.
+     * 
+     * **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
+     * 
+     * @type {string}
+     * @memberof LoyaltyLedgerEntry
+     */
+    validityDuration?: string;
 }
 
 /**
@@ -162,6 +171,7 @@ export function LoyaltyLedgerEntryFromJSONTyped(json: any, ignoreDiscriminator: 
         'userID': json['userID'] == null ? undefined : json['userID'],
         'archived': json['archived'] == null ? undefined : json['archived'],
         'flags': json['flags'] == null ? undefined : LoyaltyLedgerEntryFlagsFromJSON(json['flags']),
+        'validityDuration': json['validityDuration'] == null ? undefined : json['validityDuration'],
     };
 }
 
@@ -191,6 +201,7 @@ export function LoyaltyLedgerEntryToJSONTyped(value?: LoyaltyLedgerEntry | null,
         'userID': value['userID'],
         'archived': value['archived'],
         'flags': LoyaltyLedgerEntryFlagsToJSON(value['flags']),
+        'validityDuration': value['validityDuration'],
     };
 }
 

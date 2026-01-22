@@ -1,25 +1,22 @@
 
-# BestPriorPriceRequestTarget
+# GenerateCouponRejections200Response
 
-Specifies the target for which the best prior price calculation is taken into consideration.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`targetType` | string
-`audienceID` | number
+`data` | [Array&lt;CouponFailureSummary&gt;](CouponFailureSummary.md)
 
 ## Example
 
 ```typescript
-import type { BestPriorPriceRequestTarget } from 'talon_one_sdk'
+import type { GenerateCouponRejections200Response } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "targetType": AUDIENCE,
-  "audienceID": 4,
-} satisfies BestPriorPriceRequestTarget
+  "data": null,
+} satisfies GenerateCouponRejections200Response
 
 console.log(example)
 
@@ -28,7 +25,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as BestPriorPriceRequestTarget
+const exampleParsed = JSON.parse(exampleJSON) as GenerateCouponRejections200Response
 console.log(exampleParsed)
 ```
 

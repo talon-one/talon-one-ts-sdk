@@ -1,28 +1,25 @@
 
-# UpdateRole
+# BestPriorTarget
 
+Specifies the target for which the best prior price calculation is taken into consideration.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`name` | string
-`description` | string
-`acl` | string
-`members` | Array&lt;number&gt;
+`targetType` | string
+`audienceID` | number
 
 ## Example
 
 ```typescript
-import type { UpdateRole } from 'talon_one_sdk'
+import type { BestPriorTarget } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "name": Campaign Manager,
-  "description": Manages the campaigns,
-  "acl": {Role=128},
-  "members": [48, 562, 475, 18],
-} satisfies UpdateRole
+  "targetType": AUDIENCE,
+  "audienceID": 4,
+} satisfies BestPriorTarget
 
 console.log(example)
 
@@ -31,7 +28,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as UpdateRole
+const exampleParsed = JSON.parse(exampleJSON) as BestPriorTarget
 console.log(exampleParsed)
 ```
 

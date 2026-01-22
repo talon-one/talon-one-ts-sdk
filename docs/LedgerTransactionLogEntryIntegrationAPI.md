@@ -21,6 +21,7 @@ Name | Type
 `rulesetId` | number
 `ruleName` | string
 `flags` | [LoyaltyLedgerEntryFlags](LoyaltyLedgerEntryFlags.md)
+`validityDuration` | string
 
 ## Example
 
@@ -43,6 +44,7 @@ const example = {
   "rulesetId": 11,
   "ruleName": Add 2 points,
   "flags": null,
+  "validityDuration": 30D,
 } satisfies LedgerTransactionLogEntryIntegrationAPI
 
 console.log(example)

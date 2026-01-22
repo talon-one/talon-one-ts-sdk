@@ -16,19 +16,19 @@ import { mapValues } from '../runtime';
 /**
  * Specifies the target for which the best prior price calculation is taken into consideration.
  * @export
- * @interface BestPriorPriceRequestTarget
+ * @interface BestPriorTarget
  */
-export interface BestPriorPriceRequestTarget {
+export interface BestPriorTarget {
     /**
      * The type of price target.
      * @type {string}
-     * @memberof BestPriorPriceRequestTarget
+     * @memberof BestPriorTarget
      */
-    targetType: BestPriorPriceRequestTargetTargetTypeEnum;
+    targetType: BestPriorTargetTargetTypeEnum;
     /**
      * The AudienceID of an audience. Must be used with "AUDIENCE" target type.
      * @type {number}
-     * @memberof BestPriorPriceRequestTarget
+     * @memberof BestPriorTarget
      */
     audienceID?: number;
 }
@@ -37,26 +37,26 @@ export interface BestPriorPriceRequestTarget {
 /**
  * @export
  */
-export const BestPriorPriceRequestTargetTargetTypeEnum = {
+export const BestPriorTargetTargetTypeEnum = {
     None: 'NONE',
     Audience: 'AUDIENCE'
 } as const;
-export type BestPriorPriceRequestTargetTargetTypeEnum = typeof BestPriorPriceRequestTargetTargetTypeEnum[keyof typeof BestPriorPriceRequestTargetTargetTypeEnum];
+export type BestPriorTargetTargetTypeEnum = typeof BestPriorTargetTargetTypeEnum[keyof typeof BestPriorTargetTargetTypeEnum];
 
 
 /**
- * Check if a given object implements the BestPriorPriceRequestTarget interface.
+ * Check if a given object implements the BestPriorTarget interface.
  */
-export function instanceOfBestPriorPriceRequestTarget(value: object): value is BestPriorPriceRequestTarget {
+export function instanceOfBestPriorTarget(value: object): value is BestPriorTarget {
     if (!('targetType' in value) || value['targetType'] === undefined) return false;
     return true;
 }
 
-export function BestPriorPriceRequestTargetFromJSON(json: any): BestPriorPriceRequestTarget {
-    return BestPriorPriceRequestTargetFromJSONTyped(json, false);
+export function BestPriorTargetFromJSON(json: any): BestPriorTarget {
+    return BestPriorTargetFromJSONTyped(json, false);
 }
 
-export function BestPriorPriceRequestTargetFromJSONTyped(json: any, ignoreDiscriminator: boolean): BestPriorPriceRequestTarget {
+export function BestPriorTargetFromJSONTyped(json: any, ignoreDiscriminator: boolean): BestPriorTarget {
     if (json == null) {
         return json;
     }
@@ -67,11 +67,11 @@ export function BestPriorPriceRequestTargetFromJSONTyped(json: any, ignoreDiscri
     };
 }
 
-export function BestPriorPriceRequestTargetToJSON(json: any): BestPriorPriceRequestTarget {
-    return BestPriorPriceRequestTargetToJSONTyped(json, false);
+export function BestPriorTargetToJSON(json: any): BestPriorTarget {
+    return BestPriorTargetToJSONTyped(json, false);
 }
 
-export function BestPriorPriceRequestTargetToJSONTyped(value?: BestPriorPriceRequestTarget | null, ignoreDiscriminator: boolean = false): any {
+export function BestPriorTargetToJSONTyped(value?: BestPriorTarget | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

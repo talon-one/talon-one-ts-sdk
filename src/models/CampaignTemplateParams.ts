@@ -55,6 +55,7 @@ export const CampaignTemplateParamsTypeEnum = {
     Boolean: 'boolean',
     Percent: 'percent',
     ListString: '(list string)',
+    ListNumber: '(list number)',
     Time: 'time'
 } as const;
 export type CampaignTemplateParamsTypeEnum = typeof CampaignTemplateParamsTypeEnum[keyof typeof CampaignTemplateParamsTypeEnum];

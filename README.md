@@ -194,6 +194,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 
 | Class | Method | HTTP request | Description
 | ----- | ------ | ------------ | -------------
+*IntegrationApi* | [**activateLoyaltyPoints**](docs/IntegrationApi.md#activateloyaltypoints) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/activate_points | Activate loyalty points
 *IntegrationApi* | [**bestPriorPrice**](docs/IntegrationApi.md#bestpriorpriceoperation) | **POST** /v1/best_prior_price | Fetch best prior price
 *IntegrationApi* | [**createAudienceV2**](docs/IntegrationApi.md#createaudiencev2) | **POST** /v2/audiences | Create audience
 *IntegrationApi* | [**createCouponReservation**](docs/IntegrationApi.md#createcouponreservation) | **POST** /v1/coupon_reservations/{couponValue} | Create coupon reservation
@@ -203,6 +204,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *IntegrationApi* | [**deleteAudienceV2**](docs/IntegrationApi.md#deleteaudiencev2) | **DELETE** /v2/audiences/{audienceId} | Delete audience
 *IntegrationApi* | [**deleteCouponReservation**](docs/IntegrationApi.md#deletecouponreservation) | **DELETE** /v1/coupon_reservations/{couponValue} | Delete coupon reservations
 *IntegrationApi* | [**deleteCustomerData**](docs/IntegrationApi.md#deletecustomerdata) | **DELETE** /v1/customer_data/{integrationId} | Delete customer\&#39;s personal data
+*IntegrationApi* | [**deleteLoyaltyTransactionsFromLedgers**](docs/IntegrationApi.md#deleteloyaltytransactionsfromledgers) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/delete_transactions | Delete customer\&#39;s transactions from loyalty ledgers
 *IntegrationApi* | [**generateLoyaltyCard**](docs/IntegrationApi.md#generateloyaltycard) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/cards | Generate loyalty card
 *IntegrationApi* | [**getCustomerAchievementHistory**](docs/IntegrationApi.md#getcustomerachievementhistory) | **GET** /v1/customer_profiles/{integrationId}/achievements/{achievementId} | List customer\&#39;s achievement history
 *IntegrationApi* | [**getCustomerAchievements**](docs/IntegrationApi.md#getcustomerachievements) | **GET** /v1/customer_profiles/{integrationId}/achievements | List customer\&#39;s available achievements
@@ -220,6 +222,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *IntegrationApi* | [**returnCartItems**](docs/IntegrationApi.md#returncartitems) | **POST** /v2/customer_sessions/{customerSessionId}/returns | Return cart items
 *IntegrationApi* | [**syncCatalog**](docs/IntegrationApi.md#synccatalog) | **PUT** /v1/catalogs/{catalogId}/sync | Sync cart item catalog
 *IntegrationApi* | [**trackEventV2**](docs/IntegrationApi.md#trackeventv2) | **POST** /v2/events | Track event
+*IntegrationApi* | [**unlinkLoyaltyCardFromProfile**](docs/IntegrationApi.md#unlinkloyaltycardfromprofile) | **POST** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile | Unlink customer profile from a loyalty card
 *IntegrationApi* | [**updateAudienceCustomersAttributes**](docs/IntegrationApi.md#updateaudiencecustomersattributes) | **PUT** /v2/audience_customers/{audienceId}/attributes | Update profile attributes for all customers in audience
 *IntegrationApi* | [**updateAudienceV2**](docs/IntegrationApi.md#updateaudiencev2) | **PUT** /v2/audiences/{audienceId} | Update audience name
 *IntegrationApi* | [**updateCustomerProfileAudiences**](docs/IntegrationApi.md#updatecustomerprofileaudiences) | **POST** /v2/customer_audiences | Update multiple customer profiles\&#39; audiences
@@ -281,6 +284,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**exportLoyaltyLedger**](docs/ManagementApi.md#exportloyaltyledger) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/export_log | Export customer\&#39;s transaction logs
 *ManagementApi* | [**exportPoolGiveaways**](docs/ManagementApi.md#exportpoolgiveaways) | **GET** /v1/giveaways/pools/{poolId}/export | Export giveaway codes of a giveaway pool
 *ManagementApi* | [**exportReferrals**](docs/ManagementApi.md#exportreferrals) | **GET** /v1/applications/{applicationId}/export_referrals | Export referrals
+*ManagementApi* | [**generateCouponRejections**](docs/ManagementApi.md#generatecouponrejections) | **GET** /v1/coupon_rejections | Summarize coupon redemption failures in session
 *ManagementApi* | [**getAccessLogsWithoutTotalCount**](docs/ManagementApi.md#getaccesslogswithouttotalcount) | **GET** /v1/applications/{applicationId}/access_logs/no_total | Get access logs for Application
 *ManagementApi* | [**getAccount**](docs/ManagementApi.md#getaccount) | **GET** /v1/accounts/{accountId} | Get account details
 *ManagementApi* | [**getAccountAnalytics**](docs/ManagementApi.md#getaccountanalytics) | **GET** /v1/accounts/{accountId}/analytics | Get account analytics
@@ -328,8 +332,10 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**getLoyaltyCard**](docs/ManagementApi.md#getloyaltycard) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Get loyalty card
 *ManagementApi* | [**getLoyaltyCardTransactionLogs**](docs/ManagementApi.md#getloyaltycardtransactionlogs) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card\&#39;s transactions
 *ManagementApi* | [**getLoyaltyCards**](docs/ManagementApi.md#getloyaltycards) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards | List loyalty cards
+*ManagementApi* | [**getLoyaltyLedgerBalances**](docs/ManagementApi.md#getloyaltyledgerbalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_balances | Get customer\&#39;s loyalty balances
 *ManagementApi* | [**getLoyaltyPoints**](docs/ManagementApi.md#getloyaltypoints) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId} | Get customer\&#39;s full loyalty ledger
 *ManagementApi* | [**getLoyaltyProgram**](docs/ManagementApi.md#getloyaltyprogram) | **GET** /v1/loyalty_programs/{loyaltyProgramId} | Get loyalty program
+*ManagementApi* | [**getLoyaltyProgramProfileLedgerTransactions**](docs/ManagementApi.md#getloyaltyprogramprofileledgertransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_transactions | List customer\&#39;s loyalty transactions
 *ManagementApi* | [**getLoyaltyProgramTransactions**](docs/ManagementApi.md#getloyaltyprogramtransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/transactions | List loyalty program transactions
 *ManagementApi* | [**getLoyaltyPrograms**](docs/ManagementApi.md#getloyaltyprograms) | **GET** /v1/loyalty_programs | List loyalty programs
 *ManagementApi* | [**getLoyaltyStatistics**](docs/ManagementApi.md#getloyaltystatistics) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/statistics | Get loyalty program statistics
@@ -487,7 +493,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [BestPriorPrice](docs/BestPriorPrice.md)
 - [BestPriorPriceMetadata](docs/BestPriorPriceMetadata.md)
 - [BestPriorPriceRequest](docs/BestPriorPriceRequest.md)
-- [BestPriorPriceRequestTarget](docs/BestPriorPriceRequestTarget.md)
+- [BestPriorTarget](docs/BestPriorTarget.md)
 - [Binding](docs/Binding.md)
 - [BulkApplicationNotification](docs/BulkApplicationNotification.md)
 - [BulkOperationOnCampaigns](docs/BulkOperationOnCampaigns.md)
@@ -546,9 +552,11 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [CardLedgerTransactionLogEntry](docs/CardLedgerTransactionLogEntry.md)
 - [CardLedgerTransactionLogEntryIntegrationAPI](docs/CardLedgerTransactionLogEntryIntegrationAPI.md)
 - [CartItem](docs/CartItem.md)
+- [CartItemFilterTemplate](docs/CartItemFilterTemplate.md)
 - [Catalog](docs/Catalog.md)
 - [CatalogActionFilter](docs/CatalogActionFilter.md)
 - [CatalogItem](docs/CatalogItem.md)
+- [CatalogRule](docs/CatalogRule.md)
 - [CatalogSyncRequest](docs/CatalogSyncRequest.md)
 - [CatalogsStrikethroughNotificationPolicy](docs/CatalogsStrikethroughNotificationPolicy.md)
 - [Change](docs/Change.md)
@@ -558,6 +566,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [Collection](docs/Collection.md)
 - [CollectionItem](docs/CollectionItem.md)
 - [CollectionWithoutPayload](docs/CollectionWithoutPayload.md)
+- [CollectionsCatalog](docs/CollectionsCatalog.md)
 - [Coupon](docs/Coupon.md)
 - [CouponConstraints](docs/CouponConstraints.md)
 - [CouponCreatedEffectProps](docs/CouponCreatedEffectProps.md)
@@ -568,7 +577,6 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [CouponFailureSummary](docs/CouponFailureSummary.md)
 - [CouponLimitConfigs](docs/CouponLimitConfigs.md)
 - [CouponRejectionReason](docs/CouponRejectionReason.md)
-- [CouponRejections](docs/CouponRejections.md)
 - [CouponReservations](docs/CouponReservations.md)
 - [CouponSearch](docs/CouponSearch.md)
 - [CouponValue](docs/CouponValue.md)
@@ -601,6 +609,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [DeductLoyaltyPoints](docs/DeductLoyaltyPoints.md)
 - [DeductLoyaltyPointsEffectProps](docs/DeductLoyaltyPointsEffectProps.md)
 - [DeleteCouponsData](docs/DeleteCouponsData.md)
+- [DeleteLoyaltyTransactionsRequest](docs/DeleteLoyaltyTransactionsRequest.md)
 - [DeleteUserRequest](docs/DeleteUserRequest.md)
 - [Effect](docs/Effect.md)
 - [EffectEntity](docs/EffectEntity.md)
@@ -641,6 +650,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [GenerateCampaignTags](docs/GenerateCampaignTags.md)
 - [GenerateCouponFailureDetailedSummary](docs/GenerateCouponFailureDetailedSummary.md)
 - [GenerateCouponFailureSummary](docs/GenerateCouponFailureSummary.md)
+- [GenerateCouponRejections200Response](docs/GenerateCouponRejections200Response.md)
 - [GenerateItemFilterDescription](docs/GenerateItemFilterDescription.md)
 - [GenerateLoyaltyCard](docs/GenerateLoyaltyCard.md)
 - [GenerateRuleTitle](docs/GenerateRuleTitle.md)
@@ -797,6 +807,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [NewCampaignTemplate](docs/NewCampaignTemplate.md)
 - [NewCatalog](docs/NewCatalog.md)
 - [NewCollection](docs/NewCollection.md)
+- [NewCollectionsCatalog](docs/NewCollectionsCatalog.md)
 - [NewCouponCreationJob](docs/NewCouponCreationJob.md)
 - [NewCouponDeletionJob](docs/NewCouponDeletionJob.md)
 - [NewCoupons](docs/NewCoupons.md)
@@ -947,7 +958,6 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [ScimUsersListResponse](docs/ScimUsersListResponse.md)
 - [SecondaryDeployment](docs/SecondaryDeployment.md)
 - [Session](docs/Session.md)
-- [SessionCoupons](docs/SessionCoupons.md)
 - [SetDiscountEffectProps](docs/SetDiscountEffectProps.md)
 - [SetDiscountPerAdditionalCostEffectProps](docs/SetDiscountPerAdditionalCostEffectProps.md)
 - [SetDiscountPerAdditionalCostPerItemEffectProps](docs/SetDiscountPerAdditionalCostPerItemEffectProps.md)
@@ -1004,6 +1014,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [UpdateCampaignTemplate](docs/UpdateCampaignTemplate.md)
 - [UpdateCatalog](docs/UpdateCatalog.md)
 - [UpdateCollection](docs/UpdateCollection.md)
+- [UpdateCollectionsCatalog](docs/UpdateCollectionsCatalog.md)
 - [UpdateCoupon](docs/UpdateCoupon.md)
 - [UpdateCouponBatch](docs/UpdateCouponBatch.md)
 - [UpdateCouponsData](docs/UpdateCouponsData.md)
@@ -1025,7 +1036,6 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [ValueMap](docs/ValueMap.md)
 - [Webhook](docs/Webhook.md)
 - [WebhookAuthentication](docs/WebhookAuthentication.md)
-- [WebhookAuthenticationBase](docs/WebhookAuthenticationBase.md)
 - [WebhookAuthenticationDataBasic](docs/WebhookAuthenticationDataBasic.md)
 - [WebhookAuthenticationDataCustom](docs/WebhookAuthenticationDataCustom.md)
 - [WebhookAuthenticationWebhookRef](docs/WebhookAuthenticationWebhookRef.md)

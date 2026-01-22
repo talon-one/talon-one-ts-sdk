@@ -15,6 +15,8 @@
 
 import * as runtime from '../runtime';
 import type {
+  ActivateLoyaltyPoints,
+  ActivateLoyaltyPointsResponse,
   Audience,
   BestPriorPrice,
   BestPriorPriceRequest,
@@ -27,6 +29,7 @@ import type {
   CustomerProfileAudienceRequest,
   CustomerProfileIntegrationRequestV2,
   CustomerProfileIntegrationResponseV2,
+  DeleteLoyaltyTransactionsRequest,
   ErrorResponse,
   ErrorResponseWithStatus,
   GenerateLoyaltyCard,
@@ -59,6 +62,10 @@ import type {
   UpdateCustomerSessionV2409Response,
 } from '../models/index';
 import {
+    ActivateLoyaltyPointsFromJSON,
+    ActivateLoyaltyPointsToJSON,
+    ActivateLoyaltyPointsResponseFromJSON,
+    ActivateLoyaltyPointsResponseToJSON,
     AudienceFromJSON,
     AudienceToJSON,
     BestPriorPriceFromJSON,
@@ -83,6 +90,8 @@ import {
     CustomerProfileIntegrationRequestV2ToJSON,
     CustomerProfileIntegrationResponseV2FromJSON,
     CustomerProfileIntegrationResponseV2ToJSON,
+    DeleteLoyaltyTransactionsRequestFromJSON,
+    DeleteLoyaltyTransactionsRequestToJSON,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
     ErrorResponseWithStatusFromJSON,
@@ -145,6 +154,11 @@ import {
     UpdateCustomerSessionV2409ResponseToJSON,
 } from '../models/index';
 
+export interface ActivateLoyaltyPointsRequest {
+    loyaltyProgramId: number;
+    activateLoyaltyPoints: ActivateLoyaltyPoints;
+}
+
 export interface BestPriorPriceOperationRequest {
     bestPriorPriceRequest: BestPriorPriceRequest;
 }
@@ -182,6 +196,12 @@ export interface DeleteCouponReservationRequest {
 
 export interface DeleteCustomerDataRequest {
     integrationId: string;
+}
+
+export interface DeleteLoyaltyTransactionsFromLedgersRequest {
+    loyaltyProgramId: number;
+    integrationId: string;
+    deleteLoyaltyTransactionsRequest: DeleteLoyaltyTransactionsRequest;
 }
 
 export interface GenerateLoyaltyCardRequest {
@@ -262,6 +282,7 @@ export interface GetLoyaltyCardTransactionsRequest {
     transactionUUIDs?: Array<string>;
     pageSize?: number;
     skip?: number;
+    awaitsActivation?: boolean;
 }
 
 export interface GetLoyaltyProgramProfilePointsRequest {
@@ -287,6 +308,7 @@ export interface GetLoyaltyProgramProfileTransactionsRequest {
     endDate?: Date;
     pageSize?: number;
     skip?: number;
+    awaitsActivation?: boolean;
 }
 
 export interface GetReservedCustomersRequest {
@@ -319,6 +341,12 @@ export interface TrackEventV2Request {
     silent?: string;
     dry?: boolean;
     forceCompleteEvaluation?: boolean;
+}
+
+export interface UnlinkLoyaltyCardFromProfileRequest {
+    loyaltyProgramId: number;
+    loyaltyCardId: string;
+    loyaltyCardRegistration: LoyaltyCardRegistration;
 }
 
 export interface UpdateAudienceCustomersAttributesRequest {
@@ -358,6 +386,59 @@ export interface UpdateCustomerSessionV2Request {
  * 
  */
 export class IntegrationApi extends runtime.BaseAPI {
+
+    /**
+     * Activate points when a defined action occurs.  You can activate pending points using one of the following parameters: - `sessionId`: Activates all points earned in the specified session.  - `transactionUUIDs`: Activates points earned in the transactions specified by the  given UUIDs.  
+     * Activate loyalty points
+     */
+    async activateLoyaltyPointsRaw(requestParameters: ActivateLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActivateLoyaltyPointsResponse>> {
+        if (requestParameters['loyaltyProgramId'] == null) {
+            throw new runtime.RequiredError(
+                'loyaltyProgramId',
+                'Required parameter "loyaltyProgramId" was null or undefined when calling activateLoyaltyPoints().'
+            );
+        }
+
+        if (requestParameters['activateLoyaltyPoints'] == null) {
+            throw new runtime.RequiredError(
+                'activateLoyaltyPoints',
+                'Required parameter "activateLoyaltyPoints" was null or undefined when calling activateLoyaltyPoints().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/activate_points`;
+        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ActivateLoyaltyPointsToJSON(requestParameters['activateLoyaltyPoints']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ActivateLoyaltyPointsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Activate points when a defined action occurs.  You can activate pending points using one of the following parameters: - `sessionId`: Activates all points earned in the specified session.  - `transactionUUIDs`: Activates points earned in the transactions specified by the  given UUIDs.  
+     * Activate loyalty points
+     */
+    async activateLoyaltyPoints(requestParameters: ActivateLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ActivateLoyaltyPointsResponse> {
+        const response = await this.activateLoyaltyPointsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Returns the best prior price based on historical pricing data for the specified SKUs within a defined timeframe. 
@@ -787,6 +868,66 @@ export class IntegrationApi extends runtime.BaseAPI {
      */
     async deleteCustomerData(requestParameters: DeleteCustomerDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCustomerDataRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Delete a customer\'s transactions in all loyalty ledgers or a specified ledger.  **Note:** To retrieve loyalty transaction logs for a specific customer in a given loyalty program, use the [List customer\'s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions) endpoint. 
+     * Delete customer\'s transactions from loyalty ledgers
+     */
+    async deleteLoyaltyTransactionsFromLedgersRaw(requestParameters: DeleteLoyaltyTransactionsFromLedgersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['loyaltyProgramId'] == null) {
+            throw new runtime.RequiredError(
+                'loyaltyProgramId',
+                'Required parameter "loyaltyProgramId" was null or undefined when calling deleteLoyaltyTransactionsFromLedgers().'
+            );
+        }
+
+        if (requestParameters['integrationId'] == null) {
+            throw new runtime.RequiredError(
+                'integrationId',
+                'Required parameter "integrationId" was null or undefined when calling deleteLoyaltyTransactionsFromLedgers().'
+            );
+        }
+
+        if (requestParameters['deleteLoyaltyTransactionsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'deleteLoyaltyTransactionsRequest',
+                'Required parameter "deleteLoyaltyTransactionsRequest" was null or undefined when calling deleteLoyaltyTransactionsFromLedgers().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/delete_transactions`;
+        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: DeleteLoyaltyTransactionsRequestToJSON(requestParameters['deleteLoyaltyTransactionsRequest']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a customer\'s transactions in all loyalty ledgers or a specified ledger.  **Note:** To retrieve loyalty transaction logs for a specific customer in a given loyalty program, use the [List customer\'s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions) endpoint. 
+     * Delete customer\'s transactions from loyalty ledgers
+     */
+    async deleteLoyaltyTransactionsFromLedgers(requestParameters: DeleteLoyaltyTransactionsFromLedgersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteLoyaltyTransactionsFromLedgersRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -1348,6 +1489,10 @@ export class IntegrationApi extends runtime.BaseAPI {
             queryParameters['skip'] = requestParameters['skip'];
         }
 
+        if (requestParameters['awaitsActivation'] != null) {
+            queryParameters['awaitsActivation'] = requestParameters['awaitsActivation'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
@@ -1510,6 +1655,10 @@ export class IntegrationApi extends runtime.BaseAPI {
             queryParameters['skip'] = requestParameters['skip'];
         }
 
+        if (requestParameters['awaitsActivation'] != null) {
+            queryParameters['awaitsActivation'] = requestParameters['awaitsActivation'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
@@ -1645,7 +1794,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The `talon_session_reopened` event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to `open`. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   <details>   <summary><strong>Effects and budgets unimpacted by a session reopening</strong></summary>   <div>     <p>The following effects and budgets remain in the state they were in when the session closed:</p>     <ul>       <li>Add free item effect</li>       <li>Award giveaway</li>       <li>Coupon and referral creation</li>       <li>Coupon reservation</li>       <li>Custom effect</li>       <li>Update attribute value</li>       <li>Update cart item attribute value</li>     </ul>   </div>   </details> <p>To see an example of a rollback, see the <a href=\"https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\">Cancelling a session with campaign budgets</a>tutorial.</p>  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
+     * Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The `talon_session_reopened` event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to `open`. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   <details>   <summary><strong>Effects and budgets unimpacted by a session reopening</strong></summary>   <div>     <p>The following effects and budgets remain in the state they were in when the session closed:</p>     <ul>       <li>Add free item effect</li>       <li>Award giveaway</li>       <li>Coupon and referral creation</li>       <li>Coupon reservation</li>       <li>Custom effect</li>       <li>Update attribute value</li>       <li>Update cart item attribute value</li>     </ul>   </div>   </details> <p>To see an example of a rollback, see the <a href=\"https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\">Cancelling a session with campaign budgets</a> tutorial.</p>  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
      * Reopen customer session
      */
     async reopenCustomerSessionRaw(requestParameters: ReopenCustomerSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReopenSessionResponse>> {
@@ -1679,7 +1828,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The `talon_session_reopened` event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to `open`. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   <details>   <summary><strong>Effects and budgets unimpacted by a session reopening</strong></summary>   <div>     <p>The following effects and budgets remain in the state they were in when the session closed:</p>     <ul>       <li>Add free item effect</li>       <li>Award giveaway</li>       <li>Coupon and referral creation</li>       <li>Coupon reservation</li>       <li>Custom effect</li>       <li>Update attribute value</li>       <li>Update cart item attribute value</li>     </ul>   </div>   </details> <p>To see an example of a rollback, see the <a href=\"https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\">Cancelling a session with campaign budgets</a>tutorial.</p>  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
+     * Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The `talon_session_reopened` event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to `open`. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   <details>   <summary><strong>Effects and budgets unimpacted by a session reopening</strong></summary>   <div>     <p>The following effects and budgets remain in the state they were in when the session closed:</p>     <ul>       <li>Add free item effect</li>       <li>Award giveaway</li>       <li>Coupon and referral creation</li>       <li>Coupon reservation</li>       <li>Custom effect</li>       <li>Update attribute value</li>       <li>Update cart item attribute value</li>     </ul>   </div>   </details> <p>To see an example of a rollback, see the <a href=\"https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\">Cancelling a session with campaign budgets</a> tutorial.</p>  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
      * Reopen customer session
      */
     async reopenCustomerSession(requestParameters: ReopenCustomerSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReopenSessionResponse> {
@@ -1851,6 +2000,67 @@ export class IntegrationApi extends runtime.BaseAPI {
      */
     async trackEventV2(requestParameters: TrackEventV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TrackEventV2Response> {
         const response = await this.trackEventV2Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Unlink a customer profile from a [registered](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards#linking-customer-profiles-to-a-loyalty-card) loyalty card.  To get the `integrationId` of a customer profile, you can use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
+     * Unlink customer profile from a loyalty card
+     */
+    async unlinkLoyaltyCardFromProfileRaw(requestParameters: UnlinkLoyaltyCardFromProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCard>> {
+        if (requestParameters['loyaltyProgramId'] == null) {
+            throw new runtime.RequiredError(
+                'loyaltyProgramId',
+                'Required parameter "loyaltyProgramId" was null or undefined when calling unlinkLoyaltyCardFromProfile().'
+            );
+        }
+
+        if (requestParameters['loyaltyCardId'] == null) {
+            throw new runtime.RequiredError(
+                'loyaltyCardId',
+                'Required parameter "loyaltyCardId" was null or undefined when calling unlinkLoyaltyCardFromProfile().'
+            );
+        }
+
+        if (requestParameters['loyaltyCardRegistration'] == null) {
+            throw new runtime.RequiredError(
+                'loyaltyCardRegistration',
+                'Required parameter "loyaltyCardRegistration" was null or undefined when calling unlinkLoyaltyCardFromProfile().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile`;
+        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: LoyaltyCardRegistrationToJSON(requestParameters['loyaltyCardRegistration']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyCardFromJSON(jsonValue));
+    }
+
+    /**
+     * Unlink a customer profile from a [registered](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards#linking-customer-profiles-to-a-loyalty-card) loyalty card.  To get the `integrationId` of a customer profile, you can use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
+     * Unlink customer profile from a loyalty card
+     */
+    async unlinkLoyaltyCardFromProfile(requestParameters: UnlinkLoyaltyCardFromProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoyaltyCard> {
+        const response = await this.unlinkLoyaltyCardFromProfileRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

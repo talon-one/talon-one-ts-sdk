@@ -17,6 +17,7 @@ Name | Type
 `expiryDate` | string
 `subledgerId` | string
 `amount` | number
+`validityDuration` | string
 
 ## Example
 
@@ -35,6 +36,7 @@ const example = {
   "expiryDate": 2022-08-02T15:04:05Z07:00,
   "subledgerId": sub-123,
   "amount": 10.25,
+  "validityDuration": 30D,
 } satisfies LedgerPointsEntryIntegrationAPI
 
 console.log(example)

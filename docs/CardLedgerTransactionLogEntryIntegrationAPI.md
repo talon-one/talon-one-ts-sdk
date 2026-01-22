@@ -21,6 +21,7 @@ Name | Type
 `id` | number
 `rulesetId` | number
 `ruleName` | string
+`validityDuration` | string
 
 ## Example
 
@@ -43,6 +44,7 @@ const example = {
   "id": 123,
   "rulesetId": 11,
   "ruleName": Add 2 points,
+  "validityDuration": 30D,
 } satisfies CardLedgerTransactionLogEntryIntegrationAPI
 
 console.log(example)

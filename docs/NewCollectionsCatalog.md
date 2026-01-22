@@ -1,24 +1,30 @@
 
-# SessionCoupons
+# NewCollectionsCatalog
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`sessionIntegrationId` | string
-`couponCode` | string
+`title` | string
+`description` | string
+`category` | string
+`rules` | [Array&lt;CatalogRule&gt;](CatalogRule.md)
+`cartItemFilters` | [Array&lt;CartItemFilterTemplate&gt;](CartItemFilterTemplate.md)
 
 ## Example
 
 ```typescript
-import type { SessionCoupons } from 'talon_one_sdk'
+import type { NewCollectionsCatalog } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "sessionIntegrationId": cc53e4fa-547f-4f5e-8333-76e05c381f67,
-  "couponCode": SUMMER2025,
-} satisfies SessionCoupons
+  "title": Customer loyalty boost,
+  "description": null,
+  "category": null,
+  "rules": null,
+  "cartItemFilters": null,
+} satisfies NewCollectionsCatalog
 
 console.log(example)
 
@@ -27,7 +33,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as SessionCoupons
+const exampleParsed = JSON.parse(exampleJSON) as NewCollectionsCatalog
 console.log(exampleParsed)
 ```
 

@@ -20,7 +20,7 @@ import type { NewRole } from 'talon_one_sdk'
 const example = {
   "name": Campaign Manager,
   "description": Manages the campaigns,
-  "acl": {Role=128, Applications=null},
+  "acl": {Role=128},
   "members": [48, 562, 475, 18],
 } satisfies NewRole
 

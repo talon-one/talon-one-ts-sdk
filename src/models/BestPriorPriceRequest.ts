@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { BestPriorPriceRequestTarget } from './BestPriorPriceRequestTarget';
+import type { BestPriorTarget } from './BestPriorTarget';
 import {
-    BestPriorPriceRequestTargetFromJSON,
-    BestPriorPriceRequestTargetFromJSONTyped,
-    BestPriorPriceRequestTargetToJSON,
-    BestPriorPriceRequestTargetToJSONTyped,
-} from './BestPriorPriceRequestTarget';
+    BestPriorTargetFromJSON,
+    BestPriorTargetFromJSONTyped,
+    BestPriorTargetToJSON,
+    BestPriorTargetToJSONTyped,
+} from './BestPriorTarget';
 
 /**
  * 
@@ -41,10 +41,10 @@ export interface BestPriorPriceRequest {
     timeframeEndDate: Date;
     /**
      * The number of days prior to the timeframeEndDate. Only prices within this look back period are considered for the best prior price evaluation.
-     * @type {number}
+     * @type {string}
      * @memberof BestPriorPriceRequest
      */
-    timeframe: number;
+    timeframe: string;
     /**
      * Indicates whether the timeframe includes the start of the current sale.
      * - When `false`, the timeframe includes the start date of the current sale.
@@ -56,10 +56,10 @@ export interface BestPriorPriceRequest {
     strictEndDate: boolean;
     /**
      * 
-     * @type {BestPriorPriceRequestTarget}
+     * @type {BestPriorTarget}
      * @memberof BestPriorPriceRequest
      */
-    target?: BestPriorPriceRequestTarget;
+    target?: BestPriorTarget;
 }
 
 /**
@@ -87,7 +87,7 @@ export function BestPriorPriceRequestFromJSONTyped(json: any, ignoreDiscriminato
         'timeframeEndDate': (new Date(json['timeframeEndDate'])),
         'timeframe': json['timeframe'],
         'strictEndDate': json['strictEndDate'],
-        'target': json['target'] == null ? undefined : BestPriorPriceRequestTargetFromJSON(json['target']),
+        'target': json['target'] == null ? undefined : BestPriorTargetFromJSON(json['target']),
     };
 }
 
@@ -106,7 +106,7 @@ export function BestPriorPriceRequestToJSONTyped(value?: BestPriorPriceRequest |
         'timeframeEndDate': value['timeframeEndDate'].toISOString(),
         'timeframe': value['timeframe'],
         'strictEndDate': value['strictEndDate'],
-        'target': BestPriorPriceRequestTargetToJSON(value['target']),
+        'target': BestPriorTargetToJSON(value['target']),
     };
 }
 

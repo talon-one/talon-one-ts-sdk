@@ -40,7 +40,7 @@ const example = {
   "state": invited,
   "inviteToken": Gy9b8w1irmQtEPo5RmbMmSPheL5h4,
   "isAdmin": false,
-  "policy": {Role=127, Applications=null},
+  "policy": {Role=127},
   "roles": [71],
   "authMethod": basic_auth,
   "applicationNotificationSubscriptions": {},

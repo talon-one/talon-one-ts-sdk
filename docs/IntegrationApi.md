@@ -4,6 +4,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**activateLoyaltyPoints**](IntegrationApi.md#activateloyaltypoints) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/activate_points | Activate loyalty points |
 | [**bestPriorPrice**](IntegrationApi.md#bestpriorpriceoperation) | **POST** /v1/best_prior_price | Fetch best prior price |
 | [**createAudienceV2**](IntegrationApi.md#createaudiencev2) | **POST** /v2/audiences | Create audience |
 | [**createCouponReservation**](IntegrationApi.md#createcouponreservation) | **POST** /v1/coupon_reservations/{couponValue} | Create coupon reservation |
@@ -13,6 +14,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**deleteAudienceV2**](IntegrationApi.md#deleteaudiencev2) | **DELETE** /v2/audiences/{audienceId} | Delete audience |
 | [**deleteCouponReservation**](IntegrationApi.md#deletecouponreservation) | **DELETE** /v1/coupon_reservations/{couponValue} | Delete coupon reservations |
 | [**deleteCustomerData**](IntegrationApi.md#deletecustomerdata) | **DELETE** /v1/customer_data/{integrationId} | Delete customer\&#39;s personal data |
+| [**deleteLoyaltyTransactionsFromLedgers**](IntegrationApi.md#deleteloyaltytransactionsfromledgers) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/delete_transactions | Delete customer\&#39;s transactions from loyalty ledgers |
 | [**generateLoyaltyCard**](IntegrationApi.md#generateloyaltycard) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/cards | Generate loyalty card |
 | [**getCustomerAchievementHistory**](IntegrationApi.md#getcustomerachievementhistory) | **GET** /v1/customer_profiles/{integrationId}/achievements/{achievementId} | List customer\&#39;s achievement history |
 | [**getCustomerAchievements**](IntegrationApi.md#getcustomerachievements) | **GET** /v1/customer_profiles/{integrationId}/achievements | List customer\&#39;s available achievements |
@@ -30,6 +32,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**returnCartItems**](IntegrationApi.md#returncartitems) | **POST** /v2/customer_sessions/{customerSessionId}/returns | Return cart items |
 | [**syncCatalog**](IntegrationApi.md#synccatalog) | **PUT** /v1/catalogs/{catalogId}/sync | Sync cart item catalog |
 | [**trackEventV2**](IntegrationApi.md#trackeventv2) | **POST** /v2/events | Track event |
+| [**unlinkLoyaltyCardFromProfile**](IntegrationApi.md#unlinkloyaltycardfromprofile) | **POST** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile | Unlink customer profile from a loyalty card |
 | [**updateAudienceCustomersAttributes**](IntegrationApi.md#updateaudiencecustomersattributes) | **PUT** /v2/audience_customers/{audienceId}/attributes | Update profile attributes for all customers in audience |
 | [**updateAudienceV2**](IntegrationApi.md#updateaudiencev2) | **PUT** /v2/audiences/{audienceId} | Update audience name |
 | [**updateCustomerProfileAudiences**](IntegrationApi.md#updatecustomerprofileaudiences) | **POST** /v2/customer_audiences | Update multiple customer profiles\&#39; audiences |
@@ -37,6 +40,83 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**updateCustomerProfilesV2**](IntegrationApi.md#updatecustomerprofilesv2) | **PUT** /v2/customer_profiles | Update multiple customer profiles |
 | [**updateCustomerSessionV2**](IntegrationApi.md#updatecustomersessionv2) | **PUT** /v2/customer_sessions/{customerSessionId} | Update customer session |
 
+
+
+## activateLoyaltyPoints
+
+> ActivateLoyaltyPointsResponse activateLoyaltyPoints(loyaltyProgramId, activateLoyaltyPoints)
+
+Activate loyalty points
+
+Activate points when a defined action occurs.  You can activate pending points using one of the following parameters: - &#x60;sessionId&#x60;: Activates all points earned in the specified session.  - &#x60;transactionUUIDs&#x60;: Activates points earned in the transactions specified by the  given UUIDs.  
+
+### Example
+
+```ts
+import {
+  Configuration,
+  IntegrationApi,
+} from 'talon_one_sdk';
+import type { ActivateLoyaltyPointsRequest } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new IntegrationApi(config);
+
+  const body = {
+    // number | The identifier for the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
+    loyaltyProgramId: 789,
+    // ActivateLoyaltyPoints | body
+    activateLoyaltyPoints: {transactionUUIDs=[8f1a8d7c-9c3e-4a5e-9f0d-2c5f7a3b1cde, 12b3c456-78d9-4e0f-a1b2-3456789abcde]},
+  } satisfies ActivateLoyaltyPointsRequest;
+
+  try {
+    const data = await api.activateLoyaltyPoints(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **loyaltyProgramId** | `number` | The identifier for the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
+| **activateLoyaltyPoints** | [ActivateLoyaltyPoints](ActivateLoyaltyPoints.md) | body | |
+
+### Return type
+
+[**ActivateLoyaltyPointsResponse**](ActivateLoyaltyPointsResponse.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## bestPriorPrice
@@ -707,6 +787,86 @@ example().catch(console.error);
 |-------------|-------------|------------------|
 | **204** | No Content |  -  |
 | **401** | Unauthorized - Invalid API key |  -  |
+| **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## deleteLoyaltyTransactionsFromLedgers
+
+> deleteLoyaltyTransactionsFromLedgers(loyaltyProgramId, integrationId, deleteLoyaltyTransactionsRequest)
+
+Delete customer\&#39;s transactions from loyalty ledgers
+
+Delete a customer\&#39;s transactions in all loyalty ledgers or a specified ledger.  **Note:** To retrieve loyalty transaction logs for a specific customer in a given loyalty program, use the [List customer\&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions) endpoint. 
+
+### Example
+
+```ts
+import {
+  Configuration,
+  IntegrationApi,
+} from 'talon_one_sdk';
+import type { DeleteLoyaltyTransactionsFromLedgersRequest } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new IntegrationApi(config);
+
+  const body = {
+    // number | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
+    loyaltyProgramId: 789,
+    // string | The integration ID of the customer profile. You can get the `integrationId` of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application\'s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint. 
+    integrationId: integrationId_example,
+    // DeleteLoyaltyTransactionsRequest
+    deleteLoyaltyTransactionsRequest: ...,
+  } satisfies DeleteLoyaltyTransactionsFromLedgersRequest;
+
+  try {
+    const data = await api.deleteLoyaltyTransactionsFromLedgers(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **loyaltyProgramId** | `number` | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
+| **integrationId** | `string` | The integration ID of the customer profile. You can get the &#x60;integrationId&#x60; of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application\&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | [Defaults to `undefined`] |
+| **deleteLoyaltyTransactionsRequest** | [DeleteLoyaltyTransactionsRequest](DeleteLoyaltyTransactionsRequest.md) |  | |
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | No Content |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
 | **404** | Not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
@@ -1408,7 +1568,7 @@ example().catch(console.error);
 
 ## getLoyaltyCardTransactions
 
-> GetLoyaltyCardTransactions200Response getLoyaltyCardTransactions(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip)
+> GetLoyaltyCardTransactions200Response getLoyaltyCardTransactions(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation)
 
 List card\&#39;s transactions
 
@@ -1452,6 +1612,8 @@ async function example() {
     pageSize: 789,
     // number | The number of items to skip when paging through large result sets. (optional)
     skip: 789,
+    // boolean | If `true`: Filters results to include only point transactions that have action-based activation and have not expired.  If `false`: Returns a `400` response.  (optional)
+    awaitsActivation: true,
   } satisfies GetLoyaltyCardTransactionsRequest;
 
   try {
@@ -1481,6 +1643,7 @@ example().catch(console.error);
 | **transactionUUIDs** | `Array<string>` | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | [Optional] |
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `50`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
+| **awaitsActivation** | `boolean` | If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -1607,7 +1770,7 @@ example().catch(console.error);
 
 ## getLoyaltyProgramProfileTransactions
 
-> GetLoyaltyProgramProfileTransactions200Response getLoyaltyProgramProfileTransactions(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip)
+> GetLoyaltyProgramProfileTransactions200Response getLoyaltyProgramProfileTransactions(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation)
 
 List customer\&#39;s loyalty transactions
 
@@ -1651,6 +1814,8 @@ async function example() {
     pageSize: 789,
     // number | The number of items to skip when paging through large result sets. (optional)
     skip: 789,
+    // boolean | If `true`: Filters results to include only point transactions that have action-based activation and have not expired.  If `false`: Returns a `400` response.  (optional)
+    awaitsActivation: true,
   } satisfies GetLoyaltyProgramProfileTransactionsRequest;
 
   try {
@@ -1680,6 +1845,7 @@ example().catch(console.error);
 | **endDate** | `Date` | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `50`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
+| **awaitsActivation** | `boolean` | If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -1866,7 +2032,7 @@ example().catch(console.error);
 
 Reopen customer session
 
-Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt;   &lt;/details&gt; &lt;p&gt;To see an example of a rollback, see the &lt;a href&#x3D;\&quot;https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\&quot;&gt;Cancelling a session with campaign budgets&lt;/a&gt;tutorial.&lt;/p&gt;  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
+Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt;   &lt;/details&gt; &lt;p&gt;To see an example of a rollback, see the &lt;a href&#x3D;\&quot;https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\&quot;&gt;Cancelling a session with campaign budgets&lt;/a&gt; tutorial.&lt;/p&gt;  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
 
 ### Example
 
@@ -2168,6 +2334,86 @@ example().catch(console.error);
 | **400** | Bad request |  -  |
 | **401** | Unauthorized - Invalid API key |  -  |
 | **409** | Too many requests or limit reached - Avoid parallel requests. See the [docs](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one#managing-parallel-requests). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## unlinkLoyaltyCardFromProfile
+
+> LoyaltyCard unlinkLoyaltyCardFromProfile(loyaltyProgramId, loyaltyCardId, loyaltyCardRegistration)
+
+Unlink customer profile from a loyalty card
+
+Unlink a customer profile from a [registered](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards#linking-customer-profiles-to-a-loyalty-card) loyalty card.  To get the &#x60;integrationId&#x60; of a customer profile, you can use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
+
+### Example
+
+```ts
+import {
+  Configuration,
+  IntegrationApi,
+} from 'talon_one_sdk';
+import type { UnlinkLoyaltyCardFromProfileRequest } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new IntegrationApi(config);
+
+  const body = {
+    // number | The identifier of the card-based loyalty program containing the loyalty card. You can get this ID using the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
+    loyaltyProgramId: 789,
+    // string | The identifier of the loyalty card. You can get this ID using the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. 
+    loyaltyCardId: loyaltyCardId_example,
+    // LoyaltyCardRegistration | body
+    loyaltyCardRegistration: ...,
+  } satisfies UnlinkLoyaltyCardFromProfileRequest;
+
+  try {
+    const data = await api.unlinkLoyaltyCardFromProfile(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **loyaltyProgramId** | `number` | The identifier of the card-based loyalty program containing the loyalty card. You can get this ID using the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
+| **loyaltyCardId** | `string` | The identifier of the loyalty card. You can get this ID using the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | [Defaults to `undefined`] |
+| **loyaltyCardRegistration** | [LoyaltyCardRegistration](LoyaltyCardRegistration.md) | body | |
+
+### Return type
+
+[**LoyaltyCard**](LoyaltyCard.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

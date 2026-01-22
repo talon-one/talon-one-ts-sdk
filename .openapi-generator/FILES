@@ -4,6 +4,7 @@
 .gitignore
 .npmignore
 .openapi-generator-ignore
+Makefile
 README.md
 docker-compose.yml
 docs/APIError.md
@@ -90,7 +91,7 @@ docs/BaseSamlConnection.md
 docs/BestPriorPrice.md
 docs/BestPriorPriceMetadata.md
 docs/BestPriorPriceRequest.md
-docs/BestPriorPriceRequestTarget.md
+docs/BestPriorTarget.md
 docs/Binding.md
 docs/BulkApplicationNotification.md
 docs/BulkOperationOnCampaigns.md
@@ -149,9 +150,11 @@ docs/CardLedgerPointsEntryIntegrationAPI.md
 docs/CardLedgerTransactionLogEntry.md
 docs/CardLedgerTransactionLogEntryIntegrationAPI.md
 docs/CartItem.md
+docs/CartItemFilterTemplate.md
 docs/Catalog.md
 docs/CatalogActionFilter.md
 docs/CatalogItem.md
+docs/CatalogRule.md
 docs/CatalogSyncRequest.md
 docs/CatalogsStrikethroughNotificationPolicy.md
 docs/Change.md
@@ -161,6 +164,7 @@ docs/CodeGeneratorSettings.md
 docs/Collection.md
 docs/CollectionItem.md
 docs/CollectionWithoutPayload.md
+docs/CollectionsCatalog.md
 docs/Coupon.md
 docs/CouponConstraints.md
 docs/CouponCreatedEffectProps.md
@@ -171,7 +175,6 @@ docs/CouponEntity.md
 docs/CouponFailureSummary.md
 docs/CouponLimitConfigs.md
 docs/CouponRejectionReason.md
-docs/CouponRejections.md
 docs/CouponReservations.md
 docs/CouponSearch.md
 docs/CouponValue.md
@@ -204,6 +207,7 @@ docs/DeactivateUserRequest.md
 docs/DeductLoyaltyPoints.md
 docs/DeductLoyaltyPointsEffectProps.md
 docs/DeleteCouponsData.md
+docs/DeleteLoyaltyTransactionsRequest.md
 docs/DeleteUserRequest.md
 docs/Effect.md
 docs/EffectEntity.md
@@ -244,6 +248,7 @@ docs/GenerateCampaignSummary.md
 docs/GenerateCampaignTags.md
 docs/GenerateCouponFailureDetailedSummary.md
 docs/GenerateCouponFailureSummary.md
+docs/GenerateCouponRejections200Response.md
 docs/GenerateItemFilterDescription.md
 docs/GenerateLoyaltyCard.md
 docs/GenerateRuleTitle.md
@@ -402,6 +407,7 @@ docs/NewCampaignStoreBudgetStoreLimit.md
 docs/NewCampaignTemplate.md
 docs/NewCatalog.md
 docs/NewCollection.md
+docs/NewCollectionsCatalog.md
 docs/NewCouponCreationJob.md
 docs/NewCouponDeletionJob.md
 docs/NewCoupons.md
@@ -552,7 +558,6 @@ docs/ScimUser.md
 docs/ScimUsersListResponse.md
 docs/SecondaryDeployment.md
 docs/Session.md
-docs/SessionCoupons.md
 docs/SetDiscountEffectProps.md
 docs/SetDiscountPerAdditionalCostEffectProps.md
 docs/SetDiscountPerAdditionalCostPerItemEffectProps.md
@@ -609,6 +614,7 @@ docs/UpdateCampaignGroup.md
 docs/UpdateCampaignTemplate.md
 docs/UpdateCatalog.md
 docs/UpdateCollection.md
+docs/UpdateCollectionsCatalog.md
 docs/UpdateCoupon.md
 docs/UpdateCouponBatch.md
 docs/UpdateCouponsData.md
@@ -630,7 +636,6 @@ docs/UserEntity.md
 docs/ValueMap.md
 docs/Webhook.md
 docs/WebhookAuthentication.md
-docs/WebhookAuthenticationBase.md
 docs/WebhookAuthenticationDataBasic.md
 docs/WebhookAuthenticationDataCustom.md
 docs/WebhookAuthenticationWebhookRef.md
@@ -726,7 +731,7 @@ src/models/BaseSamlConnection.ts
 src/models/BestPriorPrice.ts
 src/models/BestPriorPriceMetadata.ts
 src/models/BestPriorPriceRequest.ts
-src/models/BestPriorPriceRequestTarget.ts
+src/models/BestPriorTarget.ts
 src/models/Binding.ts
 src/models/BulkApplicationNotification.ts
 src/models/BulkOperationOnCampaigns.ts
@@ -785,9 +790,11 @@ src/models/CardLedgerPointsEntryIntegrationAPI.ts
 src/models/CardLedgerTransactionLogEntry.ts
 src/models/CardLedgerTransactionLogEntryIntegrationAPI.ts
 src/models/CartItem.ts
+src/models/CartItemFilterTemplate.ts
 src/models/Catalog.ts
 src/models/CatalogActionFilter.ts
 src/models/CatalogItem.ts
+src/models/CatalogRule.ts
 src/models/CatalogSyncRequest.ts
 src/models/CatalogsStrikethroughNotificationPolicy.ts
 src/models/Change.ts
@@ -797,6 +804,7 @@ src/models/CodeGeneratorSettings.ts
 src/models/Collection.ts
 src/models/CollectionItem.ts
 src/models/CollectionWithoutPayload.ts
+src/models/CollectionsCatalog.ts
 src/models/Coupon.ts
 src/models/CouponConstraints.ts
 src/models/CouponCreatedEffectProps.ts
@@ -807,7 +815,6 @@ src/models/CouponEntity.ts
 src/models/CouponFailureSummary.ts
 src/models/CouponLimitConfigs.ts
 src/models/CouponRejectionReason.ts
-src/models/CouponRejections.ts
 src/models/CouponReservations.ts
 src/models/CouponSearch.ts
 src/models/CouponValue.ts
@@ -840,6 +847,7 @@ src/models/DeactivateUserRequest.ts
 src/models/DeductLoyaltyPoints.ts
 src/models/DeductLoyaltyPointsEffectProps.ts
 src/models/DeleteCouponsData.ts
+src/models/DeleteLoyaltyTransactionsRequest.ts
 src/models/DeleteUserRequest.ts
 src/models/Effect.ts
 src/models/EffectEntity.ts
@@ -880,6 +888,7 @@ src/models/GenerateCampaignSummary.ts
 src/models/GenerateCampaignTags.ts
 src/models/GenerateCouponFailureDetailedSummary.ts
 src/models/GenerateCouponFailureSummary.ts
+src/models/GenerateCouponRejections200Response.ts
 src/models/GenerateItemFilterDescription.ts
 src/models/GenerateLoyaltyCard.ts
 src/models/GenerateRuleTitle.ts
@@ -1036,6 +1045,7 @@ src/models/NewCampaignStoreBudgetStoreLimit.ts
 src/models/NewCampaignTemplate.ts
 src/models/NewCatalog.ts
 src/models/NewCollection.ts
+src/models/NewCollectionsCatalog.ts
 src/models/NewCouponCreationJob.ts
 src/models/NewCouponDeletionJob.ts
 src/models/NewCoupons.ts
@@ -1186,7 +1196,6 @@ src/models/ScimUser.ts
 src/models/ScimUsersListResponse.ts
 src/models/SecondaryDeployment.ts
 src/models/Session.ts
-src/models/SessionCoupons.ts
 src/models/SetDiscountEffectProps.ts
 src/models/SetDiscountPerAdditionalCostEffectProps.ts
 src/models/SetDiscountPerAdditionalCostPerItemEffectProps.ts
@@ -1243,6 +1252,7 @@ src/models/UpdateCampaignGroup.ts
 src/models/UpdateCampaignTemplate.ts
 src/models/UpdateCatalog.ts
 src/models/UpdateCollection.ts
+src/models/UpdateCollectionsCatalog.ts
 src/models/UpdateCoupon.ts
 src/models/UpdateCouponBatch.ts
 src/models/UpdateCouponsData.ts
@@ -1264,7 +1274,6 @@ src/models/UserEntity.ts
 src/models/ValueMap.ts
 src/models/Webhook.ts
 src/models/WebhookAuthentication.ts
-src/models/WebhookAuthenticationBase.ts
 src/models/WebhookAuthenticationDataBasic.ts
 src/models/WebhookAuthenticationDataCustom.ts
 src/models/WebhookAuthenticationWebhookRef.ts
