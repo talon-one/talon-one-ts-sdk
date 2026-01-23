@@ -114,6 +114,15 @@ export interface CardLedgerTransactionLogEntryIntegrationAPI {
      * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     ruleName?: string;
+    /**
+     * The duration for which the points remain active, relative to the  activation date.
+     * 
+     * **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
+     * 
+     * @type {string}
+     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
+     */
+    validityDuration?: string;
 }
 
 
@@ -169,6 +178,7 @@ export function CardLedgerTransactionLogEntryIntegrationAPIFromJSONTyped(json: a
         'id': json['id'],
         'rulesetId': json['rulesetId'] == null ? undefined : json['rulesetId'],
         'ruleName': json['ruleName'] == null ? undefined : json['ruleName'],
+        'validityDuration': json['validityDuration'] == null ? undefined : json['validityDuration'],
     };
 }
 
@@ -197,6 +207,7 @@ export function CardLedgerTransactionLogEntryIntegrationAPIToJSONTyped(value?: C
         'id': value['id'],
         'rulesetId': value['rulesetId'],
         'ruleName': value['ruleName'],
+        'validityDuration': value['validityDuration'],
     };
 }
 

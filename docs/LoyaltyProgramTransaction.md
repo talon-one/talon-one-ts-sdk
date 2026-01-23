@@ -26,6 +26,7 @@ Name | Type
 `rulesetId` | number
 `ruleName` | string
 `flags` | [LoyaltyLedgerEntryFlags](LoyaltyLedgerEntryFlags.md)
+`validityDuration` | string
 
 ## Example
 
@@ -54,6 +55,7 @@ const example = {
   "rulesetId": 11,
   "ruleName": 10 points for every $100 spent,
   "flags": null,
+  "validityDuration": 30D,
 } satisfies LoyaltyProgramTransaction
 
 console.log(example)

@@ -24,6 +24,8 @@ Name | Type
 `batchId` | string
 `attributes` | object
 `limits` | [Array&lt;PrismaticEventPayloadCouponBasedNotificationsLimits&gt;](PrismaticEventPayloadCouponBasedNotificationsLimits.md)
+`sourceOfEvent` | string
+`employeeName` | string
 
 ## Example
 
@@ -50,6 +52,8 @@ const example = {
   "batchId": null,
   "attributes": null,
   "limits": null,
+  "sourceOfEvent": null,
+  "employeeName": null,
 } satisfies PrismaticEventPayloadCouponBasedNotifications
 
 console.log(example)

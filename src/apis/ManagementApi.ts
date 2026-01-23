@@ -47,6 +47,7 @@ import type {
   DeleteUserRequest,
   ErrorResponse,
   ErrorResponseWithStatus,
+  GenerateCouponRejections200Response,
   GetAccessLogsWithoutTotalCount200Response,
   GetAdditionalCosts200Response,
   GetApplicationCustomerFriends200Response,
@@ -76,6 +77,7 @@ import type {
   GetExports200Response,
   GetLoyaltyCardTransactionLogs200Response,
   GetLoyaltyCards200Response,
+  GetLoyaltyProgramProfileTransactions200Response,
   GetLoyaltyProgramTransactions200Response,
   GetLoyaltyPrograms200Response,
   GetReferralsWithoutTotalCount200Response,
@@ -90,6 +92,7 @@ import type {
   ListCatalogItems200Response,
   ListStores200Response,
   LoginParams,
+  LoyaltyBalancesWithTiers,
   LoyaltyCard,
   LoyaltyCardBatch,
   LoyaltyCardBatchResponse,
@@ -207,6 +210,8 @@ import {
     ErrorResponseToJSON,
     ErrorResponseWithStatusFromJSON,
     ErrorResponseWithStatusToJSON,
+    GenerateCouponRejections200ResponseFromJSON,
+    GenerateCouponRejections200ResponseToJSON,
     GetAccessLogsWithoutTotalCount200ResponseFromJSON,
     GetAccessLogsWithoutTotalCount200ResponseToJSON,
     GetAdditionalCosts200ResponseFromJSON,
@@ -265,6 +270,8 @@ import {
     GetLoyaltyCardTransactionLogs200ResponseToJSON,
     GetLoyaltyCards200ResponseFromJSON,
     GetLoyaltyCards200ResponseToJSON,
+    GetLoyaltyProgramProfileTransactions200ResponseFromJSON,
+    GetLoyaltyProgramProfileTransactions200ResponseToJSON,
     GetLoyaltyProgramTransactions200ResponseFromJSON,
     GetLoyaltyProgramTransactions200ResponseToJSON,
     GetLoyaltyPrograms200ResponseFromJSON,
@@ -293,6 +300,8 @@ import {
     ListStores200ResponseToJSON,
     LoginParamsFromJSON,
     LoginParamsToJSON,
+    LoyaltyBalancesWithTiersFromJSON,
+    LoyaltyBalancesWithTiersToJSON,
     LoyaltyCardFromJSON,
     LoyaltyCardToJSON,
     LoyaltyCardBatchFromJSON,
@@ -726,6 +735,13 @@ export interface ExportReferralsRequest {
     dateFormat?: ExportReferralsDateFormatEnum;
 }
 
+export interface GenerateCouponRejectionsRequest {
+    sessionIntegrationId: string;
+    applicationId?: number;
+    language?: string;
+    couponCode?: string;
+}
+
 export interface GetAccessLogsWithoutTotalCountRequest {
     applicationId: number;
     rangeStart: Date;
@@ -1107,6 +1123,15 @@ export interface GetLoyaltyCardsRequest {
     batchId?: string;
 }
 
+export interface GetLoyaltyLedgerBalancesRequest {
+    loyaltyProgramId: number;
+    integrationId: string;
+    endDate?: Date;
+    subledgerId?: string;
+    includeTiers?: boolean;
+    includeProjectedTier?: boolean;
+}
+
 export interface GetLoyaltyPointsRequest {
     loyaltyProgramId: string;
     integrationId: string;
@@ -1114,6 +1139,20 @@ export interface GetLoyaltyPointsRequest {
 
 export interface GetLoyaltyProgramRequest {
     loyaltyProgramId: number;
+}
+
+export interface GetLoyaltyProgramProfileLedgerTransactionsRequest {
+    loyaltyProgramId: number;
+    integrationId: string;
+    customerSessionIDs?: Array<string>;
+    transactionUUIDs?: Array<string>;
+    subledgerId?: string;
+    loyaltyTransactionType?: GetLoyaltyProgramProfileLedgerTransactionsLoyaltyTransactionTypeEnum;
+    startDate?: Date;
+    endDate?: Date;
+    pageSize?: number;
+    skip?: number;
+    awaitsActivation?: boolean;
 }
 
 export interface GetLoyaltyProgramTransactionsRequest {
@@ -1126,6 +1165,7 @@ export interface GetLoyaltyProgramTransactionsRequest {
     endDate?: Date;
     pageSize?: number;
     skip?: number;
+    awaitsActivation?: boolean;
 }
 
 export interface GetLoyaltyStatisticsRequest {
@@ -5113,6 +5153,72 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
+     * Create a summary of the reasons for coupon redemption failures in a given customer session. 
+     * Summarize coupon redemption failures in session
+     */
+    async generateCouponRejectionsRaw(requestParameters: GenerateCouponRejectionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenerateCouponRejections200Response>> {
+        if (requestParameters['sessionIntegrationId'] == null) {
+            throw new runtime.RequiredError(
+                'sessionIntegrationId',
+                'Required parameter "sessionIntegrationId" was null or undefined when calling generateCouponRejections().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['sessionIntegrationId'] != null) {
+            queryParameters['sessionIntegrationId'] = requestParameters['sessionIntegrationId'];
+        }
+
+        if (requestParameters['applicationId'] != null) {
+            queryParameters['applicationId'] = requestParameters['applicationId'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['couponCode'] != null) {
+            queryParameters['couponCode'] = requestParameters['couponCode'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // management_key authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // manager_auth authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/coupon_rejections`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GenerateCouponRejections200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Create a summary of the reasons for coupon redemption failures in a given customer session. 
+     * Summarize coupon redemption failures in session
+     */
+    async generateCouponRejections(requestParameters: GenerateCouponRejectionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GenerateCouponRejections200Response> {
+        const response = await this.generateCouponRejectionsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Retrieve the list of API calls sent to the specified Application. 
      * Get access logs for Application
      */
@@ -8389,8 +8495,84 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program. You can filter balances by date and subledger ID, and include tier-related information in the response.  **Note**: If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see: - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards) - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
+     * Get customer\'s loyalty balances
+     */
+    async getLoyaltyLedgerBalancesRaw(requestParameters: GetLoyaltyLedgerBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyBalancesWithTiers>> {
+        if (requestParameters['loyaltyProgramId'] == null) {
+            throw new runtime.RequiredError(
+                'loyaltyProgramId',
+                'Required parameter "loyaltyProgramId" was null or undefined when calling getLoyaltyLedgerBalances().'
+            );
+        }
+
+        if (requestParameters['integrationId'] == null) {
+            throw new runtime.RequiredError(
+                'integrationId',
+                'Required parameter "integrationId" was null or undefined when calling getLoyaltyLedgerBalances().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['endDate'] != null) {
+            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+        }
+
+        if (requestParameters['subledgerId'] != null) {
+            queryParameters['subledgerId'] = requestParameters['subledgerId'];
+        }
+
+        if (requestParameters['includeTiers'] != null) {
+            queryParameters['includeTiers'] = requestParameters['includeTiers'];
+        }
+
+        if (requestParameters['includeProjectedTier'] != null) {
+            queryParameters['includeProjectedTier'] = requestParameters['includeProjectedTier'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // management_key authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // manager_auth authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_balances`;
+        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyBalancesWithTiersFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program. You can filter balances by date and subledger ID, and include tier-related information in the response.  **Note**: If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see: - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards) - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
+     * Get customer\'s loyalty balances
+     */
+    async getLoyaltyLedgerBalances(requestParameters: GetLoyaltyLedgerBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoyaltyBalancesWithTiers> {
+        const response = await this.getLoyaltyLedgerBalancesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get the loyalty ledger for this profile integration ID.  To get the `integrationId` of the profile from a `sessionId`, use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint.  **Important:** To get loyalty transaction logs for a given Integration ID in a loyalty program, we recommend using the Integration API\'s [Get customer\'s loyalty logs](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). 
      * Get customer\'s full loyalty ledger
+     * @deprecated
      */
     async getLoyaltyPointsRaw(requestParameters: GetLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyLedger>> {
         if (requestParameters['loyaltyProgramId'] == null) {
@@ -8441,6 +8623,7 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Get the loyalty ledger for this profile integration ID.  To get the `integrationId` of the profile from a `sessionId`, use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint.  **Important:** To get loyalty transaction logs for a given Integration ID in a loyalty program, we recommend using the Integration API\'s [Get customer\'s loyalty logs](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). 
      * Get customer\'s full loyalty ledger
+     * @deprecated
      */
     async getLoyaltyPoints(requestParameters: GetLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoyaltyLedger> {
         const response = await this.getLoyaltyPointsRaw(requestParameters, initOverrides);
@@ -8499,6 +8682,101 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  **Note:** To retrieve all loyalty program transaction logs in a given loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+     * List customer\'s loyalty transactions
+     */
+    async getLoyaltyProgramProfileLedgerTransactionsRaw(requestParameters: GetLoyaltyProgramProfileLedgerTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyProgramProfileTransactions200Response>> {
+        if (requestParameters['loyaltyProgramId'] == null) {
+            throw new runtime.RequiredError(
+                'loyaltyProgramId',
+                'Required parameter "loyaltyProgramId" was null or undefined when calling getLoyaltyProgramProfileLedgerTransactions().'
+            );
+        }
+
+        if (requestParameters['integrationId'] == null) {
+            throw new runtime.RequiredError(
+                'integrationId',
+                'Required parameter "integrationId" was null or undefined when calling getLoyaltyProgramProfileLedgerTransactions().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['customerSessionIDs'] != null) {
+            queryParameters['customerSessionIDs'] = requestParameters['customerSessionIDs'];
+        }
+
+        if (requestParameters['transactionUUIDs'] != null) {
+            queryParameters['transactionUUIDs'] = requestParameters['transactionUUIDs'];
+        }
+
+        if (requestParameters['subledgerId'] != null) {
+            queryParameters['subledgerId'] = requestParameters['subledgerId'];
+        }
+
+        if (requestParameters['loyaltyTransactionType'] != null) {
+            queryParameters['loyaltyTransactionType'] = requestParameters['loyaltyTransactionType'];
+        }
+
+        if (requestParameters['startDate'] != null) {
+            queryParameters['startDate'] = (requestParameters['startDate'] as any).toISOString();
+        }
+
+        if (requestParameters['endDate'] != null) {
+            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['awaitsActivation'] != null) {
+            queryParameters['awaitsActivation'] = requestParameters['awaitsActivation'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // management_key authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // manager_auth authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_transactions`;
+        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetLoyaltyProgramProfileTransactions200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  **Note:** To retrieve all loyalty program transaction logs in a given loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+     * List customer\'s loyalty transactions
+     */
+    async getLoyaltyProgramProfileLedgerTransactions(requestParameters: GetLoyaltyProgramProfileLedgerTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetLoyaltyProgramProfileTransactions200Response> {
+        const response = await this.getLoyaltyProgramProfileLedgerTransactionsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Retrieve loyalty program transaction logs in a given loyalty program with filtering options applied. Manual and imported transactions are also included. **Note:** If no filters are applied, the last 50 loyalty transactions for the given loyalty program are returned.  **Important:** To get loyalty transaction logs for a given Integration ID in a loyalty program, we recommend using the Integration API\'s [Get customer\'s loyalty logs](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). 
      * List loyalty program transactions
      */
@@ -8542,6 +8820,10 @@ export class ManagementApi extends runtime.BaseAPI {
 
         if (requestParameters['skip'] != null) {
             queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['awaitsActivation'] != null) {
+            queryParameters['awaitsActivation'] = requestParameters['awaitsActivation'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -13327,6 +13609,15 @@ export const GetExportsEntityEnum = {
     AudienceMembership: 'AudienceMembership'
 } as const;
 export type GetExportsEntityEnum = typeof GetExportsEntityEnum[keyof typeof GetExportsEntityEnum];
+/**
+ * @export
+ */
+export const GetLoyaltyProgramProfileLedgerTransactionsLoyaltyTransactionTypeEnum = {
+    Manual: 'manual',
+    Session: 'session',
+    Import: 'import'
+} as const;
+export type GetLoyaltyProgramProfileLedgerTransactionsLoyaltyTransactionTypeEnum = typeof GetLoyaltyProgramProfileLedgerTransactionsLoyaltyTransactionTypeEnum[keyof typeof GetLoyaltyProgramProfileLedgerTransactionsLoyaltyTransactionTypeEnum];
 /**
  * @export
  */

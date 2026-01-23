@@ -1,26 +1,25 @@
 
-# WebhookAuthenticationBase
+# DeleteLoyaltyTransactionsRequest
 
+Request to delete transactions based on the specified scope.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`name` | string
-`type` | string
-`data` | any
+`scope` | string
+`subledgerIds` | Array&lt;string&gt;
 
 ## Example
 
 ```typescript
-import type { WebhookAuthenticationBase } from 'talon_one_sdk'
+import type { DeleteLoyaltyTransactionsRequest } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "name": My basic auth,
-  "type": null,
-  "data": null,
-} satisfies WebhookAuthenticationBase
+  "scope": SelectedSubledgers,
+  "subledgerIds": [subledger1, subledger2],
+} satisfies DeleteLoyaltyTransactionsRequest
 
 console.log(example)
 
@@ -29,7 +28,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as WebhookAuthenticationBase
+const exampleParsed = JSON.parse(exampleJSON) as DeleteLoyaltyTransactionsRequest
 console.log(exampleParsed)
 ```
 

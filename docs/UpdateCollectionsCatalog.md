@@ -1,26 +1,30 @@
 
-# CouponRejections
+# UpdateCollectionsCatalog
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`sessionDetails` | [Array&lt;SessionCoupons&gt;](SessionCoupons.md)
-`applicationId` | number
-`language` | string
+`title` | string
+`description` | string
+`category` | string
+`rules` | [Array&lt;CatalogRule&gt;](CatalogRule.md)
+`cartItemFilters` | [Array&lt;CartItemFilterTemplate&gt;](CartItemFilterTemplate.md)
 
 ## Example
 
 ```typescript
-import type { CouponRejections } from 'talon_one_sdk'
+import type { UpdateCollectionsCatalog } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "sessionDetails": null,
-  "applicationId": 123,
-  "language": en,
-} satisfies CouponRejections
+  "title": null,
+  "description": null,
+  "category": null,
+  "rules": null,
+  "cartItemFilters": null,
+} satisfies UpdateCollectionsCatalog
 
 console.log(example)
 
@@ -29,7 +33,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as CouponRejections
+const exampleParsed = JSON.parse(exampleJSON) as UpdateCollectionsCatalog
 console.log(exampleParsed)
 ```
 

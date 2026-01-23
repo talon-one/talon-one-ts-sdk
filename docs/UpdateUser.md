@@ -23,7 +23,7 @@ const example = {
   "name": John Doe,
   "state": deactivated,
   "isAdmin": false,
-  "policy": {Role=127, Applications=null},
+  "policy": {Role=127},
   "roles": [1, 3],
   "applicationNotificationSubscriptions": null,
 } satisfies UpdateUser

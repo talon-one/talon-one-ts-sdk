@@ -8,9 +8,9 @@ Name | Type
 ------------ | -------------
 `skus` | Array&lt;string&gt;
 `timeframeEndDate` | Date
-`timeframe` | number
+`timeframe` | string
 `strictEndDate` | boolean
-`target` | [BestPriorPriceRequestTarget](BestPriorPriceRequestTarget.md)
+`target` | [BestPriorTarget](BestPriorTarget.md)
 
 ## Example
 

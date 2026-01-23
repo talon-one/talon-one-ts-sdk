@@ -91,6 +91,15 @@ export interface CardLedgerPointsEntryIntegrationAPI {
      * @memberof CardLedgerPointsEntryIntegrationAPI
      */
     amount: number;
+    /**
+     * The duration for which the points remain active, relative to the  activation date.
+     * 
+     * **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
+     * 
+     * @type {string}
+     * @memberof CardLedgerPointsEntryIntegrationAPI
+     */
+    validityDuration?: string;
 }
 
 /**
@@ -130,6 +139,7 @@ export function CardLedgerPointsEntryIntegrationAPIFromJSONTyped(json: any, igno
         'expiryDate': json['expiryDate'],
         'subledgerId': json['subledgerId'],
         'amount': json['amount'],
+        'validityDuration': json['validityDuration'] == null ? undefined : json['validityDuration'],
     };
 }
 
@@ -155,6 +165,7 @@ export function CardLedgerPointsEntryIntegrationAPIToJSONTyped(value?: CardLedge
         'expiryDate': value['expiryDate'],
         'subledgerId': value['subledgerId'],
         'amount': value['amount'],
+        'validityDuration': value['validityDuration'],
     };
 }
 

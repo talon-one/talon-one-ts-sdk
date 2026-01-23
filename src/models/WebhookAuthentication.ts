@@ -28,24 +28,6 @@ import {
  */
 export interface WebhookAuthentication {
     /**
-     * The name of the webhook authentication.
-     * @type {string}
-     * @memberof WebhookAuthentication
-     */
-    name: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookAuthentication
-     */
-    type: WebhookAuthenticationTypeEnum;
-    /**
-     * 
-     * @type {any}
-     * @memberof WebhookAuthentication
-     */
-    data: any | null;
-    /**
      * The internal ID of this entity.
      * @type {number}
      * @memberof WebhookAuthentication
@@ -81,6 +63,24 @@ export interface WebhookAuthentication {
      * @memberof WebhookAuthentication
      */
     webhooks: Array<WebhookAuthenticationWebhookRef>;
+    /**
+     * The name of the webhook authentication.
+     * @type {string}
+     * @memberof WebhookAuthentication
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookAuthentication
+     */
+    type: WebhookAuthenticationTypeEnum;
+    /**
+     * 
+     * @type {any}
+     * @memberof WebhookAuthentication
+     */
+    data: any | null;
 }
 
 
@@ -98,15 +98,15 @@ export type WebhookAuthenticationTypeEnum = typeof WebhookAuthenticationTypeEnum
  * Check if a given object implements the WebhookAuthentication interface.
  */
 export function instanceOfWebhookAuthentication(value: object): value is WebhookAuthentication {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('data' in value) || value['data'] === undefined) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('created' in value) || value['created'] === undefined) return false;
     if (!('modified' in value) || value['modified'] === undefined) return false;
     if (!('createdBy' in value) || value['createdBy'] === undefined) return false;
     if (!('modifiedBy' in value) || value['modifiedBy'] === undefined) return false;
     if (!('webhooks' in value) || value['webhooks'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }
 
@@ -120,15 +120,15 @@ export function WebhookAuthenticationFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'name': json['name'],
-        'type': json['type'],
-        'data': json['data'],
         'id': json['id'],
         'created': (new Date(json['created'])),
         'modified': (new Date(json['modified'])),
         'createdBy': json['createdBy'],
         'modifiedBy': json['modifiedBy'],
         'webhooks': ((json['webhooks'] as Array<any>).map(WebhookAuthenticationWebhookRefFromJSON)),
+        'name': json['name'],
+        'type': json['type'],
+        'data': json['data'],
     };
 }
 
@@ -143,15 +143,15 @@ export function WebhookAuthenticationToJSONTyped(value?: WebhookAuthentication |
 
     return {
         
-        'name': value['name'],
-        'type': value['type'],
-        'data': value['data'],
         'id': value['id'],
         'created': value['created'].toISOString(),
         'modified': value['modified'].toISOString(),
         'createdBy': value['createdBy'],
         'modifiedBy': value['modifiedBy'],
         'webhooks': ((value['webhooks'] as Array<any>).map(WebhookAuthenticationWebhookRefToJSON)),
+        'name': value['name'],
+        'type': value['type'],
+        'data': value['data'],
     };
 }
 
