@@ -104,6 +104,12 @@ export interface UpdateCampaignTemplate {
      */
     tags?: Array<string>;
     /**
+     * Indicates whether campaigns created from this template should be reevaluated when a customer returns an item.
+     * @type {boolean}
+     * @memberof UpdateCampaignTemplate
+     */
+    reevaluateOnReturn?: boolean;
+    /**
      * A list of features for the campaign template.
      * @type {Array<string>}
      * @memberof UpdateCampaignTemplate
@@ -232,6 +238,7 @@ export function UpdateCampaignTemplateFromJSONTyped(json: any, ignoreDiscriminat
         'state': json['state'],
         'activeRulesetId': json['activeRulesetId'] == null ? undefined : json['activeRulesetId'],
         'tags': json['tags'] == null ? undefined : json['tags'],
+        'reevaluateOnReturn': json['reevaluateOnReturn'] == null ? undefined : json['reevaluateOnReturn'],
         'features': json['features'] == null ? undefined : json['features'],
         'couponSettings': json['couponSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['couponSettings']),
         'couponReservationSettings': json['couponReservationSettings'] == null ? undefined : CampaignTemplateCouponReservationSettingsFromJSON(json['couponReservationSettings']),
@@ -264,6 +271,7 @@ export function UpdateCampaignTemplateToJSONTyped(value?: UpdateCampaignTemplate
         'state': value['state'],
         'activeRulesetId': value['activeRulesetId'],
         'tags': value['tags'],
+        'reevaluateOnReturn': value['reevaluateOnReturn'],
         'features': value['features'],
         'couponSettings': CodeGeneratorSettingsToJSON(value['couponSettings']),
         'couponReservationSettings': CampaignTemplateCouponReservationSettingsToJSON(value['couponReservationSettings']),

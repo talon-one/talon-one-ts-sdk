@@ -13,6 +13,21 @@
  */
 
 import { mapValues } from '../runtime';
+import type { InfluencingCampaignDetails } from './InfluencingCampaignDetails';
+import {
+    InfluencingCampaignDetailsFromJSON,
+    InfluencingCampaignDetailsFromJSONTyped,
+    InfluencingCampaignDetailsToJSON,
+    InfluencingCampaignDetailsToJSONTyped,
+} from './InfluencingCampaignDetails';
+import type { AdjustmentDetails } from './AdjustmentDetails';
+import {
+    AdjustmentDetailsFromJSON,
+    AdjustmentDetailsFromJSONTyped,
+    AdjustmentDetailsToJSON,
+    AdjustmentDetailsToJSONTyped,
+} from './AdjustmentDetails';
+
 /**
  * Auxiliary data for found price observation.
  * @export
@@ -20,23 +35,24 @@ import { mapValues } from '../runtime';
  */
 export interface BestPriorPriceMetadata {
     /**
-     * 
-     * @type {Array<number>}
+     * Details about campaigns that influenced the final price.
+     * @type {Array<InfluencingCampaignDetails>}
      * @memberof BestPriorPriceMetadata
      */
-    influencingCampaignIDs?: Array<number>;
+    influencingCampaignDetails: Array<InfluencingCampaignDetails>;
     /**
-     * Identifier related to the `referenceId` used during a `ADD_PRICE_ADJUSTMENT` action  using the [Sync cart item catalog endpoint](https://docs.talon.one/integration-api#tag/Catalogs/operation/syncCatalog).
-     * @type {string}
+     * Details about the applied price adjustment.
+     * @type {AdjustmentDetails}
      * @memberof BestPriorPriceMetadata
      */
-    adjustmentReferenceID?: string;
+    adjustmentDetails?: AdjustmentDetails;
 }
 
 /**
  * Check if a given object implements the BestPriorPriceMetadata interface.
  */
 export function instanceOfBestPriorPriceMetadata(value: object): value is BestPriorPriceMetadata {
+    if (!('influencingCampaignDetails' in value) || value['influencingCampaignDetails'] === undefined) return false;
     return true;
 }
 
@@ -50,8 +66,8 @@ export function BestPriorPriceMetadataFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'influencingCampaignIDs': json['influencingCampaignIDs'] == null ? undefined : json['influencingCampaignIDs'],
-        'adjustmentReferenceID': json['adjustmentReferenceID'] == null ? undefined : json['adjustmentReferenceID'],
+        'influencingCampaignDetails': ((json['influencingCampaignDetails'] as Array<any>).map(InfluencingCampaignDetailsFromJSON)),
+        'adjustmentDetails': json['adjustmentDetails'] == null ? undefined : AdjustmentDetailsFromJSON(json['adjustmentDetails']),
     };
 }
 
@@ -66,8 +82,8 @@ export function BestPriorPriceMetadataToJSONTyped(value?: BestPriorPriceMetadata
 
     return {
         
-        'influencingCampaignIDs': value['influencingCampaignIDs'],
-        'adjustmentReferenceID': value['adjustmentReferenceID'],
+        'influencingCampaignDetails': ((value['influencingCampaignDetails'] as Array<any>).map(InfluencingCampaignDetailsToJSON)),
+        'adjustmentDetails': AdjustmentDetailsToJSON(value['adjustmentDetails']),
     };
 }
 

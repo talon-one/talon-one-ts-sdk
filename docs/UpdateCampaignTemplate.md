@@ -14,6 +14,7 @@ Name | Type
 `state` | string
 `activeRulesetId` | number
 `tags` | Array&lt;string&gt;
+`reevaluateOnReturn` | boolean
 `features` | Array&lt;string&gt;
 `couponSettings` | [CodeGeneratorSettings](CodeGeneratorSettings.md)
 `couponReservationSettings` | [CampaignTemplateCouponReservationSettings](CampaignTemplateCouponReservationSettings.md)
@@ -40,6 +41,7 @@ const example = {
   "state": null,
   "activeRulesetId": 5,
   "tags": [discount],
+  "reevaluateOnReturn": true,
   "features": null,
   "couponSettings": null,
   "couponReservationSettings": null,

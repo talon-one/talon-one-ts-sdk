@@ -27,6 +27,13 @@ import {
     CartItemToJSON,
     CartItemToJSONTyped,
 } from './CartItem';
+import type { ExperimentVariantAllocation } from './ExperimentVariantAllocation';
+import {
+    ExperimentVariantAllocationFromJSON,
+    ExperimentVariantAllocationFromJSONTyped,
+    ExperimentVariantAllocationToJSON,
+    ExperimentVariantAllocationToJSONTyped,
+} from './ExperimentVariantAllocation';
 
 /**
  * The representation of the customer session.
@@ -113,6 +120,13 @@ export interface NewCustomerSessionV2 {
      */
     cartItems?: Array<CartItem>;
     /**
+     * The experiment variant allocations to add to this session.
+     * 
+     * @type {Array<ExperimentVariantAllocation>}
+     * @memberof NewCustomerSessionV2
+     */
+    experimentVariantAllocations?: Array<ExperimentVariantAllocation>;
+    /**
      * Use this property to set a value for the additional costs of this session, such as a shipping cost.
      * 
      * They must be created in the Campaign Manager
@@ -189,6 +203,7 @@ export function NewCustomerSessionV2FromJSONTyped(json: any, ignoreDiscriminator
         'loyaltyCards': json['loyaltyCards'] == null ? undefined : json['loyaltyCards'],
         'state': json['state'] == null ? undefined : json['state'],
         'cartItems': json['cartItems'] == null ? undefined : ((json['cartItems'] as Array<any>).map(CartItemFromJSON)),
+        'experimentVariantAllocations': json['experimentVariantAllocations'] == null ? undefined : ((json['experimentVariantAllocations'] as Array<any>).map(ExperimentVariantAllocationFromJSON)),
         'additionalCosts': json['additionalCosts'] == null ? undefined : (mapValues(json['additionalCosts'], AdditionalCostFromJSON)),
         'identifiers': json['identifiers'] == null ? undefined : json['identifiers'],
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
@@ -214,6 +229,7 @@ export function NewCustomerSessionV2ToJSONTyped(value?: NewCustomerSessionV2 | n
         'loyaltyCards': value['loyaltyCards'],
         'state': value['state'],
         'cartItems': value['cartItems'] == null ? undefined : ((value['cartItems'] as Array<any>).map(CartItemToJSON)),
+        'experimentVariantAllocations': value['experimentVariantAllocations'] == null ? undefined : ((value['experimentVariantAllocations'] as Array<any>).map(ExperimentVariantAllocationToJSON)),
         'additionalCosts': value['additionalCosts'] == null ? undefined : (mapValues(value['additionalCosts'], AdditionalCostToJSON)),
         'identifiers': value['identifiers'],
         'attributes': value['attributes'],

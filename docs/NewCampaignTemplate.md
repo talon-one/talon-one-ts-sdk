@@ -13,6 +13,7 @@ Name | Type
 `couponAttributes` | object
 `state` | string
 `tags` | Array&lt;string&gt;
+`reevaluateOnReturn` | boolean
 `features` | Array&lt;string&gt;
 `couponSettings` | [CodeGeneratorSettings](CodeGeneratorSettings.md)
 `couponReservationSettings` | [CampaignTemplateCouponReservationSettings](CampaignTemplateCouponReservationSettings.md)
@@ -37,6 +38,7 @@ const example = {
   "couponAttributes": null,
   "state": null,
   "tags": null,
+  "reevaluateOnReturn": true,
   "features": null,
   "couponSettings": null,
   "couponReservationSettings": null,

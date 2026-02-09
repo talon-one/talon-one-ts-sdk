@@ -18,6 +18,7 @@ Name | Type
 `state` | string
 `activeRulesetId` | number
 `tags` | Array&lt;string&gt;
+`reevaluateOnReturn` | boolean
 `features` | Array&lt;string&gt;
 `couponSettings` | [CodeGeneratorSettings](CodeGeneratorSettings.md)
 `referralSettings` | [CodeGeneratorSettings](CodeGeneratorSettings.md)
@@ -49,6 +50,7 @@ Name | Type
 `frontendState` | string
 `storesImported` | boolean
 `valueMapsIds` | Array&lt;number&gt;
+`experimentId` | number
 `revisionFrontendState` | string
 `activeRevisionId` | number
 `activeRevisionVersionId` | number
@@ -76,6 +78,7 @@ const example = {
   "state": enabled,
   "activeRulesetId": 6,
   "tags": [summer],
+  "reevaluateOnReturn": true,
   "features": [coupons, referrals],
   "couponSettings": null,
   "referralSettings": null,
@@ -107,6 +110,7 @@ const example = {
   "frontendState": running,
   "storesImported": true,
   "valueMapsIds": [100, 215],
+  "experimentId": 1,
   "revisionFrontendState": revised,
   "activeRevisionId": 6,
   "activeRevisionVersionId": 6,

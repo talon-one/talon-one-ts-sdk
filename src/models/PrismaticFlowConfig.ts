@@ -25,6 +25,24 @@ export interface PrismaticFlowConfig {
      * @memberof PrismaticFlowConfig
      */
     apiKey: string;
+    /**
+     * Number of Prismatic workers to run in parallel for this flow (maximum 500).
+     * @type {number}
+     * @memberof PrismaticFlowConfig
+     */
+    workerCount?: number;
+    /**
+     * Maximum number of events to send in a single message to Prismatic.
+     * @type {number}
+     * @memberof PrismaticFlowConfig
+     */
+    maxEventsPerMessage?: number;
+    /**
+     * Maximum number of retries for a Prismatic event before it is ignored.
+     * @type {number}
+     * @memberof PrismaticFlowConfig
+     */
+    maxRetries?: number;
 }
 
 /**
@@ -46,6 +64,9 @@ export function PrismaticFlowConfigFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'apiKey': json['ApiKey'],
+        'workerCount': json['WorkerCount'] == null ? undefined : json['WorkerCount'],
+        'maxEventsPerMessage': json['MaxEventsPerMessage'] == null ? undefined : json['MaxEventsPerMessage'],
+        'maxRetries': json['MaxRetries'] == null ? undefined : json['MaxRetries'],
     };
 }
 
@@ -61,6 +82,9 @@ export function PrismaticFlowConfigToJSONTyped(value?: PrismaticFlowConfig | nul
     return {
         
         'ApiKey': value['apiKey'],
+        'WorkerCount': value['workerCount'],
+        'MaxEventsPerMessage': value['maxEventsPerMessage'],
+        'MaxRetries': value['maxRetries'],
     };
 }
 

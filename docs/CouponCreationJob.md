@@ -19,6 +19,7 @@ Name | Type
 `numberOfCoupons` | number
 `couponSettings` | [CodeGeneratorSettings](CodeGeneratorSettings.md)
 `attributes` | object
+`isReservationMandatory` | boolean
 `batchId` | string
 `status` | string
 `createdAmount` | number
@@ -49,6 +50,7 @@ const example = {
   "numberOfCoupons": 200000,
   "couponSettings": null,
   "attributes": null,
+  "isReservationMandatory": false,
   "batchId": tqyrgahe,
   "status": pending,
   "createdAmount": 1000000,

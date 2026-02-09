@@ -20,6 +20,12 @@ import { mapValues } from '../runtime';
  */
 export interface Effect {
     /**
+     * The ID of the experiment that campaign belongs to.
+     * @type {number}
+     * @memberof Effect
+     */
+    experimentId?: number;
+    /**
      * The ID of the campaign that triggered this effect.
      * @type {number}
      * @memberof Effect
@@ -140,6 +146,7 @@ export function EffectFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ef
     }
     return {
         
+        'experimentId': json['experimentId'] == null ? undefined : json['experimentId'],
         'campaignId': json['campaignId'],
         'rulesetId': json['rulesetId'],
         'ruleIndex': json['ruleIndex'],
@@ -170,6 +177,7 @@ export function EffectToJSONTyped(value?: Effect | null, ignoreDiscriminator: bo
 
     return {
         
+        'experimentId': value['experimentId'],
         'campaignId': value['campaignId'],
         'rulesetId': value['rulesetId'],
         'ruleIndex': value['ruleIndex'],

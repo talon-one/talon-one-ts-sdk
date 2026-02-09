@@ -20,6 +20,12 @@ import { mapValues } from '../runtime';
  */
 export interface EffectEntity {
     /**
+     * The ID of the experiment that campaign belongs to.
+     * @type {number}
+     * @memberof EffectEntity
+     */
+    experimentId?: number;
+    /**
      * The ID of the campaign that triggered this effect.
      * @type {number}
      * @memberof EffectEntity
@@ -133,6 +139,7 @@ export function EffectEntityFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
+        'experimentId': json['experimentId'] == null ? undefined : json['experimentId'],
         'campaignId': json['campaignId'],
         'rulesetId': json['rulesetId'],
         'ruleIndex': json['ruleIndex'],
@@ -162,6 +169,7 @@ export function EffectEntityToJSONTyped(value?: EffectEntity | null, ignoreDiscr
 
     return {
         
+        'experimentId': value['experimentId'],
         'campaignId': value['campaignId'],
         'rulesetId': value['rulesetId'],
         'ruleIndex': value['ruleIndex'],

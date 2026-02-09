@@ -7,8 +7,8 @@ Auxiliary data for found price observation.
 
 Name | Type
 ------------ | -------------
-`influencingCampaignIDs` | Array&lt;number&gt;
-`adjustmentReferenceID` | string
+`influencingCampaignDetails` | [Array&lt;InfluencingCampaignDetails&gt;](InfluencingCampaignDetails.md)
+`adjustmentDetails` | [AdjustmentDetails](AdjustmentDetails.md)
 
 ## Example
 
@@ -17,8 +17,8 @@ import type { BestPriorPriceMetadata } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "influencingCampaignIDs": null,
-  "adjustmentReferenceID": null,
+  "influencingCampaignDetails": null,
+  "adjustmentDetails": null,
 } satisfies BestPriorPriceMetadata
 
 console.log(example)

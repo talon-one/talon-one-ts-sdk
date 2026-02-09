@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`experimentId` | number
 `campaignId` | number
 `rulesetId` | number
 `ruleIndex` | number
@@ -30,6 +31,7 @@ import type { Effect } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
+  "experimentId": 12,
   "campaignId": 244,
   "rulesetId": 73,
   "ruleIndex": 2,

@@ -17,6 +17,7 @@ Name | Type
 `couponSettings` | [CodeGeneratorSettings](CodeGeneratorSettings.md)
 `referralSettings` | [CodeGeneratorSettings](CodeGeneratorSettings.md)
 `limits` | [Array&lt;LimitConfig&gt;](LimitConfig.md)
+`reevaluateOnReturn` | boolean
 `features` | Array&lt;string&gt;
 `accountId` | number
 `applicationId` | number
@@ -44,6 +45,7 @@ const example = {
   "couponSettings": null,
   "referralSettings": null,
   "limits": null,
+  "reevaluateOnReturn": true,
   "features": null,
   "accountId": null,
   "applicationId": null,

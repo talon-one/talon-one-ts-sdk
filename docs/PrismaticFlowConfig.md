@@ -7,6 +7,9 @@
 Name | Type
 ------------ | -------------
 `apiKey` | string
+`workerCount` | number
+`maxEventsPerMessage` | number
+`maxRetries` | number
 
 ## Example
 
@@ -16,6 +19,9 @@ import type { PrismaticFlowConfig } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "apiKey": null,
+  "workerCount": null,
+  "maxEventsPerMessage": null,
+  "maxRetries": null,
 } satisfies PrismaticFlowConfig
 
 console.log(example)

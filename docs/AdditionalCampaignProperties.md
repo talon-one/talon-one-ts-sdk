@@ -30,6 +30,7 @@ Name | Type
 `frontendState` | string
 `storesImported` | boolean
 `valueMapsIds` | Array&lt;number&gt;
+`experimentId` | number
 
 ## Example
 
@@ -62,6 +63,7 @@ const example = {
   "frontendState": running,
   "storesImported": true,
   "valueMapsIds": [100, 215],
+  "experimentId": 1,
 } satisfies AdditionalCampaignProperties
 
 console.log(example)

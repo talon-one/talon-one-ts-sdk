@@ -207,6 +207,12 @@ export interface AdditionalCampaignProperties {
      * @memberof AdditionalCampaignProperties
      */
     valueMapsIds?: Array<number>;
+    /**
+     * The ID of the Experiment this Campaign is part of.
+     * @type {number}
+     * @memberof AdditionalCampaignProperties
+     */
+    experimentId?: number;
 }
 
 
@@ -267,6 +273,7 @@ export function AdditionalCampaignPropertiesFromJSONTyped(json: any, ignoreDiscr
         'frontendState': json['frontendState'],
         'storesImported': json['storesImported'],
         'valueMapsIds': json['valueMapsIds'] == null ? undefined : json['valueMapsIds'],
+        'experimentId': json['experimentId'] == null ? undefined : json['experimentId'],
     };
 }
 
@@ -305,6 +312,7 @@ export function AdditionalCampaignPropertiesToJSONTyped(value?: AdditionalCampai
         'frontendState': value['frontendState'],
         'storesImported': value['storesImported'],
         'valueMapsIds': value['valueMapsIds'],
+        'experimentId': value['experimentId'],
     };
 }
 

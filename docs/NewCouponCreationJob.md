@@ -14,6 +14,7 @@ Name | Type
 `numberOfCoupons` | number
 `couponSettings` | [CodeGeneratorSettings](CodeGeneratorSettings.md)
 `attributes` | object
+`isReservationMandatory` | boolean
 
 ## Example
 
@@ -30,6 +31,7 @@ const example = {
   "numberOfCoupons": 200000,
   "couponSettings": null,
   "attributes": null,
+  "isReservationMandatory": false,
 } satisfies NewCouponCreationJob
 
 console.log(example)

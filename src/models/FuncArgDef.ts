@@ -42,7 +42,8 @@ export const FuncArgDefTypeEnum = {
     Boolean: 'boolean',
     Number: 'number',
     Time: 'time',
-    ListString: '(list string)'
+    ListString: '(list string)',
+    ListNumber: '(list number)'
 } as const;
 export type FuncArgDefTypeEnum = typeof FuncArgDefTypeEnum[keyof typeof FuncArgDefTypeEnum];
 

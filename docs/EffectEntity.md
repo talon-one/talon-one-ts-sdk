@@ -7,6 +7,7 @@ Definition of all properties that are present on all effects, independent of the
 
 Name | Type
 ------------ | -------------
+`experimentId` | number
 `campaignId` | number
 `rulesetId` | number
 `ruleIndex` | number
@@ -30,6 +31,7 @@ import type { EffectEntity } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
+  "experimentId": 12,
   "campaignId": 244,
   "rulesetId": 73,
   "ruleIndex": 2,

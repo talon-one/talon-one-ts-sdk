@@ -4,6 +4,7 @@
 .gitignore
 .npmignore
 .openapi-generator-ignore
+MIGRATION.md
 Makefile
 README.md
 docker-compose.yml
@@ -44,6 +45,7 @@ docs/AddedDeductedPointsNotification.md
 docs/AddedDeductedPointsNotificationPolicy.md
 docs/AdditionalCampaignProperties.md
 docs/AdditionalCost.md
+docs/AdjustmentDetails.md
 docs/AnalyticsDataPoint.md
 docs/AnalyticsDataPointWithTrend.md
 docs/AnalyticsDataPointWithTrendAndInfluencedRate.md
@@ -225,6 +227,12 @@ docs/Event.md
 docs/EventType.md
 docs/EventV2.md
 docs/EventV3.md
+docs/Experiment.md
+docs/ExperimentResults.md
+docs/ExperimentVariant.md
+docs/ExperimentVariantAllocation.md
+docs/ExperimentVariantResult.md
+docs/ExperimentVariantResultConfidence.md
 docs/ExpiringCardPointsData.md
 docs/ExpiringCardPointsNotification.md
 docs/ExpiringCouponsData.md
@@ -304,6 +312,7 @@ docs/IdentifiableEntity.md
 docs/Import.md
 docs/ImportEntity.md
 docs/IncreaseAchievementProgressEffectProps.md
+docs/InfluencingCampaignDetails.md
 docs/IntegrationApi.md
 docs/IntegrationCoupon.md
 docs/IntegrationCustomerProfileAudienceRequest.md
@@ -418,6 +427,9 @@ docs/NewCustomerSession.md
 docs/NewCustomerSessionV2.md
 docs/NewEvent.md
 docs/NewEventType.md
+docs/NewExperiment.md
+docs/NewExperimentVariant.md
+docs/NewExperimentVariantArray.md
 docs/NewExternalInvitation.md
 docs/NewGiveawaysPool.md
 docs/NewInternalAudience.md
@@ -621,6 +633,9 @@ docs/UpdateCouponsData.md
 docs/UpdateCustomEffect.md
 docs/UpdateCustomerProfileV2409Response.md
 docs/UpdateCustomerSessionV2409Response.md
+docs/UpdateExperiment.md
+docs/UpdateExperimentVariant.md
+docs/UpdateExperimentVariantArray.md
 docs/UpdateLoyaltyCard.md
 docs/UpdateLoyaltyProgram.md
 docs/UpdateLoyaltyProgramTier.md
@@ -684,6 +699,7 @@ src/models/AddedDeductedPointsNotification.ts
 src/models/AddedDeductedPointsNotificationPolicy.ts
 src/models/AdditionalCampaignProperties.ts
 src/models/AdditionalCost.ts
+src/models/AdjustmentDetails.ts
 src/models/AnalyticsDataPoint.ts
 src/models/AnalyticsDataPointWithTrend.ts
 src/models/AnalyticsDataPointWithTrendAndInfluencedRate.ts
@@ -865,6 +881,12 @@ src/models/Event.ts
 src/models/EventType.ts
 src/models/EventV2.ts
 src/models/EventV3.ts
+src/models/Experiment.ts
+src/models/ExperimentResults.ts
+src/models/ExperimentVariant.ts
+src/models/ExperimentVariantAllocation.ts
+src/models/ExperimentVariantResult.ts
+src/models/ExperimentVariantResultConfidence.ts
 src/models/ExpiringCardPointsData.ts
 src/models/ExpiringCardPointsNotification.ts
 src/models/ExpiringCouponsData.ts
@@ -944,6 +966,7 @@ src/models/IdentifiableEntity.ts
 src/models/Import.ts
 src/models/ImportEntity.ts
 src/models/IncreaseAchievementProgressEffectProps.ts
+src/models/InfluencingCampaignDetails.ts
 src/models/IntegrationCoupon.ts
 src/models/IntegrationCustomerProfileAudienceRequest.ts
 src/models/IntegrationCustomerProfileAudienceRequestItem.ts
@@ -1056,6 +1079,9 @@ src/models/NewCustomerSession.ts
 src/models/NewCustomerSessionV2.ts
 src/models/NewEvent.ts
 src/models/NewEventType.ts
+src/models/NewExperiment.ts
+src/models/NewExperimentVariant.ts
+src/models/NewExperimentVariantArray.ts
 src/models/NewExternalInvitation.ts
 src/models/NewGiveawaysPool.ts
 src/models/NewInternalAudience.ts
@@ -1259,6 +1285,9 @@ src/models/UpdateCouponsData.ts
 src/models/UpdateCustomEffect.ts
 src/models/UpdateCustomerProfileV2409Response.ts
 src/models/UpdateCustomerSessionV2409Response.ts
+src/models/UpdateExperiment.ts
+src/models/UpdateExperimentVariant.ts
+src/models/UpdateExperimentVariantArray.ts
 src/models/UpdateLoyaltyCard.ts
 src/models/UpdateLoyaltyProgram.ts
 src/models/UpdateLoyaltyProgramTier.ts
