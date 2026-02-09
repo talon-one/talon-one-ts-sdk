@@ -86,6 +86,12 @@ export interface BaseCampaign {
      */
     tags: Array<string>;
     /**
+     * Indicates whether this campaign should be reevaluated when a customer returns an item.
+     * @type {boolean}
+     * @memberof BaseCampaign
+     */
+    reevaluateOnReturn?: boolean;
+    /**
      * The features enabled in this campaign.
      * @type {Array<string>}
      * @memberof BaseCampaign
@@ -203,6 +209,7 @@ export function BaseCampaignFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'state': json['state'],
         'activeRulesetId': json['activeRulesetId'] == null ? undefined : json['activeRulesetId'],
         'tags': json['tags'],
+        'reevaluateOnReturn': json['reevaluateOnReturn'] == null ? undefined : json['reevaluateOnReturn'],
         'features': json['features'],
         'couponSettings': json['couponSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['couponSettings']),
         'referralSettings': json['referralSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['referralSettings']),
@@ -232,6 +239,7 @@ export function BaseCampaignToJSONTyped(value?: BaseCampaign | null, ignoreDiscr
         'state': value['state'],
         'activeRulesetId': value['activeRulesetId'],
         'tags': value['tags'],
+        'reevaluateOnReturn': value['reevaluateOnReturn'],
         'features': value['features'],
         'couponSettings': CodeGeneratorSettingsToJSON(value['couponSettings']),
         'referralSettings': CodeGeneratorSettingsToJSON(value['referralSettings']),

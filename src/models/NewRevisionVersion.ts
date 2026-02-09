@@ -65,13 +65,13 @@ export interface NewRevisionVersion {
      */
     description?: string | null;
     /**
-     * The ID of the ruleset this campaign template will use.
+     * The ID of the ruleset this campaign will use.
      * @type {number}
      * @memberof NewRevisionVersion
      */
     activeRulesetId?: number | null;
     /**
-     * A list of tags for the campaign template.
+     * A list of tags for the campaign.
      * @type {Array<string>}
      * @memberof NewRevisionVersion
      */
@@ -95,7 +95,13 @@ export interface NewRevisionVersion {
      */
     limits?: Array<LimitConfig>;
     /**
-     * A list of features for the campaign template.
+     * Indicates whether this campaign should be reevaluated when a customer returns an item.
+     * @type {boolean}
+     * @memberof NewRevisionVersion
+     */
+    reevaluateOnReturn?: boolean;
+    /**
+     * A list of features for the campaign.
      * @type {Array<string>}
      * @memberof NewRevisionVersion
      */
@@ -144,6 +150,7 @@ export function NewRevisionVersionFromJSONTyped(json: any, ignoreDiscriminator: 
         'couponSettings': json['couponSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['couponSettings']),
         'referralSettings': json['referralSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['referralSettings']),
         'limits': json['limits'] == null ? undefined : ((json['limits'] as Array<any>).map(LimitConfigFromJSON)),
+        'reevaluateOnReturn': json['reevaluateOnReturn'] == null ? undefined : json['reevaluateOnReturn'],
         'features': json['features'] == null ? undefined : json['features'],
     };
 }
@@ -169,6 +176,7 @@ export function NewRevisionVersionToJSONTyped(value?: NewRevisionVersion | null,
         'couponSettings': CodeGeneratorSettingsToJSON(value['couponSettings']),
         'referralSettings': CodeGeneratorSettingsToJSON(value['referralSettings']),
         'limits': value['limits'] == null ? undefined : ((value['limits'] as Array<any>).map(LimitConfigToJSON)),
+        'reevaluateOnReturn': value['reevaluateOnReturn'],
         'features': value['features'],
     };
 }

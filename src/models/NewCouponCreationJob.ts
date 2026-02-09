@@ -78,6 +78,12 @@ export interface NewCouponCreationJob {
      * @memberof NewCouponCreationJob
      */
     attributes: object;
+    /**
+     * An indication of whether the code can be redeemed only if it has been reserved first.
+     * @type {boolean}
+     * @memberof NewCouponCreationJob
+     */
+    isReservationMandatory?: boolean;
 }
 
 /**
@@ -107,6 +113,7 @@ export function NewCouponCreationJobFromJSONTyped(json: any, ignoreDiscriminator
         'numberOfCoupons': json['numberOfCoupons'],
         'couponSettings': json['couponSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['couponSettings']),
         'attributes': json['attributes'],
+        'isReservationMandatory': json['isReservationMandatory'] == null ? undefined : json['isReservationMandatory'],
     };
 }
 
@@ -129,6 +136,7 @@ export function NewCouponCreationJobToJSONTyped(value?: NewCouponCreationJob | n
         'numberOfCoupons': value['numberOfCoupons'],
         'couponSettings': CodeGeneratorSettingsToJSON(value['couponSettings']),
         'attributes': value['attributes'],
+        'isReservationMandatory': value['isReservationMandatory'],
     };
 }
 

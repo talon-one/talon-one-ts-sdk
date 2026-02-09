@@ -72,7 +72,8 @@ export const TemplateArgDefTypeEnum = {
     Boolean: 'boolean',
     Number: 'number',
     Time: 'time',
-    ListString: '(list string)'
+    ListString: '(list string)',
+    ListNumber: '(list number)'
 } as const;
 export type TemplateArgDefTypeEnum = typeof TemplateArgDefTypeEnum[keyof typeof TemplateArgDefTypeEnum];
 

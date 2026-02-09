@@ -128,6 +128,12 @@ export interface CampaignTemplate {
      */
     tags?: Array<string>;
     /**
+     * Indicates whether campaigns created from this template should be reevaluated when a customer returns an item.
+     * @type {boolean}
+     * @memberof CampaignTemplate
+     */
+    reevaluateOnReturn: boolean;
+    /**
      * A list of features for the campaign template.
      * @type {Array<string>}
      * @memberof CampaignTemplate
@@ -268,6 +274,7 @@ export function instanceOfCampaignTemplate(value: object): value is CampaignTemp
     if (!('description' in value) || value['description'] === undefined) return false;
     if (!('instructions' in value) || value['instructions'] === undefined) return false;
     if (!('state' in value) || value['state'] === undefined) return false;
+    if (!('reevaluateOnReturn' in value) || value['reevaluateOnReturn'] === undefined) return false;
     if (!('applicationsIds' in value) || value['applicationsIds'] === undefined) return false;
     if (!('validApplicationIds' in value) || value['validApplicationIds'] === undefined) return false;
     return true;
@@ -295,6 +302,7 @@ export function CampaignTemplateFromJSONTyped(json: any, ignoreDiscriminator: bo
         'state': json['state'],
         'activeRulesetId': json['activeRulesetId'] == null ? undefined : json['activeRulesetId'],
         'tags': json['tags'] == null ? undefined : json['tags'],
+        'reevaluateOnReturn': json['reevaluateOnReturn'],
         'features': json['features'] == null ? undefined : json['features'],
         'couponSettings': json['couponSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['couponSettings']),
         'couponReservationSettings': json['couponReservationSettings'] == null ? undefined : CampaignTemplateCouponReservationSettingsFromJSON(json['couponReservationSettings']),
@@ -336,6 +344,7 @@ export function CampaignTemplateToJSONTyped(value?: CampaignTemplate | null, ign
         'state': value['state'],
         'activeRulesetId': value['activeRulesetId'],
         'tags': value['tags'],
+        'reevaluateOnReturn': value['reevaluateOnReturn'],
         'features': value['features'],
         'couponSettings': CodeGeneratorSettingsToJSON(value['couponSettings']),
         'couponReservationSettings': CampaignTemplateCouponReservationSettingsToJSON(value['couponReservationSettings']),

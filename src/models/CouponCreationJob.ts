@@ -109,6 +109,12 @@ export interface CouponCreationJob {
      */
     attributes: object;
     /**
+     * An indication of whether the code can be redeemed only if it has been reserved first.
+     * @type {boolean}
+     * @memberof CouponCreationJob
+     */
+    isReservationMandatory?: boolean;
+    /**
      * The batch ID coupons created by this job will bear.
      * @type {string}
      * @memberof CouponCreationJob
@@ -216,6 +222,7 @@ export function CouponCreationJobFromJSONTyped(json: any, ignoreDiscriminator: b
         'numberOfCoupons': json['numberOfCoupons'],
         'couponSettings': json['couponSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['couponSettings']),
         'attributes': json['attributes'],
+        'isReservationMandatory': json['isReservationMandatory'] == null ? undefined : json['isReservationMandatory'],
         'batchId': json['batchId'],
         'status': json['status'],
         'createdAmount': json['createdAmount'],
@@ -252,6 +259,7 @@ export function CouponCreationJobToJSONTyped(value?: CouponCreationJob | null, i
         'numberOfCoupons': value['numberOfCoupons'],
         'couponSettings': CodeGeneratorSettingsToJSON(value['couponSettings']),
         'attributes': value['attributes'],
+        'isReservationMandatory': value['isReservationMandatory'],
         'batchId': value['batchId'],
         'status': value['status'],
         'createdAmount': value['createdAmount'],

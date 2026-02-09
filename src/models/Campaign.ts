@@ -117,6 +117,12 @@ export interface Campaign {
      */
     tags: Array<string>;
     /**
+     * Indicates whether this campaign should be reevaluated when a customer returns an item.
+     * @type {boolean}
+     * @memberof Campaign
+     */
+    reevaluateOnReturn: boolean;
+    /**
      * The features enabled in this campaign.
      * @type {Array<string>}
      * @memberof Campaign
@@ -349,6 +355,12 @@ export interface Campaign {
      */
     valueMapsIds?: Array<number>;
     /**
+     * The ID of the Experiment this Campaign is part of.
+     * @type {number}
+     * @memberof Campaign
+     */
+    experimentId?: number;
+    /**
      * The campaign revision state displayed in the Campaign Manager.
      * @type {string}
      * @memberof Campaign
@@ -465,6 +477,7 @@ export function instanceOfCampaign(value: object): value is Campaign {
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('state' in value) || value['state'] === undefined) return false;
     if (!('tags' in value) || value['tags'] === undefined) return false;
+    if (!('reevaluateOnReturn' in value) || value['reevaluateOnReturn'] === undefined) return false;
     if (!('features' in value) || value['features'] === undefined) return false;
     if (!('limits' in value) || value['limits'] === undefined) return false;
     if (!('frontendState' in value) || value['frontendState'] === undefined) return false;
@@ -494,6 +507,7 @@ export function CampaignFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'state': json['state'],
         'activeRulesetId': json['activeRulesetId'] == null ? undefined : json['activeRulesetId'],
         'tags': json['tags'],
+        'reevaluateOnReturn': json['reevaluateOnReturn'],
         'features': json['features'],
         'couponSettings': json['couponSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['couponSettings']),
         'referralSettings': json['referralSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['referralSettings']),
@@ -525,6 +539,7 @@ export function CampaignFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'frontendState': json['frontendState'],
         'storesImported': json['storesImported'],
         'valueMapsIds': json['valueMapsIds'] == null ? undefined : json['valueMapsIds'],
+        'experimentId': json['experimentId'] == null ? undefined : json['experimentId'],
         'revisionFrontendState': json['revisionFrontendState'] == null ? undefined : json['revisionFrontendState'],
         'activeRevisionId': json['activeRevisionId'] == null ? undefined : json['activeRevisionId'],
         'activeRevisionVersionId': json['activeRevisionVersionId'] == null ? undefined : json['activeRevisionVersionId'],
@@ -558,6 +573,7 @@ export function CampaignToJSONTyped(value?: Campaign | null, ignoreDiscriminator
         'state': value['state'],
         'activeRulesetId': value['activeRulesetId'],
         'tags': value['tags'],
+        'reevaluateOnReturn': value['reevaluateOnReturn'],
         'features': value['features'],
         'couponSettings': CodeGeneratorSettingsToJSON(value['couponSettings']),
         'referralSettings': CodeGeneratorSettingsToJSON(value['referralSettings']),
@@ -589,6 +605,7 @@ export function CampaignToJSONTyped(value?: Campaign | null, ignoreDiscriminator
         'frontendState': value['frontendState'],
         'storesImported': value['storesImported'],
         'valueMapsIds': value['valueMapsIds'],
+        'experimentId': value['experimentId'],
         'revisionFrontendState': value['revisionFrontendState'],
         'activeRevisionId': value['activeRevisionId'],
         'activeRevisionVersionId': value['activeRevisionVersionId'],

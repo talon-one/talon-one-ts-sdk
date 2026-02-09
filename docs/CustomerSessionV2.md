@@ -18,6 +18,7 @@ Name | Type
 `loyaltyCards` | Array&lt;string&gt;
 `state` | string
 `cartItems` | [Array&lt;CartItem&gt;](CartItem.md)
+`experimentVariantAllocations` | [Array&lt;ExperimentVariantAllocation&gt;](ExperimentVariantAllocation.md)
 `additionalCosts` | [{ [key: string]: AdditionalCost; }](AdditionalCost.md)
 `identifiers` | Array&lt;string&gt;
 `attributes` | object
@@ -47,6 +48,7 @@ const example = {
   "loyaltyCards": [loyalty-card-1],
   "state": open,
   "cartItems": null,
+  "experimentVariantAllocations": null,
   "additionalCosts": {shipping={price=9}},
   "identifiers": [d41306257915f83fe01e54092ae470f631161ea16fcf4415842eed41470386ea],
   "attributes": {ShippingCity=Berlin},

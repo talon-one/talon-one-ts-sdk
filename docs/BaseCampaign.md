@@ -14,6 +14,7 @@ Name | Type
 `state` | string
 `activeRulesetId` | number
 `tags` | Array&lt;string&gt;
+`reevaluateOnReturn` | boolean
 `features` | Array&lt;string&gt;
 `couponSettings` | [CodeGeneratorSettings](CodeGeneratorSettings.md)
 `referralSettings` | [CodeGeneratorSettings](CodeGeneratorSettings.md)
@@ -37,6 +38,7 @@ const example = {
   "state": enabled,
   "activeRulesetId": 6,
   "tags": [summer],
+  "reevaluateOnReturn": true,
   "features": [coupons, referrals],
   "couponSettings": null,
   "referralSettings": null,
