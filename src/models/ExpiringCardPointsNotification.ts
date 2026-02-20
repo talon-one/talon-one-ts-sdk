@@ -41,7 +41,7 @@ export interface ExpiringCardPointsNotification {
     data: Array<ExpiringCardPointsData>;
     /**
      * The type of notification.
-     * @type {string}
+     * @type {ExpiringCardPointsNotificationNotificationTypeEnum}
      * @memberof ExpiringCardPointsNotification
      */
     notificationType: ExpiringCardPointsNotificationNotificationTypeEnum;

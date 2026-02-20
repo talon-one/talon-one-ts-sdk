@@ -39,7 +39,7 @@ export interface CampaignLogSummary {
     created: Date;
     /**
      * Action performed by the user.
-     * @type {string}
+     * @type {CampaignLogSummaryActionEnum}
      * @memberof CampaignLogSummary
      */
     action: CampaignLogSummaryActionEnum;

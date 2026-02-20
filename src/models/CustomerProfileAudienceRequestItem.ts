@@ -27,7 +27,7 @@ export interface CustomerProfileAudienceRequestItem {
      *   until a session or profile update is received for that profile.
      * - `delete`: Removes the customer profile from the audience.
      * 
-     * @type {string}
+     * @type {CustomerProfileAudienceRequestItemActionEnum}
      * @memberof CustomerProfileAudienceRequestItem
      */
     action: CustomerProfileAudienceRequestItemActionEnum;

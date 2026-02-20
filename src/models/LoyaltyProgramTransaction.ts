@@ -62,7 +62,7 @@ export interface LoyaltyProgramTransaction {
      *   - `addition`: Signifies added points.
      *   - `subtraction`: Signifies deducted points.
      * 
-     * @type {string}
+     * @type {LoyaltyProgramTransactionTypeEnum}
      * @memberof LoyaltyProgramTransaction
      */
     type: LoyaltyProgramTransactionTypeEnum;

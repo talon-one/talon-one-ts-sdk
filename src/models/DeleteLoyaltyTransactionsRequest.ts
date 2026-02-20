@@ -24,7 +24,7 @@ export interface DeleteLoyaltyTransactionsRequest {
      * 
      * `SelectedSubledgers` deletes all transactions for the specified customer profile only from the given ledgers in the loyalty program.
      * 
-     * @type {string}
+     * @type {DeleteLoyaltyTransactionsRequestScopeEnum}
      * @memberof DeleteLoyaltyTransactionsRequest
      */
     scope: DeleteLoyaltyTransactionsRequestScopeEnum;

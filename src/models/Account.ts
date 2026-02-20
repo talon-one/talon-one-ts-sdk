@@ -51,7 +51,7 @@ export interface Account {
     domainName: string;
     /**
      * State of the account (active, deactivated).
-     * @type {string}
+     * @type {AccountStateEnum}
      * @memberof Account
      */
     state: AccountStateEnum;

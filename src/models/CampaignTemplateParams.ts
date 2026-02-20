@@ -27,7 +27,7 @@ export interface CampaignTemplateParams {
     name: string;
     /**
      * Defines the type of parameter value.
-     * @type {string}
+     * @type {CampaignTemplateParamsTypeEnum}
      * @memberof CampaignTemplateParams
      */
     type: CampaignTemplateParamsTypeEnum;

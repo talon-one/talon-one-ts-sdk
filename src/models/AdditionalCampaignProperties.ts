@@ -191,7 +191,7 @@ export interface AdditionalCampaignProperties {
     templateId?: number;
     /**
      * The campaign state displayed in the Campaign Manager.
-     * @type {string}
+     * @type {AdditionalCampaignPropertiesFrontendStateEnum}
      * @memberof AdditionalCampaignProperties
      */
     frontendState: AdditionalCampaignPropertiesFrontendStateEnum;

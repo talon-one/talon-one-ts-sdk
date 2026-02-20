@@ -31,37 +31,37 @@ import {
 /**
  * 
  * @export
- * @interface UpdateCollectionsCatalog
+ * @interface UpdateBlueprint
  */
-export interface UpdateCollectionsCatalog {
+export interface UpdateBlueprint {
     /**
-     * The display name for the collection catalog.
+     * The display name for the blueprint.
      * @type {string}
-     * @memberof UpdateCollectionsCatalog
+     * @memberof UpdateBlueprint
      */
     title?: string;
     /**
-     * A longer, more detailed description of the collection catalog.
+     * A longer, more detailed description of the blueprint.
      * @type {string}
-     * @memberof UpdateCollectionsCatalog
+     * @memberof UpdateBlueprint
      */
     description?: string;
     /**
-     * Category used to group collection catalogs.
-     * @type {string}
-     * @memberof UpdateCollectionsCatalog
+     * Category used to group blueprints.
+     * @type {UpdateBlueprintCategoryEnum}
+     * @memberof UpdateBlueprint
      */
-    category?: UpdateCollectionsCatalogCategoryEnum;
+    category?: UpdateBlueprintCategoryEnum;
     /**
-     * Replaces the stored rules. Rules should only contain title (no description, as description is at the collection catalog level).
+     * Replaces the stored rules. Rules should only contain title (no description, as description is at the blueprint level).
      * @type {Array<CatalogRule>}
-     * @memberof UpdateCollectionsCatalog
+     * @memberof UpdateBlueprint
      */
     rules?: Array<CatalogRule>;
     /**
-     * Replaces the stored cart item filters. Cart item filters should only contain name (no description, as description is at the collection catalog level).
+     * Replaces the stored cart item filters. Cart item filters should only contain name (no description, as description is at the blueprint level).
      * @type {Array<CartItemFilterTemplate>}
-     * @memberof UpdateCollectionsCatalog
+     * @memberof UpdateBlueprint
      */
     cartItemFilters?: Array<CartItemFilterTemplate>;
 }
@@ -70,27 +70,27 @@ export interface UpdateCollectionsCatalog {
 /**
  * @export
  */
-export const UpdateCollectionsCatalogCategoryEnum = {
+export const UpdateBlueprintCategoryEnum = {
     Promotions: 'promotions',
     Pricing: 'pricing',
     Loyalty: 'loyalty',
     Custom: 'custom'
 } as const;
-export type UpdateCollectionsCatalogCategoryEnum = typeof UpdateCollectionsCatalogCategoryEnum[keyof typeof UpdateCollectionsCatalogCategoryEnum];
+export type UpdateBlueprintCategoryEnum = typeof UpdateBlueprintCategoryEnum[keyof typeof UpdateBlueprintCategoryEnum];
 
 
 /**
- * Check if a given object implements the UpdateCollectionsCatalog interface.
+ * Check if a given object implements the UpdateBlueprint interface.
  */
-export function instanceOfUpdateCollectionsCatalog(value: object): value is UpdateCollectionsCatalog {
+export function instanceOfUpdateBlueprint(value: object): value is UpdateBlueprint {
     return true;
 }
 
-export function UpdateCollectionsCatalogFromJSON(json: any): UpdateCollectionsCatalog {
-    return UpdateCollectionsCatalogFromJSONTyped(json, false);
+export function UpdateBlueprintFromJSON(json: any): UpdateBlueprint {
+    return UpdateBlueprintFromJSONTyped(json, false);
 }
 
-export function UpdateCollectionsCatalogFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateCollectionsCatalog {
+export function UpdateBlueprintFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateBlueprint {
     if (json == null) {
         return json;
     }
@@ -104,11 +104,11 @@ export function UpdateCollectionsCatalogFromJSONTyped(json: any, ignoreDiscrimin
     };
 }
 
-export function UpdateCollectionsCatalogToJSON(json: any): UpdateCollectionsCatalog {
-    return UpdateCollectionsCatalogToJSONTyped(json, false);
+export function UpdateBlueprintToJSON(json: any): UpdateBlueprint {
+    return UpdateBlueprintToJSONTyped(json, false);
 }
 
-export function UpdateCollectionsCatalogToJSONTyped(value?: UpdateCollectionsCatalog | null, ignoreDiscriminator: boolean = false): any {
+export function UpdateBlueprintToJSONTyped(value?: UpdateBlueprint | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

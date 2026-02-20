@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface TemplateArgDef {
     /**
      * The type of value this argument expects.
-     * @type {string}
+     * @type {TemplateArgDefTypeEnum}
      * @memberof TemplateArgDef
      */
     type: TemplateArgDefTypeEnum;

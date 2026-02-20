@@ -1,5 +1,5 @@
 
-# PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction
+# PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction
 
 
 ## Properties
@@ -15,7 +15,7 @@ Name | Type
 ## Example
 
 ```typescript
-import type { PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction } from 'talon_one_sdk'
+import type { PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
@@ -24,7 +24,7 @@ const example = {
   "operation": null,
   "startDate": null,
   "expiryDate": null,
-} satisfies PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction
+} satisfies PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction
 
 console.log(example)
 
@@ -33,7 +33,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction
+const exampleParsed = JSON.parse(exampleJSON) as PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction
 console.log(exampleParsed)
 ```
 

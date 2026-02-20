@@ -7,9 +7,11 @@
 Name | Type
 ------------ | -------------
 `event` | string
-`campaign` | any
+`campaign` | [Campaign](Campaign.md)
 `oldRuleset` | [Ruleset](Ruleset.md)
+`oldPlaceholders` | [Array&lt;PlaceholderDetails&gt;](PlaceholderDetails.md)
 `ruleset` | [Ruleset](Ruleset.md)
+`placeholders` | [Array&lt;PlaceholderDetails&gt;](PlaceholderDetails.md)
 
 ## Example
 
@@ -21,7 +23,9 @@ const example = {
   "event": campaign_state_changed,
   "campaign": null,
   "oldRuleset": null,
+  "oldPlaceholders": null,
   "ruleset": null,
+  "placeholders": null,
 } satisfies CampaignRulesetChangedNotificationItem
 
 console.log(example)

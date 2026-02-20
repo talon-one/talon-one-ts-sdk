@@ -49,7 +49,7 @@ export interface NewAdditionalCost {
      * - `item`: Additional cost will be added per item.
      * - `both`: Additional cost will be added per item and session.
      * 
-     * @type {string}
+     * @type {NewAdditionalCostTypeEnum}
      * @memberof NewAdditionalCost
      */
     type?: NewAdditionalCostTypeEnum;

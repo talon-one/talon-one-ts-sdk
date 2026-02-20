@@ -76,7 +76,7 @@ export interface ApplicationCampaignAnalytics {
      * 
      * **Note:** A disabled or archived campaign is not evaluated for rules or coupons.
      * 
-     * @type {string}
+     * @type {ApplicationCampaignAnalyticsCampaignStateEnum}
      * @memberof ApplicationCampaignAnalytics
      */
     campaignState: ApplicationCampaignAnalyticsCampaignStateEnum;

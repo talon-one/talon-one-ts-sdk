@@ -29,7 +29,7 @@ import {
 export interface CampaignEvaluationTreeChangedMessage {
     /**
      * The type of the notification
-     * @type {string}
+     * @type {CampaignEvaluationTreeChangedMessageNotificationTypeEnum}
      * @memberof CampaignEvaluationTreeChangedMessage
      */
     notificationType: CampaignEvaluationTreeChangedMessageNotificationTypeEnum;

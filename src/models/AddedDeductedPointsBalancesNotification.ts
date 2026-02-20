@@ -41,7 +41,7 @@ export interface AddedDeductedPointsBalancesNotification {
     loyaltyProgramID: number;
     /**
      * The type of notification.
-     * @type {string}
+     * @type {AddedDeductedPointsBalancesNotificationNotificationTypeEnum}
      * @memberof AddedDeductedPointsBalancesNotification
      */
     notificationType: AddedDeductedPointsBalancesNotificationNotificationTypeEnum;
@@ -69,7 +69,7 @@ export interface AddedDeductedPointsBalancesNotification {
      * - [Management API](/management-api#tag/Loyalty)
      * - [Rule Engine](/docs/product/applications/evaluation-order-for-rules-and-filters)
      * 
-     * @type {string}
+     * @type {AddedDeductedPointsBalancesNotificationTypeOfChangeEnum}
      * @memberof AddedDeductedPointsBalancesNotification
      */
     typeOfChange: AddedDeductedPointsBalancesNotificationTypeOfChangeEnum;

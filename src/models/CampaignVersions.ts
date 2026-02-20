@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface CampaignVersions {
     /**
      * The campaign revision state displayed in the Campaign Manager.
-     * @type {string}
+     * @type {CampaignVersionsRevisionFrontendStateEnum}
      * @memberof CampaignVersions
      */
     revisionFrontendState?: CampaignVersionsRevisionFrontendStateEnum;

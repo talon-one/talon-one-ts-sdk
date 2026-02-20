@@ -175,7 +175,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**updateCollection**](ManagementApi.md#updatecollection) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Update campaign-level collection\&#39;s description |
 | [**updateCoupon**](ManagementApi.md#updatecoupon) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Update coupon |
 | [**updateCouponBatch**](ManagementApi.md#updatecouponbatch) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Update coupons |
-| [**updateLoyaltyCard**](ManagementApi.md#updateloyaltycard) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Update loyalty card status |
+| [**updateLoyaltyCard**](ManagementApi.md#updateloyaltycardoperation) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Update loyalty card |
 | [**updateReferral**](ManagementApi.md#updatereferral) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Update referral |
 | [**updateRoleV2**](ManagementApi.md#updaterolev2) | **PUT** /v2/roles/{roleId} | Update role |
 | [**updateStore**](ManagementApi.md#updatestore) | **PUT** /v1/applications/{applicationId}/stores/{storeId} | Update store |
@@ -14517,11 +14517,11 @@ example().catch(console.error);
 
 ## updateLoyaltyCard
 
-> LoyaltyCard updateLoyaltyCard(loyaltyProgramId, loyaltyCardId, updateLoyaltyCard)
+> LoyaltyCard updateLoyaltyCard(loyaltyProgramId, loyaltyCardId, updateLoyaltyCardRequest)
 
-Update loyalty card status
+Update loyalty card
 
-Update the status of the given loyalty card. A card can be _active_ or _inactive_.
+Update the details of a specific loyalty card. You can set the card\&#39;s status to &#x60;active&#x60; or &#x60;inactive&#x60; through this endpoint. At least one of &#x60;status&#x60; or &#x60;attributes&#x60; must be provided. 
 
 ### Example
 
@@ -14530,7 +14530,7 @@ import {
   Configuration,
   ManagementApi,
 } from 'talon_one_sdk';
-import type { UpdateLoyaltyCardRequest } from 'talon_one_sdk';
+import type { UpdateLoyaltyCardOperationRequest } from 'talon_one_sdk';
 
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
@@ -14549,9 +14549,9 @@ async function example() {
     loyaltyProgramId: 789,
     // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. 
     loyaltyCardId: loyaltyCardId_example,
-    // UpdateLoyaltyCard | body
-    updateLoyaltyCard: ...,
-  } satisfies UpdateLoyaltyCardRequest;
+    // UpdateLoyaltyCardRequest | body
+    updateLoyaltyCardRequest: ...,
+  } satisfies UpdateLoyaltyCardOperationRequest;
 
   try {
     const data = await api.updateLoyaltyCard(body);
@@ -14572,7 +14572,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
 | **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | [Defaults to `undefined`] |
-| **updateLoyaltyCard** | [UpdateLoyaltyCard](UpdateLoyaltyCard.md) | body | |
+| **updateLoyaltyCardRequest** | [UpdateLoyaltyCardRequest](UpdateLoyaltyCardRequest.md) | body | |
 
 ### Return type
 

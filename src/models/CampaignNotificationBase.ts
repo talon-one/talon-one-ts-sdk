@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface CampaignNotificationBase {
     /**
      * The type of the notification
-     * @type {string}
+     * @type {CampaignNotificationBaseNotificationTypeEnum}
      * @memberof CampaignNotificationBase
      */
     notificationType: CampaignNotificationBaseNotificationTypeEnum;

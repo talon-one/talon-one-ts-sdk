@@ -38,13 +38,13 @@ export interface CampaignStoreBudgetLimitConfig {
     limit: number;
     /**
      * The period on which the budget limit recurs.
-     * @type {string}
+     * @type {CampaignStoreBudgetLimitConfigPeriodEnum}
      * @memberof CampaignStoreBudgetLimitConfig
      */
     period?: CampaignStoreBudgetLimitConfigPeriodEnum;
     /**
      * The entity that this limit applies to.
-     * @type {Array<string>}
+     * @type {Array<CampaignStoreBudgetLimitConfigEntitiesEnum>}
      * @memberof CampaignStoreBudgetLimitConfig
      */
     entities: Array<CampaignStoreBudgetLimitConfigEntitiesEnum>;

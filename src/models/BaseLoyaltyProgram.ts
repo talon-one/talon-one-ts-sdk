@@ -93,7 +93,7 @@ export interface BaseLoyaltyProgram {
      *   - `points_activated`: The customer joins the loyalty program only when their earned loyalty points become active for the first time.
      *   - `points_earned`: The customer joins the loyalty program when they earn loyalty points for the first time.
      * 
-     * @type {string}
+     * @type {BaseLoyaltyProgramProgramJoinPolicyEnum}
      * @memberof BaseLoyaltyProgram
      */
     programJoinPolicy?: BaseLoyaltyProgramProgramJoinPolicyEnum;
@@ -104,7 +104,7 @@ export interface BaseLoyaltyProgram {
      *  - `customer_attribute`: The tier expiration is determined by a custom customer attribute.
      *  - `absolute_expiration`: The tier is reevaluated at the start of each tier cycle. For this policy, it is required to provide a `tierCycleStartDate`.
      * 
-     * @type {string}
+     * @type {BaseLoyaltyProgramTiersExpirationPolicyEnum}
      * @memberof BaseLoyaltyProgram
      */
     tiersExpirationPolicy?: BaseLoyaltyProgramTiersExpirationPolicyEnum;
@@ -146,7 +146,7 @@ export interface BaseLoyaltyProgram {
      *  - `one_down`: If the customer doesn't have enough points to stay in the current tier, they are downgraded by one tier.
      *  - `balance_based`: The customer's tier is reevaluated based on the amount of active points they have at the moment.
      * 
-     * @type {string}
+     * @type {BaseLoyaltyProgramTiersDowngradePolicyEnum}
      * @memberof BaseLoyaltyProgram
      */
     tiersDowngradePolicy?: BaseLoyaltyProgramTiersDowngradePolicyEnum;
@@ -162,7 +162,7 @@ export interface BaseLoyaltyProgram {
      * - `within_balance`: Available active points can be rolled back if there aren't enough pending points. The active balance of the customer cannot be negative.
      * - `unlimited`: Allows negative balance without any limit.
      * 
-     * @type {string}
+     * @type {BaseLoyaltyProgramReturnPolicyEnum}
      * @memberof BaseLoyaltyProgram
      */
     returnPolicy?: BaseLoyaltyProgramReturnPolicyEnum;

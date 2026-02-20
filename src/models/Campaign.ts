@@ -98,7 +98,7 @@ export interface Campaign {
     /**
      * A disabled or archived campaign is not evaluated for rules or coupons.
      * 
-     * @type {string}
+     * @type {CampaignStateEnum}
      * @memberof Campaign
      */
     state: CampaignStateEnum;
@@ -124,7 +124,7 @@ export interface Campaign {
     reevaluateOnReturn: boolean;
     /**
      * The features enabled in this campaign.
-     * @type {Array<string>}
+     * @type {Array<CampaignFeaturesEnum>}
      * @memberof Campaign
      */
     features: Array<CampaignFeaturesEnum>;
@@ -159,7 +159,7 @@ export interface Campaign {
      *   - `cartItem`: Type of campaign that can apply effects only to cart items.
      *   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
      * 
-     * @type {string}
+     * @type {CampaignTypeEnum}
      * @memberof Campaign
      */
     type?: CampaignTypeEnum;
@@ -338,7 +338,7 @@ export interface Campaign {
     templateId?: number;
     /**
      * The campaign state displayed in the Campaign Manager.
-     * @type {string}
+     * @type {CampaignFrontendStateEnum}
      * @memberof Campaign
      */
     frontendState: CampaignFrontendStateEnum;
@@ -362,7 +362,7 @@ export interface Campaign {
     experimentId?: number;
     /**
      * The campaign revision state displayed in the Campaign Manager.
-     * @type {string}
+     * @type {CampaignRevisionFrontendStateEnum}
      * @memberof Campaign
      */
     revisionFrontendState?: CampaignRevisionFrontendStateEnum;

@@ -39,7 +39,7 @@ export interface SecondaryDeployment {
     userId: number;
     /**
      * The status of the deployment.
-     * @type {string}
+     * @type {SecondaryDeploymentStatusEnum}
      * @memberof SecondaryDeployment
      */
     status: SecondaryDeploymentStatusEnum;

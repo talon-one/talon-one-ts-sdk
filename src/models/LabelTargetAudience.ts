@@ -30,7 +30,7 @@ import {
 export interface LabelTargetAudience {
     /**
      * 
-     * @type {string}
+     * @type {LabelTargetAudienceTypeEnum}
      * @memberof LabelTargetAudience
      */
     type: LabelTargetAudienceTypeEnum;

@@ -32,7 +32,7 @@ export interface UpdateUser {
      * 
      * **Note**: Only `admin` users can update the state of another user.
      * 
-     * @type {string}
+     * @type {UpdateUserStateEnum}
      * @memberof UpdateUser
      */
     state?: UpdateUserStateEnum;

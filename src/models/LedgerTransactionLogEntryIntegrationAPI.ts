@@ -56,7 +56,7 @@ export interface LedgerTransactionLogEntryIntegrationAPI {
      *   - `addition`: Signifies added points.
      *   - `subtraction`: Signifies deducted points.
      * 
-     * @type {string}
+     * @type {LedgerTransactionLogEntryIntegrationAPITypeEnum}
      * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     type: LedgerTransactionLogEntryIntegrationAPITypeEnum;

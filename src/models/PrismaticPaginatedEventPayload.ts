@@ -26,8 +26,14 @@ export interface PrismaticPaginatedEventPayload {
      */
     totalResultSize: number;
     /**
+     * Timestamp when the batch was created.
+     * @type {Date}
+     * @memberof PrismaticPaginatedEventPayload
+     */
+    batchedAt?: Date;
+    /**
      * 
-     * @type {string}
+     * @type {PrismaticPaginatedEventPayloadEventTypeEnum}
      * @memberof PrismaticPaginatedEventPayload
      */
     eventType: PrismaticPaginatedEventPayloadEventTypeEnum;
@@ -75,6 +81,7 @@ export function PrismaticPaginatedEventPayloadFromJSONTyped(json: any, ignoreDis
     return {
         
         'totalResultSize': json['TotalResultSize'],
+        'batchedAt': json['BatchedAt'] == null ? undefined : (new Date(json['BatchedAt'])),
         'eventType': json['EventType'],
         'data': json['Data'],
     };
@@ -92,6 +99,7 @@ export function PrismaticPaginatedEventPayloadToJSONTyped(value?: PrismaticPagin
     return {
         
         'TotalResultSize': value['totalResultSize'],
+        'BatchedAt': value['batchedAt'] == null ? value['batchedAt'] : value['batchedAt'].toISOString(),
         'EventType': value['eventType'],
         'Data': value['data'],
     };

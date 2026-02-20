@@ -7,9 +7,10 @@
 Name | Type
 ------------ | -------------
 `event` | string
-`campaign` | any
-`ruleset` | any
-`collection` | any
+`campaign` | [Campaign](Campaign.md)
+`ruleset` | [Ruleset](Ruleset.md)
+`placeholders` | [Array&lt;PlaceholderDetails&gt;](PlaceholderDetails.md)
+`collection` | [CollectionWithoutPayload](CollectionWithoutPayload.md)
 
 ## Example
 
@@ -21,6 +22,7 @@ const example = {
   "event": campaign_state_changed,
   "campaign": null,
   "ruleset": null,
+  "placeholders": null,
   "collection": null,
 } satisfies CampaignCollectionEditedNotificationItem
 

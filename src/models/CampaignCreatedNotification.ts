@@ -29,7 +29,7 @@ import {
 export interface CampaignCreatedNotification {
     /**
      * The type of the notification
-     * @type {string}
+     * @type {CampaignCreatedNotificationNotificationTypeEnum}
      * @memberof CampaignCreatedNotification
      */
     notificationType: CampaignCreatedNotificationNotificationTypeEnum;

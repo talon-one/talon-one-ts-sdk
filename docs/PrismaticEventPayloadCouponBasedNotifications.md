@@ -24,6 +24,7 @@ Name | Type
 `batchId` | string
 `attributes` | object
 `limits` | [Array&lt;PrismaticEventPayloadCouponBasedNotificationsLimits&gt;](PrismaticEventPayloadCouponBasedNotificationsLimits.md)
+`publishedAt` | Date
 `sourceOfEvent` | string
 `employeeName` | string
 
@@ -52,6 +53,7 @@ const example = {
   "batchId": null,
   "attributes": null,
   "limits": null,
+  "publishedAt": null,
   "sourceOfEvent": null,
   "employeeName": null,
 } satisfies PrismaticEventPayloadCouponBasedNotifications

@@ -41,7 +41,7 @@ export interface TierWillDowngradeNotification {
     data: Array<TierWillDowngradeData>;
     /**
      * The type of notification.
-     * @type {string}
+     * @type {TierWillDowngradeNotificationNotificationTypeEnum}
      * @memberof TierWillDowngradeNotification
      */
     notificationType: TierWillDowngradeNotificationNotificationTypeEnum;

@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface CampaignSetLeafNode {
     /**
      * Indicates the node type.
-     * @type {string}
+     * @type {CampaignSetLeafNodeTypeEnum}
      * @memberof CampaignSetLeafNode
      */
     type: CampaignSetLeafNodeTypeEnum;

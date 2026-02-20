@@ -48,7 +48,7 @@ export interface AsyncCouponsData {
     employeeName: string;
     /**
      * The type of the notification
-     * @type {string}
+     * @type {AsyncCouponsDataNotificationTypeEnum}
      * @memberof AsyncCouponsData
      */
     notificationType: AsyncCouponsDataNotificationTypeEnum;

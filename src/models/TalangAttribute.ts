@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface TalangAttribute {
     /**
      * The name of the entity of the attribute.
-     * @type {string}
+     * @type {TalangAttributeEntityEnum}
      * @memberof TalangAttribute
      */
     entity?: TalangAttributeEntityEnum;
@@ -58,7 +58,7 @@ export interface TalangAttribute {
     visible: boolean;
     /**
      * Indicate the kind of the attribute.
-     * @type {string}
+     * @type {TalangAttributeKindEnum}
      * @memberof TalangAttribute
      */
     kind: TalangAttributeKindEnum;
@@ -94,6 +94,7 @@ export const TalangAttributeEntityEnum = {
     Event: 'Event',
     Item: 'Item',
     Loyalty: 'Loyalty',
+    LoyaltyCard: 'LoyaltyCard',
     Profile: 'Profile',
     Giveaway: 'Giveaway',
     Referral: 'Referral',

@@ -41,7 +41,7 @@ export interface LoyaltyCardBatch {
     batchId?: string;
     /**
      * Status of the loyalty cards in the batch.
-     * @type {string}
+     * @type {LoyaltyCardBatchStatusEnum}
      * @memberof LoyaltyCardBatch
      */
     status?: LoyaltyCardBatchStatusEnum;

@@ -100,7 +100,7 @@ export interface UpdateLoyaltyProgram {
      *   - `points_activated`: The customer joins the loyalty program only when their earned loyalty points become active for the first time.
      *   - `points_earned`: The customer joins the loyalty program when they earn loyalty points for the first time.
      * 
-     * @type {string}
+     * @type {UpdateLoyaltyProgramProgramJoinPolicyEnum}
      * @memberof UpdateLoyaltyProgram
      */
     programJoinPolicy?: UpdateLoyaltyProgramProgramJoinPolicyEnum;
@@ -111,7 +111,7 @@ export interface UpdateLoyaltyProgram {
      *  - `customer_attribute`: The tier expiration is determined by a custom customer attribute.
      *  - `absolute_expiration`: The tier is reevaluated at the start of each tier cycle. For this policy, it is required to provide a `tierCycleStartDate`.
      * 
-     * @type {string}
+     * @type {UpdateLoyaltyProgramTiersExpirationPolicyEnum}
      * @memberof UpdateLoyaltyProgram
      */
     tiersExpirationPolicy?: UpdateLoyaltyProgramTiersExpirationPolicyEnum;
@@ -153,7 +153,7 @@ export interface UpdateLoyaltyProgram {
      *  - `one_down`: If the customer doesn't have enough points to stay in the current tier, they are downgraded by one tier.
      *  - `balance_based`: The customer's tier is reevaluated based on the amount of active points they have at the moment.
      * 
-     * @type {string}
+     * @type {UpdateLoyaltyProgramTiersDowngradePolicyEnum}
      * @memberof UpdateLoyaltyProgram
      */
     tiersDowngradePolicy?: UpdateLoyaltyProgramTiersDowngradePolicyEnum;
@@ -169,7 +169,7 @@ export interface UpdateLoyaltyProgram {
      * - `within_balance`: Available active points can be rolled back if there aren't enough pending points. The active balance of the customer cannot be negative.
      * - `unlimited`: Allows negative balance without any limit.
      * 
-     * @type {string}
+     * @type {UpdateLoyaltyProgramReturnPolicyEnum}
      * @memberof UpdateLoyaltyProgram
      */
     returnPolicy?: UpdateLoyaltyProgramReturnPolicyEnum;

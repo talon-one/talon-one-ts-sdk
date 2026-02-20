@@ -7,9 +7,10 @@
 Name | Type
 ------------ | -------------
 `event` | string
-`campaign` | any
-`ruleset` | any
-`evaluationPosition` | any
+`campaign` | [Campaign](Campaign.md)
+`ruleset` | [Ruleset](Ruleset.md)
+`placeholders` | [Array&lt;PlaceholderDetails&gt;](PlaceholderDetails.md)
+`evaluationPosition` | [CampaignEvaluationPosition](CampaignEvaluationPosition.md)
 
 ## Example
 
@@ -21,6 +22,7 @@ const example = {
   "event": campaign_state_changed,
   "campaign": null,
   "ruleset": null,
+  "placeholders": null,
   "evaluationPosition": null,
 } satisfies CampaignCreatedNotificationItem
 

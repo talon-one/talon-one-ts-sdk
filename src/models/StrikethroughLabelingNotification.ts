@@ -36,7 +36,7 @@ import {
 export interface StrikethroughLabelingNotification {
     /**
      * The version of the strikethrough pricing notification.
-     * @type {string}
+     * @type {StrikethroughLabelingNotificationVersionEnum}
      * @memberof StrikethroughLabelingNotification
      */
     version?: StrikethroughLabelingNotificationVersionEnum;
@@ -79,7 +79,7 @@ export interface StrikethroughLabelingNotification {
     changedItems: Array<StrikethroughChangedItem>;
     /**
      * The type of notification.
-     * @type {string}
+     * @type {StrikethroughLabelingNotificationNotificationTypeEnum}
      * @memberof StrikethroughLabelingNotification
      */
     notificationType: StrikethroughLabelingNotificationNotificationTypeEnum;
@@ -138,7 +138,7 @@ export function StrikethroughLabelingNotificationFromJSONTyped(json: any, ignore
         'applicationId': json['applicationId'],
         'currentBatch': json['currentBatch'],
         'totalBatches': json['totalBatches'],
-        'trigger': json['trigger'],
+        'trigger': StrikethroughTriggerFromJSON(json['trigger']),
         'changedItems': ((json['changedItems'] as Array<any>).map(StrikethroughChangedItemFromJSON)),
         'notificationType': json['NotificationType'],
         'sentAt': (new Date(json['sentAt'])),
@@ -161,7 +161,7 @@ export function StrikethroughLabelingNotificationToJSONTyped(value?: Strikethrou
         'applicationId': value['applicationId'],
         'currentBatch': value['currentBatch'],
         'totalBatches': value['totalBatches'],
-        'trigger': value['trigger'],
+        'trigger': StrikethroughTriggerToJSON(value['trigger']),
         'changedItems': ((value['changedItems'] as Array<any>).map(StrikethroughChangedItemToJSON)),
         'NotificationType': value['notificationType'],
         'sentAt': value['sentAt'].toISOString(),

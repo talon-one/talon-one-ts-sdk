@@ -75,7 +75,7 @@ export interface Experiment {
     /**
      * A disabled experiment is not evaluated for rules or coupons.
      * 
-     * @type {string}
+     * @type {ExperimentStateEnum}
      * @memberof Experiment
      */
     state?: ExperimentStateEnum;

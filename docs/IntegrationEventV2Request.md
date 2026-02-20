@@ -11,8 +11,8 @@ Name | Type
 `evaluableCampaignIds` | Array&lt;number&gt;
 `type` | string
 `attributes` | object
-`loyaltyCards` | Array&lt;string&gt;
 `responseContent` | Array&lt;string&gt;
+`loyaltyCards` | Array&lt;string&gt;
 
 ## Example
 
@@ -26,8 +26,8 @@ const example = {
   "evaluableCampaignIds": [10, 12],
   "type": pageViewed,
   "attributes": {myAttribute=myValue},
-  "loyaltyCards": [loyalty-card-1],
   "responseContent": [triggeredCampaigns, customerProfile],
+  "loyaltyCards": [loyalty-card-1],
 } satisfies IntegrationEventV2Request
 
 console.log(example)

@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface AchievementProgressWithDefinition {
     /**
      * The status of the achievement.
-     * @type {string}
+     * @type {AchievementProgressWithDefinitionStatusEnum}
      * @memberof AchievementProgressWithDefinition
      */
     status: AchievementProgressWithDefinitionStatusEnum;
@@ -92,7 +92,7 @@ export interface AchievementProgressWithDefinition {
      * - `on_expiration`: The achievement resets after it expires and becomes available again.
      * - `on_completion`: When the customer progress status reaches `completed`, the achievement resets and becomes available again.
      * 
-     * @type {string}
+     * @type {AchievementProgressWithDefinitionAchievementRecurrencePolicyEnum}
      * @memberof AchievementProgressWithDefinition
      */
     achievementRecurrencePolicy: AchievementProgressWithDefinitionAchievementRecurrencePolicyEnum;
@@ -101,7 +101,7 @@ export interface AchievementProgressWithDefinition {
      * - `user_action`: The achievement ends or resets relative to when the customer started the achievement.
      * - `fixed_schedule`: The achievement starts, ends, or resets for all customers following a fixed schedule.
      * 
-     * @type {string}
+     * @type {AchievementProgressWithDefinitionAchievementActivationPolicyEnum}
      * @memberof AchievementProgressWithDefinition
      */
     achievementActivationPolicy: AchievementProgressWithDefinitionAchievementActivationPolicyEnum;

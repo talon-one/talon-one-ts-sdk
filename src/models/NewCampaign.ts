@@ -67,7 +67,7 @@ export interface NewCampaign {
     /**
      * A disabled or archived campaign is not evaluated for rules or coupons.
      * 
-     * @type {string}
+     * @type {NewCampaignStateEnum}
      * @memberof NewCampaign
      */
     state: NewCampaignStateEnum;
@@ -93,7 +93,7 @@ export interface NewCampaign {
     reevaluateOnReturn?: boolean;
     /**
      * The features enabled in this campaign.
-     * @type {Array<string>}
+     * @type {Array<NewCampaignFeaturesEnum>}
      * @memberof NewCampaign
      */
     features: Array<NewCampaignFeaturesEnum>;
@@ -128,7 +128,7 @@ export interface NewCampaign {
      *   - `cartItem`: Type of campaign that can apply effects only to cart items.
      *   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
      * 
-     * @type {string}
+     * @type {NewCampaignTypeEnum}
      * @memberof NewCampaign
      */
     type?: NewCampaignTypeEnum;

@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface FuncArgDef {
     /**
      * The type of value this argument expects.
-     * @type {string}
+     * @type {FuncArgDefTypeEnum}
      * @memberof FuncArgDef
      */
     type: FuncArgDefTypeEnum;

@@ -34,11 +34,11 @@ export interface NewExperimentVariant {
      */
     name: string;
     /**
-     * 
+     * The percentage split of this variant. The sum of all variant percentages must be 100.
      * @type {number}
      * @memberof NewExperimentVariant
      */
-    weight?: number;
+    weight: number;
     /**
      * 
      * @type {NewRuleset}
@@ -58,6 +58,7 @@ export interface NewExperimentVariant {
  */
 export function instanceOfNewExperimentVariant(value: object): value is NewExperimentVariant {
     if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('weight' in value) || value['weight'] === undefined) return false;
     if (!('ruleset' in value) || value['ruleset'] === undefined) return false;
     if (!('isPrimary' in value) || value['isPrimary'] === undefined) return false;
     return true;
@@ -74,7 +75,7 @@ export function NewExperimentVariantFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'name': json['name'],
-        'weight': json['weight'] == null ? undefined : json['weight'],
+        'weight': json['weight'],
         'ruleset': NewRulesetFromJSON(json['ruleset']),
         'isPrimary': json['isPrimary'],
     };

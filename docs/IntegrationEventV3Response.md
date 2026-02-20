@@ -1,21 +1,20 @@
 
 # IntegrationEventV3Response
 
-This is the response type returned by the trackEventV3 endpoint. 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
 `customerProfile` | [CustomerProfile](CustomerProfile.md)
-`event` | [EventV3](EventV3.md)
 `loyalty` | [Loyalty](Loyalty.md)
 `triggeredCampaigns` | [Array&lt;Campaign&gt;](Campaign.md)
-`ruleFailureReasons` | [Array&lt;RuleFailureReason&gt;](RuleFailureReason.md)
-`awardedGiveaways` | [Array&lt;Giveaway&gt;](Giveaway.md)
 `effects` | [Array&lt;Effect&gt;](Effect.md)
+`ruleFailureReasons` | [Array&lt;RuleFailureReason&gt;](RuleFailureReason.md)
 `createdCoupons` | [Array&lt;Coupon&gt;](Coupon.md)
 `createdReferrals` | [Array&lt;Referral&gt;](Referral.md)
+`awardedGiveaways` | [Array&lt;Giveaway&gt;](Giveaway.md)
+`advancedEvent` | [EventV3](EventV3.md)
 
 ## Example
 
@@ -25,14 +24,14 @@ import type { IntegrationEventV3Response } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "customerProfile": null,
-  "event": null,
   "loyalty": null,
   "triggeredCampaigns": null,
-  "ruleFailureReasons": null,
-  "awardedGiveaways": null,
   "effects": null,
+  "ruleFailureReasons": null,
   "createdCoupons": null,
   "createdReferrals": null,
+  "awardedGiveaways": null,
+  "advancedEvent": null,
 } satisfies IntegrationEventV3Response
 
 console.log(example)

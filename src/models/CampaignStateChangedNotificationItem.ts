@@ -13,6 +13,28 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Ruleset } from './Ruleset';
+import {
+    RulesetFromJSON,
+    RulesetFromJSONTyped,
+    RulesetToJSON,
+    RulesetToJSONTyped,
+} from './Ruleset';
+import type { Campaign } from './Campaign';
+import {
+    CampaignFromJSON,
+    CampaignFromJSONTyped,
+    CampaignToJSON,
+    CampaignToJSONTyped,
+} from './Campaign';
+import type { PlaceholderDetails } from './PlaceholderDetails';
+import {
+    PlaceholderDetailsFromJSON,
+    PlaceholderDetailsFromJSONTyped,
+    PlaceholderDetailsToJSON,
+    PlaceholderDetailsToJSONTyped,
+} from './PlaceholderDetails';
+
 /**
  * 
  * @export
@@ -28,10 +50,10 @@ export interface CampaignStateChangedNotificationItem {
     event: string;
     /**
      * The campaign whose state changed.
-     * @type {any}
+     * @type {Campaign}
      * @memberof CampaignStateChangedNotificationItem
      */
-    campaign: any | null;
+    campaign: Campaign;
     /**
      * The campaign's old state. Can be one of the following: ['running', 'disabled', 'scheduled', 'expired', 'archived']
      * 
@@ -48,10 +70,16 @@ export interface CampaignStateChangedNotificationItem {
     newState: string;
     /**
      * The current ruleset.
-     * @type {any}
+     * @type {Ruleset}
      * @memberof CampaignStateChangedNotificationItem
      */
-    ruleset?: any | null;
+    ruleset?: Ruleset;
+    /**
+     * The current details of the [placeholders](https://docs.talon.one/docs/product/campaigns/templates/create-templates#use-placeholders) in the campaign.
+     * @type {Array<PlaceholderDetails>}
+     * @memberof CampaignStateChangedNotificationItem
+     */
+    placeholders?: Array<PlaceholderDetails>;
 }
 
 /**
@@ -76,10 +104,11 @@ export function CampaignStateChangedNotificationItemFromJSONTyped(json: any, ign
     return {
         
         'event': json['Event'],
-        'campaign': json['campaign'],
+        'campaign': CampaignFromJSON(json['campaign']),
         'oldState': json['oldState'],
         'newState': json['newState'],
-        'ruleset': json['ruleset'] == null ? undefined : json['ruleset'],
+        'ruleset': json['ruleset'] == null ? undefined : RulesetFromJSON(json['ruleset']),
+        'placeholders': json['placeholders'] == null ? undefined : ((json['placeholders'] as Array<any>).map(PlaceholderDetailsFromJSON)),
     };
 }
 
@@ -95,10 +124,11 @@ export function CampaignStateChangedNotificationItemToJSONTyped(value?: Campaign
     return {
         
         'Event': value['event'],
-        'campaign': value['campaign'],
+        'campaign': CampaignToJSON(value['campaign']),
         'oldState': value['oldState'],
         'newState': value['newState'],
-        'ruleset': value['ruleset'],
+        'ruleset': RulesetToJSON(value['ruleset']),
+        'placeholders': value['placeholders'] == null ? undefined : ((value['placeholders'] as Array<any>).map(PlaceholderDetailsToJSON)),
     };
 }
 

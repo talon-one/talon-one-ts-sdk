@@ -136,6 +136,12 @@ export interface PrismaticEventPayloadCouponBasedNotifications {
      */
     limits?: Array<PrismaticEventPayloadCouponBasedNotificationsLimits>;
     /**
+     * Timestamp when the event was published.
+     * @type {Date}
+     * @memberof PrismaticEventPayloadCouponBasedNotifications
+     */
+    publishedAt: Date;
+    /**
      * 
      * @type {string}
      * @memberof PrismaticEventPayloadCouponBasedNotifications
@@ -159,6 +165,7 @@ export function instanceOfPrismaticEventPayloadCouponBasedNotifications(value: o
     if (!('value' in value) || value['value'] === undefined) return false;
     if (!('usageLimit' in value) || value['usageLimit'] === undefined) return false;
     if (!('usageCounter' in value) || value['usageCounter'] === undefined) return false;
+    if (!('publishedAt' in value) || value['publishedAt'] === undefined) return false;
     if (!('sourceOfEvent' in value) || value['sourceOfEvent'] === undefined) return false;
     if (!('employeeName' in value) || value['employeeName'] === undefined) return false;
     return true;
@@ -192,6 +199,7 @@ export function PrismaticEventPayloadCouponBasedNotificationsFromJSONTyped(json:
         'batchId': json['BatchId'] == null ? undefined : json['BatchId'],
         'attributes': json['Attributes'] == null ? undefined : json['Attributes'],
         'limits': json['Limits'] == null ? undefined : ((json['Limits'] as Array<any>).map(PrismaticEventPayloadCouponBasedNotificationsLimitsFromJSON)),
+        'publishedAt': (new Date(json['PublishedAt'])),
         'sourceOfEvent': json['SourceOfEvent'],
         'employeeName': json['EmployeeName'],
     };
@@ -226,6 +234,7 @@ export function PrismaticEventPayloadCouponBasedNotificationsToJSONTyped(value?:
         'BatchId': value['batchId'],
         'Attributes': value['attributes'],
         'Limits': value['limits'] == null ? undefined : ((value['limits'] as Array<any>).map(PrismaticEventPayloadCouponBasedNotificationsLimitsToJSON)),
+        'PublishedAt': value['publishedAt'].toISOString(),
         'SourceOfEvent': value['sourceOfEvent'],
         'EmployeeName': value['employeeName'],
     };

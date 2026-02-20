@@ -33,7 +33,7 @@ export interface ReferralRejectionReason {
     referralId: number;
     /**
      * 
-     * @type {string}
+     * @type {ReferralRejectionReasonReasonEnum}
      * @memberof ReferralRejectionReason
      */
     reason: ReferralRejectionReasonReasonEnum;

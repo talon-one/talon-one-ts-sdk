@@ -1,30 +1,30 @@
 
-# NewCollectionsCatalog
+# PrismaticFlowResponse
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`title` | string
-`description` | string
-`category` | string
-`rules` | [Array&lt;CatalogRule&gt;](CatalogRule.md)
-`cartItemFilters` | [Array&lt;CartItemFilterTemplate&gt;](CartItemFilterTemplate.md)
+`id` | number
+`applicationID` | number
+`eventType` | string
+`prismaticFlowUrl` | string
+`config` | [PrismaticFlowConfigResponse](PrismaticFlowConfigResponse.md)
 
 ## Example
 
 ```typescript
-import type { NewCollectionsCatalog } from 'talon_one_sdk'
+import type { PrismaticFlowResponse } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "title": Customer loyalty boost,
-  "description": null,
-  "category": null,
-  "rules": null,
-  "cartItemFilters": null,
-} satisfies NewCollectionsCatalog
+  "id": null,
+  "applicationID": 54,
+  "eventType": null,
+  "prismaticFlowUrl": null,
+  "config": null,
+} satisfies PrismaticFlowResponse
 
 console.log(example)
 
@@ -33,7 +33,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as NewCollectionsCatalog
+const exampleParsed = JSON.parse(exampleJSON) as PrismaticFlowResponse
 console.log(exampleParsed)
 ```
 

@@ -71,7 +71,7 @@ export interface WebhookAuthentication {
     name: string;
     /**
      * 
-     * @type {string}
+     * @type {WebhookAuthenticationTypeEnum}
      * @memberof WebhookAuthentication
      */
     type: WebhookAuthenticationTypeEnum;

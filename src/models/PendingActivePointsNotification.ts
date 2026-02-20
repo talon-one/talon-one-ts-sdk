@@ -41,7 +41,7 @@ export interface PendingActivePointsNotification {
     data: Array<PendingActivePointsData>;
     /**
      * The type of notification.
-     * @type {string}
+     * @type {PendingActivePointsNotificationNotificationTypeEnum}
      * @memberof PendingActivePointsNotification
      */
     notificationType: PendingActivePointsNotificationNotificationTypeEnum;

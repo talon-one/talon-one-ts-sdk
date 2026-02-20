@@ -73,7 +73,7 @@ export interface WebhookWithOutgoingIntegrationDetails {
     draft: boolean;
     /**
      * API method for this webhook.
-     * @type {string}
+     * @type {WebhookWithOutgoingIntegrationDetailsVerbEnum}
      * @memberof WebhookWithOutgoingIntegrationDetails
      */
     verb: WebhookWithOutgoingIntegrationDetailsVerbEnum;

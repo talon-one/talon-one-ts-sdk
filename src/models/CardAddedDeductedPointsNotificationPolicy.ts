@@ -27,7 +27,7 @@ export interface CardAddedDeductedPointsNotificationPolicy {
     name: string;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<CardAddedDeductedPointsNotificationPolicyScopesEnum>}
      * @memberof CardAddedDeductedPointsNotificationPolicy
      */
     scopes: Array<CardAddedDeductedPointsNotificationPolicyScopesEnum>;

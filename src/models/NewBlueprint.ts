@@ -31,37 +31,37 @@ import {
 /**
  * 
  * @export
- * @interface NewCollectionsCatalog
+ * @interface NewBlueprint
  */
-export interface NewCollectionsCatalog {
+export interface NewBlueprint {
     /**
-     * The display name for the collection catalog.
+     * The display name for the blueprint.
      * @type {string}
-     * @memberof NewCollectionsCatalog
+     * @memberof NewBlueprint
      */
     title: string;
     /**
-     * A longer, more detailed description of the collection catalog.
+     * A longer, more detailed description of the blueprint.
      * @type {string}
-     * @memberof NewCollectionsCatalog
+     * @memberof NewBlueprint
      */
     description?: string;
     /**
-     * Category used to group collection catalogs.
-     * @type {string}
-     * @memberof NewCollectionsCatalog
+     * Category used to group blueprints.
+     * @type {NewBlueprintCategoryEnum}
+     * @memberof NewBlueprint
      */
-    category?: NewCollectionsCatalogCategoryEnum;
+    category?: NewBlueprintCategoryEnum;
     /**
-     * Array of rules to store in this collection catalog. Rules should only contain title (no description, as description is at the collection catalog level). At least one rule or cart item filter is required.
+     * Array of rules to store in this blueprint. Rules should only contain title (no description, as description is at the blueprint level). At least one rule or cart item filter is required.
      * @type {Array<CatalogRule>}
-     * @memberof NewCollectionsCatalog
+     * @memberof NewBlueprint
      */
     rules?: Array<CatalogRule>;
     /**
-     * Array of cart item filters to store in this collection catalog. If not provided, will be extracted from the rules. Cart item filters should only contain name (no description, as description is at the collection catalog level).
+     * Array of cart item filters to store in this blueprint. If not provided, will be extracted from the rules. Cart item filters should only contain name (no description, as description is at the blueprint level).
      * @type {Array<CartItemFilterTemplate>}
-     * @memberof NewCollectionsCatalog
+     * @memberof NewBlueprint
      */
     cartItemFilters?: Array<CartItemFilterTemplate>;
 }
@@ -70,28 +70,28 @@ export interface NewCollectionsCatalog {
 /**
  * @export
  */
-export const NewCollectionsCatalogCategoryEnum = {
+export const NewBlueprintCategoryEnum = {
     Promotions: 'promotions',
     Pricing: 'pricing',
     Loyalty: 'loyalty',
     Custom: 'custom'
 } as const;
-export type NewCollectionsCatalogCategoryEnum = typeof NewCollectionsCatalogCategoryEnum[keyof typeof NewCollectionsCatalogCategoryEnum];
+export type NewBlueprintCategoryEnum = typeof NewBlueprintCategoryEnum[keyof typeof NewBlueprintCategoryEnum];
 
 
 /**
- * Check if a given object implements the NewCollectionsCatalog interface.
+ * Check if a given object implements the NewBlueprint interface.
  */
-export function instanceOfNewCollectionsCatalog(value: object): value is NewCollectionsCatalog {
+export function instanceOfNewBlueprint(value: object): value is NewBlueprint {
     if (!('title' in value) || value['title'] === undefined) return false;
     return true;
 }
 
-export function NewCollectionsCatalogFromJSON(json: any): NewCollectionsCatalog {
-    return NewCollectionsCatalogFromJSONTyped(json, false);
+export function NewBlueprintFromJSON(json: any): NewBlueprint {
+    return NewBlueprintFromJSONTyped(json, false);
 }
 
-export function NewCollectionsCatalogFromJSONTyped(json: any, ignoreDiscriminator: boolean): NewCollectionsCatalog {
+export function NewBlueprintFromJSONTyped(json: any, ignoreDiscriminator: boolean): NewBlueprint {
     if (json == null) {
         return json;
     }
@@ -105,11 +105,11 @@ export function NewCollectionsCatalogFromJSONTyped(json: any, ignoreDiscriminato
     };
 }
 
-export function NewCollectionsCatalogToJSON(json: any): NewCollectionsCatalog {
-    return NewCollectionsCatalogToJSONTyped(json, false);
+export function NewBlueprintToJSON(json: any): NewBlueprint {
+    return NewBlueprintToJSONTyped(json, false);
 }
 
-export function NewCollectionsCatalogToJSONTyped(value?: NewCollectionsCatalog | null, ignoreDiscriminator: boolean = false): any {
+export function NewBlueprintToJSONTyped(value?: NewBlueprint | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

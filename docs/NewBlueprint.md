@@ -1,46 +1,30 @@
 
-# CollectionsCatalog
+# NewBlueprint
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`id` | number
-`accountId` | number
-`applicationId` | number
 `title` | string
 `description` | string
 `category` | string
-`source` | string
 `rules` | [Array&lt;CatalogRule&gt;](CatalogRule.md)
 `cartItemFilters` | [Array&lt;CartItemFilterTemplate&gt;](CartItemFilterTemplate.md)
-`created` | Date
-`createdBy` | number
-`modified` | Date
-`modifiedBy` | number
 
 ## Example
 
 ```typescript
-import type { CollectionsCatalog } from 'talon_one_sdk'
+import type { NewBlueprint } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "id": null,
-  "accountId": null,
-  "applicationId": null,
-  "title": High value cart discount,
+  "title": Customer loyalty boost,
   "description": null,
   "category": null,
-  "source": null,
   "rules": null,
   "cartItemFilters": null,
-  "created": null,
-  "createdBy": null,
-  "modified": null,
-  "modifiedBy": null,
-} satisfies CollectionsCatalog
+} satisfies NewBlueprint
 
 console.log(example)
 
@@ -49,7 +33,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as CollectionsCatalog
+const exampleParsed = JSON.parse(exampleJSON) as NewBlueprint
 console.log(exampleParsed)
 ```
 

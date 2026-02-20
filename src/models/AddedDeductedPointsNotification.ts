@@ -33,7 +33,7 @@ export interface AddedDeductedPointsNotification {
     loyaltyProgramID: number;
     /**
      * The type of notification.
-     * @type {string}
+     * @type {AddedDeductedPointsNotificationNotificationTypeEnum}
      * @memberof AddedDeductedPointsNotification
      */
     notificationType: AddedDeductedPointsNotificationNotificationTypeEnum;
@@ -65,7 +65,7 @@ export interface AddedDeductedPointsNotification {
      * 
      * - [Rule Engine](/docs/product/applications/evaluation-order-for-rules-and-filters)
      * 
-     * @type {string}
+     * @type {AddedDeductedPointsNotificationTypeOfChangeEnum}
      * @memberof AddedDeductedPointsNotification
      */
     typeOfChange: AddedDeductedPointsNotificationTypeOfChangeEnum;
@@ -89,7 +89,7 @@ export interface AddedDeductedPointsNotification {
     expiryDate?: Date;
     /**
      * The action (addition or deduction) made with loyalty points.
-     * @type {string}
+     * @type {AddedDeductedPointsNotificationOperationEnum}
      * @memberof AddedDeductedPointsNotification
      */
     operation: AddedDeductedPointsNotificationOperationEnum;

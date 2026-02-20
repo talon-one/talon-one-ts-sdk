@@ -1,30 +1,22 @@
 
-# UpdateCollectionsCatalog
+# UpdateLoyaltyCardRequest
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`title` | string
-`description` | string
-`category` | string
-`rules` | [Array&lt;CatalogRule&gt;](CatalogRule.md)
-`cartItemFilters` | [Array&lt;CartItemFilterTemplate&gt;](CartItemFilterTemplate.md)
+`status` | string
 
 ## Example
 
 ```typescript
-import type { UpdateCollectionsCatalog } from 'talon_one_sdk'
+import type { UpdateLoyaltyCardRequest } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "title": null,
-  "description": null,
-  "category": null,
-  "rules": null,
-  "cartItemFilters": null,
-} satisfies UpdateCollectionsCatalog
+  "status": active,
+} satisfies UpdateLoyaltyCardRequest
 
 console.log(example)
 
@@ -33,7 +25,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as UpdateCollectionsCatalog
+const exampleParsed = JSON.parse(exampleJSON) as UpdateLoyaltyCardRequest
 console.log(exampleParsed)
 ```
 
