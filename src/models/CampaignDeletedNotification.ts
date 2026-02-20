@@ -29,7 +29,7 @@ import {
 export interface CampaignDeletedNotification {
     /**
      * The type of the notification
-     * @type {string}
+     * @type {CampaignDeletedNotificationNotificationTypeEnum}
      * @memberof CampaignDeletedNotification
      */
     notificationType: CampaignDeletedNotificationNotificationTypeEnum;

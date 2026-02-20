@@ -68,7 +68,7 @@ export interface CardLedgerTransactionLogEntry {
      *   - `addition`: Signifies added points.
      *   - `subtraction`: Signifies deducted points.
      * 
-     * @type {string}
+     * @type {CardLedgerTransactionLogEntryTypeEnum}
      * @memberof CardLedgerTransactionLogEntry
      */
     type: CardLedgerTransactionLogEntryTypeEnum;

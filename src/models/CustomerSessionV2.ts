@@ -132,7 +132,7 @@ export interface CustomerSessionV2 {
      * 
      * For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
      * 
-     * @type {string}
+     * @type {CustomerSessionV2StateEnum}
      * @memberof CustomerSessionV2
      */
     state?: CustomerSessionV2StateEnum;

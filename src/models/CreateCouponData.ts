@@ -68,7 +68,7 @@ export interface CreateCouponData {
     employeeName: string;
     /**
      * The type of the not
-     * @type {string}
+     * @type {CreateCouponDataNotificationTypeEnum}
      * @memberof CreateCouponData
      */
     notificationType: CreateCouponDataNotificationTypeEnum;

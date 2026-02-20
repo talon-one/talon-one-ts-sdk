@@ -53,7 +53,7 @@ export interface BaseNotification {
     id: number;
     /**
      * The notification type.
-     * @type {string}
+     * @type {BaseNotificationTypeEnum}
      * @memberof BaseNotification
      */
     type: BaseNotificationTypeEnum;

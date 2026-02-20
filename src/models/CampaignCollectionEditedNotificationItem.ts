@@ -13,6 +13,35 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Ruleset } from './Ruleset';
+import {
+    RulesetFromJSON,
+    RulesetFromJSONTyped,
+    RulesetToJSON,
+    RulesetToJSONTyped,
+} from './Ruleset';
+import type { Campaign } from './Campaign';
+import {
+    CampaignFromJSON,
+    CampaignFromJSONTyped,
+    CampaignToJSON,
+    CampaignToJSONTyped,
+} from './Campaign';
+import type { CollectionWithoutPayload } from './CollectionWithoutPayload';
+import {
+    CollectionWithoutPayloadFromJSON,
+    CollectionWithoutPayloadFromJSONTyped,
+    CollectionWithoutPayloadToJSON,
+    CollectionWithoutPayloadToJSONTyped,
+} from './CollectionWithoutPayload';
+import type { PlaceholderDetails } from './PlaceholderDetails';
+import {
+    PlaceholderDetailsFromJSON,
+    PlaceholderDetailsFromJSONTyped,
+    PlaceholderDetailsToJSON,
+    PlaceholderDetailsToJSONTyped,
+} from './PlaceholderDetails';
+
 /**
  * 
  * @export
@@ -28,22 +57,28 @@ export interface CampaignCollectionEditedNotificationItem {
     event: string;
     /**
      * The current campaign.
-     * @type {any}
+     * @type {Campaign}
      * @memberof CampaignCollectionEditedNotificationItem
      */
-    campaign: any | null;
+    campaign: Campaign;
     /**
      * The current ruleset.
-     * @type {any}
+     * @type {Ruleset}
      * @memberof CampaignCollectionEditedNotificationItem
      */
-    ruleset?: any | null;
+    ruleset?: Ruleset;
+    /**
+     * The current details of the [placeholders](https://docs.talon.one/docs/product/campaigns/templates/create-templates#use-placeholders) in the campaign.
+     * @type {Array<PlaceholderDetails>}
+     * @memberof CampaignCollectionEditedNotificationItem
+     */
+    placeholders?: Array<PlaceholderDetails>;
     /**
      * The collection that was edited.
-     * @type {any}
+     * @type {CollectionWithoutPayload}
      * @memberof CampaignCollectionEditedNotificationItem
      */
-    collection: any | null;
+    collection: CollectionWithoutPayload;
 }
 
 /**
@@ -67,9 +102,10 @@ export function CampaignCollectionEditedNotificationItemFromJSONTyped(json: any,
     return {
         
         'event': json['Event'],
-        'campaign': json['campaign'],
-        'ruleset': json['ruleset'] == null ? undefined : json['ruleset'],
-        'collection': json['collection'],
+        'campaign': CampaignFromJSON(json['campaign']),
+        'ruleset': json['ruleset'] == null ? undefined : RulesetFromJSON(json['ruleset']),
+        'placeholders': json['placeholders'] == null ? undefined : ((json['placeholders'] as Array<any>).map(PlaceholderDetailsFromJSON)),
+        'collection': CollectionWithoutPayloadFromJSON(json['collection']),
     };
 }
 
@@ -85,9 +121,10 @@ export function CampaignCollectionEditedNotificationItemToJSONTyped(value?: Camp
     return {
         
         'Event': value['event'],
-        'campaign': value['campaign'],
-        'ruleset': value['ruleset'],
-        'collection': value['collection'],
+        'campaign': CampaignToJSON(value['campaign']),
+        'ruleset': RulesetToJSON(value['ruleset']),
+        'placeholders': value['placeholders'] == null ? undefined : ((value['placeholders'] as Array<any>).map(PlaceholderDetailsToJSON)),
+        'collection': CollectionWithoutPayloadToJSON(value['collection']),
     };
 }
 

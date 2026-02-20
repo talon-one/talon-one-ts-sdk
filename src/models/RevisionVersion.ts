@@ -108,7 +108,7 @@ export interface RevisionVersion {
     reevaluateOnReturn?: boolean;
     /**
      * A list of features for the campaign.
-     * @type {Array<string>}
+     * @type {Array<RevisionVersionFeaturesEnum>}
      * @memberof RevisionVersion
      */
     features?: Array<RevisionVersionFeaturesEnum>;

@@ -110,7 +110,7 @@ export interface Achievement {
      * - `on_expiration`: The achievement resets after it expires and becomes available again.
      * - `on_completion`: When the customer progress status reaches `completed`, the achievement resets and becomes available again.
      * 
-     * @type {string}
+     * @type {AchievementRecurrencePolicyEnum}
      * @memberof Achievement
      */
     recurrencePolicy?: AchievementRecurrencePolicyEnum;
@@ -119,7 +119,7 @@ export interface Achievement {
      * - `user_action`: The achievement ends or resets relative to when the customer started the achievement.
      * - `fixed_schedule`: The achievement starts, ends, or resets for all customers following a fixed schedule.
      * 
-     * @type {string}
+     * @type {AchievementActivationPolicyEnum}
      * @memberof Achievement
      */
     activationPolicy?: AchievementActivationPolicyEnum;
@@ -176,7 +176,7 @@ export interface Achievement {
     hasProgress?: boolean;
     /**
      * The status of the achievement.
-     * @type {string}
+     * @type {AchievementStatusEnum}
      * @memberof Achievement
      */
     status?: AchievementStatusEnum;

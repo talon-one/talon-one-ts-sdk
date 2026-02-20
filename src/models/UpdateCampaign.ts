@@ -67,7 +67,7 @@ export interface UpdateCampaign {
     /**
      * A disabled or archived campaign is not evaluated for rules or coupons.
      * 
-     * @type {string}
+     * @type {UpdateCampaignStateEnum}
      * @memberof UpdateCampaign
      */
     state?: UpdateCampaignStateEnum;
@@ -93,7 +93,7 @@ export interface UpdateCampaign {
     reevaluateOnReturn?: boolean;
     /**
      * A list of features for the campaign.
-     * @type {Array<string>}
+     * @type {Array<UpdateCampaignFeaturesEnum>}
      * @memberof UpdateCampaign
      */
     features: Array<UpdateCampaignFeaturesEnum>;
@@ -133,7 +133,7 @@ export interface UpdateCampaign {
      *   - `cartItem`: Type of campaign that can apply effects only to cart items.
      *   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
      * 
-     * @type {string}
+     * @type {UpdateCampaignTypeEnum}
      * @memberof UpdateCampaign
      */
     type?: UpdateCampaignTypeEnum;

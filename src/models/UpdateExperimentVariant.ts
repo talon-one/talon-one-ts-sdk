@@ -46,7 +46,7 @@ export interface UpdateExperimentVariant {
      */
     ruleset: NewRuleset;
     /**
-     * 
+     * The percentage split of this variant. The sum of all variant percentages must be 100.
      * @type {number}
      * @memberof UpdateExperimentVariant
      */

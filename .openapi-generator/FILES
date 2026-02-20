@@ -95,6 +95,7 @@ docs/BestPriorPriceMetadata.md
 docs/BestPriorPriceRequest.md
 docs/BestPriorTarget.md
 docs/Binding.md
+docs/Blueprint.md
 docs/BulkApplicationNotification.md
 docs/BulkOperationOnCampaigns.md
 docs/Campaign.md
@@ -166,7 +167,6 @@ docs/CodeGeneratorSettings.md
 docs/Collection.md
 docs/CollectionItem.md
 docs/CollectionWithoutPayload.md
-docs/CollectionsCatalog.md
 docs/Coupon.md
 docs/CouponConstraints.md
 docs/CouponCreatedEffectProps.md
@@ -180,6 +180,7 @@ docs/CouponRejectionReason.md
 docs/CouponReservations.md
 docs/CouponSearch.md
 docs/CouponValue.md
+docs/CouponWithApplication.md
 docs/CouponsNotificationData.md
 docs/CouponsNotificationPolicy.md
 docs/CreateAchievement.md
@@ -224,6 +225,7 @@ docs/ErrorResponseWithStatus.md
 docs/ErrorSource.md
 docs/EvaluableCampaignIds.md
 docs/Event.md
+docs/EventAttributesEntity.md
 docs/EventType.md
 docs/EventV2.md
 docs/EventV3.md
@@ -321,11 +323,13 @@ docs/IntegrationCustomerSessionResponse.md
 docs/IntegrationEntity.md
 docs/IntegrationEvent.md
 docs/IntegrationEventV2Request.md
+docs/IntegrationEventV2Response.md
 docs/IntegrationEventV3Request.md
 docs/IntegrationEventV3Response.md
 docs/IntegrationProfileEntity.md
 docs/IntegrationProfileEntityV3.md
 docs/IntegrationRequest.md
+docs/IntegrationResponse.md
 docs/IntegrationState.md
 docs/IntegrationStateV2.md
 docs/IntegrationStoreEntity.md
@@ -406,6 +410,7 @@ docs/NewApplicationCIFExpression.md
 docs/NewAttribute.md
 docs/NewAudience.md
 docs/NewBaseNotification.md
+docs/NewBlueprint.md
 docs/NewCampaign.md
 docs/NewCampaignCollection.md
 docs/NewCampaignEvaluationGroup.md
@@ -416,7 +421,6 @@ docs/NewCampaignStoreBudgetStoreLimit.md
 docs/NewCampaignTemplate.md
 docs/NewCatalog.md
 docs/NewCollection.md
-docs/NewCollectionsCatalog.md
 docs/NewCouponCreationJob.md
 docs/NewCouponDeletionJob.md
 docs/NewCoupons.md
@@ -484,6 +488,7 @@ docs/PendingActivePointsData.md
 docs/PendingActivePointsNotification.md
 docs/PendingPointsNotificationPolicy.md
 docs/Picklist.md
+docs/PlaceholderDetails.md
 docs/PriceDetail.md
 docs/PriceType.md
 docs/PriceTypeReferenceDetail.md
@@ -491,10 +496,16 @@ docs/PriceTypeReferences.md
 docs/PrismaticConfig.md
 docs/PrismaticEventPayloadCouponBasedNotifications.md
 docs/PrismaticEventPayloadCouponBasedNotificationsLimits.md
-docs/PrismaticEventPayloadLoyaltyProfileBasedNotifications.md
-docs/PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction.md
+docs/PrismaticEventPayloadLoyaltyProfileBasedNotification.md
+docs/PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotification.md
+docs/PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.md
+docs/PrismaticEventPayloadLoyaltyProfileBasedTierDowngradeNotification.md
+docs/PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification.md
+docs/PrismaticEventRecord.md
 docs/PrismaticFlow.md
 docs/PrismaticFlowConfig.md
+docs/PrismaticFlowConfigResponse.md
+docs/PrismaticFlowResponse.md
 docs/PrismaticFlowWithConfig.md
 docs/PrismaticPaginatedEventPayload.md
 docs/Product.md
@@ -516,6 +527,7 @@ docs/RemoveItemCatalogAction.md
 docs/RemoveManyItemsCatalogAction.md
 docs/ReopenSessionResponse.md
 docs/ReserveCouponEffectProps.md
+docs/ResponseContentObject.md
 docs/Return.md
 docs/ReturnIntegrationRequest.md
 docs/ReturnedCartItem.md
@@ -608,7 +620,6 @@ docs/TierWillDowngradeNotification.md
 docs/TierWillDowngradeNotificationPolicy.md
 docs/TierWillDowngradeNotificationTrigger.md
 docs/TimePoint.md
-docs/TrackEventV2Response.md
 docs/TransferLoyaltyCard.md
 docs/TriggerWebhookEffectProps.md
 docs/TwoFAConfig.md
@@ -619,6 +630,7 @@ docs/UpdateApplicationAPIKey.md
 docs/UpdateApplicationCIF.md
 docs/UpdateAttributeEffectProps.md
 docs/UpdateAudience.md
+docs/UpdateBlueprint.md
 docs/UpdateCampaign.md
 docs/UpdateCampaignCollection.md
 docs/UpdateCampaignEvaluationGroup.md
@@ -626,7 +638,6 @@ docs/UpdateCampaignGroup.md
 docs/UpdateCampaignTemplate.md
 docs/UpdateCatalog.md
 docs/UpdateCollection.md
-docs/UpdateCollectionsCatalog.md
 docs/UpdateCoupon.md
 docs/UpdateCouponBatch.md
 docs/UpdateCouponsData.md
@@ -636,7 +647,9 @@ docs/UpdateCustomerSessionV2409Response.md
 docs/UpdateExperiment.md
 docs/UpdateExperimentVariant.md
 docs/UpdateExperimentVariantArray.md
+docs/UpdateExperimentVariantName.md
 docs/UpdateLoyaltyCard.md
+docs/UpdateLoyaltyCardRequest.md
 docs/UpdateLoyaltyProgram.md
 docs/UpdateLoyaltyProgramTier.md
 docs/UpdatePicklist.md
@@ -749,6 +762,7 @@ src/models/BestPriorPriceMetadata.ts
 src/models/BestPriorPriceRequest.ts
 src/models/BestPriorTarget.ts
 src/models/Binding.ts
+src/models/Blueprint.ts
 src/models/BulkApplicationNotification.ts
 src/models/BulkOperationOnCampaigns.ts
 src/models/Campaign.ts
@@ -820,7 +834,6 @@ src/models/CodeGeneratorSettings.ts
 src/models/Collection.ts
 src/models/CollectionItem.ts
 src/models/CollectionWithoutPayload.ts
-src/models/CollectionsCatalog.ts
 src/models/Coupon.ts
 src/models/CouponConstraints.ts
 src/models/CouponCreatedEffectProps.ts
@@ -834,6 +847,7 @@ src/models/CouponRejectionReason.ts
 src/models/CouponReservations.ts
 src/models/CouponSearch.ts
 src/models/CouponValue.ts
+src/models/CouponWithApplication.ts
 src/models/CouponsNotificationData.ts
 src/models/CouponsNotificationPolicy.ts
 src/models/CreateAchievement.ts
@@ -878,6 +892,7 @@ src/models/ErrorResponseWithStatus.ts
 src/models/ErrorSource.ts
 src/models/EvaluableCampaignIds.ts
 src/models/Event.ts
+src/models/EventAttributesEntity.ts
 src/models/EventType.ts
 src/models/EventV2.ts
 src/models/EventV3.ts
@@ -974,11 +989,13 @@ src/models/IntegrationCustomerSessionResponse.ts
 src/models/IntegrationEntity.ts
 src/models/IntegrationEvent.ts
 src/models/IntegrationEventV2Request.ts
+src/models/IntegrationEventV2Response.ts
 src/models/IntegrationEventV3Request.ts
 src/models/IntegrationEventV3Response.ts
 src/models/IntegrationProfileEntity.ts
 src/models/IntegrationProfileEntityV3.ts
 src/models/IntegrationRequest.ts
+src/models/IntegrationResponse.ts
 src/models/IntegrationState.ts
 src/models/IntegrationStateV2.ts
 src/models/IntegrationStoreEntity.ts
@@ -1058,6 +1075,7 @@ src/models/NewApplicationCIFExpression.ts
 src/models/NewAttribute.ts
 src/models/NewAudience.ts
 src/models/NewBaseNotification.ts
+src/models/NewBlueprint.ts
 src/models/NewCampaign.ts
 src/models/NewCampaignCollection.ts
 src/models/NewCampaignEvaluationGroup.ts
@@ -1068,7 +1086,6 @@ src/models/NewCampaignStoreBudgetStoreLimit.ts
 src/models/NewCampaignTemplate.ts
 src/models/NewCatalog.ts
 src/models/NewCollection.ts
-src/models/NewCollectionsCatalog.ts
 src/models/NewCouponCreationJob.ts
 src/models/NewCouponDeletionJob.ts
 src/models/NewCoupons.ts
@@ -1136,6 +1153,7 @@ src/models/PendingActivePointsData.ts
 src/models/PendingActivePointsNotification.ts
 src/models/PendingPointsNotificationPolicy.ts
 src/models/Picklist.ts
+src/models/PlaceholderDetails.ts
 src/models/PriceDetail.ts
 src/models/PriceType.ts
 src/models/PriceTypeReferenceDetail.ts
@@ -1143,10 +1161,16 @@ src/models/PriceTypeReferences.ts
 src/models/PrismaticConfig.ts
 src/models/PrismaticEventPayloadCouponBasedNotifications.ts
 src/models/PrismaticEventPayloadCouponBasedNotificationsLimits.ts
-src/models/PrismaticEventPayloadLoyaltyProfileBasedNotifications.ts
-src/models/PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction.ts
+src/models/PrismaticEventPayloadLoyaltyProfileBasedNotification.ts
+src/models/PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotification.ts
+src/models/PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.ts
+src/models/PrismaticEventPayloadLoyaltyProfileBasedTierDowngradeNotification.ts
+src/models/PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification.ts
+src/models/PrismaticEventRecord.ts
 src/models/PrismaticFlow.ts
 src/models/PrismaticFlowConfig.ts
+src/models/PrismaticFlowConfigResponse.ts
+src/models/PrismaticFlowResponse.ts
 src/models/PrismaticFlowWithConfig.ts
 src/models/PrismaticPaginatedEventPayload.ts
 src/models/Product.ts
@@ -1168,6 +1192,7 @@ src/models/RemoveItemCatalogAction.ts
 src/models/RemoveManyItemsCatalogAction.ts
 src/models/ReopenSessionResponse.ts
 src/models/ReserveCouponEffectProps.ts
+src/models/ResponseContentObject.ts
 src/models/Return.ts
 src/models/ReturnIntegrationRequest.ts
 src/models/ReturnedCartItem.ts
@@ -1260,7 +1285,6 @@ src/models/TierWillDowngradeNotification.ts
 src/models/TierWillDowngradeNotificationPolicy.ts
 src/models/TierWillDowngradeNotificationTrigger.ts
 src/models/TimePoint.ts
-src/models/TrackEventV2Response.ts
 src/models/TransferLoyaltyCard.ts
 src/models/TriggerWebhookEffectProps.ts
 src/models/TwoFAConfig.ts
@@ -1271,6 +1295,7 @@ src/models/UpdateApplicationAPIKey.ts
 src/models/UpdateApplicationCIF.ts
 src/models/UpdateAttributeEffectProps.ts
 src/models/UpdateAudience.ts
+src/models/UpdateBlueprint.ts
 src/models/UpdateCampaign.ts
 src/models/UpdateCampaignCollection.ts
 src/models/UpdateCampaignEvaluationGroup.ts
@@ -1278,7 +1303,6 @@ src/models/UpdateCampaignGroup.ts
 src/models/UpdateCampaignTemplate.ts
 src/models/UpdateCatalog.ts
 src/models/UpdateCollection.ts
-src/models/UpdateCollectionsCatalog.ts
 src/models/UpdateCoupon.ts
 src/models/UpdateCouponBatch.ts
 src/models/UpdateCouponsData.ts
@@ -1288,7 +1312,9 @@ src/models/UpdateCustomerSessionV2409Response.ts
 src/models/UpdateExperiment.ts
 src/models/UpdateExperimentVariant.ts
 src/models/UpdateExperimentVariantArray.ts
+src/models/UpdateExperimentVariantName.ts
 src/models/UpdateLoyaltyCard.ts
+src/models/UpdateLoyaltyCardRequest.ts
 src/models/UpdateLoyaltyProgram.ts
 src/models/UpdateLoyaltyProgramTier.ts
 src/models/UpdatePicklist.ts

@@ -21,7 +21,7 @@ const example = {
   "id": 10,
   "name": Variant A,
   "ruleset": null,
-  "weight": 12,
+  "weight": 13,
 } satisfies UpdateExperimentVariant
 
 console.log(example)

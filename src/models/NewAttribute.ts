@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface NewAttribute {
     /**
      * The name of the entity that can have this attribute. When creating or updating the entities of a given type, you can include an `attributes` object with keys corresponding to the `name` of the custom attributes for that type.
-     * @type {string}
+     * @type {NewAttributeEntityEnum}
      * @memberof NewAttribute
      */
     entity: NewAttributeEntityEnum;
@@ -45,7 +45,7 @@ export interface NewAttribute {
     title: string;
     /**
      * The data type of the attribute, a `time` attribute must be sent as a string that conforms to the [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) timestamp format.
-     * @type {string}
+     * @type {NewAttributeTypeEnum}
      * @memberof NewAttribute
      */
     type: NewAttributeTypeEnum;
@@ -98,7 +98,7 @@ export interface NewAttribute {
      * 
      * **Note:** This only applies to attributes associated with the `CartItem` entity.
      * 
-     * @type {Array<string>}
+     * @type {Array<NewAttributeAllowedSubscriptionsEnum>}
      * @memberof NewAttribute
      */
     allowedSubscriptions?: Array<NewAttributeAllowedSubscriptionsEnum>;
@@ -117,6 +117,7 @@ export const NewAttributeEntityEnum = {
     Coupon: 'Coupon',
     Event: 'Event',
     Giveaway: 'Giveaway',
+    LoyaltyCard: 'LoyaltyCard',
     Referral: 'Referral',
     Store: 'Store'
 } as const;

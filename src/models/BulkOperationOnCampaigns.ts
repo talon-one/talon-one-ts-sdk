@@ -22,7 +22,7 @@ export interface BulkOperationOnCampaigns {
     /**
      * The operation to perform on the specified campaign IDs.
      * 
-     * @type {string}
+     * @type {BulkOperationOnCampaignsOperationEnum}
      * @memberof BulkOperationOnCampaigns
      */
     operation: BulkOperationOnCampaignsOperationEnum;

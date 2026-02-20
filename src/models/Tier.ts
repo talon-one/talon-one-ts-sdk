@@ -48,7 +48,7 @@ export interface Tier {
      *  - `one_down`: If the customer doesn't have enough points to stay in the current tier, they are downgraded by one tier.
      *  - `balance_based`: The customer's tier is reevaluated based on the amount of active points they have at the moment.
      * 
-     * @type {string}
+     * @type {TierDowngradePolicyEnum}
      * @memberof Tier
      */
     downgradePolicy?: TierDowngradePolicyEnum;

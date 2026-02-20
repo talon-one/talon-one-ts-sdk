@@ -35,7 +35,7 @@ export interface NewApplicationAPIKey {
      * The third-party platform the API key is valid for. Use `none` for a generic API key to be used
      * from your own integration layer.
      * 
-     * @type {string}
+     * @type {NewApplicationAPIKeyPlatformEnum}
      * @memberof NewApplicationAPIKey
      */
     platform?: NewApplicationAPIKeyPlatformEnum;
@@ -46,7 +46,7 @@ export interface NewApplicationAPIKey {
      * 
      * When using the _Update customer profile_ endpoint with a staging API key, the query parameter `runRuleEngine` must be `true`.
      * 
-     * @type {string}
+     * @type {NewApplicationAPIKeyTypeEnum}
      * @memberof NewApplicationAPIKey
      */
     type?: NewApplicationAPIKeyTypeEnum;

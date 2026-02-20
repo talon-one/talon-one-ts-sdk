@@ -51,7 +51,7 @@ export interface OutgoingIntegrationTemplateWithConfigurationDetails {
     payload: string;
     /**
      * API method for this webhook.
-     * @type {string}
+     * @type {OutgoingIntegrationTemplateWithConfigurationDetailsMethodEnum}
      * @memberof OutgoingIntegrationTemplateWithConfigurationDetails
      */
     method: OutgoingIntegrationTemplateWithConfigurationDetailsMethodEnum;

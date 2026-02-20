@@ -27,7 +27,7 @@ export interface CardExpiringPointsNotificationTrigger {
     amount: number;
     /**
      * Notification period indicated by a letter; "w" means week, "d" means day.
-     * @type {string}
+     * @type {CardExpiringPointsNotificationTriggerPeriodEnum}
      * @memberof CardExpiringPointsNotificationTrigger
      */
     period: CardExpiringPointsNotificationTriggerPeriodEnum;

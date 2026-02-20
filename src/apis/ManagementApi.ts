@@ -139,7 +139,7 @@ import type {
   UpdateCollection,
   UpdateCoupon,
   UpdateCouponBatch,
-  UpdateLoyaltyCard,
+  UpdateLoyaltyCardRequest,
   UpdateReferral,
   UpdateUser,
   User,
@@ -394,8 +394,8 @@ import {
     UpdateCouponToJSON,
     UpdateCouponBatchFromJSON,
     UpdateCouponBatchToJSON,
-    UpdateLoyaltyCardFromJSON,
-    UpdateLoyaltyCardToJSON,
+    UpdateLoyaltyCardRequestFromJSON,
+    UpdateLoyaltyCardRequestToJSON,
     UpdateReferralFromJSON,
     UpdateReferralToJSON,
     UpdateUserFromJSON,
@@ -1537,10 +1537,10 @@ export interface UpdateCouponBatchRequest {
     updateCouponBatch: UpdateCouponBatch;
 }
 
-export interface UpdateLoyaltyCardRequest {
+export interface UpdateLoyaltyCardOperationRequest {
     loyaltyProgramId: number;
     loyaltyCardId: string;
-    updateLoyaltyCard: UpdateLoyaltyCard;
+    updateLoyaltyCardRequest: UpdateLoyaltyCardRequest;
 }
 
 export interface UpdateReferralRequest {
@@ -1572,10 +1572,9 @@ export interface UpdateUserRequest {
 export class ManagementApi extends runtime.BaseAPI {
 
     /**
-     * Enable a [disabled user](https://docs.talon.one/docs/product/account/account-settings/managing-users#disabling-a-user) by their email address. 
-     * Enable user by email address
+     * Creates request options for activateUserByEmail without sending the request
      */
-    async activateUserByEmailRaw(requestParameters: ActivateUserByEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async activateUserByEmailRequestOpts(requestParameters: ActivateUserByEmailRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['activateUserRequest'] == null) {
             throw new runtime.RequiredError(
                 'activateUserRequest',
@@ -1604,13 +1603,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/users/activate`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ActivateUserRequestToJSON(requestParameters['activateUserRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Enable a [disabled user](https://docs.talon.one/docs/product/account/account-settings/managing-users#disabling-a-user) by their email address. 
+     * Enable user by email address
+     */
+    async activateUserByEmailRaw(requestParameters: ActivateUserByEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.activateUserByEmailRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1624,10 +1632,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add points to the given loyalty card in the specified card-based loyalty program. 
-     * Add points to card
+     * Creates request options for addLoyaltyCardPoints without sending the request
      */
-    async addLoyaltyCardPointsRaw(requestParameters: AddLoyaltyCardPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addLoyaltyCardPointsRequestOpts(requestParameters: AddLoyaltyCardPointsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -1672,13 +1679,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: AddLoyaltyPointsToJSON(requestParameters['addLoyaltyPoints']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Add points to the given loyalty card in the specified card-based loyalty program. 
+     * Add points to card
+     */
+    async addLoyaltyCardPointsRaw(requestParameters: AddLoyaltyCardPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.addLoyaltyCardPointsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1692,10 +1708,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add points in the specified loyalty program for the given customer.  To get the `integrationId` of the profile from a `sessionId`, use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
-     * Add points to customer profile
+     * Creates request options for addLoyaltyPoints without sending the request
      */
-    async addLoyaltyPointsRaw(requestParameters: AddLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addLoyaltyPointsRequestOpts(requestParameters: AddLoyaltyPointsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -1740,13 +1755,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: AddLoyaltyPointsToJSON(requestParameters['addLoyaltyPoints']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Add points in the specified loyalty program for the given customer.  To get the `integrationId` of the profile from a `sessionId`, use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
+     * Add points to customer profile
+     */
+    async addLoyaltyPointsRaw(requestParameters: AddLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.addLoyaltyPointsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1760,10 +1784,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Copy the campaign into all specified Applications.
-     * Copy the campaign into the specified Application
+     * Creates request options for copyCampaignToApplications without sending the request
      */
-    async copyCampaignToApplicationsRaw(requestParameters: CopyCampaignToApplicationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCampaigns200Response>> {
+    async copyCampaignToApplicationsRequestOpts(requestParameters: CopyCampaignToApplicationsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -1808,13 +1831,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CampaignCopyToJSON(requestParameters['campaignCopy']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Copy the campaign into all specified Applications.
+     * Copy the campaign into the specified Application
+     */
+    async copyCampaignToApplicationsRaw(requestParameters: CopyCampaignToApplicationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCampaigns200Response>> {
+        const requestOptions = await this.copyCampaignToApplicationsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCampaigns200ResponseFromJSON(jsonValue));
     }
@@ -1829,10 +1861,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create an account-level collection.
-     * Create account-level collection
+     * Creates request options for createAccountCollection without sending the request
      */
-    async createAccountCollectionRaw(requestParameters: CreateAccountCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Collection>> {
+    async createAccountCollectionRequestOpts(requestParameters: CreateAccountCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['newCollection'] == null) {
             throw new runtime.RequiredError(
                 'newCollection',
@@ -1861,13 +1892,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/collections`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewCollectionToJSON(requestParameters['newCollection']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create an account-level collection.
+     * Create account-level collection
+     */
+    async createAccountCollectionRaw(requestParameters: CreateAccountCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Collection>> {
+        const requestOptions = await this.createAccountCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CollectionFromJSON(jsonValue));
     }
@@ -1882,10 +1922,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new achievement in a specific campaign.
-     * Create achievement
+     * Creates request options for createAchievement without sending the request
      */
-    async createAchievementRaw(requestParameters: CreateAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Achievement>> {
+    async createAchievementRequestOpts(requestParameters: CreateAchievementRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -1930,13 +1969,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateAchievementToJSON(requestParameters['createAchievement']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a new achievement in a specific campaign.
+     * Create achievement
+     */
+    async createAchievementRaw(requestParameters: CreateAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Achievement>> {
+        const requestOptions = await this.createAchievementRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AchievementFromJSON(jsonValue));
     }
@@ -1951,10 +1999,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create an [additional cost](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).  These additional costs are shared across all applications in your account, and are never required. 
-     * Create additional cost
+     * Creates request options for createAdditionalCost without sending the request
      */
-    async createAdditionalCostRaw(requestParameters: CreateAdditionalCostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountAdditionalCost>> {
+    async createAdditionalCostRequestOpts(requestParameters: CreateAdditionalCostRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['newAdditionalCost'] == null) {
             throw new runtime.RequiredError(
                 'newAdditionalCost',
@@ -1983,13 +2030,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/additional_costs`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewAdditionalCostToJSON(requestParameters['newAdditionalCost']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create an [additional cost](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).  These additional costs are shared across all applications in your account, and are never required. 
+     * Create additional cost
+     */
+    async createAdditionalCostRaw(requestParameters: CreateAdditionalCostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountAdditionalCost>> {
+        const requestOptions = await this.createAdditionalCostRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AccountAdditionalCostFromJSON(jsonValue));
     }
@@ -2004,10 +2060,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a _custom attribute_ in this account. [Custom attributes](https://docs.talon.one/docs/dev/concepts/attributes) allow you to add data to Talon.One domain entities like campaigns, coupons, customers and so on.  These attributes can then be given values when creating/updating these entities, and these values can be used in your campaign rules.  For example, you could define a `zipCode` field for customer sessions, and add a rule to your campaign that only allows certain ZIP codes.  These attributes are shared across all Applications in your account and are never required. 
-     * Create custom attribute
+     * Creates request options for createAttribute without sending the request
      */
-    async createAttributeRaw(requestParameters: CreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Attribute>> {
+    async createAttributeRequestOpts(requestParameters: CreateAttributeRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['newAttribute'] == null) {
             throw new runtime.RequiredError(
                 'newAttribute',
@@ -2036,13 +2091,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/attributes`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewAttributeToJSON(requestParameters['newAttribute']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a _custom attribute_ in this account. [Custom attributes](https://docs.talon.one/docs/dev/concepts/attributes) allow you to add data to Talon.One domain entities like campaigns, coupons, customers and so on.  These attributes can then be given values when creating/updating these entities, and these values can be used in your campaign rules.  For example, you could define a `zipCode` field for customer sessions, and add a rule to your campaign that only allows certain ZIP codes.  These attributes are shared across all Applications in your account and are never required. 
+     * Create custom attribute
+     */
+    async createAttributeRaw(requestParameters: CreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Attribute>> {
+        const requestOptions = await this.createAttributeRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AttributeFromJSON(jsonValue));
     }
@@ -2057,10 +2121,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a batch of loyalty cards in a specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types).  Customers can use loyalty cards to collect and spend loyalty points.  **Important:**  - The specified card-based loyalty program must have a defined card code format that is used to generate the loyalty card codes. - Trying to create more than 20,000 loyalty cards in a single request returns an error message with a `400` status code. 
-     * Create loyalty cards
+     * Creates request options for createBatchLoyaltyCards without sending the request
      */
-    async createBatchLoyaltyCardsRaw(requestParameters: CreateBatchLoyaltyCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCardBatchResponse>> {
+    async createBatchLoyaltyCardsRequestOpts(requestParameters: CreateBatchLoyaltyCardsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -2097,13 +2160,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/batch`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: LoyaltyCardBatchToJSON(requestParameters['loyaltyCardBatch']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a batch of loyalty cards in a specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types).  Customers can use loyalty cards to collect and spend loyalty points.  **Important:**  - The specified card-based loyalty program must have a defined card code format that is used to generate the loyalty card codes. - Trying to create more than 20,000 loyalty cards in a single request returns an error message with a `400` status code. 
+     * Create loyalty cards
+     */
+    async createBatchLoyaltyCardsRaw(requestParameters: CreateBatchLoyaltyCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCardBatchResponse>> {
+        const requestOptions = await this.createBatchLoyaltyCardsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyCardBatchResponseFromJSON(jsonValue));
     }
@@ -2118,10 +2190,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Use the campaign template referenced in the request body to create a new campaign in one of the connected Applications.  If the template was created from a campaign with rules referencing [campaign collections](https://docs.talon.one/docs/product/campaigns/managing-collections), the corresponding collections for the new campaign are created automatically. 
-     * Create campaign from campaign template
+     * Creates request options for createCampaignFromTemplate without sending the request
      */
-    async createCampaignFromTemplateRaw(requestParameters: CreateCampaignFromTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTemplateCampaignResponse>> {
+    async createCampaignFromTemplateRequestOpts(requestParameters: CreateCampaignFromTemplateRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -2158,13 +2229,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/create_campaign_from_template`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateTemplateCampaignToJSON(requestParameters['createTemplateCampaign']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Use the campaign template referenced in the request body to create a new campaign in one of the connected Applications.  If the template was created from a campaign with rules referencing [campaign collections](https://docs.talon.one/docs/product/campaigns/managing-collections), the corresponding collections for the new campaign are created automatically. 
+     * Create campaign from campaign template
+     */
+    async createCampaignFromTemplateRaw(requestParameters: CreateCampaignFromTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTemplateCampaignResponse>> {
+        const requestOptions = await this.createCampaignFromTemplateRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateTemplateCampaignResponseFromJSON(jsonValue));
     }
@@ -2179,10 +2259,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new store budget for a given campaign.
-     * Create campaign store budget
+     * Creates request options for createCampaignStoreBudget without sending the request
      */
-    async createCampaignStoreBudgetRaw(requestParameters: CreateCampaignStoreBudgetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async createCampaignStoreBudgetRequestOpts(requestParameters: CreateCampaignStoreBudgetRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -2227,13 +2306,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewCampaignStoreBudgetToJSON(requestParameters['newCampaignStoreBudget']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a new store budget for a given campaign.
+     * Create campaign store budget
+     */
+    async createCampaignStoreBudgetRaw(requestParameters: CreateCampaignStoreBudgetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.createCampaignStoreBudgetRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -2247,10 +2335,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a campaign-level collection in a given campaign.
-     * Create campaign-level collection
+     * Creates request options for createCollection without sending the request
      */
-    async createCollectionRaw(requestParameters: CreateCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Collection>> {
+    async createCollectionRequestOpts(requestParameters: CreateCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -2295,13 +2382,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewCampaignCollectionToJSON(requestParameters['newCampaignCollection']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a campaign-level collection in a given campaign.
+     * Create campaign-level collection
+     */
+    async createCollectionRaw(requestParameters: CreateCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Collection>> {
+        const requestOptions = await this.createCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CollectionFromJSON(jsonValue));
     }
@@ -2316,10 +2412,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create coupons according to some pattern. Up to 20.000 coupons can be created without a unique prefix. When a unique prefix is provided, up to 200.000 coupons can be created.
-     * Create coupons
+     * Creates request options for createCoupons without sending the request
      */
-    async createCouponsRaw(requestParameters: CreateCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCoupons200Response>> {
+    async createCouponsRequestOpts(requestParameters: CreateCouponsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -2368,13 +2463,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewCouponsToJSON(requestParameters['newCoupons']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create coupons according to some pattern. Up to 20.000 coupons can be created without a unique prefix. When a unique prefix is provided, up to 200.000 coupons can be created.
+     * Create coupons
+     */
+    async createCouponsRaw(requestParameters: CreateCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCoupons200Response>> {
+        const requestOptions = await this.createCouponsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateCoupons200ResponseFromJSON(jsonValue));
     }
@@ -2396,10 +2500,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create up to 5,000,000 coupons asynchronously. You should typically use this enpdoint when you create at least 20,001 coupons. You receive an email when the creation is complete.  If you want to create less than 20,001 coupons, you can use the [Create coupons](https://docs.talon.one/management-api#tag/Coupons/operation/createCoupons) endpoint. 
-     * Create coupons asynchronously
+     * Creates request options for createCouponsAsync without sending the request
      */
-    async createCouponsAsyncRaw(requestParameters: CreateCouponsAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AsyncCouponCreationResponse>> {
+    async createCouponsAsyncRequestOpts(requestParameters: CreateCouponsAsyncRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -2444,13 +2547,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewCouponCreationJobToJSON(requestParameters['newCouponCreationJob']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create up to 5,000,000 coupons asynchronously. You should typically use this enpdoint when you create at least 20,001 coupons. You receive an email when the creation is complete.  If you want to create less than 20,001 coupons, you can use the [Create coupons](https://docs.talon.one/management-api#tag/Coupons/operation/createCoupons) endpoint. 
+     * Create coupons asynchronously
+     */
+    async createCouponsAsyncRaw(requestParameters: CreateCouponsAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AsyncCouponCreationResponse>> {
+        const requestOptions = await this.createCouponsAsyncRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AsyncCouponCreationResponseFromJSON(jsonValue));
     }
@@ -2465,10 +2577,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * This endpoint handles creating a job to delete coupons asynchronously. 
-     * Creates a coupon deletion job
+     * Creates request options for createCouponsDeletionJob without sending the request
      */
-    async createCouponsDeletionJobRaw(requestParameters: CreateCouponsDeletionJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AsyncCouponDeletionJobResponse>> {
+    async createCouponsDeletionJobRequestOpts(requestParameters: CreateCouponsDeletionJobRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -2513,13 +2624,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewCouponDeletionJobToJSON(requestParameters['newCouponDeletionJob']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * This endpoint handles creating a job to delete coupons asynchronously. 
+     * Creates a coupon deletion job
+     */
+    async createCouponsDeletionJobRaw(requestParameters: CreateCouponsDeletionJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AsyncCouponDeletionJobResponse>> {
+        const requestOptions = await this.createCouponsDeletionJobRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AsyncCouponDeletionJobResponseFromJSON(jsonValue));
     }
@@ -2534,10 +2654,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create coupons according to some pattern for up to 1000 recipients.
-     * Create coupons for multiple recipients
+     * Creates request options for createCouponsForMultipleRecipients without sending the request
      */
-    async createCouponsForMultipleRecipientsRaw(requestParameters: CreateCouponsForMultipleRecipientsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCoupons200Response>> {
+    async createCouponsForMultipleRecipientsRequestOpts(requestParameters: CreateCouponsForMultipleRecipientsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -2586,13 +2705,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewCouponsForMultipleRecipientsToJSON(requestParameters['newCouponsForMultipleRecipients']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create coupons according to some pattern for up to 1000 recipients.
+     * Create coupons for multiple recipients
+     */
+    async createCouponsForMultipleRecipientsRaw(requestParameters: CreateCouponsForMultipleRecipientsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCoupons200Response>> {
+        const requestOptions = await this.createCouponsForMultipleRecipientsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateCoupons200ResponseFromJSON(jsonValue));
     }
@@ -2614,10 +2742,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Resend an email invitation to an existing user.  **Note:** The invitation token is valid for 24 hours after the email has been sent. 
-     * Resend invitation email
+     * Creates request options for createInviteEmail without sending the request
      */
-    async createInviteEmailRaw(requestParameters: CreateInviteEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NewInviteEmail>> {
+    async createInviteEmailRequestOpts(requestParameters: CreateInviteEmailRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['newInviteEmail'] == null) {
             throw new runtime.RequiredError(
                 'newInviteEmail',
@@ -2646,13 +2773,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/invite_emails`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewInviteEmailToJSON(requestParameters['newInviteEmail']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Resend an email invitation to an existing user.  **Note:** The invitation token is valid for 24 hours after the email has been sent. 
+     * Resend invitation email
+     */
+    async createInviteEmailRaw(requestParameters: CreateInviteEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NewInviteEmail>> {
+        const requestOptions = await this.createInviteEmailRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NewInviteEmailFromJSON(jsonValue));
     }
@@ -2667,10 +2803,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new user in the account and send an invitation to their email address.  **Note**: The invitation token is valid for 24 hours after the email has been sent. You can resend an invitation to a user with the [Resend invitation email](https://docs.talon.one/management-api#tag/Accounts-and-users/operation/createInviteEmail) endpoint. 
-     * Invite user
+     * Creates request options for createInviteV2 without sending the request
      */
-    async createInviteV2Raw(requestParameters: CreateInviteV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+    async createInviteV2RequestOpts(requestParameters: CreateInviteV2Request): Promise<runtime.RequestOpts> {
         if (requestParameters['newInvitation'] == null) {
             throw new runtime.RequiredError(
                 'newInvitation',
@@ -2699,13 +2834,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v2/invites`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewInvitationToJSON(requestParameters['newInvitation']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a new user in the account and send an invitation to their email address.  **Note**: The invitation token is valid for 24 hours after the email has been sent. You can resend an invitation to a user with the [Resend invitation email](https://docs.talon.one/management-api#tag/Accounts-and-users/operation/createInviteEmail) endpoint. 
+     * Invite user
+     */
+    async createInviteV2Raw(requestParameters: CreateInviteV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+        const requestOptions = await this.createInviteV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserFromJSON(jsonValue));
     }
@@ -2720,10 +2864,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Send an email with a password recovery link to the email address of an existing account.  **Note:** The password recovery link expires 30 minutes after this endpoint is triggered. 
-     * Request a password reset
+     * Creates request options for createPasswordRecoveryEmail without sending the request
      */
-    async createPasswordRecoveryEmailRaw(requestParameters: CreatePasswordRecoveryEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NewPasswordEmail>> {
+    async createPasswordRecoveryEmailRequestOpts(requestParameters: CreatePasswordRecoveryEmailRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['newPasswordEmail'] == null) {
             throw new runtime.RequiredError(
                 'newPasswordEmail',
@@ -2752,13 +2895,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/password_recovery_emails`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewPasswordEmailToJSON(requestParameters['newPasswordEmail']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Send an email with a password recovery link to the email address of an existing account.  **Note:** The password recovery link expires 30 minutes after this endpoint is triggered. 
+     * Request a password reset
+     */
+    async createPasswordRecoveryEmailRaw(requestParameters: CreatePasswordRecoveryEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NewPasswordEmail>> {
+        const requestOptions = await this.createPasswordRecoveryEmailRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NewPasswordEmailFromJSON(jsonValue));
     }
@@ -2773,10 +2925,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a session to use the Management API endpoints. Use the value of the `token` property provided in the response as bearer token in other API calls.  A token is valid for 3 months. In accordance with best pratices, use your generated token for all your API requests. Do **not** regenerate a token for each request.  This endpoint has a rate limit of 3 to 6 requests per second per account, depending on your setup.  <div class=\"redoc-section\">   <p class=\"title\">Granular API key</p>   Instead of using a session, you can also use the <a href=\"https://docs.talon.one/docs/product/account/dev-tools/managing-mapi-keys\">Management API key feature</a>   in the Campaign Manager to decide which endpoints can be used with a given key. </div> 
-     * Create session
+     * Creates request options for createSession without sending the request
      */
-    async createSessionRaw(requestParameters: CreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Session>> {
+    async createSessionRequestOpts(requestParameters: CreateSessionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loginParams'] == null) {
             throw new runtime.RequiredError(
                 'loginParams',
@@ -2805,13 +2956,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/sessions`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: LoginParamsToJSON(requestParameters['loginParams']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a session to use the Management API endpoints. Use the value of the `token` property provided in the response as bearer token in other API calls.  A token is valid for 3 months. In accordance with best pratices, use your generated token for all your API requests. Do **not** regenerate a token for each request.  This endpoint has a rate limit of 3 to 6 requests per second per account, depending on your setup.  <div class=\"redoc-section\">   <p class=\"title\">Granular API key</p>   Instead of using a session, you can also use the <a href=\"https://docs.talon.one/docs/product/account/dev-tools/managing-mapi-keys\">Management API key feature</a>   in the Campaign Manager to decide which endpoints can be used with a given key. </div> 
+     * Create session
+     */
+    async createSessionRaw(requestParameters: CreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Session>> {
+        const requestOptions = await this.createSessionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SessionFromJSON(jsonValue));
     }
@@ -2826,10 +2986,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new store in a specific Application.
-     * Create store
+     * Creates request options for createStore without sending the request
      */
-    async createStoreRaw(requestParameters: CreateStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Store>> {
+    async createStoreRequestOpts(requestParameters: CreateStoreRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -2866,13 +3025,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/stores`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewStoreToJSON(requestParameters['newStore']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a new store in a specific Application.
+     * Create store
+     */
+    async createStoreRaw(requestParameters: CreateStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Store>> {
+        const requestOptions = await this.createStoreRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => StoreFromJSON(jsonValue));
     }
@@ -2887,10 +3055,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * [Disable a specific user](https://docs.talon.one/docs/product/account/account-settings/managing-users#disabling-a-user) by their email address. 
-     * Disable user by email address
+     * Creates request options for deactivateUserByEmail without sending the request
      */
-    async deactivateUserByEmailRaw(requestParameters: DeactivateUserByEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deactivateUserByEmailRequestOpts(requestParameters: DeactivateUserByEmailRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['deactivateUserRequest'] == null) {
             throw new runtime.RequiredError(
                 'deactivateUserRequest',
@@ -2919,13 +3086,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/users/deactivate`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: DeactivateUserRequestToJSON(requestParameters['deactivateUserRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * [Disable a specific user](https://docs.talon.one/docs/product/account/account-settings/managing-users#disabling-a-user) by their email address. 
+     * Disable user by email address
+     */
+    async deactivateUserByEmailRaw(requestParameters: DeactivateUserByEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deactivateUserByEmailRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -2939,10 +3115,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deduct points from the given loyalty card in the specified card-based loyalty program. 
-     * Deduct points from card
+     * Creates request options for deductLoyaltyCardPoints without sending the request
      */
-    async deductLoyaltyCardPointsRaw(requestParameters: DeductLoyaltyCardPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deductLoyaltyCardPointsRequestOpts(requestParameters: DeductLoyaltyCardPointsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -2987,13 +3162,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: DeductLoyaltyPointsToJSON(requestParameters['deductLoyaltyPoints']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Deduct points from the given loyalty card in the specified card-based loyalty program. 
+     * Deduct points from card
+     */
+    async deductLoyaltyCardPointsRaw(requestParameters: DeductLoyaltyCardPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deductLoyaltyCardPointsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3007,10 +3191,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a given account-level collection.
-     * Delete account-level collection
+     * Creates request options for deleteAccountCollection without sending the request
      */
-    async deleteAccountCollectionRaw(requestParameters: DeleteAccountCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAccountCollectionRequestOpts(requestParameters: DeleteAccountCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['collectionId'] == null) {
             throw new runtime.RequiredError(
                 'collectionId',
@@ -3038,12 +3221,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/collections/{collectionId}`;
         urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete a given account-level collection.
+     * Delete account-level collection
+     */
+    async deleteAccountCollectionRaw(requestParameters: DeleteAccountCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteAccountCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3057,10 +3249,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete the specified achievement.
-     * Delete achievement
+     * Creates request options for deleteAchievement without sending the request
      */
-    async deleteAchievementRaw(requestParameters: DeleteAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAchievementRequestOpts(requestParameters: DeleteAchievementRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -3104,12 +3295,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
         urlPath = urlPath.replace(`{${"achievementId"}}`, encodeURIComponent(String(requestParameters['achievementId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete the specified achievement.
+     * Delete achievement
+     */
+    async deleteAchievementRaw(requestParameters: DeleteAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteAchievementRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3123,10 +3323,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete the given campaign.
-     * Delete campaign
+     * Creates request options for deleteCampaign without sending the request
      */
-    async deleteCampaignRaw(requestParameters: DeleteCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCampaignRequestOpts(requestParameters: DeleteCampaignRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -3162,12 +3361,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete the given campaign.
+     * Delete campaign
+     */
+    async deleteCampaignRaw(requestParameters: DeleteCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteCampaignRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3181,10 +3389,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete the store budgets for a given campaign.
-     * Delete campaign store budgets
+     * Creates request options for deleteCampaignStoreBudgets without sending the request
      */
-    async deleteCampaignStoreBudgetsRaw(requestParameters: DeleteCampaignStoreBudgetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCampaignStoreBudgetsRequestOpts(requestParameters: DeleteCampaignStoreBudgetsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -3228,12 +3435,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete the store budgets for a given campaign.
+     * Delete campaign store budgets
+     */
+    async deleteCampaignStoreBudgetsRaw(requestParameters: DeleteCampaignStoreBudgetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteCampaignStoreBudgetsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3247,10 +3463,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a given campaign-level collection.
-     * Delete campaign-level collection
+     * Creates request options for deleteCollection without sending the request
      */
-    async deleteCollectionRaw(requestParameters: DeleteCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCollectionRequestOpts(requestParameters: DeleteCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -3294,12 +3509,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
         urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete a given campaign-level collection.
+     * Delete campaign-level collection
+     */
+    async deleteCollectionRaw(requestParameters: DeleteCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3313,10 +3537,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete the specified coupon.
-     * Delete coupon
+     * Creates request options for deleteCoupon without sending the request
      */
-    async deleteCouponRaw(requestParameters: DeleteCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCouponRequestOpts(requestParameters: DeleteCouponRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -3360,12 +3583,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
         urlPath = urlPath.replace(`{${"couponId"}}`, encodeURIComponent(String(requestParameters['couponId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete the specified coupon.
+     * Delete coupon
+     */
+    async deleteCouponRaw(requestParameters: DeleteCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteCouponRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3379,10 +3611,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes all the coupons matching the specified criteria.
-     * Delete coupons
+     * Creates request options for deleteCoupons without sending the request
      */
-    async deleteCouponsRaw(requestParameters: DeleteCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCouponsRequestOpts(requestParameters: DeleteCouponsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -3470,12 +3701,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Deletes all the coupons matching the specified criteria.
+     * Delete coupons
+     */
+    async deleteCouponsRaw(requestParameters: DeleteCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteCouponsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3489,10 +3729,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete the given loyalty card.
-     * Delete loyalty card
+     * Creates request options for deleteLoyaltyCard without sending the request
      */
-    async deleteLoyaltyCardRaw(requestParameters: DeleteLoyaltyCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteLoyaltyCardRequestOpts(requestParameters: DeleteLoyaltyCardRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -3528,12 +3767,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete the given loyalty card.
+     * Delete loyalty card
+     */
+    async deleteLoyaltyCardRaw(requestParameters: DeleteLoyaltyCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteLoyaltyCardRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3547,10 +3795,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete the specified referral.
-     * Delete referral
+     * Creates request options for deleteReferral without sending the request
      */
-    async deleteReferralRaw(requestParameters: DeleteReferralRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteReferralRequestOpts(requestParameters: DeleteReferralRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -3594,12 +3841,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
         urlPath = urlPath.replace(`{${"referralId"}}`, encodeURIComponent(String(requestParameters['referralId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete the specified referral.
+     * Delete referral
+     */
+    async deleteReferralRaw(requestParameters: DeleteReferralRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteReferralRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3613,10 +3869,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete the specified store.
-     * Delete store
+     * Creates request options for deleteStore without sending the request
      */
-    async deleteStoreRaw(requestParameters: DeleteStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteStoreRequestOpts(requestParameters: DeleteStoreRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -3652,12 +3907,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"storeId"}}`, encodeURIComponent(String(requestParameters['storeId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete the specified store.
+     * Delete store
+     */
+    async deleteStoreRaw(requestParameters: DeleteStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteStoreRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3671,10 +3935,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a specific user.
-     * Delete user
+     * Creates request options for deleteUser without sending the request
      */
-    async deleteUserRaw(requestParameters: DeleteUserApiRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteUserRequestOpts(requestParameters: DeleteUserApiRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -3702,12 +3965,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/users/{userId}`;
         urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete a specific user.
+     * Delete user
+     */
+    async deleteUserRaw(requestParameters: DeleteUserApiRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3721,10 +3993,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * [Delete a specific user](https://docs.talon.one/docs/product/account/account-settings/managing-users#deleting-a-user) by their email address. 
-     * Delete user by email address
+     * Creates request options for deleteUserByEmail without sending the request
      */
-    async deleteUserByEmailRaw(requestParameters: DeleteUserByEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteUserByEmailRequestOpts(requestParameters: DeleteUserByEmailRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['deleteUserRequest'] == null) {
             throw new runtime.RequiredError(
                 'deleteUserRequest',
@@ -3753,13 +4024,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/users/delete`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: DeleteUserRequestToJSON(requestParameters['deleteUserRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * [Delete a specific user](https://docs.talon.one/docs/product/account/account-settings/managing-users#deleting-a-user) by their email address. 
+     * Delete user by email address
+     */
+    async deleteUserByEmailRaw(requestParameters: DeleteUserByEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteUserByEmailRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3773,10 +4053,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Destroys the session.
-     * Destroy session
+     * Creates request options for destroySession without sending the request
      */
-    async destroySessionRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async destroySessionRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -3796,12 +4075,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/sessions`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Destroys the session.
+     * Destroy session
+     */
+    async destroySessionRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.destroySessionRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3815,10 +4103,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Disconnect the stores linked to a specific campaign.
-     * Disconnect stores
+     * Creates request options for disconnectCampaignStores without sending the request
      */
-    async disconnectCampaignStoresRaw(requestParameters: DisconnectCampaignStoresRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async disconnectCampaignStoresRequestOpts(requestParameters: DisconnectCampaignStoresRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -3854,12 +4141,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Disconnect the stores linked to a specific campaign.
+     * Disconnect stores
+     */
+    async disconnectCampaignStoresRaw(requestParameters: DisconnectCampaignStoresRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.disconnectCampaignStoresRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -3873,10 +4169,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing items from a given account-level collection.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/). 
-     * Export account-level collection\'s items
+     * Creates request options for exportAccountCollectionItems without sending the request
      */
-    async exportAccountCollectionItemsRaw(requestParameters: ExportAccountCollectionItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportAccountCollectionItemsRequestOpts(requestParameters: ExportAccountCollectionItemsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['collectionId'] == null) {
             throw new runtime.RequiredError(
                 'collectionId',
@@ -3904,12 +4199,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/collections/{collectionId}/export`;
         urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing items from a given account-level collection.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/). 
+     * Export account-level collection\'s items
+     */
+    async exportAccountCollectionItemsRaw(requestParameters: ExportAccountCollectionItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportAccountCollectionItemsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -3928,10 +4232,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing a list of all the customers who have participated in and are currently participating in the given achievement.  The CSV file contains the following columns: - `profileIntegrationID`: The integration ID of the customer profile participating in the achievement. - `title`: The display name of the achievement in the Campaign Manager. - `target`: The required number of actions or the transactional milestone to complete the achievement. - `progress`: The current progress of the customer in the achievement. - `status`: The status of the achievement. Can be one of: [\'inprogress\', \'completed\', \'expired\']. - `startDate`: The date on which the customer profile started the achievement in RFC3339. - `endDate`: The date on which the achievement ends and resets for the customer profile in RFC3339. - `completionDate`: The date on which the customer profile completed the achievement in RFC3339. 
-     * Export achievement customer data
+     * Creates request options for exportAchievements without sending the request
      */
-    async exportAchievementsRaw(requestParameters: ExportAchievementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportAchievementsRequestOpts(requestParameters: ExportAchievementsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -3975,12 +4278,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
         urlPath = urlPath.replace(`{${"achievementId"}}`, encodeURIComponent(String(requestParameters['achievementId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing a list of all the customers who have participated in and are currently participating in the given achievement.  The CSV file contains the following columns: - `profileIntegrationID`: The integration ID of the customer profile participating in the achievement. - `title`: The display name of the achievement in the Campaign Manager. - `target`: The required number of actions or the transactional milestone to complete the achievement. - `progress`: The current progress of the customer in the achievement. - `status`: The status of the achievement. Can be one of: [\'inprogress\', \'completed\', \'expired\']. - `startDate`: The date on which the customer profile started the achievement in RFC3339. - `endDate`: The date on which the achievement ends and resets for the customer profile in RFC3339. - `completionDate`: The date on which the customer profile completed the achievement in RFC3339. 
+     * Export achievement customer data
+     */
+    async exportAchievementsRaw(requestParameters: ExportAchievementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportAchievementsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -3999,10 +4311,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the integration IDs of the members of an audience.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The file contains the following column: - `profileintegrationid`: The integration ID of the customer profile. 
-     * Export audience members
+     * Creates request options for exportAudiencesMemberships without sending the request
      */
-    async exportAudiencesMembershipsRaw(requestParameters: ExportAudiencesMembershipsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportAudiencesMembershipsRequestOpts(requestParameters: ExportAudiencesMembershipsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['audienceId'] == null) {
             throw new runtime.RequiredError(
                 'audienceId',
@@ -4030,12 +4341,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/audiences/{audienceId}/memberships/export`;
         urlPath = urlPath.replace(`{${"audienceId"}}`, encodeURIComponent(String(requestParameters['audienceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing the integration IDs of the members of an audience.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The file contains the following column: - `profileintegrationid`: The integration ID of the customer profile. 
+     * Export audience members
+     */
+    async exportAudiencesMembershipsRaw(requestParameters: ExportAudiencesMembershipsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportAudiencesMembershipsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -4054,10 +4374,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the store budgets for a given campaign.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns:  - `store_integration_id`: The identifier of the store. - `limit`: The budget limit for the store. 
-     * Export campaign store budgets
+     * Creates request options for exportCampaignStoreBudgets without sending the request
      */
-    async exportCampaignStoreBudgetsRaw(requestParameters: ExportCampaignStoreBudgetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportCampaignStoreBudgetsRequestOpts(requestParameters: ExportCampaignStoreBudgetsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -4101,12 +4420,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing the store budgets for a given campaign.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns:  - `store_integration_id`: The identifier of the store. - `limit`: The budget limit for the store. 
+     * Export campaign store budgets
+     */
+    async exportCampaignStoreBudgetsRaw(requestParameters: ExportCampaignStoreBudgetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportCampaignStoreBudgetsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -4125,10 +4453,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the stores linked to a specific campaign.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following column:  - `store_integration_id`: The identifier of the store. 
-     * Export stores
+     * Creates request options for exportCampaignStores without sending the request
      */
-    async exportCampaignStoresRaw(requestParameters: ExportCampaignStoresRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportCampaignStoresRequestOpts(requestParameters: ExportCampaignStoresRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -4164,12 +4491,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing the stores linked to a specific campaign.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following column:  - `store_integration_id`: The identifier of the store. 
+     * Export stores
+     */
+    async exportCampaignStoresRaw(requestParameters: ExportCampaignStoresRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportCampaignStoresRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -4188,10 +4524,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing items from a given campaign-level collection.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/). 
-     * Export campaign-level collection\'s items
+     * Creates request options for exportCollectionItems without sending the request
      */
-    async exportCollectionItemsRaw(requestParameters: ExportCollectionItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportCollectionItemsRequestOpts(requestParameters: ExportCollectionItemsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -4235,12 +4570,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
         urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing items from a given campaign-level collection.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/). 
+     * Export campaign-level collection\'s items
+     */
+    async exportCollectionItemsRaw(requestParameters: ExportCollectionItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportCollectionItemsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -4259,10 +4603,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the coupons that match the given properties.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file can contain the following columns:  - `accountid`: The ID of your deployment. - `applicationid`: The ID of the Application this coupon is related to. - `attributes`: A json object describing _custom_ referral attribute names and their values. - `batchid`: The ID of the batch this coupon is part of. - `campaignid`: The ID of the campaign this coupon is related to. - `counter`: The number of times this coupon has been redeemed. - `created`: The creation date in RFC3339 of the coupon code. - `deleted`: Whether the coupon code is deleted. - `deleted_changelogid`: The ID of the delete event in the logs. - `discount_counter`: The amount of discount given by this coupon. - `discount_limitval`: The maximum discount amount that can be given be this coupon. - `expirydate`: The end date in RFC3339 of the code redemption period. - `id`: The internal ID of the coupon code. - `importid`: The ID of the import job that created this coupon. - `is_reservation_mandatory`: Whether this coupon requires a reservation to be redeemed. - `limits`: The limits set on this coupon. - `limitval`: The maximum number of redemptions of this code. - `recipientintegrationid`: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - `referralid`: The ID of the referral code that triggered the creation of this coupon (create coupon effect). - `reservation`: Whether the coupon can be reserved for multiple customers. - `reservation_counter`: How many times this coupon has been reserved. - `reservation_limitval`: The maximum of number of reservations this coupon can have. - `startdate`: The start date in RFC3339 of the code redemption period. - `value`: The coupon code. 
-     * Export coupons
+     * Creates request options for exportCoupons without sending the request
      */
-    async exportCouponsRaw(requestParameters: ExportCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportCouponsRequestOpts(requestParameters: ExportCouponsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -4346,12 +4689,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/export_coupons`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing the coupons that match the given properties.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file can contain the following columns:  - `accountid`: The ID of your deployment. - `applicationid`: The ID of the Application this coupon is related to. - `attributes`: A json object describing _custom_ referral attribute names and their values. - `batchid`: The ID of the batch this coupon is part of. - `campaignid`: The ID of the campaign this coupon is related to. - `counter`: The number of times this coupon has been redeemed. - `created`: The creation date in RFC3339 of the coupon code. - `deleted`: Whether the coupon code is deleted. - `deleted_changelogid`: The ID of the delete event in the logs. - `discount_counter`: The amount of discount given by this coupon. - `discount_limitval`: The maximum discount amount that can be given be this coupon. - `expirydate`: The end date in RFC3339 of the code redemption period. - `id`: The internal ID of the coupon code. - `importid`: The ID of the import job that created this coupon. - `is_reservation_mandatory`: Whether this coupon requires a reservation to be redeemed. - `limits`: The limits set on this coupon. - `limitval`: The maximum number of redemptions of this code. - `recipientintegrationid`: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - `referralid`: The ID of the referral code that triggered the creation of this coupon (create coupon effect). - `reservation`: Whether the coupon can be reserved for multiple customers. - `reservation_counter`: How many times this coupon has been reserved. - `reservation_limitval`: The maximum of number of reservations this coupon can have. - `startdate`: The start date in RFC3339 of the code redemption period. - `value`: The coupon code. 
+     * Export coupons
+     */
+    async exportCouponsRaw(requestParameters: ExportCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportCouponsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -4370,10 +4722,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the customer sessions that match the request.  **Important:** Archived sessions cannot be exported. See the [retention policy](https://docs.talon.one/docs/dev/server-infrastructure-and-data-retention).  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  - `id`: The internal ID of the session. - `firstsession`: Whether this is a first session. - `integrationid`: The integration ID of the session. - `applicationid`: The ID of the Application. - `profileid`: The internal ID of the customer profile. - `profileintegrationid`: The integration ID of the customer profile. - `created`: The timestamp when the session was created. - `state`: The [state](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) of the session. - `cartitems`: The cart items in the session. - `discounts`: The discounts in the session. - `total`: The total value of cart items and additional costs in the session, before any discounts are applied. - `attributes`: The attributes set in the session. - `closedat`: Timestamp when the session was closed. - `cancelledat`: Timestamp when the session was cancelled. - `referral`: The referral code in the session. - `identifiers`: The identifiers in the session. - `additional_costs`: The [additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs) in the session. - `updated`: Timestamp of the last session update. - `store_integration_id`: The integration ID of the store. - `coupons`: Coupon codes in the session. 
-     * Export customer sessions
+     * Creates request options for exportCustomerSessions without sending the request
      */
-    async exportCustomerSessionsRaw(requestParameters: ExportCustomerSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportCustomerSessionsRequestOpts(requestParameters: ExportCustomerSessionsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -4421,12 +4772,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/export_customer_sessions`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing the customer sessions that match the request.  **Important:** Archived sessions cannot be exported. See the [retention policy](https://docs.talon.one/docs/dev/server-infrastructure-and-data-retention).  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  - `id`: The internal ID of the session. - `firstsession`: Whether this is a first session. - `integrationid`: The integration ID of the session. - `applicationid`: The ID of the Application. - `profileid`: The internal ID of the customer profile. - `profileintegrationid`: The integration ID of the customer profile. - `created`: The timestamp when the session was created. - `state`: The [state](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) of the session. - `cartitems`: The cart items in the session. - `discounts`: The discounts in the session. - `total`: The total value of cart items and additional costs in the session, before any discounts are applied. - `attributes`: The attributes set in the session. - `closedat`: Timestamp when the session was closed. - `cancelledat`: Timestamp when the session was cancelled. - `referral`: The referral code in the session. - `identifiers`: The identifiers in the session. - `additional_costs`: The [additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs) in the session. - `updated`: Timestamp of the last session update. - `store_integration_id`: The integration ID of the store. - `coupons`: Coupon codes in the session. 
+     * Export customer sessions
+     */
+    async exportCustomerSessionsRaw(requestParameters: ExportCustomerSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportCustomerSessionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -4445,10 +4805,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the tier information for customers of the specified loyalty program.  The generated file contains the following columns:  - `programid`: The identifier of the loyalty program. It is displayed in your Talon.One deployment URL. - `subledgerid`: The ID of the subledger associated with the loyalty program. This column is empty if the loyalty program has no subledger. In this case, refer to the export file name to get the ID of the loyalty program. - `customerprofileid`: The ID used to integrate customer profiles with the loyalty program. - `tiername`: The name of the tier. - `startdate`: The tier start date in RFC3339. - `expirydate`: The tier expiry date in RFC3339.  You can filter the results by providing the following optional input parameters:  - `subledgerIds` (optional): Filter results by an array of subledger IDs. If no value is provided, all subledger data for the specified loyalty program will be exported. - `tierNames` (optional): Filter results by an array of tier names. If no value is provided, all tier data for the specified loyalty program will be exported. 
-     * Export customers\' tier data
+     * Creates request options for exportCustomersTiers without sending the request
      */
-    async exportCustomersTiersRaw(requestParameters: ExportCustomersTiersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportCustomersTiersRequestOpts(requestParameters: ExportCustomersTiersRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -4484,12 +4843,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/export_customers_tiers`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing the tier information for customers of the specified loyalty program.  The generated file contains the following columns:  - `programid`: The identifier of the loyalty program. It is displayed in your Talon.One deployment URL. - `subledgerid`: The ID of the subledger associated with the loyalty program. This column is empty if the loyalty program has no subledger. In this case, refer to the export file name to get the ID of the loyalty program. - `customerprofileid`: The ID used to integrate customer profiles with the loyalty program. - `tiername`: The name of the tier. - `startdate`: The tier start date in RFC3339. - `expirydate`: The tier expiry date in RFC3339.  You can filter the results by providing the following optional input parameters:  - `subledgerIds` (optional): Filter results by an array of subledger IDs. If no value is provided, all subledger data for the specified loyalty program will be exported. - `tierNames` (optional): Filter results by an array of tier names. If no value is provided, all tier data for the specified loyalty program will be exported. 
+     * Export customers\' tier data
+     */
+    async exportCustomersTiersRaw(requestParameters: ExportCustomersTiersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportCustomersTiersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -4508,10 +4876,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the triggered effects that match the given attributes.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - `applicationid`: The ID of the Application. - `campaignid`: The ID of the campaign. - `couponid`: The ID of the coupon, when applicable to the effect. - `created`: The timestamp of the effect. - `event_type`: The name of the event. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/events). - `eventid`: The internal ID of the effect. - `name`: The effect name. See the [docs](https://docs.talon.one/docs/dev/integration-api/api-effects). - `profileintegrationid`: The ID of the customer profile, when applicable. - `props`: The [properties](https://docs.talon.one/docs/dev/integration-api/api-effects) of the effect. - `ruleindex`: The index of the rule. - `rulesetid`: The ID of the rule set. - `sessionid`: The internal ID of the session that triggered the effect. - `profileid`: The internal ID of the customer profile. - `sessionintegrationid`: The integration ID of the session. - `total_revenue`: The total revenue. - `store_integration_id`: The integration ID of the store. You choose this ID when you create a store. 
-     * Export triggered effects
+     * Creates request options for exportEffects without sending the request
      */
-    async exportEffectsRaw(requestParameters: ExportEffectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportEffectsRequestOpts(requestParameters: ExportEffectsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -4555,12 +4922,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/export_effects`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing the triggered effects that match the given attributes.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - `applicationid`: The ID of the Application. - `campaignid`: The ID of the campaign. - `couponid`: The ID of the coupon, when applicable to the effect. - `created`: The timestamp of the effect. - `event_type`: The name of the event. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/events). - `eventid`: The internal ID of the effect. - `name`: The effect name. See the [docs](https://docs.talon.one/docs/dev/integration-api/api-effects). - `profileintegrationid`: The ID of the customer profile, when applicable. - `props`: The [properties](https://docs.talon.one/docs/dev/integration-api/api-effects) of the effect. - `ruleindex`: The index of the rule. - `rulesetid`: The ID of the rule set. - `sessionid`: The internal ID of the session that triggered the effect. - `profileid`: The internal ID of the customer profile. - `sessionintegrationid`: The integration ID of the session. - `total_revenue`: The total revenue. - `store_integration_id`: The integration ID of the store. You choose this ID when you create a store. 
+     * Export triggered effects
+     */
+    async exportEffectsRaw(requestParameters: ExportEffectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportEffectsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -4579,11 +4955,10 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * ⚠️ Deprecation notice: Support for requests to this endpoint will end soon. To export customer loyalty balances to CSV, use the [Export customer loyalty balances to CSV](/management-api#tag/Loyalty/operation/exportLoyaltyBalances) endpoint.  Download a CSV file containing the balance of each customer in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/). 
-     * Export customer loyalty balance to CSV
+     * Creates request options for exportLoyaltyBalance without sending the request
      * @deprecated
      */
-    async exportLoyaltyBalanceRaw(requestParameters: ExportLoyaltyBalanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportLoyaltyBalanceRequestOpts(requestParameters: ExportLoyaltyBalanceRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -4615,12 +4990,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/export_customer_balance`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * ⚠️ Deprecation notice: Support for requests to this endpoint will end soon. To export customer loyalty balances to CSV, use the [Export customer loyalty balances to CSV](/management-api#tag/Loyalty/operation/exportLoyaltyBalances) endpoint.  Download a CSV file containing the balance of each customer in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/). 
+     * Export customer loyalty balance to CSV
+     * @deprecated
+     */
+    async exportLoyaltyBalanceRaw(requestParameters: ExportLoyaltyBalanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportLoyaltyBalanceRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -4640,10 +5025,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the balance of each customer in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subdleger, when applicatble. - `profileIntegrationID`: The integration ID of the customer profile. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. - `currentTier`: The tier that the customer is in at the time of the export. 
-     * Export customer loyalty balances
+     * Creates request options for exportLoyaltyBalances without sending the request
      */
-    async exportLoyaltyBalancesRaw(requestParameters: ExportLoyaltyBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportLoyaltyBalancesRequestOpts(requestParameters: ExportLoyaltyBalancesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -4675,12 +5059,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/export_customer_balances`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing the balance of each customer in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subdleger, when applicatble. - `profileIntegrationID`: The integration ID of the customer profile. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. - `currentTier`: The tier that the customer is in at the time of the export. 
+     * Export customer loyalty balances
+     */
+    async exportLoyaltyBalancesRaw(requestParameters: ExportLoyaltyBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportLoyaltyBalancesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -4699,10 +5092,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the balances of all cards in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subdleger, when applicatble. - `cardIdentifier`: The alphanumeric identifier of the loyalty card. - `cardState`:The state of the loyalty card. It can be `active` or `inactive`. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. 
-     * Export all card transaction logs
+     * Creates request options for exportLoyaltyCardBalances without sending the request
      */
-    async exportLoyaltyCardBalancesRaw(requestParameters: ExportLoyaltyCardBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportLoyaltyCardBalancesRequestOpts(requestParameters: ExportLoyaltyCardBalancesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -4734,12 +5126,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/export_card_balances`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing the balances of all cards in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subdleger, when applicatble. - `cardIdentifier`: The alphanumeric identifier of the loyalty card. - `cardState`:The state of the loyalty card. It can be `active` or `inactive`. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. 
+     * Export all card transaction logs
+     */
+    async exportLoyaltyCardBalancesRaw(requestParameters: ExportLoyaltyCardBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportLoyaltyCardBalancesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -4758,10 +5159,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing a loyalty card ledger log of the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/). 
-     * Export card\'s ledger log
+     * Creates request options for exportLoyaltyCardLedger without sending the request
      */
-    async exportLoyaltyCardLedgerRaw(requestParameters: ExportLoyaltyCardLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportLoyaltyCardLedgerRequestOpts(requestParameters: ExportLoyaltyCardLedgerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -4823,12 +5223,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing a loyalty card ledger log of the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/). 
+     * Export card\'s ledger log
+     */
+    async exportLoyaltyCardLedgerRaw(requestParameters: ExportLoyaltyCardLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportLoyaltyCardLedgerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -4847,10 +5256,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the loyalty cards from a specified loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `identifier`: The unique identifier of the loyalty card. - `created`: The date and time the loyalty card was created. - `status`: The status of the loyalty card. - `userpercardlimit`: The maximum number of customer profiles that can be linked to the card. - `customerprofileids`: Integration IDs of the customer profiles linked to the card. - `blockreason`: The reason for transferring and blocking the loyalty card. - `generated`: An indicator of whether the loyalty card was generated. - `batchid`: The ID of the batch the loyalty card is in. 
-     * Export loyalty cards
+     * Creates request options for exportLoyaltyCards without sending the request
      */
-    async exportLoyaltyCardsRaw(requestParameters: ExportLoyaltyCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportLoyaltyCardsRequestOpts(requestParameters: ExportLoyaltyCardsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -4894,12 +5302,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/export`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing the loyalty cards from a specified loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `identifier`: The unique identifier of the loyalty card. - `created`: The date and time the loyalty card was created. - `status`: The status of the loyalty card. - `userpercardlimit`: The maximum number of customer profiles that can be linked to the card. - `customerprofileids`: Integration IDs of the customer profiles linked to the card. - `blockreason`: The reason for transferring and blocking the loyalty card. - `generated`: An indicator of whether the loyalty card was generated. - `batchid`: The ID of the batch the loyalty card is in. 
+     * Export loyalty cards
+     */
+    async exportLoyaltyCardsRaw(requestParameters: ExportLoyaltyCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportLoyaltyCardsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -4918,10 +5335,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing a customer\'s transaction logs in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. - `transactionUUID`: Unique identifier of the transaction in the UUID format. 
-     * Export customer\'s transaction logs
+     * Creates request options for exportLoyaltyLedger without sending the request
      */
-    async exportLoyaltyLedgerRaw(requestParameters: ExportLoyaltyLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportLoyaltyLedgerRequestOpts(requestParameters: ExportLoyaltyLedgerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['rangeStart'] == null) {
             throw new runtime.RequiredError(
                 'rangeStart',
@@ -4983,12 +5399,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing a customer\'s transaction logs in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. - `transactionUUID`: Unique identifier of the transaction in the UUID format. 
+     * Export customer\'s transaction logs
+     */
+    async exportLoyaltyLedgerRaw(requestParameters: ExportLoyaltyLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportLoyaltyLedgerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -5007,10 +5432,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the giveaway codes of a specific giveaway pool.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns:  - `id`: The internal ID of the giveaway. - `poolid`: The internal ID of the giveaway pool. - `code`: The giveaway code. - `startdate`: The validity start date in RFC3339 of the giveaway (can be empty). - `enddate`: The validity end date in RFC3339 of the giveaway (can be empty). - `attributes`: Any custom attributes associated with the giveaway code (can be empty). - `used`: An indication of whether the giveaway is already awarded. - `importid`: The ID of the import which created the giveaway. - `created`: The creation time of the giveaway code. - `profileintegrationid`: The third-party integration ID of the customer profile that was awarded the giveaway. Can be empty if the giveaway was not awarded. - `profileid`: The internal ID of the customer profile that was awarded the giveaway. Can be empty if the giveaway was not awarded or an internal ID does not exist. 
-     * Export giveaway codes of a giveaway pool
+     * Creates request options for exportPoolGiveaways without sending the request
      */
-    async exportPoolGiveawaysRaw(requestParameters: ExportPoolGiveawaysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportPoolGiveawaysRequestOpts(requestParameters: ExportPoolGiveawaysRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['poolId'] == null) {
             throw new runtime.RequiredError(
                 'poolId',
@@ -5046,12 +5470,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/giveaways/pools/{poolId}/export`;
         urlPath = urlPath.replace(`{${"poolId"}}`, encodeURIComponent(String(requestParameters['poolId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing the giveaway codes of a specific giveaway pool.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns:  - `id`: The internal ID of the giveaway. - `poolid`: The internal ID of the giveaway pool. - `code`: The giveaway code. - `startdate`: The validity start date in RFC3339 of the giveaway (can be empty). - `enddate`: The validity end date in RFC3339 of the giveaway (can be empty). - `attributes`: Any custom attributes associated with the giveaway code (can be empty). - `used`: An indication of whether the giveaway is already awarded. - `importid`: The ID of the import which created the giveaway. - `created`: The creation time of the giveaway code. - `profileintegrationid`: The third-party integration ID of the customer profile that was awarded the giveaway. Can be empty if the giveaway was not awarded. - `profileid`: The internal ID of the customer profile that was awarded the giveaway. Can be empty if the giveaway was not awarded or an internal ID does not exist. 
+     * Export giveaway codes of a giveaway pool
+     */
+    async exportPoolGiveawaysRaw(requestParameters: ExportPoolGiveawaysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportPoolGiveawaysRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -5070,10 +5503,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the referrals that match the given parameters.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns:  - `code`: The referral code. - `advocateprofileintegrationid`: The profile ID of the advocate. - `startdate`: The start date in RFC3339 of the code redemption period. - `expirydate`: The end date in RFC3339 of the code redemption period. - `limitval`: The maximum number of redemptions of this code. Defaults to `1` when left blank. - `attributes`: A json object describing _custom_ referral attribute names and their values. 
-     * Export referrals
+     * Creates request options for exportReferrals without sending the request
      */
-    async exportReferralsRaw(requestParameters: ExportReferralsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async exportReferralsRequestOpts(requestParameters: ExportReferralsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -5129,12 +5561,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/export_referrals`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Download a CSV file containing the referrals that match the given parameters.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns:  - `code`: The referral code. - `advocateprofileintegrationid`: The profile ID of the advocate. - `startdate`: The start date in RFC3339 of the code redemption period. - `expirydate`: The end date in RFC3339 of the code redemption period. - `limitval`: The maximum number of redemptions of this code. Defaults to `1` when left blank. - `attributes`: A json object describing _custom_ referral attribute names and their values. 
+     * Export referrals
+     */
+    async exportReferralsRaw(requestParameters: ExportReferralsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportReferralsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -5153,10 +5594,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a summary of the reasons for coupon redemption failures in a given customer session. 
-     * Summarize coupon redemption failures in session
+     * Creates request options for generateCouponRejections without sending the request
      */
-    async generateCouponRejectionsRaw(requestParameters: GenerateCouponRejectionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenerateCouponRejections200Response>> {
+    async generateCouponRejectionsRequestOpts(requestParameters: GenerateCouponRejectionsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['sessionIntegrationId'] == null) {
             throw new runtime.RequiredError(
                 'sessionIntegrationId',
@@ -5199,12 +5639,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/coupon_rejections`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a summary of the reasons for coupon redemption failures in a given customer session. 
+     * Summarize coupon redemption failures in session
+     */
+    async generateCouponRejectionsRaw(requestParameters: GenerateCouponRejectionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenerateCouponRejections200Response>> {
+        const requestOptions = await this.generateCouponRejectionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GenerateCouponRejections200ResponseFromJSON(jsonValue));
     }
@@ -5219,10 +5668,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the list of API calls sent to the specified Application. 
-     * Get access logs for Application
+     * Creates request options for getAccessLogsWithoutTotalCount without sending the request
      */
-    async getAccessLogsWithoutTotalCountRaw(requestParameters: GetAccessLogsWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAccessLogsWithoutTotalCount200Response>> {
+    async getAccessLogsWithoutTotalCountRequestOpts(requestParameters: GetAccessLogsWithoutTotalCountRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -5296,12 +5744,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/access_logs/no_total`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve the list of API calls sent to the specified Application. 
+     * Get access logs for Application
+     */
+    async getAccessLogsWithoutTotalCountRaw(requestParameters: GetAccessLogsWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAccessLogsWithoutTotalCount200Response>> {
+        const requestOptions = await this.getAccessLogsWithoutTotalCountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetAccessLogsWithoutTotalCount200ResponseFromJSON(jsonValue));
     }
@@ -5316,10 +5773,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Return the details of your companies Talon.One account. 
-     * Get account details
+     * Creates request options for getAccount without sending the request
      */
-    async getAccountRaw(requestParameters: GetAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Account>> {
+    async getAccountRequestOpts(requestParameters: GetAccountRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['accountId'] == null) {
             throw new runtime.RequiredError(
                 'accountId',
@@ -5347,12 +5803,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/accounts/{accountId}`;
         urlPath = urlPath.replace(`{${"accountId"}}`, encodeURIComponent(String(requestParameters['accountId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Return the details of your companies Talon.One account. 
+     * Get account details
+     */
+    async getAccountRaw(requestParameters: GetAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Account>> {
+        const requestOptions = await this.getAccountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AccountFromJSON(jsonValue));
     }
@@ -5367,10 +5832,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Return the analytics of your Talon.One account. 
-     * Get account analytics
+     * Creates request options for getAccountAnalytics without sending the request
      */
-    async getAccountAnalyticsRaw(requestParameters: GetAccountAnalyticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountAnalytics>> {
+    async getAccountAnalyticsRequestOpts(requestParameters: GetAccountAnalyticsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['accountId'] == null) {
             throw new runtime.RequiredError(
                 'accountId',
@@ -5398,12 +5862,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/accounts/{accountId}/analytics`;
         urlPath = urlPath.replace(`{${"accountId"}}`, encodeURIComponent(String(requestParameters['accountId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Return the analytics of your Talon.One account. 
+     * Get account analytics
+     */
+    async getAccountAnalyticsRaw(requestParameters: GetAccountAnalyticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountAnalytics>> {
+        const requestOptions = await this.getAccountAnalyticsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AccountAnalyticsFromJSON(jsonValue));
     }
@@ -5418,10 +5891,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve a given account-level collection.
-     * Get account-level collection
+     * Creates request options for getAccountCollection without sending the request
      */
-    async getAccountCollectionRaw(requestParameters: GetAccountCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Collection>> {
+    async getAccountCollectionRequestOpts(requestParameters: GetAccountCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['collectionId'] == null) {
             throw new runtime.RequiredError(
                 'collectionId',
@@ -5449,12 +5921,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/collections/{collectionId}`;
         urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve a given account-level collection.
+     * Get account-level collection
+     */
+    async getAccountCollectionRaw(requestParameters: GetAccountCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Collection>> {
+        const requestOptions = await this.getAccountCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CollectionFromJSON(jsonValue));
     }
@@ -5469,10 +5950,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the details of a specific achievement.
-     * Get achievement
+     * Creates request options for getAchievement without sending the request
      */
-    async getAchievementRaw(requestParameters: GetAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Achievement>> {
+    async getAchievementRequestOpts(requestParameters: GetAchievementRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -5516,12 +5996,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
         urlPath = urlPath.replace(`{${"achievementId"}}`, encodeURIComponent(String(requestParameters['achievementId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get the details of a specific achievement.
+     * Get achievement
+     */
+    async getAchievementRaw(requestParameters: GetAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Achievement>> {
+        const requestOptions = await this.getAchievementRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AchievementFromJSON(jsonValue));
     }
@@ -5536,10 +6025,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns the additional cost. 
-     * Get additional cost
+     * Creates request options for getAdditionalCost without sending the request
      */
-    async getAdditionalCostRaw(requestParameters: GetAdditionalCostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountAdditionalCost>> {
+    async getAdditionalCostRequestOpts(requestParameters: GetAdditionalCostRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['additionalCostId'] == null) {
             throw new runtime.RequiredError(
                 'additionalCostId',
@@ -5567,12 +6055,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/additional_costs/{additionalCostId}`;
         urlPath = urlPath.replace(`{${"additionalCostId"}}`, encodeURIComponent(String(requestParameters['additionalCostId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns the additional cost. 
+     * Get additional cost
+     */
+    async getAdditionalCostRaw(requestParameters: GetAdditionalCostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountAdditionalCost>> {
+        const requestOptions = await this.getAdditionalCostRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AccountAdditionalCostFromJSON(jsonValue));
     }
@@ -5587,10 +6084,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns all the defined additional costs for the account. 
-     * List additional costs
+     * Creates request options for getAdditionalCosts without sending the request
      */
-    async getAdditionalCostsRaw(requestParameters: GetAdditionalCostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAdditionalCosts200Response>> {
+    async getAdditionalCostsRequestOpts(requestParameters: GetAdditionalCostsRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['pageSize'] != null) {
@@ -5622,12 +6118,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/additional_costs`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns all the defined additional costs for the account. 
+     * List additional costs
+     */
+    async getAdditionalCostsRaw(requestParameters: GetAdditionalCostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAdditionalCosts200Response>> {
+        const requestOptions = await this.getAdditionalCostsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetAdditionalCosts200ResponseFromJSON(jsonValue));
     }
@@ -5642,10 +6147,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the application specified by the ID.
-     * Get Application
+     * Creates request options for getApplication without sending the request
      */
-    async getApplicationRaw(requestParameters: GetApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Application>> {
+    async getApplicationRequestOpts(requestParameters: GetApplicationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -5673,12 +6177,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get the application specified by the ID.
+     * Get Application
+     */
+    async getApplicationRaw(requestParameters: GetApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Application>> {
+        const requestOptions = await this.getApplicationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApplicationFromJSON(jsonValue));
     }
@@ -5693,10 +6206,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Display the health of the Application and show the last time the Application was used.  You can also find this information in the Campaign Manager. In your Application, click **Settings** > **Integration API Keys**. See the [docs](https://docs.talon.one/docs/dev/tutorials/monitoring-integration-status). 
-     * Get Application health
+     * Creates request options for getApplicationApiHealth without sending the request
      */
-    async getApplicationApiHealthRaw(requestParameters: GetApplicationApiHealthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationApiHealth>> {
+    async getApplicationApiHealthRequestOpts(requestParameters: GetApplicationApiHealthRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -5724,12 +6236,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/health_report`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Display the health of the Application and show the last time the Application was used.  You can also find this information in the Campaign Manager. In your Application, click **Settings** > **Integration API Keys**. See the [docs](https://docs.talon.one/docs/dev/tutorials/monitoring-integration-status). 
+     * Get Application health
+     */
+    async getApplicationApiHealthRaw(requestParameters: GetApplicationApiHealthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationApiHealth>> {
+        const requestOptions = await this.getApplicationApiHealthRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApplicationApiHealthFromJSON(jsonValue));
     }
@@ -5744,10 +6265,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the customers of the specified application. 
-     * Get application\'s customer
+     * Creates request options for getApplicationCustomer without sending the request
      */
-    async getApplicationCustomerRaw(requestParameters: GetApplicationCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationCustomer>> {
+    async getApplicationCustomerRequestOpts(requestParameters: GetApplicationCustomerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -5783,12 +6303,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"customerId"}}`, encodeURIComponent(String(requestParameters['customerId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve the customers of the specified application. 
+     * Get application\'s customer
+     */
+    async getApplicationCustomerRaw(requestParameters: GetApplicationCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationCustomer>> {
+        const requestOptions = await this.getApplicationCustomerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApplicationCustomerFromJSON(jsonValue));
     }
@@ -5803,10 +6332,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List the friends referred by the specified customer profile in this Application. 
-     * List friends referred by customer profile
+     * Creates request options for getApplicationCustomerFriends without sending the request
      */
-    async getApplicationCustomerFriendsRaw(requestParameters: GetApplicationCustomerFriendsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplicationCustomerFriends200Response>> {
+    async getApplicationCustomerFriendsRequestOpts(requestParameters: GetApplicationCustomerFriendsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -5858,12 +6386,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List the friends referred by the specified customer profile in this Application. 
+     * List friends referred by customer profile
+     */
+    async getApplicationCustomerFriendsRaw(requestParameters: GetApplicationCustomerFriendsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplicationCustomerFriends200Response>> {
+        const requestOptions = await this.getApplicationCustomerFriendsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetApplicationCustomerFriends200ResponseFromJSON(jsonValue));
     }
@@ -5878,10 +6415,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all the customers of the specified application.
-     * List application\'s customers
+     * Creates request options for getApplicationCustomers without sending the request
      */
-    async getApplicationCustomersRaw(requestParameters: GetApplicationCustomersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplicationCustomers200Response>> {
+    async getApplicationCustomersRequestOpts(requestParameters: GetApplicationCustomersRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -5925,12 +6461,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/customers`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all the customers of the specified application.
+     * List application\'s customers
+     */
+    async getApplicationCustomersRaw(requestParameters: GetApplicationCustomersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplicationCustomers200Response>> {
+        const requestOptions = await this.getApplicationCustomersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetApplicationCustomers200ResponseFromJSON(jsonValue));
     }
@@ -5945,10 +6490,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a list of the application customers matching the provided criteria.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request. 
-     * List application customers matching the given attributes
+     * Creates request options for getApplicationCustomersByAttributes without sending the request
      */
-    async getApplicationCustomersByAttributesRaw(requestParameters: GetApplicationCustomersByAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplicationCustomersByAttributes200Response>> {
+    async getApplicationCustomersByAttributesRequestOpts(requestParameters: GetApplicationCustomersByAttributesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -5997,13 +6541,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/customer_search`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CustomerProfileSearchQueryToJSON(requestParameters['customerProfileSearchQuery']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get a list of the application customers matching the provided criteria.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request. 
+     * List application customers matching the given attributes
+     */
+    async getApplicationCustomersByAttributesRaw(requestParameters: GetApplicationCustomersByAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplicationCustomersByAttributes200Response>> {
+        const requestOptions = await this.getApplicationCustomersByAttributesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetApplicationCustomersByAttributes200ResponseFromJSON(jsonValue));
     }
@@ -6018,10 +6571,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get all of the distinct values of the Event `type` property for events recorded in the application.  See also: [Track an event](https://docs.talon.one/integration-api#tag/Events/operation/trackEventV2) 
-     * List Applications event types
+     * Creates request options for getApplicationEventTypes without sending the request
      */
-    async getApplicationEventTypesRaw(requestParameters: GetApplicationEventTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplicationEventTypes200Response>> {
+    async getApplicationEventTypesRequestOpts(requestParameters: GetApplicationEventTypesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -6061,12 +6613,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/event_types`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get all of the distinct values of the Event `type` property for events recorded in the application.  See also: [Track an event](https://docs.talon.one/integration-api#tag/Events/operation/trackEventV2) 
+     * List Applications event types
+     */
+    async getApplicationEventTypesRaw(requestParameters: GetApplicationEventTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplicationEventTypes200Response>> {
+        const requestOptions = await this.getApplicationEventTypesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetApplicationEventTypes200ResponseFromJSON(jsonValue));
     }
@@ -6081,10 +6642,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists all events recorded for an application. Instead of having the total number of results in the response, this endpoint only mentions whether there are more results. 
-     * List Applications events
+     * Creates request options for getApplicationEventsWithoutTotalCount without sending the request
      */
-    async getApplicationEventsWithoutTotalCountRaw(requestParameters: GetApplicationEventsWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplicationEventsWithoutTotalCount200Response>> {
+    async getApplicationEventsWithoutTotalCountRequestOpts(requestParameters: GetApplicationEventsWithoutTotalCountRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -6172,12 +6732,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/events/no_total`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Lists all events recorded for an application. Instead of having the total number of results in the response, this endpoint only mentions whether there are more results. 
+     * List Applications events
+     */
+    async getApplicationEventsWithoutTotalCountRaw(requestParameters: GetApplicationEventsWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplicationEventsWithoutTotalCount200Response>> {
+        const requestOptions = await this.getApplicationEventsWithoutTotalCountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetApplicationEventsWithoutTotalCount200ResponseFromJSON(jsonValue));
     }
@@ -6192,10 +6761,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the details of the given session. You can list the sessions with the [List Application sessions](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. 
-     * Get Application session
+     * Creates request options for getApplicationSession without sending the request
      */
-    async getApplicationSessionRaw(requestParameters: GetApplicationSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationSession>> {
+    async getApplicationSessionRequestOpts(requestParameters: GetApplicationSessionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -6231,12 +6799,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"sessionId"}}`, encodeURIComponent(String(requestParameters['sessionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get the details of the given session. You can list the sessions with the [List Application sessions](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. 
+     * Get Application session
+     */
+    async getApplicationSessionRaw(requestParameters: GetApplicationSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationSession>> {
+        const requestOptions = await this.getApplicationSessionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApplicationSessionFromJSON(jsonValue));
     }
@@ -6251,10 +6828,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all the sessions of the specified Application. 
-     * List Application sessions
+     * Creates request options for getApplicationSessions without sending the request
      */
-    async getApplicationSessionsRaw(requestParameters: GetApplicationSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplicationSessions200Response>> {
+    async getApplicationSessionsRequestOpts(requestParameters: GetApplicationSessionsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -6326,12 +6902,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/sessions`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all the sessions of the specified Application. 
+     * List Application sessions
+     */
+    async getApplicationSessionsRaw(requestParameters: GetApplicationSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplicationSessions200Response>> {
+        const requestOptions = await this.getApplicationSessionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetApplicationSessions200ResponseFromJSON(jsonValue));
     }
@@ -6346,10 +6931,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all applications in the current account.
-     * List Applications
+     * Creates request options for getApplications without sending the request
      */
-    async getApplicationsRaw(requestParameters: GetApplicationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplications200Response>> {
+    async getApplicationsRequestOpts(requestParameters: GetApplicationsRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['pageSize'] != null) {
@@ -6381,12 +6965,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/applications`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all applications in the current account.
+     * List Applications
+     */
+    async getApplicationsRaw(requestParameters: GetApplicationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplications200Response>> {
+        const requestOptions = await this.getApplicationsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetApplications200ResponseFromJSON(jsonValue));
     }
@@ -6401,10 +6994,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the specified custom attribute. 
-     * Get custom attribute
+     * Creates request options for getAttribute without sending the request
      */
-    async getAttributeRaw(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Attribute>> {
+    async getAttributeRequestOpts(requestParameters: GetAttributeRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['attributeId'] == null) {
             throw new runtime.RequiredError(
                 'attributeId',
@@ -6432,12 +7024,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/attributes/{attributeId}`;
         urlPath = urlPath.replace(`{${"attributeId"}}`, encodeURIComponent(String(requestParameters['attributeId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve the specified custom attribute. 
+     * Get custom attribute
+     */
+    async getAttributeRaw(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Attribute>> {
+        const requestOptions = await this.getAttributeRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AttributeFromJSON(jsonValue));
     }
@@ -6452,10 +7053,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Return all the custom attributes for the account. 
-     * List custom attributes
+     * Creates request options for getAttributes without sending the request
      */
-    async getAttributesRaw(requestParameters: GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAttributes200Response>> {
+    async getAttributesRequestOpts(requestParameters: GetAttributesRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['pageSize'] != null) {
@@ -6507,12 +7107,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/attributes`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Return all the custom attributes for the account. 
+     * List custom attributes
+     */
+    async getAttributesRaw(requestParameters: GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAttributes200Response>> {
+        const requestOptions = await this.getAttributesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetAttributes200ResponseFromJSON(jsonValue));
     }
@@ -6527,10 +7136,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a paginated list of the customer profiles in a given audience.  A maximum of 1000 customer profiles per page is allowed. 
-     * List audience members
+     * Creates request options for getAudienceMemberships without sending the request
      */
-    async getAudienceMembershipsRaw(requestParameters: GetAudienceMembershipsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAudienceMemberships200Response>> {
+    async getAudienceMembershipsRequestOpts(requestParameters: GetAudienceMembershipsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['audienceId'] == null) {
             throw new runtime.RequiredError(
                 'audienceId',
@@ -6574,12 +7182,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/audiences/{audienceId}/memberships`;
         urlPath = urlPath.replace(`{${"audienceId"}}`, encodeURIComponent(String(requestParameters['audienceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get a paginated list of the customer profiles in a given audience.  A maximum of 1000 customer profiles per page is allowed. 
+     * List audience members
+     */
+    async getAudienceMembershipsRaw(requestParameters: GetAudienceMembershipsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAudienceMemberships200Response>> {
+        const requestOptions = await this.getAudienceMembershipsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetAudienceMemberships200ResponseFromJSON(jsonValue));
     }
@@ -6594,10 +7211,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get all audiences created in the account. To create an audience, use [Create audience](https://docs.talon.one/integration-api#tag/Audiences/operation/createAudienceV2). 
-     * List audiences
+     * Creates request options for getAudiences without sending the request
      */
-    async getAudiencesRaw(requestParameters: GetAudiencesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAudiences200Response>> {
+    async getAudiencesRequestOpts(requestParameters: GetAudiencesRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['pageSize'] != null) {
@@ -6633,12 +7249,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/audiences`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get all audiences created in the account. To create an audience, use [Create audience](https://docs.talon.one/integration-api#tag/Audiences/operation/createAudienceV2). 
+     * List audiences
+     */
+    async getAudiencesRaw(requestParameters: GetAudiencesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAudiences200Response>> {
+        const requestOptions = await this.getAudiencesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetAudiences200ResponseFromJSON(jsonValue));
     }
@@ -6653,10 +7278,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a list of audience IDs and their member count. 
-     * List audience analytics
+     * Creates request options for getAudiencesAnalytics without sending the request
      */
-    async getAudiencesAnalyticsRaw(requestParameters: GetAudiencesAnalyticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAudiencesAnalytics200Response>> {
+    async getAudiencesAnalyticsRequestOpts(requestParameters: GetAudiencesAnalyticsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['audienceIds'] == null) {
             throw new runtime.RequiredError(
                 'audienceIds',
@@ -6691,12 +7315,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/audiences/analytics`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get a list of audience IDs and their member count. 
+     * List audience analytics
+     */
+    async getAudiencesAnalyticsRaw(requestParameters: GetAudiencesAnalyticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAudiencesAnalytics200Response>> {
+        const requestOptions = await this.getAudiencesAnalyticsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetAudiencesAnalytics200ResponseFromJSON(jsonValue));
     }
@@ -6711,10 +7344,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the given campaign.
-     * Get campaign
+     * Creates request options for getCampaign without sending the request
      */
-    async getCampaignRaw(requestParameters: GetCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Campaign>> {
+    async getCampaignRequestOpts(requestParameters: GetCampaignRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -6750,12 +7382,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve the given campaign.
+     * Get campaign
+     */
+    async getCampaignRaw(requestParameters: GetCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Campaign>> {
+        const requestOptions = await this.getCampaignRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CampaignFromJSON(jsonValue));
     }
@@ -6770,10 +7411,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve statistical data about the performance of the given campaign.
-     * Get analytics of campaigns
+     * Creates request options for getCampaignAnalytics without sending the request
      */
-    async getCampaignAnalyticsRaw(requestParameters: GetCampaignAnalyticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCampaignAnalytics200Response>> {
+    async getCampaignAnalyticsRequestOpts(requestParameters: GetCampaignAnalyticsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -6835,12 +7475,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve statistical data about the performance of the given campaign.
+     * Get analytics of campaigns
+     */
+    async getCampaignAnalyticsRaw(requestParameters: GetCampaignAnalyticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCampaignAnalytics200Response>> {
+        const requestOptions = await this.getCampaignAnalyticsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCampaignAnalytics200ResponseFromJSON(jsonValue));
     }
@@ -6855,10 +7504,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a list of all the campaigns that match a set of attributes. 
-     * List campaigns that match the given attributes
+     * Creates request options for getCampaignByAttributes without sending the request
      */
-    async getCampaignByAttributesRaw(requestParameters: GetCampaignByAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCampaigns200Response>> {
+    async getCampaignByAttributesRequestOpts(requestParameters: GetCampaignByAttributesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -6911,13 +7559,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/campaigns_search`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CampaignSearchToJSON(requestParameters['campaignSearch']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get a list of all the campaigns that match a set of attributes. 
+     * List campaigns that match the given attributes
+     */
+    async getCampaignByAttributesRaw(requestParameters: GetCampaignByAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCampaigns200Response>> {
+        const requestOptions = await this.getCampaignByAttributesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCampaigns200ResponseFromJSON(jsonValue));
     }
@@ -6932,10 +7589,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a campaign access group specified by its ID.
-     * Get campaign access group
+     * Creates request options for getCampaignGroup without sending the request
      */
-    async getCampaignGroupRaw(requestParameters: GetCampaignGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CampaignGroup>> {
+    async getCampaignGroupRequestOpts(requestParameters: GetCampaignGroupRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['campaignGroupId'] == null) {
             throw new runtime.RequiredError(
                 'campaignGroupId',
@@ -6963,12 +7619,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/campaign_groups/{campaignGroupId}`;
         urlPath = urlPath.replace(`{${"campaignGroupId"}}`, encodeURIComponent(String(requestParameters['campaignGroupId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get a campaign access group specified by its ID.
+     * Get campaign access group
+     */
+    async getCampaignGroupRaw(requestParameters: GetCampaignGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CampaignGroup>> {
+        const requestOptions = await this.getCampaignGroupRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CampaignGroupFromJSON(jsonValue));
     }
@@ -6983,10 +7648,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List the campaign access groups in the current account.
-     * List campaign access groups
+     * Creates request options for getCampaignGroups without sending the request
      */
-    async getCampaignGroupsRaw(requestParameters: GetCampaignGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCampaignGroups200Response>> {
+    async getCampaignGroupsRequestOpts(requestParameters: GetCampaignGroupsRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['pageSize'] != null) {
@@ -7018,12 +7682,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/campaign_groups`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List the campaign access groups in the current account.
+     * List campaign access groups
+     */
+    async getCampaignGroupsRaw(requestParameters: GetCampaignGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCampaignGroups200Response>> {
+        const requestOptions = await this.getCampaignGroupsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCampaignGroups200ResponseFromJSON(jsonValue));
     }
@@ -7038,10 +7711,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve a list of campaign templates.
-     * List campaign templates
+     * Creates request options for getCampaignTemplates without sending the request
      */
-    async getCampaignTemplatesRaw(requestParameters: GetCampaignTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCampaignTemplates200Response>> {
+    async getCampaignTemplatesRequestOpts(requestParameters: GetCampaignTemplatesRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['pageSize'] != null) {
@@ -7089,12 +7761,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/campaign_templates`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve a list of campaign templates.
+     * List campaign templates
+     */
+    async getCampaignTemplatesRaw(requestParameters: GetCampaignTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCampaignTemplates200Response>> {
+        const requestOptions = await this.getCampaignTemplatesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCampaignTemplates200ResponseFromJSON(jsonValue));
     }
@@ -7109,10 +7790,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List the campaigns of the specified application that match your filter criteria. 
-     * List campaigns
+     * Creates request options for getCampaigns without sending the request
      */
-    async getCampaignsRaw(requestParameters: GetCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCampaigns200Response>> {
+    async getCampaignsRequestOpts(requestParameters: GetCampaignsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -7200,12 +7880,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/campaigns`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List the campaigns of the specified application that match your filter criteria. 
+     * List campaigns
+     */
+    async getCampaignsRaw(requestParameters: GetCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCampaigns200Response>> {
+        const requestOptions = await this.getCampaignsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCampaigns200ResponseFromJSON(jsonValue));
     }
@@ -7220,10 +7909,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the audit logs displayed in **Accounts > Audit logs**. 
-     * Get audit logs for an account
+     * Creates request options for getChanges without sending the request
      */
-    async getChangesRaw(requestParameters: GetChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetChanges200Response>> {
+    async getChangesRequestOpts(requestParameters: GetChangesRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['pageSize'] != null) {
@@ -7287,12 +7975,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/changes`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve the audit logs displayed in **Accounts > Audit logs**. 
+     * Get audit logs for an account
+     */
+    async getChangesRaw(requestParameters: GetChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetChanges200Response>> {
+        const requestOptions = await this.getChangesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetChanges200ResponseFromJSON(jsonValue));
     }
@@ -7307,10 +8004,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve a given campaign-level collection.
-     * Get campaign-level collection
+     * Creates request options for getCollection without sending the request
      */
-    async getCollectionRaw(requestParameters: GetCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Collection>> {
+    async getCollectionRequestOpts(requestParameters: GetCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -7354,12 +8050,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
         urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve a given campaign-level collection.
+     * Get campaign-level collection
+     */
+    async getCollectionRaw(requestParameters: GetCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Collection>> {
+        const requestOptions = await this.getCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CollectionFromJSON(jsonValue));
     }
@@ -7374,10 +8079,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve items from a given collection.  You can retrieve items from both account-level collections and campaign-level collections using this endpoint. 
-     * Get collection items
+     * Creates request options for getCollectionItems without sending the request
      */
-    async getCollectionItemsRaw(requestParameters: GetCollectionItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCollectionItems200Response>> {
+    async getCollectionItemsRequestOpts(requestParameters: GetCollectionItemsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['collectionId'] == null) {
             throw new runtime.RequiredError(
                 'collectionId',
@@ -7413,12 +8117,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/collections/{collectionId}/items`;
         urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve items from a given collection.  You can retrieve items from both account-level collections and campaign-level collections using this endpoint. 
+     * Get collection items
+     */
+    async getCollectionItemsRaw(requestParameters: GetCollectionItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCollectionItems200Response>> {
+        const requestOptions = await this.getCollectionItemsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCollectionItems200ResponseFromJSON(jsonValue));
     }
@@ -7433,10 +8146,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all the coupons matching the specified criteria. 
-     * List coupons
+     * Creates request options for getCouponsWithoutTotalCount without sending the request
      */
-    async getCouponsWithoutTotalCountRaw(requestParameters: GetCouponsWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCouponsWithoutTotalCount200Response>> {
+    async getCouponsWithoutTotalCountRequestOpts(requestParameters: GetCouponsWithoutTotalCountRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -7544,12 +8256,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all the coupons matching the specified criteria. 
+     * List coupons
+     */
+    async getCouponsWithoutTotalCountRaw(requestParameters: GetCouponsWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCouponsWithoutTotalCount200Response>> {
+        const requestOptions = await this.getCouponsWithoutTotalCountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCouponsWithoutTotalCount200ResponseFromJSON(jsonValue));
     }
@@ -7564,10 +8285,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Fetch the summary report of a given customer in the given application, in a time range.
-     * Get customer\'s activity report
+     * Creates request options for getCustomerActivityReport without sending the request
      */
-    async getCustomerActivityReportRaw(requestParameters: GetCustomerActivityReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerActivityReport>> {
+    async getCustomerActivityReportRequestOpts(requestParameters: GetCustomerActivityReportRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['rangeStart'] == null) {
             throw new runtime.RequiredError(
                 'rangeStart',
@@ -7633,12 +8353,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"customerId"}}`, encodeURIComponent(String(requestParameters['customerId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Fetch the summary report of a given customer in the given application, in a time range.
+     * Get customer\'s activity report
+     */
+    async getCustomerActivityReportRaw(requestParameters: GetCustomerActivityReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerActivityReport>> {
+        const requestOptions = await this.getCustomerActivityReportRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CustomerActivityReportFromJSON(jsonValue));
     }
@@ -7653,10 +8382,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Fetch summary reports for all application customers based on a time range. Instead of having the total number of results in the response, this endpoint only mentions whether there are more results. 
-     * Get Activity Reports for Application Customers
+     * Creates request options for getCustomerActivityReportsWithoutTotalCount without sending the request
      */
-    async getCustomerActivityReportsWithoutTotalCountRaw(requestParameters: GetCustomerActivityReportsWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCustomerActivityReportsWithoutTotalCount200Response>> {
+    async getCustomerActivityReportsWithoutTotalCountRequestOpts(requestParameters: GetCustomerActivityReportsWithoutTotalCountRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['rangeStart'] == null) {
             throw new runtime.RequiredError(
                 'rangeStart',
@@ -7734,12 +8462,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/customer_activity_reports/no_total`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Fetch summary reports for all application customers based on a time range. Instead of having the total number of results in the response, this endpoint only mentions whether there are more results. 
+     * Get Activity Reports for Application Customers
+     */
+    async getCustomerActivityReportsWithoutTotalCountRaw(requestParameters: GetCustomerActivityReportsWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCustomerActivityReportsWithoutTotalCount200Response>> {
+        const requestOptions = await this.getCustomerActivityReportsWithoutTotalCountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCustomerActivityReportsWithoutTotalCount200ResponseFromJSON(jsonValue));
     }
@@ -7754,10 +8491,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Fetch analytics for a given customer in the given application.
-     * Get customer\'s analytics report
+     * Creates request options for getCustomerAnalytics without sending the request
      */
-    async getCustomerAnalyticsRaw(requestParameters: GetCustomerAnalyticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAnalytics>> {
+    async getCustomerAnalyticsRequestOpts(requestParameters: GetCustomerAnalyticsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -7805,12 +8541,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"customerId"}}`, encodeURIComponent(String(requestParameters['customerId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Fetch analytics for a given customer in the given application.
+     * Get customer\'s analytics report
+     */
+    async getCustomerAnalyticsRaw(requestParameters: GetCustomerAnalyticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAnalytics>> {
+        const requestOptions = await this.getCustomerAnalyticsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CustomerAnalyticsFromJSON(jsonValue));
     }
@@ -7825,10 +8570,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Return the details of the specified customer profile.  <div class=\"redoc-section\">   <p class=\"title\">Performance tips</p>    You can retrieve the same information via the Integration API, which can save you extra API requests. consider these options:    - Request the customer profile to be part of the response content using     [Update Customer Session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2).   - Send an empty update with the [Update Customer Profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint with `runRuleEngine=false`. </div> 
-     * Get customer profile
+     * Creates request options for getCustomerProfile without sending the request
      */
-    async getCustomerProfileRaw(requestParameters: GetCustomerProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerProfile>> {
+    async getCustomerProfileRequestOpts(requestParameters: GetCustomerProfileRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['customerId'] == null) {
             throw new runtime.RequiredError(
                 'customerId',
@@ -7856,12 +8600,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/customers/{customerId}`;
         urlPath = urlPath.replace(`{${"customerId"}}`, encodeURIComponent(String(requestParameters['customerId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Return the details of the specified customer profile.  <div class=\"redoc-section\">   <p class=\"title\">Performance tips</p>    You can retrieve the same information via the Integration API, which can save you extra API requests. consider these options:    - Request the customer profile to be part of the response content using     [Update Customer Session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2).   - Send an empty update with the [Update Customer Profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint with `runRuleEngine=false`. </div> 
+     * Get customer profile
+     */
+    async getCustomerProfileRaw(requestParameters: GetCustomerProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerProfile>> {
+        const requestOptions = await this.getCustomerProfileRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CustomerProfileFromJSON(jsonValue));
     }
@@ -7876,10 +8629,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * For the given customer profile, list all the achievements that match your filter criteria. 
-     * List customer achievements
+     * Creates request options for getCustomerProfileAchievementProgress without sending the request
      */
-    async getCustomerProfileAchievementProgressRaw(requestParameters: GetCustomerProfileAchievementProgressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCustomerProfileAchievementProgress200Response>> {
+    async getCustomerProfileAchievementProgressRequestOpts(requestParameters: GetCustomerProfileAchievementProgressRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -7931,12 +8683,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * For the given customer profile, list all the achievements that match your filter criteria. 
+     * List customer achievements
+     */
+    async getCustomerProfileAchievementProgressRaw(requestParameters: GetCustomerProfileAchievementProgressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCustomerProfileAchievementProgress200Response>> {
+        const requestOptions = await this.getCustomerProfileAchievementProgressRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCustomerProfileAchievementProgress200ResponseFromJSON(jsonValue));
     }
@@ -7951,10 +8712,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all customer profiles.
-     * List customer profiles
+     * Creates request options for getCustomerProfiles without sending the request
      */
-    async getCustomerProfilesRaw(requestParameters: GetCustomerProfilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCustomerProfiles200Response>> {
+    async getCustomerProfilesRequestOpts(requestParameters: GetCustomerProfilesRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['pageSize'] != null) {
@@ -7986,12 +8746,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/customers/no_total`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all customer profiles.
+     * List customer profiles
+     */
+    async getCustomerProfilesRaw(requestParameters: GetCustomerProfilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCustomerProfiles200Response>> {
+        const requestOptions = await this.getCustomerProfilesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCustomerProfiles200ResponseFromJSON(jsonValue));
     }
@@ -8006,10 +8775,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a list of the customer profiles matching the provided criteria.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request. 
-     * List customer profiles matching the given attributes
+     * Creates request options for getCustomersByAttributes without sending the request
      */
-    async getCustomersByAttributesRaw(requestParameters: GetCustomersByAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCustomersByAttributes200Response>> {
+    async getCustomersByAttributesRequestOpts(requestParameters: GetCustomersByAttributesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['customerProfileSearchQuery'] == null) {
             throw new runtime.RequiredError(
                 'customerProfileSearchQuery',
@@ -8050,13 +8818,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/customer_search/no_total`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CustomerProfileSearchQueryToJSON(requestParameters['customerProfileSearchQuery']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get a list of the customer profiles matching the provided criteria.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request. 
+     * List customer profiles matching the given attributes
+     */
+    async getCustomersByAttributesRaw(requestParameters: GetCustomersByAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCustomersByAttributes200Response>> {
+        const requestOptions = await this.getCustomersByAttributesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCustomersByAttributes200ResponseFromJSON(jsonValue));
     }
@@ -8071,10 +8848,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the statistics displayed on the specified loyalty program\'s dashboard, such as the total active points, pending points, spent points, and expired points.  **Important:** The returned data does not include the current day. All statistics are updated daily at 11:59 PM in the loyalty program time zone. 
-     * Get statistics for loyalty dashboard
+     * Creates request options for getDashboardStatistics without sending the request
      */
-    async getDashboardStatisticsRaw(requestParameters: GetDashboardStatisticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetDashboardStatistics200Response>> {
+    async getDashboardStatisticsRequestOpts(requestParameters: GetDashboardStatisticsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -8128,12 +8904,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/dashboard`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve the statistics displayed on the specified loyalty program\'s dashboard, such as the total active points, pending points, spent points, and expired points.  **Important:** The returned data does not include the current day. All statistics are updated daily at 11:59 PM in the loyalty program time zone. 
+     * Get statistics for loyalty dashboard
+     */
+    async getDashboardStatisticsRaw(requestParameters: GetDashboardStatisticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetDashboardStatistics200Response>> {
+        const requestOptions = await this.getDashboardStatisticsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetDashboardStatistics200ResponseFromJSON(jsonValue));
     }
@@ -8148,10 +8933,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Fetch all event type definitions for your account. 
-     * List event types
+     * Creates request options for getEventTypes without sending the request
      */
-    async getEventTypesRaw(requestParameters: GetEventTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventTypes200Response>> {
+    async getEventTypesRequestOpts(requestParameters: GetEventTypesRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['name'] != null) {
@@ -8191,12 +8975,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/event_types`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Fetch all event type definitions for your account. 
+     * List event types
+     */
+    async getEventTypesRaw(requestParameters: GetEventTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventTypes200Response>> {
+        const requestOptions = await this.getEventTypesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetEventTypes200ResponseFromJSON(jsonValue));
     }
@@ -8211,10 +9004,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all past exports 
-     * Get exports
+     * Creates request options for getExports without sending the request
      */
-    async getExportsRaw(requestParameters: GetExportsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetExports200Response>> {
+    async getExportsRequestOpts(requestParameters: GetExportsRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['pageSize'] != null) {
@@ -8254,12 +9046,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/exports`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all past exports 
+     * Get exports
+     */
+    async getExportsRaw(requestParameters: GetExportsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetExports200Response>> {
+        const requestOptions = await this.getExportsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetExports200ResponseFromJSON(jsonValue));
     }
@@ -8274,10 +9075,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the given loyalty card.
-     * Get loyalty card
+     * Creates request options for getLoyaltyCard without sending the request
      */
-    async getLoyaltyCardRaw(requestParameters: GetLoyaltyCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCard>> {
+    async getLoyaltyCardRequestOpts(requestParameters: GetLoyaltyCardRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -8313,12 +9113,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get the given loyalty card.
+     * Get loyalty card
+     */
+    async getLoyaltyCardRaw(requestParameters: GetLoyaltyCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCard>> {
+        const requestOptions = await this.getLoyaltyCardRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyCardFromJSON(jsonValue));
     }
@@ -8333,10 +9142,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied. If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
-     * List card\'s transactions
+     * Creates request options for getLoyaltyCardTransactionLogs without sending the request
      */
-    async getLoyaltyCardTransactionLogsRaw(requestParameters: GetLoyaltyCardTransactionLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyCardTransactionLogs200Response>> {
+    async getLoyaltyCardTransactionLogsRequestOpts(requestParameters: GetLoyaltyCardTransactionLogsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -8400,12 +9208,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied. If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
+     * List card\'s transactions
+     */
+    async getLoyaltyCardTransactionLogsRaw(requestParameters: GetLoyaltyCardTransactionLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyCardTransactionLogs200Response>> {
+        const requestOptions = await this.getLoyaltyCardTransactionLogsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetLoyaltyCardTransactionLogs200ResponseFromJSON(jsonValue));
     }
@@ -8420,10 +9237,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * For the given card-based loyalty program, list the loyalty cards that match your filter criteria. 
-     * List loyalty cards
+     * Creates request options for getLoyaltyCards without sending the request
      */
-    async getLoyaltyCardsRaw(requestParameters: GetLoyaltyCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyCards200Response>> {
+    async getLoyaltyCardsRequestOpts(requestParameters: GetLoyaltyCardsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -8475,12 +9291,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * For the given card-based loyalty program, list the loyalty cards that match your filter criteria. 
+     * List loyalty cards
+     */
+    async getLoyaltyCardsRaw(requestParameters: GetLoyaltyCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyCards200Response>> {
+        const requestOptions = await this.getLoyaltyCardsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetLoyaltyCards200ResponseFromJSON(jsonValue));
     }
@@ -8495,10 +9320,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program. You can filter balances by date and subledger ID, and include tier-related information in the response.  **Note**: If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see: - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards) - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
-     * Get customer\'s loyalty balances
+     * Creates request options for getLoyaltyLedgerBalances without sending the request
      */
-    async getLoyaltyLedgerBalancesRaw(requestParameters: GetLoyaltyLedgerBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyBalancesWithTiers>> {
+    async getLoyaltyLedgerBalancesRequestOpts(requestParameters: GetLoyaltyLedgerBalancesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -8550,12 +9374,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program. You can filter balances by date and subledger ID, and include tier-related information in the response.  **Note**: If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see: - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards) - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
+     * Get customer\'s loyalty balances
+     */
+    async getLoyaltyLedgerBalancesRaw(requestParameters: GetLoyaltyLedgerBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyBalancesWithTiers>> {
+        const requestOptions = await this.getLoyaltyLedgerBalancesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyBalancesWithTiersFromJSON(jsonValue));
     }
@@ -8570,11 +9403,10 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the loyalty ledger for this profile integration ID.  To get the `integrationId` of the profile from a `sessionId`, use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint.  **Important:** To get loyalty transaction logs for a given Integration ID in a loyalty program, we recommend using the Integration API\'s [Get customer\'s loyalty logs](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). 
-     * Get customer\'s full loyalty ledger
+     * Creates request options for getLoyaltyPoints without sending the request
      * @deprecated
      */
-    async getLoyaltyPointsRaw(requestParameters: GetLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyLedger>> {
+    async getLoyaltyPointsRequestOpts(requestParameters: GetLoyaltyPointsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -8610,12 +9442,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get the loyalty ledger for this profile integration ID.  To get the `integrationId` of the profile from a `sessionId`, use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint.  **Important:** To get loyalty transaction logs for a given Integration ID in a loyalty program, we recommend using the Integration API\'s [Get customer\'s loyalty logs](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). 
+     * Get customer\'s full loyalty ledger
+     * @deprecated
+     */
+    async getLoyaltyPointsRaw(requestParameters: GetLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyLedger>> {
+        const requestOptions = await this.getLoyaltyPointsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyLedgerFromJSON(jsonValue));
     }
@@ -8631,10 +9473,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the specified [loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview). To list all loyalty programs in your Application, use [List loyalty programs](#operation/getLoyaltyPrograms).  To list the loyalty programs that a customer profile is part of, use the [List customer data](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/getCustomerInventory) 
-     * Get loyalty program
+     * Creates request options for getLoyaltyProgram without sending the request
      */
-    async getLoyaltyProgramRaw(requestParameters: GetLoyaltyProgramRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyProgram>> {
+    async getLoyaltyProgramRequestOpts(requestParameters: GetLoyaltyProgramRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -8662,12 +9503,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get the specified [loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview). To list all loyalty programs in your Application, use [List loyalty programs](#operation/getLoyaltyPrograms).  To list the loyalty programs that a customer profile is part of, use the [List customer data](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/getCustomerInventory) 
+     * Get loyalty program
+     */
+    async getLoyaltyProgramRaw(requestParameters: GetLoyaltyProgramRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyProgram>> {
+        const requestOptions = await this.getLoyaltyProgramRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyProgramFromJSON(jsonValue));
     }
@@ -8682,10 +9532,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  **Note:** To retrieve all loyalty program transaction logs in a given loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
-     * List customer\'s loyalty transactions
+     * Creates request options for getLoyaltyProgramProfileLedgerTransactions without sending the request
      */
-    async getLoyaltyProgramProfileLedgerTransactionsRaw(requestParameters: GetLoyaltyProgramProfileLedgerTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyProgramProfileTransactions200Response>> {
+    async getLoyaltyProgramProfileLedgerTransactionsRequestOpts(requestParameters: GetLoyaltyProgramProfileLedgerTransactionsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -8757,12 +9606,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  **Note:** To retrieve all loyalty program transaction logs in a given loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+     * List customer\'s loyalty transactions
+     */
+    async getLoyaltyProgramProfileLedgerTransactionsRaw(requestParameters: GetLoyaltyProgramProfileLedgerTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyProgramProfileTransactions200Response>> {
+        const requestOptions = await this.getLoyaltyProgramProfileLedgerTransactionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetLoyaltyProgramProfileTransactions200ResponseFromJSON(jsonValue));
     }
@@ -8777,10 +9635,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve loyalty program transaction logs in a given loyalty program with filtering options applied. Manual and imported transactions are also included. **Note:** If no filters are applied, the last 50 loyalty transactions for the given loyalty program are returned.  **Important:** To get loyalty transaction logs for a given Integration ID in a loyalty program, we recommend using the Integration API\'s [Get customer\'s loyalty logs](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). 
-     * List loyalty program transactions
+     * Creates request options for getLoyaltyProgramTransactions without sending the request
      */
-    async getLoyaltyProgramTransactionsRaw(requestParameters: GetLoyaltyProgramTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyProgramTransactions200Response>> {
+    async getLoyaltyProgramTransactionsRequestOpts(requestParameters: GetLoyaltyProgramTransactionsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -8844,12 +9701,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/transactions`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve loyalty program transaction logs in a given loyalty program with filtering options applied. Manual and imported transactions are also included. **Note:** If no filters are applied, the last 50 loyalty transactions for the given loyalty program are returned.  **Important:** To get loyalty transaction logs for a given Integration ID in a loyalty program, we recommend using the Integration API\'s [Get customer\'s loyalty logs](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). 
+     * List loyalty program transactions
+     */
+    async getLoyaltyProgramTransactionsRaw(requestParameters: GetLoyaltyProgramTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyProgramTransactions200Response>> {
+        const requestOptions = await this.getLoyaltyProgramTransactionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetLoyaltyProgramTransactions200ResponseFromJSON(jsonValue));
     }
@@ -8864,10 +9730,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List the loyalty programs of the account.
-     * List loyalty programs
+     * Creates request options for getLoyaltyPrograms without sending the request
      */
-    async getLoyaltyProgramsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyPrograms200Response>> {
+    async getLoyaltyProgramsRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -8887,12 +9752,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/loyalty_programs`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List the loyalty programs of the account.
+     * List loyalty programs
+     */
+    async getLoyaltyProgramsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyPrograms200Response>> {
+        const requestOptions = await this.getLoyaltyProgramsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetLoyaltyPrograms200ResponseFromJSON(jsonValue));
     }
@@ -8907,11 +9781,10 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * ⚠️ Deprecation notice: Support for requests to this endpoint will end soon. To retrieve statistics for a loyalty program, use the [Get statistics for loyalty dashboard](/management-api#tag/Loyalty/operation/getDashboardStatistics) endpoint.  Retrieve the statistics of the specified loyalty program, such as the total active points, pending points, spent points, and expired points. 
-     * Get loyalty program statistics
+     * Creates request options for getLoyaltyStatistics without sending the request
      * @deprecated
      */
-    async getLoyaltyStatisticsRaw(requestParameters: GetLoyaltyStatisticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyDashboardData>> {
+    async getLoyaltyStatisticsRequestOpts(requestParameters: GetLoyaltyStatisticsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -8939,12 +9812,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/statistics`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * ⚠️ Deprecation notice: Support for requests to this endpoint will end soon. To retrieve statistics for a loyalty program, use the [Get statistics for loyalty dashboard](/management-api#tag/Loyalty/operation/getDashboardStatistics) endpoint.  Retrieve the statistics of the specified loyalty program, such as the total active points, pending points, spent points, and expired points. 
+     * Get loyalty program statistics
+     * @deprecated
+     */
+    async getLoyaltyStatisticsRaw(requestParameters: GetLoyaltyStatisticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyDashboardData>> {
+        const requestOptions = await this.getLoyaltyStatisticsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyDashboardDataFromJSON(jsonValue));
     }
@@ -8960,10 +9843,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve all message log entries.
-     * List message log entries
+     * Creates request options for getMessageLogs without sending the request
      */
-    async getMessageLogsRaw(requestParameters: GetMessageLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MessageLogEntries>> {
+    async getMessageLogsRequestOpts(requestParameters: GetMessageLogsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['entityType'] == null) {
             throw new runtime.RequiredError(
                 'entityType',
@@ -9046,12 +9928,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/message_logs`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve all message log entries.
+     * List message log entries
+     */
+    async getMessageLogsRaw(requestParameters: GetMessageLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MessageLogEntries>> {
+        const requestOptions = await this.getMessageLogsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MessageLogEntriesFromJSON(jsonValue));
     }
@@ -9066,10 +9957,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all referrals of the specified campaign.
-     * List referrals
+     * Creates request options for getReferralsWithoutTotalCount without sending the request
      */
-    async getReferralsWithoutTotalCountRaw(requestParameters: GetReferralsWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetReferralsWithoutTotalCount200Response>> {
+    async getReferralsWithoutTotalCountRequestOpts(requestParameters: GetReferralsWithoutTotalCountRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -9141,12 +10031,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all referrals of the specified campaign.
+     * List referrals
+     */
+    async getReferralsWithoutTotalCountRaw(requestParameters: GetReferralsWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetReferralsWithoutTotalCount200Response>> {
+        const requestOptions = await this.getReferralsWithoutTotalCountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetReferralsWithoutTotalCount200ResponseFromJSON(jsonValue));
     }
@@ -9161,10 +10060,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the details of a specific role. To see all the roles, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint. 
-     * Get role
+     * Creates request options for getRoleV2 without sending the request
      */
-    async getRoleV2Raw(requestParameters: GetRoleV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RoleV2>> {
+    async getRoleV2RequestOpts(requestParameters: GetRoleV2Request): Promise<runtime.RequestOpts> {
         if (requestParameters['roleId'] == null) {
             throw new runtime.RequiredError(
                 'roleId',
@@ -9192,12 +10090,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v2/roles/{roleId}`;
         urlPath = urlPath.replace(`{${"roleId"}}`, encodeURIComponent(String(requestParameters['roleId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get the details of a specific role. To see all the roles, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint. 
+     * Get role
+     */
+    async getRoleV2Raw(requestParameters: GetRoleV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RoleV2>> {
+        const requestOptions = await this.getRoleV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => RoleV2FromJSON(jsonValue));
     }
@@ -9212,10 +10119,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the specified ruleset.
-     * Get ruleset
+     * Creates request options for getRuleset without sending the request
      */
-    async getRulesetRaw(requestParameters: GetRulesetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Ruleset>> {
+    async getRulesetRequestOpts(requestParameters: GetRulesetRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -9259,12 +10165,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
         urlPath = urlPath.replace(`{${"rulesetId"}}`, encodeURIComponent(String(requestParameters['rulesetId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve the specified ruleset.
+     * Get ruleset
+     */
+    async getRulesetRaw(requestParameters: GetRulesetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Ruleset>> {
+        const requestOptions = await this.getRulesetRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => RulesetFromJSON(jsonValue));
     }
@@ -9279,10 +10194,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all rulesets of this campaign. A ruleset is a revision of the rules of a campaign. **Important:** The response also includes deleted rules. You should only consider the latest revision of the returned rulesets. 
-     * List campaign rulesets
+     * Creates request options for getRulesets without sending the request
      */
-    async getRulesetsRaw(requestParameters: GetRulesetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetRulesets200Response>> {
+    async getRulesetsRequestOpts(requestParameters: GetRulesetsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -9330,12 +10244,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all rulesets of this campaign. A ruleset is a revision of the rules of a campaign. **Important:** The response also includes deleted rules. You should only consider the latest revision of the returned rulesets. 
+     * List campaign rulesets
+     */
+    async getRulesetsRaw(requestParameters: GetRulesetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetRulesets200Response>> {
+        const requestOptions = await this.getRulesetsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetRulesets200ResponseFromJSON(jsonValue));
     }
@@ -9350,10 +10273,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get store details for a specific store ID.
-     * Get store
+     * Creates request options for getStore without sending the request
      */
-    async getStoreRaw(requestParameters: GetStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Store>> {
+    async getStoreRequestOpts(requestParameters: GetStoreRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -9389,12 +10311,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"storeId"}}`, encodeURIComponent(String(requestParameters['storeId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get store details for a specific store ID.
+     * Get store
+     */
+    async getStoreRaw(requestParameters: GetStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Store>> {
+        const requestOptions = await this.getStoreRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => StoreFromJSON(jsonValue));
     }
@@ -9409,10 +10340,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the data (including an invitation code) for a user. Non-admin users can only get their own profile. 
-     * Get user
+     * Creates request options for getUser without sending the request
      */
-    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+    async getUserRequestOpts(requestParameters: GetUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -9440,12 +10370,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/users/{userId}`;
         urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve the data (including an invitation code) for a user. Non-admin users can only get their own profile. 
+     * Get user
+     */
+    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+        const requestOptions = await this.getUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserFromJSON(jsonValue));
     }
@@ -9460,10 +10399,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve all users in your account. 
-     * List users in account
+     * Creates request options for getUsers without sending the request
      */
-    async getUsersRaw(requestParameters: GetUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUsers200Response>> {
+    async getUsersRequestOpts(requestParameters: GetUsersRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['pageSize'] != null) {
@@ -9495,12 +10433,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/users`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve all users in your account. 
+     * List users in account
+     */
+    async getUsersRaw(requestParameters: GetUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUsers200Response>> {
+        const requestOptions = await this.getUsersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetUsers200ResponseFromJSON(jsonValue));
     }
@@ -9515,10 +10462,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a webhook by its id.
-     * Get webhook
+     * Creates request options for getWebhook without sending the request
      */
-    async getWebhookRaw(requestParameters: GetWebhookRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Webhook>> {
+    async getWebhookRequestOpts(requestParameters: GetWebhookRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['webhookId'] == null) {
             throw new runtime.RequiredError(
                 'webhookId',
@@ -9546,12 +10492,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/webhooks/{webhookId}`;
         urlPath = urlPath.replace(`{${"webhookId"}}`, encodeURIComponent(String(requestParameters['webhookId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a webhook by its id.
+     * Get webhook
+     */
+    async getWebhookRaw(requestParameters: GetWebhookRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Webhook>> {
+        const requestOptions = await this.getWebhookRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => WebhookFromJSON(jsonValue));
     }
@@ -9566,10 +10521,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all webhooks.
-     * List webhooks
+     * Creates request options for getWebhooks without sending the request
      */
-    async getWebhooksRaw(requestParameters: GetWebhooksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetWebhooks200Response>> {
+    async getWebhooksRequestOpts(requestParameters: GetWebhooksRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['applicationIds'] != null) {
@@ -9621,12 +10575,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/webhooks`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all webhooks.
+     * List webhooks
+     */
+    async getWebhooksRaw(requestParameters: GetWebhooksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetWebhooks200Response>> {
+        const requestOptions = await this.getWebhooksRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetWebhooks200ResponseFromJSON(jsonValue));
     }
@@ -9641,10 +10604,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the collection of string values that should be attached as payload for collection. The file should be sent as multipart data.  The import **replaces** the initial content of the collection.  The CSV file **must** only contain the following column:  - `item`: the values in your collection.  A collection is limited to 500,000 items.  Example:  ``` item Addidas Nike Asics ```  **Note:** Before sending a request to this endpoint, ensure the data in the CSV to import is different from the data currently stored in the collection. 
-     * Import data into existing account-level collection
+     * Creates request options for importAccountCollection without sending the request
      */
-    async importAccountCollectionRaw(requestParameters: ImportAccountCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+    async importAccountCollectionRequestOpts(requestParameters: ImportAccountCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['collectionId'] == null) {
             throw new runtime.RequiredError(
                 'collectionId',
@@ -9690,13 +10652,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/collections/{collectionId}/import`;
         urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Upload a CSV file containing the collection of string values that should be attached as payload for collection. The file should be sent as multipart data.  The import **replaces** the initial content of the collection.  The CSV file **must** only contain the following column:  - `item`: the values in your collection.  A collection is limited to 500,000 items.  Example:  ``` item Addidas Nike Asics ```  **Note:** Before sending a request to this endpoint, ensure the data in the CSV to import is different from the data currently stored in the collection. 
+     * Import data into existing account-level collection
+     */
+    async importAccountCollectionRaw(requestParameters: ImportAccountCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+        const requestOptions = await this.importAccountCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImportFromJSON(jsonValue));
     }
@@ -9711,10 +10682,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing a list of [picklist values](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#picklist-values) for the specified attribute.  The file should be sent as multipart data.  The import **replaces** the previous list of allowed values for this attribute, if any.  The CSV file **must** only contain the following column: - `item` (required): the values in your allowed list, for example a list of SKU\'s.  An allowed list is limited to 500,000 items.  Example:  ```text item CS-VG-04032021-UP-50D-10 CS-DV-04042021-UP-49D-12 CS-DG-02082021-UP-50G-07 ``` 
-     * Import allowed values for attribute
+     * Creates request options for importAllowedList without sending the request
      */
-    async importAllowedListRaw(requestParameters: ImportAllowedListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+    async importAllowedListRequestOpts(requestParameters: ImportAllowedListRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['attributeId'] == null) {
             throw new runtime.RequiredError(
                 'attributeId',
@@ -9760,13 +10730,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/attributes/{attributeId}/allowed_list/import`;
         urlPath = urlPath.replace(`{${"attributeId"}}`, encodeURIComponent(String(requestParameters['attributeId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Upload a CSV file containing a list of [picklist values](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#picklist-values) for the specified attribute.  The file should be sent as multipart data.  The import **replaces** the previous list of allowed values for this attribute, if any.  The CSV file **must** only contain the following column: - `item` (required): the values in your allowed list, for example a list of SKU\'s.  An allowed list is limited to 500,000 items.  Example:  ```text item CS-VG-04032021-UP-50D-10 CS-DV-04042021-UP-49D-12 CS-DG-02082021-UP-50G-07 ``` 
+     * Import allowed values for attribute
+     */
+    async importAllowedListRaw(requestParameters: ImportAllowedListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+        const requestOptions = await this.importAllowedListRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImportFromJSON(jsonValue));
     }
@@ -9781,10 +10760,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the integration IDs of the members you want to add to an audience.  The file should be sent as multipart data and should contain only the following column (required): - `profileintegrationid`: The integration ID of the customer profile.  The import **replaces** the previous list of audience members.  **Note:** We recommend limiting your file size to 500MB.  Example:  ```text profileintegrationid charles alexa ``` 
-     * Import audience members
+     * Creates request options for importAudiencesMemberships without sending the request
      */
-    async importAudiencesMembershipsRaw(requestParameters: ImportAudiencesMembershipsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+    async importAudiencesMembershipsRequestOpts(requestParameters: ImportAudiencesMembershipsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['audienceId'] == null) {
             throw new runtime.RequiredError(
                 'audienceId',
@@ -9830,13 +10808,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/audiences/{audienceId}/memberships/import`;
         urlPath = urlPath.replace(`{${"audienceId"}}`, encodeURIComponent(String(requestParameters['audienceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Upload a CSV file containing the integration IDs of the members you want to add to an audience.  The file should be sent as multipart data and should contain only the following column (required): - `profileintegrationid`: The integration ID of the customer profile.  The import **replaces** the previous list of audience members.  **Note:** We recommend limiting your file size to 500MB.  Example:  ```text profileintegrationid charles alexa ``` 
+     * Import audience members
+     */
+    async importAudiencesMembershipsRaw(requestParameters: ImportAudiencesMembershipsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+        const requestOptions = await this.importAudiencesMembershipsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImportFromJSON(jsonValue));
     }
@@ -9851,10 +10838,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing store budgets for a given campaign.  Send the file as multipart data.  The CSV file **must** only contain the following columns: - `store_integration_id`: The identifier of the store. - `limit`: The budget limit for the store.  The import **replaces** the previous list of store budgets. 
-     * Import campaign store budgets
+     * Creates request options for importCampaignStoreBudget without sending the request
      */
-    async importCampaignStoreBudgetRaw(requestParameters: ImportCampaignStoreBudgetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+    async importCampaignStoreBudgetRequestOpts(requestParameters: ImportCampaignStoreBudgetRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -9916,13 +10902,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Upload a CSV file containing store budgets for a given campaign.  Send the file as multipart data.  The CSV file **must** only contain the following columns: - `store_integration_id`: The identifier of the store. - `limit`: The budget limit for the store.  The import **replaces** the previous list of store budgets. 
+     * Import campaign store budgets
+     */
+    async importCampaignStoreBudgetRaw(requestParameters: ImportCampaignStoreBudgetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+        const requestOptions = await this.importCampaignStoreBudgetRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImportFromJSON(jsonValue));
     }
@@ -9937,10 +10932,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the stores you want to link to a specific campaign.  Send the file as multipart data.  The CSV file **must** only contain the following column: - `store_integration_id`: The identifier of the store.  The import **replaces** the previous list of stores linked to the campaign. 
-     * Import stores
+     * Creates request options for importCampaignStores without sending the request
      */
-    async importCampaignStoresRaw(requestParameters: ImportCampaignStoresRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+    async importCampaignStoresRequestOpts(requestParameters: ImportCampaignStoresRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -9994,13 +10988,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Upload a CSV file containing the stores you want to link to a specific campaign.  Send the file as multipart data.  The CSV file **must** only contain the following column: - `store_integration_id`: The identifier of the store.  The import **replaces** the previous list of stores linked to the campaign. 
+     * Import stores
+     */
+    async importCampaignStoresRaw(requestParameters: ImportCampaignStoresRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+        const requestOptions = await this.importCampaignStoresRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImportFromJSON(jsonValue));
     }
@@ -10015,10 +11018,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the collection of string values that should be attached as payload for collection. The file should be sent as multipart data.  The import **replaces** the initial content of the collection.  The CSV file **must** only contain the following column:  - `item`: the values in your collection.  A collection is limited to 500,000 items.  Example:  ``` item Addidas Nike Asics ```  **Note:** Before sending a request to this endpoint, ensure the data in the CSV to import is different from the data currently stored in the collection. 
-     * Import data into existing campaign-level collection
+     * Creates request options for importCollection without sending the request
      */
-    async importCollectionRaw(requestParameters: ImportCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+    async importCollectionRequestOpts(requestParameters: ImportCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -10080,13 +11082,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
         urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Upload a CSV file containing the collection of string values that should be attached as payload for collection. The file should be sent as multipart data.  The import **replaces** the initial content of the collection.  The CSV file **must** only contain the following column:  - `item`: the values in your collection.  A collection is limited to 500,000 items.  Example:  ``` item Addidas Nike Asics ```  **Note:** Before sending a request to this endpoint, ensure the data in the CSV to import is different from the data currently stored in the collection. 
+     * Import data into existing campaign-level collection
+     */
+    async importCollectionRaw(requestParameters: ImportCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+        const requestOptions = await this.importCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImportFromJSON(jsonValue));
     }
@@ -10101,10 +11112,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the coupons that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - `value` (required): The coupon code. - `expirydate`: The end date in RFC3339 of the code redemption period. - `startdate`: The start date in RFC3339 of the code redemption period. - `recipientintegrationid`: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - `limitval`: The maximum number of redemptions of this code. For unlimited redemptions, use `0`. Defaults to `1` when not provided. - `discountlimit`: The total discount value that the code can give. This is typically used to represent a gift card value. - `attributes`: A JSON object describing _custom_ coupon attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called `category` associated with the coupon entity, the object in the CSV file, when opened in a text editor, must be: `\"{\"category\": \"10_off\"}\"`.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```text \"value\",\"expirydate\",\"startdate\",\"recipientintegrationid\",\"limitval\",\"attributes\",\"discountlimit\" COUP1,2018-07-01T04:00:00Z,2018-05-01T04:00:00Z,cust123,1,\"{\"\"Category\"\": \"\"10_off\"\"}\",2.4 ```  Once imported, you can find the `batchId` in the Campaign Manager or by using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount). 
-     * Import coupons
+     * Creates request options for importCoupons without sending the request
      */
-    async importCouponsRaw(requestParameters: ImportCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+    async importCouponsRequestOpts(requestParameters: ImportCouponsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -10162,13 +11172,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Upload a CSV file containing the coupons that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - `value` (required): The coupon code. - `expirydate`: The end date in RFC3339 of the code redemption period. - `startdate`: The start date in RFC3339 of the code redemption period. - `recipientintegrationid`: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - `limitval`: The maximum number of redemptions of this code. For unlimited redemptions, use `0`. Defaults to `1` when not provided. - `discountlimit`: The total discount value that the code can give. This is typically used to represent a gift card value. - `attributes`: A JSON object describing _custom_ coupon attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called `category` associated with the coupon entity, the object in the CSV file, when opened in a text editor, must be: `\"{\"category\": \"10_off\"}\"`.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```text \"value\",\"expirydate\",\"startdate\",\"recipientintegrationid\",\"limitval\",\"attributes\",\"discountlimit\" COUP1,2018-07-01T04:00:00Z,2018-05-01T04:00:00Z,cust123,1,\"{\"\"Category\"\": \"\"10_off\"\"}\",2.4 ```  Once imported, you can find the `batchId` in the Campaign Manager or by using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount). 
+     * Import coupons
+     */
+    async importCouponsRaw(requestParameters: ImportCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+        const requestOptions = await this.importCouponsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImportFromJSON(jsonValue));
     }
@@ -10183,10 +11202,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The alphanumeric identifier of the loyalty card. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA ``` 
-     * Import loyalty cards
+     * Creates request options for importLoyaltyCards without sending the request
      */
-    async importLoyaltyCardsRaw(requestParameters: ImportLoyaltyCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+    async importLoyaltyCardsRequestOpts(requestParameters: ImportLoyaltyCardsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -10232,13 +11250,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/import_cards`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The alphanumeric identifier of the loyalty card. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA ``` 
+     * Import loyalty cards
+     */
+    async importLoyaltyCardsRaw(requestParameters: ImportLoyaltyCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+        const requestOptions = await this.importLoyaltyCardsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImportFromJSON(jsonValue));
     }
@@ -10253,10 +11280,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing existing customers to be assigned to existing tiers. Send the file as multipart data.  **Important:** This endpoint only works with loyalty programs with advanced tiers (with expiration and downgrade policy) feature enabled.  The CSV file should contain the following columns: - `subledgerid` (optional): The ID of the subledger. If this field is empty, the main ledger will be used. - `customerprofileid`: The integration ID of the customer profile to whom the tier should be assigned. - `tiername`: The name of an existing tier to assign to the customer. - `expirydate`: The expiration date of the tier when the tier is reevaluated. It should be a future date.  About customer assignment to a tier: - If the customer isn\'t already in a tier, the customer is assigned to the specified tier during the tier import. - If the customer is already in the tier that\'s specified in the CSV file, only the expiration date is updated.  **Note:** We recommend not using this endpoint to update the tier of a customer. To update a customer\'s tier, you can [add](/management-api#tag/Loyalty/operation/addLoyaltyPoints) or [deduct](/management-api#tag/Loyalty/operation/removeLoyaltyPoints) their loyalty points.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** We recommend limiting your file size to 500MB.  **Example:** ```csv subledgerid,customerprofileid,tiername,expirydate SUB1,alexa,Gold,2024-03-21T07:32:14Z ,george,Silver,2025-04-16T21:12:37Z SUB2,avocado,Bronze,2026-05-03T11:47:01Z ``` 
-     * Import customers into loyalty tiers
+     * Creates request options for importLoyaltyCustomersTiers without sending the request
      */
-    async importLoyaltyCustomersTiersRaw(requestParameters: ImportLoyaltyCustomersTiersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+    async importLoyaltyCustomersTiersRequestOpts(requestParameters: ImportLoyaltyCustomersTiersRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -10302,13 +11328,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/import_customers_tiers`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Upload a CSV file containing existing customers to be assigned to existing tiers. Send the file as multipart data.  **Important:** This endpoint only works with loyalty programs with advanced tiers (with expiration and downgrade policy) feature enabled.  The CSV file should contain the following columns: - `subledgerid` (optional): The ID of the subledger. If this field is empty, the main ledger will be used. - `customerprofileid`: The integration ID of the customer profile to whom the tier should be assigned. - `tiername`: The name of an existing tier to assign to the customer. - `expirydate`: The expiration date of the tier when the tier is reevaluated. It should be a future date.  About customer assignment to a tier: - If the customer isn\'t already in a tier, the customer is assigned to the specified tier during the tier import. - If the customer is already in the tier that\'s specified in the CSV file, only the expiration date is updated.  **Note:** We recommend not using this endpoint to update the tier of a customer. To update a customer\'s tier, you can [add](/management-api#tag/Loyalty/operation/addLoyaltyPoints) or [deduct](/management-api#tag/Loyalty/operation/removeLoyaltyPoints) their loyalty points.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** We recommend limiting your file size to 500MB.  **Example:** ```csv subledgerid,customerprofileid,tiername,expirydate SUB1,alexa,Gold,2024-03-21T07:32:14Z ,george,Silver,2025-04-16T21:12:37Z SUB2,avocado,Bronze,2026-05-03T11:47:01Z ``` 
+     * Import customers into loyalty tiers
+     */
+    async importLoyaltyCustomersTiersRaw(requestParameters: ImportLoyaltyCustomersTiersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+        const requestOptions = await this.importLoyaltyCustomersTiersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImportFromJSON(jsonValue));
     }
@@ -10323,10 +11358,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - `customerprofileid` (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - `identifier` (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - `amount`: The amount of points to award to the customer profile. - `startdate` (optional): The earliest date when the points can be redeemed. The points are `active` from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - `immediate`   - `on_action`      **Note**:   Empty or missing values default to `immediate`. - `expirydate` (optional): The latest date when the points can be redeemed. The points are `expired` after this date.    **Note**: It must be an RFC3339 timestamp string or string `unlimited`. Empty or missing values are considered `unlimited`.      If passed, `validityDuration` should be omitted. - `validityDuration` (optional): The duration for which the points remain active, relative to the    activation date.    The time format is an **integer** followed by one letter indicating the time unit.     Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.     Available units:     - `s`: seconds   - `m`: minutes   - `h`: hours   - `D`: days   - `W`: weeks   - `M`: months   - `Y`: years     You can round certain units up or down:    - `_D` for rounding down days only. Signifies the start of the day.   - `_U` for rounding up days, weeks, months and years. Signifies the end of   the day, week, month or year.    If passed, `expirydate` should be omitted. - `subledgerid` (optional): The ID of the subledger that should received the points. - `reason` (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for `startdate`. If `startdate` matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for `startdate` is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  ```text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ```  **Example for card-based programs:**  ```text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ``` 
-     * Import loyalty points
+     * Creates request options for importLoyaltyPoints without sending the request
      */
-    async importLoyaltyPointsRaw(requestParameters: ImportLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+    async importLoyaltyPointsRequestOpts(requestParameters: ImportLoyaltyPointsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -10376,13 +11410,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/import_points`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - `customerprofileid` (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - `identifier` (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - `amount`: The amount of points to award to the customer profile. - `startdate` (optional): The earliest date when the points can be redeemed. The points are `active` from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - `immediate`   - `on_action`      **Note**:   Empty or missing values default to `immediate`. - `expirydate` (optional): The latest date when the points can be redeemed. The points are `expired` after this date.    **Note**: It must be an RFC3339 timestamp string or string `unlimited`. Empty or missing values are considered `unlimited`.      If passed, `validityDuration` should be omitted. - `validityDuration` (optional): The duration for which the points remain active, relative to the    activation date.    The time format is an **integer** followed by one letter indicating the time unit.     Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.     Available units:     - `s`: seconds   - `m`: minutes   - `h`: hours   - `D`: days   - `W`: weeks   - `M`: months   - `Y`: years     You can round certain units up or down:    - `_D` for rounding down days only. Signifies the start of the day.   - `_U` for rounding up days, weeks, months and years. Signifies the end of   the day, week, month or year.    If passed, `expirydate` should be omitted. - `subledgerid` (optional): The ID of the subledger that should received the points. - `reason` (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for `startdate`. If `startdate` matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for `startdate` is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  ```text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ```  **Example for card-based programs:**  ```text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ``` 
+     * Import loyalty points
+     */
+    async importLoyaltyPointsRaw(requestParameters: ImportLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+        const requestOptions = await this.importLoyaltyPointsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImportFromJSON(jsonValue));
     }
@@ -10397,10 +11440,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the giveaway codes that should be created. Send the file as multipart data.  The CSV file contains the following columns: - `code` (required): The code of your giveaway, for instance, a gift card redemption code. - `startdate`:  The start date in RFC3339 of the code redemption period. - `enddate`: The last date in RFC3339 of the code redemption period. - `attributes`: A JSON object describing _custom_ giveaway attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called `provider` associated with the giveaway entity, the object in the CSV file, when opened in a text editor, must be: `\"{\"provider\": \"myPartnerCompany\"}\"`.  The `startdate` and `enddate` have nothing to do with the _validity_ of the codes. They are only used by the Rule Engine to award the codes or not. You can use the time zone setting of your choice. The values are converted to UTC internally by Talon.One.  **Note:**  - We recommend limiting your file size to 500MB. - You can import the same code multiple times. Duplicate codes are treated and distributed to customers as unique codes.  **Example:**  ```text code,startdate,enddate,attributes GIVEAWAY1,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,\"{\"\"provider\"\": \"\"Amazon\"\"}\" GIVEAWAY2,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,\"{\"\"provider\"\": \"\"Amazon\"\"}\" GIVEAWAY3,2021-01-10T23:00:00Z,2022-11-11T23:00:00Z,\"{\"\"provider\"\": \"\"Aliexpress\"\"}\" ``` 
-     * Import giveaway codes into a giveaway pool
+     * Creates request options for importPoolGiveaways without sending the request
      */
-    async importPoolGiveawaysRaw(requestParameters: ImportPoolGiveawaysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+    async importPoolGiveawaysRequestOpts(requestParameters: ImportPoolGiveawaysRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['poolId'] == null) {
             throw new runtime.RequiredError(
                 'poolId',
@@ -10446,13 +11488,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/giveaways/pools/{poolId}/import`;
         urlPath = urlPath.replace(`{${"poolId"}}`, encodeURIComponent(String(requestParameters['poolId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Upload a CSV file containing the giveaway codes that should be created. Send the file as multipart data.  The CSV file contains the following columns: - `code` (required): The code of your giveaway, for instance, a gift card redemption code. - `startdate`:  The start date in RFC3339 of the code redemption period. - `enddate`: The last date in RFC3339 of the code redemption period. - `attributes`: A JSON object describing _custom_ giveaway attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called `provider` associated with the giveaway entity, the object in the CSV file, when opened in a text editor, must be: `\"{\"provider\": \"myPartnerCompany\"}\"`.  The `startdate` and `enddate` have nothing to do with the _validity_ of the codes. They are only used by the Rule Engine to award the codes or not. You can use the time zone setting of your choice. The values are converted to UTC internally by Talon.One.  **Note:**  - We recommend limiting your file size to 500MB. - You can import the same code multiple times. Duplicate codes are treated and distributed to customers as unique codes.  **Example:**  ```text code,startdate,enddate,attributes GIVEAWAY1,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,\"{\"\"provider\"\": \"\"Amazon\"\"}\" GIVEAWAY2,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,\"{\"\"provider\"\": \"\"Amazon\"\"}\" GIVEAWAY3,2021-01-10T23:00:00Z,2022-11-11T23:00:00Z,\"{\"\"provider\"\": \"\"Aliexpress\"\"}\" ``` 
+     * Import giveaway codes into a giveaway pool
+     */
+    async importPoolGiveawaysRaw(requestParameters: ImportPoolGiveawaysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+        const requestOptions = await this.importPoolGiveawaysRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImportFromJSON(jsonValue));
     }
@@ -10467,10 +11518,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the referrals that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - `code` (required): The referral code. - `advocateprofileintegrationid` (required): The profile ID of the advocate. - `startdate`: The start date in RFC3339 of the code redemption period. - `expirydate`: The end date in RFC3339 of the code redemption period. - `limitval`: The maximum number of redemptions of this code. Defaults to `1` when left blank. - `attributes`: A JSON object describing _custom_ referral attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called `category` associated with the referral entity, the object in the CSV file, when opened in a text editor, must be: `\"{\"category\": \"10_off\"}\"`.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Important:** When you import a CSV file with referrals, a [customer profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) is **not** automatically created for each `advocateprofileintegrationid` column value. Use the [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint or the [Update multiple customer profiles](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfilesV2) endpoint to create the customer profiles.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```text code,startdate,expirydate,advocateprofileintegrationid,limitval,attributes REFERRAL_CODE1,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid_4,1,\"{\"\"my_attribute\"\": \"\"10_off\"\"}\" REFERRAL_CODE2,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid1,1,\"{\"\"my_attribute\"\": \"\"20_off\"\"}\" ``` 
-     * Import referrals
+     * Creates request options for importReferrals without sending the request
      */
-    async importReferralsRaw(requestParameters: ImportReferralsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+    async importReferralsRequestOpts(requestParameters: ImportReferralsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -10524,13 +11574,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Upload a CSV file containing the referrals that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - `code` (required): The referral code. - `advocateprofileintegrationid` (required): The profile ID of the advocate. - `startdate`: The start date in RFC3339 of the code redemption period. - `expirydate`: The end date in RFC3339 of the code redemption period. - `limitval`: The maximum number of redemptions of this code. Defaults to `1` when left blank. - `attributes`: A JSON object describing _custom_ referral attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called `category` associated with the referral entity, the object in the CSV file, when opened in a text editor, must be: `\"{\"category\": \"10_off\"}\"`.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Important:** When you import a CSV file with referrals, a [customer profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) is **not** automatically created for each `advocateprofileintegrationid` column value. Use the [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint or the [Update multiple customer profiles](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfilesV2) endpoint to create the customer profiles.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```text code,startdate,expirydate,advocateprofileintegrationid,limitval,attributes REFERRAL_CODE1,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid_4,1,\"{\"\"my_attribute\"\": \"\"10_off\"\"}\" REFERRAL_CODE2,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid1,1,\"{\"\"my_attribute\"\": \"\"20_off\"\"}\" ``` 
+     * Import referrals
+     */
+    async importReferralsRaw(requestParameters: ImportReferralsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
+        const requestOptions = await this.importReferralsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImportFromJSON(jsonValue));
     }
@@ -10545,10 +11604,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * [Invite a user](https://docs.talon.one/docs/product/account/account-settings/managing-users#inviting-a-user) from an external identity provider to Talon.One by sending an invitation to their email address. 
-     * Invite user from identity provider
+     * Creates request options for inviteUserExternal without sending the request
      */
-    async inviteUserExternalRaw(requestParameters: InviteUserExternalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async inviteUserExternalRequestOpts(requestParameters: InviteUserExternalRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['newExternalInvitation'] == null) {
             throw new runtime.RequiredError(
                 'newExternalInvitation',
@@ -10577,13 +11635,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/users/invite`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewExternalInvitationToJSON(requestParameters['newExternalInvitation']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * [Invite a user](https://docs.talon.one/docs/product/account/account-settings/managing-users#inviting-a-user) from an external identity provider to Talon.One by sending an invitation to their email address. 
+     * Invite user from identity provider
+     */
+    async inviteUserExternalRaw(requestParameters: InviteUserExternalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.inviteUserExternalRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -10597,10 +11664,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List account-level collections in the account.
-     * List collections in account
+     * Creates request options for listAccountCollections without sending the request
      */
-    async listAccountCollectionsRaw(requestParameters: ListAccountCollectionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAccountCollections200Response>> {
+    async listAccountCollectionsRequestOpts(requestParameters: ListAccountCollectionsRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['pageSize'] != null) {
@@ -10640,12 +11706,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/collections`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List account-level collections in the account.
+     * List collections in account
+     */
+    async listAccountCollectionsRaw(requestParameters: ListAccountCollectionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAccountCollections200Response>> {
+        const requestOptions = await this.listAccountCollectionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListAccountCollections200ResponseFromJSON(jsonValue));
     }
@@ -10660,10 +11735,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all the achievements for a specific campaign.
-     * List achievements
+     * Creates request options for listAchievements without sending the request
      */
-    async listAchievementsRaw(requestParameters: ListAchievementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAchievements200Response>> {
+    async listAchievementsRequestOpts(requestParameters: ListAchievementsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -10711,12 +11785,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all the achievements for a specific campaign.
+     * List achievements
+     */
+    async listAchievementsRaw(requestParameters: ListAchievementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAchievements200Response>> {
+        const requestOptions = await this.listAchievementsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListAchievements200ResponseFromJSON(jsonValue));
     }
@@ -10731,10 +11814,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all roles.
-     * List roles
+     * Creates request options for listAllRolesV2 without sending the request
      */
-    async listAllRolesV2Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAllRolesV2200Response>> {
+    async listAllRolesV2RequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -10754,12 +11836,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v2/roles`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all roles.
+     * List roles
+     */
+    async listAllRolesV2Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAllRolesV2200Response>> {
+        const requestOptions = await this.listAllRolesV2RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListAllRolesV2200ResponseFromJSON(jsonValue));
     }
@@ -10774,10 +11865,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Return the store budget limits for a given campaign.
-     * List campaign store budget limits
+     * Creates request options for listCampaignStoreBudgetLimits without sending the request
      */
-    async listCampaignStoreBudgetLimitsRaw(requestParameters: ListCampaignStoreBudgetLimitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCampaignStoreBudgetLimits200Response>> {
+    async listCampaignStoreBudgetLimitsRequestOpts(requestParameters: ListCampaignStoreBudgetLimitsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -10821,12 +11911,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Return the store budget limits for a given campaign.
+     * List campaign store budget limits
+     */
+    async listCampaignStoreBudgetLimitsRaw(requestParameters: ListCampaignStoreBudgetLimitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCampaignStoreBudgetLimits200Response>> {
+        const requestOptions = await this.listCampaignStoreBudgetLimitsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListCampaignStoreBudgetLimits200ResponseFromJSON(jsonValue));
     }
@@ -10841,10 +11940,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Return a paginated list of cart items in the given catalog. 
-     * List items in a catalog
+     * Creates request options for listCatalogItems without sending the request
      */
-    async listCatalogItemsRaw(requestParameters: ListCatalogItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCatalogItems200Response>> {
+    async listCatalogItemsRequestOpts(requestParameters: ListCatalogItemsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['catalogId'] == null) {
             throw new runtime.RequiredError(
                 'catalogId',
@@ -10892,12 +11990,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/catalogs/{catalogId}/items`;
         urlPath = urlPath.replace(`{${"catalogId"}}`, encodeURIComponent(String(requestParameters['catalogId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Return a paginated list of cart items in the given catalog. 
+     * List items in a catalog
+     */
+    async listCatalogItemsRaw(requestParameters: ListCatalogItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCatalogItems200Response>> {
+        const requestOptions = await this.listCatalogItemsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListCatalogItems200ResponseFromJSON(jsonValue));
     }
@@ -10912,10 +12019,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List collections in a given campaign.
-     * List collections in campaign
+     * Creates request options for listCollections without sending the request
      */
-    async listCollectionsRaw(requestParameters: ListCollectionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAccountCollections200Response>> {
+    async listCollectionsRequestOpts(requestParameters: ListCollectionsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -10971,12 +12077,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List collections in a given campaign.
+     * List collections in campaign
+     */
+    async listCollectionsRaw(requestParameters: ListCollectionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAccountCollections200Response>> {
+        const requestOptions = await this.listCollectionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListAccountCollections200ResponseFromJSON(jsonValue));
     }
@@ -10991,10 +12106,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List campaign-level collections from all campaigns in a given Application.
-     * List collections in Application
+     * Creates request options for listCollectionsInApplication without sending the request
      */
-    async listCollectionsInApplicationRaw(requestParameters: ListCollectionsInApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAccountCollections200Response>> {
+    async listCollectionsInApplicationRequestOpts(requestParameters: ListCollectionsInApplicationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -11042,12 +12156,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/collections`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List campaign-level collections from all campaigns in a given Application.
+     * List collections in Application
+     */
+    async listCollectionsInApplicationRaw(requestParameters: ListCollectionsInApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAccountCollections200Response>> {
+        const requestOptions = await this.listCollectionsInApplicationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListAccountCollections200ResponseFromJSON(jsonValue));
     }
@@ -11062,10 +12185,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all stores for a specific Application.
-     * List stores
+     * Creates request options for listStores without sending the request
      */
-    async listStoresRaw(requestParameters: ListStoresRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListStores200Response>> {
+    async listStoresRequestOpts(requestParameters: ListStoresRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -11125,12 +12247,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/stores`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all stores for a specific Application.
+     * List stores
+     */
+    async listStoresRaw(requestParameters: ListStoresRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListStores200Response>> {
+        const requestOptions = await this.listStoresRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListStores200ResponseFromJSON(jsonValue));
     }
@@ -11145,10 +12276,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Validate the ownership of the API through a challenge-response mechanism.  This challenger endpoint is used by Okta to confirm that communication between Talon.One and Okta is correctly configured and accessible for provisioning and deprovisioning of Talon.One users, and that only Talon.One can receive and respond to events from Okta. 
-     * Validate Okta API ownership
+     * Creates request options for oktaEventHandlerChallenge without sending the request
      */
-    async oktaEventHandlerChallengeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async oktaEventHandlerChallengeRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -11168,12 +12298,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/provisioning/okta`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Validate the ownership of the API through a challenge-response mechanism.  This challenger endpoint is used by Okta to confirm that communication between Talon.One and Okta is correctly configured and accessible for provisioning and deprovisioning of Talon.One users, and that only Talon.One can receive and respond to events from Okta. 
+     * Validate Okta API ownership
+     */
+    async oktaEventHandlerChallengeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.oktaEventHandlerChallengeRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -11187,10 +12326,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deduct points from the specified loyalty program and specified customer profile.  **Important:** - Only active points can be deducted. - Only pending points are rolled back when a session is cancelled or reopened.  To get the `integrationId` of the profile from a `sessionId`, use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
-     * Deduct points from customer profile
+     * Creates request options for removeLoyaltyPoints without sending the request
      */
-    async removeLoyaltyPointsRaw(requestParameters: RemoveLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removeLoyaltyPointsRequestOpts(requestParameters: RemoveLoyaltyPointsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -11235,13 +12373,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: DeductLoyaltyPointsToJSON(requestParameters['deductLoyaltyPoints']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Deduct points from the specified loyalty program and specified customer profile.  **Important:** - Only active points can be deducted. - Only pending points are rolled back when a session is cancelled or reopened.  To get the `integrationId` of the profile from a `sessionId`, use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
+     * Deduct points from customer profile
+     */
+    async removeLoyaltyPointsRaw(requestParameters: RemoveLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.removeLoyaltyPointsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -11255,10 +12402,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Consumes the supplied password reset token and updates the password for the associated account. 
-     * Reset password
+     * Creates request options for resetPassword without sending the request
      */
-    async resetPasswordRaw(requestParameters: ResetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NewPassword>> {
+    async resetPasswordRequestOpts(requestParameters: ResetPasswordRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['newPassword'] == null) {
             throw new runtime.RequiredError(
                 'newPassword',
@@ -11287,13 +12433,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/reset_password`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewPasswordToJSON(requestParameters['newPassword']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Consumes the supplied password reset token and updates the password for the associated account. 
+     * Reset password
+     */
+    async resetPasswordRaw(requestParameters: ResetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NewPassword>> {
+        const requestOptions = await this.resetPasswordRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NewPasswordFromJSON(jsonValue));
     }
@@ -11308,10 +12463,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new Talon.One group using the SCIM Group provisioning protocol with an identity provider, for example, Microsoft Entra ID, and assign members from the payload to the new group. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
-     * Create SCIM group
+     * Creates request options for scimCreateGroup without sending the request
      */
-    async scimCreateGroupRaw(requestParameters: ScimCreateGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimGroup>> {
+    async scimCreateGroupRequestOpts(requestParameters: ScimCreateGroupRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['scimBaseGroup'] == null) {
             throw new runtime.RequiredError(
                 'scimBaseGroup',
@@ -11340,13 +12494,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/provisioning/scim/Groups`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ScimBaseGroupToJSON(requestParameters['scimBaseGroup']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a new Talon.One group using the SCIM Group provisioning protocol with an identity provider, for example, Microsoft Entra ID, and assign members from the payload to the new group. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
+     * Create SCIM group
+     */
+    async scimCreateGroupRaw(requestParameters: ScimCreateGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimGroup>> {
+        const requestOptions = await this.scimCreateGroupRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ScimGroupFromJSON(jsonValue));
     }
@@ -11361,10 +12524,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new Talon.One user using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.
-     * Create SCIM user
+     * Creates request options for scimCreateUser without sending the request
      */
-    async scimCreateUserRaw(requestParameters: ScimCreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimUser>> {
+    async scimCreateUserRequestOpts(requestParameters: ScimCreateUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['scimNewUser'] == null) {
             throw new runtime.RequiredError(
                 'scimNewUser',
@@ -11393,13 +12555,22 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/provisioning/scim/Users`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ScimNewUserToJSON(requestParameters['scimNewUser']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a new Talon.One user using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.
+     * Create SCIM user
+     */
+    async scimCreateUserRaw(requestParameters: ScimCreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimUser>> {
+        const requestOptions = await this.scimCreateUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ScimUserFromJSON(jsonValue));
     }
@@ -11414,10 +12585,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a specific group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
-     * Delete SCIM group
+     * Creates request options for scimDeleteGroup without sending the request
      */
-    async scimDeleteGroupRaw(requestParameters: ScimDeleteGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async scimDeleteGroupRequestOpts(requestParameters: ScimDeleteGroupRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['groupId'] == null) {
             throw new runtime.RequiredError(
                 'groupId',
@@ -11445,12 +12615,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/provisioning/scim/Groups/{groupId}`;
         urlPath = urlPath.replace(`{${"groupId"}}`, encodeURIComponent(String(requestParameters['groupId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete a specific group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
+     * Delete SCIM group
+     */
+    async scimDeleteGroupRaw(requestParameters: ScimDeleteGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.scimDeleteGroupRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -11464,10 +12643,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a specific Talon.One user created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.
-     * Delete SCIM user
+     * Creates request options for scimDeleteUser without sending the request
      */
-    async scimDeleteUserRaw(requestParameters: ScimDeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async scimDeleteUserRequestOpts(requestParameters: ScimDeleteUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -11495,12 +12673,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/provisioning/scim/Users/{userId}`;
         urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete a specific Talon.One user created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.
+     * Delete SCIM user
+     */
+    async scimDeleteUserRaw(requestParameters: ScimDeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.scimDeleteUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -11514,10 +12701,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve data for a specific group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
-     * Get SCIM group
+     * Creates request options for scimGetGroup without sending the request
      */
-    async scimGetGroupRaw(requestParameters: ScimGetGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimGroup>> {
+    async scimGetGroupRequestOpts(requestParameters: ScimGetGroupRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['groupId'] == null) {
             throw new runtime.RequiredError(
                 'groupId',
@@ -11545,12 +12731,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/provisioning/scim/Groups/{groupId}`;
         urlPath = urlPath.replace(`{${"groupId"}}`, encodeURIComponent(String(requestParameters['groupId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve data for a specific group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
+     * Get SCIM group
+     */
+    async scimGetGroupRaw(requestParameters: ScimGetGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimGroup>> {
+        const requestOptions = await this.scimGetGroupRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ScimGroupFromJSON(jsonValue));
     }
@@ -11565,10 +12760,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve a paginated list of groups created using the SCIM protocol with an identity provider, for example, Microsoft Entra ID. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
-     * List SCIM groups
+     * Creates request options for scimGetGroups without sending the request
      */
-    async scimGetGroupsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimGroupsListResponse>> {
+    async scimGetGroupsRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -11588,12 +12782,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/provisioning/scim/Groups`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve a paginated list of groups created using the SCIM protocol with an identity provider, for example, Microsoft Entra ID. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
+     * List SCIM groups
+     */
+    async scimGetGroupsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimGroupsListResponse>> {
+        const requestOptions = await this.scimGetGroupsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ScimGroupsListResponseFromJSON(jsonValue));
     }
@@ -11608,10 +12811,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve a list of resource types supported by the SCIM provisioning protocol.  Resource types define the various kinds of resources that can be managed via the SCIM API, such as users, groups, or custom-defined resources. 
-     * List supported SCIM resource types
+     * Creates request options for scimGetResourceTypes without sending the request
      */
-    async scimGetResourceTypesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimResourceTypesListResponse>> {
+    async scimGetResourceTypesRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -11631,12 +12833,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/provisioning/scim/ResourceTypes`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve a list of resource types supported by the SCIM provisioning protocol.  Resource types define the various kinds of resources that can be managed via the SCIM API, such as users, groups, or custom-defined resources. 
+     * List supported SCIM resource types
+     */
+    async scimGetResourceTypesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimResourceTypesListResponse>> {
+        const requestOptions = await this.scimGetResourceTypesRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ScimResourceTypesListResponseFromJSON(jsonValue));
     }
@@ -11651,10 +12862,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve a list of schemas supported by the SCIM provisioning protocol.  Schemas define the structure and attributes of the different resources that can be managed via the SCIM API, such as users, groups, and any custom-defined resources. 
-     * List supported SCIM schemas
+     * Creates request options for scimGetSchemas without sending the request
      */
-    async scimGetSchemasRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimSchemasListResponse>> {
+    async scimGetSchemasRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -11674,12 +12884,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/provisioning/scim/Schemas`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve a list of schemas supported by the SCIM provisioning protocol.  Schemas define the structure and attributes of the different resources that can be managed via the SCIM API, such as users, groups, and any custom-defined resources. 
+     * List supported SCIM schemas
+     */
+    async scimGetSchemasRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimSchemasListResponse>> {
+        const requestOptions = await this.scimGetSchemasRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ScimSchemasListResponseFromJSON(jsonValue));
     }
@@ -11694,10 +12913,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the configuration settings of the SCIM service provider. It provides details about the features and capabilities supported by the SCIM API, such as the different operation settings. 
-     * Get SCIM service provider configuration
+     * Creates request options for scimGetServiceProviderConfig without sending the request
      */
-    async scimGetServiceProviderConfigRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimServiceProviderConfigResponse>> {
+    async scimGetServiceProviderConfigRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -11717,12 +12935,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/provisioning/scim/ServiceProviderConfig`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve the configuration settings of the SCIM service provider. It provides details about the features and capabilities supported by the SCIM API, such as the different operation settings. 
+     * Get SCIM service provider configuration
+     */
+    async scimGetServiceProviderConfigRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimServiceProviderConfigResponse>> {
+        const requestOptions = await this.scimGetServiceProviderConfigRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ScimServiceProviderConfigResponseFromJSON(jsonValue));
     }
@@ -11737,10 +12964,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve data for a specific Talon.One user created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.
-     * Get SCIM user
+     * Creates request options for scimGetUser without sending the request
      */
-    async scimGetUserRaw(requestParameters: ScimGetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimUser>> {
+    async scimGetUserRequestOpts(requestParameters: ScimGetUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -11768,12 +12994,21 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/provisioning/scim/Users/{userId}`;
         urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve data for a specific Talon.One user created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.
+     * Get SCIM user
+     */
+    async scimGetUserRaw(requestParameters: ScimGetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimUser>> {
+        const requestOptions = await this.scimGetUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ScimUserFromJSON(jsonValue));
     }
@@ -11788,10 +13023,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve a paginated list of users that have been provisioned using the SCIM protocol with an identity provider, for example, Microsoft Entra ID.
-     * List SCIM users
+     * Creates request options for scimGetUsers without sending the request
      */
-    async scimGetUsersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimUsersListResponse>> {
+    async scimGetUsersRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -11811,12 +13045,21 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/provisioning/scim/Users`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve a paginated list of users that have been provisioned using the SCIM protocol with an identity provider, for example, Microsoft Entra ID.
+     * List SCIM users
+     */
+    async scimGetUsersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimUsersListResponse>> {
+        const requestOptions = await this.scimGetUsersRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ScimUsersListResponseFromJSON(jsonValue));
     }
@@ -11831,10 +13074,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update certain attributes of a group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID. This endpoint allows for selective adding, removing, or replacing of specific group attributes while other attributes remain unchanged. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role. 
-     * Update SCIM group attributes
+     * Creates request options for scimPatchGroup without sending the request
      */
-    async scimPatchGroupRaw(requestParameters: ScimPatchGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimGroup>> {
+    async scimPatchGroupRequestOpts(requestParameters: ScimPatchGroupRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['groupId'] == null) {
             throw new runtime.RequiredError(
                 'groupId',
@@ -11871,13 +13113,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/provisioning/scim/Groups/{groupId}`;
         urlPath = urlPath.replace(`{${"groupId"}}`, encodeURIComponent(String(requestParameters['groupId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
             body: ScimPatchRequestToJSON(requestParameters['scimPatchRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update certain attributes of a group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID. This endpoint allows for selective adding, removing, or replacing of specific group attributes while other attributes remain unchanged. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role. 
+     * Update SCIM group attributes
+     */
+    async scimPatchGroupRaw(requestParameters: ScimPatchGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimGroup>> {
+        const requestOptions = await this.scimPatchGroupRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ScimGroupFromJSON(jsonValue));
     }
@@ -11892,10 +13143,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update certain attributes of a specific Talon.One user created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.  This endpoint allows for selective adding, removing, or replacing specific attributes while leaving other attributes unchanged. 
-     * Update SCIM user attributes
+     * Creates request options for scimPatchUser without sending the request
      */
-    async scimPatchUserRaw(requestParameters: ScimPatchUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimUser>> {
+    async scimPatchUserRequestOpts(requestParameters: ScimPatchUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -11932,13 +13182,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/provisioning/scim/Users/{userId}`;
         urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
             body: ScimPatchRequestToJSON(requestParameters['scimPatchRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update certain attributes of a specific Talon.One user created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.  This endpoint allows for selective adding, removing, or replacing specific attributes while leaving other attributes unchanged. 
+     * Update SCIM user attributes
+     */
+    async scimPatchUserRaw(requestParameters: ScimPatchUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimUser>> {
+        const requestOptions = await this.scimPatchUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ScimUserFromJSON(jsonValue));
     }
@@ -11953,10 +13212,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the details of a specific group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID. This endpoint replaces all attributes of the given group with the attributes provided in the request payload. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role. 
-     * Update SCIM group
+     * Creates request options for scimReplaceGroupAttributes without sending the request
      */
-    async scimReplaceGroupAttributesRaw(requestParameters: ScimReplaceGroupAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimGroup>> {
+    async scimReplaceGroupAttributesRequestOpts(requestParameters: ScimReplaceGroupAttributesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['groupId'] == null) {
             throw new runtime.RequiredError(
                 'groupId',
@@ -11993,13 +13251,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/provisioning/scim/Groups/{groupId}`;
         urlPath = urlPath.replace(`{${"groupId"}}`, encodeURIComponent(String(requestParameters['groupId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: ScimBaseGroupToJSON(requestParameters['scimBaseGroup']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update the details of a specific group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID. This endpoint replaces all attributes of the given group with the attributes provided in the request payload. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role. 
+     * Update SCIM group
+     */
+    async scimReplaceGroupAttributesRaw(requestParameters: ScimReplaceGroupAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimGroup>> {
+        const requestOptions = await this.scimReplaceGroupAttributesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ScimGroupFromJSON(jsonValue));
     }
@@ -12014,10 +13281,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the details of a specific Talon.One user created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.  This endpoint replaces all attributes of the specific user with the attributes provided in the request payload. 
-     * Update SCIM user
+     * Creates request options for scimReplaceUserAttributes without sending the request
      */
-    async scimReplaceUserAttributesRaw(requestParameters: ScimReplaceUserAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimUser>> {
+    async scimReplaceUserAttributesRequestOpts(requestParameters: ScimReplaceUserAttributesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -12054,13 +13320,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/provisioning/scim/Users/{userId}`;
         urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: ScimNewUserToJSON(requestParameters['scimNewUser']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update the details of a specific Talon.One user created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.  This endpoint replaces all attributes of the specific user with the attributes provided in the request payload. 
+     * Update SCIM user
+     */
+    async scimReplaceUserAttributesRaw(requestParameters: ScimReplaceUserAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScimUser>> {
+        const requestOptions = await this.scimReplaceUserAttributesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ScimUserFromJSON(jsonValue));
     }
@@ -12075,10 +13350,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List the coupons whose attributes match the query criteria in all the campaigns of the given Application.  The match is successful if all the attributes of the request are found in a coupon, even if the coupon has more attributes that are not present on the request.  **Note:** The total count is not included in the response. 
-     * List coupons that match the given attributes (without total count)
+     * Creates request options for searchCouponsAdvancedApplicationWideWithoutTotalCount without sending the request
      */
-    async searchCouponsAdvancedApplicationWideWithoutTotalCountRaw(requestParameters: SearchCouponsAdvancedApplicationWideWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCouponsWithoutTotalCount200Response>> {
+    async searchCouponsAdvancedApplicationWideWithoutTotalCountRequestOpts(requestParameters: SearchCouponsAdvancedApplicationWideWithoutTotalCountRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -12167,13 +13441,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/applications/{applicationId}/coupons_search_advanced/no_total`;
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: requestParameters['body'] as any,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List the coupons whose attributes match the query criteria in all the campaigns of the given Application.  The match is successful if all the attributes of the request are found in a coupon, even if the coupon has more attributes that are not present on the request.  **Note:** The total count is not included in the response. 
+     * List coupons that match the given attributes (without total count)
+     */
+    async searchCouponsAdvancedApplicationWideWithoutTotalCountRaw(requestParameters: SearchCouponsAdvancedApplicationWideWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCouponsWithoutTotalCount200Response>> {
+        const requestOptions = await this.searchCouponsAdvancedApplicationWideWithoutTotalCountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCouponsWithoutTotalCount200ResponseFromJSON(jsonValue));
     }
@@ -12188,10 +13471,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List the coupons whose attributes match the query criteria in the given campaign.  The match is successful if all the attributes of the request are found in a coupon, even if the coupon has more attributes that are not present on the request.  **Note:** The total count is not included in the response. 
-     * List coupons that match the given attributes in campaign (without total count)
+     * Creates request options for searchCouponsAdvancedWithoutTotalCount without sending the request
      */
-    async searchCouponsAdvancedWithoutTotalCountRaw(requestParameters: SearchCouponsAdvancedWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCouponsWithoutTotalCount200Response>> {
+    async searchCouponsAdvancedWithoutTotalCountRequestOpts(requestParameters: SearchCouponsAdvancedWithoutTotalCountRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -12284,13 +13566,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: requestParameters['body'] as any,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List the coupons whose attributes match the query criteria in the given campaign.  The match is successful if all the attributes of the request are found in a coupon, even if the coupon has more attributes that are not present on the request.  **Note:** The total count is not included in the response. 
+     * List coupons that match the given attributes in campaign (without total count)
+     */
+    async searchCouponsAdvancedWithoutTotalCountRaw(requestParameters: SearchCouponsAdvancedWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCouponsWithoutTotalCount200Response>> {
+        const requestOptions = await this.searchCouponsAdvancedWithoutTotalCountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCouponsWithoutTotalCount200ResponseFromJSON(jsonValue));
     }
@@ -12305,10 +13596,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Fetch a summary of all store budget information for a given campaign.
-     * Get summary of campaign store budgets
+     * Creates request options for summarizeCampaignStoreBudget without sending the request
      */
-    async summarizeCampaignStoreBudgetRaw(requestParameters: SummarizeCampaignStoreBudgetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SummarizeCampaignStoreBudget200Response>> {
+    async summarizeCampaignStoreBudgetRequestOpts(requestParameters: SummarizeCampaignStoreBudgetRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -12344,12 +13634,21 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Fetch a summary of all store budget information for a given campaign.
+     * Get summary of campaign store budgets
+     */
+    async summarizeCampaignStoreBudgetRaw(requestParameters: SummarizeCampaignStoreBudgetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SummarizeCampaignStoreBudget200Response>> {
+        const requestOptions = await this.summarizeCampaignStoreBudgetRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SummarizeCampaignStoreBudget200ResponseFromJSON(jsonValue));
     }
@@ -12364,10 +13663,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Transfer loyalty card data, such as linked customers, loyalty balances and transactions, from a given loyalty card to a new, automatically created loyalty card.  **Important:**  - The original card is automatically blocked once the new card is created, and it cannot be activated again. - The default status of the new card is _active_. 
-     * Transfer card data
+     * Creates request options for transferLoyaltyCard without sending the request
      */
-    async transferLoyaltyCardRaw(requestParameters: TransferLoyaltyCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async transferLoyaltyCardRequestOpts(requestParameters: TransferLoyaltyCardRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -12412,13 +13710,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: TransferLoyaltyCardToJSON(requestParameters['transferLoyaltyCard']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Transfer loyalty card data, such as linked customers, loyalty balances and transactions, from a given loyalty card to a new, automatically created loyalty card.  **Important:**  - The original card is automatically blocked once the new card is created, and it cannot be activated again. - The default status of the new card is _active_. 
+     * Transfer card data
+     */
+    async transferLoyaltyCardRaw(requestParameters: TransferLoyaltyCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.transferLoyaltyCardRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -12432,10 +13739,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Edit the description of a given account-level collection and enable or disable the collection in the specified Applications.
-     * Update account-level collection
+     * Creates request options for updateAccountCollection without sending the request
      */
-    async updateAccountCollectionRaw(requestParameters: UpdateAccountCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Collection>> {
+    async updateAccountCollectionRequestOpts(requestParameters: UpdateAccountCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['collectionId'] == null) {
             throw new runtime.RequiredError(
                 'collectionId',
@@ -12472,13 +13778,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/collections/{collectionId}`;
         urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateCollectionToJSON(requestParameters['updateCollection']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Edit the description of a given account-level collection and enable or disable the collection in the specified Applications.
+     * Update account-level collection
+     */
+    async updateAccountCollectionRaw(requestParameters: UpdateAccountCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Collection>> {
+        const requestOptions = await this.updateAccountCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CollectionFromJSON(jsonValue));
     }
@@ -12493,10 +13808,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the details of a specific achievement.
-     * Update achievement
+     * Creates request options for updateAchievement without sending the request
      */
-    async updateAchievementRaw(requestParameters: UpdateAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Achievement>> {
+    async updateAchievementRequestOpts(requestParameters: UpdateAchievementRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -12549,13 +13863,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
         urlPath = urlPath.replace(`{${"achievementId"}}`, encodeURIComponent(String(requestParameters['achievementId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateAchievementToJSON(requestParameters['updateAchievement']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update the details of a specific achievement.
+     * Update achievement
+     */
+    async updateAchievementRaw(requestParameters: UpdateAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Achievement>> {
+        const requestOptions = await this.updateAchievementRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AchievementFromJSON(jsonValue));
     }
@@ -12570,10 +13893,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates an existing additional cost. Once created, the only property of an additional cost that cannot be changed is the `name` property (or **API name** in the Campaign Manager). This restriction is in place to prevent accidentally breaking live integrations. 
-     * Update additional cost
+     * Creates request options for updateAdditionalCost without sending the request
      */
-    async updateAdditionalCostRaw(requestParameters: UpdateAdditionalCostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountAdditionalCost>> {
+    async updateAdditionalCostRequestOpts(requestParameters: UpdateAdditionalCostRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['additionalCostId'] == null) {
             throw new runtime.RequiredError(
                 'additionalCostId',
@@ -12610,13 +13932,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/additional_costs/{additionalCostId}`;
         urlPath = urlPath.replace(`{${"additionalCostId"}}`, encodeURIComponent(String(requestParameters['additionalCostId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: NewAdditionalCostToJSON(requestParameters['newAdditionalCost']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Updates an existing additional cost. Once created, the only property of an additional cost that cannot be changed is the `name` property (or **API name** in the Campaign Manager). This restriction is in place to prevent accidentally breaking live integrations. 
+     * Update additional cost
+     */
+    async updateAdditionalCostRaw(requestParameters: UpdateAdditionalCostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountAdditionalCost>> {
+        const requestOptions = await this.updateAdditionalCostRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AccountAdditionalCostFromJSON(jsonValue));
     }
@@ -12631,10 +13962,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update an existing custom attribute. Once created, the only property of a custom attribute that can be changed is the description.  To change the `type` or `name` property of a custom attribute, create a new attribute and update any relevant integrations and rules to use the new attribute. 
-     * Update custom attribute
+     * Creates request options for updateAttribute without sending the request
      */
-    async updateAttributeRaw(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Attribute>> {
+    async updateAttributeRequestOpts(requestParameters: UpdateAttributeRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['attributeId'] == null) {
             throw new runtime.RequiredError(
                 'attributeId',
@@ -12671,13 +14001,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/attributes/{attributeId}`;
         urlPath = urlPath.replace(`{${"attributeId"}}`, encodeURIComponent(String(requestParameters['attributeId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: NewAttributeToJSON(requestParameters['newAttribute']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update an existing custom attribute. Once created, the only property of a custom attribute that can be changed is the description.  To change the `type` or `name` property of a custom attribute, create a new attribute and update any relevant integrations and rules to use the new attribute. 
+     * Update custom attribute
+     */
+    async updateAttributeRaw(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Attribute>> {
+        const requestOptions = await this.updateAttributeRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AttributeFromJSON(jsonValue));
     }
@@ -12692,10 +14031,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the given campaign.  **Important:** You cannot use this endpoint to update campaigns if [campaign staging and revisions](https://docs.talon.one/docs/product/applications/managing-general-settings#campaign-staging-and-revisions) is enabled for your Application. 
-     * Update campaign
+     * Creates request options for updateCampaign without sending the request
      */
-    async updateCampaignRaw(requestParameters: UpdateCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Campaign>> {
+    async updateCampaignRequestOpts(requestParameters: UpdateCampaignRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -12740,13 +14078,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateCampaignToJSON(requestParameters['updateCampaign']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update the given campaign.  **Important:** You cannot use this endpoint to update campaigns if [campaign staging and revisions](https://docs.talon.one/docs/product/applications/managing-general-settings#campaign-staging-and-revisions) is enabled for your Application. 
+     * Update campaign
+     */
+    async updateCampaignRaw(requestParameters: UpdateCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Campaign>> {
+        const requestOptions = await this.updateCampaignRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CampaignFromJSON(jsonValue));
     }
@@ -12761,10 +14108,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Edit the description of a given campaign-level collection.
-     * Update campaign-level collection\'s description
+     * Creates request options for updateCollection without sending the request
      */
-    async updateCollectionRaw(requestParameters: UpdateCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Collection>> {
+    async updateCollectionRequestOpts(requestParameters: UpdateCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -12817,13 +14163,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
         urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateCampaignCollectionToJSON(requestParameters['updateCampaignCollection']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Edit the description of a given campaign-level collection.
+     * Update campaign-level collection\'s description
+     */
+    async updateCollectionRaw(requestParameters: UpdateCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Collection>> {
+        const requestOptions = await this.updateCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CollectionFromJSON(jsonValue));
     }
@@ -12838,10 +14193,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the specified coupon.  <div class=\"redoc-section\">   <p class=\"title\">Important</p>    <p>With this <code>PUT</code> endpoint, if you do not explicitly set a value for the <code>startDate</code>, <code>expiryDate</code>, and <code>recipientIntegrationId</code> properties in your request, it is automatically set to <code>null</code>.</p>  </div> 
-     * Update coupon
+     * Creates request options for updateCoupon without sending the request
      */
-    async updateCouponRaw(requestParameters: UpdateCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Coupon>> {
+    async updateCouponRequestOpts(requestParameters: UpdateCouponRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -12894,13 +14248,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
         urlPath = urlPath.replace(`{${"couponId"}}`, encodeURIComponent(String(requestParameters['couponId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateCouponToJSON(requestParameters['updateCoupon']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update the specified coupon.  <div class=\"redoc-section\">   <p class=\"title\">Important</p>    <p>With this <code>PUT</code> endpoint, if you do not explicitly set a value for the <code>startDate</code>, <code>expiryDate</code>, and <code>recipientIntegrationId</code> properties in your request, it is automatically set to <code>null</code>.</p>  </div> 
+     * Update coupon
+     */
+    async updateCouponRaw(requestParameters: UpdateCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Coupon>> {
+        const requestOptions = await this.updateCouponRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CouponFromJSON(jsonValue));
     }
@@ -12915,10 +14278,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update all coupons or a specific batch of coupons in the given campaign. You can find the `batchId` on the **Coupons** page of your campaign in the Campaign Manager, or you can use [List coupons](#operation/getCouponsWithoutTotalCount).  <div class=\"redoc-section\">   <p class=\"title\">Important</p>    <ul>     <li>Only send sequential requests to this endpoint.</li>     <li>Requests to this endpoint time out after 30 minutes. If you hit a timeout, contact our support team.</li>     <li>With this <code>PUT</code> endpoint, if you do not explicitly set a value for the <code>startDate</code> and <code>expiryDate</code> properties in your request, it is automatically set to <code>null</code>.</li>   </ul>  </div>  To update a specific coupon, use [Update coupon](#operation/updateCoupon). 
-     * Update coupons
+     * Creates request options for updateCouponBatch without sending the request
      */
-    async updateCouponBatchRaw(requestParameters: UpdateCouponBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateCouponBatchRequestOpts(requestParameters: UpdateCouponBatchRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -12963,13 +14325,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateCouponBatchToJSON(requestParameters['updateCouponBatch']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update all coupons or a specific batch of coupons in the given campaign. You can find the `batchId` on the **Coupons** page of your campaign in the Campaign Manager, or you can use [List coupons](#operation/getCouponsWithoutTotalCount).  <div class=\"redoc-section\">   <p class=\"title\">Important</p>    <ul>     <li>Only send sequential requests to this endpoint.</li>     <li>Requests to this endpoint time out after 30 minutes. If you hit a timeout, contact our support team.</li>     <li>With this <code>PUT</code> endpoint, if you do not explicitly set a value for the <code>startDate</code> and <code>expiryDate</code> properties in your request, it is automatically set to <code>null</code>.</li>   </ul>  </div>  To update a specific coupon, use [Update coupon](#operation/updateCoupon). 
+     * Update coupons
+     */
+    async updateCouponBatchRaw(requestParameters: UpdateCouponBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateCouponBatchRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -12983,10 +14354,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the status of the given loyalty card. A card can be _active_ or _inactive_.
-     * Update loyalty card status
+     * Creates request options for updateLoyaltyCard without sending the request
      */
-    async updateLoyaltyCardRaw(requestParameters: UpdateLoyaltyCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCard>> {
+    async updateLoyaltyCardRequestOpts(requestParameters: UpdateLoyaltyCardOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -13001,10 +14371,10 @@ export class ManagementApi extends runtime.BaseAPI {
             );
         }
 
-        if (requestParameters['updateLoyaltyCard'] == null) {
+        if (requestParameters['updateLoyaltyCardRequest'] == null) {
             throw new runtime.RequiredError(
-                'updateLoyaltyCard',
-                'Required parameter "updateLoyaltyCard" was null or undefined when calling updateLoyaltyCard().'
+                'updateLoyaltyCardRequest',
+                'Required parameter "updateLoyaltyCardRequest" was null or undefined when calling updateLoyaltyCard().'
             );
         }
 
@@ -13031,31 +14401,39 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateLoyaltyCardToJSON(requestParameters['updateLoyaltyCard']),
-        }, initOverrides);
+            body: UpdateLoyaltyCardRequestToJSON(requestParameters['updateLoyaltyCardRequest']),
+        };
+    }
+
+    /**
+     * Update the details of a specific loyalty card. You can set the card\'s status to `active` or `inactive` through this endpoint. At least one of `status` or `attributes` must be provided. 
+     * Update loyalty card
+     */
+    async updateLoyaltyCardRaw(requestParameters: UpdateLoyaltyCardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCard>> {
+        const requestOptions = await this.updateLoyaltyCardRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyCardFromJSON(jsonValue));
     }
 
     /**
-     * Update the status of the given loyalty card. A card can be _active_ or _inactive_.
-     * Update loyalty card status
+     * Update the details of a specific loyalty card. You can set the card\'s status to `active` or `inactive` through this endpoint. At least one of `status` or `attributes` must be provided. 
+     * Update loyalty card
      */
-    async updateLoyaltyCard(requestParameters: UpdateLoyaltyCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoyaltyCard> {
+    async updateLoyaltyCard(requestParameters: UpdateLoyaltyCardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoyaltyCard> {
         const response = await this.updateLoyaltyCardRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Update the specified referral.
-     * Update referral
+     * Creates request options for updateReferral without sending the request
      */
-    async updateReferralRaw(requestParameters: UpdateReferralRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Referral>> {
+    async updateReferralRequestOpts(requestParameters: UpdateReferralRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -13108,13 +14486,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
         urlPath = urlPath.replace(`{${"referralId"}}`, encodeURIComponent(String(requestParameters['referralId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateReferralToJSON(requestParameters['updateReferral']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update the specified referral.
+     * Update referral
+     */
+    async updateReferralRaw(requestParameters: UpdateReferralRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Referral>> {
+        const requestOptions = await this.updateReferralRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ReferralFromJSON(jsonValue));
     }
@@ -13129,10 +14516,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update a specific role.
-     * Update role
+     * Creates request options for updateRoleV2 without sending the request
      */
-    async updateRoleV2Raw(requestParameters: UpdateRoleV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RoleV2>> {
+    async updateRoleV2RequestOpts(requestParameters: UpdateRoleV2Request): Promise<runtime.RequestOpts> {
         if (requestParameters['roleId'] == null) {
             throw new runtime.RequiredError(
                 'roleId',
@@ -13169,13 +14555,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v2/roles/{roleId}`;
         urlPath = urlPath.replace(`{${"roleId"}}`, encodeURIComponent(String(requestParameters['roleId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: RoleV2BaseToJSON(requestParameters['roleV2Base']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update a specific role.
+     * Update role
+     */
+    async updateRoleV2Raw(requestParameters: UpdateRoleV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RoleV2>> {
+        const requestOptions = await this.updateRoleV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => RoleV2FromJSON(jsonValue));
     }
@@ -13190,10 +14585,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update store details for a specific store ID.
-     * Update store
+     * Creates request options for updateStore without sending the request
      */
-    async updateStoreRaw(requestParameters: UpdateStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Store>> {
+    async updateStoreRequestOpts(requestParameters: UpdateStoreRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
@@ -13238,13 +14632,22 @@ export class ManagementApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
         urlPath = urlPath.replace(`{${"storeId"}}`, encodeURIComponent(String(requestParameters['storeId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: NewStoreToJSON(requestParameters['newStore']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update store details for a specific store ID.
+     * Update store
+     */
+    async updateStoreRaw(requestParameters: UpdateStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Store>> {
+        const requestOptions = await this.updateStoreRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => StoreFromJSON(jsonValue));
     }
@@ -13259,10 +14662,9 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the details of a specific user.
-     * Update user
+     * Creates request options for updateUser without sending the request
      */
-    async updateUserRaw(requestParameters: UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+    async updateUserRequestOpts(requestParameters: UpdateUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -13299,13 +14701,22 @@ export class ManagementApi extends runtime.BaseAPI {
         let urlPath = `/v1/users/{userId}`;
         urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateUserToJSON(requestParameters['updateUser']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update the details of a specific user.
+     * Update user
+     */
+    async updateUserRaw(requestParameters: UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+        const requestOptions = await this.updateUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserFromJSON(jsonValue));
     }

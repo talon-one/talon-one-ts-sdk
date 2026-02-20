@@ -55,7 +55,7 @@ export interface CardLedgerTransactionLogEntryIntegrationAPI {
      *   - `addition`: Signifies added points.
      *   - `subtraction`: Signifies deducted points.
      * 
-     * @type {string}
+     * @type {CardLedgerTransactionLogEntryIntegrationAPITypeEnum}
      * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     type: CardLedgerTransactionLogEntryIntegrationAPITypeEnum;

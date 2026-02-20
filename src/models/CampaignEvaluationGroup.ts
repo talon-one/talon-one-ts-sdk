@@ -45,13 +45,13 @@ export interface CampaignEvaluationGroup {
     description?: string;
     /**
      * The mode by which campaigns in the campaign evaluation group are evaluated.
-     * @type {string}
+     * @type {CampaignEvaluationGroupEvaluationModeEnum}
      * @memberof CampaignEvaluationGroup
      */
     evaluationMode: CampaignEvaluationGroupEvaluationModeEnum;
     /**
      * The evaluation scope of the campaign evaluation group.
-     * @type {string}
+     * @type {CampaignEvaluationGroupEvaluationScopeEnum}
      * @memberof CampaignEvaluationGroup
      */
     evaluationScope: CampaignEvaluationGroupEvaluationScopeEnum;

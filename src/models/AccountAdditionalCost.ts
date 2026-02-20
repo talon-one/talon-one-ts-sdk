@@ -67,7 +67,7 @@ export interface AccountAdditionalCost {
      * - `item`: Additional cost will be added per item.
      * - `both`: Additional cost will be added per item and session.
      * 
-     * @type {string}
+     * @type {AccountAdditionalCostTypeEnum}
      * @memberof AccountAdditionalCost
      */
     type?: AccountAdditionalCostTypeEnum;

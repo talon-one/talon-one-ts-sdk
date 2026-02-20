@@ -27,7 +27,7 @@ export interface CouponsNotificationPolicy {
     name: string;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<CouponsNotificationPolicyScopesEnum>}
      * @memberof CouponsNotificationPolicy
      */
     scopes: Array<CouponsNotificationPolicyScopesEnum>;

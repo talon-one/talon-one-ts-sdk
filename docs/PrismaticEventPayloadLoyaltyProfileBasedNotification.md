@@ -1,5 +1,5 @@
 
-# PrismaticEventPayloadLoyaltyProfileBasedNotifications
+# PrismaticEventPayloadLoyaltyProfileBasedNotification
 
 
 ## Properties
@@ -12,20 +12,20 @@ Name | Type
 `sourceOfEvent` | string
 `employeeName` | string
 `userID` | number
-`sessionIntegrationID` | string
-`currentTier` | string
 `currentPoints` | number
+`actions` | [Array&lt;PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction&gt;](PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.md)
+`publishedAt` | Date
+`currentTier` | string
 `oldTier` | string
-`pointsRequiredToTheNextTier` | number
-`nextTier` | string
 `tierExpirationDate` | Date
 `timestampOfTierChange` | Date
-`actions` | [Array&lt;PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction&gt;](PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction.md)
+`pointsRequiredToTheNextTier` | number
+`nextTier` | string
 
 ## Example
 
 ```typescript
-import type { PrismaticEventPayloadLoyaltyProfileBasedNotifications } from 'talon_one_sdk'
+import type { PrismaticEventPayloadLoyaltyProfileBasedNotification } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
@@ -35,16 +35,16 @@ const example = {
   "sourceOfEvent": null,
   "employeeName": null,
   "userID": null,
-  "sessionIntegrationID": null,
-  "currentTier": null,
   "currentPoints": null,
+  "actions": null,
+  "publishedAt": null,
+  "currentTier": null,
   "oldTier": null,
-  "pointsRequiredToTheNextTier": null,
-  "nextTier": null,
   "tierExpirationDate": null,
   "timestampOfTierChange": null,
-  "actions": null,
-} satisfies PrismaticEventPayloadLoyaltyProfileBasedNotifications
+  "pointsRequiredToTheNextTier": null,
+  "nextTier": null,
+} satisfies PrismaticEventPayloadLoyaltyProfileBasedNotification
 
 console.log(example)
 
@@ -53,7 +53,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as PrismaticEventPayloadLoyaltyProfileBasedNotifications
+const exampleParsed = JSON.parse(exampleJSON) as PrismaticEventPayloadLoyaltyProfileBasedNotification
 console.log(exampleParsed)
 ```
 

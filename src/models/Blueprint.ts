@@ -31,85 +31,85 @@ import {
 /**
  * 
  * @export
- * @interface CollectionsCatalog
+ * @interface Blueprint
  */
-export interface CollectionsCatalog {
+export interface Blueprint {
     /**
-     * The internal ID of this collection.
+     * The internal ID of this blueprint.
      * @type {number}
-     * @memberof CollectionsCatalog
+     * @memberof Blueprint
      */
     id: number;
     /**
-     * The ID of the account that owns this collection.
+     * The ID of the account that owns this blueprint.
      * @type {number}
-     * @memberof CollectionsCatalog
+     * @memberof Blueprint
      */
     accountId: number;
     /**
-     * The ID of the Application that owns this collection.
+     * The ID of the Application that owns this blueprint.
      * @type {number}
-     * @memberof CollectionsCatalog
+     * @memberof Blueprint
      */
     applicationId: number;
     /**
-     * A short description of the collection catalog.
+     * A short description of the blueprint.
      * @type {string}
-     * @memberof CollectionsCatalog
+     * @memberof Blueprint
      */
     title: string;
     /**
-     * A longer, more detailed description of the collection catalog.
+     * A longer, more detailed description of the blueprint.
      * @type {string}
-     * @memberof CollectionsCatalog
+     * @memberof Blueprint
      */
     description?: string;
     /**
-     * Category used to group collection catalogs.
-     * @type {string}
-     * @memberof CollectionsCatalog
+     * Category used to group blueprints.
+     * @type {BlueprintCategoryEnum}
+     * @memberof Blueprint
      */
-    category: CollectionsCatalogCategoryEnum;
+    category: BlueprintCategoryEnum;
     /**
-     * Indicates whether the collection is custom or shipped by Talon.One.
-     * @type {string}
-     * @memberof CollectionsCatalog
+     * Indicates whether the blueprint is custom or shipped by Talon.One.
+     * @type {BlueprintSourceEnum}
+     * @memberof Blueprint
      */
-    source: CollectionsCatalogSourceEnum;
+    source: BlueprintSourceEnum;
     /**
-     * Array of rule templates in this collection catalog. Rules only contain title (no description, as description is at the collection catalog level).
+     * Array of rule templates in this blueprint. Rules only contain title (no description, as description is at the blueprint level).
      * @type {Array<CatalogRule>}
-     * @memberof CollectionsCatalog
+     * @memberof Blueprint
      */
     rules: Array<CatalogRule>;
     /**
-     * Array of cart item filter templates in this collection catalog. Cart item filters only contain name (no description, as description is at the collection catalog level).
+     * Array of cart item filter templates in this blueprint. Cart item filters only contain name (no description, as description is at the blueprint level).
      * @type {Array<CartItemFilterTemplate>}
-     * @memberof CollectionsCatalog
+     * @memberof Blueprint
      */
     cartItemFilters: Array<CartItemFilterTemplate>;
     /**
-     * Timestamp when the collection was created.
+     * Timestamp when the blueprint was created.
      * @type {Date}
-     * @memberof CollectionsCatalog
+     * @memberof Blueprint
      */
     created: Date;
     /**
-     * ID of the user who created the collection.
+     * ID of the user who created the blueprint.
      * @type {number}
-     * @memberof CollectionsCatalog
+     * @memberof Blueprint
      */
     createdBy: number;
     /**
-     * Timestamp when the collection was last updated.
+     * Timestamp when the blueprint was last updated.
      * @type {Date}
-     * @memberof CollectionsCatalog
+     * @memberof Blueprint
      */
     modified?: Date;
     /**
-     * ID of the user who last updated the collection.
+     * ID of the user who last updated the blueprint.
      * @type {number}
-     * @memberof CollectionsCatalog
+     * @memberof Blueprint
      */
     modifiedBy?: number;
 }
@@ -118,28 +118,28 @@ export interface CollectionsCatalog {
 /**
  * @export
  */
-export const CollectionsCatalogCategoryEnum = {
+export const BlueprintCategoryEnum = {
     Promotions: 'promotions',
     Pricing: 'pricing',
     Loyalty: 'loyalty',
     Custom: 'custom'
 } as const;
-export type CollectionsCatalogCategoryEnum = typeof CollectionsCatalogCategoryEnum[keyof typeof CollectionsCatalogCategoryEnum];
+export type BlueprintCategoryEnum = typeof BlueprintCategoryEnum[keyof typeof BlueprintCategoryEnum];
 
 /**
  * @export
  */
-export const CollectionsCatalogSourceEnum = {
+export const BlueprintSourceEnum = {
     Custom: 'custom',
     Default: 'default'
 } as const;
-export type CollectionsCatalogSourceEnum = typeof CollectionsCatalogSourceEnum[keyof typeof CollectionsCatalogSourceEnum];
+export type BlueprintSourceEnum = typeof BlueprintSourceEnum[keyof typeof BlueprintSourceEnum];
 
 
 /**
- * Check if a given object implements the CollectionsCatalog interface.
+ * Check if a given object implements the Blueprint interface.
  */
-export function instanceOfCollectionsCatalog(value: object): value is CollectionsCatalog {
+export function instanceOfBlueprint(value: object): value is Blueprint {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('accountId' in value) || value['accountId'] === undefined) return false;
     if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
@@ -153,11 +153,11 @@ export function instanceOfCollectionsCatalog(value: object): value is Collection
     return true;
 }
 
-export function CollectionsCatalogFromJSON(json: any): CollectionsCatalog {
-    return CollectionsCatalogFromJSONTyped(json, false);
+export function BlueprintFromJSON(json: any): Blueprint {
+    return BlueprintFromJSONTyped(json, false);
 }
 
-export function CollectionsCatalogFromJSONTyped(json: any, ignoreDiscriminator: boolean): CollectionsCatalog {
+export function BlueprintFromJSONTyped(json: any, ignoreDiscriminator: boolean): Blueprint {
     if (json == null) {
         return json;
     }
@@ -179,11 +179,11 @@ export function CollectionsCatalogFromJSONTyped(json: any, ignoreDiscriminator: 
     };
 }
 
-export function CollectionsCatalogToJSON(json: any): CollectionsCatalog {
-    return CollectionsCatalogToJSONTyped(json, false);
+export function BlueprintToJSON(json: any): Blueprint {
+    return BlueprintToJSONTyped(json, false);
 }
 
-export function CollectionsCatalogToJSONTyped(value?: CollectionsCatalog | null, ignoreDiscriminator: boolean = false): any {
+export function BlueprintToJSONTyped(value?: Blueprint | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

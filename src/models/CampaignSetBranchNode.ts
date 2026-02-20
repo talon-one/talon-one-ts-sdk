@@ -29,7 +29,7 @@ import {
 export interface CampaignSetBranchNode {
     /**
      * Indicates the node type.
-     * @type {string}
+     * @type {CampaignSetBranchNodeTypeEnum}
      * @memberof CampaignSetBranchNode
      */
     type: CampaignSetBranchNodeTypeEnum;
@@ -41,7 +41,7 @@ export interface CampaignSetBranchNode {
     name: string;
     /**
      * An indicator of how the set operates on its elements.
-     * @type {string}
+     * @type {CampaignSetBranchNodeOperatorEnum}
      * @memberof CampaignSetBranchNode
      */
     operator: CampaignSetBranchNodeOperatorEnum;
@@ -71,13 +71,13 @@ export interface CampaignSetBranchNode {
     description?: string;
     /**
      * The mode by which campaigns in the campaign evaluation group are evaluated.
-     * @type {string}
+     * @type {CampaignSetBranchNodeEvaluationModeEnum}
      * @memberof CampaignSetBranchNode
      */
     evaluationMode: CampaignSetBranchNodeEvaluationModeEnum;
     /**
      * The evaluation scope of the campaign evaluation group.
-     * @type {string}
+     * @type {CampaignSetBranchNodeEvaluationScopeEnum}
      * @memberof CampaignSetBranchNode
      */
     evaluationScope: CampaignSetBranchNodeEvaluationScopeEnum;

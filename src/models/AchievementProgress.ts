@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface AchievementProgress {
     /**
      * The status of the achievement.
-     * @type {string}
+     * @type {AchievementProgressStatusEnum}
      * @memberof AchievementProgress
      */
     status: AchievementProgressStatusEnum;

@@ -27,7 +27,7 @@ export interface AddedDeductedPointsBalancesNotificationPolicy {
     name: string;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<AddedDeductedPointsBalancesNotificationPolicyScopesEnum>}
      * @memberof AddedDeductedPointsBalancesNotificationPolicy
      */
     scopes: Array<AddedDeductedPointsBalancesNotificationPolicyScopesEnum>;

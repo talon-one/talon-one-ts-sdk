@@ -42,6 +42,7 @@ import type {
   GetReservedCustomers200Response,
   IntegrationCustomerSessionResponse,
   IntegrationEventV2Request,
+  IntegrationEventV2Response,
   IntegrationRequest,
   IntegrationStateV2,
   LoyaltyBalancesWithTiers,
@@ -56,7 +57,6 @@ import type {
   Referral,
   ReopenSessionResponse,
   ReturnIntegrationRequest,
-  TrackEventV2Response,
   UpdateAudience,
   UpdateCustomerProfileV2409Response,
   UpdateCustomerSessionV2409Response,
@@ -116,6 +116,8 @@ import {
     IntegrationCustomerSessionResponseToJSON,
     IntegrationEventV2RequestFromJSON,
     IntegrationEventV2RequestToJSON,
+    IntegrationEventV2ResponseFromJSON,
+    IntegrationEventV2ResponseToJSON,
     IntegrationRequestFromJSON,
     IntegrationRequestToJSON,
     IntegrationStateV2FromJSON,
@@ -144,8 +146,6 @@ import {
     ReopenSessionResponseToJSON,
     ReturnIntegrationRequestFromJSON,
     ReturnIntegrationRequestToJSON,
-    TrackEventV2ResponseFromJSON,
-    TrackEventV2ResponseToJSON,
     UpdateAudienceFromJSON,
     UpdateAudienceToJSON,
     UpdateCustomerProfileV2409ResponseFromJSON,
@@ -388,10 +388,9 @@ export interface UpdateCustomerSessionV2Request {
 export class IntegrationApi extends runtime.BaseAPI {
 
     /**
-     * Activate points when a defined action occurs.  You can activate pending points using one of the following parameters: - `sessionId`: Activates all points earned in the specified session.  - `transactionUUIDs`: Activates points earned in the transactions specified by the  given UUIDs.  
-     * Activate loyalty points
+     * Creates request options for activateLoyaltyPoints without sending the request
      */
-    async activateLoyaltyPointsRaw(requestParameters: ActivateLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActivateLoyaltyPointsResponse>> {
+    async activateLoyaltyPointsRequestOpts(requestParameters: ActivateLoyaltyPointsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -420,13 +419,22 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/activate_points`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ActivateLoyaltyPointsToJSON(requestParameters['activateLoyaltyPoints']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Activate points when a defined action occurs.  You can activate pending points using one of the following parameters: - `sessionId`: Activates all points earned in the specified session.  - `transactionUUIDs`: Activates points earned in the transactions specified by the  given UUIDs.  
+     * Activate loyalty points
+     */
+    async activateLoyaltyPointsRaw(requestParameters: ActivateLoyaltyPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActivateLoyaltyPointsResponse>> {
+        const requestOptions = await this.activateLoyaltyPointsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ActivateLoyaltyPointsResponseFromJSON(jsonValue));
     }
@@ -441,10 +449,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns the best prior price based on historical pricing data for the specified SKUs within a defined timeframe. 
-     * Fetch best prior price
+     * Creates request options for bestPriorPrice without sending the request
      */
-    async bestPriorPriceRaw(requestParameters: BestPriorPriceOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<BestPriorPrice>>> {
+    async bestPriorPriceRequestOpts(requestParameters: BestPriorPriceOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['bestPriorPriceRequest'] == null) {
             throw new runtime.RequiredError(
                 'bestPriorPriceRequest',
@@ -473,13 +480,22 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/best_prior_price`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: BestPriorPriceRequestToJSON(requestParameters['bestPriorPriceRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns the best prior price based on historical pricing data for the specified SKUs within a defined timeframe. 
+     * Fetch best prior price
+     */
+    async bestPriorPriceRaw(requestParameters: BestPriorPriceOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<BestPriorPrice>>> {
+        const requestOptions = await this.bestPriorPriceRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(BestPriorPriceFromJSON));
     }
@@ -494,10 +510,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create an audience. The audience can be created directly from scratch or can come from third party platforms.  **Note:** Audiences can also be created from scratch via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/creating-audiences).  To create an audience from an existing audience from a [technology partner](https://docs.talon.one/docs/dev/technology-partners/overview): 1. Set the `integration` property to `mparticle`, `segment` etc., depending on a third-party platform. 1. Set `integrationId` to the ID of this audience in a third-party platform.  To create an audience from an existing audience in another platform: 1. Do not use the `integration` property. 1. Set `integrationId` to the ID of this audience in the 3rd-party platform.  To create an audience from scratch: 1. Only set the `name` property.  Once you create your first audience, audience-specific rule conditions are enabled in the Rule Builder. 
-     * Create audience
+     * Creates request options for createAudienceV2 without sending the request
      */
-    async createAudienceV2Raw(requestParameters: CreateAudienceV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Audience>> {
+    async createAudienceV2RequestOpts(requestParameters: CreateAudienceV2Request): Promise<runtime.RequestOpts> {
         if (requestParameters['newAudience'] == null) {
             throw new runtime.RequiredError(
                 'newAudience',
@@ -518,13 +533,22 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         let urlPath = `/v2/audiences`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewAudienceToJSON(requestParameters['newAudience']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create an audience. The audience can be created directly from scratch or can come from third party platforms.  **Note:** Audiences can also be created from scratch via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/creating-audiences).  To create an audience from an existing audience from a [technology partner](https://docs.talon.one/docs/dev/technology-partners/overview): 1. Set the `integration` property to `mparticle`, `segment` etc., depending on a third-party platform. 1. Set `integrationId` to the ID of this audience in a third-party platform.  To create an audience from an existing audience in another platform: 1. Do not use the `integration` property. 1. Set `integrationId` to the ID of this audience in the 3rd-party platform.  To create an audience from scratch: 1. Only set the `name` property.  Once you create your first audience, audience-specific rule conditions are enabled in the Rule Builder. 
+     * Create audience
+     */
+    async createAudienceV2Raw(requestParameters: CreateAudienceV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Audience>> {
+        const requestOptions = await this.createAudienceV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AudienceFromJSON(jsonValue));
     }
@@ -539,10 +563,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a coupon reservation for the specified customer profiles on the specified coupon.  You can also create a reservation via the Campaign Manager using the [Create coupon code reservation](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code) effect.  **Note:**  - If the **Reservation mandatory** option was selected when creating the   specified coupon, the endpoint creates a **hard** reservation, meaning only users who have   this coupon code reserved can redeem it.   Otherwise, the endpoint creates a **soft** reservation, meaning the coupon   is associated with the specified customer profiles (they show up when using   the [List customer data](https://docs.talon.one/integration-api#operation/getCustomerInventory)   endpoint), but any user can redeem it.   This can be useful, for example, to display a _coupon wallet_ for customers   when they visit your store.  - If the **Coupon visibility** option was selected when creating the   specified coupon, the coupon code is implicitly soft-reserved for all customers, and the code   will be returned for all customer profiles in the [List customer   data](https://docs.talon.one/integration-api#operation/getCustomerInventory) endpoint.  - This endpoint overrides the coupon reservation limit set when   [the coupon is created](https://docs.talon.one/docs/product/campaigns/coupons/creating-coupons).  To ensure that coupons cannot be reserved after the reservation limit is reached, use the [Create coupon code reservation](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code) effect in the Rule Builder and the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint.  To delete a reservation, use the [Delete reservation](https://docs.talon.one/integration-api#tag/Coupons/operation/deleteCouponReservation) endpoint. 
-     * Create coupon reservation
+     * Creates request options for createCouponReservation without sending the request
      */
-    async createCouponReservationRaw(requestParameters: CreateCouponReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Coupon>> {
+    async createCouponReservationRequestOpts(requestParameters: CreateCouponReservationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['couponValue'] == null) {
             throw new runtime.RequiredError(
                 'couponValue',
@@ -571,13 +594,22 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v1/coupon_reservations/{couponValue}`;
         urlPath = urlPath.replace(`{${"couponValue"}}`, encodeURIComponent(String(requestParameters['couponValue'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CouponReservationsToJSON(requestParameters['couponReservations']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a coupon reservation for the specified customer profiles on the specified coupon.  You can also create a reservation via the Campaign Manager using the [Create coupon code reservation](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code) effect.  **Note:**  - If the **Reservation mandatory** option was selected when creating the   specified coupon, the endpoint creates a **hard** reservation, meaning only users who have   this coupon code reserved can redeem it.   Otherwise, the endpoint creates a **soft** reservation, meaning the coupon   is associated with the specified customer profiles (they show up when using   the [List customer data](https://docs.talon.one/integration-api#operation/getCustomerInventory)   endpoint), but any user can redeem it.   This can be useful, for example, to display a _coupon wallet_ for customers   when they visit your store.  - If the **Coupon visibility** option was selected when creating the   specified coupon, the coupon code is implicitly soft-reserved for all customers, and the code   will be returned for all customer profiles in the [List customer   data](https://docs.talon.one/integration-api#operation/getCustomerInventory) endpoint.  - This endpoint overrides the coupon reservation limit set when   [the coupon is created](https://docs.talon.one/docs/product/campaigns/coupons/creating-coupons).  To ensure that coupons cannot be reserved after the reservation limit is reached, use the [Create coupon code reservation](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code) effect in the Rule Builder and the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint.  To delete a reservation, use the [Delete reservation](https://docs.talon.one/integration-api#tag/Coupons/operation/deleteCouponReservation) endpoint. 
+     * Create coupon reservation
+     */
+    async createCouponReservationRaw(requestParameters: CreateCouponReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Coupon>> {
+        const requestOptions = await this.createCouponReservationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CouponFromJSON(jsonValue));
     }
@@ -592,10 +624,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a referral code for an advocate. The code will be valid for the referral campaign for which is created, indicated in the `campaignId` parameter, and will be associated with the profile specified in the `advocateProfileIntegrationId` parameter as the advocate\'s profile.  **Note:** Any [referral limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets#referral-limits) set are ignored when you use this endpoint. 
-     * Create referral code for an advocate
+     * Creates request options for createReferral without sending the request
      */
-    async createReferralRaw(requestParameters: CreateReferralRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Referral>> {
+    async createReferralRequestOpts(requestParameters: CreateReferralRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['newReferral'] == null) {
             throw new runtime.RequiredError(
                 'newReferral',
@@ -616,13 +647,22 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/referrals`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewReferralToJSON(requestParameters['newReferral']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates a referral code for an advocate. The code will be valid for the referral campaign for which is created, indicated in the `campaignId` parameter, and will be associated with the profile specified in the `advocateProfileIntegrationId` parameter as the advocate\'s profile.  **Note:** Any [referral limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets#referral-limits) set are ignored when you use this endpoint. 
+     * Create referral code for an advocate
+     */
+    async createReferralRaw(requestParameters: CreateReferralRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Referral>> {
+        const requestOptions = await this.createReferralRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ReferralFromJSON(jsonValue));
     }
@@ -637,10 +677,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates unique referral codes for multiple advocates. The code will be valid for the referral campaign for which it is created, indicated in the `campaignId` parameter, and one referral code will be associated with one advocate using the profile specified in the `advocateProfileIntegrationId` parameter as the advocate\'s profile.  **Note:** Any [referral limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets#referral-limits) set are ignored when you use this endpoint. 
-     * Create referral codes for multiple advocates
+     * Creates request options for createReferralsForMultipleAdvocates without sending the request
      */
-    async createReferralsForMultipleAdvocatesRaw(requestParameters: CreateReferralsForMultipleAdvocatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateReferralsForMultipleAdvocates201Response>> {
+    async createReferralsForMultipleAdvocatesRequestOpts(requestParameters: CreateReferralsForMultipleAdvocatesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['newReferralsForMultipleAdvocates'] == null) {
             throw new runtime.RequiredError(
                 'newReferralsForMultipleAdvocates',
@@ -665,13 +704,22 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         let urlPath = `/v1/referrals_for_multiple_advocates`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: NewReferralsForMultipleAdvocatesToJSON(requestParameters['newReferralsForMultipleAdvocates']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates unique referral codes for multiple advocates. The code will be valid for the referral campaign for which it is created, indicated in the `campaignId` parameter, and one referral code will be associated with one advocate using the profile specified in the `advocateProfileIntegrationId` parameter as the advocate\'s profile.  **Note:** Any [referral limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets#referral-limits) set are ignored when you use this endpoint. 
+     * Create referral codes for multiple advocates
+     */
+    async createReferralsForMultipleAdvocatesRaw(requestParameters: CreateReferralsForMultipleAdvocatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateReferralsForMultipleAdvocates201Response>> {
+        const requestOptions = await this.createReferralsForMultipleAdvocatesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateReferralsForMultipleAdvocates201ResponseFromJSON(jsonValue));
     }
@@ -693,10 +741,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove all members from this audience. 
-     * Delete audience memberships
+     * Creates request options for deleteAudienceMembershipsV2 without sending the request
      */
-    async deleteAudienceMembershipsV2Raw(requestParameters: DeleteAudienceMembershipsV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAudienceMembershipsV2RequestOpts(requestParameters: DeleteAudienceMembershipsV2Request): Promise<runtime.RequestOpts> {
         if (requestParameters['audienceId'] == null) {
             throw new runtime.RequiredError(
                 'audienceId',
@@ -716,12 +763,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v2/audiences/{audienceId}/memberships`;
         urlPath = urlPath.replace(`{${"audienceId"}}`, encodeURIComponent(String(requestParameters['audienceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Remove all members from this audience. 
+     * Delete audience memberships
+     */
+    async deleteAudienceMembershipsV2Raw(requestParameters: DeleteAudienceMembershipsV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteAudienceMembershipsV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -735,10 +791,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete an audience created by a third-party integration.  **Warning:** This endpoint also removes any associations recorded between a customer profile and this audience.  **Note:** Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
-     * Delete audience
+     * Creates request options for deleteAudienceV2 without sending the request
      */
-    async deleteAudienceV2Raw(requestParameters: DeleteAudienceV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAudienceV2RequestOpts(requestParameters: DeleteAudienceV2Request): Promise<runtime.RequestOpts> {
         if (requestParameters['audienceId'] == null) {
             throw new runtime.RequiredError(
                 'audienceId',
@@ -758,12 +813,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v2/audiences/{audienceId}`;
         urlPath = urlPath.replace(`{${"audienceId"}}`, encodeURIComponent(String(requestParameters['audienceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete an audience created by a third-party integration.  **Warning:** This endpoint also removes any associations recorded between a customer profile and this audience.  **Note:** Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
+     * Delete audience
+     */
+    async deleteAudienceV2Raw(requestParameters: DeleteAudienceV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteAudienceV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -777,10 +841,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove all the coupon reservations from the provided customer profile integration IDs and the provided coupon code. 
-     * Delete coupon reservations
+     * Creates request options for deleteCouponReservation without sending the request
      */
-    async deleteCouponReservationRaw(requestParameters: DeleteCouponReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCouponReservationRequestOpts(requestParameters: DeleteCouponReservationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['couponValue'] == null) {
             throw new runtime.RequiredError(
                 'couponValue',
@@ -809,13 +872,22 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v1/coupon_reservations/{couponValue}`;
         urlPath = urlPath.replace(`{${"couponValue"}}`, encodeURIComponent(String(requestParameters['couponValue'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
             body: CouponReservationsToJSON(requestParameters['couponReservations']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Remove all the coupon reservations from the provided customer profile integration IDs and the provided coupon code. 
+     * Delete coupon reservations
+     */
+    async deleteCouponReservationRaw(requestParameters: DeleteCouponReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteCouponReservationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -829,10 +901,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete all attributes on the customer profile and on entities that reference this customer profile.  **Important:** - Customer data is deleted from all Applications in the [environment](https://docs.talon.one/docs/product/applications/overview#application-environments)   that the API key belongs to. For example, if you use this endpoint with an API key that belongs to a sandbox Application,   customer data will be deleted from all sandbox Applications. This is because customer data is shared   between Applications from the same environment. - To preserve performance, we recommend avoiding deleting customer data during peak-traffic hours. 
-     * Delete customer\'s personal data
+     * Creates request options for deleteCustomerData without sending the request
      */
-    async deleteCustomerDataRaw(requestParameters: DeleteCustomerDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCustomerDataRequestOpts(requestParameters: DeleteCustomerDataRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['integrationId'] == null) {
             throw new runtime.RequiredError(
                 'integrationId',
@@ -852,12 +923,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v1/customer_data/{integrationId}`;
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete all attributes on the customer profile and on entities that reference this customer profile.  **Important:** - Customer data is deleted from all Applications in the [environment](https://docs.talon.one/docs/product/applications/overview#application-environments)   that the API key belongs to. For example, if you use this endpoint with an API key that belongs to a sandbox Application,   customer data will be deleted from all sandbox Applications. This is because customer data is shared   between Applications from the same environment. - To preserve performance, we recommend avoiding deleting customer data during peak-traffic hours. 
+     * Delete customer\'s personal data
+     */
+    async deleteCustomerDataRaw(requestParameters: DeleteCustomerDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteCustomerDataRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -871,10 +951,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a customer\'s transactions in all loyalty ledgers or a specified ledger.  **Note:** To retrieve loyalty transaction logs for a specific customer in a given loyalty program, use the [List customer\'s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions) endpoint. 
-     * Delete customer\'s transactions from loyalty ledgers
+     * Creates request options for deleteLoyaltyTransactionsFromLedgers without sending the request
      */
-    async deleteLoyaltyTransactionsFromLedgersRaw(requestParameters: DeleteLoyaltyTransactionsFromLedgersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteLoyaltyTransactionsFromLedgersRequestOpts(requestParameters: DeleteLoyaltyTransactionsFromLedgersRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -911,13 +990,22 @@ export class IntegrationApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: DeleteLoyaltyTransactionsRequestToJSON(requestParameters['deleteLoyaltyTransactionsRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete a customer\'s transactions in all loyalty ledgers or a specified ledger.  **Note:** To retrieve loyalty transaction logs for a specific customer in a given loyalty program, use the [List customer\'s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions) endpoint. 
+     * Delete customer\'s transactions from loyalty ledgers
+     */
+    async deleteLoyaltyTransactionsFromLedgersRaw(requestParameters: DeleteLoyaltyTransactionsFromLedgersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteLoyaltyTransactionsFromLedgersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -931,10 +1019,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Generate a loyalty card in a specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview).  To link the card to one or more customer profiles, use the `customerProfileIds` parameter in the request body.  **Note:** - The number of customer profiles linked to the loyalty card cannot exceed the loyalty program\'s `usersPerCardLimit`. To find the program\'s limit, use the [Get loyalty program](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgram) endpoint. - If the loyalty program has a defined code format, it will be used for the loyalty card identifier. 
-     * Generate loyalty card
+     * Creates request options for generateLoyaltyCard without sending the request
      */
-    async generateLoyaltyCardRaw(requestParameters: GenerateLoyaltyCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCard>> {
+    async generateLoyaltyCardRequestOpts(requestParameters: GenerateLoyaltyCardRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -963,19 +1050,28 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards`;
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: GenerateLoyaltyCardToJSON(requestParameters['generateLoyaltyCard']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Generate a loyalty card in a specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview).  To link the card to one or more customer profiles, use the `customerProfileIds` parameter in the request body.  **Note:**  - The number of customer profiles linked to the loyalty card cannot exceed the loyalty program\'s `usersPerCardLimit`. To find the program\'s limit, use the [Get loyalty program](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgram) endpoint.  - If the loyalty program has a defined code format, it will be used for the loyalty card identifier. 
+     * Generate loyalty card
+     */
+    async generateLoyaltyCardRaw(requestParameters: GenerateLoyaltyCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCard>> {
+        const requestOptions = await this.generateLoyaltyCardRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyCardFromJSON(jsonValue));
     }
 
     /**
-     * Generate a loyalty card in a specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview).  To link the card to one or more customer profiles, use the `customerProfileIds` parameter in the request body.  **Note:** - The number of customer profiles linked to the loyalty card cannot exceed the loyalty program\'s `usersPerCardLimit`. To find the program\'s limit, use the [Get loyalty program](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgram) endpoint. - If the loyalty program has a defined code format, it will be used for the loyalty card identifier. 
+     * Generate a loyalty card in a specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview).  To link the card to one or more customer profiles, use the `customerProfileIds` parameter in the request body.  **Note:**  - The number of customer profiles linked to the loyalty card cannot exceed the loyalty program\'s `usersPerCardLimit`. To find the program\'s limit, use the [Get loyalty program](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgram) endpoint.  - If the loyalty program has a defined code format, it will be used for the loyalty card identifier. 
      * Generate loyalty card
      */
     async generateLoyaltyCard(requestParameters: GenerateLoyaltyCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoyaltyCard> {
@@ -984,10 +1080,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve all progress history of a given customer in the given achievement. 
-     * List customer\'s achievement history
+     * Creates request options for getCustomerAchievementHistory without sending the request
      */
-    async getCustomerAchievementHistoryRaw(requestParameters: GetCustomerAchievementHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCustomerAchievementHistory200Response>> {
+    async getCustomerAchievementHistoryRequestOpts(requestParameters: GetCustomerAchievementHistoryRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['integrationId'] == null) {
             throw new runtime.RequiredError(
                 'integrationId',
@@ -1035,12 +1130,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
         urlPath = urlPath.replace(`{${"achievementId"}}`, encodeURIComponent(String(requestParameters['achievementId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve all progress history of a given customer in the given achievement. 
+     * List customer\'s achievement history
+     */
+    async getCustomerAchievementHistoryRaw(requestParameters: GetCustomerAchievementHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCustomerAchievementHistory200Response>> {
+        const requestOptions = await this.getCustomerAchievementHistoryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCustomerAchievementHistory200ResponseFromJSON(jsonValue));
     }
@@ -1055,10 +1159,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve all the achievements available to a given customer and their progress in them. 
-     * List customer\'s available achievements
+     * Creates request options for getCustomerAchievements without sending the request
      */
-    async getCustomerAchievementsRaw(requestParameters: GetCustomerAchievementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCustomerAchievements200Response>> {
+    async getCustomerAchievementsRequestOpts(requestParameters: GetCustomerAchievementsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['integrationId'] == null) {
             throw new runtime.RequiredError(
                 'integrationId',
@@ -1102,12 +1205,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v1/customer_profiles/{integrationId}/achievements`;
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve all the achievements available to a given customer and their progress in them. 
+     * List customer\'s available achievements
+     */
+    async getCustomerAchievementsRaw(requestParameters: GetCustomerAchievementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCustomerAchievements200Response>> {
+        const requestOptions = await this.getCustomerAchievementsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetCustomerAchievements200ResponseFromJSON(jsonValue));
     }
@@ -1122,10 +1234,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Return the customer inventory regarding entities referencing this customer profile\'s `integrationId`.  Typical entities returned are: customer profile information, referral codes, loyalty points, loyalty cards and reserved coupons. Reserved coupons also include redeemed coupons. 
-     * List customer data
+     * Creates request options for getCustomerInventory without sending the request
      */
-    async getCustomerInventoryRaw(requestParameters: GetCustomerInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerInventory>> {
+    async getCustomerInventoryRequestOpts(requestParameters: GetCustomerInventoryRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['integrationId'] == null) {
             throw new runtime.RequiredError(
                 'integrationId',
@@ -1169,12 +1280,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v1/customer_profiles/{integrationId}/inventory`;
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Return the customer inventory regarding entities referencing this customer profile\'s `integrationId`.  Typical entities returned are: customer profile information, referral codes, loyalty points, loyalty cards and reserved coupons. Reserved coupons also include redeemed coupons. 
+     * List customer data
+     */
+    async getCustomerInventoryRaw(requestParameters: GetCustomerInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerInventory>> {
+        const requestOptions = await this.getCustomerInventoryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CustomerInventoryFromJSON(jsonValue));
     }
@@ -1189,10 +1309,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the details of the given customer session.  You can get the same data via other endpoints that also apply changes, which can help you save requests and increase performance. See:  - [Update customer session](#tag/Customer-sessions/operation/updateCustomerSessionV2) - [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) 
-     * Get customer session
+     * Creates request options for getCustomerSession without sending the request
      */
-    async getCustomerSessionRaw(requestParameters: GetCustomerSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationCustomerSessionResponse>> {
+    async getCustomerSessionRequestOpts(requestParameters: GetCustomerSessionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['customerSessionId'] == null) {
             throw new runtime.RequiredError(
                 'customerSessionId',
@@ -1212,12 +1331,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v2/customer_sessions/{customerSessionId}`;
         urlPath = urlPath.replace(`{${"customerSessionId"}}`, encodeURIComponent(String(requestParameters['customerSessionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get the details of the given customer session.  You can get the same data via other endpoints that also apply changes, which can help you save requests and increase performance. See:  - [Update customer session](#tag/Customer-sessions/operation/updateCustomerSessionV2) - [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) 
+     * Get customer session
+     */
+    async getCustomerSessionRaw(requestParameters: GetCustomerSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationCustomerSessionResponse>> {
+        const requestOptions = await this.getCustomerSessionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => IntegrationCustomerSessionResponseFromJSON(jsonValue));
     }
@@ -1232,10 +1360,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program. You can filter balances by date and subledger ID, and include tier-related information in the response.  **Note**: If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see: - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards) - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
-     * Get customer\'s loyalty balances
+     * Creates request options for getLoyaltyBalances without sending the request
      */
-    async getLoyaltyBalancesRaw(requestParameters: GetLoyaltyBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyBalancesWithTiers>> {
+    async getLoyaltyBalancesRequestOpts(requestParameters: GetLoyaltyBalancesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -1279,12 +1406,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program. You can filter balances by date and subledger ID, and include tier-related information in the response.  **Note**: If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see: - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards) - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
+     * Get customer\'s loyalty balances
+     */
+    async getLoyaltyBalancesRaw(requestParameters: GetLoyaltyBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyBalancesWithTiers>> {
+        const requestOptions = await this.getLoyaltyBalancesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyBalancesWithTiersFromJSON(jsonValue));
     }
@@ -1299,10 +1435,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve loyalty balances for the given loyalty card in the specified loyalty program with filtering options applied. If no filtering options are applied, all loyalty balances for the given loyalty card are returned. 
-     * Get card\'s point balances
+     * Creates request options for getLoyaltyCardBalances without sending the request
      */
-    async getLoyaltyCardBalancesRaw(requestParameters: GetLoyaltyCardBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCardBalances>> {
+    async getLoyaltyCardBalancesRequestOpts(requestParameters: GetLoyaltyCardBalancesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -1338,12 +1473,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve loyalty balances for the given loyalty card in the specified loyalty program with filtering options applied. If no filtering options are applied, all loyalty balances for the given loyalty card are returned. 
+     * Get card\'s point balances
+     */
+    async getLoyaltyCardBalancesRaw(requestParameters: GetLoyaltyCardBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCardBalances>> {
+        const requestOptions = await this.getLoyaltyCardBalancesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyCardBalancesFromJSON(jsonValue));
     }
@@ -1358,10 +1502,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get paginated results of loyalty points for a given loyalty card identifier in a card-based loyalty program. This endpoint returns only the balances of unused points on a loyalty card.  You can filter points by status: - `active`: Points ready to be redeemed. - `pending`: Points with a start date in the future. - `expired`: Points with an expiration date in the past. 
-     * List card\'s unused loyalty points
+     * Creates request options for getLoyaltyCardPoints without sending the request
      */
-    async getLoyaltyCardPointsRaw(requestParameters: GetLoyaltyCardPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyCardPoints200Response>> {
+    async getLoyaltyCardPointsRequestOpts(requestParameters: GetLoyaltyCardPointsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -1417,12 +1560,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get paginated results of loyalty points for a given loyalty card identifier in a card-based loyalty program. This endpoint returns only the balances of unused points on a loyalty card.  You can filter points by status: - `active`: Points ready to be redeemed. - `pending`: Points with a start date in the future. - `expired`: Points with an expiration date in the past. 
+     * List card\'s unused loyalty points
+     */
+    async getLoyaltyCardPointsRaw(requestParameters: GetLoyaltyCardPointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyCardPoints200Response>> {
+        const requestOptions = await this.getLoyaltyCardPointsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetLoyaltyCardPoints200ResponseFromJSON(jsonValue));
     }
@@ -1437,10 +1589,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve loyalty transaction logs for the given loyalty card in the specified loyalty program with filtering options applied. If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
-     * List card\'s transactions
+     * Creates request options for getLoyaltyCardTransactions without sending the request
      */
-    async getLoyaltyCardTransactionsRaw(requestParameters: GetLoyaltyCardTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyCardTransactions200Response>> {
+    async getLoyaltyCardTransactionsRequestOpts(requestParameters: GetLoyaltyCardTransactionsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -1504,12 +1655,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve loyalty transaction logs for the given loyalty card in the specified loyalty program with filtering options applied. If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
+     * List card\'s transactions
+     */
+    async getLoyaltyCardTransactionsRaw(requestParameters: GetLoyaltyCardTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyCardTransactions200Response>> {
+        const requestOptions = await this.getLoyaltyCardTransactionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetLoyaltyCardTransactions200ResponseFromJSON(jsonValue));
     }
@@ -1524,10 +1684,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get paginated results of loyalty points for a given Integration ID in the specified profile-based loyalty program. This endpoint returns only the balances of unused points linked to a customer profile.  You can filter points by status: - `active`: Points ready to be redeemed. - `pending`: Points with a start date in the future. - `expired`: Points with an expiration date in the past. 
-     * List customer\'s unused loyalty points
+     * Creates request options for getLoyaltyProgramProfilePoints without sending the request
      */
-    async getLoyaltyProgramProfilePointsRaw(requestParameters: GetLoyaltyProgramProfilePointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyProgramProfilePoints200Response>> {
+    async getLoyaltyProgramProfilePointsRequestOpts(requestParameters: GetLoyaltyProgramProfilePointsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -1583,12 +1742,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get paginated results of loyalty points for a given Integration ID in the specified profile-based loyalty program. This endpoint returns only the balances of unused points linked to a customer profile.  You can filter points by status: - `active`: Points ready to be redeemed. - `pending`: Points with a start date in the future. - `expired`: Points with an expiration date in the past. 
+     * List customer\'s unused loyalty points
+     */
+    async getLoyaltyProgramProfilePointsRaw(requestParameters: GetLoyaltyProgramProfilePointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyProgramProfilePoints200Response>> {
+        const requestOptions = await this.getLoyaltyProgramProfilePointsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetLoyaltyProgramProfilePoints200ResponseFromJSON(jsonValue));
     }
@@ -1603,10 +1771,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date. If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  **Note:** To retrieve all loyalty program transaction logs in a given loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
-     * List customer\'s loyalty transactions
+     * Creates request options for getLoyaltyProgramProfileTransactions without sending the request
      */
-    async getLoyaltyProgramProfileTransactionsRaw(requestParameters: GetLoyaltyProgramProfileTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyProgramProfileTransactions200Response>> {
+    async getLoyaltyProgramProfileTransactionsRequestOpts(requestParameters: GetLoyaltyProgramProfileTransactionsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -1670,12 +1837,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date. If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  **Note:** To retrieve all loyalty program transaction logs in a given loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+     * List customer\'s loyalty transactions
+     */
+    async getLoyaltyProgramProfileTransactionsRaw(requestParameters: GetLoyaltyProgramProfileTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyProgramProfileTransactions200Response>> {
+        const requestOptions = await this.getLoyaltyProgramProfileTransactionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetLoyaltyProgramProfileTransactions200ResponseFromJSON(jsonValue));
     }
@@ -1690,10 +1866,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Return all customers that have this coupon marked as reserved. This includes hard and soft reservations. 
-     * List customers that have this coupon reserved
+     * Creates request options for getReservedCustomers without sending the request
      */
-    async getReservedCustomersRaw(requestParameters: GetReservedCustomersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetReservedCustomers200Response>> {
+    async getReservedCustomersRequestOpts(requestParameters: GetReservedCustomersRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['couponValue'] == null) {
             throw new runtime.RequiredError(
                 'couponValue',
@@ -1713,12 +1888,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v1/coupon_reservations/customerprofiles/{couponValue}`;
         urlPath = urlPath.replace(`{${"couponValue"}}`, encodeURIComponent(String(requestParameters['couponValue'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Return all customers that have this coupon marked as reserved. This includes hard and soft reservations. 
+     * List customers that have this coupon reserved
+     */
+    async getReservedCustomersRaw(requestParameters: GetReservedCustomersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetReservedCustomers200Response>> {
+        const requestOptions = await this.getReservedCustomersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetReservedCustomers200ResponseFromJSON(jsonValue));
     }
@@ -1733,10 +1917,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * [Loyalty cards](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) allow customers to collect and spend loyalty points within a [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types). They are useful to gamify loyalty programs and can be used with or without customer profiles linked to them.  Link a customer profile to a given loyalty card for the card to be set as **Registered**. This affects how it can be used. See the [docs](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards#linking-customer-profiles-to-a-loyalty-card).  **Note:** You can link as many customer profiles to a given loyalty card as the [**card user limit**](https://docs.talon.one/docs/product/loyalty-programs/card-based/creating-cb-programs) allows. 
-     * Link customer profile to card
+     * Creates request options for linkLoyaltyCardToProfile without sending the request
      */
-    async linkLoyaltyCardToProfileRaw(requestParameters: LinkLoyaltyCardToProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCard>> {
+    async linkLoyaltyCardToProfileRequestOpts(requestParameters: LinkLoyaltyCardToProfileRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -1773,13 +1956,22 @@ export class IntegrationApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: LoyaltyCardRegistrationToJSON(requestParameters['loyaltyCardRegistration']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * [Loyalty cards](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) allow customers to collect and spend loyalty points within a [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types). They are useful to gamify loyalty programs and can be used with or without customer profiles linked to them.  Link a customer profile to a given loyalty card for the card to be set as **Registered**. This affects how it can be used. See the [docs](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards#linking-customer-profiles-to-a-loyalty-card).  **Note:** You can link as many customer profiles to a given loyalty card as the [**card user limit**](https://docs.talon.one/docs/product/loyalty-programs/card-based/creating-cb-programs) allows. 
+     * Link customer profile to card
+     */
+    async linkLoyaltyCardToProfileRaw(requestParameters: LinkLoyaltyCardToProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCard>> {
+        const requestOptions = await this.linkLoyaltyCardToProfileRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyCardFromJSON(jsonValue));
     }
@@ -1794,10 +1986,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The `talon_session_reopened` event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to `open`. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   <details>   <summary><strong>Effects and budgets unimpacted by a session reopening</strong></summary>   <div>     <p>The following effects and budgets remain in the state they were in when the session closed:</p>     <ul>       <li>Add free item effect</li>       <li>Award giveaway</li>       <li>Coupon and referral creation</li>       <li>Coupon reservation</li>       <li>Custom effect</li>       <li>Update attribute value</li>       <li>Update cart item attribute value</li>     </ul>   </div>   </details> <p>To see an example of a rollback, see the <a href=\"https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\">Cancelling a session with campaign budgets</a> tutorial.</p>  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
-     * Reopen customer session
+     * Creates request options for reopenCustomerSession without sending the request
      */
-    async reopenCustomerSessionRaw(requestParameters: ReopenCustomerSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReopenSessionResponse>> {
+    async reopenCustomerSessionRequestOpts(requestParameters: ReopenCustomerSessionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['customerSessionId'] == null) {
             throw new runtime.RequiredError(
                 'customerSessionId',
@@ -1817,12 +2008,21 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v2/customer_sessions/{customerSessionId}/reopen`;
         urlPath = urlPath.replace(`{${"customerSessionId"}}`, encodeURIComponent(String(requestParameters['customerSessionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The `talon_session_reopened` event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to `open`. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   <details>   <summary><strong>Effects and budgets unimpacted by a session reopening</strong></summary>   <div>     <p>The following effects and budgets remain in the state they were in when the session closed:</p>     <ul>       <li>Add free item effect</li>       <li>Award giveaway</li>       <li>Coupon and referral creation</li>       <li>Coupon reservation</li>       <li>Custom effect</li>       <li>Update attribute value</li>       <li>Update cart item attribute value</li>     </ul>   </div>   </details> <p>To see an example of a rollback, see the <a href=\"https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\">Cancelling a session with campaign budgets</a> tutorial.</p>  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
+     * Reopen customer session
+     */
+    async reopenCustomerSessionRaw(requestParameters: ReopenCustomerSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReopenSessionResponse>> {
+        const requestOptions = await this.reopenCustomerSessionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ReopenSessionResponseFromJSON(jsonValue));
     }
@@ -1837,10 +2037,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new return request for the specified cart items.  This endpoint automatically changes the session state from `closed` to `partially_returned`.  **Note:** This will roll back any effects associated with these cart items. For more information, see [our documentation on session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session). 
-     * Return cart items
+     * Creates request options for returnCartItems without sending the request
      */
-    async returnCartItemsRaw(requestParameters: ReturnCartItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationStateV2>> {
+    async returnCartItemsRequestOpts(requestParameters: ReturnCartItemsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['customerSessionId'] == null) {
             throw new runtime.RequiredError(
                 'customerSessionId',
@@ -1873,13 +2072,22 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v2/customer_sessions/{customerSessionId}/returns`;
         urlPath = urlPath.replace(`{${"customerSessionId"}}`, encodeURIComponent(String(requestParameters['customerSessionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ReturnIntegrationRequestToJSON(requestParameters['returnIntegrationRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a new return request for the specified cart items.  This endpoint automatically changes the session state from `closed` to `partially_returned`.  **Note:** This will roll back any effects associated with these cart items. For more information, see [our documentation on session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session). 
+     * Return cart items
+     */
+    async returnCartItemsRaw(requestParameters: ReturnCartItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationStateV2>> {
+        const requestOptions = await this.returnCartItemsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => IntegrationStateV2FromJSON(jsonValue));
     }
@@ -1894,10 +2102,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Perform the following actions for a given cart item catalog:  - Add an item to the catalog. - Add multiple items to the catalog. - Update the attributes of an item in the catalog. - Update the attributes of multiple items in the catalog. - Remove an item from the catalog. - Remove multiple items from the catalog.  You can either add, update, or delete up to 1000 cart items in a single request. Each item synced to a catalog must have a unique `SKU`.  **Important**: You can perform only one type of action in a single sync request. Syncing items with duplicate `SKU` values in a single request returns an error message with a `400` status code.  For more information, read [managing cart item catalogs](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs).  ### Filtering cart items  Use [cart item attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes) to filter items and select the ones you want to edit or delete when editing or deleting more than one item at a time.  The `filters` array contains an object with the following properties:  - `attr`: A [cart item attribute](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes)   connected to the catalog. It is applied to all items in the catalog. - `op`: The filtering operator indicating the relationship between the value of each   cart item in the catalog and the value of the `value` property for the attribute selected   in `attr`.    The value of `op` can be one of the following:    - `EQ`: Equal to `value`   - `LT`: Less than `value`   - `LE`: Less than or equal to `value`   - `GT`: Greater than `value`   - `GE`: Greater than or equal to `value`   - `IN`: One of the comma-separated values that `value` is set to.    **Note:** `GE`, `LE`, `GT`, `LT` are for numeric values only.  - `value`: The value of the attribute selected in `attr`.  ### Payload examples  Synchronization actions are sent as `PUT` requests. See the structure for each action:  <details>   <summary><strong>Adding an item to the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"attributes\": {             \"color\": \"Navy blue\",             \"type\": \"shoes\"           },           \"replaceIfExists\": true,           \"sku\": \"SKU1241028\",           \"price\": 100,           \"product\": {             \"name\": \"sneakers\"           }         },         \"type\": \"ADD\"       }     ]   }   ```   </div> </details>  <details>   <summary><strong>Adding multiple items to the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"attributes\": {             \"color\": \"Navy blue\",             \"type\": \"shoes\"           },           \"replaceIfExists\": true,           \"sku\": \"SKU1241027\",           \"price\": 100,           \"product\": {             \"name\": \"sneakers\"           }         },         \"type\": \"ADD\"       },       {         \"payload\": {           \"attributes\": {             \"color\": \"Navy blue\",             \"type\": \"shoes\"           },           \"replaceIfExists\": true,           \"sku\": \"SKU1241028\",           \"price\": 100,           \"product\": {             \"name\": \"sneakers\"           }         },         \"type\": \"ADD\"       }     ]   }   ```   </div> </details>  <details>   <summary><strong>Updating the attributes of an item in the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"attributes\": {             \"age\": 11,             \"origin\": \"germany\"           },           \"createIfNotExists\": false,           \"sku\": \"SKU1241028\",           \"product\": {             \"name\": \"sneakers\"           }         },         \"type\": \"PATCH\"       }     ]   }   ```   </div> </details>  <details>   <summary><strong>Updating the attributes of multiple items in the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"attributes\": {             \"color\": \"red\"           },           \"filters\": [             {               \"attr\": \"color\",               \"op\": \"EQ\",               \"value\": \"blue\"             }           ]         },         \"type\": \"PATCH_MANY\"       }     ]   }   ```    </div> </details>  <details>   <summary><strong>Removing an item from the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"sku\": \"SKU1241028\"         },         \"type\": \"REMOVE\"       }     ]   }   ```    </div> </details>  <details>   <summary><strong>Removing multiple items from the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"filters\": [             {               \"attr\": \"color\",               \"op\": \"EQ\",               \"value\": \"blue\"             }           ]         },         \"type\": \"REMOVE_MANY\"       }     ]   }   ```   </div> </details>  <details>   <summary><strong>Removing shoes of sizes above 45 from the catalog</strong></summary>   <div>   <p>   Let\'s imagine that we have a shoe store and we have decided to stop selling   shoes larger than size 45. We can remove from the catalog all the shoes of sizes above 45   with a single action:</p>    ```json   {     \"actions\": [       {         \"payload\": {           \"filters\": [             {               \"attr\": \"size\",               \"op\": \"GT\",               \"value\": \"45\"             }           ]         },         \"type\": \"REMOVE_MANY\"       }     ]   }   ```   </div> </details> 
-     * Sync cart item catalog
+     * Creates request options for syncCatalog without sending the request
      */
-    async syncCatalogRaw(requestParameters: SyncCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Catalog>> {
+    async syncCatalogRequestOpts(requestParameters: SyncCatalogRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['catalogId'] == null) {
             throw new runtime.RequiredError(
                 'catalogId',
@@ -1926,13 +2133,22 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v1/catalogs/{catalogId}/sync`;
         urlPath = urlPath.replace(`{${"catalogId"}}`, encodeURIComponent(String(requestParameters['catalogId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: CatalogSyncRequestToJSON(requestParameters['catalogSyncRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Perform the following actions for a given cart item catalog:  - Add an item to the catalog. - Add multiple items to the catalog. - Update the attributes of an item in the catalog. - Update the attributes of multiple items in the catalog. - Remove an item from the catalog. - Remove multiple items from the catalog.  You can either add, update, or delete up to 1000 cart items in a single request. Each item synced to a catalog must have a unique `SKU`.  **Important**: You can perform only one type of action in a single sync request. Syncing items with duplicate `SKU` values in a single request returns an error message with a `400` status code.  For more information, read [managing cart item catalogs](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs).  ### Filtering cart items  Use [cart item attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes) to filter items and select the ones you want to edit or delete when editing or deleting more than one item at a time.  The `filters` array contains an object with the following properties:  - `attr`: A [cart item attribute](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes)   connected to the catalog. It is applied to all items in the catalog. - `op`: The filtering operator indicating the relationship between the value of each   cart item in the catalog and the value of the `value` property for the attribute selected   in `attr`.    The value of `op` can be one of the following:    - `EQ`: Equal to `value`   - `LT`: Less than `value`   - `LE`: Less than or equal to `value`   - `GT`: Greater than `value`   - `GE`: Greater than or equal to `value`   - `IN`: One of the comma-separated values that `value` is set to.    **Note:** `GE`, `LE`, `GT`, `LT` are for numeric values only.  - `value`: The value of the attribute selected in `attr`.  ### Payload examples  Synchronization actions are sent as `PUT` requests. See the structure for each action:  <details>   <summary><strong>Adding an item to the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"attributes\": {             \"color\": \"Navy blue\",             \"type\": \"shoes\"           },           \"replaceIfExists\": true,           \"sku\": \"SKU1241028\",           \"price\": 100,           \"product\": {             \"name\": \"sneakers\"           }         },         \"type\": \"ADD\"       }     ]   }   ```   </div> </details>  <details>   <summary><strong>Adding multiple items to the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"attributes\": {             \"color\": \"Navy blue\",             \"type\": \"shoes\"           },           \"replaceIfExists\": true,           \"sku\": \"SKU1241027\",           \"price\": 100,           \"product\": {             \"name\": \"sneakers\"           }         },         \"type\": \"ADD\"       },       {         \"payload\": {           \"attributes\": {             \"color\": \"Navy blue\",             \"type\": \"shoes\"           },           \"replaceIfExists\": true,           \"sku\": \"SKU1241028\",           \"price\": 100,           \"product\": {             \"name\": \"sneakers\"           }         },         \"type\": \"ADD\"       }     ]   }   ```   </div> </details>  <details>   <summary><strong>Updating the attributes of an item in the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"attributes\": {             \"age\": 11,             \"origin\": \"germany\"           },           \"createIfNotExists\": false,           \"sku\": \"SKU1241028\",           \"product\": {             \"name\": \"sneakers\"           }         },         \"type\": \"PATCH\"       }     ]   }   ```   </div> </details>  <details>   <summary><strong>Updating the attributes of multiple items in the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"attributes\": {             \"color\": \"red\"           },           \"filters\": [             {               \"attr\": \"color\",               \"op\": \"EQ\",               \"value\": \"blue\"             }           ]         },         \"type\": \"PATCH_MANY\"       }     ]   }   ```    </div> </details>  <details>   <summary><strong>Removing an item from the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"sku\": \"SKU1241028\"         },         \"type\": \"REMOVE\"       }     ]   }   ```    </div> </details>  <details>   <summary><strong>Removing multiple items from the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"filters\": [             {               \"attr\": \"color\",               \"op\": \"EQ\",               \"value\": \"blue\"             }           ]         },         \"type\": \"REMOVE_MANY\"       }     ]   }   ```   </div> </details>  <details>   <summary><strong>Removing shoes of sizes above 45 from the catalog</strong></summary>   <div>   <p>   Let\'s imagine that we have a shoe store and we have decided to stop selling   shoes larger than size 45. We can remove from the catalog all the shoes of sizes above 45   with a single action:</p>    ```json   {     \"actions\": [       {         \"payload\": {           \"filters\": [             {               \"attr\": \"size\",               \"op\": \"GT\",               \"value\": \"45\"             }           ]         },         \"type\": \"REMOVE_MANY\"       }     ]   }   ```   </div> </details> 
+     * Sync cart item catalog
+     */
+    async syncCatalogRaw(requestParameters: SyncCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Catalog>> {
+        const requestOptions = await this.syncCatalogRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CatalogFromJSON(jsonValue));
     }
@@ -1947,10 +2163,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Triggers a custom event.  To use this endpoint: 1. Define a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. Update or create a rule to check for this event. 1. Trigger the event with this endpoint. After you have successfully sent an event to Talon.One, you can list the received events in the **Events** view in the Campaign Manager.  Talon.One also offers a set of [built-in events](https://docs.talon.one/docs/dev/concepts/entities/events). Ensure you do not create a custom event when you can use a built-in event.  For example, use this endpoint to trigger an event when a customer shares a link to a product. See the [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  <div class=\"redoc-section\">    <p class=\"title\">Important</p>    1. `profileId` is required even though the schema does not specify it.   1. If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered.   1. We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).   1. [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation.  </div> 
-     * Track event
+     * Creates request options for trackEventV2 without sending the request
      */
-    async trackEventV2Raw(requestParameters: TrackEventV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TrackEventV2Response>> {
+    async trackEventV2RequestOpts(requestParameters: TrackEventV2Request): Promise<runtime.RequestOpts> {
         if (requestParameters['integrationEventV2Request'] == null) {
             throw new runtime.RequiredError(
                 'integrationEventV2Request',
@@ -1983,31 +2198,39 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         let urlPath = `/v2/events`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: IntegrationEventV2RequestToJSON(requestParameters['integrationEventV2Request']),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => TrackEventV2ResponseFromJSON(jsonValue));
+        };
     }
 
     /**
      * Triggers a custom event.  To use this endpoint: 1. Define a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. Update or create a rule to check for this event. 1. Trigger the event with this endpoint. After you have successfully sent an event to Talon.One, you can list the received events in the **Events** view in the Campaign Manager.  Talon.One also offers a set of [built-in events](https://docs.talon.one/docs/dev/concepts/entities/events). Ensure you do not create a custom event when you can use a built-in event.  For example, use this endpoint to trigger an event when a customer shares a link to a product. See the [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  <div class=\"redoc-section\">    <p class=\"title\">Important</p>    1. `profileId` is required even though the schema does not specify it.   1. If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered.   1. We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).   1. [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation.  </div> 
      * Track event
      */
-    async trackEventV2(requestParameters: TrackEventV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TrackEventV2Response> {
+    async trackEventV2Raw(requestParameters: TrackEventV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationEventV2Response>> {
+        const requestOptions = await this.trackEventV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => IntegrationEventV2ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Triggers a custom event.  To use this endpoint: 1. Define a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. Update or create a rule to check for this event. 1. Trigger the event with this endpoint. After you have successfully sent an event to Talon.One, you can list the received events in the **Events** view in the Campaign Manager.  Talon.One also offers a set of [built-in events](https://docs.talon.one/docs/dev/concepts/entities/events). Ensure you do not create a custom event when you can use a built-in event.  For example, use this endpoint to trigger an event when a customer shares a link to a product. See the [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  <div class=\"redoc-section\">    <p class=\"title\">Important</p>    1. `profileId` is required even though the schema does not specify it.   1. If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered.   1. We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).   1. [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation.  </div> 
+     * Track event
+     */
+    async trackEventV2(requestParameters: TrackEventV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationEventV2Response> {
         const response = await this.trackEventV2Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Unlink a customer profile from a [registered](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards#linking-customer-profiles-to-a-loyalty-card) loyalty card.  To get the `integrationId` of a customer profile, you can use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
-     * Unlink customer profile from a loyalty card
+     * Creates request options for unlinkLoyaltyCardFromProfile without sending the request
      */
-    async unlinkLoyaltyCardFromProfileRaw(requestParameters: UnlinkLoyaltyCardFromProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCard>> {
+    async unlinkLoyaltyCardFromProfileRequestOpts(requestParameters: UnlinkLoyaltyCardFromProfileRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loyaltyProgramId'] == null) {
             throw new runtime.RequiredError(
                 'loyaltyProgramId',
@@ -2044,13 +2267,22 @@ export class IntegrationApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
         urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: LoyaltyCardRegistrationToJSON(requestParameters['loyaltyCardRegistration']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Unlink a customer profile from a [registered](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards#linking-customer-profiles-to-a-loyalty-card) loyalty card.  To get the `integrationId` of a customer profile, you can use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
+     * Unlink customer profile from a loyalty card
+     */
+    async unlinkLoyaltyCardFromProfileRaw(requestParameters: UnlinkLoyaltyCardFromProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCard>> {
+        const requestOptions = await this.unlinkLoyaltyCardFromProfileRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyCardFromJSON(jsonValue));
     }
@@ -2065,10 +2297,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the specified profile attributes to the provided values for all customers in the specified audience. 
-     * Update profile attributes for all customers in audience
+     * Creates request options for updateAudienceCustomersAttributes without sending the request
      */
-    async updateAudienceCustomersAttributesRaw(requestParameters: UpdateAudienceCustomersAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateAudienceCustomersAttributesRequestOpts(requestParameters: UpdateAudienceCustomersAttributesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['audienceId'] == null) {
             throw new runtime.RequiredError(
                 'audienceId',
@@ -2097,13 +2328,22 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v2/audience_customers/{audienceId}/attributes`;
         urlPath = urlPath.replace(`{${"audienceId"}}`, encodeURIComponent(String(requestParameters['audienceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: requestParameters['body'] as any,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update the specified profile attributes to the provided values for all customers in the specified audience. 
+     * Update profile attributes for all customers in audience
+     */
+    async updateAudienceCustomersAttributesRaw(requestParameters: UpdateAudienceCustomersAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateAudienceCustomersAttributesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -2117,10 +2357,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the name of the given audience created by a third-party integration. Sending a request to this endpoint does **not** trigger the Rule Engine.  To update the audience\'s members, use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint. 
-     * Update audience name
+     * Creates request options for updateAudienceV2 without sending the request
      */
-    async updateAudienceV2Raw(requestParameters: UpdateAudienceV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Audience>> {
+    async updateAudienceV2RequestOpts(requestParameters: UpdateAudienceV2Request): Promise<runtime.RequestOpts> {
         if (requestParameters['audienceId'] == null) {
             throw new runtime.RequiredError(
                 'audienceId',
@@ -2149,13 +2388,22 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v2/audiences/{audienceId}`;
         urlPath = urlPath.replace(`{${"audienceId"}}`, encodeURIComponent(String(requestParameters['audienceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateAudienceToJSON(requestParameters['updateAudience']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update the name of the given audience created by a third-party integration. Sending a request to this endpoint does **not** trigger the Rule Engine.  To update the audience\'s members, use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint. 
+     * Update audience name
+     */
+    async updateAudienceV2Raw(requestParameters: UpdateAudienceV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Audience>> {
+        const requestOptions = await this.updateAudienceV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AudienceFromJSON(jsonValue));
     }
@@ -2170,10 +2418,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add customer profiles to or remove them from an audience.  The endpoint supports 1000 audience actions (`add` or `remove`) per request.  **Note:** You can also do this using the [Update audience](https://docs.talon.one/docs/product/rules/effects/using-effects#updating-an-audience) effect. 
-     * Update multiple customer profiles\' audiences
+     * Creates request options for updateCustomerProfileAudiences without sending the request
      */
-    async updateCustomerProfileAudiencesRaw(requestParameters: UpdateCustomerProfileAudiencesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateCustomerProfileAudiencesRequestOpts(requestParameters: UpdateCustomerProfileAudiencesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['customerProfileAudienceRequest'] == null) {
             throw new runtime.RequiredError(
                 'customerProfileAudienceRequest',
@@ -2194,13 +2441,22 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         let urlPath = `/v2/customer_audiences`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CustomerProfileAudienceRequestToJSON(requestParameters['customerProfileAudienceRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Add customer profiles to or remove them from an audience.  The endpoint supports 1000 audience actions (`add` or `remove`) per request.  **Note:** You can also do this using the [Update audience](https://docs.talon.one/docs/product/rules/effects/using-effects#updating-an-audience) effect. 
+     * Update multiple customer profiles\' audiences
+     */
+    async updateCustomerProfileAudiencesRaw(requestParameters: UpdateCustomerProfileAudiencesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateCustomerProfileAudiencesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -2214,10 +2470,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of. **Note:** [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when `runRuleEngine` is `true`. <div class=\"redoc-section\">   <p class=\"title\">Performance tips</p>    - Updating a customer profile returns a response with the requested integration state.   - You can use the `responseContent` property to save yourself extra API calls. For example, you can get     the customer profile details directly without extra requests.   - We recommend sending requests sequentially.     See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). </div> 
-     * Update customer profile
+     * Creates request options for updateCustomerProfileV2 without sending the request
      */
-    async updateCustomerProfileV2Raw(requestParameters: UpdateCustomerProfileV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerProfileIntegrationResponseV2>> {
+    async updateCustomerProfileV2RequestOpts(requestParameters: UpdateCustomerProfileV2Request): Promise<runtime.RequestOpts> {
         if (requestParameters['integrationId'] == null) {
             throw new runtime.RequiredError(
                 'integrationId',
@@ -2254,13 +2509,22 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v2/customer_profiles/{integrationId}`;
         urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: CustomerProfileIntegrationRequestV2ToJSON(requestParameters['customerProfileIntegrationRequestV2']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of. **Note:** [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when `runRuleEngine` is `true`. <div class=\"redoc-section\">   <p class=\"title\">Performance tips</p>    - Updating a customer profile returns a response with the requested integration state.   - You can use the `responseContent` property to save yourself extra API calls. For example, you can get     the customer profile details directly without extra requests.   - We recommend sending requests sequentially.     See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). </div> 
+     * Update customer profile
+     */
+    async updateCustomerProfileV2Raw(requestParameters: UpdateCustomerProfileV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerProfileIntegrationResponseV2>> {
+        const requestOptions = await this.updateCustomerProfileV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CustomerProfileIntegrationResponseV2FromJSON(jsonValue));
     }
@@ -2275,10 +2539,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The `integrationId` must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  **Note:** This endpoint does not trigger the Rule Engine. To trigger the Rule Engine for customer profile updates, use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint. 
-     * Update multiple customer profiles
+     * Creates request options for updateCustomerProfilesV2 without sending the request
      */
-    async updateCustomerProfilesV2Raw(requestParameters: UpdateCustomerProfilesV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MultipleCustomerProfileIntegrationResponseV2>> {
+    async updateCustomerProfilesV2RequestOpts(requestParameters: UpdateCustomerProfilesV2Request): Promise<runtime.RequestOpts> {
         if (requestParameters['multipleCustomerProfileIntegrationRequest'] == null) {
             throw new runtime.RequiredError(
                 'multipleCustomerProfileIntegrationRequest',
@@ -2303,13 +2566,22 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         let urlPath = `/v2/customer_profiles`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: MultipleCustomerProfileIntegrationRequestToJSON(requestParameters['multipleCustomerProfileIntegrationRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The `integrationId` must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  **Note:** This endpoint does not trigger the Rule Engine. To trigger the Rule Engine for customer profile updates, use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint. 
+     * Update multiple customer profiles
+     */
+    async updateCustomerProfilesV2Raw(requestParameters: UpdateCustomerProfilesV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MultipleCustomerProfileIntegrationResponseV2>> {
+        const requestOptions = await this.updateCustomerProfilesV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MultipleCustomerProfileIntegrationResponseV2FromJSON(jsonValue));
     }
@@ -2324,10 +2596,9 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart. For example, use this endpoint to share the contents of a customer\'s cart with Talon.One.  **Note:**  - The currency for the session and the cart items in it is the currency set for the Application linked to this session. - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the `state` parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the `profileId` parameter in the request body to a customer profile\'s `integrationId`. - While you can create an anonymous session with `profileId=\"\"`, we recommend you use a guest ID instead. - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  **Note:** If the specified profile does not exist, an empty profile is **created automatically**.   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2).  <div class=\"redoc-section\">   <p class=\"title\">Performance tips</p>    - Updating a customer session returns a response with the new integration state. Use the `responseContent` property to save yourself extra API calls.     For example, you can get the customer profile details directly without extra requests.   - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). </div>  For more information, see: - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one). 
-     * Update customer session
+     * Creates request options for updateCustomerSessionV2 without sending the request
      */
-    async updateCustomerSessionV2Raw(requestParameters: UpdateCustomerSessionV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationStateV2>> {
+    async updateCustomerSessionV2RequestOpts(requestParameters: UpdateCustomerSessionV2Request): Promise<runtime.RequestOpts> {
         if (requestParameters['customerSessionId'] == null) {
             throw new runtime.RequiredError(
                 'customerSessionId',
@@ -2364,13 +2635,22 @@ export class IntegrationApi extends runtime.BaseAPI {
         let urlPath = `/v2/customer_sessions/{customerSessionId}`;
         urlPath = urlPath.replace(`{${"customerSessionId"}}`, encodeURIComponent(String(requestParameters['customerSessionId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: IntegrationRequestToJSON(requestParameters['integrationRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart. For example, use this endpoint to share the contents of a customer\'s cart with Talon.One.  **Note:**  - The currency for the session and the cart items in it is the currency set for the Application linked to this session. - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the `state` parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the `profileId` parameter in the request body to a customer profile\'s `integrationId`. - While you can create an anonymous session with `profileId=\"\"`, we recommend you use a guest ID instead. - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  **Note:** If the specified profile does not exist, an empty profile is **created automatically**.   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2).  <div class=\"redoc-section\">   <p class=\"title\">Performance tips</p>    - Updating a customer session returns a response with the new integration state. Use the `responseContent` property to save yourself extra API calls.     For example, you can get the customer profile details directly without extra requests.   - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). </div>  For more information, see: - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one). 
+     * Update customer session
+     */
+    async updateCustomerSessionV2Raw(requestParameters: UpdateCustomerSessionV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationStateV2>> {
+        const requestOptions = await this.updateCustomerSessionV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => IntegrationStateV2FromJSON(jsonValue));
     }

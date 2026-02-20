@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface BestPriorTarget {
     /**
      * The type of price target.
-     * @type {string}
+     * @type {BestPriorTargetTargetTypeEnum}
      * @memberof BestPriorTarget
      */
     targetType: BestPriorTargetTargetTypeEnum;

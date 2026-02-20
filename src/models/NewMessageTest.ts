@@ -35,7 +35,7 @@ export interface NewMessageTest {
     headers?: { [key: string]: string; };
     /**
      * API method for this message.
-     * @type {string}
+     * @type {NewMessageTestVerbEnum}
      * @memberof NewMessageTest
      */
     verb: NewMessageTestVerbEnum;

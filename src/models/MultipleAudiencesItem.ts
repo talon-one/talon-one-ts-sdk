@@ -46,7 +46,7 @@ export interface MultipleAudiencesItem {
     /**
      * Indicates whether the audience is new, updated or unmodified by the request.
      * 
-     * @type {string}
+     * @type {MultipleAudiencesItemStatusEnum}
      * @memberof MultipleAudiencesItem
      */
     status: MultipleAudiencesItemStatusEnum;

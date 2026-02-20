@@ -7,7 +7,7 @@
 Name | Type
 ------------ | -------------
 `event` | string
-`campaign` | any
+`campaign` | [Campaign](Campaign.md)
 `deletedAt` | Date
 
 ## Example

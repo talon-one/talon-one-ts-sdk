@@ -57,7 +57,7 @@ export interface UpdateCouponsData {
     employeeName: string;
     /**
      * The type of the notification
-     * @type {string}
+     * @type {UpdateCouponsDataNotificationTypeEnum}
      * @memberof UpdateCouponsData
      */
     notificationType: UpdateCouponsDataNotificationTypeEnum;

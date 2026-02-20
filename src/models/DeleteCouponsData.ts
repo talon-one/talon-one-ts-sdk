@@ -63,7 +63,7 @@ export interface DeleteCouponsData {
     totalResultSize: number;
     /**
      * The type of the notification
-     * @type {string}
+     * @type {DeleteCouponsDataNotificationTypeEnum}
      * @memberof DeleteCouponsData
      */
     notificationType: DeleteCouponsDataNotificationTypeEnum;

@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface PriceTypeReferenceDetail {
     /**
      * The entity type that references the price type. For example, a campaign or an Application cart item filter.
-     * @type {string}
+     * @type {PriceTypeReferenceDetailReferencingTypeEnum}
      * @memberof PriceTypeReferenceDetail
      */
     referencingType: PriceTypeReferenceDetailReferencingTypeEnum;

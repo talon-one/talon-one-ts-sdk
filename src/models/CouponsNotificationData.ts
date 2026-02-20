@@ -59,7 +59,7 @@ export interface CouponsNotificationData {
     totalResultSize?: number;
     /**
      * The type of the notification
-     * @type {string}
+     * @type {CouponsNotificationDataNotificationTypeEnum}
      * @memberof CouponsNotificationData
      */
     notificationType: CouponsNotificationDataNotificationTypeEnum;

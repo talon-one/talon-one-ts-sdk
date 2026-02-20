@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ScimPatchOperation {
     /**
      * The method that should be used in the operation.
-     * @type {string}
+     * @type {ScimPatchOperationOpEnum}
      * @memberof ScimPatchOperation
      */
     op: ScimPatchOperationOpEnum;

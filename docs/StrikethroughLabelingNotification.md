@@ -12,7 +12,7 @@ Name | Type
 `applicationId` | number
 `currentBatch` | number
 `totalBatches` | number
-`trigger` | [StrikethroughTrigger](.md)
+`trigger` | [StrikethroughTrigger](StrikethroughTrigger.md)
 `changedItems` | [Array&lt;StrikethroughChangedItem&gt;](StrikethroughChangedItem.md)
 `notificationType` | string
 `sentAt` | Date

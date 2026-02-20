@@ -29,7 +29,7 @@ import {
 export interface NewCampaignStoreBudget {
     /**
      * 
-     * @type {string}
+     * @type {NewCampaignStoreBudgetActionEnum}
      * @memberof NewCampaignStoreBudget
      */
     action: NewCampaignStoreBudgetActionEnum;
@@ -41,7 +41,7 @@ export interface NewCampaignStoreBudget {
     storeLimits: Array<NewCampaignStoreBudgetStoreLimit>;
     /**
      * 
-     * @type {string}
+     * @type {NewCampaignStoreBudgetPeriodEnum}
      * @memberof NewCampaignStoreBudget
      */
     period?: NewCampaignStoreBudgetPeriodEnum;

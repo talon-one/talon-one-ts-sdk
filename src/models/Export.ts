@@ -45,7 +45,7 @@ export interface Export {
     userId: number;
     /**
      * The name of the entity that was exported.
-     * @type {string}
+     * @type {ExportEntityEnum}
      * @memberof Export
      */
     entity: ExportEntityEnum;

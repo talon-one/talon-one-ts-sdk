@@ -37,7 +37,7 @@ export interface ReturnIntegrationRequest {
      * Extends the response with the chosen data entities. Use this property to get as much data
      * as you need in one _Update customer session_ request instead of sending extra requests to other endpoints.
      * 
-     * @type {Array<string>}
+     * @type {Array<ReturnIntegrationRequestResponseContentEnum>}
      * @memberof ReturnIntegrationRequest
      */
     responseContent?: Array<ReturnIntegrationRequestResponseContentEnum>;

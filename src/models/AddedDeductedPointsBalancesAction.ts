@@ -33,7 +33,7 @@ export interface AddedDeductedPointsBalancesAction {
     reason: string;
     /**
      * The action (addition or deduction) made with loyalty points.
-     * @type {string}
+     * @type {AddedDeductedPointsBalancesActionOperationEnum}
      * @memberof AddedDeductedPointsBalancesAction
      */
     operation: AddedDeductedPointsBalancesActionOperationEnum;

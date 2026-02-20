@@ -33,7 +33,7 @@ export interface CouponRejectionReason {
     couponId: number;
     /**
      * 
-     * @type {string}
+     * @type {CouponRejectionReasonReasonEnum}
      * @memberof CouponRejectionReason
      */
     reason: CouponRejectionReasonReasonEnum;

@@ -58,7 +58,7 @@ export interface NewCustomerSession {
      * 
      * For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
      * 
-     * @type {string}
+     * @type {NewCustomerSessionStateEnum}
      * @memberof NewCustomerSession
      */
     state?: NewCustomerSessionStateEnum;

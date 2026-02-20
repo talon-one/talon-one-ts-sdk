@@ -39,7 +39,7 @@ export interface Attribute {
     accountId: number;
     /**
      * The name of the entity that can have this attribute. When creating or updating the entities of a given type, you can include an `attributes` object with keys corresponding to the `name` of the custom attributes for that type.
-     * @type {string}
+     * @type {AttributeEntityEnum}
      * @memberof Attribute
      */
     entity: AttributeEntityEnum;
@@ -63,7 +63,7 @@ export interface Attribute {
     title: string;
     /**
      * The data type of the attribute, a `time` attribute must be sent as a string that conforms to the [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) timestamp format.
-     * @type {string}
+     * @type {AttributeTypeEnum}
      * @memberof Attribute
      */
     type: AttributeTypeEnum;
@@ -116,7 +116,7 @@ export interface Attribute {
      * 
      * **Note:** This only applies to attributes associated with the `CartItem` entity.
      * 
-     * @type {Array<string>}
+     * @type {Array<AttributeAllowedSubscriptionsEnum>}
      * @memberof Attribute
      */
     allowedSubscriptions?: Array<AttributeAllowedSubscriptionsEnum>;
@@ -141,6 +141,7 @@ export const AttributeEntityEnum = {
     Coupon: 'Coupon',
     Event: 'Event',
     Giveaway: 'Giveaway',
+    LoyaltyCard: 'LoyaltyCard',
     Referral: 'Referral',
     Store: 'Store'
 } as const;

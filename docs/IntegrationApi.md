@@ -878,7 +878,7 @@ example().catch(console.error);
 
 Generate loyalty card
 
-Generate a loyalty card in a specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview).  To link the card to one or more customer profiles, use the &#x60;customerProfileIds&#x60; parameter in the request body.  **Note:** - The number of customer profiles linked to the loyalty card cannot exceed the loyalty program\&#39;s &#x60;usersPerCardLimit&#x60;. To find the program\&#39;s limit, use the [Get loyalty program](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgram) endpoint. - If the loyalty program has a defined code format, it will be used for the loyalty card identifier. 
+Generate a loyalty card in a specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview).  To link the card to one or more customer profiles, use the &#x60;customerProfileIds&#x60; parameter in the request body.  **Note:**  - The number of customer profiles linked to the loyalty card cannot exceed the loyalty program\&#39;s &#x60;usersPerCardLimit&#x60;. To find the program\&#39;s limit, use the [Get loyalty program](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgram) endpoint.  - If the loyalty program has a defined code format, it will be used for the loyalty card identifier. 
 
 ### Example
 
@@ -2257,7 +2257,7 @@ example().catch(console.error);
 
 ## trackEventV2
 
-> TrackEventV2Response trackEventV2(integrationEventV2Request, silent, dry, forceCompleteEvaluation)
+> IntegrationEventV2Response trackEventV2(integrationEventV2Request, silent, dry, forceCompleteEvaluation)
 
 Track event
 
@@ -2315,7 +2315,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**TrackEventV2Response**](TrackEventV2Response.md)
+[**IntegrationEventV2Response**](IntegrationEventV2Response.md)
 
 ### Authorization
 

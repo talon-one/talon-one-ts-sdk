@@ -97,6 +97,13 @@ import {
     EffectToJSON,
     EffectToJSONTyped,
 } from './Effect';
+import type { EventV3 } from './EventV3';
+import {
+    EventV3FromJSON,
+    EventV3FromJSONTyped,
+    EventV3ToJSON,
+    EventV3ToJSONTyped,
+} from './EventV3';
 import type { Loyalty } from './Loyalty';
 import {
     LoyaltyFromJSON,
@@ -106,50 +113,25 @@ import {
 } from './Loyalty';
 
 /**
- * Contains all entities that might interest Talon.One integrations.
  * 
  * @export
  * @interface IntegrationStateV2
  */
 export interface IntegrationStateV2 {
     /**
-     * 
-     * @type {CustomerSessionV2}
-     * @memberof IntegrationStateV2
-     */
-    customerSession?: CustomerSessionV2;
-    /**
-     * 
+     * The customer profile associated with the event.
      * @type {CustomerProfile}
      * @memberof IntegrationStateV2
      */
     customerProfile?: CustomerProfile;
     /**
-     * 
-     * @type {Event}
-     * @memberof IntegrationStateV2
-     */
-    event?: Event;
-    /**
-     * 
+     * The loyalty program status of the customer.
      * @type {Loyalty}
      * @memberof IntegrationStateV2
      */
     loyalty?: Loyalty;
     /**
-     * 
-     * @type {InventoryReferral}
-     * @memberof IntegrationStateV2
-     */
-    referral?: InventoryReferral;
-    /**
-     * 
-     * @type {Array<IntegrationCoupon>}
-     * @memberof IntegrationStateV2
-     */
-    coupons?: Array<IntegrationCoupon>;
-    /**
-     * 
+     * The campaigns that were triggered as a result of processing the event.
      * @type {Array<Campaign>}
      * @memberof IntegrationStateV2
      */
@@ -161,37 +143,69 @@ export interface IntegrationStateV2 {
      */
     effects: Array<Effect>;
     /**
+     * The reasons why certain rules were not triggered during the event
+     * processing.
      * 
      * @type {Array<RuleFailureReason>}
      * @memberof IntegrationStateV2
      */
     ruleFailureReasons?: Array<RuleFailureReason>;
     /**
-     * 
+     * The coupons that were created during the event processing.
      * @type {Array<Coupon>}
      * @memberof IntegrationStateV2
      */
     createdCoupons: Array<Coupon>;
     /**
-     * 
+     * The referrals that were created during the event processing.
      * @type {Array<Referral>}
      * @memberof IntegrationStateV2
      */
     createdReferrals: Array<Referral>;
     /**
-     * 
+     * The giveaways that were awarded during the event processing.
      * @type {Array<Giveaway>}
      * @memberof IntegrationStateV2
      */
     awardedGiveaways?: Array<Giveaway>;
     /**
-     * 
+     * The referral that was processed.
+     * @type {InventoryReferral}
+     * @memberof IntegrationStateV2
+     */
+    referral?: InventoryReferral;
+    /**
+     * The coupons that were processed.
+     * @type {Array<IntegrationCoupon>}
+     * @memberof IntegrationStateV2
+     */
+    coupons?: Array<IntegrationCoupon>;
+    /**
+     * The event that was processed.
+     * @type {Event}
+     * @memberof IntegrationStateV2
+     */
+    event?: Event;
+    /**
+     * The advanced event that was processed.
+     * @type {EventV3}
+     * @memberof IntegrationStateV2
+     */
+    advancedEvent?: EventV3;
+    /**
+     * The session that was processed.
+     * @type {CustomerSessionV2}
+     * @memberof IntegrationStateV2
+     */
+    customerSession?: CustomerSessionV2;
+    /**
+     * The return that was processed.
      * @type {Return}
      * @memberof IntegrationStateV2
      */
     _return?: Return;
     /**
-     * 
+     * The previous returns associated with the event.
      * @type {Array<Return>}
      * @memberof IntegrationStateV2
      */
@@ -218,18 +232,19 @@ export function IntegrationStateV2FromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'customerSession': json['customerSession'] == null ? undefined : CustomerSessionV2FromJSON(json['customerSession']),
         'customerProfile': json['customerProfile'] == null ? undefined : CustomerProfileFromJSON(json['customerProfile']),
-        'event': json['event'] == null ? undefined : EventFromJSON(json['event']),
         'loyalty': json['loyalty'] == null ? undefined : LoyaltyFromJSON(json['loyalty']),
-        'referral': json['referral'] == null ? undefined : InventoryReferralFromJSON(json['referral']),
-        'coupons': json['coupons'] == null ? undefined : ((json['coupons'] as Array<any>).map(IntegrationCouponFromJSON)),
         'triggeredCampaigns': json['triggeredCampaigns'] == null ? undefined : ((json['triggeredCampaigns'] as Array<any>).map(CampaignFromJSON)),
         'effects': ((json['effects'] as Array<any>).map(EffectFromJSON)),
         'ruleFailureReasons': json['ruleFailureReasons'] == null ? undefined : ((json['ruleFailureReasons'] as Array<any>).map(RuleFailureReasonFromJSON)),
         'createdCoupons': ((json['createdCoupons'] as Array<any>).map(CouponFromJSON)),
         'createdReferrals': ((json['createdReferrals'] as Array<any>).map(ReferralFromJSON)),
         'awardedGiveaways': json['awardedGiveaways'] == null ? undefined : ((json['awardedGiveaways'] as Array<any>).map(GiveawayFromJSON)),
+        'referral': json['referral'] == null ? undefined : InventoryReferralFromJSON(json['referral']),
+        'coupons': json['coupons'] == null ? undefined : ((json['coupons'] as Array<any>).map(IntegrationCouponFromJSON)),
+        'event': json['event'] == null ? undefined : EventFromJSON(json['event']),
+        'advancedEvent': json['advancedEvent'] == null ? undefined : EventV3FromJSON(json['advancedEvent']),
+        'customerSession': json['customerSession'] == null ? undefined : CustomerSessionV2FromJSON(json['customerSession']),
         '_return': json['return'] == null ? undefined : ReturnFromJSON(json['return']),
         'previousReturns': json['previousReturns'] == null ? undefined : ((json['previousReturns'] as Array<any>).map(ReturnFromJSON)),
     };
@@ -246,18 +261,19 @@ export function IntegrationStateV2ToJSONTyped(value?: IntegrationStateV2 | null,
 
     return {
         
-        'customerSession': CustomerSessionV2ToJSON(value['customerSession']),
         'customerProfile': CustomerProfileToJSON(value['customerProfile']),
-        'event': EventToJSON(value['event']),
         'loyalty': LoyaltyToJSON(value['loyalty']),
-        'referral': InventoryReferralToJSON(value['referral']),
-        'coupons': value['coupons'] == null ? undefined : ((value['coupons'] as Array<any>).map(IntegrationCouponToJSON)),
         'triggeredCampaigns': value['triggeredCampaigns'] == null ? undefined : ((value['triggeredCampaigns'] as Array<any>).map(CampaignToJSON)),
         'effects': ((value['effects'] as Array<any>).map(EffectToJSON)),
         'ruleFailureReasons': value['ruleFailureReasons'] == null ? undefined : ((value['ruleFailureReasons'] as Array<any>).map(RuleFailureReasonToJSON)),
         'createdCoupons': ((value['createdCoupons'] as Array<any>).map(CouponToJSON)),
         'createdReferrals': ((value['createdReferrals'] as Array<any>).map(ReferralToJSON)),
         'awardedGiveaways': value['awardedGiveaways'] == null ? undefined : ((value['awardedGiveaways'] as Array<any>).map(GiveawayToJSON)),
+        'referral': InventoryReferralToJSON(value['referral']),
+        'coupons': value['coupons'] == null ? undefined : ((value['coupons'] as Array<any>).map(IntegrationCouponToJSON)),
+        'event': EventToJSON(value['event']),
+        'advancedEvent': EventV3ToJSON(value['advancedEvent']),
+        'customerSession': CustomerSessionV2ToJSON(value['customerSession']),
         'return': ReturnToJSON(value['_return']),
         'previousReturns': value['previousReturns'] == null ? undefined : ((value['previousReturns'] as Array<any>).map(ReturnToJSON)),
     };

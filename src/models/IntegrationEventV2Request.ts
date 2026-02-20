@@ -57,18 +57,18 @@ export interface IntegrationEventV2Request {
      */
     attributes?: object;
     /**
-     * Identifier of the loyalty card used during this event.
+     * Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints.
+     * 
+     * @type {Array<IntegrationEventV2RequestResponseContentEnum>}
+     * @memberof IntegrationEventV2Request
+     */
+    responseContent?: Array<IntegrationEventV2RequestResponseContentEnum>;
+    /**
+     * Identifiers of the loyalty cards used during this event.
      * @type {Array<string>}
      * @memberof IntegrationEventV2Request
      */
     loyaltyCards?: Array<string>;
-    /**
-     * Optional list of requested information to be present on the response related to the tracking custom event.
-     * 
-     * @type {Array<string>}
-     * @memberof IntegrationEventV2Request
-     */
-    responseContent?: Array<IntegrationEventV2RequestResponseContentEnum>;
 }
 
 
@@ -109,8 +109,8 @@ export function IntegrationEventV2RequestFromJSONTyped(json: any, ignoreDiscrimi
         'evaluableCampaignIds': json['evaluableCampaignIds'] == null ? undefined : json['evaluableCampaignIds'],
         'type': json['type'],
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
-        'loyaltyCards': json['loyaltyCards'] == null ? undefined : json['loyaltyCards'],
         'responseContent': json['responseContent'] == null ? undefined : json['responseContent'],
+        'loyaltyCards': json['loyaltyCards'] == null ? undefined : json['loyaltyCards'],
     };
 }
 
@@ -130,8 +130,8 @@ export function IntegrationEventV2RequestToJSONTyped(value?: IntegrationEventV2R
         'evaluableCampaignIds': value['evaluableCampaignIds'],
         'type': value['type'],
         'attributes': value['attributes'],
-        'loyaltyCards': value['loyaltyCards'],
         'responseContent': value['responseContent'],
+        'loyaltyCards': value['loyaltyCards'],
     };
 }
 

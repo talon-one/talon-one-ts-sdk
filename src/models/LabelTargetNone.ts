@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface LabelTargetNone {
     /**
      * 
-     * @type {string}
+     * @type {LabelTargetNoneTypeEnum}
      * @memberof LabelTargetNone
      */
     type: LabelTargetNoneTypeEnum;

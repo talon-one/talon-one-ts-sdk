@@ -7,10 +7,11 @@
 Name | Type
 ------------ | -------------
 `event` | string
-`campaign` | any
+`campaign` | [Campaign](Campaign.md)
 `oldState` | string
 `newState` | string
-`ruleset` | any
+`ruleset` | [Ruleset](Ruleset.md)
+`placeholders` | [Array&lt;PlaceholderDetails&gt;](PlaceholderDetails.md)
 
 ## Example
 
@@ -24,6 +25,7 @@ const example = {
   "oldState": disabled,
   "newState": running,
   "ruleset": null,
+  "placeholders": null,
 } satisfies CampaignStateChangedNotificationItem
 
 console.log(example)

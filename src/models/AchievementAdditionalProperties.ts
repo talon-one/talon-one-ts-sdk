@@ -48,7 +48,7 @@ export interface AchievementAdditionalProperties {
     hasProgress?: boolean;
     /**
      * The status of the achievement.
-     * @type {string}
+     * @type {AchievementAdditionalPropertiesStatusEnum}
      * @memberof AchievementAdditionalProperties
      */
     status?: AchievementAdditionalPropertiesStatusEnum;

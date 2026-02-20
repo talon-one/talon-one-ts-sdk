@@ -60,7 +60,7 @@ export interface NewApplication {
     currency: string;
     /**
      * The case sensitivity behavior to check coupon codes in the campaigns of this Application.
-     * @type {string}
+     * @type {NewApplicationCaseSensitivityEnum}
      * @memberof NewApplication
      */
     caseSensitivity?: NewApplicationCaseSensitivityEnum;
@@ -79,7 +79,7 @@ export interface NewApplication {
     /**
      * The default scope to apply `setDiscount` effects on if no scope was provided with the effect.
      * 
-     * @type {string}
+     * @type {NewApplicationDefaultDiscountScopeEnum}
      * @memberof NewApplication
      */
     defaultDiscountScope?: NewApplicationDefaultDiscountScopeEnum;
@@ -117,7 +117,7 @@ export interface NewApplication {
     /**
      * The default scope to apply `setDiscountPerItem` effects on if no scope was provided with the effect.
      * 
-     * @type {string}
+     * @type {NewApplicationDefaultDiscountAdditionalCostPerItemScopeEnum}
      * @memberof NewApplication
      */
     defaultDiscountAdditionalCostPerItemScope?: NewApplicationDefaultDiscountAdditionalCostPerItemScopeEnum;

@@ -27,7 +27,7 @@ export interface TierWillDowngradeNotificationTrigger {
     amount: number;
     /**
      * Notification period indicated by a letter; "w" means week, "d" means day.
-     * @type {string}
+     * @type {TierWillDowngradeNotificationTriggerPeriodEnum}
      * @memberof TierWillDowngradeNotificationTrigger
      */
     period: TierWillDowngradeNotificationTriggerPeriodEnum;

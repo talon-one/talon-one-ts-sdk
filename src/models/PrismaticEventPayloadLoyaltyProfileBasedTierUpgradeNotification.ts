@@ -13,129 +13,104 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction } from './PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction';
-import {
-    PrismaticEventPayloadLoyaltyProfileBasedNotificationsActionFromJSON,
-    PrismaticEventPayloadLoyaltyProfileBasedNotificationsActionFromJSONTyped,
-    PrismaticEventPayloadLoyaltyProfileBasedNotificationsActionToJSON,
-    PrismaticEventPayloadLoyaltyProfileBasedNotificationsActionToJSONTyped,
-} from './PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction';
-
 /**
  * 
  * @export
- * @interface PrismaticEventPayloadLoyaltyProfileBasedNotifications
+ * @interface PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification
  */
-export interface PrismaticEventPayloadLoyaltyProfileBasedNotifications {
+export interface PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification {
     /**
      * 
      * @type {string}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
+     * @memberof PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     profileIntegrationID: string;
     /**
      * 
      * @type {number}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
+     * @memberof PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     loyaltyProgramID: number;
     /**
      * 
      * @type {string}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
+     * @memberof PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     subledgerID: string;
     /**
      * 
      * @type {string}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
+     * @memberof PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     sourceOfEvent: string;
     /**
      * 
      * @type {string}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
-     */
-    employeeName?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
-     */
-    userID?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
-     */
-    sessionIntegrationID?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
+     * @memberof PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     currentTier?: string;
     /**
      * 
      * @type {number}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
+     * @memberof PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     currentPoints: number;
     /**
      * 
      * @type {string}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
+     * @memberof PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     oldTier?: string;
     /**
      * 
      * @type {number}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
+     * @memberof PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     pointsRequiredToTheNextTier?: number;
     /**
      * 
      * @type {string}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
+     * @memberof PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     nextTier?: string;
     /**
      * 
      * @type {Date}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
+     * @memberof PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     tierExpirationDate?: Date;
     /**
      * 
      * @type {Date}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
+     * @memberof PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     timestampOfTierChange?: Date;
     /**
-     * 
-     * @type {Array<PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction>}
-     * @memberof PrismaticEventPayloadLoyaltyProfileBasedNotifications
+     * Timestamp when the event was published.
+     * @type {Date}
+     * @memberof PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
-    actions?: Array<PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction>;
+    publishedAt: Date;
 }
 
 /**
- * Check if a given object implements the PrismaticEventPayloadLoyaltyProfileBasedNotifications interface.
+ * Check if a given object implements the PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification interface.
  */
-export function instanceOfPrismaticEventPayloadLoyaltyProfileBasedNotifications(value: object): value is PrismaticEventPayloadLoyaltyProfileBasedNotifications {
+export function instanceOfPrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification(value: object): value is PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification {
     if (!('profileIntegrationID' in value) || value['profileIntegrationID'] === undefined) return false;
     if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
     if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
     if (!('sourceOfEvent' in value) || value['sourceOfEvent'] === undefined) return false;
     if (!('currentPoints' in value) || value['currentPoints'] === undefined) return false;
+    if (!('publishedAt' in value) || value['publishedAt'] === undefined) return false;
     return true;
 }
 
-export function PrismaticEventPayloadLoyaltyProfileBasedNotificationsFromJSON(json: any): PrismaticEventPayloadLoyaltyProfileBasedNotifications {
-    return PrismaticEventPayloadLoyaltyProfileBasedNotificationsFromJSONTyped(json, false);
+export function PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotificationFromJSON(json: any): PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification {
+    return PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotificationFromJSONTyped(json, false);
 }
 
-export function PrismaticEventPayloadLoyaltyProfileBasedNotificationsFromJSONTyped(json: any, ignoreDiscriminator: boolean): PrismaticEventPayloadLoyaltyProfileBasedNotifications {
+export function PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotificationFromJSONTyped(json: any, ignoreDiscriminator: boolean): PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification {
     if (json == null) {
         return json;
     }
@@ -145,9 +120,6 @@ export function PrismaticEventPayloadLoyaltyProfileBasedNotificationsFromJSONTyp
         'loyaltyProgramID': json['LoyaltyProgramID'],
         'subledgerID': json['SubledgerID'],
         'sourceOfEvent': json['SourceOfEvent'],
-        'employeeName': json['EmployeeName'] == null ? undefined : json['EmployeeName'],
-        'userID': json['UserID'] == null ? undefined : json['UserID'],
-        'sessionIntegrationID': json['SessionIntegrationID'] == null ? undefined : json['SessionIntegrationID'],
         'currentTier': json['CurrentTier'] == null ? undefined : json['CurrentTier'],
         'currentPoints': json['CurrentPoints'],
         'oldTier': json['OldTier'] == null ? undefined : json['OldTier'],
@@ -155,15 +127,15 @@ export function PrismaticEventPayloadLoyaltyProfileBasedNotificationsFromJSONTyp
         'nextTier': json['NextTier'] == null ? undefined : json['NextTier'],
         'tierExpirationDate': json['TierExpirationDate'] == null ? undefined : (new Date(json['TierExpirationDate'])),
         'timestampOfTierChange': json['TimestampOfTierChange'] == null ? undefined : (new Date(json['TimestampOfTierChange'])),
-        'actions': json['Actions'] == null ? undefined : ((json['Actions'] as Array<any>).map(PrismaticEventPayloadLoyaltyProfileBasedNotificationsActionFromJSON)),
+        'publishedAt': (new Date(json['PublishedAt'])),
     };
 }
 
-export function PrismaticEventPayloadLoyaltyProfileBasedNotificationsToJSON(json: any): PrismaticEventPayloadLoyaltyProfileBasedNotifications {
-    return PrismaticEventPayloadLoyaltyProfileBasedNotificationsToJSONTyped(json, false);
+export function PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotificationToJSON(json: any): PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification {
+    return PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotificationToJSONTyped(json, false);
 }
 
-export function PrismaticEventPayloadLoyaltyProfileBasedNotificationsToJSONTyped(value?: PrismaticEventPayloadLoyaltyProfileBasedNotifications | null, ignoreDiscriminator: boolean = false): any {
+export function PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotificationToJSONTyped(value?: PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -174,9 +146,6 @@ export function PrismaticEventPayloadLoyaltyProfileBasedNotificationsToJSONTyped
         'LoyaltyProgramID': value['loyaltyProgramID'],
         'SubledgerID': value['subledgerID'],
         'SourceOfEvent': value['sourceOfEvent'],
-        'EmployeeName': value['employeeName'],
-        'UserID': value['userID'],
-        'SessionIntegrationID': value['sessionIntegrationID'],
         'CurrentTier': value['currentTier'],
         'CurrentPoints': value['currentPoints'],
         'OldTier': value['oldTier'],
@@ -184,7 +153,7 @@ export function PrismaticEventPayloadLoyaltyProfileBasedNotificationsToJSONTyped
         'NextTier': value['nextTier'],
         'TierExpirationDate': value['tierExpirationDate'] == null ? value['tierExpirationDate'] : value['tierExpirationDate'].toISOString(),
         'TimestampOfTierChange': value['timestampOfTierChange'] == null ? value['timestampOfTierChange'] : value['timestampOfTierChange'].toISOString(),
-        'Actions': value['actions'] == null ? undefined : ((value['actions'] as Array<any>).map(PrismaticEventPayloadLoyaltyProfileBasedNotificationsActionToJSON)),
+        'PublishedAt': value['publishedAt'].toISOString(),
     };
 }
 

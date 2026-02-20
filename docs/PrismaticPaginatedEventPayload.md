@@ -7,6 +7,7 @@
 Name | Type
 ------------ | -------------
 `totalResultSize` | number
+`batchedAt` | Date
 `eventType` | string
 `data` | Array&lt;any&gt;
 
@@ -18,6 +19,7 @@ import type { PrismaticPaginatedEventPayload } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "totalResultSize": null,
+  "batchedAt": null,
   "eventType": null,
   "data": null,
 } satisfies PrismaticPaginatedEventPayload

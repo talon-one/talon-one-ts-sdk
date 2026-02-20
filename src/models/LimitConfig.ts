@@ -38,13 +38,13 @@ export interface LimitConfig {
     limit: number;
     /**
      * The period on which the budget limit recurs.
-     * @type {string}
+     * @type {LimitConfigPeriodEnum}
      * @memberof LimitConfig
      */
     period?: LimitConfigPeriodEnum;
     /**
      * The entity that this limit applies to.
-     * @type {Array<string>}
+     * @type {Array<LimitConfigEntitiesEnum>}
      * @memberof LimitConfig
      */
     entities: Array<LimitConfigEntitiesEnum>;

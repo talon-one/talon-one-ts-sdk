@@ -41,7 +41,7 @@ export interface ExpiringCouponsNotification {
     data: Array<ExpiringCouponsData>;
     /**
      * The type of notification.
-     * @type {string}
+     * @type {ExpiringCouponsNotificationNotificationTypeEnum}
      * @memberof ExpiringCouponsNotification
      */
     notificationType: ExpiringCouponsNotificationNotificationTypeEnum;

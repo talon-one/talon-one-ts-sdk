@@ -55,7 +55,7 @@ export interface NewWebhook {
     draft: boolean;
     /**
      * API method for this webhook.
-     * @type {string}
+     * @type {NewWebhookVerbEnum}
      * @memberof NewWebhook
      */
     verb: NewWebhookVerbEnum;

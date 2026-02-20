@@ -7,9 +7,10 @@
 Name | Type
 ------------ | -------------
 `event` | string
-`campaign` | any
-`oldCampaign` | any
-`ruleset` | any
+`campaign` | [Campaign](Campaign.md)
+`oldCampaign` | [Campaign](Campaign.md)
+`ruleset` | [Ruleset](Ruleset.md)
+`placeholders` | [Array&lt;PlaceholderDetails&gt;](PlaceholderDetails.md)
 
 ## Example
 
@@ -22,6 +23,7 @@ const example = {
   "campaign": null,
   "oldCampaign": null,
   "ruleset": null,
+  "placeholders": null,
 } satisfies CampaignEditedNotificationItem
 
 console.log(example)

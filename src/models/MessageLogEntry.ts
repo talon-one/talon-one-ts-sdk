@@ -97,7 +97,7 @@ export interface MessageLogEntry {
     /**
      * The entity type the log is related to.
      * 
-     * @type {string}
+     * @type {MessageLogEntryEntityTypeEnum}
      * @memberof MessageLogEntry
      */
     entityType: MessageLogEntryEntityTypeEnum;

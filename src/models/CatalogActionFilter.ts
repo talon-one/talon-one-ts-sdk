@@ -27,7 +27,7 @@ export interface CatalogActionFilter {
     attr: string;
     /**
      * The filtering operator.
-     * @type {string}
+     * @type {CatalogActionFilterOpEnum}
      * @memberof CatalogActionFilter
      */
     op: CatalogActionFilterOpEnum;

@@ -39,7 +39,7 @@ export interface IntegrationRequest {
      * 
      * **Note:** To retrieve loyalty card details, your request must include a loyalty card ID.
      * 
-     * @type {Array<string>}
+     * @type {Array<IntegrationRequestResponseContentEnum>}
      * @memberof IntegrationRequest
      */
     responseContent?: Array<IntegrationRequestResponseContentEnum>;

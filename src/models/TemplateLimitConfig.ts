@@ -38,13 +38,13 @@ export interface TemplateLimitConfig {
     limit: number;
     /**
      * The period on which the budget limit recurs.
-     * @type {string}
+     * @type {TemplateLimitConfigPeriodEnum}
      * @memberof TemplateLimitConfig
      */
     period?: TemplateLimitConfigPeriodEnum;
     /**
      * The entity that this limit applies to.
-     * @type {Array<string>}
+     * @type {Array<TemplateLimitConfigEntitiesEnum>}
      * @memberof TemplateLimitConfig
      */
     entities: Array<TemplateLimitConfigEntitiesEnum>;

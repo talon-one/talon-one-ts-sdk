@@ -111,7 +111,7 @@ export interface CampaignTemplate {
     couponAttributes?: object;
     /**
      * Only campaign templates in 'available' state may be used to create campaigns.
-     * @type {string}
+     * @type {CampaignTemplateStateEnum}
      * @memberof CampaignTemplate
      */
     state: CampaignTemplateStateEnum;
@@ -135,7 +135,7 @@ export interface CampaignTemplate {
     reevaluateOnReturn: boolean;
     /**
      * A list of features for the campaign template.
-     * @type {Array<string>}
+     * @type {Array<CampaignTemplateFeaturesEnum>}
      * @memberof CampaignTemplate
      */
     features?: Array<CampaignTemplateFeaturesEnum>;
@@ -192,7 +192,7 @@ export interface CampaignTemplate {
      *   - `cartItem`: Type of campaign that can apply effects only to cart items.
      *   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
      * 
-     * @type {string}
+     * @type {CampaignTemplateCampaignTypeEnum}
      * @memberof CampaignTemplate
      */
     campaignType?: CampaignTemplateCampaignTypeEnum;

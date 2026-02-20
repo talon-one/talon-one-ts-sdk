@@ -91,7 +91,7 @@ export interface ApplicationSession {
      * 
      * For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
      * 
-     * @type {string}
+     * @type {ApplicationSessionStateEnum}
      * @memberof ApplicationSession
      */
     state: ApplicationSessionStateEnum;

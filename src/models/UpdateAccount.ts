@@ -39,7 +39,7 @@ export interface UpdateAccount {
     billingEmail: string;
     /**
      * State of the account (active, deactivated).
-     * @type {string}
+     * @type {UpdateAccountStateEnum}
      * @memberof UpdateAccount
      */
     state?: UpdateAccountStateEnum;

@@ -21,13 +21,13 @@ import { mapValues } from '../runtime';
 export interface SummaryCampaignStoreBudget {
     /**
      * 
-     * @type {string}
+     * @type {SummaryCampaignStoreBudgetActionEnum}
      * @memberof SummaryCampaignStoreBudget
      */
     action: SummaryCampaignStoreBudgetActionEnum;
     /**
      * 
-     * @type {string}
+     * @type {SummaryCampaignStoreBudgetPeriodEnum}
      * @memberof SummaryCampaignStoreBudget
      */
     period?: SummaryCampaignStoreBudgetPeriodEnum;

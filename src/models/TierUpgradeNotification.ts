@@ -41,7 +41,7 @@ export interface TierUpgradeNotification {
     data: Array<TierUpgradeData>;
     /**
      * The type of notification.
-     * @type {string}
+     * @type {TierUpgradeNotificationNotificationTypeEnum}
      * @memberof TierUpgradeNotification
      */
     notificationType: TierUpgradeNotificationNotificationTypeEnum;

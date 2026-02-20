@@ -84,7 +84,7 @@ export interface IntegrationEventV3Request {
     /**
      * Optional list of requested information to be present on the response related to the tracking custom event.
      * 
-     * @type {Array<string>}
+     * @type {Array<IntegrationEventV3RequestResponseContentEnum>}
      * @memberof IntegrationEventV3Request
      */
     responseContent?: Array<IntegrationEventV3RequestResponseContentEnum>;
@@ -98,7 +98,7 @@ export const IntegrationEventV3RequestResponseContentEnum = {
     CustomerProfile: 'customerProfile',
     TriggeredCampaigns: 'triggeredCampaigns',
     Loyalty: 'loyalty',
-    Event: 'event',
+    AdvancedEvent: 'advancedEvent',
     AwardedGiveaways: 'awardedGiveaways',
     RuleFailureReasons: 'ruleFailureReasons'
 } as const;

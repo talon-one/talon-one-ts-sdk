@@ -57,7 +57,7 @@ export interface User {
     name: string;
     /**
      * State of the user.
-     * @type {string}
+     * @type {UserStateEnum}
      * @memberof User
      */
     state: UserStateEnum;

@@ -98,7 +98,7 @@ export interface AchievementBase {
      * - `on_expiration`: The achievement resets after it expires and becomes available again.
      * - `on_completion`: When the customer progress status reaches `completed`, the achievement resets and becomes available again.
      * 
-     * @type {string}
+     * @type {AchievementBaseRecurrencePolicyEnum}
      * @memberof AchievementBase
      */
     recurrencePolicy?: AchievementBaseRecurrencePolicyEnum;
@@ -107,7 +107,7 @@ export interface AchievementBase {
      * - `user_action`: The achievement ends or resets relative to when the customer started the achievement.
      * - `fixed_schedule`: The achievement starts, ends, or resets for all customers following a fixed schedule.
      * 
-     * @type {string}
+     * @type {AchievementBaseActivationPolicyEnum}
      * @memberof AchievementBase
      */
     activationPolicy?: AchievementBaseActivationPolicyEnum;

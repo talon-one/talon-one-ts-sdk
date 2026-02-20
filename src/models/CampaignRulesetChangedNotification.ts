@@ -29,7 +29,7 @@ import {
 export interface CampaignRulesetChangedNotification {
     /**
      * The type of the notification
-     * @type {string}
+     * @type {CampaignRulesetChangedNotificationNotificationTypeEnum}
      * @memberof CampaignRulesetChangedNotification
      */
     notificationType: CampaignRulesetChangedNotificationNotificationTypeEnum;

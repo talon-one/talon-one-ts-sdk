@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Campaign } from './Campaign';
+import {
+    CampaignFromJSON,
+    CampaignFromJSONTyped,
+    CampaignToJSON,
+    CampaignToJSONTyped,
+} from './Campaign';
+
 /**
  * 
  * @export
@@ -28,10 +36,10 @@ export interface CampaignDeletedNotificationItem {
     event: string;
     /**
      * The campaign whose state changed.
-     * @type {any}
+     * @type {Campaign}
      * @memberof CampaignDeletedNotificationItem
      */
-    campaign: any | null;
+    campaign: Campaign;
     /**
      * Time when the campaign was deleted.
      * @type {Date}
@@ -61,7 +69,7 @@ export function CampaignDeletedNotificationItemFromJSONTyped(json: any, ignoreDi
     return {
         
         'event': json['Event'],
-        'campaign': json['campaign'],
+        'campaign': CampaignFromJSON(json['campaign']),
         'deletedAt': (new Date(json['deletedAt'])),
     };
 }
@@ -78,7 +86,7 @@ export function CampaignDeletedNotificationItemToJSONTyped(value?: CampaignDelet
     return {
         
         'Event': value['event'],
-        'campaign': value['campaign'],
+        'campaign': CampaignToJSON(value['campaign']),
         'deletedAt': value['deletedAt'].toISOString(),
     };
 }

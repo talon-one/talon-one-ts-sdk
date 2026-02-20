@@ -41,7 +41,7 @@ export interface ExpiringPointsNotification {
     data: Array<ExpiringPointsData>;
     /**
      * The type of notification.
-     * @type {string}
+     * @type {ExpiringPointsNotificationNotificationTypeEnum}
      * @memberof ExpiringPointsNotification
      */
     notificationType: ExpiringPointsNotificationNotificationTypeEnum;

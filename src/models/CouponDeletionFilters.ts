@@ -48,7 +48,7 @@ export interface CouponDeletionFilters {
      * - `validNow`: Matches coupons in which the start date is null or in the past and the expiration date is null or in the future.
      * - `validFuture`: Matches coupons in which the start date is set and in the future.
      * 
-     * @type {string}
+     * @type {CouponDeletionFiltersValidEnum}
      * @memberof CouponDeletionFilters
      */
     valid?: CouponDeletionFiltersValidEnum;

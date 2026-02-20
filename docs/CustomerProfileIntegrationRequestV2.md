@@ -8,8 +8,8 @@ Name | Type
 ------------ | -------------
 `attributes` | object
 `evaluableCampaignIds` | Array&lt;number&gt;
-`audiencesChanges` | any
 `responseContent` | Array&lt;string&gt;
+`audiencesChanges` | [ProfileAudiencesChanges](ProfileAudiencesChanges.md)
 
 ## Example
 
@@ -20,8 +20,8 @@ import type { CustomerProfileIntegrationRequestV2 } from 'talon_one_sdk'
 const example = {
   "attributes": {Language=english, ShippingCountry=DE},
   "evaluableCampaignIds": [10, 12],
-  "audiencesChanges": null,
   "responseContent": [triggeredCampaigns, customerProfile],
+  "audiencesChanges": null,
 } satisfies CustomerProfileIntegrationRequestV2
 
 console.log(example)

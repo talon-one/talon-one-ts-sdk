@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface GenerateLoyaltyCard {
     /**
      * Status of the loyalty card.
-     * @type {string}
+     * @type {GenerateLoyaltyCardStatusEnum}
      * @memberof GenerateLoyaltyCard
      */
     status?: GenerateLoyaltyCardStatusEnum;

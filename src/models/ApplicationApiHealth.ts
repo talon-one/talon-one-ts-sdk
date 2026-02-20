@@ -27,7 +27,7 @@ export interface ApplicationApiHealth {
      * - `CRITICAL`: All received requests failed.
      * - `NONE`: During the last 5 minutes, the Application hasn't recorded any integration API requests.
      * 
-     * @type {string}
+     * @type {ApplicationApiHealthSummaryEnum}
      * @memberof ApplicationApiHealth
      */
     summary: ApplicationApiHealthSummaryEnum;

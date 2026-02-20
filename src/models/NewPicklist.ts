@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface NewPicklist {
     /**
      * The type of allowed values in the picklist. If the type `time` is chosen, it must be an RFC3339 timestamp string.
-     * @type {string}
+     * @type {NewPicklistTypeEnum}
      * @memberof NewPicklist
      */
     type: NewPicklistTypeEnum;
