@@ -13,64 +13,64 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UpdateCampaign } from './UpdateCampaign';
+import type { ExperimentCampaignCopy } from './ExperimentCampaignCopy';
 import {
-    UpdateCampaignFromJSON,
-    UpdateCampaignFromJSONTyped,
-    UpdateCampaignToJSON,
-    UpdateCampaignToJSONTyped,
-} from './UpdateCampaign';
+    ExperimentCampaignCopyFromJSON,
+    ExperimentCampaignCopyFromJSONTyped,
+    ExperimentCampaignCopyToJSON,
+    ExperimentCampaignCopyToJSONTyped,
+} from './ExperimentCampaignCopy';
 
 /**
  * 
  * @export
- * @interface UpdateExperiment
+ * @interface ExperimentCopyExperiment
  */
-export interface UpdateExperiment {
+export interface ExperimentCopyExperiment {
     /**
      * The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.
      * 
      * @type {boolean}
-     * @memberof UpdateExperiment
+     * @memberof ExperimentCopyExperiment
      */
     isVariantAssignmentExternal: boolean;
     /**
      * 
-     * @type {UpdateCampaign}
-     * @memberof UpdateExperiment
+     * @type {ExperimentCampaignCopy}
+     * @memberof ExperimentCopyExperiment
      */
-    campaign: UpdateCampaign;
+    campaign: ExperimentCampaignCopy;
 }
 
 /**
- * Check if a given object implements the UpdateExperiment interface.
+ * Check if a given object implements the ExperimentCopyExperiment interface.
  */
-export function instanceOfUpdateExperiment(value: object): value is UpdateExperiment {
+export function instanceOfExperimentCopyExperiment(value: object): value is ExperimentCopyExperiment {
     if (!('isVariantAssignmentExternal' in value) || value['isVariantAssignmentExternal'] === undefined) return false;
     if (!('campaign' in value) || value['campaign'] === undefined) return false;
     return true;
 }
 
-export function UpdateExperimentFromJSON(json: any): UpdateExperiment {
-    return UpdateExperimentFromJSONTyped(json, false);
+export function ExperimentCopyExperimentFromJSON(json: any): ExperimentCopyExperiment {
+    return ExperimentCopyExperimentFromJSONTyped(json, false);
 }
 
-export function UpdateExperimentFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateExperiment {
+export function ExperimentCopyExperimentFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExperimentCopyExperiment {
     if (json == null) {
         return json;
     }
     return {
         
         'isVariantAssignmentExternal': json['isVariantAssignmentExternal'],
-        'campaign': UpdateCampaignFromJSON(json['campaign']),
+        'campaign': ExperimentCampaignCopyFromJSON(json['campaign']),
     };
 }
 
-export function UpdateExperimentToJSON(json: any): UpdateExperiment {
-    return UpdateExperimentToJSONTyped(json, false);
+export function ExperimentCopyExperimentToJSON(json: any): ExperimentCopyExperiment {
+    return ExperimentCopyExperimentToJSONTyped(json, false);
 }
 
-export function UpdateExperimentToJSONTyped(value?: UpdateExperiment | null, ignoreDiscriminator: boolean = false): any {
+export function ExperimentCopyExperimentToJSONTyped(value?: ExperimentCopyExperiment | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -78,7 +78,7 @@ export function UpdateExperimentToJSONTyped(value?: UpdateExperiment | null, ign
     return {
         
         'isVariantAssignmentExternal': value['isVariantAssignmentExternal'],
-        'campaign': UpdateCampaignToJSON(value['campaign']),
+        'campaign': ExperimentCampaignCopyToJSON(value['campaign']),
     };
 }
 

@@ -1,24 +1,26 @@
 
-# NewExperiment
+# PriceHistoryRequest
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`isVariantAssignmentExternal` | boolean
-`campaign` | [NewCampaign](NewCampaign.md)
+`sku` | string
+`startDate` | Date
+`endDate` | Date
 
 ## Example
 
 ```typescript
-import type { NewExperiment } from 'talon_one_sdk'
+import type { PriceHistoryRequest } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "isVariantAssignmentExternal": null,
-  "campaign": null,
-} satisfies NewExperiment
+  "sku": [sku-124],
+  "startDate": 2020-11-10T23:00:00Z,
+  "endDate": 2020-12-10T23:00:00Z,
+} satisfies PriceHistoryRequest
 
 console.log(example)
 
@@ -27,7 +29,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as NewExperiment
+const exampleParsed = JSON.parse(exampleJSON) as PriceHistoryRequest
 console.log(exampleParsed)
 ```
 

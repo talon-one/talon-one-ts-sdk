@@ -221,6 +221,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *IntegrationApi* | [**getLoyaltyProgramProfileTransactions**](docs/IntegrationApi.md#getloyaltyprogramprofiletransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions | List customer\&#39;s loyalty transactions
 *IntegrationApi* | [**getReservedCustomers**](docs/IntegrationApi.md#getreservedcustomers) | **GET** /v1/coupon_reservations/customerprofiles/{couponValue} | List customers that have this coupon reserved
 *IntegrationApi* | [**linkLoyaltyCardToProfile**](docs/IntegrationApi.md#linkloyaltycardtoprofile) | **POST** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile | Link customer profile to card
+*IntegrationApi* | [**priceHistory**](docs/IntegrationApi.md#pricehistoryoperation) | **POST** /v1/best_prior_price_history | Get summary of price history
 *IntegrationApi* | [**reopenCustomerSession**](docs/IntegrationApi.md#reopencustomersession) | **PUT** /v2/customer_sessions/{customerSessionId}/reopen | Reopen customer session
 *IntegrationApi* | [**returnCartItems**](docs/IntegrationApi.md#returncartitems) | **POST** /v2/customer_sessions/{customerSessionId}/returns | Return cart items
 *IntegrationApi* | [**syncCatalog**](docs/IntegrationApi.md#synccatalog) | **PUT** /v1/catalogs/{catalogId}/sync | Sync cart item catalog
@@ -271,6 +272,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**disconnectCampaignStores**](docs/ManagementApi.md#disconnectcampaignstores) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/stores | Disconnect stores
 *ManagementApi* | [**exportAccountCollectionItems**](docs/ManagementApi.md#exportaccountcollectionitems) | **GET** /v1/collections/{collectionId}/export | Export account-level collection\&#39;s items
 *ManagementApi* | [**exportAchievements**](docs/ManagementApi.md#exportachievements) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId}/export | Export achievement customer data
+*ManagementApi* | [**exportApplicationCampaignAnalytics**](docs/ManagementApi.md#exportapplicationcampaignanalytics) | **GET** /v1/applications/{applicationId}/campaign_analytics/export | Export Application analytics aggregated by campaign
 *ManagementApi* | [**exportAudiencesMemberships**](docs/ManagementApi.md#exportaudiencesmemberships) | **GET** /v1/audiences/{audienceId}/memberships/export | Export audience members
 *ManagementApi* | [**exportCampaignStoreBudgets**](docs/ManagementApi.md#exportcampaignstorebudgets) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/export | Export campaign store budgets
 *ManagementApi* | [**exportCampaignStores**](docs/ManagementApi.md#exportcampaignstores) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/export | Export stores
@@ -284,6 +286,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**exportLoyaltyCardBalances**](docs/ManagementApi.md#exportloyaltycardbalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/export_card_balances | Export all card transaction logs
 *ManagementApi* | [**exportLoyaltyCardLedger**](docs/ManagementApi.md#exportloyaltycardledger) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/export_log | Export card\&#39;s ledger log
 *ManagementApi* | [**exportLoyaltyCards**](docs/ManagementApi.md#exportloyaltycards) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/export | Export loyalty cards
+*ManagementApi* | [**exportLoyaltyJoinDates**](docs/ManagementApi.md#exportloyaltyjoindates) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/export_join_dates | Export customers\&#39; loyalty program join dates
 *ManagementApi* | [**exportLoyaltyLedger**](docs/ManagementApi.md#exportloyaltyledger) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/export_log | Export customer\&#39;s transaction logs
 *ManagementApi* | [**exportPoolGiveaways**](docs/ManagementApi.md#exportpoolgiveaways) | **GET** /v1/giveaways/pools/{poolId}/export | Export giveaway codes of a giveaway pool
 *ManagementApi* | [**exportReferrals**](docs/ManagementApi.md#exportreferrals) | **GET** /v1/applications/{applicationId}/export_referrals | Export referrals
@@ -331,6 +334,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**getCustomersByAttributes**](docs/ManagementApi.md#getcustomersbyattributes) | **POST** /v1/customer_search/no_total | List customer profiles matching the given attributes
 *ManagementApi* | [**getDashboardStatistics**](docs/ManagementApi.md#getdashboardstatistics) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/dashboard | Get statistics for loyalty dashboard
 *ManagementApi* | [**getEventTypes**](docs/ManagementApi.md#geteventtypes) | **GET** /v1/event_types | List event types
+*ManagementApi* | [**getExperiment**](docs/ManagementApi.md#getexperiment) | **GET** /v1/applications/{applicationId}/experiments/{experimentId} | Get experiment in Application
 *ManagementApi* | [**getExports**](docs/ManagementApi.md#getexports) | **GET** /v1/exports | Get exports
 *ManagementApi* | [**getLoyaltyCard**](docs/ManagementApi.md#getloyaltycard) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Get loyalty card
 *ManagementApi* | [**getLoyaltyCardTransactionLogs**](docs/ManagementApi.md#getloyaltycardtransactionlogs) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card\&#39;s transactions
@@ -372,6 +376,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**listCatalogItems**](docs/ManagementApi.md#listcatalogitems) | **GET** /v1/catalogs/{catalogId}/items | List items in a catalog
 *ManagementApi* | [**listCollections**](docs/ManagementApi.md#listcollections) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections in campaign
 *ManagementApi* | [**listCollectionsInApplication**](docs/ManagementApi.md#listcollectionsinapplication) | **GET** /v1/applications/{applicationId}/collections | List collections in Application
+*ManagementApi* | [**listExperiments**](docs/ManagementApi.md#listexperiments) | **GET** /v1/applications/{applicationId}/experiments | List experiments
 *ManagementApi* | [**listStores**](docs/ManagementApi.md#liststores) | **GET** /v1/applications/{applicationId}/stores | List stores
 *ManagementApi* | [**oktaEventHandlerChallenge**](docs/ManagementApi.md#oktaeventhandlerchallenge) | **GET** /v1/provisioning/okta | Validate Okta API ownership
 *ManagementApi* | [**removeLoyaltyPoints**](docs/ManagementApi.md#removeloyaltypoints) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/deduct_points | Deduct points from customer profile
@@ -634,6 +639,9 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [EventV2](docs/EventV2.md)
 - [EventV3](docs/EventV3.md)
 - [Experiment](docs/Experiment.md)
+- [ExperimentCampaignCopy](docs/ExperimentCampaignCopy.md)
+- [ExperimentCopy](docs/ExperimentCopy.md)
+- [ExperimentCopyExperiment](docs/ExperimentCopyExperiment.md)
 - [ExperimentResults](docs/ExperimentResults.md)
 - [ExperimentVariant](docs/ExperimentVariant.md)
 - [ExperimentVariantAllocation](docs/ExperimentVariantAllocation.md)
@@ -714,6 +722,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [Giveaway](docs/Giveaway.md)
 - [GiveawaysPool](docs/GiveawaysPool.md)
 - [HiddenConditionsEffects](docs/HiddenConditionsEffects.md)
+- [History](docs/History.md)
 - [IdentifiableEntity](docs/IdentifiableEntity.md)
 - [Import](docs/Import.md)
 - [ImportEntity](docs/ImportEntity.md)
@@ -729,6 +738,21 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [IntegrationEventV2Response](docs/IntegrationEventV2Response.md)
 - [IntegrationEventV3Request](docs/IntegrationEventV3Request.md)
 - [IntegrationEventV3Response](docs/IntegrationEventV3Response.md)
+- [IntegrationHubConfig](docs/IntegrationHubConfig.md)
+- [IntegrationHubEventPayloadCouponBasedNotifications](docs/IntegrationHubEventPayloadCouponBasedNotifications.md)
+- [IntegrationHubEventPayloadCouponBasedNotificationsLimits](docs/IntegrationHubEventPayloadCouponBasedNotificationsLimits.md)
+- [IntegrationHubEventPayloadLoyaltyProfileBasedNotification](docs/IntegrationHubEventPayloadLoyaltyProfileBasedNotification.md)
+- [IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification](docs/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.md)
+- [IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction](docs/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.md)
+- [IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification](docs/IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.md)
+- [IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification](docs/IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.md)
+- [IntegrationHubEventRecord](docs/IntegrationHubEventRecord.md)
+- [IntegrationHubFlow](docs/IntegrationHubFlow.md)
+- [IntegrationHubFlowConfig](docs/IntegrationHubFlowConfig.md)
+- [IntegrationHubFlowConfigResponse](docs/IntegrationHubFlowConfigResponse.md)
+- [IntegrationHubFlowResponse](docs/IntegrationHubFlowResponse.md)
+- [IntegrationHubFlowWithConfig](docs/IntegrationHubFlowWithConfig.md)
+- [IntegrationHubPaginatedEventPayload](docs/IntegrationHubPaginatedEventPayload.md)
 - [IntegrationProfileEntity](docs/IntegrationProfileEntity.md)
 - [IntegrationProfileEntityV3](docs/IntegrationProfileEntityV3.md)
 - [IntegrationRequest](docs/IntegrationRequest.md)
@@ -755,6 +779,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [ListCampaignStoreBudgets](docs/ListCampaignStoreBudgets.md)
 - [ListCampaignStoreBudgetsStore](docs/ListCampaignStoreBudgetsStore.md)
 - [ListCatalogItems200Response](docs/ListCatalogItems200Response.md)
+- [ListExperiments200Response](docs/ListExperiments200Response.md)
 - [ListStores200Response](docs/ListStores200Response.md)
 - [LoginParams](docs/LoginParams.md)
 - [Loyalty](docs/Loyalty.md)
@@ -892,24 +917,11 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [Picklist](docs/Picklist.md)
 - [PlaceholderDetails](docs/PlaceholderDetails.md)
 - [PriceDetail](docs/PriceDetail.md)
+- [PriceHistoryRequest](docs/PriceHistoryRequest.md)
+- [PriceHistoryResponse](docs/PriceHistoryResponse.md)
 - [PriceType](docs/PriceType.md)
 - [PriceTypeReferenceDetail](docs/PriceTypeReferenceDetail.md)
 - [PriceTypeReferences](docs/PriceTypeReferences.md)
-- [PrismaticConfig](docs/PrismaticConfig.md)
-- [PrismaticEventPayloadCouponBasedNotifications](docs/PrismaticEventPayloadCouponBasedNotifications.md)
-- [PrismaticEventPayloadCouponBasedNotificationsLimits](docs/PrismaticEventPayloadCouponBasedNotificationsLimits.md)
-- [PrismaticEventPayloadLoyaltyProfileBasedNotification](docs/PrismaticEventPayloadLoyaltyProfileBasedNotification.md)
-- [PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotification](docs/PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotification.md)
-- [PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction](docs/PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.md)
-- [PrismaticEventPayloadLoyaltyProfileBasedTierDowngradeNotification](docs/PrismaticEventPayloadLoyaltyProfileBasedTierDowngradeNotification.md)
-- [PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification](docs/PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification.md)
-- [PrismaticEventRecord](docs/PrismaticEventRecord.md)
-- [PrismaticFlow](docs/PrismaticFlow.md)
-- [PrismaticFlowConfig](docs/PrismaticFlowConfig.md)
-- [PrismaticFlowConfigResponse](docs/PrismaticFlowConfigResponse.md)
-- [PrismaticFlowResponse](docs/PrismaticFlowResponse.md)
-- [PrismaticFlowWithConfig](docs/PrismaticFlowWithConfig.md)
-- [PrismaticPaginatedEventPayload](docs/PrismaticPaginatedEventPayload.md)
 - [Product](docs/Product.md)
 - [ProductSearchMatch](docs/ProductSearchMatch.md)
 - [ProductUnitAnalytics](docs/ProductUnitAnalytics.md)
@@ -917,6 +929,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [ProductUnitAnalyticsTotals](docs/ProductUnitAnalyticsTotals.md)
 - [ProfileAudiencesChanges](docs/ProfileAudiencesChanges.md)
 - [ProjectedTier](docs/ProjectedTier.md)
+- [PromoteExperiment](docs/PromoteExperiment.md)
 - [RedeemReferralEffectProps](docs/RedeemReferralEffectProps.md)
 - [Referral](docs/Referral.md)
 - [ReferralConstraints](docs/ReferralConstraints.md)

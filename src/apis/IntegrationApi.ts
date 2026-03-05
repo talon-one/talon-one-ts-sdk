@@ -54,6 +54,8 @@ import type {
   NewAudience,
   NewReferral,
   NewReferralsForMultipleAdvocates,
+  PriceHistoryRequest,
+  PriceHistoryResponse,
   Referral,
   ReopenSessionResponse,
   ReturnIntegrationRequest,
@@ -140,6 +142,10 @@ import {
     NewReferralToJSON,
     NewReferralsForMultipleAdvocatesFromJSON,
     NewReferralsForMultipleAdvocatesToJSON,
+    PriceHistoryRequestFromJSON,
+    PriceHistoryRequestToJSON,
+    PriceHistoryResponseFromJSON,
+    PriceHistoryResponseToJSON,
     ReferralFromJSON,
     ReferralToJSON,
     ReopenSessionResponseFromJSON,
@@ -319,6 +325,10 @@ export interface LinkLoyaltyCardToProfileRequest {
     loyaltyProgramId: number;
     loyaltyCardId: string;
     loyaltyCardRegistration: LoyaltyCardRegistration;
+}
+
+export interface PriceHistoryOperationRequest {
+    priceHistoryRequest: PriceHistoryRequest;
 }
 
 export interface ReopenCustomerSessionRequest {
@@ -1982,6 +1992,67 @@ export class IntegrationApi extends runtime.BaseAPI {
      */
     async linkLoyaltyCardToProfile(requestParameters: LinkLoyaltyCardToProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoyaltyCard> {
         const response = await this.linkLoyaltyCardToProfileRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for priceHistory without sending the request
+     */
+    async priceHistoryRequestOpts(requestParameters: PriceHistoryOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['priceHistoryRequest'] == null) {
+            throw new runtime.RequiredError(
+                'priceHistoryRequest',
+                'Required parameter "priceHistoryRequest" was null or undefined when calling priceHistory().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // management_key authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // manager_auth authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/best_prior_price_history`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PriceHistoryRequestToJSON(requestParameters['priceHistoryRequest']),
+        };
+    }
+
+    /**
+     * Fetch the historical price data for a given SKU within a defined timeframe. 
+     * Get summary of price history
+     */
+    async priceHistoryRaw(requestParameters: PriceHistoryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceHistoryResponse>> {
+        const requestOptions = await this.priceHistoryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PriceHistoryResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Fetch the historical price data for a given SKU within a defined timeframe. 
+     * Get summary of price history
+     */
+    async priceHistory(requestParameters: PriceHistoryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceHistoryResponse> {
+        const response = await this.priceHistoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

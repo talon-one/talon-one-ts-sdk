@@ -1,32 +1,32 @@
 
-# BestPriorPriceRequest
+# History
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`skus` | Array&lt;string&gt;
-`timeframeEndDate` | Date
-`timeframe` | string
-`strictEndDate` | boolean
-`timeframeEndDateType` | string
-`target` | [BestPriorTarget](BestPriorTarget.md)
+`id` | number
+`observedAt` | Date
+`contextId` | string
+`price` | number
+`metadata` | [BestPriorPriceMetadata](BestPriorPriceMetadata.md)
+`target` | object
 
 ## Example
 
 ```typescript
-import type { BestPriorPriceRequest } from 'talon_one_sdk'
+import type { History } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "skus": [comma, period],
-  "timeframeEndDate": 2020-11-10T23:00:00Z,
-  "timeframe": 30,
-  "strictEndDate": true,
-  "timeframeEndDateType": sale,
+  "id": 1,
+  "observedAt": 2020-11-10T23:00:00Z,
+  "contextId": Summer Sale 2025,
+  "price": 99.99,
+  "metadata": null,
   "target": null,
-} satisfies BestPriorPriceRequest
+} satisfies History
 
 console.log(example)
 
@@ -35,7 +35,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as BestPriorPriceRequest
+const exampleParsed = JSON.parse(exampleJSON) as History
 console.log(exampleParsed)
 ```
 

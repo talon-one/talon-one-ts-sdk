@@ -1,5 +1,5 @@
 
-# NewExperiment
+# ExperimentCopyExperiment
 
 
 ## Properties
@@ -7,18 +7,18 @@
 Name | Type
 ------------ | -------------
 `isVariantAssignmentExternal` | boolean
-`campaign` | [NewCampaign](NewCampaign.md)
+`campaign` | [ExperimentCampaignCopy](ExperimentCampaignCopy.md)
 
 ## Example
 
 ```typescript
-import type { NewExperiment } from 'talon_one_sdk'
+import type { ExperimentCopyExperiment } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
   "isVariantAssignmentExternal": null,
   "campaign": null,
-} satisfies NewExperiment
+} satisfies ExperimentCopyExperiment
 
 console.log(example)
 
@@ -27,7 +27,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as NewExperiment
+const exampleParsed = JSON.parse(exampleJSON) as ExperimentCopyExperiment
 console.log(exampleParsed)
 ```
 

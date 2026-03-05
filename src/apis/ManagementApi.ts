@@ -47,6 +47,7 @@ import type {
   DeleteUserRequest,
   ErrorResponse,
   ErrorResponseWithStatus,
+  Experiment,
   GenerateCouponRejections200Response,
   GetAccessLogsWithoutTotalCount200Response,
   GetAdditionalCosts200Response,
@@ -90,6 +91,7 @@ import type {
   ListAllRolesV2200Response,
   ListCampaignStoreBudgetLimits200Response,
   ListCatalogItems200Response,
+  ListExperiments200Response,
   ListStores200Response,
   LoginParams,
   LoyaltyBalancesWithTiers,
@@ -210,6 +212,8 @@ import {
     ErrorResponseToJSON,
     ErrorResponseWithStatusFromJSON,
     ErrorResponseWithStatusToJSON,
+    ExperimentFromJSON,
+    ExperimentToJSON,
     GenerateCouponRejections200ResponseFromJSON,
     GenerateCouponRejections200ResponseToJSON,
     GetAccessLogsWithoutTotalCount200ResponseFromJSON,
@@ -296,6 +300,8 @@ import {
     ListCampaignStoreBudgetLimits200ResponseToJSON,
     ListCatalogItems200ResponseFromJSON,
     ListCatalogItems200ResponseToJSON,
+    ListExperiments200ResponseFromJSON,
+    ListExperiments200ResponseToJSON,
     ListStores200ResponseFromJSON,
     ListStores200ResponseToJSON,
     LoginParamsFromJSON,
@@ -616,6 +622,13 @@ export interface ExportAchievementsRequest {
     achievementId: number;
 }
 
+export interface ExportApplicationCampaignAnalyticsRequest {
+    applicationId: number;
+    rangeStart: Date;
+    rangeEnd: Date;
+    campaignIds?: Array<string>;
+}
+
 export interface ExportAudiencesMembershipsRequest {
     audienceId: number;
 }
@@ -708,6 +721,10 @@ export interface ExportLoyaltyCardsRequest {
     createdBefore?: Date;
     createdAfter?: Date;
     dateFormat?: ExportLoyaltyCardsDateFormatEnum;
+}
+
+export interface ExportLoyaltyJoinDatesRequest {
+    loyaltyProgramId: string;
 }
 
 export interface ExportLoyaltyLedgerRequest {
@@ -1088,6 +1105,11 @@ export interface GetEventTypesRequest {
     sort?: string;
 }
 
+export interface GetExperimentRequest {
+    applicationId: number;
+    experimentId: number;
+}
+
 export interface GetExportsRequest {
     pageSize?: number;
     skip?: number;
@@ -1374,6 +1396,13 @@ export interface ListCollectionsInApplicationRequest {
     sort?: string;
     withTotalResultSize?: boolean;
     name?: string;
+}
+
+export interface ListExperimentsRequest {
+    applicationId: number;
+    pageSize?: number;
+    skip?: number;
+    sort?: string;
 }
 
 export interface ListStoresRequest {
@@ -4311,6 +4340,95 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for exportApplicationCampaignAnalytics without sending the request
+     */
+    async exportApplicationCampaignAnalyticsRequestOpts(requestParameters: ExportApplicationCampaignAnalyticsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['applicationId'] == null) {
+            throw new runtime.RequiredError(
+                'applicationId',
+                'Required parameter "applicationId" was null or undefined when calling exportApplicationCampaignAnalytics().'
+            );
+        }
+
+        if (requestParameters['rangeStart'] == null) {
+            throw new runtime.RequiredError(
+                'rangeStart',
+                'Required parameter "rangeStart" was null or undefined when calling exportApplicationCampaignAnalytics().'
+            );
+        }
+
+        if (requestParameters['rangeEnd'] == null) {
+            throw new runtime.RequiredError(
+                'rangeEnd',
+                'Required parameter "rangeEnd" was null or undefined when calling exportApplicationCampaignAnalytics().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['campaignIds'] != null) {
+            queryParameters['campaignIds'] = requestParameters['campaignIds']!.join(runtime.COLLECTION_FORMATS["csv"]);
+        }
+
+        if (requestParameters['rangeStart'] != null) {
+            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
+        }
+
+        if (requestParameters['rangeEnd'] != null) {
+            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // management_key authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // manager_auth authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/applications/{applicationId}/campaign_analytics/export`;
+        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Download a CSV file containing analytics data aggregated by campaign for the campaigns of an Application.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `campaign_id`: The ID of the campaign. This column also contains labels for the [total and influenced values](https://docs.talon.one/docs/product/campaigns/analytics/application-dashboard#understanding-the-analytics-data). - `start_date`: The start of the aggregation time frame in UTC. - `end_date`: The end of the aggregation time frame in UTC. - `revenue`: The total, pre-discount value of all items purchased in a customer session. - `sessions`: The number of all closed sessions. - `average_session_value`: The average customer session value, calculated by dividing the revenue value by the number of sessions. - `average_items_per_session`: The number of items from sessions divided by the number of sessions. - `coupons`: The number of times a coupon was successfully redeemed in sessions. - `discounts`: The total value of discounts given for cart items in sessions. 
+     * Export Application analytics aggregated by campaign
+     */
+    async exportApplicationCampaignAnalyticsRaw(requestParameters: ExportApplicationCampaignAnalyticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportApplicationCampaignAnalyticsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * Download a CSV file containing analytics data aggregated by campaign for the campaigns of an Application.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `campaign_id`: The ID of the campaign. This column also contains labels for the [total and influenced values](https://docs.talon.one/docs/product/campaigns/analytics/application-dashboard#understanding-the-analytics-data). - `start_date`: The start of the aggregation time frame in UTC. - `end_date`: The end of the aggregation time frame in UTC. - `revenue`: The total, pre-discount value of all items purchased in a customer session. - `sessions`: The number of all closed sessions. - `average_session_value`: The average customer session value, calculated by dividing the revenue value by the number of sessions. - `average_items_per_session`: The number of items from sessions divided by the number of sessions. - `coupons`: The number of times a coupon was successfully redeemed in sessions. - `discounts`: The total value of discounts given for cart items in sessions. 
+     * Export Application analytics aggregated by campaign
+     */
+    async exportApplicationCampaignAnalytics(requestParameters: ExportApplicationCampaignAnalyticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.exportApplicationCampaignAnalyticsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for exportAudiencesMemberships without sending the request
      */
     async exportAudiencesMembershipsRequestOpts(requestParameters: ExportAudiencesMembershipsRequest): Promise<runtime.RequestOpts> {
@@ -5331,6 +5449,69 @@ export class ManagementApi extends runtime.BaseAPI {
      */
     async exportLoyaltyCards(requestParameters: ExportLoyaltyCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.exportLoyaltyCardsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for exportLoyaltyJoinDates without sending the request
+     */
+    async exportLoyaltyJoinDatesRequestOpts(requestParameters: ExportLoyaltyJoinDatesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['loyaltyProgramId'] == null) {
+            throw new runtime.RequiredError(
+                'loyaltyProgramId',
+                'Required parameter "loyaltyProgramId" was null or undefined when calling exportLoyaltyJoinDates().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // management_key authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // manager_auth authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/export_join_dates`;
+        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Download a CSV file containing the join dates of all customers in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - `loyaltyProgramID`: The ID of the loyalty program. - `profileIntegrationID`: The integration ID of the customer profile. - `joinDate`: The customer\'s loyalty program join date in RFC3339 format. 
+     * Export customers\' loyalty program join dates
+     */
+    async exportLoyaltyJoinDatesRaw(requestParameters: ExportLoyaltyJoinDatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportLoyaltyJoinDatesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * Download a CSV file containing the join dates of all customers in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - `loyaltyProgramID`: The ID of the loyalty program. - `profileIntegrationID`: The integration ID of the customer profile. - `joinDate`: The customer\'s loyalty program join date in RFC3339 format. 
+     * Export customers\' loyalty program join dates
+     */
+    async exportLoyaltyJoinDates(requestParameters: ExportLoyaltyJoinDatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.exportLoyaltyJoinDatesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -9004,6 +9185,73 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getExperiment without sending the request
+     */
+    async getExperimentRequestOpts(requestParameters: GetExperimentRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['applicationId'] == null) {
+            throw new runtime.RequiredError(
+                'applicationId',
+                'Required parameter "applicationId" was null or undefined when calling getExperiment().'
+            );
+        }
+
+        if (requestParameters['experimentId'] == null) {
+            throw new runtime.RequiredError(
+                'experimentId',
+                'Required parameter "experimentId" was null or undefined when calling getExperiment().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // management_key authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // manager_auth authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/applications/{applicationId}/experiments/{experimentId}`;
+        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace(`{${"experimentId"}}`, encodeURIComponent(String(requestParameters['experimentId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Retrieve the given experiment associated with the Application.
+     * Get experiment in Application
+     */
+    async getExperimentRaw(requestParameters: GetExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Experiment>> {
+        const requestOptions = await this.getExperimentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ExperimentFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve the given experiment associated with the Application.
+     * Get experiment in Application
+     */
+    async getExperiment(requestParameters: GetExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Experiment> {
+        const response = await this.getExperimentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for getExports without sending the request
      */
     async getExportsRequestOpts(requestParameters: GetExportsRequest): Promise<runtime.RequestOpts> {
@@ -11182,7 +11430,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the coupons that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - `value` (required): The coupon code. - `expirydate`: The end date in RFC3339 of the code redemption period. - `startdate`: The start date in RFC3339 of the code redemption period. - `recipientintegrationid`: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - `limitval`: The maximum number of redemptions of this code. For unlimited redemptions, use `0`. Defaults to `1` when not provided. - `discountlimit`: The total discount value that the code can give. This is typically used to represent a gift card value. - `attributes`: A JSON object describing _custom_ coupon attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called `category` associated with the coupon entity, the object in the CSV file, when opened in a text editor, must be: `\"{\"category\": \"10_off\"}\"`.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```text \"value\",\"expirydate\",\"startdate\",\"recipientintegrationid\",\"limitval\",\"attributes\",\"discountlimit\" COUP1,2018-07-01T04:00:00Z,2018-05-01T04:00:00Z,cust123,1,\"{\"\"Category\"\": \"\"10_off\"\"}\",2.4 ```  Once imported, you can find the `batchId` in the Campaign Manager or by using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount). 
+     * Upload a CSV file containing the coupons that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - `value` (required): The coupon code. Must be at least 3 characters long. We recommend using alphanumeric characters.   There is no maximum length but limiting the code to 30 characters   ensures it is fully readable in the Campaign Manager.   The code should be unique unless you set `skipDuplicates` to `true`.  - `expirydate`: The end date in RFC3339 of the code redemption period. - `startdate`: The start date in RFC3339 of the code redemption period. - `recipientintegrationid`: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - `limitval`: The maximum number of redemptions of this code. For unlimited redemptions, use `0`. Defaults to `1` when not provided. - `discountlimit`: The total discount value that the code can give. This is typically used to represent a gift card value. - `attributes`: A JSON object describing _custom_ coupon attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called `category` associated with the coupon entity, the object in the CSV file, when opened in a text editor, must be: `\"{\"category\": \"10_off\"}\"`.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```text \"value\",\"expirydate\",\"startdate\",\"recipientintegrationid\",\"limitval\",\"attributes\",\"discountlimit\" COUP1,2018-07-01T04:00:00Z,2018-05-01T04:00:00Z,cust123,1,\"{\"\"Category\"\": \"\"10_off\"\"}\",2.4 ```  Once imported, you can find the `batchId` in the Campaign Manager or by using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount). 
      * Import coupons
      */
     async importCouponsRaw(requestParameters: ImportCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
@@ -11193,7 +11441,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the coupons that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - `value` (required): The coupon code. - `expirydate`: The end date in RFC3339 of the code redemption period. - `startdate`: The start date in RFC3339 of the code redemption period. - `recipientintegrationid`: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - `limitval`: The maximum number of redemptions of this code. For unlimited redemptions, use `0`. Defaults to `1` when not provided. - `discountlimit`: The total discount value that the code can give. This is typically used to represent a gift card value. - `attributes`: A JSON object describing _custom_ coupon attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called `category` associated with the coupon entity, the object in the CSV file, when opened in a text editor, must be: `\"{\"category\": \"10_off\"}\"`.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```text \"value\",\"expirydate\",\"startdate\",\"recipientintegrationid\",\"limitval\",\"attributes\",\"discountlimit\" COUP1,2018-07-01T04:00:00Z,2018-05-01T04:00:00Z,cust123,1,\"{\"\"Category\"\": \"\"10_off\"\"}\",2.4 ```  Once imported, you can find the `batchId` in the Campaign Manager or by using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount). 
+     * Upload a CSV file containing the coupons that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - `value` (required): The coupon code. Must be at least 3 characters long. We recommend using alphanumeric characters.   There is no maximum length but limiting the code to 30 characters   ensures it is fully readable in the Campaign Manager.   The code should be unique unless you set `skipDuplicates` to `true`.  - `expirydate`: The end date in RFC3339 of the code redemption period. - `startdate`: The start date in RFC3339 of the code redemption period. - `recipientintegrationid`: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - `limitval`: The maximum number of redemptions of this code. For unlimited redemptions, use `0`. Defaults to `1` when not provided. - `discountlimit`: The total discount value that the code can give. This is typically used to represent a gift card value. - `attributes`: A JSON object describing _custom_ coupon attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called `category` associated with the coupon entity, the object in the CSV file, when opened in a text editor, must be: `\"{\"category\": \"10_off\"}\"`.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```text \"value\",\"expirydate\",\"startdate\",\"recipientintegrationid\",\"limitval\",\"attributes\",\"discountlimit\" COUP1,2018-07-01T04:00:00Z,2018-05-01T04:00:00Z,cust123,1,\"{\"\"Category\"\": \"\"10_off\"\"}\",2.4 ```  Once imported, you can find the `batchId` in the Campaign Manager or by using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount). 
      * Import coupons
      */
     async importCoupons(requestParameters: ImportCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Import> {
@@ -11260,7 +11508,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The alphanumeric identifier of the loyalty card. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA ``` 
+     * Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The alphanumeric identifier of the loyalty card. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - `attributes` (optional): A JSON object that contains the loyalty card\'s custom attributes and their values. These attributes must be created and connected to this loyalty program before  they can be assigned to the cards through this endpoint.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,\"{\"\"my_attribute\"\": \"\"10_off\"\"}\" ``` 
      * Import loyalty cards
      */
     async importLoyaltyCardsRaw(requestParameters: ImportLoyaltyCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
@@ -11271,7 +11519,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The alphanumeric identifier of the loyalty card. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA ``` 
+     * Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The alphanumeric identifier of the loyalty card. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - `attributes` (optional): A JSON object that contains the loyalty card\'s custom attributes and their values. These attributes must be created and connected to this loyalty program before  they can be assigned to the cards through this endpoint.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,\"{\"\"my_attribute\"\": \"\"10_off\"\"}\" ``` 
      * Import loyalty cards
      */
     async importLoyaltyCards(requestParameters: ImportLoyaltyCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Import> {
@@ -12181,6 +12429,77 @@ export class ManagementApi extends runtime.BaseAPI {
      */
     async listCollectionsInApplication(requestParameters: ListCollectionsInApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListAccountCollections200Response> {
         const response = await this.listCollectionsInApplicationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listExperiments without sending the request
+     */
+    async listExperimentsRequestOpts(requestParameters: ListExperimentsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['applicationId'] == null) {
+            throw new runtime.RequiredError(
+                'applicationId',
+                'Required parameter "applicationId" was null or undefined when calling listExperiments().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['sort'] != null) {
+            queryParameters['sort'] = requestParameters['sort'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // management_key authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // manager_auth authentication
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/applications/{applicationId}/experiments`;
+        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * List all experiments of the specified Application that match your filter criteria.
+     * List experiments
+     */
+    async listExperimentsRaw(requestParameters: ListExperimentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListExperiments200Response>> {
+        const requestOptions = await this.listExperimentsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListExperiments200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List all experiments of the specified Application that match your filter criteria.
+     * List experiments
+     */
+    async listExperiments(requestParameters: ListExperimentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListExperiments200Response> {
+        const response = await this.listExperimentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`id` | number
 `sku` | string
 `observedAt` | Date
 `contextId` | string
@@ -20,9 +21,10 @@ import type { BestPriorPrice } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
+  "id": 1,
   "sku": NVR-GN-GV-UUP,
   "observedAt": 2020-11-10T23:00:00Z,
-  "contextId": Summer Sale 2007,
+  "contextId": Summer Sale 2025,
   "price": 99.99,
   "metadata": null,
   "target": null,

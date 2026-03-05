@@ -1,24 +1,26 @@
 
-# NewExperiment
+# IntegrationHubFlowConfigResponse
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`isVariantAssignmentExternal` | boolean
-`campaign` | [NewCampaign](NewCampaign.md)
+`workerCount` | number
+`maxEventsPerMessage` | number
+`maxRetries` | number
 
 ## Example
 
 ```typescript
-import type { NewExperiment } from 'talon_one_sdk'
+import type { IntegrationHubFlowConfigResponse } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "isVariantAssignmentExternal": null,
-  "campaign": null,
-} satisfies NewExperiment
+  "workerCount": null,
+  "maxEventsPerMessage": null,
+  "maxRetries": null,
+} satisfies IntegrationHubFlowConfigResponse
 
 console.log(example)
 
@@ -27,7 +29,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as NewExperiment
+const exampleParsed = JSON.parse(exampleJSON) as IntegrationHubFlowConfigResponse
 console.log(exampleParsed)
 ```
 

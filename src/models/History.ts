@@ -24,60 +24,53 @@ import {
 /**
  * 
  * @export
- * @interface BestPriorPrice
+ * @interface History
  */
-export interface BestPriorPrice {
+export interface History {
     /**
      * The ID of the historical price.
      * @type {number}
-     * @memberof BestPriorPrice
+     * @memberof History
      */
     id: number;
     /**
-     * sku
-     * @type {string}
-     * @memberof BestPriorPrice
-     */
-    sku: string;
-    /**
      * The date and time when the price was observed.
      * @type {Date}
-     * @memberof BestPriorPrice
+     * @memberof History
      */
     observedAt: Date;
     /**
-     * The context ID of the context active at the time of observation.
+     * Identifier of the relevant context at the time the price was observed (e.g. summer sale).
      * 
      * @type {string}
-     * @memberof BestPriorPrice
+     * @memberof History
      */
     contextId: string;
     /**
      * Price of the item.
      * @type {number}
-     * @memberof BestPriorPrice
+     * @memberof History
      */
     price: number;
     /**
      * 
      * @type {BestPriorPriceMetadata}
-     * @memberof BestPriorPrice
+     * @memberof History
      */
     metadata: BestPriorPriceMetadata;
     /**
      * 
      * @type {object}
-     * @memberof BestPriorPrice
+     * @memberof History
      */
     target: object;
 }
 
 /**
- * Check if a given object implements the BestPriorPrice interface.
+ * Check if a given object implements the History interface.
  */
-export function instanceOfBestPriorPrice(value: object): value is BestPriorPrice {
+export function instanceOfHistory(value: object): value is History {
     if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('sku' in value) || value['sku'] === undefined) return false;
     if (!('observedAt' in value) || value['observedAt'] === undefined) return false;
     if (!('contextId' in value) || value['contextId'] === undefined) return false;
     if (!('price' in value) || value['price'] === undefined) return false;
@@ -86,18 +79,17 @@ export function instanceOfBestPriorPrice(value: object): value is BestPriorPrice
     return true;
 }
 
-export function BestPriorPriceFromJSON(json: any): BestPriorPrice {
-    return BestPriorPriceFromJSONTyped(json, false);
+export function HistoryFromJSON(json: any): History {
+    return HistoryFromJSONTyped(json, false);
 }
 
-export function BestPriorPriceFromJSONTyped(json: any, ignoreDiscriminator: boolean): BestPriorPrice {
+export function HistoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): History {
     if (json == null) {
         return json;
     }
     return {
         
         'id': json['id'],
-        'sku': json['sku'],
         'observedAt': (new Date(json['observedAt'])),
         'contextId': json['contextId'],
         'price': json['price'],
@@ -106,11 +98,11 @@ export function BestPriorPriceFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function BestPriorPriceToJSON(json: any): BestPriorPrice {
-    return BestPriorPriceToJSONTyped(json, false);
+export function HistoryToJSON(json: any): History {
+    return HistoryToJSONTyped(json, false);
 }
 
-export function BestPriorPriceToJSONTyped(value?: BestPriorPrice | null, ignoreDiscriminator: boolean = false): any {
+export function HistoryToJSONTyped(value?: History | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -118,7 +110,6 @@ export function BestPriorPriceToJSONTyped(value?: BestPriorPrice | null, ignoreD
     return {
         
         'id': value['id'],
-        'sku': value['sku'],
         'observedAt': value['observedAt'].toISOString(),
         'contextId': value['contextId'],
         'price': value['price'],

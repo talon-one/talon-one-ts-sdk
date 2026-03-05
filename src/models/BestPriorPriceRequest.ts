@@ -46,14 +46,27 @@ export interface BestPriorPriceRequest {
      */
     timeframe: string;
     /**
+     * This property is **deprecated**. Use `timeframeEndDateType` instead.
+     * 
      * Indicates whether the timeframe includes the start of the current sale.
      * - When `false`, the timeframe includes the start date of the current sale.
-     * - When `true`, the timeframe striclty uses the number of days specified in `timeframe`.
+     * - When `true`, the timeframe strictly uses the number of days specified in `timeframe`.
      * 
      * @type {boolean}
      * @memberof BestPriorPriceRequest
+     * @deprecated
      */
     strictEndDate: boolean;
+    /**
+     * Sets the timeframe for retrieving historical pricing data. Can be one of the following values:
+     * - `strict`: The timeframe ends at the `timeframeEndDate` value.
+     * - `price`: The timeframe ends at the start of the current `contextId` with the current price value. Identical price records are merged. If there is no `contextId` for the most recent price, the most recent timestamp for the price is used.
+     *  - `sale`:  The timeframe ends at the start of current `contextId` and takes the prices prior to the start of the `contextId` into account.
+     * 
+     * @type {BestPriorPriceRequestTimeframeEndDateTypeEnum}
+     * @memberof BestPriorPriceRequest
+     */
+    timeframeEndDateType?: BestPriorPriceRequestTimeframeEndDateTypeEnum;
     /**
      * 
      * @type {BestPriorTarget}
@@ -61,6 +74,18 @@ export interface BestPriorPriceRequest {
      */
     target?: BestPriorTarget;
 }
+
+
+/**
+ * @export
+ */
+export const BestPriorPriceRequestTimeframeEndDateTypeEnum = {
+    Strict: 'strict',
+    Price: 'price',
+    Sale: 'sale'
+} as const;
+export type BestPriorPriceRequestTimeframeEndDateTypeEnum = typeof BestPriorPriceRequestTimeframeEndDateTypeEnum[keyof typeof BestPriorPriceRequestTimeframeEndDateTypeEnum];
+
 
 /**
  * Check if a given object implements the BestPriorPriceRequest interface.
@@ -87,6 +112,7 @@ export function BestPriorPriceRequestFromJSONTyped(json: any, ignoreDiscriminato
         'timeframeEndDate': (new Date(json['timeframeEndDate'])),
         'timeframe': json['timeframe'],
         'strictEndDate': json['strictEndDate'],
+        'timeframeEndDateType': json['timeframeEndDateType'] == null ? undefined : json['timeframeEndDateType'],
         'target': json['target'] == null ? undefined : BestPriorTargetFromJSON(json['target']),
     };
 }
@@ -106,6 +132,7 @@ export function BestPriorPriceRequestToJSONTyped(value?: BestPriorPriceRequest |
         'timeframeEndDate': value['timeframeEndDate'].toISOString(),
         'timeframe': value['timeframe'],
         'strictEndDate': value['strictEndDate'],
+        'timeframeEndDateType': value['timeframeEndDateType'],
         'target': BestPriorTargetToJSON(value['target']),
     };
 }
