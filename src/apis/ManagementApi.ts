@@ -3966,7 +3966,7 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Creates request options for deleteUser without sending the request
      */
-    async deleteUserRequestOpts(requestParameters: DeleteUserRequest): Promise<runtime.RequestOpts> {
+    async deleteUserRequestOpts(requestParameters: DeleteUserApiRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
