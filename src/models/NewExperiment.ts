@@ -28,26 +28,12 @@ import {
  */
 export interface NewExperiment {
     /**
-     * The source of the assignment. - false - The assignment to the variant is handled internally by the Talon.Oneandled internally by the Talon.One. - true - The assignment to the variant handled externally.
+     * The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.
      * 
      * @type {boolean}
      * @memberof NewExperiment
      */
     isVariantAssignmentExternal: boolean;
-    /**
-     * The date and time the experiment was activated.
-     * 
-     * @type {Date}
-     * @memberof NewExperiment
-     */
-    activated?: Date;
-    /**
-     * A disabled experiment is not evaluated for rules or coupons.
-     * 
-     * @type {NewExperimentStateEnum}
-     * @memberof NewExperiment
-     */
-    state?: NewExperimentStateEnum;
     /**
      * 
      * @type {NewCampaign}
@@ -55,17 +41,6 @@ export interface NewExperiment {
      */
     campaign: NewCampaign;
 }
-
-
-/**
- * @export
- */
-export const NewExperimentStateEnum = {
-    Enabled: 'enabled',
-    Disabled: 'disabled'
-} as const;
-export type NewExperimentStateEnum = typeof NewExperimentStateEnum[keyof typeof NewExperimentStateEnum];
-
 
 /**
  * Check if a given object implements the NewExperiment interface.
@@ -87,8 +62,6 @@ export function NewExperimentFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'isVariantAssignmentExternal': json['isVariantAssignmentExternal'],
-        'activated': json['activated'] == null ? undefined : (new Date(json['activated'])),
-        'state': json['state'] == null ? undefined : json['state'],
         'campaign': NewCampaignFromJSON(json['campaign']),
     };
 }
@@ -105,8 +78,6 @@ export function NewExperimentToJSONTyped(value?: NewExperiment | null, ignoreDis
     return {
         
         'isVariantAssignmentExternal': value['isVariantAssignmentExternal'],
-        'activated': value['activated'] == null ? value['activated'] : value['activated'].toISOString(),
-        'state': value['state'],
         'campaign': NewCampaignToJSON(value['campaign']),
     };
 }

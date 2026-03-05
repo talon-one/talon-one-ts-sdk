@@ -34,7 +34,7 @@ export interface UpdateExperimentVariant {
      */
     id: number;
     /**
-     * 
+     * The name of this variant.
      * @type {string}
      * @memberof UpdateExperimentVariant
      */

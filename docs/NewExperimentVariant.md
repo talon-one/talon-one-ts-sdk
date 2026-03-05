@@ -18,7 +18,7 @@ import type { NewExperimentVariant } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "name": null,
+  "name": Variant A,
   "weight": 13,
   "ruleset": null,
   "isPrimary": true,

@@ -28,6 +28,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**getLoyaltyProgramProfileTransactions**](IntegrationApi.md#getloyaltyprogramprofiletransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions | List customer\&#39;s loyalty transactions |
 | [**getReservedCustomers**](IntegrationApi.md#getreservedcustomers) | **GET** /v1/coupon_reservations/customerprofiles/{couponValue} | List customers that have this coupon reserved |
 | [**linkLoyaltyCardToProfile**](IntegrationApi.md#linkloyaltycardtoprofile) | **POST** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile | Link customer profile to card |
+| [**priceHistory**](IntegrationApi.md#pricehistoryoperation) | **POST** /v1/best_prior_price_history | Get summary of price history |
 | [**reopenCustomerSession**](IntegrationApi.md#reopencustomersession) | **PUT** /v2/customer_sessions/{customerSessionId}/reopen | Reopen customer session |
 | [**returnCartItems**](IntegrationApi.md#returncartitems) | **POST** /v2/customer_sessions/{customerSessionId}/returns | Return cart items |
 | [**syncCatalog**](IntegrationApi.md#synccatalog) | **PUT** /v1/catalogs/{catalogId}/sync | Sync cart item catalog |
@@ -2022,6 +2023,81 @@ example().catch(console.error);
 | **400** | Bad request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## priceHistory
+
+> PriceHistoryResponse priceHistory(priceHistoryRequest)
+
+Get summary of price history
+
+Fetch the historical price data for a given SKU within a defined timeframe. 
+
+### Example
+
+```ts
+import {
+  Configuration,
+  IntegrationApi,
+} from 'talon_one_sdk';
+import type { PriceHistoryOperationRequest } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: management_key
+    apiKey: "YOUR API KEY",
+    // To configure API key authorization: manager_auth
+    apiKey: "YOUR API KEY",
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new IntegrationApi(config);
+
+  const body = {
+    // PriceHistoryRequest | body
+    priceHistoryRequest: ...,
+  } satisfies PriceHistoryOperationRequest;
+
+  try {
+    const data = await api.priceHistory(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **priceHistoryRequest** | [PriceHistoryRequest](PriceHistoryRequest.md) | body | |
+
+### Return type
+
+[**PriceHistoryResponse**](PriceHistoryResponse.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ok |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

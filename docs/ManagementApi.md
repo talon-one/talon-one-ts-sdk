@@ -43,6 +43,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**disconnectCampaignStores**](ManagementApi.md#disconnectcampaignstores) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/stores | Disconnect stores |
 | [**exportAccountCollectionItems**](ManagementApi.md#exportaccountcollectionitems) | **GET** /v1/collections/{collectionId}/export | Export account-level collection\&#39;s items |
 | [**exportAchievements**](ManagementApi.md#exportachievements) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId}/export | Export achievement customer data |
+| [**exportApplicationCampaignAnalytics**](ManagementApi.md#exportapplicationcampaignanalytics) | **GET** /v1/applications/{applicationId}/campaign_analytics/export | Export Application analytics aggregated by campaign |
 | [**exportAudiencesMemberships**](ManagementApi.md#exportaudiencesmemberships) | **GET** /v1/audiences/{audienceId}/memberships/export | Export audience members |
 | [**exportCampaignStoreBudgets**](ManagementApi.md#exportcampaignstorebudgets) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/export | Export campaign store budgets |
 | [**exportCampaignStores**](ManagementApi.md#exportcampaignstores) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/export | Export stores |
@@ -56,6 +57,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**exportLoyaltyCardBalances**](ManagementApi.md#exportloyaltycardbalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/export_card_balances | Export all card transaction logs |
 | [**exportLoyaltyCardLedger**](ManagementApi.md#exportloyaltycardledger) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/export_log | Export card\&#39;s ledger log |
 | [**exportLoyaltyCards**](ManagementApi.md#exportloyaltycards) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/export | Export loyalty cards |
+| [**exportLoyaltyJoinDates**](ManagementApi.md#exportloyaltyjoindates) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/export_join_dates | Export customers\&#39; loyalty program join dates |
 | [**exportLoyaltyLedger**](ManagementApi.md#exportloyaltyledger) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/export_log | Export customer\&#39;s transaction logs |
 | [**exportPoolGiveaways**](ManagementApi.md#exportpoolgiveaways) | **GET** /v1/giveaways/pools/{poolId}/export | Export giveaway codes of a giveaway pool |
 | [**exportReferrals**](ManagementApi.md#exportreferrals) | **GET** /v1/applications/{applicationId}/export_referrals | Export referrals |
@@ -103,6 +105,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**getCustomersByAttributes**](ManagementApi.md#getcustomersbyattributes) | **POST** /v1/customer_search/no_total | List customer profiles matching the given attributes |
 | [**getDashboardStatistics**](ManagementApi.md#getdashboardstatistics) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/dashboard | Get statistics for loyalty dashboard |
 | [**getEventTypes**](ManagementApi.md#geteventtypes) | **GET** /v1/event_types | List event types |
+| [**getExperiment**](ManagementApi.md#getexperiment) | **GET** /v1/applications/{applicationId}/experiments/{experimentId} | Get experiment in Application |
 | [**getExports**](ManagementApi.md#getexports) | **GET** /v1/exports | Get exports |
 | [**getLoyaltyCard**](ManagementApi.md#getloyaltycard) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Get loyalty card |
 | [**getLoyaltyCardTransactionLogs**](ManagementApi.md#getloyaltycardtransactionlogs) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card\&#39;s transactions |
@@ -144,6 +147,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**listCatalogItems**](ManagementApi.md#listcatalogitems) | **GET** /v1/catalogs/{catalogId}/items | List items in a catalog |
 | [**listCollections**](ManagementApi.md#listcollections) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections in campaign |
 | [**listCollectionsInApplication**](ManagementApi.md#listcollectionsinapplication) | **GET** /v1/applications/{applicationId}/collections | List collections in Application |
+| [**listExperiments**](ManagementApi.md#listexperiments) | **GET** /v1/applications/{applicationId}/experiments | List experiments |
 | [**listStores**](ManagementApi.md#liststores) | **GET** /v1/applications/{applicationId}/stores | List stores |
 | [**oktaEventHandlerChallenge**](ManagementApi.md#oktaeventhandlerchallenge) | **GET** /v1/provisioning/okta | Validate Okta API ownership |
 | [**removeLoyaltyPoints**](ManagementApi.md#removeloyaltypoints) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/deduct_points | Deduct points from customer profile |
@@ -3314,6 +3318,90 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## exportApplicationCampaignAnalytics
+
+> string exportApplicationCampaignAnalytics(applicationId, rangeStart, rangeEnd, campaignIds)
+
+Export Application analytics aggregated by campaign
+
+Download a CSV file containing analytics data aggregated by campaign for the campaigns of an Application.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - &#x60;campaign_id&#x60;: The ID of the campaign. This column also contains labels for the [total and influenced values](https://docs.talon.one/docs/product/campaigns/analytics/application-dashboard#understanding-the-analytics-data). - &#x60;start_date&#x60;: The start of the aggregation time frame in UTC. - &#x60;end_date&#x60;: The end of the aggregation time frame in UTC. - &#x60;revenue&#x60;: The total, pre-discount value of all items purchased in a customer session. - &#x60;sessions&#x60;: The number of all closed sessions. - &#x60;average_session_value&#x60;: The average customer session value, calculated by dividing the revenue value by the number of sessions. - &#x60;average_items_per_session&#x60;: The number of items from sessions divided by the number of sessions. - &#x60;coupons&#x60;: The number of times a coupon was successfully redeemed in sessions. - &#x60;discounts&#x60;: The total value of discounts given for cart items in sessions. 
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { ExportApplicationCampaignAnalyticsRequest } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: management_key
+    apiKey: "YOUR API KEY",
+    // To configure API key authorization: manager_auth
+    apiKey: "YOUR API KEY",
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // number | The ID of the Application. It is displayed in your Talon.One deployment URL.
+    applicationId: 789,
+    // Date | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    rangeStart: 2013-10-20T19:20:30+01:00,
+    // Date | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    rangeEnd: 2013-10-20T19:20:30+01:00,
+    // Array<string> | Filter by one or more Campaign IDs, separated by a comma.  **Note:** If no campaigns are specified, data for all the campaigns in the Application is returned.  (optional)
+    campaignIds: ...,
+  } satisfies ExportApplicationCampaignAnalyticsRequest;
+
+  try {
+    const data = await api.exportApplicationCampaignAnalytics(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
+| **rangeStart** | `Date` | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeEnd** | `Date` | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **campaignIds** | `Array<string>` | Filter by one or more Campaign IDs, separated by a comma.  **Note:** If no campaigns are specified, data for all the campaigns in the Application is returned.  | [Optional] |
+
+### Return type
+
+**string**
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/csv`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## exportAudiencesMemberships
 
 > string exportAudiencesMemberships(audienceId)
@@ -4411,6 +4499,83 @@ example().catch(console.error);
 | **createdBefore** | `Date` | Only return loyalty cards created before this timestamp.  **Note:** - This must be an RFC3339 timestamp string.  | [Optional] [Defaults to `undefined`] |
 | **createdAfter** | `Date` | Only return loyalty cards created after this timestamp.  **Note:** - This must be an RFC3339 timestamp string.  | [Optional] [Defaults to `undefined`] |
 | **dateFormat** | `excel`, `ISO8601` | Determines the format of dates in the export document. | [Optional] [Defaults to `undefined`] [Enum: excel, ISO8601] |
+
+### Return type
+
+**string**
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/csv`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## exportLoyaltyJoinDates
+
+> string exportLoyaltyJoinDates(loyaltyProgramId)
+
+Export customers\&#39; loyalty program join dates
+
+Download a CSV file containing the join dates of all customers in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;joinDate&#x60;: The customer\&#39;s loyalty program join date in RFC3339 format. 
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { ExportLoyaltyJoinDatesRequest } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: management_key
+    apiKey: "YOUR API KEY",
+    // To configure API key authorization: manager_auth
+    apiKey: "YOUR API KEY",
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // string | The identifier of the loyalty program.
+    loyaltyProgramId: loyaltyProgramId_example,
+  } satisfies ExportLoyaltyJoinDatesRequest;
+
+  try {
+    const data = await api.exportLoyaltyJoinDates(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **loyaltyProgramId** | `string` | The identifier of the loyalty program. | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -8541,6 +8706,84 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## getExperiment
+
+> Experiment getExperiment(applicationId, experimentId)
+
+Get experiment in Application
+
+Retrieve the given experiment associated with the Application.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { GetExperimentRequest } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: management_key
+    apiKey: "YOUR API KEY",
+    // To configure API key authorization: manager_auth
+    apiKey: "YOUR API KEY",
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // number | The ID of the Application. It is displayed in your Talon.One deployment URL.
+    applicationId: 789,
+    // number | The ID of the experiment.
+    experimentId: 789,
+  } satisfies GetExperimentRequest;
+
+  try {
+    const data = await api.getExperiment(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
+| **experimentId** | `number` | The ID of the experiment. | [Defaults to `undefined`] |
+
+### Return type
+
+[**Experiment**](Experiment.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## getExports
 
 > GetExports200Response getExports(pageSize, skip, applicationId, campaignId, entity)
@@ -10879,7 +11122,7 @@ example().catch(console.error);
 
 Import coupons
 
-Upload a CSV file containing the coupons that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - &#x60;value&#x60; (required): The coupon code. - &#x60;expirydate&#x60;: The end date in RFC3339 of the code redemption period. - &#x60;startdate&#x60;: The start date in RFC3339 of the code redemption period. - &#x60;recipientintegrationid&#x60;: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - &#x60;limitval&#x60;: The maximum number of redemptions of this code. For unlimited redemptions, use &#x60;0&#x60;. Defaults to &#x60;1&#x60; when not provided. - &#x60;discountlimit&#x60;: The total discount value that the code can give. This is typically used to represent a gift card value. - &#x60;attributes&#x60;: A JSON object describing _custom_ coupon attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called &#x60;category&#x60; associated with the coupon entity, the object in the CSV file, when opened in a text editor, must be: &#x60;\&quot;{\&quot;category\&quot;: \&quot;10_off\&quot;}\&quot;&#x60;.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;text \&quot;value\&quot;,\&quot;expirydate\&quot;,\&quot;startdate\&quot;,\&quot;recipientintegrationid\&quot;,\&quot;limitval\&quot;,\&quot;attributes\&quot;,\&quot;discountlimit\&quot; COUP1,2018-07-01T04:00:00Z,2018-05-01T04:00:00Z,cust123,1,\&quot;{\&quot;\&quot;Category\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot;,2.4 &#x60;&#x60;&#x60;  Once imported, you can find the &#x60;batchId&#x60; in the Campaign Manager or by using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount). 
+Upload a CSV file containing the coupons that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - &#x60;value&#x60; (required): The coupon code. Must be at least 3 characters long. We recommend using alphanumeric characters.   There is no maximum length but limiting the code to 30 characters   ensures it is fully readable in the Campaign Manager.   The code should be unique unless you set &#x60;skipDuplicates&#x60; to &#x60;true&#x60;.  - &#x60;expirydate&#x60;: The end date in RFC3339 of the code redemption period. - &#x60;startdate&#x60;: The start date in RFC3339 of the code redemption period. - &#x60;recipientintegrationid&#x60;: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - &#x60;limitval&#x60;: The maximum number of redemptions of this code. For unlimited redemptions, use &#x60;0&#x60;. Defaults to &#x60;1&#x60; when not provided. - &#x60;discountlimit&#x60;: The total discount value that the code can give. This is typically used to represent a gift card value. - &#x60;attributes&#x60;: A JSON object describing _custom_ coupon attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called &#x60;category&#x60; associated with the coupon entity, the object in the CSV file, when opened in a text editor, must be: &#x60;\&quot;{\&quot;category\&quot;: \&quot;10_off\&quot;}\&quot;&#x60;.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;text \&quot;value\&quot;,\&quot;expirydate\&quot;,\&quot;startdate\&quot;,\&quot;recipientintegrationid\&quot;,\&quot;limitval\&quot;,\&quot;attributes\&quot;,\&quot;discountlimit\&quot; COUP1,2018-07-01T04:00:00Z,2018-05-01T04:00:00Z,cust123,1,\&quot;{\&quot;\&quot;Category\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot;,2.4 &#x60;&#x60;&#x60;  Once imported, you can find the &#x60;batchId&#x60; in the Campaign Manager or by using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount). 
 
 ### Example
 
@@ -10963,7 +11206,7 @@ example().catch(console.error);
 
 Import loyalty cards
 
-Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The alphanumeric identifier of the loyalty card. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
+Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The alphanumeric identifier of the loyalty card. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - &#x60;attributes&#x60; (optional): A JSON object that contains the loyalty card\&#39;s custom attributes and their values. These attributes must be created and connected to this loyalty program before  they can be assigned to the cards through this endpoint.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,\&quot;{\&quot;\&quot;my_attribute\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
 
 ### Example
 
@@ -12035,6 +12278,90 @@ example().catch(console.error);
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listExperiments
+
+> ListExperiments200Response listExperiments(applicationId, pageSize, skip, sort)
+
+List experiments
+
+List all experiments of the specified Application that match your filter criteria.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { ListExperimentsRequest } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: management_key
+    apiKey: "YOUR API KEY",
+    // To configure API key authorization: manager_auth
+    apiKey: "YOUR API KEY",
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // number | The ID of the Application. It is displayed in your Talon.One deployment URL.
+    applicationId: 789,
+    // number | The number of items in the response. (optional)
+    pageSize: 789,
+    // number | The number of items to skip when paging through large result sets. (optional)
+    skip: 789,
+    // string | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)
+    sort: sort_example,
+  } satisfies ListExperimentsRequest;
+
+  try {
+    const data = await api.listExperiments(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
+| **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `1000`] |
+| **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
+| **sort** | `string` | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [Optional] [Defaults to `undefined`] |
+
+### Return type
+
+[**ListExperiments200Response**](ListExperiments200Response.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

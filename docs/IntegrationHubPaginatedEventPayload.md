@@ -1,24 +1,28 @@
 
-# NewExperiment
+# IntegrationHubPaginatedEventPayload
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`isVariantAssignmentExternal` | boolean
-`campaign` | [NewCampaign](NewCampaign.md)
+`totalResultSize` | number
+`batchedAt` | Date
+`eventType` | string
+`data` | Array&lt;any&gt;
 
 ## Example
 
 ```typescript
-import type { NewExperiment } from 'talon_one_sdk'
+import type { IntegrationHubPaginatedEventPayload } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "isVariantAssignmentExternal": null,
-  "campaign": null,
-} satisfies NewExperiment
+  "totalResultSize": null,
+  "batchedAt": null,
+  "eventType": null,
+  "data": null,
+} satisfies IntegrationHubPaginatedEventPayload
 
 console.log(example)
 
@@ -27,7 +31,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as NewExperiment
+const exampleParsed = JSON.parse(exampleJSON) as IntegrationHubPaginatedEventPayload
 console.log(exampleParsed)
 ```
 

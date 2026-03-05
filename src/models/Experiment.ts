@@ -53,7 +53,7 @@ export interface Experiment {
      */
     applicationId: number;
     /**
-     * The source of the assignment. - false - The assignment to the variant is handled internally by the Talon.Oneandled internally by the Talon.One. - true - The assignment to the variant handled externally.
+     * The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.
      * 
      * @type {boolean}
      * @memberof Experiment
@@ -78,7 +78,7 @@ export interface Experiment {
      * @type {ExperimentStateEnum}
      * @memberof Experiment
      */
-    state?: ExperimentStateEnum;
+    state: ExperimentStateEnum;
     /**
      * 
      * @type {Array<ExperimentVariant>}
@@ -100,7 +100,8 @@ export interface Experiment {
  */
 export const ExperimentStateEnum = {
     Enabled: 'enabled',
-    Disabled: 'disabled'
+    Disabled: 'disabled',
+    Archived: 'archived'
 } as const;
 export type ExperimentStateEnum = typeof ExperimentStateEnum[keyof typeof ExperimentStateEnum];
 
@@ -112,6 +113,7 @@ export function instanceOfExperiment(value: object): value is Experiment {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('created' in value) || value['created'] === undefined) return false;
     if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
+    if (!('state' in value) || value['state'] === undefined) return false;
     return true;
 }
 
@@ -131,7 +133,7 @@ export function ExperimentFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'isVariantAssignmentExternal': json['isVariantAssignmentExternal'] == null ? undefined : json['isVariantAssignmentExternal'],
         'campaign': json['campaign'] == null ? undefined : CampaignFromJSON(json['campaign']),
         'activated': json['activated'] == null ? undefined : (new Date(json['activated'])),
-        'state': json['state'] == null ? undefined : json['state'],
+        'state': json['state'],
         'variants': json['variants'] == null ? undefined : ((json['variants'] as Array<any>).map(ExperimentVariantFromJSON)),
         'deletedat': json['deletedat'] == null ? undefined : (new Date(json['deletedat'])),
     };

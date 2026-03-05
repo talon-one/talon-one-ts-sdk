@@ -1,24 +1,24 @@
 
-# NewExperiment
+# ListExperiments200Response
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`isVariantAssignmentExternal` | boolean
-`campaign` | [NewCampaign](NewCampaign.md)
+`totalResultSize` | number
+`data` | [Array&lt;Experiment&gt;](Experiment.md)
 
 ## Example
 
 ```typescript
-import type { NewExperiment } from 'talon_one_sdk'
+import type { ListExperiments200Response } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "isVariantAssignmentExternal": null,
-  "campaign": null,
-} satisfies NewExperiment
+  "totalResultSize": 1,
+  "data": null,
+} satisfies ListExperiments200Response
 
 console.log(example)
 
@@ -27,7 +27,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as NewExperiment
+const exampleParsed = JSON.parse(exampleJSON) as ListExperiments200Response
 console.log(exampleParsed)
 ```
 
