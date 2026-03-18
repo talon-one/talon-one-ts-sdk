@@ -100,7 +100,7 @@ export interface CardAddedDeductedPointsNotification {
      */
     expiryDate?: Date;
     /**
-     * The action (addition or deduction) made with loyalty points.
+     * The action (addition or subtraction) made with loyalty points.
      * @type {CardAddedDeductedPointsNotificationOperationEnum}
      * @memberof CardAddedDeductedPointsNotification
      */
@@ -117,6 +117,12 @@ export interface CardAddedDeductedPointsNotification {
      * @memberof CardAddedDeductedPointsNotification
      */
     startDate?: Date;
+    /**
+     * The identifier of the transaction in the loyalty ledger.
+     * @type {string}
+     * @memberof CardAddedDeductedPointsNotification
+     */
+    transactionUUID: string;
 }
 
 
@@ -144,7 +150,7 @@ export type CardAddedDeductedPointsNotificationTypeOfChangeEnum = typeof CardAdd
  */
 export const CardAddedDeductedPointsNotificationOperationEnum = {
     Addition: 'addition',
-    Deduction: 'deduction'
+    Subtraction: 'subtraction'
 } as const;
 export type CardAddedDeductedPointsNotificationOperationEnum = typeof CardAddedDeductedPointsNotificationOperationEnum[keyof typeof CardAddedDeductedPointsNotificationOperationEnum];
 
@@ -166,6 +172,7 @@ export function instanceOfCardAddedDeductedPointsNotification(value: object): va
     if (!('amount' in value) || value['amount'] === undefined) return false;
     if (!('operation' in value) || value['operation'] === undefined) return false;
     if (!('reason' in value) || value['reason'] === undefined) return false;
+    if (!('transactionUUID' in value) || value['transactionUUID'] === undefined) return false;
     return true;
 }
 
@@ -194,6 +201,7 @@ export function CardAddedDeductedPointsNotificationFromJSONTyped(json: any, igno
         'operation': json['Operation'],
         'reason': json['Reason'],
         'startDate': json['StartDate'] == null ? undefined : (new Date(json['StartDate'])),
+        'transactionUUID': json['TransactionUUID'],
     };
 }
 
@@ -223,6 +231,7 @@ export function CardAddedDeductedPointsNotificationToJSONTyped(value?: CardAdded
         'Operation': value['operation'],
         'Reason': value['reason'],
         'StartDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
+        'TransactionUUID': value['transactionUUID'],
     };
 }
 

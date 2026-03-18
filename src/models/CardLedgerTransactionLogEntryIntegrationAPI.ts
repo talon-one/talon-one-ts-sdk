@@ -38,7 +38,7 @@ export interface CardLedgerTransactionLogEntryIntegrationAPI {
      */
     programId: number;
     /**
-     * The alphanumeric identifier of the loyalty card.
+     * The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`.
      * 
      * @type {string}
      * @memberof CardLedgerTransactionLogEntryIntegrationAPI

@@ -25,10 +25,14 @@ docs/AccountEntity.md
 docs/AccountLimits.md
 docs/Achievement.md
 docs/AchievementAdditionalProperties.md
+docs/AchievementAdditionalPropertiesV2.md
 docs/AchievementBase.md
+docs/AchievementBaseV2.md
 docs/AchievementProgress.md
 docs/AchievementProgressWithDefinition.md
+docs/AchievementReference.md
 docs/AchievementStatusEntry.md
+docs/AchievementV2.md
 docs/ActivateLoyaltyPoints.md
 docs/ActivateLoyaltyPointsResponse.md
 docs/ActivateUserRequest.md
@@ -184,6 +188,7 @@ docs/CouponWithApplication.md
 docs/CouponsNotificationData.md
 docs/CouponsNotificationPolicy.md
 docs/CreateAchievement.md
+docs/CreateAchievementV2.md
 docs/CreateApplicationAPIKey.md
 docs/CreateCouponData.md
 docs/CreateCoupons200Response.md
@@ -320,6 +325,7 @@ docs/ImportEntity.md
 docs/IncreaseAchievementProgressEffectProps.md
 docs/InfluencingCampaignDetails.md
 docs/IntegrationApi.md
+docs/IntegrationCampaign.md
 docs/IntegrationCoupon.md
 docs/IntegrationCustomerProfileAudienceRequest.md
 docs/IntegrationCustomerProfileAudienceRequestItem.md
@@ -633,6 +639,7 @@ docs/TriggerWebhookEffectProps.md
 docs/TwoFAConfig.md
 docs/UpdateAccount.md
 docs/UpdateAchievement.md
+docs/UpdateAchievementV2.md
 docs/UpdateApplication.md
 docs/UpdateApplicationAPIKey.md
 docs/UpdateApplicationCIF.md
@@ -700,10 +707,14 @@ src/models/AccountEntity.ts
 src/models/AccountLimits.ts
 src/models/Achievement.ts
 src/models/AchievementAdditionalProperties.ts
+src/models/AchievementAdditionalPropertiesV2.ts
 src/models/AchievementBase.ts
+src/models/AchievementBaseV2.ts
 src/models/AchievementProgress.ts
 src/models/AchievementProgressWithDefinition.ts
+src/models/AchievementReference.ts
 src/models/AchievementStatusEntry.ts
+src/models/AchievementV2.ts
 src/models/ActivateLoyaltyPoints.ts
 src/models/ActivateLoyaltyPointsResponse.ts
 src/models/ActivateUserRequest.ts
@@ -859,6 +870,7 @@ src/models/CouponWithApplication.ts
 src/models/CouponsNotificationData.ts
 src/models/CouponsNotificationPolicy.ts
 src/models/CreateAchievement.ts
+src/models/CreateAchievementV2.ts
 src/models/CreateApplicationAPIKey.ts
 src/models/CreateCouponData.ts
 src/models/CreateCoupons200Response.ts
@@ -994,6 +1006,7 @@ src/models/Import.ts
 src/models/ImportEntity.ts
 src/models/IncreaseAchievementProgressEffectProps.ts
 src/models/InfluencingCampaignDetails.ts
+src/models/IntegrationCampaign.ts
 src/models/IntegrationCoupon.ts
 src/models/IntegrationCustomerProfileAudienceRequest.ts
 src/models/IntegrationCustomerProfileAudienceRequestItem.ts
@@ -1306,6 +1319,7 @@ src/models/TriggerWebhookEffectProps.ts
 src/models/TwoFAConfig.ts
 src/models/UpdateAccount.ts
 src/models/UpdateAchievement.ts
+src/models/UpdateAchievementV2.ts
 src/models/UpdateApplication.ts
 src/models/UpdateApplicationAPIKey.ts
 src/models/UpdateApplicationCIF.ts

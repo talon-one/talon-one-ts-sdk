@@ -292,7 +292,7 @@ async function example() {
   const api = new ManagementApi(config);
 
   const body = {
-    // number | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
+    // number | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode `NewCard2026%` as `NewCard2026%25`. 
     loyaltyProgramId: 789,
     // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. 
     loyaltyCardId: loyaltyCardId_example,
@@ -317,7 +317,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
+| **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  | [Defaults to `undefined`] |
 | **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | [Defaults to `undefined`] |
 | **addLoyaltyPoints** | [AddLoyaltyPoints](AddLoyaltyPoints.md) | body | |
 
@@ -1965,7 +1965,7 @@ async function example() {
   const body = {
     // number | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
     loyaltyProgramId: 789,
-    // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. 
+    // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode `NewCard2026%` as `NewCard2026%25`. 
     loyaltyCardId: loyaltyCardId_example,
     // DeductLoyaltyPoints | body
     deductLoyaltyPoints: ...,
@@ -1989,7 +1989,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
-| **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | [Defaults to `undefined`] |
+| **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  | [Defaults to `undefined`] |
 | **deductLoyaltyPoints** | [DeductLoyaltyPoints](DeductLoyaltyPoints.md) | body | |
 
 ### Return type
@@ -2651,7 +2651,7 @@ async function example() {
   const body = {
     // number | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
     loyaltyProgramId: 789,
-    // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. 
+    // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode `NewCard2026%` as `NewCard2026%25`. 
     loyaltyCardId: loyaltyCardId_example,
   } satisfies DeleteLoyaltyCardRequest;
 
@@ -2673,7 +2673,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
-| **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | [Defaults to `undefined`] |
+| **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -3324,7 +3324,7 @@ example().catch(console.error);
 
 Export Application analytics aggregated by campaign
 
-Download a CSV file containing analytics data aggregated by campaign for the campaigns of an Application.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - &#x60;campaign_id&#x60;: The ID of the campaign. This column also contains labels for the [total and influenced values](https://docs.talon.one/docs/product/campaigns/analytics/application-dashboard#understanding-the-analytics-data). - &#x60;start_date&#x60;: The start of the aggregation time frame in UTC. - &#x60;end_date&#x60;: The end of the aggregation time frame in UTC. - &#x60;revenue&#x60;: The total, pre-discount value of all items purchased in a customer session. - &#x60;sessions&#x60;: The number of all closed sessions. - &#x60;average_session_value&#x60;: The average customer session value, calculated by dividing the revenue value by the number of sessions. - &#x60;average_items_per_session&#x60;: The number of items from sessions divided by the number of sessions. - &#x60;coupons&#x60;: The number of times a coupon was successfully redeemed in sessions. - &#x60;discounts&#x60;: The total value of discounts given for cart items in sessions. 
+Download a CSV file containing analytics data aggregated by campaign for the campaigns of an Application.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - &#x60;campaign_id&#x60;: The ID of the campaign. This column also contains labels for the [total and influenced values](https://docs.talon.one/docs/product/campaigns/analytics/application-dashboard#display-the-analytics-data). - &#x60;start_date&#x60;: The start of the aggregation time frame in UTC. - &#x60;end_date&#x60;: The end of the aggregation time frame in UTC. - &#x60;revenue&#x60;: The total, pre-discount value of all items purchased in a customer session. - &#x60;sessions&#x60;: The number of all closed sessions. - &#x60;average_session_value&#x60;: The average customer session value, calculated by dividing the revenue value by the number of sessions. - &#x60;average_items_per_session&#x60;: The number of items from sessions divided by the number of sessions. - &#x60;coupons&#x60;: The number of times a coupon was successfully redeemed in sessions. - &#x60;discounts&#x60;: The total value of discounts given for cart items in sessions. 
 
 ### Example
 
@@ -4272,7 +4272,7 @@ example().catch(console.error);
 
 Export all card transaction logs
 
-Download a CSV file containing the balances of all cards in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subdleger, when applicatble. - &#x60;cardIdentifier&#x60;: The alphanumeric identifier of the loyalty card. - &#x60;cardState&#x60;:The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. 
+Download a CSV file containing the balances of all cards in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subdleger, when applicatble. - &#x60;cardIdentifier&#x60;: The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;cardState&#x60;:The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. 
 
 ### Example
 
@@ -4378,7 +4378,7 @@ async function example() {
   const body = {
     // number | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
     loyaltyProgramId: 789,
-    // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. 
+    // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode `NewCard2026%` as `NewCard2026%25`. 
     loyaltyCardId: loyaltyCardId_example,
     // Date | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeStart: 2013-10-20T19:20:30+01:00,
@@ -4406,7 +4406,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
-| **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | [Defaults to `undefined`] |
+| **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  | [Defaults to `undefined`] |
 | **rangeStart** | `Date` | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
 | **rangeEnd** | `Date` | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
 | **dateFormat** | `excel`, `ISO8601` | Determines the format of dates in the export document. | [Optional] [Defaults to `undefined`] [Enum: excel, ISO8601] |
@@ -6290,7 +6290,7 @@ example().catch(console.error);
 
 ## getApplicationSessions
 
-> GetApplicationSessions200Response getApplicationSessions(applicationId, pageSize, skip, sort, profile, state, createdBefore, createdAfter, coupon, referral, integrationId, storeIntegrationId)
+> GetApplicationSessions200Response getApplicationSessions(applicationId, pageSize, skip, sort, partialMatch, profile, state, createdBefore, createdAfter, coupon, referral, integrationId, storeIntegrationId)
 
 List Application sessions
 
@@ -6326,7 +6326,9 @@ async function example() {
     skip: 789,
     // string | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)
     sort: sort_example,
-    // string | Profile integration ID filter for sessions. Must be exact match. (optional)
+    // boolean | Enables partial matching for a single text search field. When enabled, the search term matches anywhere within the field value (case-insensitive). Minimum 3 characters required for partial matches; shorter inputs automatically fall back to exact match.  **Note:** Use with one of: `integrationId`, `profile`, `coupon`, `referral`, or `storeIntegrationId`. (optional)
+    partialMatch: true,
+    // string | Filter by sessions with this profile integration ID. By default, requires exact match. Use `partialMatch=true` to search for partial matches (minimum 3 characters). (optional)
     profile: profile_example,
     // 'open' | 'closed' | 'partially_returned' | 'cancelled' | Filter by sessions with this state. Must be exact match. (optional)
     state: state_example,
@@ -6334,13 +6336,13 @@ async function example() {
     createdBefore: 2013-10-20T19:20:30+01:00,
     // Date | Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)
     createdAfter: 2013-10-20T19:20:30+01:00,
-    // string | Filter by sessions with this coupon. Must be exact match. (optional)
+    // string | Filter by sessions with this coupon. By default, requires exact match. Use `partialMatch=true` to search for partial matches (minimum 3 characters). (optional)
     coupon: coupon_example,
-    // string | Filter by sessions with this referral. Must be exact match. (optional)
+    // string | Filter by sessions with this referral. By default, requires exact match. Use `partialMatch=true` to search for partial matches (minimum 3 characters). (optional)
     referral: referral_example,
-    // string | Filter by sessions with this integration ID. Must be exact match. (optional)
+    // string | Filter by sessions with this integration ID. By default, requires exact match. Use `partialMatch=true` to search for partial matches (minimum 3 characters). (optional)
     integrationId: integrationId_example,
-    // string | The integration ID of the store. You choose this ID when you create a store. (optional)
+    // string | The integration ID of the store. You choose this ID when you create a store. By default, requires exact match. Use `partialMatch=true` to search for partial matches (minimum 3 characters). (optional)
     storeIntegrationId: storeIntegrationId_example,
   } satisfies GetApplicationSessionsRequest;
 
@@ -6365,14 +6367,15 @@ example().catch(console.error);
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `1000`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
 | **sort** | `string` | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [Optional] [Defaults to `undefined`] |
-| **profile** | `string` | Profile integration ID filter for sessions. Must be exact match. | [Optional] [Defaults to `undefined`] |
+| **partialMatch** | `boolean` | Enables partial matching for a single text search field. When enabled, the search term matches anywhere within the field value (case-insensitive). Minimum 3 characters required for partial matches; shorter inputs automatically fall back to exact match.  **Note:** Use with one of: &#x60;integrationId&#x60;, &#x60;profile&#x60;, &#x60;coupon&#x60;, &#x60;referral&#x60;, or &#x60;storeIntegrationId&#x60;. | [Optional] [Defaults to `false`] |
+| **profile** | `string` | Filter by sessions with this profile integration ID. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | [Optional] [Defaults to `undefined`] |
 | **state** | `open`, `closed`, `partially_returned`, `cancelled` | Filter by sessions with this state. Must be exact match. | [Optional] [Defaults to `undefined`] [Enum: open, closed, partially_returned, cancelled] |
 | **createdBefore** | `Date` | Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally. | [Optional] [Defaults to `undefined`] |
 | **createdAfter** | `Date` | Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally. | [Optional] [Defaults to `undefined`] |
-| **coupon** | `string` | Filter by sessions with this coupon. Must be exact match. | [Optional] [Defaults to `undefined`] |
-| **referral** | `string` | Filter by sessions with this referral. Must be exact match. | [Optional] [Defaults to `undefined`] |
-| **integrationId** | `string` | Filter by sessions with this integration ID. Must be exact match. | [Optional] [Defaults to `undefined`] |
-| **storeIntegrationId** | `string` | The integration ID of the store. You choose this ID when you create a store. | [Optional] [Defaults to `undefined`] |
+| **coupon** | `string` | Filter by sessions with this coupon. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | [Optional] [Defaults to `undefined`] |
+| **referral** | `string` | Filter by sessions with this referral. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | [Optional] [Defaults to `undefined`] |
+| **integrationId** | `string` | Filter by sessions with this integration ID. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | [Optional] [Defaults to `undefined`] |
+| **storeIntegrationId** | `string` | The integration ID of the store. You choose this ID when you create a store. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -8903,7 +8906,7 @@ async function example() {
   const body = {
     // number | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
     loyaltyProgramId: 789,
-    // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. 
+    // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode `NewCard2026%` as `NewCard2026%25`. 
     loyaltyCardId: loyaltyCardId_example,
   } satisfies GetLoyaltyCardRequest;
 
@@ -8925,7 +8928,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
-| **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | [Defaults to `undefined`] |
+| **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -8984,7 +8987,7 @@ async function example() {
   const body = {
     // number | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
     loyaltyProgramId: 789,
-    // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. 
+    // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode `NewCard2026%` as `NewCard2026%25`. 
     loyaltyCardId: loyaltyCardId_example,
     // Date | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
     startDate: 2013-10-20T19:20:30+01:00,
@@ -8996,9 +8999,9 @@ async function example() {
     skip: 789,
     // string | The ID of the subledger by which we filter the data. (optional)
     subledgerId: subledgerId_example,
-    // Array<string> | Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  `?customerSessionIDs=id1&customerSessionIDs=id2`.  The response contains only data associated with the specified sessions.  (optional)
+    // Array<string> | Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, `?customerSessionIDs=id1&customerSessionIDs=id2`.  The response contains only data associated with the specified sessions.  (optional)
     customerSessionIDs: ...,
-    // Array<string> | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.  The response contains only data associated with the specified transactions.  (optional)
+    // Array<string> | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.  The response contains only data associated with the specified transactions.  (optional)
     transactionUUIDs: ...,
   } satisfies GetLoyaltyCardTransactionLogsRequest;
 
@@ -9020,14 +9023,14 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
-| **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | [Defaults to `undefined`] |
+| **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  | [Defaults to `undefined`] |
 | **startDate** | `Date` | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
 | **endDate** | `Date` | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `1000`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
 | **subledgerId** | `string` | The ID of the subledger by which we filter the data. | [Optional] [Defaults to `undefined`] |
-| **customerSessionIDs** | `Array<string>` | Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  | [Optional] |
-| **transactionUUIDs** | `Array<string>` | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | [Optional] |
+| **customerSessionIDs** | `Array<string>` | Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  | [Optional] |
+| **transactionUUIDs** | `Array<string>` | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | [Optional] |
 
 ### Return type
 
@@ -9091,7 +9094,7 @@ async function example() {
     skip: 789,
     // string | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)
     sort: sort_example,
-    // string | The card code by which to filter loyalty cards in the response. (optional)
+    // string | The card code by which to filter loyalty cards in the response.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode `NewCard2026%` as `NewCard2026%25`.  (optional)
     identifier: identifier_example,
     // number | Filter results by customer profile ID. (optional)
     profileId: 789,
@@ -9120,7 +9123,7 @@ example().catch(console.error);
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `1000`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
 | **sort** | `string` | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [Optional] [Defaults to `undefined`] |
-| **identifier** | `string` | The card code by which to filter loyalty cards in the response. | [Optional] [Defaults to `undefined`] |
+| **identifier** | `string` | The card code by which to filter loyalty cards in the response.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  | [Optional] [Defaults to `undefined`] |
 | **profileId** | `number` | Filter results by customer profile ID. | [Optional] [Defaults to `undefined`] |
 | **batchId** | `string` | Filter results by loyalty card batch ID. | [Optional] [Defaults to `undefined`] |
 
@@ -11206,7 +11209,7 @@ example().catch(console.error);
 
 Import loyalty cards
 
-Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The alphanumeric identifier of the loyalty card. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - &#x60;attributes&#x60; (optional): A JSON object that contains the loyalty card\&#39;s custom attributes and their values. These attributes must be created and connected to this loyalty program before  they can be assigned to the cards through this endpoint.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,\&quot;{\&quot;\&quot;my_attribute\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
+Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card,  which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
 
 ### Example
 
@@ -14135,7 +14138,7 @@ async function example() {
   const body = {
     // number | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
     loyaltyProgramId: 789,
-    // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. 
+    // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode `NewCard2026%` as `NewCard2026%25`. 
     loyaltyCardId: loyaltyCardId_example,
     // TransferLoyaltyCard | body
     transferLoyaltyCard: ...,
@@ -14159,7 +14162,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
-| **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | [Defaults to `undefined`] |
+| **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  | [Defaults to `undefined`] |
 | **transferLoyaltyCard** | [TransferLoyaltyCard](TransferLoyaltyCard.md) | body | |
 
 ### Return type
@@ -14848,7 +14851,7 @@ example().catch(console.error);
 
 Update loyalty card
 
-Update the details of a specific loyalty card. You can set the card\&#39;s status to &#x60;active&#x60; or &#x60;inactive&#x60; through this endpoint. At least one of &#x60;status&#x60; or &#x60;attributes&#x60; must be provided. 
+Update the details of a specific loyalty card. You can set the card\&#39;s status to &#x60;active&#x60; or &#x60;inactive&#x60; through this endpoint. At least one of &#x60;status&#x60; or &#x60;attributes&#x60; must be provided.
 
 ### Example
 
@@ -14874,7 +14877,7 @@ async function example() {
   const body = {
     // number | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
     loyaltyProgramId: 789,
-    // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. 
+    // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode `NewCard2026%` as `NewCard2026%25`. 
     loyaltyCardId: loyaltyCardId_example,
     // UpdateLoyaltyCardRequest | body
     updateLoyaltyCardRequest: ...,
@@ -14898,7 +14901,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
-| **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | [Defaults to `undefined`] |
+| **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  | [Defaults to `undefined`] |
 | **updateLoyaltyCardRequest** | [UpdateLoyaltyCardRequest](UpdateLoyaltyCardRequest.md) | body | |
 
 ### Return type

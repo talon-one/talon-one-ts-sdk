@@ -49,6 +49,12 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotif
      * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction
      */
     expiryDate?: Date;
+    /**
+     * The identifier of the transaction in the loyalty ledger.
+     * @type {string}
+     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction
+     */
+    transactionUUID: string;
 }
 
 
@@ -57,7 +63,7 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotif
  */
 export const IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum = {
     Addition: 'addition',
-    Deduction: 'deduction'
+    Subtraction: 'subtraction'
 } as const;
 export type IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum = typeof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum[keyof typeof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum];
 
@@ -68,6 +74,7 @@ export type IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificati
 export function instanceOfIntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction(value: object): value is IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction {
     if (!('amount' in value) || value['amount'] === undefined) return false;
     if (!('operation' in value) || value['operation'] === undefined) return false;
+    if (!('transactionUUID' in value) || value['transactionUUID'] === undefined) return false;
     return true;
 }
 
@@ -86,6 +93,7 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotifi
         'operation': json['Operation'],
         'startDate': json['StartDate'] == null ? undefined : (new Date(json['StartDate'])),
         'expiryDate': json['ExpiryDate'] == null ? undefined : (new Date(json['ExpiryDate'])),
+        'transactionUUID': json['TransactionUUID'],
     };
 }
 
@@ -105,6 +113,7 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotifi
         'Operation': value['operation'],
         'StartDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
         'ExpiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'TransactionUUID': value['transactionUUID'],
     };
 }
 

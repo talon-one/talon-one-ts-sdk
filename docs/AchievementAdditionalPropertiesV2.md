@@ -1,27 +1,28 @@
 
-# StrikethroughSetDiscountPerItemEffectProps
+# AchievementAdditionalPropertiesV2
 
-setDiscountPerItem effect in strikethrough pricing payload.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`name` | string
-`value` | any
-`excludeFromBestPriorPriceHistory` | boolean
+`userId` | number
+`createdBy` | string
+`hasProgress` | boolean
+`status` | string
 
 ## Example
 
 ```typescript
-import type { StrikethroughSetDiscountPerItemEffectProps } from 'talon_one_sdk'
+import type { AchievementAdditionalPropertiesV2 } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "name": 1EuroOff,
-  "value": null,
-  "excludeFromBestPriorPriceHistory": null,
-} satisfies StrikethroughSetDiscountPerItemEffectProps
+  "userId": 1234,
+  "createdBy": John Doe,
+  "hasProgress": null,
+  "status": inprogress,
+} satisfies AchievementAdditionalPropertiesV2
 
 console.log(example)
 
@@ -30,7 +31,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as StrikethroughSetDiscountPerItemEffectProps
+const exampleParsed = JSON.parse(exampleJSON) as AchievementAdditionalPropertiesV2
 console.log(exampleParsed)
 ```
 

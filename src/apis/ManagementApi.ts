@@ -873,6 +873,7 @@ export interface GetApplicationSessionsRequest {
     pageSize?: number;
     skip?: number;
     sort?: string;
+    partialMatch?: boolean;
     profile?: string;
     state?: GetApplicationSessionsStateEnum;
     createdBefore?: Date;
@@ -3966,7 +3967,7 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Creates request options for deleteUser without sending the request
      */
-    async deleteUserRequestOpts(requestParameters: DeleteUserApiRequest): Promise<runtime.RequestOpts> {
+    async deleteUserRequestOpts(requestParameters: DeleteUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -4405,7 +4406,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing analytics data aggregated by campaign for the campaigns of an Application.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `campaign_id`: The ID of the campaign. This column also contains labels for the [total and influenced values](https://docs.talon.one/docs/product/campaigns/analytics/application-dashboard#understanding-the-analytics-data). - `start_date`: The start of the aggregation time frame in UTC. - `end_date`: The end of the aggregation time frame in UTC. - `revenue`: The total, pre-discount value of all items purchased in a customer session. - `sessions`: The number of all closed sessions. - `average_session_value`: The average customer session value, calculated by dividing the revenue value by the number of sessions. - `average_items_per_session`: The number of items from sessions divided by the number of sessions. - `coupons`: The number of times a coupon was successfully redeemed in sessions. - `discounts`: The total value of discounts given for cart items in sessions. 
+     * Download a CSV file containing analytics data aggregated by campaign for the campaigns of an Application.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `campaign_id`: The ID of the campaign. This column also contains labels for the [total and influenced values](https://docs.talon.one/docs/product/campaigns/analytics/application-dashboard#display-the-analytics-data). - `start_date`: The start of the aggregation time frame in UTC. - `end_date`: The end of the aggregation time frame in UTC. - `revenue`: The total, pre-discount value of all items purchased in a customer session. - `sessions`: The number of all closed sessions. - `average_session_value`: The average customer session value, calculated by dividing the revenue value by the number of sessions. - `average_items_per_session`: The number of items from sessions divided by the number of sessions. - `coupons`: The number of times a coupon was successfully redeemed in sessions. - `discounts`: The total value of discounts given for cart items in sessions. 
      * Export Application analytics aggregated by campaign
      */
     async exportApplicationCampaignAnalyticsRaw(requestParameters: ExportApplicationCampaignAnalyticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
@@ -4420,7 +4421,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing analytics data aggregated by campaign for the campaigns of an Application.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `campaign_id`: The ID of the campaign. This column also contains labels for the [total and influenced values](https://docs.talon.one/docs/product/campaigns/analytics/application-dashboard#understanding-the-analytics-data). - `start_date`: The start of the aggregation time frame in UTC. - `end_date`: The end of the aggregation time frame in UTC. - `revenue`: The total, pre-discount value of all items purchased in a customer session. - `sessions`: The number of all closed sessions. - `average_session_value`: The average customer session value, calculated by dividing the revenue value by the number of sessions. - `average_items_per_session`: The number of items from sessions divided by the number of sessions. - `coupons`: The number of times a coupon was successfully redeemed in sessions. - `discounts`: The total value of discounts given for cart items in sessions. 
+     * Download a CSV file containing analytics data aggregated by campaign for the campaigns of an Application.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `campaign_id`: The ID of the campaign. This column also contains labels for the [total and influenced values](https://docs.talon.one/docs/product/campaigns/analytics/application-dashboard#display-the-analytics-data). - `start_date`: The start of the aggregation time frame in UTC. - `end_date`: The end of the aggregation time frame in UTC. - `revenue`: The total, pre-discount value of all items purchased in a customer session. - `sessions`: The number of all closed sessions. - `average_session_value`: The average customer session value, calculated by dividing the revenue value by the number of sessions. - `average_items_per_session`: The number of items from sessions divided by the number of sessions. - `coupons`: The number of times a coupon was successfully redeemed in sessions. - `discounts`: The total value of discounts given for cart items in sessions. 
      * Export Application analytics aggregated by campaign
      */
     async exportApplicationCampaignAnalytics(requestParameters: ExportApplicationCampaignAnalyticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
@@ -5253,7 +5254,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the balances of all cards in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subdleger, when applicatble. - `cardIdentifier`: The alphanumeric identifier of the loyalty card. - `cardState`:The state of the loyalty card. It can be `active` or `inactive`. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. 
+     * Download a CSV file containing the balances of all cards in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subdleger, when applicatble. - `cardIdentifier`: The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`. - `cardState`:The state of the loyalty card. It can be `active` or `inactive`. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. 
      * Export all card transaction logs
      */
     async exportLoyaltyCardBalancesRaw(requestParameters: ExportLoyaltyCardBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
@@ -5268,7 +5269,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the balances of all cards in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subdleger, when applicatble. - `cardIdentifier`: The alphanumeric identifier of the loyalty card. - `cardState`:The state of the loyalty card. It can be `active` or `inactive`. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. 
+     * Download a CSV file containing the balances of all cards in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subdleger, when applicatble. - `cardIdentifier`: The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`. - `cardState`:The state of the loyalty card. It can be `active` or `inactive`. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. 
      * Export all card transaction logs
      */
     async exportLoyaltyCardBalances(requestParameters: ExportLoyaltyCardBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
@@ -7031,6 +7032,10 @@ export class ManagementApi extends runtime.BaseAPI {
 
         if (requestParameters['sort'] != null) {
             queryParameters['sort'] = requestParameters['sort'];
+        }
+
+        if (requestParameters['partialMatch'] != null) {
+            queryParameters['partialMatch'] = requestParameters['partialMatch'];
         }
 
         if (requestParameters['profile'] != null) {
@@ -11508,7 +11513,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The alphanumeric identifier of the loyalty card. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - `attributes` (optional): A JSON object that contains the loyalty card\'s custom attributes and their values. These attributes must be created and connected to this loyalty program before  they can be assigned to the cards through this endpoint.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,\"{\"\"my_attribute\"\": \"\"10_off\"\"}\" ``` 
+     * Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The identifier of the loyalty card,  which must match the regular expression `^[A-Za-z0-9._%+@-]+$`. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA ``` 
      * Import loyalty cards
      */
     async importLoyaltyCardsRaw(requestParameters: ImportLoyaltyCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
@@ -11519,7 +11524,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The alphanumeric identifier of the loyalty card. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - `attributes` (optional): A JSON object that contains the loyalty card\'s custom attributes and their values. These attributes must be created and connected to this loyalty program before  they can be assigned to the cards through this endpoint.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,\"{\"\"my_attribute\"\": \"\"10_off\"\"}\" ``` 
+     * Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The identifier of the loyalty card,  which must match the regular expression `^[A-Za-z0-9._%+@-]+$`. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA ``` 
      * Import loyalty cards
      */
     async importLoyaltyCards(requestParameters: ImportLoyaltyCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Import> {
@@ -14730,7 +14735,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the details of a specific loyalty card. You can set the card\'s status to `active` or `inactive` through this endpoint. At least one of `status` or `attributes` must be provided. 
+     * Update the details of a specific loyalty card. You can set the card\'s status to `active` or `inactive` through this endpoint. At least one of `status` or `attributes` must be provided.
      * Update loyalty card
      */
     async updateLoyaltyCardRaw(requestParameters: UpdateLoyaltyCardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCard>> {
@@ -14741,7 +14746,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the details of a specific loyalty card. You can set the card\'s status to `active` or `inactive` through this endpoint. At least one of `status` or `attributes` must be provided. 
+     * Update the details of a specific loyalty card. You can set the card\'s status to `active` or `inactive` through this endpoint. At least one of `status` or `attributes` must be provided.
      * Update loyalty card
      */
     async updateLoyaltyCard(requestParameters: UpdateLoyaltyCardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoyaltyCard> {
