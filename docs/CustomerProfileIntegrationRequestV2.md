@@ -6,7 +6,7 @@
 
 Name | Type
 ------------ | -------------
-`attributes` | object
+`attributes` | { [key: string]: any; }
 `evaluableCampaignIds` | Array&lt;number&gt;
 `responseContent` | Array&lt;string&gt;
 `audiencesChanges` | [ProfileAudiencesChanges](ProfileAudiencesChanges.md)

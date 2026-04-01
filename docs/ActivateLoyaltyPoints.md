@@ -17,8 +17,8 @@ import type { ActivateLoyaltyPoints } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "transactionUUIDs": null,
-  "sessionId": null,
+  "transactionUUIDs": [8f1a8d7c-9c3e-4a5e-9f0d-2c5f7a3b1cde],
+  "sessionId": ac08cc3c43470426591ad75b2d685ec04_v2,
 } satisfies ActivateLoyaltyPoints
 
 console.log(example)

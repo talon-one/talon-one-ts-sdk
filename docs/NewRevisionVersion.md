@@ -18,6 +18,7 @@ Name | Type
 `limits` | [Array&lt;LimitConfig&gt;](LimitConfig.md)
 `reevaluateOnReturn` | boolean
 `features` | Array&lt;string&gt;
+`couponAttributes` | object
 
 ## Example
 
@@ -38,6 +39,7 @@ const example = {
   "limits": null,
   "reevaluateOnReturn": true,
   "features": null,
+  "couponAttributes": null,
 } satisfies NewRevisionVersion
 
 console.log(example)

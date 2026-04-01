@@ -9,7 +9,7 @@ Name | Type
 `id` | number
 `created` | Date
 `integrationId` | string
-`attributes` | object
+`attributes` | { [key: string]: any; }
 `accountId` | number
 `closedSessions` | number
 `totalSales` | number
