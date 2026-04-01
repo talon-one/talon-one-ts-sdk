@@ -11,6 +11,7 @@ Name | Type
 `operation` | string
 `startDate` | Date
 `expiryDate` | Date
+`transactionUUID` | string
 
 ## Example
 
@@ -24,6 +25,7 @@ const example = {
   "operation": null,
   "startDate": null,
   "expiryDate": null,
+  "transactionUUID": null,
 } satisfies IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction
 
 console.log(example)

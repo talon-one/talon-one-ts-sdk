@@ -11,6 +11,7 @@ Name | Type
 `operation` | string
 `startDate` | Date
 `expiryDate` | Date
+`transactionUUID` | string
 
 ## Example
 
@@ -24,6 +25,7 @@ const example = {
   "operation": null,
   "startDate": 2023-01-24T14:15:22Z,
   "expiryDate": 2024-01-24T14:15:22Z,
+  "transactionUUID": null,
 } satisfies AddedDeductedPointsBalancesAction
 
 console.log(example)

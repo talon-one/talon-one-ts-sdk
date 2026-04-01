@@ -31,6 +31,12 @@ export interface StrikethroughSetDiscountPerItemEffectProps {
      * @memberof StrikethroughSetDiscountPerItemEffectProps
      */
     value: any | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof StrikethroughSetDiscountPerItemEffectProps
+     */
+    excludeFromBestPriorPriceHistory?: boolean;
 }
 
 /**
@@ -54,6 +60,7 @@ export function StrikethroughSetDiscountPerItemEffectPropsFromJSONTyped(json: an
         
         'name': json['name'],
         'value': json['value'],
+        'excludeFromBestPriorPriceHistory': json['excludeFromBestPriorPriceHistory'] == null ? undefined : json['excludeFromBestPriorPriceHistory'],
     };
 }
 
@@ -70,6 +77,7 @@ export function StrikethroughSetDiscountPerItemEffectPropsToJSONTyped(value?: St
         
         'name': value['name'],
         'value': value['value'],
+        'excludeFromBestPriorPriceHistory': value['excludeFromBestPriorPriceHistory'],
     };
 }
 

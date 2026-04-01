@@ -19,6 +19,7 @@ Name | Type
 `operation` | string
 `reason` | string
 `startDate` | Date
+`transactionUUID` | string
 
 ## Example
 
@@ -40,6 +41,7 @@ const example = {
   "operation": null,
   "reason": Compensation,
   "startDate": 2023-01-24T14:15:22Z,
+  "transactionUUID": null,
 } satisfies AddedDeductedPointsNotification
 
 console.log(example)

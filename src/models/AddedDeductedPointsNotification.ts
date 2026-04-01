@@ -88,7 +88,7 @@ export interface AddedDeductedPointsNotification {
      */
     expiryDate?: Date;
     /**
-     * The action (addition or deduction) made with loyalty points.
+     * The action (addition or subtraction) made with loyalty points.
      * @type {AddedDeductedPointsNotificationOperationEnum}
      * @memberof AddedDeductedPointsNotification
      */
@@ -105,6 +105,12 @@ export interface AddedDeductedPointsNotification {
      * @memberof AddedDeductedPointsNotification
      */
     startDate?: Date;
+    /**
+     * The identifier of the transaction in the loyalty ledger.
+     * @type {string}
+     * @memberof AddedDeductedPointsNotification
+     */
+    transactionUUID: string;
 }
 
 
@@ -132,7 +138,7 @@ export type AddedDeductedPointsNotificationTypeOfChangeEnum = typeof AddedDeduct
  */
 export const AddedDeductedPointsNotificationOperationEnum = {
     Addition: 'addition',
-    Deduction: 'deduction'
+    Subtraction: 'subtraction'
 } as const;
 export type AddedDeductedPointsNotificationOperationEnum = typeof AddedDeductedPointsNotificationOperationEnum[keyof typeof AddedDeductedPointsNotificationOperationEnum];
 
@@ -152,6 +158,7 @@ export function instanceOfAddedDeductedPointsNotification(value: object): value 
     if (!('amount' in value) || value['amount'] === undefined) return false;
     if (!('operation' in value) || value['operation'] === undefined) return false;
     if (!('reason' in value) || value['reason'] === undefined) return false;
+    if (!('transactionUUID' in value) || value['transactionUUID'] === undefined) return false;
     return true;
 }
 
@@ -178,6 +185,7 @@ export function AddedDeductedPointsNotificationFromJSONTyped(json: any, ignoreDi
         'operation': json['Operation'],
         'reason': json['Reason'],
         'startDate': json['StartDate'] == null ? undefined : (new Date(json['StartDate'])),
+        'transactionUUID': json['TransactionUUID'],
     };
 }
 
@@ -205,6 +213,7 @@ export function AddedDeductedPointsNotificationToJSONTyped(value?: AddedDeducted
         'Operation': value['operation'],
         'Reason': value['reason'],
         'StartDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
+        'TransactionUUID': value['transactionUUID'],
     };
 }
 

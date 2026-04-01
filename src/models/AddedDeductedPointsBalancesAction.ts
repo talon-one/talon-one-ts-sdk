@@ -32,7 +32,7 @@ export interface AddedDeductedPointsBalancesAction {
      */
     reason: string;
     /**
-     * The action (addition or deduction) made with loyalty points.
+     * The action (addition or subtraction) made with loyalty points.
      * @type {AddedDeductedPointsBalancesActionOperationEnum}
      * @memberof AddedDeductedPointsBalancesAction
      */
@@ -49,6 +49,12 @@ export interface AddedDeductedPointsBalancesAction {
      * @memberof AddedDeductedPointsBalancesAction
      */
     expiryDate?: Date;
+    /**
+     * The identifier of the transaction in the loyalty ledger.
+     * @type {string}
+     * @memberof AddedDeductedPointsBalancesAction
+     */
+    transactionUUID: string;
 }
 
 
@@ -57,7 +63,7 @@ export interface AddedDeductedPointsBalancesAction {
  */
 export const AddedDeductedPointsBalancesActionOperationEnum = {
     Addition: 'addition',
-    Deduction: 'deduction'
+    Subtraction: 'subtraction'
 } as const;
 export type AddedDeductedPointsBalancesActionOperationEnum = typeof AddedDeductedPointsBalancesActionOperationEnum[keyof typeof AddedDeductedPointsBalancesActionOperationEnum];
 
@@ -69,6 +75,7 @@ export function instanceOfAddedDeductedPointsBalancesAction(value: object): valu
     if (!('amount' in value) || value['amount'] === undefined) return false;
     if (!('reason' in value) || value['reason'] === undefined) return false;
     if (!('operation' in value) || value['operation'] === undefined) return false;
+    if (!('transactionUUID' in value) || value['transactionUUID'] === undefined) return false;
     return true;
 }
 
@@ -87,6 +94,7 @@ export function AddedDeductedPointsBalancesActionFromJSONTyped(json: any, ignore
         'operation': json['Operation'],
         'startDate': json['StartDate'] == null ? undefined : (new Date(json['StartDate'])),
         'expiryDate': json['ExpiryDate'] == null ? undefined : (new Date(json['ExpiryDate'])),
+        'transactionUUID': json['TransactionUUID'],
     };
 }
 
@@ -106,6 +114,7 @@ export function AddedDeductedPointsBalancesActionToJSONTyped(value?: AddedDeduct
         'Operation': value['operation'],
         'StartDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
         'ExpiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'TransactionUUID': value['transactionUUID'],
     };
 }
 
