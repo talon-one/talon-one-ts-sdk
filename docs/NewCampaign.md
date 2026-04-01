@@ -22,6 +22,7 @@ Name | Type
 `campaignGroups` | Array&lt;number&gt;
 `type` | string
 `linkedStoreIds` | Array&lt;number&gt;
+`couponAttributes` | object
 `evaluationGroupId` | number
 
 ## Example
@@ -47,6 +48,7 @@ const example = {
   "campaignGroups": [1, 3],
   "type": advanced,
   "linkedStoreIds": [1, 2, 3],
+  "couponAttributes": null,
   "evaluationGroupId": 2,
 } satisfies NewCampaign
 

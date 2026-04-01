@@ -18,7 +18,7 @@ Name | Type
 `experimentVariantAllocations` | [Array&lt;ExperimentVariantAllocation&gt;](ExperimentVariantAllocation.md)
 `additionalCosts` | [{ [key: string]: AdditionalCost; }](AdditionalCost.md)
 `identifiers` | Array&lt;string&gt;
-`attributes` | object
+`attributes` | { [key: string]: any; }
 
 ## Example
 

@@ -9,6 +9,7 @@ Name | Type
 `variantId` | number
 `variantName` | string
 `variantWeight` | number
+`isWinner` | boolean
 `totalRevenue` | number
 `sessionsCount` | number
 `avgItemsPerSession` | number
@@ -27,6 +28,7 @@ const example = {
   "variantId": 1,
   "variantName": Variant A,
   "variantWeight": 50,
+  "isWinner": true,
   "totalRevenue": 100,
   "sessionsCount": 100,
   "avgItemsPerSession": 100,

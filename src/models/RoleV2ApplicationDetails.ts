@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Talon.One API
- * Use the Talon.One API to integrate with your application and to manage applications and campaigns:  - Use the operations in the [Integration API section](#integration-api) are used to integrate with our platform - Use the operation in the [Management API section](#management-api) to manage applications and campaigns.  ## Determining the base URL of the endpoints  The API is available at the same hostname as your Campaign Manager deployment. For example, if you access the Campaign Manager at `https://yourbaseurl.talon.one/`, the URL for the [updateCustomerSessionV2](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint is `https://yourbaseurl.talon.one/v2/customer_sessions/{Id}` 
+ * Use the Talon.One API to integrate with your application and to manage applications and campaigns:  - Use the operations in the [Integration API section](#integration-api) to integrate with our platform. - Use the operation in the [Management API section](#management-api) to manage applications and campaigns.  ## Determining the base URL of the endpoints  The API is available at the same hostname as your Campaign Manager deployment.  For example, if you access the Campaign Manager at `https://yourbaseurl.talon.one/`, the URL for the [updateCustomerSessionV2](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint is `https://yourbaseurl.talon.one/v2/customer_sessions/{Id}`. 
  *
  * The version of the OpenAPI document: 
  * 
@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { RolesV2Thresholds } from './RolesV2Thresholds';
+import {
+    RolesV2ThresholdsFromJSON,
+    RolesV2ThresholdsFromJSONTyped,
+    RolesV2ThresholdsToJSON,
+    RolesV2ThresholdsToJSONTyped,
+} from './RolesV2Thresholds';
+
 /**
  * 
  * @export
@@ -43,6 +51,12 @@ export interface RoleV2ApplicationDetails {
      * @memberof RoleV2ApplicationDetails
      */
     tools?: string;
+    /**
+     * Support user limits for actions that require admin approval within the given application.
+     * @type {RolesV2Thresholds}
+     * @memberof RoleV2ApplicationDetails
+     */
+    thresholds?: RolesV2Thresholds;
 }
 
 /**
@@ -66,6 +80,7 @@ export function RoleV2ApplicationDetailsFromJSONTyped(json: any, ignoreDiscrimin
         'campaign': json['campaign'] == null ? undefined : json['campaign'],
         'draftCampaign': json['draftCampaign'] == null ? undefined : json['draftCampaign'],
         'tools': json['tools'] == null ? undefined : json['tools'],
+        'thresholds': json['thresholds'] == null ? undefined : RolesV2ThresholdsFromJSON(json['thresholds']),
     };
 }
 
@@ -84,6 +99,7 @@ export function RoleV2ApplicationDetailsToJSONTyped(value?: RoleV2ApplicationDet
         'campaign': value['campaign'],
         'draftCampaign': value['draftCampaign'],
         'tools': value['tools'],
+        'thresholds': RolesV2ThresholdsToJSON(value['thresholds']),
     };
 }
 

@@ -150,6 +150,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**listExperiments**](ManagementApi.md#listexperiments) | **GET** /v1/applications/{applicationId}/experiments | List experiments |
 | [**listStores**](ManagementApi.md#liststores) | **GET** /v1/applications/{applicationId}/stores | List stores |
 | [**oktaEventHandlerChallenge**](ManagementApi.md#oktaeventhandlerchallenge) | **GET** /v1/provisioning/okta | Validate Okta API ownership |
+| [**priceHistory**](ManagementApi.md#pricehistoryoperation) | **POST** /v1/applications/{applicationId}/price_history | Get summary of price history |
 | [**removeLoyaltyPoints**](ManagementApi.md#removeloyaltypoints) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/deduct_points | Deduct points from customer profile |
 | [**resetPassword**](ManagementApi.md#resetpassword) | **POST** /v1/reset_password | Reset password |
 | [**scimCreateGroup**](ManagementApi.md#scimcreategroup) | **POST** /v1/provisioning/scim/Groups | Create SCIM group |
@@ -207,10 +208,6 @@ import type { ActivateUserByEmailRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -246,7 +243,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -282,10 +279,6 @@ import type { AddLoyaltyCardPointsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -327,7 +320,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -352,7 +345,7 @@ example().catch(console.error);
 
 Add points to customer profile
 
-Add points in the specified loyalty program for the given customer.  To get the &#x60;integrationId&#x60; of the profile from a &#x60;sessionId&#x60;, use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
+Add points in the specified loyalty program for the given customer.  To get the &#x60;integrationId&#x60; of the profile from a &#x60;sessionId&#x60;, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint. 
 
 ### Example
 
@@ -366,10 +359,6 @@ import type { AddLoyaltyPointsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -411,7 +400,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -450,10 +439,6 @@ import type { CopyCampaignToApplicationsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -495,7 +480,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -531,10 +516,6 @@ import type { CreateAccountCollectionRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -570,7 +551,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -609,10 +590,6 @@ import type { CreateAchievementRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -654,7 +631,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -693,10 +670,6 @@ import type { CreateAdditionalCostRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -732,7 +705,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -768,10 +741,6 @@ import type { CreateAttributeRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -807,7 +776,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -829,7 +798,7 @@ example().catch(console.error);
 
 Create loyalty cards
 
-Create a batch of loyalty cards in a specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types).  Customers can use loyalty cards to collect and spend loyalty points.  **Important:**  - The specified card-based loyalty program must have a defined card code format that is used to generate the loyalty card codes. - Trying to create more than 20,000 loyalty cards in a single request returns an error message with a &#x60;400&#x60; status code. 
+Create a batch of loyalty cards in a specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types).  Customers can use loyalty cards to collect and spend loyalty points.  &gt; [!important] **Note** &gt; - The specified card-based loyalty program must have a defined card code &gt;   format that is used to generate the loyalty card codes. &gt; - Trying to create more than 20,000 loyalty cards in a single request &gt;   returns an error message with a &#x60;400&#x60; status code. 
 
 ### Example
 
@@ -843,10 +812,6 @@ import type { CreateBatchLoyaltyCardsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -885,7 +850,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -924,10 +889,6 @@ import type { CreateCampaignFromTemplateRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -966,7 +927,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1002,10 +963,6 @@ import type { CreateCampaignStoreBudgetRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -1047,7 +1004,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1085,10 +1042,6 @@ import type { CreateCollectionRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -1130,7 +1083,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1166,10 +1119,6 @@ import type { CreateCouponsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -1214,7 +1163,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1251,10 +1200,6 @@ import type { CreateCouponsAsyncRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -1296,7 +1241,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1332,10 +1277,6 @@ import type { CreateCouponsDeletionJobRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -1377,7 +1318,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1413,10 +1354,6 @@ import type { CreateCouponsForMultipleRecipientsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -1461,7 +1398,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1484,7 +1421,7 @@ example().catch(console.error);
 
 Resend invitation email
 
-Resend an email invitation to an existing user.  **Note:** The invitation token is valid for 24 hours after the email has been sent. 
+Resend an email invitation to an existing user.  &gt; [!note] The invitation token is valid for 24 hours after the email has been sent. 
 
 ### Example
 
@@ -1498,10 +1435,6 @@ import type { CreateInviteEmailRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -1537,7 +1470,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1559,7 +1492,7 @@ example().catch(console.error);
 
 Invite user
 
-Create a new user in the account and send an invitation to their email address.  **Note**: The invitation token is valid for 24 hours after the email has been sent. You can resend an invitation to a user with the [Resend invitation email](https://docs.talon.one/management-api#tag/Accounts-and-users/operation/createInviteEmail) endpoint. 
+Create a new user in the account and send an invitation to their email address.  &gt; [!note] The invitation token is valid for 24 hours after the email has &gt; been sent. You can resend an invitation to a user with the [Resend &gt; invitation email](https://docs.talon.one/management-api#tag/Accounts-and-users/operation/createInviteEmail) &gt; endpoint. 
 
 ### Example
 
@@ -1573,10 +1506,6 @@ import type { CreateInviteV2Request } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -1612,7 +1541,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1634,7 +1563,7 @@ example().catch(console.error);
 
 Request a password reset
 
-Send an email with a password recovery link to the email address of an existing account.  **Note:** The password recovery link expires 30 minutes after this endpoint is triggered. 
+Send an email with a password recovery link to the email address of an existing account.  &gt; [!note] The password recovery link expires 30 minutes after this endpoint is triggered. 
 
 ### Example
 
@@ -1648,10 +1577,6 @@ import type { CreatePasswordRecoveryEmailRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -1687,7 +1612,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1709,7 +1634,7 @@ example().catch(console.error);
 
 Create session
 
-Create a session to use the Management API endpoints. Use the value of the &#x60;token&#x60; property provided in the response as bearer token in other API calls.  A token is valid for 3 months. In accordance with best pratices, use your generated token for all your API requests. Do **not** regenerate a token for each request.  This endpoint has a rate limit of 3 to 6 requests per second per account, depending on your setup.  &lt;div class&#x3D;\&quot;redoc-section\&quot;&gt;   &lt;p class&#x3D;\&quot;title\&quot;&gt;Granular API key&lt;/p&gt;   Instead of using a session, you can also use the &lt;a href&#x3D;\&quot;https://docs.talon.one/docs/product/account/dev-tools/managing-mapi-keys\&quot;&gt;Management API key feature&lt;/a&gt;   in the Campaign Manager to decide which endpoints can be used with a given key. &lt;/div&gt; 
+Create a session to use the Management API endpoints.  Use the value of the &#x60;token&#x60; property provided in the response as bearer token in other API calls.  A token is valid for 3 months. In accordance with best pratices, use your generated token for all your API requests. Do **not** regenerate a token for each request.  This endpoint has a rate limit of 3 to 6 requests per second per account, depending on your setup.  &gt; [!note] &gt; Instead of using a session, you can also use the &lt;a href&#x3D;\&quot;https://docs.talon.one/docs/product/account/dev-tools/managing-mapi-keys\&quot;&gt;Management API key feature&lt;/a&gt; &gt; in the Campaign Manager to decide which endpoints can be used with a given key. 
 
 ### Example
 
@@ -1723,10 +1648,6 @@ import type { CreateSessionRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -1762,7 +1683,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1798,10 +1719,6 @@ import type { CreateStoreRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -1840,7 +1757,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1878,10 +1795,6 @@ import type { DeactivateUserByEmailRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -1917,7 +1830,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1953,10 +1866,6 @@ import type { DeductLoyaltyCardPointsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -1998,7 +1907,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2037,17 +1946,13 @@ import type { DeleteAccountCollectionRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
   const api = new ManagementApi(config);
 
   const body = {
-    // number | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint.
+    // number | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.
     collectionId: 789,
   } satisfies DeleteAccountCollectionRequest;
 
@@ -2068,7 +1973,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | [Defaults to `undefined`] |
+| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint. | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -2076,7 +1981,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2113,10 +2018,6 @@ import type { DeleteAchievementRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -2158,7 +2059,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2196,10 +2097,6 @@ import type { DeleteCampaignRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -2238,7 +2135,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2274,10 +2171,6 @@ import type { DeleteCampaignStoreBudgetsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -2322,7 +2215,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2359,10 +2252,6 @@ import type { DeleteCollectionRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -2373,7 +2262,7 @@ async function example() {
     applicationId: 789,
     // number | The ID of the campaign. It is displayed in your Talon.One deployment URL.
     campaignId: 789,
-    // number | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint.
+    // number | The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.
     collectionId: 789,
   } satisfies DeleteCollectionRequest;
 
@@ -2396,7 +2285,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **campaignId** | `number` | The ID of the campaign. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
-| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | [Defaults to `undefined`] |
+| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint. | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -2404,7 +2293,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2441,10 +2330,6 @@ import type { DeleteCouponRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -2486,7 +2371,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2522,10 +2407,6 @@ import type { DeleteCouponsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -2603,7 +2484,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2639,10 +2520,6 @@ import type { DeleteLoyaltyCardRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -2681,7 +2558,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2719,10 +2596,6 @@ import type { DeleteReferralRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -2764,7 +2637,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2800,10 +2673,6 @@ import type { DeleteStoreRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -2842,7 +2711,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2879,10 +2748,6 @@ import type { DeleteUserRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -2918,7 +2783,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2954,10 +2819,6 @@ import type { DeleteUserByEmailRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -2993,7 +2854,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3029,10 +2890,6 @@ import type { DestroySessionRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -3060,7 +2917,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3096,10 +2953,6 @@ import type { DisconnectCampaignStoresRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -3138,7 +2991,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3163,7 +3016,7 @@ example().catch(console.error);
 
 Export account-level collection\&#39;s items
 
-Download a CSV file containing items from a given account-level collection.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/). 
+Download a CSV file containing items from a given account-level collection.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files). 
 
 ### Example
 
@@ -3177,17 +3030,13 @@ import type { ExportAccountCollectionItemsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
   const api = new ManagementApi(config);
 
   const body = {
-    // number | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint.
+    // number | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.
     collectionId: 789,
   } satisfies ExportAccountCollectionItemsRequest;
 
@@ -3208,7 +3057,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | [Defaults to `undefined`] |
+| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint. | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -3216,7 +3065,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3254,10 +3103,6 @@ import type { ExportAchievementsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -3299,7 +3144,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3324,7 +3169,7 @@ example().catch(console.error);
 
 Export Application analytics aggregated by campaign
 
-Download a CSV file containing analytics data aggregated by campaign for the campaigns of an Application.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - &#x60;campaign_id&#x60;: The ID of the campaign. This column also contains labels for the [total and influenced values](https://docs.talon.one/docs/product/campaigns/analytics/application-dashboard#display-the-analytics-data). - &#x60;start_date&#x60;: The start of the aggregation time frame in UTC. - &#x60;end_date&#x60;: The end of the aggregation time frame in UTC. - &#x60;revenue&#x60;: The total, pre-discount value of all items purchased in a customer session. - &#x60;sessions&#x60;: The number of all closed sessions. - &#x60;average_session_value&#x60;: The average customer session value, calculated by dividing the revenue value by the number of sessions. - &#x60;average_items_per_session&#x60;: The number of items from sessions divided by the number of sessions. - &#x60;coupons&#x60;: The number of times a coupon was successfully redeemed in sessions. - &#x60;discounts&#x60;: The total value of discounts given for cart items in sessions. 
+Download a CSV file containing analytics data aggregated by campaign for the campaigns of an Application.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;campaign_id&#x60;: The ID of the campaign. This column also contains labels   for the [total and influenced values](https://docs.talon.one/docs/product/campaigns/analytics/application-dashboard#display-the-analytics-data). - &#x60;start_date&#x60;: The start of the aggregation time frame in UTC. - &#x60;end_date&#x60;: The end of the aggregation time frame in UTC. - &#x60;revenue&#x60;: The total, pre-discount value of all items purchased in a customer session. - &#x60;sessions&#x60;: The number of all closed sessions. - &#x60;average_session_value&#x60;: The average customer session value, calculated by dividing the revenue value by the number of sessions. - &#x60;average_items_per_session&#x60;: The number of items from sessions divided by the number of sessions. - &#x60;coupons&#x60;: The number of times a coupon was successfully redeemed in sessions. - &#x60;discounts&#x60;: The total value of discounts given for cart items in sessions. 
 
 ### Example
 
@@ -3338,10 +3183,6 @@ import type { ExportApplicationCampaignAnalyticsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -3350,9 +3191,9 @@ async function example() {
   const body = {
     // number | The ID of the Application. It is displayed in your Talon.One deployment URL.
     applicationId: 789,
-    // Date | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from after this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeStart: 2013-10-20T19:20:30+01:00,
-    // Date | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from before this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeEnd: 2013-10-20T19:20:30+01:00,
     // Array<string> | Filter by one or more Campaign IDs, separated by a comma.  **Note:** If no campaigns are specified, data for all the campaigns in the Application is returned.  (optional)
     campaignIds: ...,
@@ -3376,8 +3217,8 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
-| **rangeStart** | `Date` | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
-| **rangeEnd** | `Date` | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeStart** | `Date` | Only return results from after this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeEnd** | `Date` | Only return results from before this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
 | **campaignIds** | `Array<string>` | Filter by one or more Campaign IDs, separated by a comma.  **Note:** If no campaigns are specified, data for all the campaigns in the Application is returned.  | [Optional] |
 
 ### Return type
@@ -3386,7 +3227,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3408,7 +3249,7 @@ example().catch(console.error);
 
 Export audience members
 
-Download a CSV file containing the integration IDs of the members of an audience.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The file contains the following column: - &#x60;profileintegrationid&#x60;: The integration ID of the customer profile. 
+Download a CSV file containing the integration IDs of the members of an audience.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The file contains the following column:  - &#x60;profileintegrationid&#x60;: The integration ID of the customer profile. 
 
 ### Example
 
@@ -3422,10 +3263,6 @@ import type { ExportAudiencesMembershipsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -3461,7 +3298,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3486,7 +3323,7 @@ example().catch(console.error);
 
 Export campaign store budgets
 
-Download a CSV file containing the store budgets for a given campaign.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns:  - &#x60;store_integration_id&#x60;: The identifier of the store. - &#x60;limit&#x60;: The budget limit for the store. 
+Download a CSV file containing the store budgets for a given campaign.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;store_integration_id&#x60;: The identifier of the store. - &#x60;limit&#x60;: The budget limit for the store. 
 
 ### Example
 
@@ -3500,10 +3337,6 @@ import type { ExportCampaignStoreBudgetsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -3548,7 +3381,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3573,7 +3406,7 @@ example().catch(console.error);
 
 Export stores
 
-Download a CSV file containing the stores linked to a specific campaign.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following column:  - &#x60;store_integration_id&#x60;: The identifier of the store. 
+Download a CSV file containing the stores linked to a specific campaign.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following column:  - &#x60;store_integration_id&#x60;: The identifier of the store. 
 
 ### Example
 
@@ -3587,10 +3420,6 @@ import type { ExportCampaignStoresRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -3629,7 +3458,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3654,7 +3483,7 @@ example().catch(console.error);
 
 Export campaign-level collection\&#39;s items
 
-Download a CSV file containing items from a given campaign-level collection.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/). 
+Download a CSV file containing items from a given campaign-level collection.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files). 
 
 ### Example
 
@@ -3668,10 +3497,6 @@ import type { ExportCollectionItemsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -3682,7 +3507,7 @@ async function example() {
     applicationId: 789,
     // number | The ID of the campaign. It is displayed in your Talon.One deployment URL.
     campaignId: 789,
-    // number | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint.
+    // number | The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.
     collectionId: 789,
   } satisfies ExportCollectionItemsRequest;
 
@@ -3705,7 +3530,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **campaignId** | `number` | The ID of the campaign. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
-| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | [Defaults to `undefined`] |
+| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint. | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -3713,7 +3538,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3737,7 +3562,7 @@ example().catch(console.error);
 
 Export coupons
 
-Download a CSV file containing the coupons that match the given properties.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file can contain the following columns:  - &#x60;accountid&#x60;: The ID of your deployment. - &#x60;applicationid&#x60;: The ID of the Application this coupon is related to. - &#x60;attributes&#x60;: A json object describing _custom_ referral attribute names and their values. - &#x60;batchid&#x60;: The ID of the batch this coupon is part of. - &#x60;campaignid&#x60;: The ID of the campaign this coupon is related to. - &#x60;counter&#x60;: The number of times this coupon has been redeemed. - &#x60;created&#x60;: The creation date in RFC3339 of the coupon code. - &#x60;deleted&#x60;: Whether the coupon code is deleted. - &#x60;deleted_changelogid&#x60;: The ID of the delete event in the logs. - &#x60;discount_counter&#x60;: The amount of discount given by this coupon. - &#x60;discount_limitval&#x60;: The maximum discount amount that can be given be this coupon. - &#x60;expirydate&#x60;: The end date in RFC3339 of the code redemption period. - &#x60;id&#x60;: The internal ID of the coupon code. - &#x60;importid&#x60;: The ID of the import job that created this coupon. - &#x60;is_reservation_mandatory&#x60;: Whether this coupon requires a reservation to be redeemed. - &#x60;limits&#x60;: The limits set on this coupon. - &#x60;limitval&#x60;: The maximum number of redemptions of this code. - &#x60;recipientintegrationid&#x60;: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - &#x60;referralid&#x60;: The ID of the referral code that triggered the creation of this coupon (create coupon effect). - &#x60;reservation&#x60;: Whether the coupon can be reserved for multiple customers. - &#x60;reservation_counter&#x60;: How many times this coupon has been reserved. - &#x60;reservation_limitval&#x60;: The maximum of number of reservations this coupon can have. - &#x60;startdate&#x60;: The start date in RFC3339 of the code redemption period. - &#x60;value&#x60;: The coupon code. 
+Download a CSV file containing the coupons that match the given properties.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file can contain the following columns:  - &#x60;accountid&#x60;: The ID of your deployment. - &#x60;applicationid&#x60;: The ID of the Application this coupon is related to. - &#x60;attributes&#x60;: A json object describing _custom_ referral attribute names and their values. - &#x60;batchid&#x60;: The ID of the batch this coupon is part of. - &#x60;campaignid&#x60;: The ID of the campaign this coupon is related to. - &#x60;counter&#x60;: The number of times this coupon has been redeemed. - &#x60;created&#x60;: The creation date in RFC3339 of the coupon code. - &#x60;deleted&#x60;: Whether the coupon code is deleted. - &#x60;deleted_changelogid&#x60;: The ID of the delete event in the logs. - &#x60;discount_counter&#x60;: The amount of discount given by this coupon. - &#x60;discount_limitval&#x60;: The maximum discount amount that can be given be this coupon. - &#x60;expirydate&#x60;: The end date in RFC3339 of the code redemption period. - &#x60;id&#x60;: The internal ID of the coupon code. - &#x60;importid&#x60;: The ID of the import job that created this coupon. - &#x60;is_reservation_mandatory&#x60;: Whether this coupon requires a reservation to be redeemed. - &#x60;limits&#x60;: The limits set on this coupon. - &#x60;limitval&#x60;: The maximum number of redemptions of this code. - &#x60;recipientintegrationid&#x60;: The integration ID of the recipient of the coupon.    Only the customer with this integration ID can redeem this code. Available only for personal codes. - &#x60;referralid&#x60;: The ID of the referral code that triggered the creation of this coupon (create coupon effect). - &#x60;reservation&#x60;: Whether the coupon can be reserved for multiple customers. - &#x60;reservation_counter&#x60;: How many times this coupon has been reserved. - &#x60;reservation_limitval&#x60;: The maximum of number of reservations this coupon can have. - &#x60;startdate&#x60;: The start date in RFC3339 of the code redemption period. - &#x60;value&#x60;: The coupon code. 
 
 ### Example
 
@@ -3751,10 +3576,6 @@ import type { ExportCouponsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -3832,7 +3653,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3854,7 +3675,7 @@ example().catch(console.error);
 
 Export customer sessions
 
-Download a CSV file containing the customer sessions that match the request.  **Important:** Archived sessions cannot be exported. See the [retention policy](https://docs.talon.one/docs/dev/server-infrastructure-and-data-retention).  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  - &#x60;id&#x60;: The internal ID of the session. - &#x60;firstsession&#x60;: Whether this is a first session. - &#x60;integrationid&#x60;: The integration ID of the session. - &#x60;applicationid&#x60;: The ID of the Application. - &#x60;profileid&#x60;: The internal ID of the customer profile. - &#x60;profileintegrationid&#x60;: The integration ID of the customer profile. - &#x60;created&#x60;: The timestamp when the session was created. - &#x60;state&#x60;: The [state](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) of the session. - &#x60;cartitems&#x60;: The cart items in the session. - &#x60;discounts&#x60;: The discounts in the session. - &#x60;total&#x60;: The total value of cart items and additional costs in the session, before any discounts are applied. - &#x60;attributes&#x60;: The attributes set in the session. - &#x60;closedat&#x60;: Timestamp when the session was closed. - &#x60;cancelledat&#x60;: Timestamp when the session was cancelled. - &#x60;referral&#x60;: The referral code in the session. - &#x60;identifiers&#x60;: The identifiers in the session. - &#x60;additional_costs&#x60;: The [additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs) in the session. - &#x60;updated&#x60;: Timestamp of the last session update. - &#x60;store_integration_id&#x60;: The integration ID of the store. - &#x60;coupons&#x60;: Coupon codes in the session. 
+Download a CSV file containing the customer sessions that match the request.  &gt; [!important] Archived sessions cannot be exported. See the [retention &gt; policy](https://docs.talon.one/docs/dev/server-infrastructure-and-data-retention).  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  - &#x60;id&#x60;: The internal ID of the session. - &#x60;firstsession&#x60;: Whether this is a first session. - &#x60;integrationid&#x60;: The integration ID of the session. - &#x60;applicationid&#x60;: The ID of the Application. - &#x60;profileid&#x60;: The internal ID of the customer profile. - &#x60;profileintegrationid&#x60;: The integration ID of the customer profile. - &#x60;created&#x60;: The timestamp when the session was created. - &#x60;state&#x60;: The [state](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states)    of the session. - &#x60;cartitems&#x60;: The cart items in the session. - &#x60;discounts&#x60;: The discounts in the session. - &#x60;total&#x60;: The total value of cart items and additional costs in the session, before any discounts are applied. - &#x60;attributes&#x60;: The attributes set in the session. - &#x60;closedat&#x60;: Timestamp when the session was closed. - &#x60;cancelledat&#x60;: Timestamp when the session was cancelled. - &#x60;referral&#x60;: The referral code in the session. - &#x60;identifiers&#x60;: The identifiers in the session. - &#x60;additional_costs&#x60;: The [additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs)    in the session. - &#x60;updated&#x60;: Timestamp of the last session update. - &#x60;store_integration_id&#x60;: The integration ID of the store. - &#x60;coupons&#x60;: Coupon codes in the session. 
 
 ### Example
 
@@ -3868,10 +3689,6 @@ import type { ExportCustomerSessionsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -3922,7 +3739,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3958,10 +3775,6 @@ import type { ExportCustomersTiersRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -4003,7 +3816,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4025,7 +3838,7 @@ example().catch(console.error);
 
 Export triggered effects
 
-Download a CSV file containing the triggered effects that match the given attributes.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - &#x60;applicationid&#x60;: The ID of the Application. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;couponid&#x60;: The ID of the coupon, when applicable to the effect. - &#x60;created&#x60;: The timestamp of the effect. - &#x60;event_type&#x60;: The name of the event. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/events). - &#x60;eventid&#x60;: The internal ID of the effect. - &#x60;name&#x60;: The effect name. See the [docs](https://docs.talon.one/docs/dev/integration-api/api-effects). - &#x60;profileintegrationid&#x60;: The ID of the customer profile, when applicable. - &#x60;props&#x60;: The [properties](https://docs.talon.one/docs/dev/integration-api/api-effects) of the effect. - &#x60;ruleindex&#x60;: The index of the rule. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;sessionid&#x60;: The internal ID of the session that triggered the effect. - &#x60;profileid&#x60;: The internal ID of the customer profile. - &#x60;sessionintegrationid&#x60;: The integration ID of the session. - &#x60;total_revenue&#x60;: The total revenue. - &#x60;store_integration_id&#x60;: The integration ID of the store. You choose this ID when you create a store. 
+Download a CSV file containing the triggered effects that match the given attributes.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;applicationid&#x60;: The ID of the Application. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;couponid&#x60;: The ID of the coupon, when applicable to the effect. - &#x60;created&#x60;: The timestamp of the effect. - &#x60;event_type&#x60;: The name of the event. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/events). - &#x60;eventid&#x60;: The internal ID of the effect. - &#x60;name&#x60;: The effect name. See the [docs](https://docs.talon.one/docs/dev/integration-api/api-effects). - &#x60;profileintegrationid&#x60;: The ID of the customer profile, when applicable. - &#x60;props&#x60;: The [properties](https://docs.talon.one/docs/dev/integration-api/api-effects) of the effect. - &#x60;ruleindex&#x60;: The index of the rule. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;sessionid&#x60;: The internal ID of the session that triggered the effect. - &#x60;profileid&#x60;: The internal ID of the customer profile. - &#x60;sessionintegrationid&#x60;: The integration ID of the session. - &#x60;total_revenue&#x60;: The total revenue. - &#x60;store_integration_id&#x60;: The integration ID of the store. You choose this ID when you create a store. 
 
 ### Example
 
@@ -4039,10 +3852,6 @@ import type { ExportEffectsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -4090,7 +3899,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4112,7 +3921,7 @@ example().catch(console.error);
 
 Export customer loyalty balance to CSV
 
-⚠️ Deprecation notice: Support for requests to this endpoint will end soon. To export customer loyalty balances to CSV, use the [Export customer loyalty balances to CSV](/management-api#tag/Loyalty/operation/exportLoyaltyBalances) endpoint.  Download a CSV file containing the balance of each customer in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/). 
+To export customer loyalty balances to CSV, use the [Export customer loyalty balances to CSV](/management-api#tag/Loyalty/operation/exportLoyaltyBalances) endpoint.  Download a CSV file containing the balance of each customer in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files). 
 
 ### Example
 
@@ -4126,10 +3935,6 @@ import type { ExportLoyaltyBalanceRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -4138,7 +3943,7 @@ async function example() {
   const body = {
     // string | The identifier for the loyalty program.
     loyaltyProgramId: loyaltyProgramId_example,
-    // Date | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
+    // Date | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
     endDate: 2013-10-20T19:20:30+01:00,
   } satisfies ExportLoyaltyBalanceRequest;
 
@@ -4160,7 +3965,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `string` | The identifier for the loyalty program. | [Defaults to `undefined`] |
-| **endDate** | `Date` | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
+| **endDate** | `Date` | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -4168,7 +3973,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4192,7 +3997,7 @@ example().catch(console.error);
 
 Export customer loyalty balances
 
-Download a CSV file containing the balance of each customer in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subdleger, when applicatble. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. - &#x60;currentTier&#x60;: The tier that the customer is in at the time of the export. 
+Download a CSV file containing the balance of each customer in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subledger, when applicable. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. - &#x60;currentTier&#x60;: The tier that the customer is in at the time of the export. 
 
 ### Example
 
@@ -4206,10 +4011,6 @@ import type { ExportLoyaltyBalancesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -4218,7 +4019,7 @@ async function example() {
   const body = {
     // string | The identifier for the loyalty program.
     loyaltyProgramId: loyaltyProgramId_example,
-    // Date | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. - This parameter does not affect the `currentTier` field in the CSV file,  which shows the customer\'s tier at the time of export.  (optional)
+    // Date | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. > - This parameter does not affect the `currentTier` field in the CSV file, which shows the customer\'s tier at the time of export.  (optional)
     endDate: 2013-10-20T19:20:30+01:00,
   } satisfies ExportLoyaltyBalancesRequest;
 
@@ -4240,7 +4041,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `string` | The identifier for the loyalty program. | [Defaults to `undefined`] |
-| **endDate** | `Date` | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file,  which shows the customer\&#39;s tier at the time of export.  | [Optional] [Defaults to `undefined`] |
+| **endDate** | `Date` | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer\&#39;s tier at the time of export.  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -4248,7 +4049,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4272,7 +4073,7 @@ example().catch(console.error);
 
 Export all card transaction logs
 
-Download a CSV file containing the balances of all cards in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subdleger, when applicatble. - &#x60;cardIdentifier&#x60;: The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;cardState&#x60;:The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. 
+Download a CSV file containing the balances of all cards in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns: - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subdleger, when applicatble. - &#x60;cardIdentifier&#x60;: The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;cardState&#x60;:The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. 
 
 ### Example
 
@@ -4286,10 +4087,6 @@ import type { ExportLoyaltyCardBalancesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -4298,7 +4095,7 @@ async function example() {
   const body = {
     // number | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
     loyaltyProgramId: 789,
-    // Date | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
+    // Date | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
     endDate: 2013-10-20T19:20:30+01:00,
   } satisfies ExportLoyaltyCardBalancesRequest;
 
@@ -4320,7 +4117,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
-| **endDate** | `Date` | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
+| **endDate** | `Date` | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -4328,7 +4125,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4352,7 +4149,7 @@ example().catch(console.error);
 
 Export card\&#39;s ledger log
 
-Download a CSV file containing a loyalty card ledger log of the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/). 
+Download a CSV file containing a loyalty card ledger log of the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files). 
 
 ### Example
 
@@ -4366,10 +4163,6 @@ import type { ExportLoyaltyCardLedgerRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -4380,9 +4173,9 @@ async function example() {
     loyaltyProgramId: 789,
     // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode `NewCard2026%` as `NewCard2026%25`. 
     loyaltyCardId: loyaltyCardId_example,
-    // Date | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from after this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeStart: 2013-10-20T19:20:30+01:00,
-    // Date | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from before this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeEnd: 2013-10-20T19:20:30+01:00,
     // 'excel' | 'ISO8601' | Determines the format of dates in the export document. (optional)
     dateFormat: dateFormat_example,
@@ -4407,8 +4200,8 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
 | **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  | [Defaults to `undefined`] |
-| **rangeStart** | `Date` | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
-| **rangeEnd** | `Date` | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeStart** | `Date` | Only return results from after this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeEnd** | `Date` | Only return results from before this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
 | **dateFormat** | `excel`, `ISO8601` | Determines the format of dates in the export document. | [Optional] [Defaults to `undefined`] [Enum: excel, ISO8601] |
 
 ### Return type
@@ -4417,7 +4210,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4441,7 +4234,7 @@ example().catch(console.error);
 
 Export loyalty cards
 
-Download a CSV file containing the loyalty cards from a specified loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - &#x60;identifier&#x60;: The unique identifier of the loyalty card. - &#x60;created&#x60;: The date and time the loyalty card was created. - &#x60;status&#x60;: The status of the loyalty card. - &#x60;userpercardlimit&#x60;: The maximum number of customer profiles that can be linked to the card. - &#x60;customerprofileids&#x60;: Integration IDs of the customer profiles linked to the card. - &#x60;blockreason&#x60;: The reason for transferring and blocking the loyalty card. - &#x60;generated&#x60;: An indicator of whether the loyalty card was generated. - &#x60;batchid&#x60;: The ID of the batch the loyalty card is in. 
+Download a CSV file containing the loyalty cards from a specified loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;identifier&#x60;: The unique identifier of the loyalty card. - &#x60;created&#x60;: The date and time the loyalty card was created. - &#x60;status&#x60;: The status of the loyalty card. - &#x60;userpercardlimit&#x60;: The maximum number of customer profiles that can be linked to the card. - &#x60;customerprofileids&#x60;: Integration IDs of the customer profiles linked to the card. - &#x60;blockreason&#x60;: The reason for transferring and blocking the loyalty card. - &#x60;generated&#x60;: An indicator of whether the loyalty card was generated. - &#x60;batchid&#x60;: The ID of the batch the loyalty card is in. - &#x60;attributes&#x60;: The custom attributes of this loyalty card. Currently, this feature is only available upon request. 
 
 ### Example
 
@@ -4455,10 +4248,6 @@ import type { ExportLoyaltyCardsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -4469,9 +4258,9 @@ async function example() {
     loyaltyProgramId: 789,
     // string | Filter results by loyalty card batch ID. (optional)
     batchId: batchId_example,
-    // Date | Only return loyalty cards created before this timestamp.  **Note:** - This must be an RFC3339 timestamp string.  (optional)
+    // Date | Only return loyalty cards created before this timestamp.  **Note:** This must be an RFC3339 timestamp string.  (optional)
     createdBefore: 2013-10-20T19:20:30+01:00,
-    // Date | Only return loyalty cards created after this timestamp.  **Note:** - This must be an RFC3339 timestamp string.  (optional)
+    // Date | Only return loyalty cards created after this timestamp.  **Note:** This must be an RFC3339 timestamp string.  (optional)
     createdAfter: 2013-10-20T19:20:30+01:00,
     // 'excel' | 'ISO8601' | Determines the format of dates in the export document. (optional)
     dateFormat: dateFormat_example,
@@ -4496,8 +4285,8 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
 | **batchId** | `string` | Filter results by loyalty card batch ID. | [Optional] [Defaults to `undefined`] |
-| **createdBefore** | `Date` | Only return loyalty cards created before this timestamp.  **Note:** - This must be an RFC3339 timestamp string.  | [Optional] [Defaults to `undefined`] |
-| **createdAfter** | `Date` | Only return loyalty cards created after this timestamp.  **Note:** - This must be an RFC3339 timestamp string.  | [Optional] [Defaults to `undefined`] |
+| **createdBefore** | `Date` | Only return loyalty cards created before this timestamp.  **Note:** This must be an RFC3339 timestamp string.  | [Optional] [Defaults to `undefined`] |
+| **createdAfter** | `Date` | Only return loyalty cards created after this timestamp.  **Note:** This must be an RFC3339 timestamp string.  | [Optional] [Defaults to `undefined`] |
 | **dateFormat** | `excel`, `ISO8601` | Determines the format of dates in the export document. | [Optional] [Defaults to `undefined`] [Enum: excel, ISO8601] |
 
 ### Return type
@@ -4506,7 +4295,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4530,7 +4319,7 @@ example().catch(console.error);
 
 Export customers\&#39; loyalty program join dates
 
-Download a CSV file containing the join dates of all customers in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;joinDate&#x60;: The customer\&#39;s loyalty program join date in RFC3339 format. 
+Download a CSV file containing the join dates of all customers in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;joinDate&#x60;: The customer\&#39;s loyalty program join date in RFC3339 format. 
 
 ### Example
 
@@ -4544,10 +4333,6 @@ import type { ExportLoyaltyJoinDatesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -4583,7 +4368,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4607,7 +4392,7 @@ example().catch(console.error);
 
 Export customer\&#39;s transaction logs
 
-Download a CSV file containing a customer\&#39;s transaction logs in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - &#x60;customerprofileid&#x60;: The ID of the profile. - &#x60;customersessionid&#x60;: The ID of the customer session. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;rulename&#x60;: The name of the rule. - &#x60;programid&#x60;: The ID of the loyalty program. - &#x60;type&#x60;: The transaction type, such as &#x60;addition&#x60; or &#x60;subtraction&#x60;. - &#x60;name&#x60;: The reason for the transaction. - &#x60;subledgerid&#x60;: The ID of the subledger, when applicable. - &#x60;startdate&#x60;: The start date of the program. - &#x60;expirydate&#x60;: The expiration date of the program. - &#x60;id&#x60;: The ID of the transaction. - &#x60;created&#x60;: The timestamp of the creation of the loyalty program. - &#x60;amount&#x60;: The number of points in that transaction. - &#x60;archived&#x60;: Whether the session related to the transaction is archived. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;flags&#x60;: The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60; flag indicates whether the transaction results in a negative balance. - &#x60;transactionUUID&#x60;: Unique identifier of the transaction in the UUID format. 
+Download a CSV file containing a customer\&#39;s transaction logs in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;customerprofileid&#x60;: The ID of the profile. - &#x60;customersessionid&#x60;: The ID of the customer session. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;rulename&#x60;: The name of the rule. - &#x60;programid&#x60;: The ID of the loyalty program. - &#x60;type&#x60;: The transaction type, such as &#x60;addition&#x60; or &#x60;subtraction&#x60;. - &#x60;name&#x60;: The reason for the transaction. - &#x60;subledgerid&#x60;: The ID of the subledger, when applicable. - &#x60;startdate&#x60;: The start date of the program. - &#x60;expirydate&#x60;: The expiration date of the program. - &#x60;id&#x60;: The ID of the transaction. - &#x60;created&#x60;: The timestamp of the creation of the loyalty program. - &#x60;amount&#x60;: The number of points in that transaction. - &#x60;archived&#x60;: Whether the session related to the transaction is archived. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;flags&#x60;: The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60; flag indicates whether the transaction results in a negative balance. - &#x60;transactionUUID&#x60;: Unique identifier of the transaction in the UUID format. 
 
 ### Example
 
@@ -4621,19 +4406,15 @@ import type { ExportLoyaltyLedgerRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
   const api = new ManagementApi(config);
 
   const body = {
-    // Date | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from after this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeStart: 2013-10-20T19:20:30+01:00,
-    // Date | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from before this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeEnd: 2013-10-20T19:20:30+01:00,
     // string | The identifier for the loyalty program.
     loyaltyProgramId: loyaltyProgramId_example,
@@ -4660,8 +4441,8 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **rangeStart** | `Date` | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
-| **rangeEnd** | `Date` | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeStart** | `Date` | Only return results from after this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeEnd** | `Date` | Only return results from before this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
 | **loyaltyProgramId** | `string` | The identifier for the loyalty program. | [Defaults to `undefined`] |
 | **integrationId** | `string` | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  | [Defaults to `undefined`] |
 | **dateFormat** | `excel`, `ISO8601` | Determines the format of dates in the export document. | [Optional] [Defaults to `undefined`] [Enum: excel, ISO8601] |
@@ -4672,7 +4453,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4694,7 +4475,7 @@ example().catch(console.error);
 
 Export giveaway codes of a giveaway pool
 
-Download a CSV file containing the giveaway codes of a specific giveaway pool.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns:  - &#x60;id&#x60;: The internal ID of the giveaway. - &#x60;poolid&#x60;: The internal ID of the giveaway pool. - &#x60;code&#x60;: The giveaway code. - &#x60;startdate&#x60;: The validity start date in RFC3339 of the giveaway (can be empty). - &#x60;enddate&#x60;: The validity end date in RFC3339 of the giveaway (can be empty). - &#x60;attributes&#x60;: Any custom attributes associated with the giveaway code (can be empty). - &#x60;used&#x60;: An indication of whether the giveaway is already awarded. - &#x60;importid&#x60;: The ID of the import which created the giveaway. - &#x60;created&#x60;: The creation time of the giveaway code. - &#x60;profileintegrationid&#x60;: The third-party integration ID of the customer profile that was awarded the giveaway. Can be empty if the giveaway was not awarded. - &#x60;profileid&#x60;: The internal ID of the customer profile that was awarded the giveaway. Can be empty if the giveaway was not awarded or an internal ID does not exist. 
+Download a CSV file containing the giveaway codes of a specific giveaway pool.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;id&#x60;: The internal ID of the giveaway. - &#x60;poolid&#x60;: The internal ID of the giveaway pool. - &#x60;code&#x60;: The giveaway code. - &#x60;startdate&#x60;: The validity start date in RFC3339 of the giveaway (can be empty). - &#x60;enddate&#x60;: The validity end date in RFC3339 of the giveaway (can be empty). - &#x60;attributes&#x60;: Any custom attributes associated with the giveaway code (can be empty). - &#x60;used&#x60;: An indication of whether the giveaway is already awarded. - &#x60;importid&#x60;: The ID of the import which created the giveaway. - &#x60;created&#x60;: The creation time of the giveaway code. - &#x60;profileintegrationid&#x60;: The third-party integration ID of the customer    profile that was awarded the giveaway. Can be empty if the giveaway was not    awarded. - &#x60;profileid&#x60;: The internal ID of the customer profile that was awarded the    giveaway. Can be empty if the giveaway was not awarded or an internal ID    does not exist. 
 
 ### Example
 
@@ -4708,10 +4489,6 @@ import type { ExportPoolGiveawaysRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -4753,7 +4530,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4776,7 +4553,7 @@ example().catch(console.error);
 
 Export referrals
 
-Download a CSV file containing the referrals that match the given parameters.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns:  - &#x60;code&#x60;: The referral code. - &#x60;advocateprofileintegrationid&#x60;: The profile ID of the advocate. - &#x60;startdate&#x60;: The start date in RFC3339 of the code redemption period. - &#x60;expirydate&#x60;: The end date in RFC3339 of the code redemption period. - &#x60;limitval&#x60;: The maximum number of redemptions of this code. Defaults to &#x60;1&#x60; when left blank. - &#x60;attributes&#x60;: A json object describing _custom_ referral attribute names and their values. 
+Download a CSV file containing the referrals that match the given parameters.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;code&#x60;: The referral code. - &#x60;advocateprofileintegrationid&#x60;: The profile ID of the advocate. - &#x60;startdate&#x60;: The start date in RFC3339 of the code redemption period. - &#x60;expirydate&#x60;: The end date in RFC3339 of the code redemption period. - &#x60;limitval&#x60;: The maximum number of redemptions of this code. Defaults to &#x60;1&#x60; when left blank. - &#x60;attributes&#x60;: A json object describing _custom_ referral attribute names and their values. 
 
 ### Example
 
@@ -4790,10 +4567,6 @@ import type { ExportReferralsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -4850,7 +4623,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4886,10 +4659,6 @@ import type { GenerateCouponRejectionsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -4934,7 +4703,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4970,10 +4739,6 @@ import type { GetAccessLogsWithoutTotalCountRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -4982,9 +4747,9 @@ async function example() {
   const body = {
     // number | The ID of the Application. It is displayed in your Talon.One deployment URL.
     applicationId: 789,
-    // Date | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from after this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeStart: 2013-10-20T19:20:30+01:00,
-    // Date | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from before this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeEnd: 2013-10-20T19:20:30+01:00,
     // string | Only return results where the request path matches the given regular expression. (optional)
     path: path_example,
@@ -5018,8 +4783,8 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
-| **rangeStart** | `Date` | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
-| **rangeEnd** | `Date` | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeStart** | `Date` | Only return results from after this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeEnd** | `Date` | Only return results from before this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
 | **path** | `string` | Only return results where the request path matches the given regular expression. | [Optional] [Defaults to `undefined`] |
 | **method** | `get`, `put`, `post`, `delete`, `patch` | Only return results where the request method matches the given regular expression. | [Optional] [Defaults to `undefined`] [Enum: get, put, post, delete, patch] |
 | **status** | `success`, `error` | Filter results by HTTP status codes. | [Optional] [Defaults to `undefined`] [Enum: success, error] |
@@ -5033,7 +4798,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5069,17 +4834,13 @@ import type { GetAccountRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
   const api = new ManagementApi(config);
 
   const body = {
-    // number | The identifier of the account. Retrieve it via the [List users in account](https://docs.talon.one/management-api#operation/getUsers) endpoint in the `accountId` property. 
+    // number | The identifier of the account. Retrieve it via the [List users in account](https://docs.talon.one/management-api#tag/Accounts-and-users/operation/getUsers) endpoint in the `accountId` property. 
     accountId: 789,
   } satisfies GetAccountRequest;
 
@@ -5100,7 +4861,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | `number` | The identifier of the account. Retrieve it via the [List users in account](https://docs.talon.one/management-api#operation/getUsers) endpoint in the &#x60;accountId&#x60; property.  | [Defaults to `undefined`] |
+| **accountId** | `number` | The identifier of the account. Retrieve it via the [List users in account](https://docs.talon.one/management-api#tag/Accounts-and-users/operation/getUsers) endpoint in the &#x60;accountId&#x60; property.  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -5108,7 +4869,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5144,17 +4905,13 @@ import type { GetAccountAnalyticsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
   const api = new ManagementApi(config);
 
   const body = {
-    // number | The identifier of the account. Retrieve it via the [List users in account](https://docs.talon.one/management-api#operation/getUsers) endpoint in the `accountId` property. 
+    // number | The identifier of the account. Retrieve it via the [List users in account](https://docs.talon.one/management-api#tag/Accounts-and-users/operation/getUsers) endpoint in the `accountId` property. 
     accountId: 789,
   } satisfies GetAccountAnalyticsRequest;
 
@@ -5175,7 +4932,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | `number` | The identifier of the account. Retrieve it via the [List users in account](https://docs.talon.one/management-api#operation/getUsers) endpoint in the &#x60;accountId&#x60; property.  | [Defaults to `undefined`] |
+| **accountId** | `number` | The identifier of the account. Retrieve it via the [List users in account](https://docs.talon.one/management-api#tag/Accounts-and-users/operation/getUsers) endpoint in the &#x60;accountId&#x60; property.  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -5183,7 +4940,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5219,17 +4976,13 @@ import type { GetAccountCollectionRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
   const api = new ManagementApi(config);
 
   const body = {
-    // number | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint.
+    // number | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.
     collectionId: 789,
   } satisfies GetAccountCollectionRequest;
 
@@ -5250,7 +5003,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | [Defaults to `undefined`] |
+| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint. | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -5258,7 +5011,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5295,10 +5048,6 @@ import type { GetAchievementRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -5340,7 +5089,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5378,10 +5127,6 @@ import type { GetAdditionalCostRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -5417,7 +5162,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5453,10 +5198,6 @@ import type { GetAdditionalCostsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -5498,7 +5239,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5534,10 +5275,6 @@ import type { GetApplicationRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -5573,7 +5310,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5609,10 +5346,6 @@ import type { GetApplicationApiHealthRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -5648,7 +5381,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5684,10 +5417,6 @@ import type { GetApplicationCustomerRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -5696,7 +5425,7 @@ async function example() {
   const body = {
     // number | The ID of the Application. It is displayed in your Talon.One deployment URL.
     applicationId: 789,
-    // number | The value of the `id` property of a customer profile. Get it with the [List Application\'s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint. 
+    // number | The value of the `id` property of a customer profile. Get it with the [List Application\'s customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint. 
     customerId: 789,
   } satisfies GetApplicationCustomerRequest;
 
@@ -5718,7 +5447,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
-| **customerId** | `number` | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application\&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | [Defaults to `undefined`] |
+| **customerId** | `number` | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application\&#39;s customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint.  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -5726,7 +5455,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5762,10 +5491,6 @@ import type { GetApplicationCustomerFriendsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -5816,7 +5541,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5852,10 +5577,6 @@ import type { GetApplicationCustomersRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -5903,7 +5624,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5939,10 +5660,6 @@ import type { GetApplicationCustomersByAttributesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -5990,7 +5707,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6026,10 +5743,6 @@ import type { GetApplicationEventTypesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -6074,7 +5787,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6110,10 +5823,6 @@ import type { GetApplicationEventsWithoutTotalCountRequest } from 'talon_one_sdk
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -6194,7 +5903,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6230,10 +5939,6 @@ import type { GetApplicationSessionRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -6272,7 +5977,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6308,10 +6013,6 @@ import type { GetApplicationSessionsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -6383,7 +6084,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6419,10 +6120,6 @@ import type { GetApplicationsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -6464,7 +6161,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6500,10 +6197,6 @@ import type { GetAttributeRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -6539,7 +6232,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6575,10 +6268,6 @@ import type { GetAttributesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -6635,7 +6324,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6671,10 +6360,6 @@ import type { GetAudienceMembershipsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -6722,7 +6407,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6759,10 +6444,6 @@ import type { GetAudiencesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -6807,7 +6488,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6843,10 +6524,6 @@ import type { GetAudiencesAnalyticsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -6885,7 +6562,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6921,10 +6598,6 @@ import type { GetCampaignRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -6963,7 +6636,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6999,10 +6672,6 @@ import type { GetCampaignAnalyticsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -7013,9 +6682,9 @@ async function example() {
     applicationId: 789,
     // number | The ID of the campaign. It is displayed in your Talon.One deployment URL.
     campaignId: 789,
-    // Date | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from after this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeStart: 2013-10-20T19:20:30+01:00,
-    // Date | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from before this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeEnd: 2013-10-20T19:20:30+01:00,
     // '1 hour' | '1 day' | '1 week' | '1 month' | '1 year' | The time interval between the results in the returned time-series. (optional)
     granularity: granularity_example,
@@ -7040,8 +6709,8 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **campaignId** | `number` | The ID of the campaign. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
-| **rangeStart** | `Date` | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
-| **rangeEnd** | `Date` | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeStart** | `Date` | Only return results from after this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeEnd** | `Date` | Only return results from before this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
 | **granularity** | `1 hour`, `1 day`, `1 week`, `1 month`, `1 year` | The time interval between the results in the returned time-series. | [Optional] [Defaults to `undefined`] [Enum: 1 hour, 1 day, 1 week, 1 month, 1 year] |
 
 ### Return type
@@ -7050,7 +6719,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7086,10 +6755,6 @@ import type { GetCampaignByAttributesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -7140,7 +6805,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7176,10 +6841,6 @@ import type { GetCampaignGroupRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -7215,7 +6876,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7251,10 +6912,6 @@ import type { GetCampaignGroupsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -7296,7 +6953,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7332,10 +6989,6 @@ import type { GetCampaignTemplatesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -7389,7 +7042,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7425,10 +7078,6 @@ import type { GetCampaignsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -7509,7 +7158,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7546,10 +7195,6 @@ import type { GetChangesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -7615,7 +7260,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7651,10 +7296,6 @@ import type { GetCollectionRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -7665,7 +7306,7 @@ async function example() {
     applicationId: 789,
     // number | The ID of the campaign. It is displayed in your Talon.One deployment URL.
     campaignId: 789,
-    // number | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint.
+    // number | The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.
     collectionId: 789,
   } satisfies GetCollectionRequest;
 
@@ -7688,7 +7329,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **campaignId** | `number` | The ID of the campaign. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
-| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | [Defaults to `undefined`] |
+| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint. | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -7696,7 +7337,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7733,17 +7374,13 @@ import type { GetCollectionItemsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
   const api = new ManagementApi(config);
 
   const body = {
-    // number | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint.
+    // number | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.
     collectionId: 789,
     // number | The number of items in the response. (optional)
     pageSize: 789,
@@ -7768,7 +7405,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | [Defaults to `undefined`] |
+| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint. | [Defaults to `undefined`] |
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `1000`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
 
@@ -7778,7 +7415,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7815,10 +7452,6 @@ import type { GetCouponsWithoutTotalCountRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -7911,7 +7544,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7947,23 +7580,19 @@ import type { GetCustomerActivityReportRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
   const api = new ManagementApi(config);
 
   const body = {
-    // Date | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from after this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeStart: 2013-10-20T19:20:30+01:00,
-    // Date | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from before this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeEnd: 2013-10-20T19:20:30+01:00,
     // number | The ID of the Application. It is displayed in your Talon.One deployment URL.
     applicationId: 789,
-    // number | The value of the `id` property of a customer profile. Get it with the [List Application\'s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint. 
+    // number | The value of the `id` property of a customer profile. Get it with the [List Application\'s customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint. 
     customerId: 789,
     // number | The number of items in the response. (optional)
     pageSize: 789,
@@ -7988,10 +7617,10 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **rangeStart** | `Date` | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
-| **rangeEnd** | `Date` | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeStart** | `Date` | Only return results from after this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeEnd** | `Date` | Only return results from before this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
-| **customerId** | `number` | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application\&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | [Defaults to `undefined`] |
+| **customerId** | `number` | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application\&#39;s customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint.  | [Defaults to `undefined`] |
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `1000`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
 
@@ -8001,7 +7630,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -8037,19 +7666,15 @@ import type { GetCustomerActivityReportsWithoutTotalCountRequest } from 'talon_o
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
   const api = new ManagementApi(config);
 
   const body = {
-    // Date | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from after this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeStart: 2013-10-20T19:20:30+01:00,
-    // Date | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from before this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeEnd: 2013-10-20T19:20:30+01:00,
     // number | The ID of the Application. It is displayed in your Talon.One deployment URL.
     applicationId: 789,
@@ -8086,8 +7711,8 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **rangeStart** | `Date` | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
-| **rangeEnd** | `Date` | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeStart** | `Date` | Only return results from after this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeEnd** | `Date` | Only return results from before this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `1000`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
@@ -8103,7 +7728,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -8139,10 +7764,6 @@ import type { GetCustomerAnalyticsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -8151,7 +7772,7 @@ async function example() {
   const body = {
     // number | The ID of the Application. It is displayed in your Talon.One deployment URL.
     applicationId: 789,
-    // number | The value of the `id` property of a customer profile. Get it with the [List Application\'s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint. 
+    // number | The value of the `id` property of a customer profile. Get it with the [List Application\'s customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint. 
     customerId: 789,
     // number | The number of items in the response. (optional)
     pageSize: 789,
@@ -8179,7 +7800,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
-| **customerId** | `number` | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application\&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | [Defaults to `undefined`] |
+| **customerId** | `number` | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application\&#39;s customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint.  | [Defaults to `undefined`] |
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `1000`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
 | **sort** | `string` | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [Optional] [Defaults to `undefined`] |
@@ -8190,7 +7811,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -8212,7 +7833,7 @@ example().catch(console.error);
 
 Get customer profile
 
-Return the details of the specified customer profile.  &lt;div class&#x3D;\&quot;redoc-section\&quot;&gt;   &lt;p class&#x3D;\&quot;title\&quot;&gt;Performance tips&lt;/p&gt;    You can retrieve the same information via the Integration API, which can save you extra API requests. consider these options:    - Request the customer profile to be part of the response content using     [Update Customer Session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2).   - Send an empty update with the [Update Customer Profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint with &#x60;runRuleEngine&#x3D;false&#x60;. &lt;/div&gt; 
+Return the details of the specified customer profile.  &gt; [!note] &gt; You can retrieve the same information via the Integration API, which can save you extra API requests. Consider these options: &gt; - Request the customer profile to be part of the response content using &gt;   [Update Customer Session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2). &gt; - Send an empty update with the [Update Customer Profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint with &#x60;runRuleEngine&#x3D;false&#x60;. 
 
 ### Example
 
@@ -8226,17 +7847,13 @@ import type { GetCustomerProfileRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
   const api = new ManagementApi(config);
 
   const body = {
-    // number | The value of the `id` property of a customer profile. Get it with the [List Application\'s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint. 
+    // number | The value of the `id` property of a customer profile. Get it with the [List Application\'s customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint. 
     customerId: 789,
   } satisfies GetCustomerProfileRequest;
 
@@ -8257,7 +7874,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **customerId** | `number` | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application\&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | [Defaults to `undefined`] |
+| **customerId** | `number` | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application\&#39;s customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint.  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -8265,7 +7882,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -8301,10 +7918,6 @@ import type { GetCustomerProfileAchievementProgressRequest } from 'talon_one_sdk
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -8355,7 +7968,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -8393,10 +8006,6 @@ import type { GetCustomerProfilesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -8438,7 +8047,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -8474,10 +8083,6 @@ import type { GetCustomersByAttributesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -8522,7 +8127,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -8544,7 +8149,7 @@ example().catch(console.error);
 
 Get statistics for loyalty dashboard
 
-Retrieve the statistics displayed on the specified loyalty program\&#39;s dashboard, such as the total active points, pending points, spent points, and expired points.  **Important:** The returned data does not include the current day. All statistics are updated daily at 11:59 PM in the loyalty program time zone. 
+Retrieve the statistics displayed on the specified loyalty program\&#39;s dashboard, such as the total active points, pending points, spent points, and expired points.  &gt; [!important] The returned data does not include the current day. All statistics &gt; are updated daily at 11:59 PM in the loyalty program time zone. 
 
 ### Example
 
@@ -8558,10 +8163,6 @@ import type { GetDashboardStatisticsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -8570,9 +8171,9 @@ async function example() {
   const body = {
     // number | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
     loyaltyProgramId: 789,
-    // Date | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from after this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeStart: 2013-10-20T19:20:30+01:00,
-    // Date | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
+    // Date | Only return results from before this timestamp.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered. 
     rangeEnd: 2013-10-20T19:20:30+01:00,
     // string | The ID of the subledger by which we filter the data. (optional)
     subledgerId: subledgerId_example,
@@ -8596,8 +8197,8 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
-| **rangeStart** | `Date` | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
-| **rangeEnd** | `Date` | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeStart** | `Date` | Only return results from after this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
+| **rangeEnd** | `Date` | Only return results from before this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Defaults to `undefined`] |
 | **subledgerId** | `string` | The ID of the subledger by which we filter the data. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
@@ -8606,7 +8207,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -8642,10 +8243,6 @@ import type { GetEventTypesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -8693,7 +8290,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -8729,10 +8326,6 @@ import type { GetExperimentRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -8771,7 +8364,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -8807,10 +8400,6 @@ import type { GetExportsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -8858,7 +8447,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -8894,10 +8483,6 @@ import type { GetLoyaltyCardRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -8936,7 +8521,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -8975,10 +8560,6 @@ import type { GetLoyaltyCardTransactionLogsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -8989,9 +8570,9 @@ async function example() {
     loyaltyProgramId: 789,
     // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode `NewCard2026%` as `NewCard2026%25`. 
     loyaltyCardId: loyaltyCardId_example,
-    // Date | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
+    // Date | Date and time from which results are returned. Results are filtered by transaction creation date.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
     startDate: 2013-10-20T19:20:30+01:00,
-    // Date | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
+    // Date | Date and time by which results are returned. Results are filtered by transaction creation date.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
     endDate: 2013-10-20T19:20:30+01:00,
     // number | The number of items in the response. (optional)
     pageSize: 789,
@@ -9024,8 +8605,8 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
 | **loyaltyCardId** | `string` | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  | [Defaults to `undefined`] |
-| **startDate** | `Date` | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
-| **endDate** | `Date` | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
+| **startDate** | `Date` | Date and time from which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
+| **endDate** | `Date` | Date and time by which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `1000`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
 | **subledgerId** | `string` | The ID of the subledger by which we filter the data. | [Optional] [Defaults to `undefined`] |
@@ -9038,7 +8619,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -9076,10 +8657,6 @@ import type { GetLoyaltyCardsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -9133,7 +8710,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -9157,7 +8734,7 @@ example().catch(console.error);
 
 Get customer\&#39;s loyalty balances
 
-Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program. You can filter balances by date and subledger ID, and include tier-related information in the response.  **Note**: If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see: - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards) - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
+Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  &gt; [!note] If no filtering options are applied, you retrieve all loyalty &gt; balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
 
 ### Example
 
@@ -9171,10 +8748,6 @@ import type { GetLoyaltyLedgerBalancesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -9185,7 +8758,7 @@ async function example() {
     loyaltyProgramId: 789,
     // string | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. 
     integrationId: integrationId_example,
-    // Date | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
+    // Date | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
     endDate: 2013-10-20T19:20:30+01:00,
     // string | The ID of the subledger used to filter the data. Leave this value empty (\"\") to query the main ledger. (optional)
     subledgerId: subledgerId_example,
@@ -9214,7 +8787,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
 | **integrationId** | `string` | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  | [Defaults to `undefined`] |
-| **endDate** | `Date` | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
+| **endDate** | `Date` | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
 | **subledgerId** | `string` | The ID of the subledger used to filter the data. Leave this value empty (\&quot;\&quot;) to query the main ledger. | [Optional] [Defaults to `undefined`] |
 | **includeTiers** | `boolean` | Indicates whether tier information is included in the response.  When set to &#x60;true&#x60;, the response includes information about the current tier and the number of points required to move to next tier.  | [Optional] [Defaults to `false`] |
 | **includeProjectedTier** | `boolean` | Indicates whether the customer\&#39;s projected tier information is included in the response.  When set to &#x60;true&#x60;, the response includes information about the customer\&#39;s active points and the name of the projected tier.  **Note** We recommend filtering by &#x60;subledgerId&#x60; for better performance.  | [Optional] [Defaults to `false`] |
@@ -9225,7 +8798,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -9250,7 +8823,7 @@ example().catch(console.error);
 
 Get customer\&#39;s full loyalty ledger
 
-Get the loyalty ledger for this profile integration ID.  To get the &#x60;integrationId&#x60; of the profile from a &#x60;sessionId&#x60;, use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint.  **Important:** To get loyalty transaction logs for a given Integration ID in a loyalty program, we recommend using the Integration API\&#39;s [Get customer\&#39;s loyalty logs](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). 
+Get the loyalty ledger for this profile integration ID.  To get the &#x60;integrationId&#x60; of the profile from a &#x60;sessionId&#x60;, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint.  **Important:** To get loyalty transaction logs for a given Integration ID in a loyalty program, we recommend using the Integration API\&#39;s [Get customer\&#39;s loyalty logs](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). 
 
 ### Example
 
@@ -9264,10 +8837,6 @@ import type { GetLoyaltyPointsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -9306,7 +8875,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -9328,7 +8897,7 @@ example().catch(console.error);
 
 Get loyalty program
 
-Get the specified [loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview). To list all loyalty programs in your Application, use [List loyalty programs](#operation/getLoyaltyPrograms).  To list the loyalty programs that a customer profile is part of, use the [List customer data](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/getCustomerInventory) 
+Get the specified [loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview).  To list all loyalty programs in your Application, use [List loyalty programs](#tag/Loyalty/operation/getLoyaltyPrograms).  To list the loyalty programs that a customer profile is part of, use [List customer data](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/getCustomerInventory). 
 
 ### Example
 
@@ -9342,10 +8911,6 @@ import type { GetLoyaltyProgramRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -9381,7 +8946,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -9403,7 +8968,7 @@ example().catch(console.error);
 
 List customer\&#39;s loyalty transactions
 
-Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  **Note:** To retrieve all loyalty program transaction logs in a given loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] To retrieve all loyalty program transaction logs in a given &gt; loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) &gt; endpoint. 
 
 ### Example
 
@@ -9417,10 +8982,6 @@ import type { GetLoyaltyProgramProfileLedgerTransactionsRequest } from 'talon_on
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -9431,17 +8992,17 @@ async function example() {
     loyaltyProgramId: 789,
     // string | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. 
     integrationId: integrationId_example,
-    // Array<string> | Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  `?customerSessionIDs=id1&customerSessionIDs=id2`.  The response contains only data associated with the specified sessions.  (optional)
+    // Array<string> | Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, `?customerSessionIDs=id1&customerSessionIDs=id2`.  The response contains only data associated with the specified sessions.  (optional)
     customerSessionIDs: ...,
-    // Array<string> | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.  The response contains only data associated with the specified transactions.  (optional)
+    // Array<string> | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.  The response contains only data associated with the specified transactions.  (optional)
     transactionUUIDs: ...,
     // string | The ID of the subledger used to filter the data. Leave this value empty (\"\") to query the main ledger. (optional)
     subledgerId: subledgerId_example,
     // 'manual' | 'session' | 'import' | Filter results by loyalty transaction type: - `manual`: Loyalty transaction that was done manually. - `session`: Loyalty transaction that resulted from a customer session. - `import`: Loyalty transaction that was imported from a CSV file.  (optional)
     loyaltyTransactionType: loyaltyTransactionType_example,
-    // Date | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
+    // Date | Date and time from which results are returned. Results are filtered by transaction creation date.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
     startDate: 2013-10-20T19:20:30+01:00,
-    // Date | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
+    // Date | Date and time by which results are returned. Results are filtered by transaction creation date.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
     endDate: 2013-10-20T19:20:30+01:00,
     // number | The number of items in the response. (optional)
     pageSize: 789,
@@ -9470,12 +9031,12 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
 | **integrationId** | `string` | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  | [Defaults to `undefined`] |
-| **customerSessionIDs** | `Array<string>` | Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  | [Optional] |
-| **transactionUUIDs** | `Array<string>` | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | [Optional] |
+| **customerSessionIDs** | `Array<string>` | Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  | [Optional] |
+| **transactionUUIDs** | `Array<string>` | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | [Optional] |
 | **subledgerId** | `string` | The ID of the subledger used to filter the data. Leave this value empty (\&quot;\&quot;) to query the main ledger. | [Optional] [Defaults to `undefined`] |
 | **loyaltyTransactionType** | `manual`, `session`, `import` | Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  | [Optional] [Defaults to `undefined`] [Enum: manual, session, import] |
-| **startDate** | `Date` | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
-| **endDate** | `Date` | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
+| **startDate** | `Date` | Date and time from which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
+| **endDate** | `Date` | Date and time by which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `50`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
 | **awaitsActivation** | `boolean` | If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  | [Optional] [Defaults to `undefined`] |
@@ -9486,7 +9047,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -9511,7 +9072,7 @@ example().catch(console.error);
 
 List loyalty program transactions
 
-Retrieve loyalty program transaction logs in a given loyalty program with filtering options applied. Manual and imported transactions are also included. **Note:** If no filters are applied, the last 50 loyalty transactions for the given loyalty program are returned.  **Important:** To get loyalty transaction logs for a given Integration ID in a loyalty program, we recommend using the Integration API\&#39;s [Get customer\&#39;s loyalty logs](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). 
+Retrieve loyalty program transaction logs in a given loyalty program with filtering options applied. Manual and imported transactions are also included.  &gt; [!note] **Note** &gt; - If no filters are applied, the last 50 loyalty transactions for the given loyalty program are returned. &gt; - To get loyalty transaction logs for a given Integration ID in &gt;   a loyalty program, we recommend using the Integration API\&#39;s [Get customer\&#39;s loyalty &gt;   logs](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). 
 
 ### Example
 
@@ -9525,10 +9086,6 @@ import type { GetLoyaltyProgramTransactionsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -9541,13 +9098,13 @@ async function example() {
     loyaltyTransactionType: loyaltyTransactionType_example,
     // string | The ID of the subledger by which we filter the data. (optional)
     subledgerId: subledgerId_example,
-    // Array<string> | Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  `?customerSessionIDs=id1&customerSessionIDs=id2`.  The response contains only data associated with the specified sessions.  (optional)
+    // Array<string> | Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, `?customerSessionIDs=id1&customerSessionIDs=id2`.  The response contains only data associated with the specified sessions.  (optional)
     customerSessionIDs: ...,
-    // Array<string> | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.  The response contains only data associated with the specified transactions.  (optional)
+    // Array<string> | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.  The response contains only data associated with the specified transactions.  (optional)
     transactionUUIDs: ...,
-    // Date | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
+    // Date | Date and time from which results are returned. Results are filtered by transaction creation date.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
     startDate: 2013-10-20T19:20:30+01:00,
-    // Date | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
+    // Date | Date and time by which results are returned. Results are filtered by transaction creation date.  > [!note] **Note** > - This must be an RFC3339 timestamp string. > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional)
     endDate: 2013-10-20T19:20:30+01:00,
     // number | The number of items in the response. (optional)
     pageSize: 789,
@@ -9577,10 +9134,10 @@ example().catch(console.error);
 | **loyaltyProgramId** | `number` | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
 | **loyaltyTransactionType** | `manual`, `session`, `import` | Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  | [Optional] [Defaults to `undefined`] [Enum: manual, session, import] |
 | **subledgerId** | `string` | The ID of the subledger by which we filter the data. | [Optional] [Defaults to `undefined`] |
-| **customerSessionIDs** | `Array<string>` | Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  | [Optional] |
-| **transactionUUIDs** | `Array<string>` | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | [Optional] |
-| **startDate** | `Date` | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
-| **endDate** | `Date` | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
+| **customerSessionIDs** | `Array<string>` | Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  | [Optional] |
+| **transactionUUIDs** | `Array<string>` | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | [Optional] |
+| **startDate** | `Date` | Date and time from which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
+| **endDate** | `Date` | Date and time by which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [Optional] [Defaults to `undefined`] |
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `50`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
 | **awaitsActivation** | `boolean` | If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  | [Optional] [Defaults to `undefined`] |
@@ -9591,7 +9148,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -9630,10 +9187,6 @@ import type { GetLoyaltyProgramsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -9661,7 +9214,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -9683,7 +9236,7 @@ This endpoint does not need any parameter.
 
 Get loyalty program statistics
 
-⚠️ Deprecation notice: Support for requests to this endpoint will end soon. To retrieve statistics for a loyalty program, use the [Get statistics for loyalty dashboard](/management-api#tag/Loyalty/operation/getDashboardStatistics) endpoint.  Retrieve the statistics of the specified loyalty program, such as the total active points, pending points, spent points, and expired points. 
+&gt; [warning] This endpoint is deprecated.  To retrieve statistics for a loyalty program, use the [Get statistics for loyalty dashboard](/management-api#tag/Loyalty/operation/getDashboardStatistics) endpoint.  Retrieve the statistics of the specified loyalty program, such as the total active points, pending points, spent points, and expired points. 
 
 ### Example
 
@@ -9697,10 +9250,6 @@ import type { GetLoyaltyStatisticsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -9736,7 +9285,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -9772,10 +9321,6 @@ import type { GetMessageLogsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -9850,7 +9395,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -9886,10 +9431,6 @@ import type { GetReferralsWithoutTotalCountRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -9955,7 +9496,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -9991,10 +9532,6 @@ import type { GetRoleV2Request } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -10030,7 +9567,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -10066,10 +9603,6 @@ import type { GetRulesetRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -10111,7 +9644,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -10147,10 +9680,6 @@ import type { GetRulesetsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -10198,7 +9727,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -10234,10 +9763,6 @@ import type { GetStoreRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -10276,7 +9801,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -10313,10 +9838,6 @@ import type { GetUserRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -10352,7 +9873,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -10388,10 +9909,6 @@ import type { GetUsersRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -10433,7 +9950,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -10469,10 +9986,6 @@ import type { GetWebhookRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -10508,7 +10021,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -10544,10 +10057,6 @@ import type { GetWebhooksRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -10604,7 +10113,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -10626,7 +10135,7 @@ example().catch(console.error);
 
 Import data into existing account-level collection
 
-Upload a CSV file containing the collection of string values that should be attached as payload for collection. The file should be sent as multipart data.  The import **replaces** the initial content of the collection.  The CSV file **must** only contain the following column:  - &#x60;item&#x60;: the values in your collection.  A collection is limited to 500,000 items.  Example:  &#x60;&#x60;&#x60; item Addidas Nike Asics &#x60;&#x60;&#x60;  **Note:** Before sending a request to this endpoint, ensure the data in the CSV to import is different from the data currently stored in the collection. 
+Upload a CSV file containing the collection of string values that should be attached as payload for collection.  The file should be sent as multipart data.  The import **replaces** the initial content of the collection.  The CSV file **must** only contain the following column:  - &#x60;item&#x60;: the values in your collection.  A collection is limited to 500,000 items.  ## Example  &#x60;&#x60;&#x60; item Adidas Nike Asics &#x60;&#x60;&#x60;  &gt; [!note] Before sending a request to this endpoint, ensure the data in the &gt; CSV to import is different from the data currently stored in the collection. 
 
 ### Example
 
@@ -10640,17 +10149,13 @@ import type { ImportAccountCollectionRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
   const api = new ManagementApi(config);
 
   const body = {
-    // number | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint.
+    // number | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.
     collectionId: 789,
     // string | The file containing the data that is being imported. (optional)
     upFile: upFile_example,
@@ -10673,7 +10178,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | [Defaults to `undefined`] |
+| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint. | [Defaults to `undefined`] |
 | **upFile** | `string` | The file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
@@ -10682,7 +10187,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -10706,7 +10211,7 @@ example().catch(console.error);
 
 Import allowed values for attribute
 
-Upload a CSV file containing a list of [picklist values](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#picklist-values) for the specified attribute.  The file should be sent as multipart data.  The import **replaces** the previous list of allowed values for this attribute, if any.  The CSV file **must** only contain the following column: - &#x60;item&#x60; (required): the values in your allowed list, for example a list of SKU\&#39;s.  An allowed list is limited to 500,000 items.  Example:  &#x60;&#x60;&#x60;text item CS-VG-04032021-UP-50D-10 CS-DV-04042021-UP-49D-12 CS-DG-02082021-UP-50G-07 &#x60;&#x60;&#x60; 
+Upload a CSV file containing a list of [picklist values](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#picklist-values) for the specified attribute.  The file should be sent as multipart data.  The import **replaces** the previous list of allowed values for this attribute, if any.  The CSV file **must** only contain the following column:  - &#x60;item&#x60;: The values in your allowed list, for example a list of SKUs.  An allowed list is limited to 500,000 items.  ## Example  &#x60;&#x60;&#x60;text item CS-VG-04032021-UP-50D-10 CS-DV-04042021-UP-49D-12 CS-DG-02082021-UP-50G-07 &#x60;&#x60;&#x60; 
 
 ### Example
 
@@ -10720,10 +10225,6 @@ import type { ImportAllowedListRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -10762,7 +10263,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -10787,7 +10288,7 @@ example().catch(console.error);
 
 Import audience members
 
-Upload a CSV file containing the integration IDs of the members you want to add to an audience.  The file should be sent as multipart data and should contain only the following column (required): - &#x60;profileintegrationid&#x60;: The integration ID of the customer profile.  The import **replaces** the previous list of audience members.  **Note:** We recommend limiting your file size to 500MB.  Example:  &#x60;&#x60;&#x60;text profileintegrationid charles alexa &#x60;&#x60;&#x60; 
+Upload a CSV file containing the integration IDs of the members you want to add to an audience.  The file should be sent as multipart data and should contain only the following column (required):  - &#x60;profileintegrationid&#x60;: The integration ID of the customer profile.  The import **replaces** the previous list of audience members.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;text profileintegrationid charles alexa &#x60;&#x60;&#x60; 
 
 ### Example
 
@@ -10801,10 +10302,6 @@ import type { ImportAudiencesMembershipsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -10843,7 +10340,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -10882,10 +10379,6 @@ import type { ImportCampaignStoreBudgetRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -10933,7 +10426,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -10970,10 +10463,6 @@ import type { ImportCampaignStoresRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -11015,7 +10504,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -11040,7 +10529,7 @@ example().catch(console.error);
 
 Import data into existing campaign-level collection
 
-Upload a CSV file containing the collection of string values that should be attached as payload for collection. The file should be sent as multipart data.  The import **replaces** the initial content of the collection.  The CSV file **must** only contain the following column:  - &#x60;item&#x60;: the values in your collection.  A collection is limited to 500,000 items.  Example:  &#x60;&#x60;&#x60; item Addidas Nike Asics &#x60;&#x60;&#x60;  **Note:** Before sending a request to this endpoint, ensure the data in the CSV to import is different from the data currently stored in the collection. 
+Upload a CSV file containing the collection of string values that should be attached as payload for collection.  The file should be sent as multipart data.  The import **replaces** the initial content of the collection.  The CSV file **must** only contain the following column:  - &#x60;item&#x60;: the values in your collection.  A collection is limited to 500,000 items.  ## Example  &#x60;&#x60;&#x60; item Adidas Nike Asics &#x60;&#x60;&#x60;  &gt; [!note] Before sending a request to this endpoint, ensure the data in the &gt; CSV to import is different from the data currently stored in the collection. 
 
 ### Example
 
@@ -11054,10 +10543,6 @@ import type { ImportCollectionRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -11068,7 +10553,7 @@ async function example() {
     applicationId: 789,
     // number | The ID of the campaign. It is displayed in your Talon.One deployment URL.
     campaignId: 789,
-    // number | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint.
+    // number | The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.
     collectionId: 789,
     // string | The file containing the data that is being imported. (optional)
     upFile: upFile_example,
@@ -11093,7 +10578,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **campaignId** | `number` | The ID of the campaign. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
-| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | [Defaults to `undefined`] |
+| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint. | [Defaults to `undefined`] |
 | **upFile** | `string` | The file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
@@ -11102,7 +10587,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -11125,7 +10610,7 @@ example().catch(console.error);
 
 Import coupons
 
-Upload a CSV file containing the coupons that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - &#x60;value&#x60; (required): The coupon code. Must be at least 3 characters long. We recommend using alphanumeric characters.   There is no maximum length but limiting the code to 30 characters   ensures it is fully readable in the Campaign Manager.   The code should be unique unless you set &#x60;skipDuplicates&#x60; to &#x60;true&#x60;.  - &#x60;expirydate&#x60;: The end date in RFC3339 of the code redemption period. - &#x60;startdate&#x60;: The start date in RFC3339 of the code redemption period. - &#x60;recipientintegrationid&#x60;: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - &#x60;limitval&#x60;: The maximum number of redemptions of this code. For unlimited redemptions, use &#x60;0&#x60;. Defaults to &#x60;1&#x60; when not provided. - &#x60;discountlimit&#x60;: The total discount value that the code can give. This is typically used to represent a gift card value. - &#x60;attributes&#x60;: A JSON object describing _custom_ coupon attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called &#x60;category&#x60; associated with the coupon entity, the object in the CSV file, when opened in a text editor, must be: &#x60;\&quot;{\&quot;category\&quot;: \&quot;10_off\&quot;}\&quot;&#x60;.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;text \&quot;value\&quot;,\&quot;expirydate\&quot;,\&quot;startdate\&quot;,\&quot;recipientintegrationid\&quot;,\&quot;limitval\&quot;,\&quot;attributes\&quot;,\&quot;discountlimit\&quot; COUP1,2018-07-01T04:00:00Z,2018-05-01T04:00:00Z,cust123,1,\&quot;{\&quot;\&quot;Category\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot;,2.4 &#x60;&#x60;&#x60;  Once imported, you can find the &#x60;batchId&#x60; in the Campaign Manager or by using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount). 
+Upload a CSV file containing the coupons that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - &#x60;value&#x60; (required): The coupon code. Must be at least 3 characters long. We recommend using alphanumeric characters.   There is no maximum length but limiting the code to 30 characters   ensures it is fully readable in the Campaign Manager.   The code should be unique unless you set &#x60;skipDuplicates&#x60; to &#x60;true&#x60;. - &#x60;expirydate&#x60;: The end date in RFC3339 of the code redemption period. - &#x60;startdate&#x60;: The start date in RFC3339 of the code redemption period. - &#x60;recipientintegrationid&#x60;: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - &#x60;limitval&#x60;: The maximum number of redemptions of this code. For unlimited redemptions, use &#x60;0&#x60;. Defaults to &#x60;1&#x60; when not provided. - &#x60;discountlimit&#x60;: The total discount value that the code can give. This is typically used to represent a gift card value. - &#x60;attributes&#x60;: A JSON object describing _custom_ coupon attribute names and their values, enclosed with double quotation marks.&lt;br /&gt;   For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called &#x60;category&#x60; associated with the coupon entity, the object in the CSV file, when opened in a text editor, must be: &#x60;\&quot;{\&quot;category\&quot;: \&quot;10_off\&quot;}\&quot;&#x60;.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;text \&quot;value\&quot;,\&quot;expirydate\&quot;,\&quot;startdate\&quot;,\&quot;recipientintegrationid\&quot;,\&quot;limitval\&quot;,\&quot;attributes\&quot;,\&quot;discountlimit\&quot; COUP1,2018-07-01T04:00:00Z,2018-05-01T04:00:00Z,cust123,1,\&quot;{\&quot;\&quot;Category\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot;,2.4 &#x60;&#x60;&#x60;  Once imported, you can find the &#x60;batchId&#x60; in the Campaign Manager or by using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount). 
 
 ### Example
 
@@ -11139,10 +10624,6 @@ import type { ImportCouponsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -11187,7 +10668,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -11209,7 +10690,7 @@ example().catch(console.error);
 
 Import loyalty cards
 
-Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card,  which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
+Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  &gt; [!note] We recommend limiting your file size to 500MB.  ## Example  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
 
 ### Example
 
@@ -11223,10 +10704,6 @@ import type { ImportLoyaltyCardsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -11265,7 +10742,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -11289,7 +10766,7 @@ example().catch(console.error);
 
 Import customers into loyalty tiers
 
-Upload a CSV file containing existing customers to be assigned to existing tiers. Send the file as multipart data.  **Important:** This endpoint only works with loyalty programs with advanced tiers (with expiration and downgrade policy) feature enabled.  The CSV file should contain the following columns: - &#x60;subledgerid&#x60; (optional): The ID of the subledger. If this field is empty, the main ledger will be used. - &#x60;customerprofileid&#x60;: The integration ID of the customer profile to whom the tier should be assigned. - &#x60;tiername&#x60;: The name of an existing tier to assign to the customer. - &#x60;expirydate&#x60;: The expiration date of the tier when the tier is reevaluated. It should be a future date.  About customer assignment to a tier: - If the customer isn\&#39;t already in a tier, the customer is assigned to the specified tier during the tier import. - If the customer is already in the tier that\&#39;s specified in the CSV file, only the expiration date is updated.  **Note:** We recommend not using this endpoint to update the tier of a customer. To update a customer\&#39;s tier, you can [add](/management-api#tag/Loyalty/operation/addLoyaltyPoints) or [deduct](/management-api#tag/Loyalty/operation/removeLoyaltyPoints) their loyalty points.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** We recommend limiting your file size to 500MB.  **Example:** &#x60;&#x60;&#x60;csv subledgerid,customerprofileid,tiername,expirydate SUB1,alexa,Gold,2024-03-21T07:32:14Z ,george,Silver,2025-04-16T21:12:37Z SUB2,avocado,Bronze,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+Upload a CSV file containing existing customers to be assigned to existing tiers.  Send the file as multipart data.  &gt; [!important] This endpoint only works with loyalty programs with advanced &gt; tiers (with expiration and downgrade policy) feature enabled.  The CSV file should contain the following columns:  - &#x60;subledgerid&#x60; (optional): The ID of the subledger. If this field is empty, the main ledger will be used. - &#x60;customerprofileid&#x60;: The integration ID of the customer profile to whom the tier should be assigned. - &#x60;tiername&#x60;: The name of an existing tier to assign to the customer. - &#x60;expirydate&#x60;: The expiration date of the tier when the tier is reevaluated. It should be a future date.  About customer assignment to a tier:  - If the customer isn\&#39;t already in a tier, the customer is assigned to the specified tier during the tier import. - If the customer is already in the tier that\&#39;s specified in the CSV file, only the expiration date is updated.  &gt; [!note] We recommend not using this endpoint to update the tier of a customer.  To update a customer\&#39;s tier, you can [add](/management-api#tag/Loyalty/operation/addLoyaltyPoints) or [deduct](/management-api#tag/Loyalty/operation/removeLoyaltyPoints) their loyalty points.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv subledgerid,customerprofileid,tiername,expirydate SUB1,alexa,Gold,2024-03-21T07:32:14Z ,george,Silver,2025-04-16T21:12:37Z SUB2,avocado,Bronze,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
 
 ### Example
 
@@ -11303,10 +10780,6 @@ import type { ImportLoyaltyCustomersTiersRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -11345,7 +10818,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -11370,7 +10843,7 @@ example().catch(console.error);
 
 Import loyalty points
 
-Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - &#x60;customerprofileid&#x60; (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - &#x60;identifier&#x60; (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - &#x60;amount&#x60;: The amount of points to award to the customer profile. - &#x60;startdate&#x60; (optional): The earliest date when the points can be redeemed. The points are &#x60;active&#x60; from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - &#x60;immediate&#x60;   - &#x60;on_action&#x60;      **Note**:   Empty or missing values default to &#x60;immediate&#x60;. - &#x60;expirydate&#x60; (optional): The latest date when the points can be redeemed. The points are &#x60;expired&#x60; after this date.    **Note**: It must be an RFC3339 timestamp string or string &#x60;unlimited&#x60;. Empty or missing values are considered &#x60;unlimited&#x60;.      If passed, &#x60;validityDuration&#x60; should be omitted. - &#x60;validityDuration&#x60; (optional): The duration for which the points remain active, relative to the    activation date.    The time format is an **integer** followed by one letter indicating the time unit.     Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.     Available units:     - &#x60;s&#x60;: seconds   - &#x60;m&#x60;: minutes   - &#x60;h&#x60;: hours   - &#x60;D&#x60;: days   - &#x60;W&#x60;: weeks   - &#x60;M&#x60;: months   - &#x60;Y&#x60;: years     You can round certain units up or down:    - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day.   - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of   the day, week, month or year.    If passed, &#x60;expirydate&#x60; should be omitted. - &#x60;subledgerid&#x60; (optional): The ID of the subledger that should received the points. - &#x60;reason&#x60; (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for &#x60;startdate&#x60;. If &#x60;startdate&#x60; matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for &#x60;startdate&#x60; is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  &#x60;&#x60;&#x60;text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60;  **Example for card-based programs:**  &#x60;&#x60;&#x60;text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60; 
+Upload a CSV file containing the loyalty points you want to import into a given loyalty program.  Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - &#x60;customerprofileid&#x60; (optional): For profile-based loyalty programs, the   integration ID of the customer profile where the loyalty points are   imported.   **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - &#x60;identifier&#x60; (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - &#x60;amount&#x60;: The amount of points to award to the customer profile. - &#x60;startdate&#x60; (optional): The earliest date when the points can be redeemed. The points are &#x60;active&#x60; from this date until the expiration date.   This parameter accepts one of the following values:     - A timestamp string in RFC3339 format.     - &#x60;immediate&#x60;     - &#x60;on_action&#x60;   **Note**: Empty or missing values default to &#x60;immediate&#x60;. - &#x60;expirydate&#x60; (optional): The latest date when the points can be redeemed.   The points are &#x60;expired&#x60; after this date.   **Note**: It must be an RFC3339 timestamp string or string &#x60;unlimited&#x60;. Empty or missing values are considered &#x60;unlimited&#x60;.   If passed, &#x60;validityDuration&#x60; should be omitted. - &#x60;validityDuration&#x60; (optional): The duration for which the points remain active, relative to the   activation date. The time format is an **integer** followed by one letter indicating the time unit.&lt;br /&gt;   Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.    Available units:    - &#x60;s&#x60;: seconds   - &#x60;m&#x60;: minutes   - &#x60;h&#x60;: hours   - &#x60;D&#x60;: days   - &#x60;W&#x60;: weeks   - &#x60;M&#x60;: months   - &#x60;Y&#x60;: years    You can round certain units up or down:    - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day.   - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of   the day, week, month or year.    If passed, &#x60;expirydate&#x60; should be omitted. - &#x60;subledgerid&#x60; (optional): The ID of the subledger that should received the points. - &#x60;reason&#x60; (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  &gt; [!note] For existing customer profiles and loyalty cards, the imported &gt; points are added to any previous active or pending points, depending on the &gt; value provided for &#x60;startdate&#x60;. If &#x60;startdate&#x60; matches the current date, the &gt; imported points are _active_. If it is later, the points are _pending_ until &gt; the date provided for &#x60;startdate&#x60; is reached.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example for profile-based programs  &#x60;&#x60;&#x60;text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60;  ## Example for card-based programs  &#x60;&#x60;&#x60;text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60; 
 
 ### Example
 
@@ -11384,10 +10857,6 @@ import type { ImportLoyaltyPointsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -11429,7 +10898,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -11451,7 +10920,7 @@ example().catch(console.error);
 
 Import giveaway codes into a giveaway pool
 
-Upload a CSV file containing the giveaway codes that should be created. Send the file as multipart data.  The CSV file contains the following columns: - &#x60;code&#x60; (required): The code of your giveaway, for instance, a gift card redemption code. - &#x60;startdate&#x60;:  The start date in RFC3339 of the code redemption period. - &#x60;enddate&#x60;: The last date in RFC3339 of the code redemption period. - &#x60;attributes&#x60;: A JSON object describing _custom_ giveaway attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called &#x60;provider&#x60; associated with the giveaway entity, the object in the CSV file, when opened in a text editor, must be: &#x60;\&quot;{\&quot;provider\&quot;: \&quot;myPartnerCompany\&quot;}\&quot;&#x60;.  The &#x60;startdate&#x60; and &#x60;enddate&#x60; have nothing to do with the _validity_ of the codes. They are only used by the Rule Engine to award the codes or not. You can use the time zone setting of your choice. The values are converted to UTC internally by Talon.One.  **Note:**  - We recommend limiting your file size to 500MB. - You can import the same code multiple times. Duplicate codes are treated and distributed to customers as unique codes.  **Example:**  &#x60;&#x60;&#x60;text code,startdate,enddate,attributes GIVEAWAY1,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,\&quot;{\&quot;\&quot;provider\&quot;\&quot;: \&quot;\&quot;Amazon\&quot;\&quot;}\&quot; GIVEAWAY2,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,\&quot;{\&quot;\&quot;provider\&quot;\&quot;: \&quot;\&quot;Amazon\&quot;\&quot;}\&quot; GIVEAWAY3,2021-01-10T23:00:00Z,2022-11-11T23:00:00Z,\&quot;{\&quot;\&quot;provider\&quot;\&quot;: \&quot;\&quot;Aliexpress\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
+Upload a CSV file containing the giveaway codes that should be created. Send the file as multipart data.  The CSV file contains the following columns:  - &#x60;code&#x60; (required): The code of your giveaway, for instance, a gift card redemption code. - &#x60;startdate&#x60;:  The start date in RFC3339 of the code redemption period. - &#x60;enddate&#x60;: The last date in RFC3339 of the code redemption period. - &#x60;attributes&#x60;: A JSON object describing _custom_ giveaway attribute names and their values, enclosed with double quotation marks.&lt;br /&gt;   For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called &#x60;provider&#x60; associated with the giveaway entity, the object in the CSV file, when opened in a text editor, must be: &#x60;\&quot;{\&quot;provider\&quot;: \&quot;myPartnerCompany\&quot;}\&quot;&#x60;.  The &#x60;startdate&#x60; and &#x60;enddate&#x60; have nothing to do with the _validity_ of the codes. They are only used by the Rule Engine to award the codes or not.  You can use the time zone setting of your choice. The values are converted to UTC internally by Talon.One.  &gt; [!note] **Note** &gt; - We recommend limiting your file size to 500MB. &gt; - You can import the same code multiple times. Duplicate codes are treated and distributed to customers as unique codes.  ## Example  &#x60;&#x60;&#x60;text code,startdate,enddate,attributes GIVEAWAY1,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,\&quot;{\&quot;\&quot;provider\&quot;\&quot;: \&quot;\&quot;Amazon\&quot;\&quot;}\&quot; GIVEAWAY2,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,\&quot;{\&quot;\&quot;provider\&quot;\&quot;: \&quot;\&quot;Amazon\&quot;\&quot;}\&quot; GIVEAWAY3,2021-01-10T23:00:00Z,2022-11-11T23:00:00Z,\&quot;{\&quot;\&quot;provider\&quot;\&quot;: \&quot;\&quot;Aliexpress\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
 
 ### Example
 
@@ -11465,10 +10934,6 @@ import type { ImportPoolGiveawaysRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -11507,7 +10972,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -11529,7 +10994,7 @@ example().catch(console.error);
 
 Import referrals
 
-Upload a CSV file containing the referrals that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - &#x60;code&#x60; (required): The referral code. - &#x60;advocateprofileintegrationid&#x60; (required): The profile ID of the advocate. - &#x60;startdate&#x60;: The start date in RFC3339 of the code redemption period. - &#x60;expirydate&#x60;: The end date in RFC3339 of the code redemption period. - &#x60;limitval&#x60;: The maximum number of redemptions of this code. Defaults to &#x60;1&#x60; when left blank. - &#x60;attributes&#x60;: A JSON object describing _custom_ referral attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called &#x60;category&#x60; associated with the referral entity, the object in the CSV file, when opened in a text editor, must be: &#x60;\&quot;{\&quot;category\&quot;: \&quot;10_off\&quot;}\&quot;&#x60;.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Important:** When you import a CSV file with referrals, a [customer profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) is **not** automatically created for each &#x60;advocateprofileintegrationid&#x60; column value. Use the [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint or the [Update multiple customer profiles](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfilesV2) endpoint to create the customer profiles.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;text code,startdate,expirydate,advocateprofileintegrationid,limitval,attributes REFERRAL_CODE1,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid_4,1,\&quot;{\&quot;\&quot;my_attribute\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot; REFERRAL_CODE2,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid1,1,\&quot;{\&quot;\&quot;my_attribute\&quot;\&quot;: \&quot;\&quot;20_off\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
+Upload a CSV file containing the referrals that should be created.  The file should be sent as multipart data.  The CSV file contains the following columns:  - &#x60;code&#x60; (required): The referral code. - &#x60;advocateprofileintegrationid&#x60; (required): The profile ID of the advocate. - &#x60;startdate&#x60;: The start date in RFC3339 of the code redemption period. - &#x60;expirydate&#x60;: The end date in RFC3339 of the code redemption period. - &#x60;limitval&#x60;: The maximum number of redemptions of this code. Defaults to &#x60;1&#x60; when left blank. - &#x60;attributes&#x60;: A JSON object describing _custom_ referral attribute names and their values, enclosed with double quotation marks.&lt;br /&gt;   For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called &#x60;category&#x60; associated with the referral entity, the object in the CSV file, when opened in a text editor, must be: &#x60;\&quot;{\&quot;category\&quot;: \&quot;10_off\&quot;}\&quot;&#x60;.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  &gt; [!important] When you import a CSV file with referrals, &gt; a [customer profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) &gt; is **not** automatically created for each &#x60;advocateprofileintegrationid&#x60; &gt; column value. Use the [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) &gt; endpoint or the [Update multiple customer profiles](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfilesV2) &gt; endpoint to create the customer profiles.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;text code,startdate,expirydate,advocateprofileintegrationid,limitval,attributes REFERRAL_CODE1,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid_4,1,\&quot;{\&quot;\&quot;my_attribute\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot; REFERRAL_CODE2,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid1,1,\&quot;{\&quot;\&quot;my_attribute\&quot;\&quot;: \&quot;\&quot;20_off\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
 
 ### Example
 
@@ -11543,10 +11008,6 @@ import type { ImportReferralsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -11588,7 +11049,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -11624,10 +11085,6 @@ import type { InviteUserExternalRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -11663,7 +11120,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -11699,10 +11156,6 @@ import type { ListAccountCollectionsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -11750,7 +11203,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -11789,10 +11242,6 @@ import type { ListAchievementsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -11840,7 +11289,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -11876,10 +11325,6 @@ import type { ListAllRolesV2Request } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -11907,7 +11352,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -11943,10 +11388,6 @@ import type { ListCampaignStoreBudgetLimitsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -11991,7 +11432,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -12030,10 +11471,6 @@ import type { ListCatalogItemsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -12084,7 +11521,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -12120,10 +11557,6 @@ import type { ListCollectionsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -12177,7 +11610,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -12214,10 +11647,6 @@ import type { ListCollectionsInApplicationRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -12268,7 +11697,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -12305,10 +11734,6 @@ import type { ListExperimentsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -12353,7 +11778,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -12389,10 +11814,6 @@ import type { ListStoresRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -12452,7 +11873,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -12488,10 +11909,6 @@ import type { OktaEventHandlerChallengeRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -12519,7 +11936,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -12535,13 +11952,87 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## priceHistory
+
+> PriceHistoryResponse priceHistory(applicationId, priceHistoryRequest)
+
+Get summary of price history
+
+Fetch the historical price data for a given SKU within a defined timeframe. 
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { PriceHistoryOperationRequest } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // number | The ID of the Application. It is displayed in your Talon.One deployment URL.
+    applicationId: 789,
+    // PriceHistoryRequest | body
+    priceHistoryRequest: ...,
+  } satisfies PriceHistoryOperationRequest;
+
+  try {
+    const data = await api.priceHistory(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
+| **priceHistoryRequest** | [PriceHistoryRequest](PriceHistoryRequest.md) | body | |
+
+### Return type
+
+[**PriceHistoryResponse**](PriceHistoryResponse.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ok |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## removeLoyaltyPoints
 
 > removeLoyaltyPoints(loyaltyProgramId, integrationId, deductLoyaltyPoints)
 
 Deduct points from customer profile
 
-Deduct points from the specified loyalty program and specified customer profile.  **Important:** - Only active points can be deducted. - Only pending points are rolled back when a session is cancelled or reopened.  To get the &#x60;integrationId&#x60; of the profile from a &#x60;sessionId&#x60;, use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
+Deduct points from the specified loyalty program and specified customer profile.  &gt; [!note] **Note** &gt; - Only active points can be deducted. &gt; - Only pending points are rolled back when a session is cancelled or reopened.  To get the &#x60;integrationId&#x60; of the profile from a &#x60;sessionId&#x60;, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint. 
 
 ### Example
 
@@ -12555,10 +12046,6 @@ import type { RemoveLoyaltyPointsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -12600,7 +12087,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -12639,10 +12126,6 @@ import type { ResetPasswordRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -12678,7 +12161,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -12714,10 +12197,6 @@ import type { ScimCreateGroupRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -12753,7 +12232,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -12789,10 +12268,6 @@ import type { ScimCreateUserRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -12828,7 +12303,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -12864,10 +12339,6 @@ import type { ScimDeleteGroupRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -12903,7 +12374,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -12939,10 +12410,6 @@ import type { ScimDeleteUserRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -12978,7 +12445,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -13014,10 +12481,6 @@ import type { ScimGetGroupRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -13053,7 +12516,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -13089,10 +12552,6 @@ import type { ScimGetGroupsRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -13120,7 +12579,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -13156,10 +12615,6 @@ import type { ScimGetResourceTypesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -13187,7 +12642,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -13223,10 +12678,6 @@ import type { ScimGetSchemasRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -13254,7 +12705,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -13290,10 +12741,6 @@ import type { ScimGetServiceProviderConfigRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -13321,7 +12768,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -13357,10 +12804,6 @@ import type { ScimGetUserRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -13396,7 +12839,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -13432,10 +12875,6 @@ import type { ScimGetUsersRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -13463,7 +12902,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -13499,10 +12938,6 @@ import type { ScimPatchGroupRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -13541,7 +12976,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -13577,10 +13012,6 @@ import type { ScimPatchUserRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -13619,7 +13050,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -13655,10 +13086,6 @@ import type { ScimReplaceGroupAttributesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -13697,7 +13124,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -13733,10 +13160,6 @@ import type { ScimReplaceUserAttributesRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -13775,7 +13198,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -13797,7 +13220,7 @@ example().catch(console.error);
 
 List coupons that match the given attributes (without total count)
 
-List the coupons whose attributes match the query criteria in all the campaigns of the given Application.  The match is successful if all the attributes of the request are found in a coupon, even if the coupon has more attributes that are not present on the request.  **Note:** The total count is not included in the response. 
+List the coupons whose attributes match the query criteria in all the campaigns of the given Application.  The match is successful if all the attributes of the request are found in a coupon, even if the coupon has more attributes that are not present on the request.  &gt; [!note] The total count is not included in the response. 
 
 ### Example
 
@@ -13811,10 +13234,6 @@ import type { SearchCouponsAdvancedApplicationWideWithoutTotalCountRequest } fro
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -13892,7 +13311,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -13914,7 +13333,7 @@ example().catch(console.error);
 
 List coupons that match the given attributes in campaign (without total count)
 
-List the coupons whose attributes match the query criteria in the given campaign.  The match is successful if all the attributes of the request are found in a coupon, even if the coupon has more attributes that are not present on the request.  **Note:** The total count is not included in the response. 
+List the coupons whose attributes match the query criteria in the given campaign.  The match is successful if all the attributes of the request are found in a coupon, even if the coupon has more attributes that are not present on the request.  &gt; [!note] The total count is not included in the response. 
 
 ### Example
 
@@ -13928,10 +13347,6 @@ import type { SearchCouponsAdvancedWithoutTotalCountRequest } from 'talon_one_sd
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -14009,7 +13424,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -14045,10 +13460,6 @@ import type { SummarizeCampaignStoreBudgetRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -14087,7 +13498,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -14112,7 +13523,7 @@ example().catch(console.error);
 
 Transfer card data
 
-Transfer loyalty card data, such as linked customers, loyalty balances and transactions, from a given loyalty card to a new, automatically created loyalty card.  **Important:**  - The original card is automatically blocked once the new card is created, and it cannot be activated again. - The default status of the new card is _active_. 
+Transfer loyalty card data, such as linked customers, loyalty balances and transactions, from a given loyalty card to a new, automatically created loyalty card.  &gt; [!important] **Note** &gt; - The original card is automatically blocked once the new card is created,     and it cannot be activated again. &gt; - The default status of the new card is _active_. 
 
 ### Example
 
@@ -14126,10 +13537,6 @@ import type { TransferLoyaltyCardRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -14171,7 +13578,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -14210,17 +13617,13 @@ import type { UpdateAccountCollectionRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
   const api = new ManagementApi(config);
 
   const body = {
-    // number | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint.
+    // number | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.
     collectionId: 789,
     // UpdateCollection | body
     updateCollection: ...,
@@ -14243,7 +13646,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | [Defaults to `undefined`] |
+| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint. | [Defaults to `undefined`] |
 | **updateCollection** | [UpdateCollection](UpdateCollection.md) | body | |
 
 ### Return type
@@ -14252,7 +13655,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -14291,10 +13694,6 @@ import type { UpdateAchievementRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -14339,7 +13738,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -14378,10 +13777,6 @@ import type { UpdateAdditionalCostRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -14420,7 +13815,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -14456,10 +13851,6 @@ import type { UpdateAttributeRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -14498,7 +13889,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -14520,7 +13911,7 @@ example().catch(console.error);
 
 Update campaign
 
-Update the given campaign.  **Important:** You cannot use this endpoint to update campaigns if [campaign staging and revisions](https://docs.talon.one/docs/product/applications/managing-general-settings#campaign-staging-and-revisions) is enabled for your Application. 
+Update the given campaign.  &gt; [!important] You cannot use this endpoint to update campaigns if [campaign staging and &gt; revisions](https://docs.talon.one/docs/product/applications/managing-general-settings#campaign-staging-and-revisions) &gt; is enabled for your Application. 
 
 ### Example
 
@@ -14534,10 +13925,6 @@ import type { UpdateCampaignRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -14579,7 +13966,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -14615,10 +14002,6 @@ import type { UpdateCollectionRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -14629,7 +14012,7 @@ async function example() {
     applicationId: 789,
     // number | The ID of the campaign. It is displayed in your Talon.One deployment URL.
     campaignId: 789,
-    // number | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint.
+    // number | The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.
     collectionId: 789,
     // UpdateCampaignCollection | body
     updateCampaignCollection: ...,
@@ -14654,7 +14037,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **campaignId** | `number` | The ID of the campaign. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
-| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | [Defaults to `undefined`] |
+| **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint. | [Defaults to `undefined`] |
 | **updateCampaignCollection** | [UpdateCampaignCollection](UpdateCampaignCollection.md) | body | |
 
 ### Return type
@@ -14663,7 +14046,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -14686,7 +14069,7 @@ example().catch(console.error);
 
 Update coupon
 
-Update the specified coupon.  &lt;div class&#x3D;\&quot;redoc-section\&quot;&gt;   &lt;p class&#x3D;\&quot;title\&quot;&gt;Important&lt;/p&gt;    &lt;p&gt;With this &lt;code&gt;PUT&lt;/code&gt; endpoint, if you do not explicitly set a value for the &lt;code&gt;startDate&lt;/code&gt;, &lt;code&gt;expiryDate&lt;/code&gt;, and &lt;code&gt;recipientIntegrationId&lt;/code&gt; properties in your request, it is automatically set to &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;  &lt;/div&gt; 
+Update the specified coupon.  &gt; [!note] &gt; With this &#x60;PUT&#x60; endpoint, if you do not explicitly set a value for the &#x60;startDate&#x60;, &#x60;expiryDate&#x60;, &gt; and &#x60;recipientIntegrationId&#x60; properties in your request, it is automatically set to &#x60;null&#x60;. 
 
 ### Example
 
@@ -14700,10 +14083,6 @@ import type { UpdateCouponRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -14748,7 +14127,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -14770,7 +14149,7 @@ example().catch(console.error);
 
 Update coupons
 
-Update all coupons or a specific batch of coupons in the given campaign. You can find the &#x60;batchId&#x60; on the **Coupons** page of your campaign in the Campaign Manager, or you can use [List coupons](#operation/getCouponsWithoutTotalCount).  &lt;div class&#x3D;\&quot;redoc-section\&quot;&gt;   &lt;p class&#x3D;\&quot;title\&quot;&gt;Important&lt;/p&gt;    &lt;ul&gt;     &lt;li&gt;Only send sequential requests to this endpoint.&lt;/li&gt;     &lt;li&gt;Requests to this endpoint time out after 30 minutes. If you hit a timeout, contact our support team.&lt;/li&gt;     &lt;li&gt;With this &lt;code&gt;PUT&lt;/code&gt; endpoint, if you do not explicitly set a value for the &lt;code&gt;startDate&lt;/code&gt; and &lt;code&gt;expiryDate&lt;/code&gt; properties in your request, it is automatically set to &lt;code&gt;null&lt;/code&gt;.&lt;/li&gt;   &lt;/ul&gt;  &lt;/div&gt;  To update a specific coupon, use [Update coupon](#operation/updateCoupon). 
+Update all coupons or a specific batch of coupons in the given campaign.  You can find the &#x60;batchId&#x60; on the **Coupons** page of your campaign in the Campaign Manager, or you can use [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount).  &gt; [!note] **Note** &gt; - Only send sequential requests to this endpoint. &gt; - Requests to this endpoint time out after 30 minutes. If you hit a timeout, contact our support team. &gt; - With this &#x60;PUT&#x60; endpoint, if you do not explicitly set a value for the &#x60;startDate&#x60; and &#x60;expiryDate&#x60; properties in your request, it is automatically set to &#x60;null&#x60;.  To update a specific coupon, use [Update coupon](#tag/Coupons/operation/updateCoupon). 
 
 ### Example
 
@@ -14784,10 +14163,6 @@ import type { UpdateCouponBatchRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -14829,7 +14204,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -14865,10 +14240,6 @@ import type { UpdateLoyaltyCardOperationRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -14910,7 +14281,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -14949,10 +14320,6 @@ import type { UpdateReferralRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -14997,7 +14364,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -15033,10 +14400,6 @@ import type { UpdateRoleV2Request } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -15075,7 +14438,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -15111,10 +14474,6 @@ import type { UpdateStoreRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -15156,7 +14515,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -15194,10 +14553,6 @@ import type { UpdateUserRequest } from 'talon_one_sdk';
 async function example() {
   console.log("🚀 Testing talon_one_sdk SDK...");
   const config = new Configuration({ 
-    // To configure API key authorization: management_key
-    apiKey: "YOUR API KEY",
-    // To configure API key authorization: manager_auth
-    apiKey: "YOUR API KEY",
     // To configure API key authorization: api_key_v1
     apiKey: "YOUR API KEY",
   });
@@ -15236,7 +14591,7 @@ example().catch(console.error);
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 

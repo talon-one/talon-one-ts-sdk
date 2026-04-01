@@ -221,7 +221,6 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *IntegrationApi* | [**getLoyaltyProgramProfileTransactions**](docs/IntegrationApi.md#getloyaltyprogramprofiletransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions | List customer\&#39;s loyalty transactions
 *IntegrationApi* | [**getReservedCustomers**](docs/IntegrationApi.md#getreservedcustomers) | **GET** /v1/coupon_reservations/customerprofiles/{couponValue} | List customers that have this coupon reserved
 *IntegrationApi* | [**linkLoyaltyCardToProfile**](docs/IntegrationApi.md#linkloyaltycardtoprofile) | **POST** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile | Link customer profile to card
-*IntegrationApi* | [**priceHistory**](docs/IntegrationApi.md#pricehistoryoperation) | **POST** /v1/best_prior_price_history | Get summary of price history
 *IntegrationApi* | [**reopenCustomerSession**](docs/IntegrationApi.md#reopencustomersession) | **PUT** /v2/customer_sessions/{customerSessionId}/reopen | Reopen customer session
 *IntegrationApi* | [**returnCartItems**](docs/IntegrationApi.md#returncartitems) | **POST** /v2/customer_sessions/{customerSessionId}/returns | Return cart items
 *IntegrationApi* | [**syncCatalog**](docs/IntegrationApi.md#synccatalog) | **PUT** /v1/catalogs/{catalogId}/sync | Sync cart item catalog
@@ -379,6 +378,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**listExperiments**](docs/ManagementApi.md#listexperiments) | **GET** /v1/applications/{applicationId}/experiments | List experiments
 *ManagementApi* | [**listStores**](docs/ManagementApi.md#liststores) | **GET** /v1/applications/{applicationId}/stores | List stores
 *ManagementApi* | [**oktaEventHandlerChallenge**](docs/ManagementApi.md#oktaeventhandlerchallenge) | **GET** /v1/provisioning/okta | Validate Okta API ownership
+*ManagementApi* | [**priceHistory**](docs/ManagementApi.md#pricehistoryoperation) | **POST** /v1/applications/{applicationId}/price_history | Get summary of price history
 *ManagementApi* | [**removeLoyaltyPoints**](docs/ManagementApi.md#removeloyaltypoints) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/deduct_points | Deduct points from customer profile
 *ManagementApi* | [**resetPassword**](docs/ManagementApi.md#resetpassword) | **POST** /v1/reset_password | Reset password
 *ManagementApi* | [**scimCreateGroup**](docs/ManagementApi.md#scimcreategroup) | **POST** /v1/provisioning/scim/Groups | Create SCIM group
@@ -629,6 +629,9 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [Effect](docs/Effect.md)
 - [EffectEntity](docs/EffectEntity.md)
 - [EmailEntity](docs/EmailEntity.md)
+- [EmbeddedAnalyticsConfiguration](docs/EmbeddedAnalyticsConfiguration.md)
+- [EmbeddedAnalyticsConfigurationDashboards](docs/EmbeddedAnalyticsConfigurationDashboards.md)
+- [EmbeddedDashboardConfiguration](docs/EmbeddedDashboardConfiguration.md)
 - [Endpoint](docs/Endpoint.md)
 - [Entity](docs/Entity.md)
 - [EntityWithTalangVisibleID](docs/EntityWithTalangVisibleID.md)
@@ -647,6 +650,9 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [ExperimentCampaignCopy](docs/ExperimentCampaignCopy.md)
 - [ExperimentCopy](docs/ExperimentCopy.md)
 - [ExperimentCopyExperiment](docs/ExperimentCopyExperiment.md)
+- [ExperimentListResults](docs/ExperimentListResults.md)
+- [ExperimentListResultsRequest](docs/ExperimentListResultsRequest.md)
+- [ExperimentResult](docs/ExperimentResult.md)
 - [ExperimentResults](docs/ExperimentResults.md)
 - [ExperimentVariant](docs/ExperimentVariant.md)
 - [ExperimentVariantAllocation](docs/ExperimentVariantAllocation.md)
@@ -725,6 +731,8 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [GetUsers200Response](docs/GetUsers200Response.md)
 - [GetWebhooks200Response](docs/GetWebhooks200Response.md)
 - [Giveaway](docs/Giveaway.md)
+- [GiveawayPoolNotification](docs/GiveawayPoolNotification.md)
+- [GiveawayPoolNotificationData](docs/GiveawayPoolNotificationData.md)
 - [GiveawaysPool](docs/GiveawaysPool.md)
 - [HiddenConditionsEffects](docs/HiddenConditionsEffects.md)
 - [History](docs/History.md)
@@ -966,6 +974,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [RoleV2Permissions](docs/RoleV2Permissions.md)
 - [RoleV2Readonly](docs/RoleV2Readonly.md)
 - [RoleV2RolesGroup](docs/RoleV2RolesGroup.md)
+- [RolesV2Thresholds](docs/RolesV2Thresholds.md)
 - [RollbackAddedLoyaltyPointsEffectProps](docs/RollbackAddedLoyaltyPointsEffectProps.md)
 - [RollbackCouponEffectProps](docs/RollbackCouponEffectProps.md)
 - [RollbackDeductedLoyaltyPointsEffectProps](docs/RollbackDeductedLoyaltyPointsEffectProps.md)
@@ -974,6 +983,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [RollbackReferralEffectProps](docs/RollbackReferralEffectProps.md)
 - [Rule](docs/Rule.md)
 - [RuleFailureReason](docs/RuleFailureReason.md)
+- [RuleMetadata](docs/RuleMetadata.md)
 - [Ruleset](docs/Ruleset.md)
 - [SSOConfig](docs/SSOConfig.md)
 - [SamlConnection](docs/SamlConnection.md)
@@ -1097,18 +1107,6 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 Authentication schemes defined for the API:
 
 #### api_key_v1
-
-- **Type**: API key
-- **API key parameter name**: `Authorization`
-- **Location**: HTTP header
-
-#### manager_auth
-
-- **Type**: API key
-- **API key parameter name**: `Authorization`
-- **Location**: HTTP header
-
-#### management_key
 
 - **Type**: API key
 - **API key parameter name**: `Authorization`

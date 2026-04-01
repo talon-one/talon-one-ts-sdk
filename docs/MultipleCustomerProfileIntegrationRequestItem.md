@@ -6,7 +6,7 @@
 
 Name | Type
 ------------ | -------------
-`attributes` | object
+`attributes` | { [key: string]: any; }
 `integrationId` | string
 
 ## Example

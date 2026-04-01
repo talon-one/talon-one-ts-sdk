@@ -23,6 +23,7 @@ Name | Type
 `evaluationGroupId` | number
 `type` | string
 `linkedStoreIds` | Array&lt;number&gt;
+`couponAttributes` | object
 
 ## Example
 
@@ -48,6 +49,7 @@ const example = {
   "evaluationGroupId": 2,
   "type": advanced,
   "linkedStoreIds": [1, 2, 3],
+  "couponAttributes": null,
 } satisfies UpdateCampaign
 
 console.log(example)

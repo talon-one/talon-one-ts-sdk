@@ -220,6 +220,9 @@ docs/DeleteUserRequest.md
 docs/Effect.md
 docs/EffectEntity.md
 docs/EmailEntity.md
+docs/EmbeddedAnalyticsConfiguration.md
+docs/EmbeddedAnalyticsConfigurationDashboards.md
+docs/EmbeddedDashboardConfiguration.md
 docs/Endpoint.md
 docs/Entity.md
 docs/EntityWithTalangVisibleID.md
@@ -238,6 +241,9 @@ docs/Experiment.md
 docs/ExperimentCampaignCopy.md
 docs/ExperimentCopy.md
 docs/ExperimentCopyExperiment.md
+docs/ExperimentListResults.md
+docs/ExperimentListResultsRequest.md
+docs/ExperimentResult.md
 docs/ExperimentResults.md
 docs/ExperimentVariant.md
 docs/ExperimentVariantAllocation.md
@@ -316,6 +322,8 @@ docs/GetRulesets200Response.md
 docs/GetUsers200Response.md
 docs/GetWebhooks200Response.md
 docs/Giveaway.md
+docs/GiveawayPoolNotification.md
+docs/GiveawayPoolNotificationData.md
 docs/GiveawaysPool.md
 docs/HiddenConditionsEffects.md
 docs/History.md
@@ -559,6 +567,7 @@ docs/RoleV2PermissionSet.md
 docs/RoleV2Permissions.md
 docs/RoleV2Readonly.md
 docs/RoleV2RolesGroup.md
+docs/RolesV2Thresholds.md
 docs/RollbackAddedLoyaltyPointsEffectProps.md
 docs/RollbackCouponEffectProps.md
 docs/RollbackDeductedLoyaltyPointsEffectProps.md
@@ -567,6 +576,7 @@ docs/RollbackIncreasedAchievementProgressEffectProps.md
 docs/RollbackReferralEffectProps.md
 docs/Rule.md
 docs/RuleFailureReason.md
+docs/RuleMetadata.md
 docs/Ruleset.md
 docs/SSOConfig.md
 docs/SamlConnection.md
@@ -902,6 +912,9 @@ src/models/DeleteUserRequest.ts
 src/models/Effect.ts
 src/models/EffectEntity.ts
 src/models/EmailEntity.ts
+src/models/EmbeddedAnalyticsConfiguration.ts
+src/models/EmbeddedAnalyticsConfigurationDashboards.ts
+src/models/EmbeddedDashboardConfiguration.ts
 src/models/Endpoint.ts
 src/models/Entity.ts
 src/models/EntityWithTalangVisibleID.ts
@@ -920,6 +933,9 @@ src/models/Experiment.ts
 src/models/ExperimentCampaignCopy.ts
 src/models/ExperimentCopy.ts
 src/models/ExperimentCopyExperiment.ts
+src/models/ExperimentListResults.ts
+src/models/ExperimentListResultsRequest.ts
+src/models/ExperimentResult.ts
 src/models/ExperimentResults.ts
 src/models/ExperimentVariant.ts
 src/models/ExperimentVariantAllocation.ts
@@ -998,6 +1014,8 @@ src/models/GetRulesets200Response.ts
 src/models/GetUsers200Response.ts
 src/models/GetWebhooks200Response.ts
 src/models/Giveaway.ts
+src/models/GiveawayPoolNotification.ts
+src/models/GiveawayPoolNotificationData.ts
 src/models/GiveawaysPool.ts
 src/models/HiddenConditionsEffects.ts
 src/models/History.ts
@@ -1239,6 +1257,7 @@ src/models/RoleV2PermissionSet.ts
 src/models/RoleV2Permissions.ts
 src/models/RoleV2Readonly.ts
 src/models/RoleV2RolesGroup.ts
+src/models/RolesV2Thresholds.ts
 src/models/RollbackAddedLoyaltyPointsEffectProps.ts
 src/models/RollbackCouponEffectProps.ts
 src/models/RollbackDeductedLoyaltyPointsEffectProps.ts
@@ -1247,6 +1266,7 @@ src/models/RollbackIncreasedAchievementProgressEffectProps.ts
 src/models/RollbackReferralEffectProps.ts
 src/models/Rule.ts
 src/models/RuleFailureReason.ts
+src/models/RuleMetadata.ts
 src/models/Ruleset.ts
 src/models/SSOConfig.ts
 src/models/SamlConnection.ts

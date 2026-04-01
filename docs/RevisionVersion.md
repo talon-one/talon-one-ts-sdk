@@ -19,6 +19,7 @@ Name | Type
 `limits` | [Array&lt;LimitConfig&gt;](LimitConfig.md)
 `reevaluateOnReturn` | boolean
 `features` | Array&lt;string&gt;
+`couponAttributes` | object
 `accountId` | number
 `applicationId` | number
 `campaignId` | number
@@ -47,6 +48,7 @@ const example = {
   "limits": null,
   "reevaluateOnReturn": true,
   "features": null,
+  "couponAttributes": null,
   "accountId": null,
   "applicationId": null,
   "campaignId": null,

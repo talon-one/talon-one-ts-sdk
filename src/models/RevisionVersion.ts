@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Talon.One API
- * Use the Talon.One API to integrate with your application and to manage applications and campaigns:  - Use the operations in the [Integration API section](#integration-api) are used to integrate with our platform - Use the operation in the [Management API section](#management-api) to manage applications and campaigns.  ## Determining the base URL of the endpoints  The API is available at the same hostname as your Campaign Manager deployment. For example, if you access the Campaign Manager at `https://yourbaseurl.talon.one/`, the URL for the [updateCustomerSessionV2](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint is `https://yourbaseurl.talon.one/v2/customer_sessions/{Id}` 
+ * Use the Talon.One API to integrate with your application and to manage applications and campaigns:  - Use the operations in the [Integration API section](#integration-api) to integrate with our platform. - Use the operation in the [Management API section](#management-api) to manage applications and campaigns.  ## Determining the base URL of the endpoints  The API is available at the same hostname as your Campaign Manager deployment.  For example, if you access the Campaign Manager at `https://yourbaseurl.talon.one/`, the URL for the [updateCustomerSessionV2](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint is `https://yourbaseurl.talon.one/v2/customer_sessions/{Id}`. 
  *
  * The version of the OpenAPI document: 
  * 
@@ -113,6 +113,12 @@ export interface RevisionVersion {
      */
     features?: Array<RevisionVersionFeaturesEnum>;
     /**
+     * Arbitrary properties associated with coupons in this campaign.
+     * @type {object}
+     * @memberof RevisionVersion
+     */
+    couponAttributes?: object;
+    /**
      * 
      * @type {number}
      * @memberof RevisionVersion
@@ -209,6 +215,7 @@ export function RevisionVersionFromJSONTyped(json: any, ignoreDiscriminator: boo
         'limits': json['limits'] == null ? undefined : ((json['limits'] as Array<any>).map(LimitConfigFromJSON)),
         'reevaluateOnReturn': json['reevaluateOnReturn'] == null ? undefined : json['reevaluateOnReturn'],
         'features': json['features'] == null ? undefined : json['features'],
+        'couponAttributes': json['couponAttributes'] == null ? undefined : json['couponAttributes'],
         'accountId': json['accountId'],
         'applicationId': json['applicationId'],
         'campaignId': json['campaignId'],
@@ -243,6 +250,7 @@ export function RevisionVersionToJSONTyped(value?: RevisionVersion | null, ignor
         'limits': value['limits'] == null ? undefined : ((value['limits'] as Array<any>).map(LimitConfigToJSON)),
         'reevaluateOnReturn': value['reevaluateOnReturn'],
         'features': value['features'],
+        'couponAttributes': value['couponAttributes'],
         'accountId': value['accountId'],
         'applicationId': value['applicationId'],
         'campaignId': value['campaignId'],

@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Talon.One API
- * Use the Talon.One API to integrate with your application and to manage applications and campaigns:  - Use the operations in the [Integration API section](#integration-api) are used to integrate with our platform - Use the operation in the [Management API section](#management-api) to manage applications and campaigns.  ## Determining the base URL of the endpoints  The API is available at the same hostname as your Campaign Manager deployment. For example, if you access the Campaign Manager at `https://yourbaseurl.talon.one/`, the URL for the [updateCustomerSessionV2](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint is `https://yourbaseurl.talon.one/v2/customer_sessions/{Id}` 
+ * Use the Talon.One API to integrate with your application and to manage applications and campaigns:  - Use the operations in the [Integration API section](#integration-api) to integrate with our platform. - Use the operation in the [Management API section](#management-api) to manage applications and campaigns.  ## Determining the base URL of the endpoints  The API is available at the same hostname as your Campaign Manager deployment.  For example, if you access the Campaign Manager at `https://yourbaseurl.talon.one/`, the URL for the [updateCustomerSessionV2](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint is `https://yourbaseurl.talon.one/v2/customer_sessions/{Id}`. 
  *
  * The version of the OpenAPI document: 
  * 
@@ -67,13 +67,13 @@ export interface CartItem {
      * @type {number}
      * @memberof CartItem
      */
-    returnedQuantity?: number;
+    readonly returnedQuantity?: number;
     /**
      * Remaining quantity of the item, calculated internally based on returns of this item.
      * @type {number}
      * @memberof CartItem
      */
-    remainingQuantity?: number;
+    readonly remainingQuantity?: number;
     /**
      * Price of the item in the currency defined by your Application. This field is required if this item is not part of a [catalog](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs). If it is part of a catalog, setting a price here overrides the price from the catalog.
      * 
@@ -122,7 +122,7 @@ export interface CartItem {
      * @type {number}
      * @memberof CartItem
      */
-    position?: number;
+    readonly position?: number;
     /**
      * Use this property to set a value for the attributes of your choice. [Attributes](https://docs.talon.one/docs/dev/concepts/attributes) represent any information to attach to this cart item.
      * 
@@ -147,31 +147,31 @@ export interface CartItem {
      * @type {number}
      * @memberof CartItem
      */
-    catalogItemID?: number;
+    readonly catalogItemID?: number;
     /**
      * The selected price type for this cart item (e.g. the price for members only).
      * @type {string}
      * @memberof CartItem
      */
-    selectedPriceType?: string;
+    readonly selectedPriceType?: string;
     /**
      * The reference ID of the selected price adjustment for this cart item. Only returned if the selected price resulted from a price adjustment.
      * @type {string}
      * @memberof CartItem
      */
-    adjustmentReferenceId?: string;
+    readonly adjustmentReferenceId?: string;
     /**
      * The date and time from which the price adjustment is effective. Only returned if the selected price resulted from a price adjustment that contains this field.
      * @type {Date}
      * @memberof CartItem
      */
-    adjustmentEffectiveFrom?: Date;
+    readonly adjustmentEffectiveFrom?: Date;
     /**
      * The date and time until which the price adjustment is effective. Only returned if the selected price resulted from a price adjustment that contains this field.
      * @type {Date}
      * @memberof CartItem
      */
-    adjustmentEffectiveUntil?: Date;
+    readonly adjustmentEffectiveUntil?: Date;
     /**
      * A map of keys and values representing the price types and related price adjustment details for this cart item.
      * The keys correspond to the `priceType` names.
@@ -179,7 +179,7 @@ export interface CartItem {
      * @type {{ [key: string]: PriceDetail; }}
      * @memberof CartItem
      */
-    prices?: { [key: string]: PriceDetail; };
+    readonly prices?: { [key: string]: PriceDetail; };
 }
 
 /**
@@ -229,7 +229,7 @@ export function CartItemToJSON(json: any): CartItem {
     return CartItemToJSONTyped(json, false);
 }
 
-export function CartItemToJSONTyped(value?: CartItem | null, ignoreDiscriminator: boolean = false): any {
+export function CartItemToJSONTyped(value?: Omit<CartItem, 'returnedQuantity'|'remainingQuantity'|'position'|'catalogItemID'|'selectedPriceType'|'adjustmentReferenceId'|'adjustmentEffectiveFrom'|'adjustmentEffectiveUntil'|'prices'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -239,8 +239,6 @@ export function CartItemToJSONTyped(value?: CartItem | null, ignoreDiscriminator
         'name': value['name'],
         'sku': value['sku'],
         'quantity': value['quantity'],
-        'returnedQuantity': value['returnedQuantity'],
-        'remainingQuantity': value['remainingQuantity'],
         'price': value['price'],
         'category': value['category'],
         'product': ProductToJSON(value['product']),
@@ -248,15 +246,8 @@ export function CartItemToJSONTyped(value?: CartItem | null, ignoreDiscriminator
         'height': value['height'],
         'width': value['width'],
         'length': value['length'],
-        'position': value['position'],
         'attributes': value['attributes'],
         'additionalCosts': value['additionalCosts'] == null ? undefined : (mapValues(value['additionalCosts'], AdditionalCostToJSON)),
-        'catalogItemID': value['catalogItemID'],
-        'selectedPriceType': value['selectedPriceType'],
-        'adjustmentReferenceId': value['adjustmentReferenceId'],
-        'adjustmentEffectiveFrom': value['adjustmentEffectiveFrom'] == null ? value['adjustmentEffectiveFrom'] : value['adjustmentEffectiveFrom'].toISOString(),
-        'adjustmentEffectiveUntil': value['adjustmentEffectiveUntil'] == null ? value['adjustmentEffectiveUntil'] : value['adjustmentEffectiveUntil'].toISOString(),
-        'prices': value['prices'] == null ? undefined : (mapValues(value['prices'], PriceDetailToJSON)),
     };
 }
 
