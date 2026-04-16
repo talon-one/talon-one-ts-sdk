@@ -192,6 +192,7 @@ docs/CreateAchievementV2.md
 docs/CreateApplicationAPIKey.md
 docs/CreateCouponData.md
 docs/CreateCoupons200Response.md
+docs/CreateMCPKey.md
 docs/CreateManagementKey.md
 docs/CreateReferralsForMultipleAdvocates201Response.md
 docs/CreateTemplateCampaign.md
@@ -245,10 +246,16 @@ docs/ExperimentListResults.md
 docs/ExperimentListResultsRequest.md
 docs/ExperimentResult.md
 docs/ExperimentResults.md
+docs/ExperimentSegmentInsight.md
+docs/ExperimentSegmentInsightMetric.md
+docs/ExperimentSegmentInsightVariant.md
+docs/ExperimentSegmentInsights.md
 docs/ExperimentVariant.md
 docs/ExperimentVariantAllocation.md
 docs/ExperimentVariantResult.md
 docs/ExperimentVariantResultConfidence.md
+docs/ExperimentVerdict.md
+docs/ExperimentVerdictResponse.md
 docs/ExpiringCardPointsData.md
 docs/ExpiringCardPointsNotification.md
 docs/ExpiringCouponsData.md
@@ -344,6 +351,7 @@ docs/IntegrationEventV2Request.md
 docs/IntegrationEventV2Response.md
 docs/IntegrationEventV3Request.md
 docs/IntegrationEventV3Response.md
+docs/IntegrationGetAllCampaigns200Response.md
 docs/IntegrationHubConfig.md
 docs/IntegrationHubEventPayloadCouponBasedNotifications.md
 docs/IntegrationHubEventPayloadCouponBasedNotificationsLimits.md
@@ -381,6 +389,7 @@ docs/LimitCounter.md
 docs/ListAccountCollections200Response.md
 docs/ListAchievements200Response.md
 docs/ListAllRolesV2200Response.md
+docs/ListApplicationCartItemFilters200Response.md
 docs/ListCampaignStoreBudgetLimits200Response.md
 docs/ListCampaignStoreBudgets.md
 docs/ListCampaignStoreBudgetsStore.md
@@ -414,6 +423,7 @@ docs/LoyaltyProgramLedgers.md
 docs/LoyaltyProgramTransaction.md
 docs/LoyaltySubLedger.md
 docs/LoyaltyTier.md
+docs/MCPKey.md
 docs/ManagementApi.md
 docs/ManagementKey.md
 docs/ManagerConfig.md
@@ -475,6 +485,7 @@ docs/NewInvitation.md
 docs/NewInviteEmail.md
 docs/NewLoyaltyProgram.md
 docs/NewLoyaltyTier.md
+docs/NewMCPKey.md
 docs/NewManagementKey.md
 docs/NewMessageTest.md
 docs/NewMultipleAudiencesItem.md
@@ -489,6 +500,7 @@ docs/NewReferral.md
 docs/NewReferralsForMultipleAdvocates.md
 docs/NewReturn.md
 docs/NewRevisionVersion.md
+docs/NewReward.md
 docs/NewRole.md
 docs/NewRoleV2.md
 docs/NewRuleset.md
@@ -557,6 +569,7 @@ docs/Revision.md
 docs/RevisionActivation.md
 docs/RevisionActivationRequest.md
 docs/RevisionVersion.md
+docs/Reward.md
 docs/Role.md
 docs/RoleAssign.md
 docs/RoleMembership.md
@@ -884,6 +897,7 @@ src/models/CreateAchievementV2.ts
 src/models/CreateApplicationAPIKey.ts
 src/models/CreateCouponData.ts
 src/models/CreateCoupons200Response.ts
+src/models/CreateMCPKey.ts
 src/models/CreateManagementKey.ts
 src/models/CreateReferralsForMultipleAdvocates201Response.ts
 src/models/CreateTemplateCampaign.ts
@@ -937,10 +951,16 @@ src/models/ExperimentListResults.ts
 src/models/ExperimentListResultsRequest.ts
 src/models/ExperimentResult.ts
 src/models/ExperimentResults.ts
+src/models/ExperimentSegmentInsight.ts
+src/models/ExperimentSegmentInsightMetric.ts
+src/models/ExperimentSegmentInsightVariant.ts
+src/models/ExperimentSegmentInsights.ts
 src/models/ExperimentVariant.ts
 src/models/ExperimentVariantAllocation.ts
 src/models/ExperimentVariantResult.ts
 src/models/ExperimentVariantResultConfidence.ts
+src/models/ExperimentVerdict.ts
+src/models/ExperimentVerdictResponse.ts
 src/models/ExpiringCardPointsData.ts
 src/models/ExpiringCardPointsNotification.ts
 src/models/ExpiringCouponsData.ts
@@ -1035,6 +1055,7 @@ src/models/IntegrationEventV2Request.ts
 src/models/IntegrationEventV2Response.ts
 src/models/IntegrationEventV3Request.ts
 src/models/IntegrationEventV3Response.ts
+src/models/IntegrationGetAllCampaigns200Response.ts
 src/models/IntegrationHubConfig.ts
 src/models/IntegrationHubEventPayloadCouponBasedNotifications.ts
 src/models/IntegrationHubEventPayloadCouponBasedNotificationsLimits.ts
@@ -1072,6 +1093,7 @@ src/models/LimitCounter.ts
 src/models/ListAccountCollections200Response.ts
 src/models/ListAchievements200Response.ts
 src/models/ListAllRolesV2200Response.ts
+src/models/ListApplicationCartItemFilters200Response.ts
 src/models/ListCampaignStoreBudgetLimits200Response.ts
 src/models/ListCampaignStoreBudgets.ts
 src/models/ListCampaignStoreBudgetsStore.ts
@@ -1105,6 +1127,7 @@ src/models/LoyaltyProgramLedgers.ts
 src/models/LoyaltyProgramTransaction.ts
 src/models/LoyaltySubLedger.ts
 src/models/LoyaltyTier.ts
+src/models/MCPKey.ts
 src/models/ManagementKey.ts
 src/models/ManagerConfig.ts
 src/models/MessageLogEntries.ts
@@ -1165,6 +1188,7 @@ src/models/NewInvitation.ts
 src/models/NewInviteEmail.ts
 src/models/NewLoyaltyProgram.ts
 src/models/NewLoyaltyTier.ts
+src/models/NewMCPKey.ts
 src/models/NewManagementKey.ts
 src/models/NewMessageTest.ts
 src/models/NewMultipleAudiencesItem.ts
@@ -1179,6 +1203,7 @@ src/models/NewReferral.ts
 src/models/NewReferralsForMultipleAdvocates.ts
 src/models/NewReturn.ts
 src/models/NewRevisionVersion.ts
+src/models/NewReward.ts
 src/models/NewRole.ts
 src/models/NewRoleV2.ts
 src/models/NewRuleset.ts
@@ -1247,6 +1272,7 @@ src/models/Revision.ts
 src/models/RevisionActivation.ts
 src/models/RevisionActivationRequest.ts
 src/models/RevisionVersion.ts
+src/models/Reward.ts
 src/models/Role.ts
 src/models/RoleAssign.ts
 src/models/RoleMembership.ts

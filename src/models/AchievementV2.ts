@@ -39,25 +39,25 @@ export interface AchievementV2 {
      * @type {string}
      * @memberof AchievementV2
      */
-    name?: string;
+    name: string;
     /**
      * The display name for the achievement in the Campaign Manager.
      * @type {string}
      * @memberof AchievementV2
      */
-    title?: string;
+    title: string;
     /**
      * A description of the achievement.
      * @type {string}
      * @memberof AchievementV2
      */
-    description?: string;
+    description: string;
     /**
      * The required number of actions or the transactional milestone to complete the achievement.
      * @type {number}
      * @memberof AchievementV2
      */
-    target?: number;
+    target: number;
     /**
      * The relative duration after which the achievement ends and resets for a particular customer profile.
      * 
@@ -98,7 +98,7 @@ export interface AchievementV2 {
      * @type {AchievementV2RecurrencePolicyEnum}
      * @memberof AchievementV2
      */
-    recurrencePolicy?: AchievementV2RecurrencePolicyEnum;
+    recurrencePolicy: AchievementV2RecurrencePolicyEnum;
     /**
      * The policy that determines how the achievement starts, ends, or resets.
      * - `user_action`: The achievement ends or resets relative to when the customer started the achievement.
@@ -107,7 +107,7 @@ export interface AchievementV2 {
      * @type {AchievementV2ActivationPolicyEnum}
      * @memberof AchievementV2
      */
-    activationPolicy?: AchievementV2ActivationPolicyEnum;
+    activationPolicy: AchievementV2ActivationPolicyEnum;
     /**
      * The achievement's start date when `activationPolicy` is set to `fixed_schedule`.
      * 
@@ -137,19 +137,19 @@ export interface AchievementV2 {
      * @type {boolean}
      * @memberof AchievementV2
      */
-    sandbox?: boolean;
+    sandbox: boolean;
     /**
      * A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.
      * @type {Array<number>}
      * @memberof AchievementV2
      */
-    subscribedApplications?: Array<number>;
+    subscribedApplications: Array<number>;
     /**
      * A string containing an IANA timezone descriptor.
      * @type {string}
      * @memberof AchievementV2
      */
-    timezone?: string;
+    timezone: string;
     /**
      * The ID of the user that created this achievement.
      * @type {number}
@@ -217,6 +217,15 @@ export type AchievementV2StatusEnum = typeof AchievementV2StatusEnum[keyof typeo
 export function instanceOfAchievementV2(value: object): value is AchievementV2 {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('created' in value) || value['created'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('title' in value) || value['title'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('target' in value) || value['target'] === undefined) return false;
+    if (!('recurrencePolicy' in value) || value['recurrencePolicy'] === undefined) return false;
+    if (!('activationPolicy' in value) || value['activationPolicy'] === undefined) return false;
+    if (!('sandbox' in value) || value['sandbox'] === undefined) return false;
+    if (!('subscribedApplications' in value) || value['subscribedApplications'] === undefined) return false;
+    if (!('timezone' in value) || value['timezone'] === undefined) return false;
     if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
@@ -233,19 +242,19 @@ export function AchievementV2FromJSONTyped(json: any, ignoreDiscriminator: boole
         
         'id': json['id'],
         'created': (new Date(json['created'])),
-        'name': json['name'] == null ? undefined : json['name'],
-        'title': json['title'] == null ? undefined : json['title'],
-        'description': json['description'] == null ? undefined : json['description'],
-        'target': json['target'] == null ? undefined : json['target'],
+        'name': json['name'],
+        'title': json['title'],
+        'description': json['description'],
+        'target': json['target'],
         'period': json['period'] == null ? undefined : json['period'],
-        'recurrencePolicy': json['recurrencePolicy'] == null ? undefined : json['recurrencePolicy'],
-        'activationPolicy': json['activationPolicy'] == null ? undefined : json['activationPolicy'],
+        'recurrencePolicy': json['recurrencePolicy'],
+        'activationPolicy': json['activationPolicy'],
         'fixedStartDate': json['fixedStartDate'] == null ? undefined : (new Date(json['fixedStartDate'])),
         'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
         'allowRollbackAfterCompletion': json['allowRollbackAfterCompletion'] == null ? undefined : json['allowRollbackAfterCompletion'],
-        'sandbox': json['sandbox'] == null ? undefined : json['sandbox'],
-        'subscribedApplications': json['subscribedApplications'] == null ? undefined : json['subscribedApplications'],
-        'timezone': json['timezone'] == null ? undefined : json['timezone'],
+        'sandbox': json['sandbox'],
+        'subscribedApplications': json['subscribedApplications'],
+        'timezone': json['timezone'],
         'userId': json['userId'],
         'createdBy': json['createdBy'] == null ? undefined : json['createdBy'],
         'hasProgress': json['hasProgress'] == null ? undefined : json['hasProgress'],

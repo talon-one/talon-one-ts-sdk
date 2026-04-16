@@ -43,6 +43,7 @@ import type {
   IntegrationCustomerSessionResponse,
   IntegrationEventV2Request,
   IntegrationEventV2Response,
+  IntegrationGetAllCampaigns200Response,
   IntegrationRequest,
   IntegrationStateV2,
   LoyaltyBalancesWithTiers,
@@ -118,6 +119,8 @@ import {
     IntegrationEventV2RequestToJSON,
     IntegrationEventV2ResponseFromJSON,
     IntegrationEventV2ResponseToJSON,
+    IntegrationGetAllCampaigns200ResponseFromJSON,
+    IntegrationGetAllCampaigns200ResponseToJSON,
     IntegrationRequestFromJSON,
     IntegrationRequestToJSON,
     IntegrationStateV2FromJSON,
@@ -315,6 +318,16 @@ export interface GetReservedCustomersRequest {
     couponValue: string;
 }
 
+export interface IntegrationGetAllCampaignsRequest {
+    pageSize?: number;
+    skip?: number;
+    campaignIds?: Array<string>;
+    startAfter?: Date;
+    startBefore?: Date;
+    endAfter?: Date;
+    endBefore?: Date;
+}
+
 export interface LinkLoyaltyCardToProfileRequest {
     loyaltyProgramId: number;
     loyaltyCardId: string;
@@ -329,6 +342,7 @@ export interface ReturnCartItemsRequest {
     customerSessionId: string;
     returnIntegrationRequest: ReturnIntegrationRequest;
     dry?: boolean;
+    runRuleEngine?: boolean;
 }
 
 export interface SyncCatalogRequest {
@@ -1909,6 +1923,77 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for integrationGetAllCampaigns without sending the request
+     */
+    async integrationGetAllCampaignsRequestOpts(requestParameters: IntegrationGetAllCampaignsRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['campaignIds'] != null) {
+            queryParameters['campaignIds'] = requestParameters['campaignIds']!.join(runtime.COLLECTION_FORMATS["csv"]);
+        }
+
+        if (requestParameters['startAfter'] != null) {
+            queryParameters['startAfter'] = (requestParameters['startAfter'] as any).toISOString();
+        }
+
+        if (requestParameters['startBefore'] != null) {
+            queryParameters['startBefore'] = (requestParameters['startBefore'] as any).toISOString();
+        }
+
+        if (requestParameters['endAfter'] != null) {
+            queryParameters['endAfter'] = (requestParameters['endAfter'] as any).toISOString();
+        }
+
+        if (requestParameters['endBefore'] != null) {
+            queryParameters['endBefore'] = (requestParameters['endBefore'] as any).toISOString();
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/integration/campaigns`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Retrieve all running campaigns for the specified Application. You can filter the results by providing specific campaign IDs or a range of  start and end dates. 
+     * List all running campaigns
+     */
+    async integrationGetAllCampaignsRaw(requestParameters: IntegrationGetAllCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationGetAllCampaigns200Response>> {
+        const requestOptions = await this.integrationGetAllCampaignsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => IntegrationGetAllCampaigns200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve all running campaigns for the specified Application. You can filter the results by providing specific campaign IDs or a range of  start and end dates. 
+     * List all running campaigns
+     */
+    async integrationGetAllCampaigns(requestParameters: IntegrationGetAllCampaignsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationGetAllCampaigns200Response> {
+        const response = await this.integrationGetAllCampaignsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for linkLoyaltyCardToProfile without sending the request
      */
     async linkLoyaltyCardToProfileRequestOpts(requestParameters: LinkLoyaltyCardToProfileRequest): Promise<runtime.RequestOpts> {
@@ -2050,6 +2135,10 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         if (requestParameters['dry'] != null) {
             queryParameters['dry'] = requestParameters['dry'];
+        }
+
+        if (requestParameters['runRuleEngine'] != null) {
+            queryParameters['runRuleEngine'] = requestParameters['runRuleEngine'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

@@ -19,6 +19,7 @@ Name | Type
 `bundleName` | string
 `targetedItemPosition` | number
 `targetedItemSubPosition` | number
+`excludedFromPriceHistory` | boolean
 
 ## Example
 
@@ -39,6 +40,7 @@ const example = {
   "bundleName": null,
   "targetedItemPosition": null,
   "targetedItemSubPosition": null,
+  "excludedFromPriceHistory": null,
 } satisfies SetDiscountPerItemEffectProps
 
 console.log(example)

@@ -98,6 +98,17 @@ export interface LedgerInfo {
      * @memberof LedgerInfo
      */
     pointsToNextTier?: number;
+    /**
+     * The name of the next higher tier level in the loyalty program.
+     * 
+     * **Note**:
+     * - Returns `null` if the customer has reached the highest available tier.
+     * - Returns the lowest level tier name if the customer is not currently assigned to any tier.
+     * 
+     * @type {string}
+     * @memberof LedgerInfo
+     */
+    nextTierName?: string;
 }
 
 /**
@@ -132,6 +143,7 @@ export function LedgerInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'tentativeNegativeBalance': json['tentativeNegativeBalance'] == null ? undefined : json['tentativeNegativeBalance'],
         'currentTier': json['currentTier'] == null ? undefined : TierFromJSON(json['currentTier']),
         'pointsToNextTier': json['pointsToNextTier'] == null ? undefined : json['pointsToNextTier'],
+        'nextTierName': json['nextTierName'] == null ? undefined : json['nextTierName'],
     };
 }
 
@@ -156,6 +168,7 @@ export function LedgerInfoToJSONTyped(value?: LedgerInfo | null, ignoreDiscrimin
         'tentativeNegativeBalance': value['tentativeNegativeBalance'],
         'currentTier': TierToJSON(value['currentTier']),
         'pointsToNextTier': value['pointsToNextTier'],
+        'nextTierName': value['nextTierName'],
     };
 }
 

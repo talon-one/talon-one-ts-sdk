@@ -23,6 +23,7 @@ import type {
   AddLoyaltyPoints,
   Application,
   ApplicationApiHealth,
+  ApplicationCIFExpression,
   ApplicationCustomer,
   ApplicationSession,
   AsyncCouponCreationResponse,
@@ -89,6 +90,7 @@ import type {
   ListAccountCollections200Response,
   ListAchievements200Response,
   ListAllRolesV2200Response,
+  ListApplicationCartItemFilters200Response,
   ListCampaignStoreBudgetLimits200Response,
   ListCatalogItems200Response,
   ListExperiments200Response,
@@ -166,6 +168,8 @@ import {
     ApplicationToJSON,
     ApplicationApiHealthFromJSON,
     ApplicationApiHealthToJSON,
+    ApplicationCIFExpressionFromJSON,
+    ApplicationCIFExpressionToJSON,
     ApplicationCustomerFromJSON,
     ApplicationCustomerToJSON,
     ApplicationSessionFromJSON,
@@ -298,6 +302,8 @@ import {
     ListAchievements200ResponseToJSON,
     ListAllRolesV2200ResponseFromJSON,
     ListAllRolesV2200ResponseToJSON,
+    ListApplicationCartItemFilters200ResponseFromJSON,
+    ListApplicationCartItemFilters200ResponseToJSON,
     ListCampaignStoreBudgetLimits200ResponseFromJSON,
     ListCampaignStoreBudgetLimits200ResponseToJSON,
     ListCatalogItems200ResponseFromJSON,
@@ -487,7 +493,7 @@ export interface CreateCouponsRequest {
     silent?: string;
 }
 
-export interface CreateCouponsAsyncRequest {
+export interface CreateCouponsAsynchronouslyRequest {
     applicationId: number;
     campaignId: number;
     newCouponCreationJob: NewCouponCreationJob;
@@ -651,6 +657,12 @@ export interface ExportCampaignStoresRequest {
     campaignId: number;
 }
 
+export interface ExportCampaignValueMapRequest {
+    applicationId: number;
+    campaignId: number;
+    valueMapId: number;
+}
+
 export interface ExportCollectionItemsRequest {
     applicationId: number;
     campaignId: number;
@@ -811,6 +823,12 @@ export interface GetApplicationRequest {
 
 export interface GetApplicationApiHealthRequest {
     applicationId: number;
+}
+
+export interface GetApplicationCartItemFilterExpressionRequest {
+    applicationId: number;
+    cartItemFilterId: number;
+    expressionId: number;
 }
 
 export interface GetApplicationCustomerRequest {
@@ -1365,6 +1383,13 @@ export interface ListAccountCollectionsRequest {
 export interface ListAchievementsRequest {
     applicationId: number;
     campaignId: number;
+    pageSize?: number;
+    skip?: number;
+    title?: string;
+}
+
+export interface ListApplicationCartItemFiltersRequest {
+    applicationId: number;
     pageSize?: number;
     skip?: number;
     title?: string;
@@ -2437,27 +2462,27 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for createCouponsAsync without sending the request
+     * Creates request options for createCouponsAsynchronously without sending the request
      */
-    async createCouponsAsyncRequestOpts(requestParameters: CreateCouponsAsyncRequest): Promise<runtime.RequestOpts> {
+    async createCouponsAsynchronouslyRequestOpts(requestParameters: CreateCouponsAsynchronouslyRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
             throw new runtime.RequiredError(
                 'applicationId',
-                'Required parameter "applicationId" was null or undefined when calling createCouponsAsync().'
+                'Required parameter "applicationId" was null or undefined when calling createCouponsAsynchronously().'
             );
         }
 
         if (requestParameters['campaignId'] == null) {
             throw new runtime.RequiredError(
                 'campaignId',
-                'Required parameter "campaignId" was null or undefined when calling createCouponsAsync().'
+                'Required parameter "campaignId" was null or undefined when calling createCouponsAsynchronously().'
             );
         }
 
         if (requestParameters['newCouponCreationJob'] == null) {
             throw new runtime.RequiredError(
                 'newCouponCreationJob',
-                'Required parameter "newCouponCreationJob" was null or undefined when calling createCouponsAsync().'
+                'Required parameter "newCouponCreationJob" was null or undefined when calling createCouponsAsynchronously().'
             );
         }
 
@@ -2489,8 +2514,8 @@ export class ManagementApi extends runtime.BaseAPI {
      * Create up to 5,000,000 coupons asynchronously. You should typically use this enpdoint when you create at least 20,001 coupons. You receive an email when the creation is complete.  If you want to create less than 20,001 coupons, you can use the [Create coupons](https://docs.talon.one/management-api#tag/Coupons/operation/createCoupons) endpoint. 
      * Create coupons asynchronously
      */
-    async createCouponsAsyncRaw(requestParameters: CreateCouponsAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AsyncCouponCreationResponse>> {
-        const requestOptions = await this.createCouponsAsyncRequestOpts(requestParameters);
+    async createCouponsAsynchronouslyRaw(requestParameters: CreateCouponsAsynchronouslyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AsyncCouponCreationResponse>> {
+        const requestOptions = await this.createCouponsAsynchronouslyRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AsyncCouponCreationResponseFromJSON(jsonValue));
@@ -2500,8 +2525,8 @@ export class ManagementApi extends runtime.BaseAPI {
      * Create up to 5,000,000 coupons asynchronously. You should typically use this enpdoint when you create at least 20,001 coupons. You receive an email when the creation is complete.  If you want to create less than 20,001 coupons, you can use the [Create coupons](https://docs.talon.one/management-api#tag/Coupons/operation/createCoupons) endpoint. 
      * Create coupons asynchronously
      */
-    async createCouponsAsync(requestParameters: CreateCouponsAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AsyncCouponCreationResponse> {
-        const response = await this.createCouponsAsyncRaw(requestParameters, initOverrides);
+    async createCouponsAsynchronously(requestParameters: CreateCouponsAsynchronouslyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AsyncCouponCreationResponse> {
+        const response = await this.createCouponsAsynchronouslyRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3714,7 +3739,7 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Creates request options for deleteUser without sending the request
      */
-    async deleteUserRequestOpts(requestParameters: DeleteUserApiRequest): Promise<runtime.RequestOpts> {
+    async deleteUserRequestOpts(requestParameters: DeleteUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -4306,6 +4331,77 @@ export class ManagementApi extends runtime.BaseAPI {
      */
     async exportCampaignStores(requestParameters: ExportCampaignStoresRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.exportCampaignStoresRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for exportCampaignValueMap without sending the request
+     */
+    async exportCampaignValueMapRequestOpts(requestParameters: ExportCampaignValueMapRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['applicationId'] == null) {
+            throw new runtime.RequiredError(
+                'applicationId',
+                'Required parameter "applicationId" was null or undefined when calling exportCampaignValueMap().'
+            );
+        }
+
+        if (requestParameters['campaignId'] == null) {
+            throw new runtime.RequiredError(
+                'campaignId',
+                'Required parameter "campaignId" was null or undefined when calling exportCampaignValueMap().'
+            );
+        }
+
+        if (requestParameters['valueMapId'] == null) {
+            throw new runtime.RequiredError(
+                'valueMapId',
+                'Required parameter "valueMapId" was null or undefined when calling exportCampaignValueMap().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/value_maps/{valueMapId}/export`;
+        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace(`{${"valueMapId"}}`, encodeURIComponent(String(requestParameters['valueMapId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Download a CSV file containing all the value map items in a campaign. If there are multiple versions of the value map, only the items of the current version are exported.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `identifier`: The value of the attribute in the targeted item, for example, an item\'s SKU. - `value`: The value that is associated with the identifier, for example, the item\'s price. 
+     * Export campaign value map
+     */
+    async exportCampaignValueMapRaw(requestParameters: ExportCampaignValueMapRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportCampaignValueMapRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * Download a CSV file containing all the value map items in a campaign. If there are multiple versions of the value map, only the items of the current version are exported.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `identifier`: The value of the attribute in the targeted item, for example, an item\'s SKU. - `value`: The value that is associated with the identifier, for example, the item\'s price. 
+     * Export campaign value map
+     */
+    async exportCampaignValueMap(requestParameters: ExportCampaignValueMapRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.exportCampaignValueMapRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -5851,7 +5947,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the application specified by the ID.
+     * Get the Application specified by the ID.
      * Get Application
      */
     async getApplicationRaw(requestParameters: GetApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Application>> {
@@ -5862,7 +5958,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the application specified by the ID.
+     * Get the Application specified by the ID.
      * Get Application
      */
     async getApplication(requestParameters: GetApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Application> {
@@ -5918,6 +6014,73 @@ export class ManagementApi extends runtime.BaseAPI {
      */
     async getApplicationApiHealth(requestParameters: GetApplicationApiHealthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApplicationApiHealth> {
         const response = await this.getApplicationApiHealthRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getApplicationCartItemFilterExpression without sending the request
+     */
+    async getApplicationCartItemFilterExpressionRequestOpts(requestParameters: GetApplicationCartItemFilterExpressionRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['applicationId'] == null) {
+            throw new runtime.RequiredError(
+                'applicationId',
+                'Required parameter "applicationId" was null or undefined when calling getApplicationCartItemFilterExpression().'
+            );
+        }
+
+        if (requestParameters['cartItemFilterId'] == null) {
+            throw new runtime.RequiredError(
+                'cartItemFilterId',
+                'Required parameter "cartItemFilterId" was null or undefined when calling getApplicationCartItemFilterExpression().'
+            );
+        }
+
+        if (requestParameters['expressionId'] == null) {
+            throw new runtime.RequiredError(
+                'expressionId',
+                'Required parameter "expressionId" was null or undefined when calling getApplicationCartItemFilterExpression().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/applications/{applicationId}/cart_item_filters/{cartItemFilterId}/expressions/{expressionId}`;
+        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace(`{${"cartItemFilterId"}}`, encodeURIComponent(String(requestParameters['cartItemFilterId'])));
+        urlPath = urlPath.replace(`{${"expressionId"}}`, encodeURIComponent(String(requestParameters['expressionId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Get an Application cart item filter expression for a specific Application.
+     * Get Application cart item filter expression
+     */
+    async getApplicationCartItemFilterExpressionRaw(requestParameters: GetApplicationCartItemFilterExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationCIFExpression>> {
+        const requestOptions = await this.getApplicationCartItemFilterExpressionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ApplicationCIFExpressionFromJSON(jsonValue));
+    }
+
+    /**
+     * Get an Application cart item filter expression for a specific Application.
+     * Get Application cart item filter expression
+     */
+    async getApplicationCartItemFilterExpression(requestParameters: GetApplicationCartItemFilterExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApplicationCIFExpression> {
+        const response = await this.getApplicationCartItemFilterExpressionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -6563,7 +6726,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all applications in the current account.
+     * List all the Applications in the current account.
      * List Applications
      */
     async getApplicationsRaw(requestParameters: GetApplicationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplications200Response>> {
@@ -6574,7 +6737,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all applications in the current account.
+     * List all the Applications in the current account.
      * List Applications
      */
     async getApplications(requestParameters: GetApplicationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApplications200Response> {
@@ -11013,6 +11176,69 @@ export class ManagementApi extends runtime.BaseAPI {
      */
     async listAllRolesV2(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListAllRolesV2200Response> {
         const response = await this.listAllRolesV2Raw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listApplicationCartItemFilters without sending the request
+     */
+    async listApplicationCartItemFiltersRequestOpts(requestParameters: ListApplicationCartItemFiltersRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['applicationId'] == null) {
+            throw new runtime.RequiredError(
+                'applicationId',
+                'Required parameter "applicationId" was null or undefined when calling listApplicationCartItemFilters().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['title'] != null) {
+            queryParameters['title'] = requestParameters['title'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/applications/{applicationId}/cart_item_filters`;
+        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Return all the Application cart item filters for a specific Application.
+     * List Application cart item filters
+     */
+    async listApplicationCartItemFiltersRaw(requestParameters: ListApplicationCartItemFiltersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListApplicationCartItemFilters200Response>> {
+        const requestOptions = await this.listApplicationCartItemFiltersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListApplicationCartItemFilters200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Return all the Application cart item filters for a specific Application.
+     * List Application cart item filters
+     */
+    async listApplicationCartItemFilters(requestParameters: ListApplicationCartItemFiltersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListApplicationCartItemFilters200Response> {
+        const response = await this.listApplicationCartItemFiltersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

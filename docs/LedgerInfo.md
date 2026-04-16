@@ -16,6 +16,7 @@ Name | Type
 `tentativeNegativeBalance` | number
 `currentTier` | [Tier](Tier.md)
 `pointsToNextTier` | number
+`nextTierName` | string
 
 ## Example
 
@@ -34,6 +35,7 @@ const example = {
   "tentativeNegativeBalance": 100,
   "currentTier": null,
   "pointsToNextTier": 20,
+  "nextTierName": Silver,
 } satisfies LedgerInfo
 
 console.log(example)

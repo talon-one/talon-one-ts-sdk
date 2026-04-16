@@ -46,27 +46,15 @@ export interface BestPriorPriceRequest {
      */
     timeframe: string;
     /**
-     * This property is **deprecated**. Use `timeframeEndDateType` instead.
-     * 
-     * Indicates whether the timeframe includes the start of the current sale.
-     * - When `false`, the timeframe includes the start date of the current sale.
-     * - When `true`, the timeframe strictly uses the number of days specified in `timeframe`.
-     * 
-     * @type {boolean}
-     * @memberof BestPriorPriceRequest
-     * @deprecated
-     */
-    strictEndDate: boolean;
-    /**
      * Sets the timeframe for retrieving historical pricing data. Can be one of the following values:
      * - `strict`: The timeframe ends at the `timeframeEndDate` value.
-     * - `price`: The timeframe ends at the start of the current `contextId` with the current price value. Identical price records are merged. If there is no `contextId` for the most recent price, the most recent timestamp for the price is used.
-     *  - `sale`:  The timeframe ends at the start of current `contextId` and takes the prices prior to the start of the `contextId` into account.
+     * - `price`: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account.
+     * - `sale`:  The timeframe ends at the start of current `contextId` and takes the prices prior to the start of the `contextId` into account.
      * 
      * @type {BestPriorPriceRequestTimeframeEndDateTypeEnum}
      * @memberof BestPriorPriceRequest
      */
-    timeframeEndDateType?: BestPriorPriceRequestTimeframeEndDateTypeEnum;
+    timeframeEndDateType: BestPriorPriceRequestTimeframeEndDateTypeEnum;
     /**
      * 
      * @type {BestPriorTarget}
@@ -94,7 +82,7 @@ export function instanceOfBestPriorPriceRequest(value: object): value is BestPri
     if (!('skus' in value) || value['skus'] === undefined) return false;
     if (!('timeframeEndDate' in value) || value['timeframeEndDate'] === undefined) return false;
     if (!('timeframe' in value) || value['timeframe'] === undefined) return false;
-    if (!('strictEndDate' in value) || value['strictEndDate'] === undefined) return false;
+    if (!('timeframeEndDateType' in value) || value['timeframeEndDateType'] === undefined) return false;
     return true;
 }
 
@@ -111,8 +99,7 @@ export function BestPriorPriceRequestFromJSONTyped(json: any, ignoreDiscriminato
         'skus': json['skus'],
         'timeframeEndDate': (new Date(json['timeframeEndDate'])),
         'timeframe': json['timeframe'],
-        'strictEndDate': json['strictEndDate'],
-        'timeframeEndDateType': json['timeframeEndDateType'] == null ? undefined : json['timeframeEndDateType'],
+        'timeframeEndDateType': json['timeframeEndDateType'],
         'target': json['target'] == null ? undefined : BestPriorTargetFromJSON(json['target']),
     };
 }
@@ -131,7 +118,6 @@ export function BestPriorPriceRequestToJSONTyped(value?: BestPriorPriceRequest |
         'skus': value['skus'],
         'timeframeEndDate': value['timeframeEndDate'].toISOString(),
         'timeframe': value['timeframe'],
-        'strictEndDate': value['strictEndDate'],
         'timeframeEndDateType': value['timeframeEndDateType'],
         'target': BestPriorTargetToJSON(value['target']),
     };
