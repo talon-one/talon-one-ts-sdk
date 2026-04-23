@@ -31,7 +31,7 @@ const example = {
   "currentTier": null,
   "projectedTier": null,
   "pointsToNextTier": 20,
-  "nextTierName": silver,
+  "nextTierName": Silver,
 } satisfies LoyaltyBalanceWithTier
 
 console.log(example)

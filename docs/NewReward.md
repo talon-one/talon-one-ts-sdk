@@ -1,30 +1,30 @@
 
-# BestPriorPriceRequest
+# NewReward
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`skus` | Array&lt;string&gt;
-`timeframeEndDate` | Date
-`timeframe` | string
-`timeframeEndDateType` | string
-`target` | [BestPriorTarget](BestPriorTarget.md)
+`name` | string
+`apiName` | string
+`description` | string
+`applicationIds` | Array&lt;number&gt;
+`sandbox` | boolean
 
 ## Example
 
 ```typescript
-import type { BestPriorPriceRequest } from 'talon_one_sdk'
+import type { NewReward } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "skus": [comma, period],
-  "timeframeEndDate": 2020-11-10T23:00:00Z,
-  "timeframe": 30,
-  "timeframeEndDateType": sale,
-  "target": null,
-} satisfies BestPriorPriceRequest
+  "name": Free Coffee,
+  "apiName": free-coffee,
+  "description": This reward gets you one free coffee.,
+  "applicationIds": [1, 2, 3],
+  "sandbox": true,
+} satisfies NewReward
 
 console.log(example)
 
@@ -33,7 +33,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as BestPriorPriceRequest
+const exampleParsed = JSON.parse(exampleJSON) as NewReward
 console.log(exampleParsed)
 ```
 

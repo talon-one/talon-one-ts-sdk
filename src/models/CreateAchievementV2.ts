@@ -131,7 +131,7 @@ export interface CreateAchievementV2 {
      * @type {Array<number>}
      * @memberof CreateAchievementV2
      */
-    subscribedApplications: Array<number>;
+    subscribedApplications?: Array<number>;
     /**
      * A string containing an IANA timezone descriptor.
      * @type {string}
@@ -170,7 +170,6 @@ export function instanceOfCreateAchievementV2(value: object): value is CreateAch
     if (!('description' in value) || value['description'] === undefined) return false;
     if (!('target' in value) || value['target'] === undefined) return false;
     if (!('sandbox' in value) || value['sandbox'] === undefined) return false;
-    if (!('subscribedApplications' in value) || value['subscribedApplications'] === undefined) return false;
     if (!('timezone' in value) || value['timezone'] === undefined) return false;
     return true;
 }
@@ -196,7 +195,7 @@ export function CreateAchievementV2FromJSONTyped(json: any, ignoreDiscriminator:
         'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
         'allowRollbackAfterCompletion': json['allowRollbackAfterCompletion'] == null ? undefined : json['allowRollbackAfterCompletion'],
         'sandbox': json['sandbox'],
-        'subscribedApplications': json['subscribedApplications'],
+        'subscribedApplications': json['subscribedApplications'] == null ? undefined : json['subscribedApplications'],
         'timezone': json['timezone'],
     };
 }

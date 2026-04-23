@@ -103,6 +103,12 @@ export interface SetDiscountPerItemEffectProps {
      * @memberof SetDiscountPerItemEffectProps
      */
     targetedItemSubPosition?: number;
+    /**
+     * When set to `true`, the applied discount is excluded from the item's price history.
+     * @type {boolean}
+     * @memberof SetDiscountPerItemEffectProps
+     */
+    excludedFromPriceHistory?: boolean;
 }
 
 /**
@@ -137,6 +143,7 @@ export function SetDiscountPerItemEffectPropsFromJSONTyped(json: any, ignoreDisc
         'bundleName': json['bundleName'] == null ? undefined : json['bundleName'],
         'targetedItemPosition': json['targetedItemPosition'] == null ? undefined : json['targetedItemPosition'],
         'targetedItemSubPosition': json['targetedItemSubPosition'] == null ? undefined : json['targetedItemSubPosition'],
+        'excludedFromPriceHistory': json['excludedFromPriceHistory'] == null ? undefined : json['excludedFromPriceHistory'],
     };
 }
 
@@ -163,6 +170,7 @@ export function SetDiscountPerItemEffectPropsToJSONTyped(value?: SetDiscountPerI
         'bundleName': value['bundleName'],
         'targetedItemPosition': value['targetedItemPosition'],
         'targetedItemSubPosition': value['targetedItemSubPosition'],
+        'excludedFromPriceHistory': value['excludedFromPriceHistory'],
     };
 }
 

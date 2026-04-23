@@ -26,13 +26,13 @@ export interface RuleMetadata {
      */
     title: string;
     /**
-     * A customer-facing name used to identify the reward defined within the rule.
+     * A customer-facing name for the rule.
      * @type {string}
      * @memberof RuleMetadata
      */
     displayName?: string;
     /**
-     * A customer-facing description of the reward defined in the rule. 
+     * A customer-facing description that explains the details of the rule. 
      * 
      * For example, this property can contain details about eligibility requirements, reward timelines, or terms and conditions.
      * 
@@ -41,7 +41,7 @@ export interface RuleMetadata {
      */
     displayDescription?: string;
     /**
-     * Data related to the reward, such as a vendor name, an image URL, or a content management system (CMS) ID.
+     * Any additional data associated with the rule, such as an image URL, vendor name, or a content management system (CMS) ID.
      * 
      * @type {string}
      * @memberof RuleMetadata

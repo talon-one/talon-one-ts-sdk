@@ -9,7 +9,7 @@ Name | Type
 ------------ | -------------
 `name` | string
 `value` | any
-`excludeFromBestPriorPriceHistory` | boolean
+`excludedFromPriceHistory` | boolean
 
 ## Example
 
@@ -20,7 +20,7 @@ import type { StrikethroughSetDiscountPerItemEffectProps } from 'talon_one_sdk'
 const example = {
   "name": 1EuroOff,
   "value": null,
-  "excludeFromBestPriorPriceHistory": null,
+  "excludedFromPriceHistory": null,
 } satisfies StrikethroughSetDiscountPerItemEffectProps
 
 console.log(example)
