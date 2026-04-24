@@ -2660,9 +2660,13 @@ export class IntegrationApi extends runtime.BaseAPI {
      * Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The `integrationId` must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  > [!note] This endpoint does not trigger the Rule Engine. > To trigger the Rule Engine for customer profile updates, > use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint. 
      * Update multiple customer profiles
      */
-    async updateCustomerProfilesV2Raw(requestParameters: UpdateCustomerProfilesV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MultipleCustomerProfileIntegrationResponseV2>> {
+    async updateCustomerProfilesV2Raw(requestParameters: UpdateCustomerProfilesV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MultipleCustomerProfileIntegrationResponseV2|void>> {
         const requestOptions = await this.updateCustomerProfilesV2RequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
+
+        if (requestParameters.silent === 'yes' || response.status === 204) {
+            return new runtime.VoidApiResponse(response);
+        }
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MultipleCustomerProfileIntegrationResponseV2FromJSON(jsonValue));
     }
@@ -2671,7 +2675,7 @@ export class IntegrationApi extends runtime.BaseAPI {
      * Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The `integrationId` must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  > [!note] This endpoint does not trigger the Rule Engine. > To trigger the Rule Engine for customer profile updates, > use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint. 
      * Update multiple customer profiles
      */
-    async updateCustomerProfilesV2(requestParameters: UpdateCustomerProfilesV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MultipleCustomerProfileIntegrationResponseV2> {
+    async updateCustomerProfilesV2(requestParameters: UpdateCustomerProfilesV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MultipleCustomerProfileIntegrationResponseV2|void> {
         const response = await this.updateCustomerProfilesV2Raw(requestParameters, initOverrides);
         return await response.value();
     }
