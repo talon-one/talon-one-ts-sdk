@@ -16,30 +16,30 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface DeleteUserRequest
+ * @interface DeleteUserByEmailRequest
  */
-export interface DeleteUserRequest {
+export interface DeleteUserByEmailRequest {
     /**
      * The email address associated with the user profile.
      * @type {string}
-     * @memberof DeleteUserRequest
+     * @memberof DeleteUserByEmailRequest
      */
     email: string;
 }
 
 /**
- * Check if a given object implements the DeleteUserRequest interface.
+ * Check if a given object implements the DeleteUserByEmailRequest interface.
  */
-export function instanceOfDeleteUserRequest(value: object): value is DeleteUserRequest {
+export function instanceOfDeleteUserByEmailRequest(value: object): value is DeleteUserByEmailRequest {
     if (!('email' in value) || value['email'] === undefined) return false;
     return true;
 }
 
-export function DeleteUserRequestFromJSON(json: any): DeleteUserRequest {
-    return DeleteUserRequestFromJSONTyped(json, false);
+export function DeleteUserByEmailRequestFromJSON(json: any): DeleteUserByEmailRequest {
+    return DeleteUserByEmailRequestFromJSONTyped(json, false);
 }
 
-export function DeleteUserRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeleteUserRequest {
+export function DeleteUserByEmailRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeleteUserByEmailRequest {
     if (json == null) {
         return json;
     }
@@ -49,11 +49,11 @@ export function DeleteUserRequestFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function DeleteUserRequestToJSON(json: any): DeleteUserRequest {
-    return DeleteUserRequestToJSONTyped(json, false);
+export function DeleteUserByEmailRequestToJSON(json: any): DeleteUserByEmailRequest {
+    return DeleteUserByEmailRequestToJSONTyped(json, false);
 }
 
-export function DeleteUserRequestToJSONTyped(value?: DeleteUserRequest | null, ignoreDiscriminator: boolean = false): any {
+export function DeleteUserByEmailRequestToJSONTyped(value?: DeleteUserByEmailRequest | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

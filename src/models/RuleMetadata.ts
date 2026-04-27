@@ -47,6 +47,12 @@ export interface RuleMetadata {
      * @memberof RuleMetadata
      */
     relatedData?: string;
+    /**
+     * 
+     * @type {Array<any>}
+     * @memberof RuleMetadata
+     */
+    eligibility?: Array<any>;
 }
 
 /**
@@ -71,6 +77,7 @@ export function RuleMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'displayName': json['displayName'] == null ? undefined : json['displayName'],
         'displayDescription': json['displayDescription'] == null ? undefined : json['displayDescription'],
         'relatedData': json['relatedData'] == null ? undefined : json['relatedData'],
+        'eligibility': json['eligibility'] == null ? undefined : json['eligibility'],
     };
 }
 
@@ -89,6 +96,7 @@ export function RuleMetadataToJSONTyped(value?: RuleMetadata | null, ignoreDiscr
         'displayName': value['displayName'],
         'displayDescription': value['displayDescription'],
         'relatedData': value['relatedData'],
+        'eligibility': value['eligibility'],
     };
 }
 

@@ -9,6 +9,7 @@ Name | Type
 `name` | string
 `sandbox` | boolean
 `description` | string
+`subscribedApplicationsIds` | Set&lt;number&gt;
 
 ## Example
 
@@ -20,6 +21,7 @@ const example = {
   "name": Travel audience,
   "sandbox": true,
   "description": Travel audience 18-27,
+  "subscribedApplicationsIds": [3, 13],
 } satisfies NewInternalAudience
 
 console.log(example)

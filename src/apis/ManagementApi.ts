@@ -45,7 +45,7 @@ import type {
   CustomerProfileSearchQuery,
   DeactivateUserRequest,
   DeductLoyaltyPoints,
-  DeleteUserRequest,
+  DeleteUserByEmailRequest,
   ErrorResponse,
   ErrorResponseWithStatus,
   Experiment,
@@ -212,8 +212,8 @@ import {
     DeactivateUserRequestToJSON,
     DeductLoyaltyPointsFromJSON,
     DeductLoyaltyPointsToJSON,
-    DeleteUserRequestFromJSON,
-    DeleteUserRequestToJSON,
+    DeleteUserByEmailRequestFromJSON,
+    DeleteUserByEmailRequestToJSON,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
     ErrorResponseWithStatusFromJSON,
@@ -615,8 +615,8 @@ export interface DeleteUserApiRequest {
     userId: number;
 }
 
-export interface DeleteUserByEmailRequest {
-    deleteUserRequest: DeleteUserRequest;
+export interface DeleteUserByEmailOperationRequest {
+    deleteUserByEmailRequest: DeleteUserByEmailRequest;
 }
 
 export interface DisconnectCampaignStoresRequest {
@@ -713,16 +713,19 @@ export interface ExportEffectsRequest {
 export interface ExportLoyaltyBalanceRequest {
     loyaltyProgramId: string;
     endDate?: Date;
+    balances?: string;
 }
 
 export interface ExportLoyaltyBalancesRequest {
     loyaltyProgramId: string;
     endDate?: Date;
+    balances?: string;
 }
 
 export interface ExportLoyaltyCardBalancesRequest {
     loyaltyProgramId: number;
     endDate?: Date;
+    balances?: string;
 }
 
 export interface ExportLoyaltyCardLedgerRequest {
@@ -3739,7 +3742,7 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Creates request options for deleteUser without sending the request
      */
-    async deleteUserRequestOpts(requestParameters: DeleteUserApiRequest): Promise<runtime.RequestOpts> {
+    async deleteUserRequestOpts(requestParameters: DeleteUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -3789,11 +3792,11 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Creates request options for deleteUserByEmail without sending the request
      */
-    async deleteUserByEmailRequestOpts(requestParameters: DeleteUserByEmailRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['deleteUserRequest'] == null) {
+    async deleteUserByEmailRequestOpts(requestParameters: DeleteUserByEmailOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['deleteUserByEmailRequest'] == null) {
             throw new runtime.RequiredError(
-                'deleteUserRequest',
-                'Required parameter "deleteUserRequest" was null or undefined when calling deleteUserByEmail().'
+                'deleteUserByEmailRequest',
+                'Required parameter "deleteUserByEmailRequest" was null or undefined when calling deleteUserByEmail().'
             );
         }
 
@@ -3815,7 +3818,7 @@ export class ManagementApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: DeleteUserRequestToJSON(requestParameters['deleteUserRequest']),
+            body: DeleteUserByEmailRequestToJSON(requestParameters['deleteUserByEmailRequest']),
         };
     }
 
@@ -3823,7 +3826,7 @@ export class ManagementApi extends runtime.BaseAPI {
      * [Delete a specific user](https://docs.talon.one/docs/product/account/account-settings/managing-users#deleting-a-user) by their email address. 
      * Delete user by email address
      */
-    async deleteUserByEmailRaw(requestParameters: DeleteUserByEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteUserByEmailRaw(requestParameters: DeleteUserByEmailOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const requestOptions = await this.deleteUserByEmailRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -3834,7 +3837,7 @@ export class ManagementApi extends runtime.BaseAPI {
      * [Delete a specific user](https://docs.talon.one/docs/product/account/account-settings/managing-users#deleting-a-user) by their email address. 
      * Delete user by email address
      */
-    async deleteUserByEmail(requestParameters: DeleteUserByEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteUserByEmail(requestParameters: DeleteUserByEmailOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteUserByEmailRaw(requestParameters, initOverrides);
     }
 
@@ -4814,6 +4817,10 @@ export class ManagementApi extends runtime.BaseAPI {
             queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
+        if (requestParameters['balances'] != null) {
+            queryParameters['balances'] = requestParameters['balances'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
@@ -4875,6 +4882,10 @@ export class ManagementApi extends runtime.BaseAPI {
             queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
+        if (requestParameters['balances'] != null) {
+            queryParameters['balances'] = requestParameters['balances'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
@@ -4932,6 +4943,10 @@ export class ManagementApi extends runtime.BaseAPI {
 
         if (requestParameters['endDate'] != null) {
             queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+        }
+
+        if (requestParameters['balances'] != null) {
+            queryParameters['balances'] = requestParameters['balances'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

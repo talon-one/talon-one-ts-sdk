@@ -38,6 +38,12 @@ export interface MultipleAudiencesItem {
      */
     name: string;
     /**
+     * A list of the IDs of the Applications that are connected to this audience.
+     * @type {Set<number>}
+     * @memberof MultipleAudiencesItem
+     */
+    subscribedApplicationsIds?: Set<number>;
+    /**
      * The ID of this audience in the third-party integration.
      * @type {string}
      * @memberof MultipleAudiencesItem
@@ -88,6 +94,7 @@ export function MultipleAudiencesItemFromJSONTyped(json: any, ignoreDiscriminato
         'id': json['id'],
         'created': (new Date(json['created'])),
         'name': json['name'],
+        'subscribedApplicationsIds': json['subscribedApplicationsIds'] == null ? undefined : new Set(json['subscribedApplicationsIds']),
         'integrationId': json['integrationId'] == null ? undefined : json['integrationId'],
         'status': json['status'],
     };
@@ -107,6 +114,7 @@ export function MultipleAudiencesItemToJSONTyped(value?: MultipleAudiencesItem |
         'id': value['id'],
         'created': value['created'].toISOString(),
         'name': value['name'],
+        'subscribedApplicationsIds': value['subscribedApplicationsIds'] == null ? undefined : Array.from(value['subscribedApplicationsIds'] as Set<any>),
         'integrationId': value['integrationId'],
         'status': value['status'],
     };

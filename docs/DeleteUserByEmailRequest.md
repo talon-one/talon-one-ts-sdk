@@ -1,32 +1,22 @@
 
-# MultipleAudiencesItem
+# DeleteUserByEmailRequest
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`id` | number
-`created` | Date
-`name` | string
-`subscribedApplicationsIds` | Set&lt;number&gt;
-`integrationId` | string
-`status` | string
+`email` | string
 
 ## Example
 
 ```typescript
-import type { MultipleAudiencesItem } from 'talon_one_sdk'
+import type { DeleteUserByEmailRequest } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "id": 6,
-  "created": 2020-06-10T09:05:27.993483Z,
-  "name": Travel audience,
-  "subscribedApplicationsIds": [3, 13],
-  "integrationId": 382370BKDB946,
-  "status": new,
-} satisfies MultipleAudiencesItem
+  "email": john.doe@example.com,
+} satisfies DeleteUserByEmailRequest
 
 console.log(example)
 
@@ -35,7 +25,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as MultipleAudiencesItem
+const exampleParsed = JSON.parse(exampleJSON) as DeleteUserByEmailRequest
 console.log(exampleParsed)
 ```
 

@@ -56,6 +56,12 @@ export interface Audience {
      */
     description?: string;
     /**
+     * A list of the IDs of the Applications that are connected to this audience.
+     * @type {Set<number>}
+     * @memberof Audience
+     */
+    subscribedApplicationsIds?: Set<number>;
+    /**
      * The Talon.One-supported [3rd-party platform](https://docs.talon.one/docs/dev/technology-partners/overview) that this audience was created in.
      * 
      * For example, `mParticle`, `Segment`, `Shopify`, `Braze`, or `Iterable`.
@@ -116,6 +122,7 @@ export function AudienceFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'name': json['name'],
         'sandbox': json['sandbox'] == null ? undefined : json['sandbox'],
         'description': json['description'] == null ? undefined : json['description'],
+        'subscribedApplicationsIds': json['subscribedApplicationsIds'] == null ? undefined : new Set(json['subscribedApplicationsIds']),
         'integration': json['integration'] == null ? undefined : json['integration'],
         'integrationId': json['integrationId'] == null ? undefined : json['integrationId'],
         'createdIn3rdParty': json['createdIn3rdParty'] == null ? undefined : json['createdIn3rdParty'],
@@ -140,6 +147,7 @@ export function AudienceToJSONTyped(value?: Audience | null, ignoreDiscriminator
         'name': value['name'],
         'sandbox': value['sandbox'],
         'description': value['description'],
+        'subscribedApplicationsIds': value['subscribedApplicationsIds'] == null ? undefined : Array.from(value['subscribedApplicationsIds'] as Set<any>),
         'integration': value['integration'],
         'integrationId': value['integrationId'],
         'createdIn3rdParty': value['createdIn3rdParty'],

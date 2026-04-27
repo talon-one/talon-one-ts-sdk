@@ -1,3 +1,5 @@
+.github/ISSUE_TEMPLATE/bug_report.yml
+.github/ISSUE_TEMPLATE/config.yml
 .github/workflows/autorelease.yml
 .github/workflows/test.yml
 .gitignore
@@ -119,6 +121,7 @@ docs/CampaignDeletedNotificationItem.md
 docs/CampaignDetail.md
 docs/CampaignEditedNotification.md
 docs/CampaignEditedNotificationItem.md
+docs/CampaignEligibility.md
 docs/CampaignEntity.md
 docs/CampaignEvaluationGroup.md
 docs/CampaignEvaluationPosition.md
@@ -217,7 +220,7 @@ docs/DeductLoyaltyPoints.md
 docs/DeductLoyaltyPointsEffectProps.md
 docs/DeleteCouponsData.md
 docs/DeleteLoyaltyTransactionsRequest.md
-docs/DeleteUserRequest.md
+docs/DeleteUserByEmailRequest.md
 docs/Effect.md
 docs/EffectEntity.md
 docs/EmailEntity.md
@@ -694,6 +697,7 @@ docs/UpdatePicklist.md
 docs/UpdatePriceType.md
 docs/UpdateReferral.md
 docs/UpdateReferralBatch.md
+docs/UpdateReward.md
 docs/UpdateRole.md
 docs/UpdateStore.md
 docs/UpdateUser.md
@@ -824,6 +828,7 @@ src/models/CampaignDeletedNotificationItem.ts
 src/models/CampaignDetail.ts
 src/models/CampaignEditedNotification.ts
 src/models/CampaignEditedNotificationItem.ts
+src/models/CampaignEligibility.ts
 src/models/CampaignEntity.ts
 src/models/CampaignEvaluationGroup.ts
 src/models/CampaignEvaluationPosition.ts
@@ -922,7 +927,7 @@ src/models/DeductLoyaltyPoints.ts
 src/models/DeductLoyaltyPointsEffectProps.ts
 src/models/DeleteCouponsData.ts
 src/models/DeleteLoyaltyTransactionsRequest.ts
-src/models/DeleteUserRequest.ts
+src/models/DeleteUserByEmailRequest.ts
 src/models/Effect.ts
 src/models/EffectEntity.ts
 src/models/EmailEntity.ts
@@ -1397,6 +1402,7 @@ src/models/UpdatePicklist.ts
 src/models/UpdatePriceType.ts
 src/models/UpdateReferral.ts
 src/models/UpdateReferralBatch.ts
+src/models/UpdateReward.ts
 src/models/UpdateRole.ts
 src/models/UpdateStore.ts
 src/models/UpdateUser.ts

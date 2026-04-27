@@ -37,6 +37,12 @@ export interface NewInternalAudience {
      * @memberof NewInternalAudience
      */
     description?: string;
+    /**
+     * A list of the IDs of the Applications that are connected to this audience.
+     * @type {Set<number>}
+     * @memberof NewInternalAudience
+     */
+    subscribedApplicationsIds?: Set<number>;
 }
 
 /**
@@ -60,6 +66,7 @@ export function NewInternalAudienceFromJSONTyped(json: any, ignoreDiscriminator:
         'name': json['name'],
         'sandbox': json['sandbox'] == null ? undefined : json['sandbox'],
         'description': json['description'] == null ? undefined : json['description'],
+        'subscribedApplicationsIds': json['subscribedApplicationsIds'] == null ? undefined : new Set(json['subscribedApplicationsIds']),
     };
 }
 
@@ -77,6 +84,7 @@ export function NewInternalAudienceToJSONTyped(value?: NewInternalAudience | nul
         'name': value['name'],
         'sandbox': value['sandbox'],
         'description': value['description'],
+        'subscribedApplicationsIds': value['subscribedApplicationsIds'] == null ? undefined : Array.from(value['subscribedApplicationsIds'] as Set<any>),
     };
 }
 
