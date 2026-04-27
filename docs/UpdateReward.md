@@ -1,32 +1,30 @@
 
-# MultipleAudiencesItem
+# UpdateReward
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`id` | number
-`created` | Date
 `name` | string
-`subscribedApplicationsIds` | Set&lt;number&gt;
-`integrationId` | string
+`description` | string
 `status` | string
+`rule` | [Array&lt;Rule&gt;](Rule.md)
+`bindings` | [Array&lt;Binding&gt;](Binding.md)
 
 ## Example
 
 ```typescript
-import type { MultipleAudiencesItem } from 'talon_one_sdk'
+import type { UpdateReward } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "id": 6,
-  "created": 2020-06-10T09:05:27.993483Z,
-  "name": Travel audience,
-  "subscribedApplicationsIds": [3, 13],
-  "integrationId": 382370BKDB946,
-  "status": new,
-} satisfies MultipleAudiencesItem
+  "name": Free Coffee,
+  "description": This reward gets you one free coffee.,
+  "status": active,
+  "rule": null,
+  "bindings": [],
+} satisfies UpdateReward
 
 console.log(example)
 
@@ -35,7 +33,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as MultipleAudiencesItem
+const exampleParsed = JSON.parse(exampleJSON) as UpdateReward
 console.log(exampleParsed)
 ```
 

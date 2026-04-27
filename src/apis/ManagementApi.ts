@@ -713,16 +713,19 @@ export interface ExportEffectsRequest {
 export interface ExportLoyaltyBalanceRequest {
     loyaltyProgramId: string;
     endDate?: Date;
+    balances?: string;
 }
 
 export interface ExportLoyaltyBalancesRequest {
     loyaltyProgramId: string;
     endDate?: Date;
+    balances?: string;
 }
 
 export interface ExportLoyaltyCardBalancesRequest {
     loyaltyProgramId: number;
     endDate?: Date;
+    balances?: string;
 }
 
 export interface ExportLoyaltyCardLedgerRequest {
@@ -3739,7 +3742,7 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Creates request options for deleteUser without sending the request
      */
-    async deleteUserRequestOpts(requestParameters: DeleteUserApiRequest): Promise<runtime.RequestOpts> {
+    async deleteUserRequestOpts(requestParameters: DeleteUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -4814,6 +4817,10 @@ export class ManagementApi extends runtime.BaseAPI {
             queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
+        if (requestParameters['balances'] != null) {
+            queryParameters['balances'] = requestParameters['balances'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
@@ -4875,6 +4882,10 @@ export class ManagementApi extends runtime.BaseAPI {
             queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
+        if (requestParameters['balances'] != null) {
+            queryParameters['balances'] = requestParameters['balances'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
@@ -4932,6 +4943,10 @@ export class ManagementApi extends runtime.BaseAPI {
 
         if (requestParameters['endDate'] != null) {
             queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+        }
+
+        if (requestParameters['balances'] != null) {
+            queryParameters['balances'] = requestParameters['balances'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
