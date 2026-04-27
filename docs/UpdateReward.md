@@ -1,22 +1,30 @@
 
-# DeleteUserRequest
+# UpdateReward
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`email` | string
+`name` | string
+`description` | string
+`status` | string
+`rule` | [Array&lt;Rule&gt;](Rule.md)
+`bindings` | [Array&lt;Binding&gt;](Binding.md)
 
 ## Example
 
 ```typescript
-import type { DeleteUserRequest } from 'talon_one_sdk'
+import type { UpdateReward } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "email": john.doe@example.com,
-} satisfies DeleteUserRequest
+  "name": Free Coffee,
+  "description": This reward gets you one free coffee.,
+  "status": active,
+  "rule": null,
+  "bindings": [],
+} satisfies UpdateReward
 
 console.log(example)
 
@@ -25,7 +33,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as DeleteUserRequest
+const exampleParsed = JSON.parse(exampleJSON) as UpdateReward
 console.log(exampleParsed)
 ```
 

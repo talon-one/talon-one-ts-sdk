@@ -12,6 +12,7 @@ Name | Type
 `name` | string
 `sandbox` | boolean
 `description` | string
+`subscribedApplicationsIds` | Set&lt;number&gt;
 `integration` | string
 `integrationId` | string
 `createdIn3rdParty` | boolean
@@ -30,6 +31,7 @@ const example = {
   "name": Travel audience,
   "sandbox": true,
   "description": Travel audience 18-27,
+  "subscribedApplicationsIds": [3, 13],
   "integration": mparticle,
   "integrationId": 382370BKDB946,
   "createdIn3rdParty": false,

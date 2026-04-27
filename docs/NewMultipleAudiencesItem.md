@@ -7,6 +7,7 @@
 Name | Type
 ------------ | -------------
 `name` | string
+`subscribedApplicationsIds` | Set&lt;number&gt;
 `integrationId` | string
 
 ## Example
@@ -17,6 +18,7 @@ import type { NewMultipleAudiencesItem } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "name": Travel audience,
+  "subscribedApplicationsIds": [3, 13],
   "integrationId": 382370BKDB946,
 } satisfies NewMultipleAudiencesItem
 

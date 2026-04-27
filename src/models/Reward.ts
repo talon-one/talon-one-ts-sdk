@@ -13,6 +13,21 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Binding } from './Binding';
+import {
+    BindingFromJSON,
+    BindingFromJSONTyped,
+    BindingToJSON,
+    BindingToJSONTyped,
+} from './Binding';
+import type { Rule } from './Rule';
+import {
+    RuleFromJSON,
+    RuleFromJSONTyped,
+    RuleToJSON,
+    RuleToJSONTyped,
+} from './Rule';
+
 /**
  * 
  * @export
@@ -71,6 +86,18 @@ export interface Reward {
      */
     sandbox: boolean;
     /**
+     * Rule to apply.
+     * @type {Array<Rule>}
+     * @memberof Reward
+     */
+    rule?: Array<Rule>;
+    /**
+     * A list of named variables created before the reward's rules are evaluated.  Each binding pairs a name with a talang expression. The expression is evaluated once  and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.
+     * @type {Array<Binding>}
+     * @memberof Reward
+     */
+    bindings?: Array<Binding>;
+    /**
      * The status of the reward.
      * @type {RewardStatusEnum}
      * @memberof Reward
@@ -122,6 +149,8 @@ export function RewardFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
         'description': json['description'] == null ? undefined : json['description'],
         'applicationIds': json['applicationIds'],
         'sandbox': json['sandbox'],
+        'rule': json['rule'] == null ? undefined : ((json['rule'] as Array<any>).map(RuleFromJSON)),
+        'bindings': json['bindings'] == null ? undefined : ((json['bindings'] as Array<any>).map(BindingFromJSON)),
         'status': json['status'],
     };
 }
@@ -145,6 +174,8 @@ export function RewardToJSONTyped(value?: Reward | null, ignoreDiscriminator: bo
         'description': value['description'],
         'applicationIds': value['applicationIds'],
         'sandbox': value['sandbox'],
+        'rule': value['rule'] == null ? undefined : ((value['rule'] as Array<any>).map(RuleToJSON)),
+        'bindings': value['bindings'] == null ? undefined : ((value['bindings'] as Array<any>).map(BindingToJSON)),
         'status': value['status'],
     };
 }

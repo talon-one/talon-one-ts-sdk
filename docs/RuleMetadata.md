@@ -10,6 +10,7 @@ Name | Type
 `displayName` | string
 `displayDescription` | string
 `relatedData` | string
+`eligibility` | Array&lt;any&gt;
 
 ## Example
 
@@ -22,6 +23,7 @@ const example = {
   "displayName": 20% off all shoes!,
   "displayDescription": Get a 20% discount on all shoes during Thanksgiving! Offer valid till Dec 5 only.,
   "relatedData": https://example.com/discounts/20-off-shoes.png,
+  "eligibility": null,
 } satisfies RuleMetadata
 
 console.log(example)

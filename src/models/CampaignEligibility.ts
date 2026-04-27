@@ -24,74 +24,74 @@ import {
 /**
  * 
  * @export
- * @interface IntegrationCampaign
+ * @interface CampaignEligibility
  */
-export interface IntegrationCampaign {
-    /**
-     * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof IntegrationCampaign
-     */
-    applicationId: number;
+export interface CampaignEligibility {
     /**
      * Unique ID of Campaign.
      * @type {number}
-     * @memberof IntegrationCampaign
+     * @memberof CampaignEligibility
      */
     id: number;
     /**
+     * The ID of the Application that owns this entity.
+     * @type {number}
+     * @memberof CampaignEligibility
+     */
+    applicationId: number;
+    /**
      * The name of the campaign.
      * @type {string}
-     * @memberof IntegrationCampaign
+     * @memberof CampaignEligibility
      */
     name: string;
     /**
      * A detailed description of the campaign.
      * @type {string}
-     * @memberof IntegrationCampaign
+     * @memberof CampaignEligibility
      */
     description?: string;
     /**
      * Timestamp when the campaign will become active.
      * @type {Date}
-     * @memberof IntegrationCampaign
+     * @memberof CampaignEligibility
      */
     startTime?: Date;
     /**
      * Timestamp when the campaign will become inactive.
      * @type {Date}
-     * @memberof IntegrationCampaign
+     * @memberof CampaignEligibility
      */
     endTime?: Date;
     /**
      * Arbitrary properties associated with this campaign.
      * @type {object}
-     * @memberof IntegrationCampaign
+     * @memberof CampaignEligibility
      */
     attributes?: object;
     /**
      * The state of the campaign.
      * 
-     * @type {IntegrationCampaignStateEnum}
-     * @memberof IntegrationCampaign
+     * @type {CampaignEligibilityStateEnum}
+     * @memberof CampaignEligibility
      */
-    state: IntegrationCampaignStateEnum;
+    state: CampaignEligibilityStateEnum;
     /**
      * A list of tags for the campaign.
      * @type {Array<string>}
-     * @memberof IntegrationCampaign
+     * @memberof CampaignEligibility
      */
     tags: Array<string>;
     /**
      * The features enabled in this campaign.
-     * @type {Array<IntegrationCampaignFeaturesEnum>}
-     * @memberof IntegrationCampaign
+     * @type {Array<CampaignEligibilityFeaturesEnum>}
+     * @memberof CampaignEligibility
      */
-    features: Array<IntegrationCampaignFeaturesEnum>;
+    features: Array<CampaignEligibilityFeaturesEnum>;
     /**
      * A list of rules containing customer-facing details of the rewards defined in the campaign.
      * @type {Array<RuleMetadata>}
-     * @memberof IntegrationCampaign
+     * @memberof CampaignEligibility
      */
     rules?: Array<RuleMetadata>;
 }
@@ -100,15 +100,15 @@ export interface IntegrationCampaign {
 /**
  * @export
  */
-export const IntegrationCampaignStateEnum = {
+export const CampaignEligibilityStateEnum = {
     Enabled: 'enabled'
 } as const;
-export type IntegrationCampaignStateEnum = typeof IntegrationCampaignStateEnum[keyof typeof IntegrationCampaignStateEnum];
+export type CampaignEligibilityStateEnum = typeof CampaignEligibilityStateEnum[keyof typeof CampaignEligibilityStateEnum];
 
 /**
  * @export
  */
-export const IntegrationCampaignFeaturesEnum = {
+export const CampaignEligibilityFeaturesEnum = {
     Coupons: 'coupons',
     Referrals: 'referrals',
     Loyalty: 'loyalty',
@@ -116,15 +116,15 @@ export const IntegrationCampaignFeaturesEnum = {
     Strikethrough: 'strikethrough',
     Achievements: 'achievements'
 } as const;
-export type IntegrationCampaignFeaturesEnum = typeof IntegrationCampaignFeaturesEnum[keyof typeof IntegrationCampaignFeaturesEnum];
+export type CampaignEligibilityFeaturesEnum = typeof CampaignEligibilityFeaturesEnum[keyof typeof CampaignEligibilityFeaturesEnum];
 
 
 /**
- * Check if a given object implements the IntegrationCampaign interface.
+ * Check if a given object implements the CampaignEligibility interface.
  */
-export function instanceOfIntegrationCampaign(value: object): value is IntegrationCampaign {
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
+export function instanceOfCampaignEligibility(value: object): value is CampaignEligibility {
     if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('state' in value) || value['state'] === undefined) return false;
     if (!('tags' in value) || value['tags'] === undefined) return false;
@@ -132,18 +132,18 @@ export function instanceOfIntegrationCampaign(value: object): value is Integrati
     return true;
 }
 
-export function IntegrationCampaignFromJSON(json: any): IntegrationCampaign {
-    return IntegrationCampaignFromJSONTyped(json, false);
+export function CampaignEligibilityFromJSON(json: any): CampaignEligibility {
+    return CampaignEligibilityFromJSONTyped(json, false);
 }
 
-export function IntegrationCampaignFromJSONTyped(json: any, ignoreDiscriminator: boolean): IntegrationCampaign {
+export function CampaignEligibilityFromJSONTyped(json: any, ignoreDiscriminator: boolean): CampaignEligibility {
     if (json == null) {
         return json;
     }
     return {
         
-        'applicationId': json['applicationId'],
         'id': json['id'],
+        'applicationId': json['applicationId'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
         'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
@@ -156,19 +156,19 @@ export function IntegrationCampaignFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function IntegrationCampaignToJSON(json: any): IntegrationCampaign {
-    return IntegrationCampaignToJSONTyped(json, false);
+export function CampaignEligibilityToJSON(json: any): CampaignEligibility {
+    return CampaignEligibilityToJSONTyped(json, false);
 }
 
-export function IntegrationCampaignToJSONTyped(value?: IntegrationCampaign | null, ignoreDiscriminator: boolean = false): any {
+export function CampaignEligibilityToJSONTyped(value?: CampaignEligibility | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'applicationId': value['applicationId'],
         'id': value['id'],
+        'applicationId': value['applicationId'],
         'name': value['name'],
         'description': value['description'],
         'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
