@@ -1,13 +1,13 @@
 
-# IntegrationCampaign
+# CampaignEligibility
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`applicationId` | number
 `id` | number
+`applicationId` | number
 `name` | string
 `description` | string
 `startTime` | Date
@@ -21,12 +21,12 @@ Name | Type
 ## Example
 
 ```typescript
-import type { IntegrationCampaign } from 'talon_one_sdk'
+import type { CampaignEligibility } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "applicationId": 322,
   "id": 4,
+  "applicationId": 322,
   "name": Summer promotions,
   "description": Campaign for all summer 2021 promotions,
   "startTime": 2021-07-20T22:00:00Z,
@@ -36,7 +36,7 @@ const example = {
   "tags": [summer],
   "features": [coupons, referrals],
   "rules": null,
-} satisfies IntegrationCampaign
+} satisfies CampaignEligibility
 
 console.log(example)
 
@@ -45,7 +45,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as IntegrationCampaign
+const exampleParsed = JSON.parse(exampleJSON) as CampaignEligibility
 console.log(exampleParsed)
 ```
 

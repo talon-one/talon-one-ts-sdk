@@ -25,6 +25,12 @@ export interface UpdateAudience {
      * @memberof UpdateAudience
      */
     name: string;
+    /**
+     * A list of the IDs of the Applications that are connected to this audience.
+     * @type {Set<number>}
+     * @memberof UpdateAudience
+     */
+    subscribedApplicationsIds?: Set<number>;
 }
 
 /**
@@ -46,6 +52,7 @@ export function UpdateAudienceFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'name': json['name'],
+        'subscribedApplicationsIds': json['subscribedApplicationsIds'] == null ? undefined : new Set(json['subscribedApplicationsIds']),
     };
 }
 
@@ -61,6 +68,7 @@ export function UpdateAudienceToJSONTyped(value?: UpdateAudience | null, ignoreD
     return {
         
         'name': value['name'],
+        'subscribedApplicationsIds': value['subscribedApplicationsIds'] == null ? undefined : Array.from(value['subscribedApplicationsIds'] as Set<any>),
     };
 }
 

@@ -67,7 +67,8 @@ export const CustomerProfileIntegrationRequestV2ResponseContentEnum = {
     Loyalty: 'loyalty',
     Event: 'event',
     AwardedGiveaways: 'awardedGiveaways',
-    RuleFailureReasons: 'ruleFailureReasons'
+    RuleFailureReasons: 'ruleFailureReasons',
+    CampaignEligibility: 'campaignEligibility'
 } as const;
 export type CustomerProfileIntegrationRequestV2ResponseContentEnum = typeof CustomerProfileIntegrationRequestV2ResponseContentEnum[keyof typeof CustomerProfileIntegrationRequestV2ResponseContentEnum];
 

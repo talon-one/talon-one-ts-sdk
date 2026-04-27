@@ -31,92 +31,89 @@ import {
 /**
  * 
  * @export
- * @interface NewReward
+ * @interface UpdateReward
  */
-export interface NewReward {
+export interface UpdateReward {
     /**
      * The name of the reward.
      * @type {string}
-     * @memberof NewReward
+     * @memberof UpdateReward
      */
     name: string;
     /**
-     * A unique identifier used to reference the reward in API integrations.
-     * @type {string}
-     * @memberof NewReward
-     */
-    apiName: string;
-    /**
      * A description of the reward.
      * @type {string}
-     * @memberof NewReward
+     * @memberof UpdateReward
      */
     description?: string;
     /**
-     * The IDs of the Applications this reward is connected to. 
-     * 
-     * **Note**: Currently, a reward can only be connected to one Application.
-     * 
-     * @type {Array<number>}
-     * @memberof NewReward
+     * The status of the reward.
+     * @type {UpdateRewardStatusEnum}
+     * @memberof UpdateReward
      */
-    applicationIds: Array<number>;
-    /**
-     * Indicates if this is a live or sandbox reward. Rewards of a given type can only be connected to Applications of the same type.
-     * @type {boolean}
-     * @memberof NewReward
-     */
-    sandbox: boolean;
+    status: UpdateRewardStatusEnum;
     /**
      * Rule to apply.
+     * 
+     * **Note**: The `bindings` field inside the rule must not be used in this
+     * endpoint. All bindings should be defined at the reward level via the
+     * top-level `bindings` field.
+     * 
      * @type {Array<Rule>}
-     * @memberof NewReward
+     * @memberof UpdateReward
      */
     rule?: Array<Rule>;
     /**
      * A list of named variables created before the reward's rules are evaluated.  Each binding pairs a name with a talang expression. The expression is evaluated once  and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.
      * @type {Array<Binding>}
-     * @memberof NewReward
+     * @memberof UpdateReward
      */
     bindings?: Array<Binding>;
 }
 
+
 /**
- * Check if a given object implements the NewReward interface.
+ * @export
  */
-export function instanceOfNewReward(value: object): value is NewReward {
+export const UpdateRewardStatusEnum = {
+    Active: 'active',
+    Inactive: 'inactive'
+} as const;
+export type UpdateRewardStatusEnum = typeof UpdateRewardStatusEnum[keyof typeof UpdateRewardStatusEnum];
+
+
+/**
+ * Check if a given object implements the UpdateReward interface.
+ */
+export function instanceOfUpdateReward(value: object): value is UpdateReward {
     if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('apiName' in value) || value['apiName'] === undefined) return false;
-    if (!('applicationIds' in value) || value['applicationIds'] === undefined) return false;
-    if (!('sandbox' in value) || value['sandbox'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
 
-export function NewRewardFromJSON(json: any): NewReward {
-    return NewRewardFromJSONTyped(json, false);
+export function UpdateRewardFromJSON(json: any): UpdateReward {
+    return UpdateRewardFromJSONTyped(json, false);
 }
 
-export function NewRewardFromJSONTyped(json: any, ignoreDiscriminator: boolean): NewReward {
+export function UpdateRewardFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateReward {
     if (json == null) {
         return json;
     }
     return {
         
         'name': json['name'],
-        'apiName': json['apiName'],
         'description': json['description'] == null ? undefined : json['description'],
-        'applicationIds': json['applicationIds'],
-        'sandbox': json['sandbox'],
+        'status': json['status'],
         'rule': json['rule'] == null ? undefined : ((json['rule'] as Array<any>).map(RuleFromJSON)),
         'bindings': json['bindings'] == null ? undefined : ((json['bindings'] as Array<any>).map(BindingFromJSON)),
     };
 }
 
-export function NewRewardToJSON(json: any): NewReward {
-    return NewRewardToJSONTyped(json, false);
+export function UpdateRewardToJSON(json: any): UpdateReward {
+    return UpdateRewardToJSONTyped(json, false);
 }
 
-export function NewRewardToJSONTyped(value?: NewReward | null, ignoreDiscriminator: boolean = false): any {
+export function UpdateRewardToJSONTyped(value?: UpdateReward | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -124,10 +121,8 @@ export function NewRewardToJSONTyped(value?: NewReward | null, ignoreDiscriminat
     return {
         
         'name': value['name'],
-        'apiName': value['apiName'],
         'description': value['description'],
-        'applicationIds': value['applicationIds'],
-        'sandbox': value['sandbox'],
+        'status': value['status'],
         'rule': value['rule'] == null ? undefined : ((value['rule'] as Array<any>).map(RuleToJSON)),
         'bindings': value['bindings'] == null ? undefined : ((value['bindings'] as Array<any>).map(BindingToJSON)),
     };

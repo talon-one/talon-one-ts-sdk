@@ -59,7 +59,8 @@ export const IntegrationRequestResponseContentEnum = {
     Event: 'event',
     AwardedGiveaways: 'awardedGiveaways',
     RuleFailureReasons: 'ruleFailureReasons',
-    PreviousReturns: 'previousReturns'
+    PreviousReturns: 'previousReturns',
+    CampaignEligibility: 'campaignEligibility'
 } as const;
 export type IntegrationRequestResponseContentEnum = typeof IntegrationRequestResponseContentEnum[keyof typeof IntegrationRequestResponseContentEnum];
 

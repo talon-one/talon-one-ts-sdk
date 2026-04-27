@@ -267,7 +267,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**deleteReferral**](docs/ManagementApi.md#deletereferral) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Delete referral
 *ManagementApi* | [**deleteStore**](docs/ManagementApi.md#deletestore) | **DELETE** /v1/applications/{applicationId}/stores/{storeId} | Delete store
 *ManagementApi* | [**deleteUser**](docs/ManagementApi.md#deleteuser) | **DELETE** /v1/users/{userId} | Delete user
-*ManagementApi* | [**deleteUserByEmail**](docs/ManagementApi.md#deleteuserbyemail) | **POST** /v1/users/delete | Delete user by email address
+*ManagementApi* | [**deleteUserByEmail**](docs/ManagementApi.md#deleteuserbyemailoperation) | **POST** /v1/users/delete | Delete user by email address
 *ManagementApi* | [**destroySession**](docs/ManagementApi.md#destroysession) | **DELETE** /v1/sessions | Destroy session
 *ManagementApi* | [**disconnectCampaignStores**](docs/ManagementApi.md#disconnectcampaignstores) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/stores | Disconnect stores
 *ManagementApi* | [**exportAccountCollectionItems**](docs/ManagementApi.md#exportaccountcollectionitems) | **GET** /v1/collections/{collectionId}/export | Export account-level collection\&#39;s items
@@ -532,6 +532,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [CampaignDetail](docs/CampaignDetail.md)
 - [CampaignEditedNotification](docs/CampaignEditedNotification.md)
 - [CampaignEditedNotificationItem](docs/CampaignEditedNotificationItem.md)
+- [CampaignEligibility](docs/CampaignEligibility.md)
 - [CampaignEntity](docs/CampaignEntity.md)
 - [CampaignEvaluationGroup](docs/CampaignEvaluationGroup.md)
 - [CampaignEvaluationPosition](docs/CampaignEvaluationPosition.md)
@@ -630,7 +631,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [DeductLoyaltyPointsEffectProps](docs/DeductLoyaltyPointsEffectProps.md)
 - [DeleteCouponsData](docs/DeleteCouponsData.md)
 - [DeleteLoyaltyTransactionsRequest](docs/DeleteLoyaltyTransactionsRequest.md)
-- [DeleteUserRequest](docs/DeleteUserRequest.md)
+- [DeleteUserByEmailRequest](docs/DeleteUserByEmailRequest.md)
 - [Effect](docs/Effect.md)
 - [EffectEntity](docs/EffectEntity.md)
 - [EmailEntity](docs/EmailEntity.md)
@@ -1105,6 +1106,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [UpdatePriceType](docs/UpdatePriceType.md)
 - [UpdateReferral](docs/UpdateReferral.md)
 - [UpdateReferralBatch](docs/UpdateReferralBatch.md)
+- [UpdateReward](docs/UpdateReward.md)
 - [UpdateRole](docs/UpdateRole.md)
 - [UpdateStore](docs/UpdateStore.md)
 - [UpdateUser](docs/UpdateUser.md)
