@@ -10,6 +10,7 @@ Name | Type
 `customerProfile` | [CustomerProfile](CustomerProfile.md)
 `loyalty` | [Loyalty](Loyalty.md)
 `triggeredCampaigns` | [Array&lt;Campaign&gt;](Campaign.md)
+`campaignEligibility` | [Array&lt;CampaignEligibility&gt;](CampaignEligibility.md)
 `effects` | [Array&lt;Effect&gt;](Effect.md)
 `ruleFailureReasons` | [Array&lt;RuleFailureReason&gt;](RuleFailureReason.md)
 `createdCoupons` | [Array&lt;Coupon&gt;](Coupon.md)
@@ -26,6 +27,7 @@ const example = {
   "customerProfile": null,
   "loyalty": null,
   "triggeredCampaigns": null,
+  "campaignEligibility": null,
   "effects": null,
   "ruleFailureReasons": null,
   "createdCoupons": null,

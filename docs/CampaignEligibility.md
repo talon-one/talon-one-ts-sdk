@@ -17,6 +17,7 @@ Name | Type
 `tags` | Array&lt;string&gt;
 `features` | Array&lt;string&gt;
 `rules` | [Array&lt;RuleMetadata&gt;](RuleMetadata.md)
+`eligibility` | [Array&lt;CampaignEligibilityDetails&gt;](CampaignEligibilityDetails.md)
 
 ## Example
 
@@ -36,6 +37,7 @@ const example = {
   "tags": [summer],
   "features": [coupons, referrals],
   "rules": null,
+  "eligibility": null,
 } satisfies CampaignEligibility
 
 console.log(example)

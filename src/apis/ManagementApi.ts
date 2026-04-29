@@ -12,417 +12,682 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  Account,
-  AccountAdditionalCost,
-  AccountAnalytics,
-  Achievement,
-  ActivateUserRequest,
-  AddLoyaltyPoints,
-  Application,
-  ApplicationApiHealth,
-  ApplicationCIFExpression,
-  ApplicationCustomer,
-  ApplicationSession,
-  AsyncCouponCreationResponse,
-  AsyncCouponDeletionJobResponse,
-  Attribute,
-  Campaign,
-  CampaignCopy,
-  CampaignGroup,
-  CampaignSearch,
-  Collection,
-  Coupon,
-  CreateAchievement,
-  CreateCoupons200Response,
-  CreateTemplateCampaign,
-  CreateTemplateCampaignResponse,
-  CustomerActivityReport,
-  CustomerAnalytics,
-  CustomerProfile,
-  CustomerProfileSearchQuery,
-  DeactivateUserRequest,
-  DeductLoyaltyPoints,
-  DeleteUserByEmailRequest,
-  ErrorResponse,
-  ErrorResponseWithStatus,
-  Experiment,
-  GenerateCouponRejections200Response,
-  GetAccessLogsWithoutTotalCount200Response,
-  GetAdditionalCosts200Response,
-  GetApplicationCustomerFriends200Response,
-  GetApplicationCustomers200Response,
-  GetApplicationCustomersByAttributes200Response,
-  GetApplicationEventTypes200Response,
-  GetApplicationEventsWithoutTotalCount200Response,
-  GetApplicationSessions200Response,
-  GetApplications200Response,
-  GetAttributes200Response,
-  GetAudienceMemberships200Response,
-  GetAudiences200Response,
-  GetAudiencesAnalytics200Response,
-  GetCampaignAnalytics200Response,
-  GetCampaignGroups200Response,
-  GetCampaignTemplates200Response,
-  GetCampaigns200Response,
-  GetChanges200Response,
-  GetCollectionItems200Response,
-  GetCouponsWithoutTotalCount200Response,
-  GetCustomerActivityReportsWithoutTotalCount200Response,
-  GetCustomerProfileAchievementProgress200Response,
-  GetCustomerProfiles200Response,
-  GetCustomersByAttributes200Response,
-  GetDashboardStatistics200Response,
-  GetEventTypes200Response,
-  GetExports200Response,
-  GetLoyaltyCardTransactionLogs200Response,
-  GetLoyaltyCards200Response,
-  GetLoyaltyProgramProfileTransactions200Response,
-  GetLoyaltyProgramTransactions200Response,
-  GetLoyaltyPrograms200Response,
-  GetReferralsWithoutTotalCount200Response,
-  GetRulesets200Response,
-  GetUsers200Response,
-  GetWebhooks200Response,
-  Import,
-  ListAccountCollections200Response,
-  ListAchievements200Response,
-  ListAllRolesV2200Response,
-  ListApplicationCartItemFilters200Response,
-  ListCampaignStoreBudgetLimits200Response,
-  ListCatalogItems200Response,
-  ListExperiments200Response,
-  ListStores200Response,
-  LoginParams,
-  LoyaltyBalancesWithTiers,
-  LoyaltyCard,
-  LoyaltyCardBatch,
-  LoyaltyCardBatchResponse,
-  LoyaltyDashboardData,
-  LoyaltyLedger,
-  LoyaltyProgram,
-  MessageLogEntries,
-  NewAdditionalCost,
-  NewAttribute,
-  NewCampaignCollection,
-  NewCampaignStoreBudget,
-  NewCollection,
-  NewCouponCreationJob,
-  NewCouponDeletionJob,
-  NewCoupons,
-  NewCouponsForMultipleRecipients,
-  NewExternalInvitation,
-  NewInvitation,
-  NewInviteEmail,
-  NewPassword,
-  NewPasswordEmail,
-  NewStore,
-  PriceHistoryRequest,
-  PriceHistoryResponse,
-  Referral,
-  RoleV2,
-  RoleV2Base,
-  Ruleset,
-  ScimBaseGroup,
-  ScimGroup,
-  ScimGroupsListResponse,
-  ScimNewUser,
-  ScimPatchRequest,
-  ScimResourceTypesListResponse,
-  ScimSchemasListResponse,
-  ScimServiceProviderConfigResponse,
-  ScimUser,
-  ScimUsersListResponse,
-  Session,
-  Store,
-  SummarizeCampaignStoreBudget200Response,
-  TransferLoyaltyCard,
-  UpdateAchievement,
-  UpdateCampaign,
-  UpdateCampaignCollection,
-  UpdateCollection,
-  UpdateCoupon,
-  UpdateCouponBatch,
-  UpdateLoyaltyCardRequest,
-  UpdateReferral,
-  UpdateUser,
-  User,
-  Webhook,
-} from '../models/index';
 import {
+    type Account,
     AccountFromJSON,
     AccountToJSON,
+} from '../models/Account';
+import {
+    type AccountAdditionalCost,
     AccountAdditionalCostFromJSON,
     AccountAdditionalCostToJSON,
+} from '../models/AccountAdditionalCost';
+import {
+    type AccountAnalytics,
     AccountAnalyticsFromJSON,
     AccountAnalyticsToJSON,
+} from '../models/AccountAnalytics';
+import {
+    type Achievement,
     AchievementFromJSON,
     AchievementToJSON,
+} from '../models/Achievement';
+import {
+    type ActivateUserRequest,
     ActivateUserRequestFromJSON,
     ActivateUserRequestToJSON,
+} from '../models/ActivateUserRequest';
+import {
+    type AddLoyaltyPoints,
     AddLoyaltyPointsFromJSON,
     AddLoyaltyPointsToJSON,
+} from '../models/AddLoyaltyPoints';
+import {
+    type Application,
     ApplicationFromJSON,
     ApplicationToJSON,
+} from '../models/Application';
+import {
+    type ApplicationApiHealth,
     ApplicationApiHealthFromJSON,
     ApplicationApiHealthToJSON,
+} from '../models/ApplicationApiHealth';
+import {
+    type ApplicationCIFExpression,
     ApplicationCIFExpressionFromJSON,
     ApplicationCIFExpressionToJSON,
+} from '../models/ApplicationCIFExpression';
+import {
+    type ApplicationCustomer,
     ApplicationCustomerFromJSON,
     ApplicationCustomerToJSON,
+} from '../models/ApplicationCustomer';
+import {
+    type ApplicationSession,
     ApplicationSessionFromJSON,
     ApplicationSessionToJSON,
+} from '../models/ApplicationSession';
+import {
+    type AsyncCouponCreationResponse,
     AsyncCouponCreationResponseFromJSON,
     AsyncCouponCreationResponseToJSON,
+} from '../models/AsyncCouponCreationResponse';
+import {
+    type AsyncCouponDeletionJobResponse,
     AsyncCouponDeletionJobResponseFromJSON,
     AsyncCouponDeletionJobResponseToJSON,
+} from '../models/AsyncCouponDeletionJobResponse';
+import {
+    type Attribute,
     AttributeFromJSON,
     AttributeToJSON,
+} from '../models/Attribute';
+import {
+    type Campaign,
     CampaignFromJSON,
     CampaignToJSON,
+} from '../models/Campaign';
+import {
+    type CampaignCopy,
     CampaignCopyFromJSON,
     CampaignCopyToJSON,
+} from '../models/CampaignCopy';
+import {
+    type CampaignGroup,
     CampaignGroupFromJSON,
     CampaignGroupToJSON,
+} from '../models/CampaignGroup';
+import {
+    type CampaignSearch,
     CampaignSearchFromJSON,
     CampaignSearchToJSON,
+} from '../models/CampaignSearch';
+import {
+    type Collection,
     CollectionFromJSON,
     CollectionToJSON,
+} from '../models/Collection';
+import {
+    type Coupon,
     CouponFromJSON,
     CouponToJSON,
+} from '../models/Coupon';
+import {
+    type CreateAchievement,
     CreateAchievementFromJSON,
     CreateAchievementToJSON,
+} from '../models/CreateAchievement';
+import {
+    type CreateCoupons200Response,
     CreateCoupons200ResponseFromJSON,
     CreateCoupons200ResponseToJSON,
+} from '../models/CreateCoupons200Response';
+import {
+    type CreateTemplateCampaign,
     CreateTemplateCampaignFromJSON,
     CreateTemplateCampaignToJSON,
+} from '../models/CreateTemplateCampaign';
+import {
+    type CreateTemplateCampaignResponse,
     CreateTemplateCampaignResponseFromJSON,
     CreateTemplateCampaignResponseToJSON,
+} from '../models/CreateTemplateCampaignResponse';
+import {
+    type CustomerActivityReport,
     CustomerActivityReportFromJSON,
     CustomerActivityReportToJSON,
+} from '../models/CustomerActivityReport';
+import {
+    type CustomerAnalytics,
     CustomerAnalyticsFromJSON,
     CustomerAnalyticsToJSON,
+} from '../models/CustomerAnalytics';
+import {
+    type CustomerProfile,
     CustomerProfileFromJSON,
     CustomerProfileToJSON,
+} from '../models/CustomerProfile';
+import {
+    type CustomerProfileSearchQuery,
     CustomerProfileSearchQueryFromJSON,
     CustomerProfileSearchQueryToJSON,
+} from '../models/CustomerProfileSearchQuery';
+import {
+    type DeactivateUserRequest,
     DeactivateUserRequestFromJSON,
     DeactivateUserRequestToJSON,
+} from '../models/DeactivateUserRequest';
+import {
+    type DeductLoyaltyPoints,
     DeductLoyaltyPointsFromJSON,
     DeductLoyaltyPointsToJSON,
+} from '../models/DeductLoyaltyPoints';
+import {
+    type DeleteUserByEmailRequest,
     DeleteUserByEmailRequestFromJSON,
     DeleteUserByEmailRequestToJSON,
+} from '../models/DeleteUserByEmailRequest';
+import {
+    type ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+} from '../models/ErrorResponse';
+import {
+    type ErrorResponseWithStatus,
     ErrorResponseWithStatusFromJSON,
     ErrorResponseWithStatusToJSON,
+} from '../models/ErrorResponseWithStatus';
+import {
+    type Experiment,
     ExperimentFromJSON,
     ExperimentToJSON,
+} from '../models/Experiment';
+import {
+    type GenerateCouponRejections200Response,
     GenerateCouponRejections200ResponseFromJSON,
     GenerateCouponRejections200ResponseToJSON,
+} from '../models/GenerateCouponRejections200Response';
+import {
+    type GetAccessLogsWithoutTotalCount200Response,
     GetAccessLogsWithoutTotalCount200ResponseFromJSON,
     GetAccessLogsWithoutTotalCount200ResponseToJSON,
+} from '../models/GetAccessLogsWithoutTotalCount200Response';
+import {
+    type GetAdditionalCosts200Response,
     GetAdditionalCosts200ResponseFromJSON,
     GetAdditionalCosts200ResponseToJSON,
+} from '../models/GetAdditionalCosts200Response';
+import {
+    type GetApplicationCustomerFriends200Response,
     GetApplicationCustomerFriends200ResponseFromJSON,
     GetApplicationCustomerFriends200ResponseToJSON,
+} from '../models/GetApplicationCustomerFriends200Response';
+import {
+    type GetApplicationCustomers200Response,
     GetApplicationCustomers200ResponseFromJSON,
     GetApplicationCustomers200ResponseToJSON,
+} from '../models/GetApplicationCustomers200Response';
+import {
+    type GetApplicationCustomersByAttributes200Response,
     GetApplicationCustomersByAttributes200ResponseFromJSON,
     GetApplicationCustomersByAttributes200ResponseToJSON,
+} from '../models/GetApplicationCustomersByAttributes200Response';
+import {
+    type GetApplicationEventTypes200Response,
     GetApplicationEventTypes200ResponseFromJSON,
     GetApplicationEventTypes200ResponseToJSON,
+} from '../models/GetApplicationEventTypes200Response';
+import {
+    type GetApplicationEventsWithoutTotalCount200Response,
     GetApplicationEventsWithoutTotalCount200ResponseFromJSON,
     GetApplicationEventsWithoutTotalCount200ResponseToJSON,
+} from '../models/GetApplicationEventsWithoutTotalCount200Response';
+import {
+    type GetApplicationSessions200Response,
     GetApplicationSessions200ResponseFromJSON,
     GetApplicationSessions200ResponseToJSON,
+} from '../models/GetApplicationSessions200Response';
+import {
+    type GetApplications200Response,
     GetApplications200ResponseFromJSON,
     GetApplications200ResponseToJSON,
+} from '../models/GetApplications200Response';
+import {
+    type GetAttributes200Response,
     GetAttributes200ResponseFromJSON,
     GetAttributes200ResponseToJSON,
+} from '../models/GetAttributes200Response';
+import {
+    type GetAudienceMemberships200Response,
     GetAudienceMemberships200ResponseFromJSON,
     GetAudienceMemberships200ResponseToJSON,
+} from '../models/GetAudienceMemberships200Response';
+import {
+    type GetAudiences200Response,
     GetAudiences200ResponseFromJSON,
     GetAudiences200ResponseToJSON,
+} from '../models/GetAudiences200Response';
+import {
+    type GetAudiencesAnalytics200Response,
     GetAudiencesAnalytics200ResponseFromJSON,
     GetAudiencesAnalytics200ResponseToJSON,
+} from '../models/GetAudiencesAnalytics200Response';
+import {
+    type GetCampaignAnalytics200Response,
     GetCampaignAnalytics200ResponseFromJSON,
     GetCampaignAnalytics200ResponseToJSON,
+} from '../models/GetCampaignAnalytics200Response';
+import {
+    type GetCampaignGroups200Response,
     GetCampaignGroups200ResponseFromJSON,
     GetCampaignGroups200ResponseToJSON,
+} from '../models/GetCampaignGroups200Response';
+import {
+    type GetCampaignTemplates200Response,
     GetCampaignTemplates200ResponseFromJSON,
     GetCampaignTemplates200ResponseToJSON,
+} from '../models/GetCampaignTemplates200Response';
+import {
+    type GetCampaigns200Response,
     GetCampaigns200ResponseFromJSON,
     GetCampaigns200ResponseToJSON,
+} from '../models/GetCampaigns200Response';
+import {
+    type GetChanges200Response,
     GetChanges200ResponseFromJSON,
     GetChanges200ResponseToJSON,
+} from '../models/GetChanges200Response';
+import {
+    type GetCollectionItems200Response,
     GetCollectionItems200ResponseFromJSON,
     GetCollectionItems200ResponseToJSON,
+} from '../models/GetCollectionItems200Response';
+import {
+    type GetCouponsWithoutTotalCount200Response,
     GetCouponsWithoutTotalCount200ResponseFromJSON,
     GetCouponsWithoutTotalCount200ResponseToJSON,
+} from '../models/GetCouponsWithoutTotalCount200Response';
+import {
+    type GetCustomerActivityReportsWithoutTotalCount200Response,
     GetCustomerActivityReportsWithoutTotalCount200ResponseFromJSON,
     GetCustomerActivityReportsWithoutTotalCount200ResponseToJSON,
+} from '../models/GetCustomerActivityReportsWithoutTotalCount200Response';
+import {
+    type GetCustomerProfileAchievementProgress200Response,
     GetCustomerProfileAchievementProgress200ResponseFromJSON,
     GetCustomerProfileAchievementProgress200ResponseToJSON,
+} from '../models/GetCustomerProfileAchievementProgress200Response';
+import {
+    type GetCustomerProfiles200Response,
     GetCustomerProfiles200ResponseFromJSON,
     GetCustomerProfiles200ResponseToJSON,
+} from '../models/GetCustomerProfiles200Response';
+import {
+    type GetCustomersByAttributes200Response,
     GetCustomersByAttributes200ResponseFromJSON,
     GetCustomersByAttributes200ResponseToJSON,
+} from '../models/GetCustomersByAttributes200Response';
+import {
+    type GetDashboardStatistics200Response,
     GetDashboardStatistics200ResponseFromJSON,
     GetDashboardStatistics200ResponseToJSON,
+} from '../models/GetDashboardStatistics200Response';
+import {
+    type GetEventTypes200Response,
     GetEventTypes200ResponseFromJSON,
     GetEventTypes200ResponseToJSON,
+} from '../models/GetEventTypes200Response';
+import {
+    type GetExports200Response,
     GetExports200ResponseFromJSON,
     GetExports200ResponseToJSON,
+} from '../models/GetExports200Response';
+import {
+    type GetLoyaltyCardTransactionLogs200Response,
     GetLoyaltyCardTransactionLogs200ResponseFromJSON,
     GetLoyaltyCardTransactionLogs200ResponseToJSON,
+} from '../models/GetLoyaltyCardTransactionLogs200Response';
+import {
+    type GetLoyaltyCards200Response,
     GetLoyaltyCards200ResponseFromJSON,
     GetLoyaltyCards200ResponseToJSON,
+} from '../models/GetLoyaltyCards200Response';
+import {
+    type GetLoyaltyProgramProfileTransactions200Response,
     GetLoyaltyProgramProfileTransactions200ResponseFromJSON,
     GetLoyaltyProgramProfileTransactions200ResponseToJSON,
+} from '../models/GetLoyaltyProgramProfileTransactions200Response';
+import {
+    type GetLoyaltyProgramTransactions200Response,
     GetLoyaltyProgramTransactions200ResponseFromJSON,
     GetLoyaltyProgramTransactions200ResponseToJSON,
+} from '../models/GetLoyaltyProgramTransactions200Response';
+import {
+    type GetLoyaltyPrograms200Response,
     GetLoyaltyPrograms200ResponseFromJSON,
     GetLoyaltyPrograms200ResponseToJSON,
+} from '../models/GetLoyaltyPrograms200Response';
+import {
+    type GetReferralsWithoutTotalCount200Response,
     GetReferralsWithoutTotalCount200ResponseFromJSON,
     GetReferralsWithoutTotalCount200ResponseToJSON,
+} from '../models/GetReferralsWithoutTotalCount200Response';
+import {
+    type GetRulesets200Response,
     GetRulesets200ResponseFromJSON,
     GetRulesets200ResponseToJSON,
+} from '../models/GetRulesets200Response';
+import {
+    type GetUsers200Response,
     GetUsers200ResponseFromJSON,
     GetUsers200ResponseToJSON,
+} from '../models/GetUsers200Response';
+import {
+    type GetWebhooks200Response,
     GetWebhooks200ResponseFromJSON,
     GetWebhooks200ResponseToJSON,
+} from '../models/GetWebhooks200Response';
+import {
+    type Import,
     ImportFromJSON,
     ImportToJSON,
+} from '../models/Import';
+import {
+    type ListAccountCollections200Response,
     ListAccountCollections200ResponseFromJSON,
     ListAccountCollections200ResponseToJSON,
+} from '../models/ListAccountCollections200Response';
+import {
+    type ListAchievements200Response,
     ListAchievements200ResponseFromJSON,
     ListAchievements200ResponseToJSON,
+} from '../models/ListAchievements200Response';
+import {
+    type ListAllRolesV2200Response,
     ListAllRolesV2200ResponseFromJSON,
     ListAllRolesV2200ResponseToJSON,
+} from '../models/ListAllRolesV2200Response';
+import {
+    type ListApplicationCartItemFilters200Response,
     ListApplicationCartItemFilters200ResponseFromJSON,
     ListApplicationCartItemFilters200ResponseToJSON,
+} from '../models/ListApplicationCartItemFilters200Response';
+import {
+    type ListCampaignStoreBudgetLimits200Response,
     ListCampaignStoreBudgetLimits200ResponseFromJSON,
     ListCampaignStoreBudgetLimits200ResponseToJSON,
+} from '../models/ListCampaignStoreBudgetLimits200Response';
+import {
+    type ListCatalogItems200Response,
     ListCatalogItems200ResponseFromJSON,
     ListCatalogItems200ResponseToJSON,
+} from '../models/ListCatalogItems200Response';
+import {
+    type ListExperiments200Response,
     ListExperiments200ResponseFromJSON,
     ListExperiments200ResponseToJSON,
+} from '../models/ListExperiments200Response';
+import {
+    type ListStores200Response,
     ListStores200ResponseFromJSON,
     ListStores200ResponseToJSON,
+} from '../models/ListStores200Response';
+import {
+    type LoginParams,
     LoginParamsFromJSON,
     LoginParamsToJSON,
+} from '../models/LoginParams';
+import {
+    type LoyaltyBalancesWithTiers,
     LoyaltyBalancesWithTiersFromJSON,
     LoyaltyBalancesWithTiersToJSON,
+} from '../models/LoyaltyBalancesWithTiers';
+import {
+    type LoyaltyCard,
     LoyaltyCardFromJSON,
     LoyaltyCardToJSON,
+} from '../models/LoyaltyCard';
+import {
+    type LoyaltyCardBatch,
     LoyaltyCardBatchFromJSON,
     LoyaltyCardBatchToJSON,
+} from '../models/LoyaltyCardBatch';
+import {
+    type LoyaltyCardBatchResponse,
     LoyaltyCardBatchResponseFromJSON,
     LoyaltyCardBatchResponseToJSON,
+} from '../models/LoyaltyCardBatchResponse';
+import {
+    type LoyaltyDashboardData,
     LoyaltyDashboardDataFromJSON,
     LoyaltyDashboardDataToJSON,
+} from '../models/LoyaltyDashboardData';
+import {
+    type LoyaltyLedger,
     LoyaltyLedgerFromJSON,
     LoyaltyLedgerToJSON,
+} from '../models/LoyaltyLedger';
+import {
+    type LoyaltyProgram,
     LoyaltyProgramFromJSON,
     LoyaltyProgramToJSON,
+} from '../models/LoyaltyProgram';
+import {
+    type MessageLogEntries,
     MessageLogEntriesFromJSON,
     MessageLogEntriesToJSON,
+} from '../models/MessageLogEntries';
+import {
+    type NewAdditionalCost,
     NewAdditionalCostFromJSON,
     NewAdditionalCostToJSON,
+} from '../models/NewAdditionalCost';
+import {
+    type NewAttribute,
     NewAttributeFromJSON,
     NewAttributeToJSON,
+} from '../models/NewAttribute';
+import {
+    type NewCampaignCollection,
     NewCampaignCollectionFromJSON,
     NewCampaignCollectionToJSON,
+} from '../models/NewCampaignCollection';
+import {
+    type NewCampaignStoreBudget,
     NewCampaignStoreBudgetFromJSON,
     NewCampaignStoreBudgetToJSON,
+} from '../models/NewCampaignStoreBudget';
+import {
+    type NewCollection,
     NewCollectionFromJSON,
     NewCollectionToJSON,
+} from '../models/NewCollection';
+import {
+    type NewCouponCreationJob,
     NewCouponCreationJobFromJSON,
     NewCouponCreationJobToJSON,
+} from '../models/NewCouponCreationJob';
+import {
+    type NewCouponDeletionJob,
     NewCouponDeletionJobFromJSON,
     NewCouponDeletionJobToJSON,
+} from '../models/NewCouponDeletionJob';
+import {
+    type NewCoupons,
     NewCouponsFromJSON,
     NewCouponsToJSON,
+} from '../models/NewCoupons';
+import {
+    type NewCouponsForMultipleRecipients,
     NewCouponsForMultipleRecipientsFromJSON,
     NewCouponsForMultipleRecipientsToJSON,
+} from '../models/NewCouponsForMultipleRecipients';
+import {
+    type NewExternalInvitation,
     NewExternalInvitationFromJSON,
     NewExternalInvitationToJSON,
+} from '../models/NewExternalInvitation';
+import {
+    type NewInvitation,
     NewInvitationFromJSON,
     NewInvitationToJSON,
+} from '../models/NewInvitation';
+import {
+    type NewInviteEmail,
     NewInviteEmailFromJSON,
     NewInviteEmailToJSON,
+} from '../models/NewInviteEmail';
+import {
+    type NewPassword,
     NewPasswordFromJSON,
     NewPasswordToJSON,
+} from '../models/NewPassword';
+import {
+    type NewPasswordEmail,
     NewPasswordEmailFromJSON,
     NewPasswordEmailToJSON,
+} from '../models/NewPasswordEmail';
+import {
+    type NewStore,
     NewStoreFromJSON,
     NewStoreToJSON,
+} from '../models/NewStore';
+import {
+    type PriceHistoryRequest,
     PriceHistoryRequestFromJSON,
     PriceHistoryRequestToJSON,
+} from '../models/PriceHistoryRequest';
+import {
+    type PriceHistoryResponse,
     PriceHistoryResponseFromJSON,
     PriceHistoryResponseToJSON,
+} from '../models/PriceHistoryResponse';
+import {
+    type Referral,
     ReferralFromJSON,
     ReferralToJSON,
+} from '../models/Referral';
+import {
+    type RoleV2,
     RoleV2FromJSON,
     RoleV2ToJSON,
+} from '../models/RoleV2';
+import {
+    type RoleV2Base,
     RoleV2BaseFromJSON,
     RoleV2BaseToJSON,
+} from '../models/RoleV2Base';
+import {
+    type Ruleset,
     RulesetFromJSON,
     RulesetToJSON,
+} from '../models/Ruleset';
+import {
+    type ScimBaseGroup,
     ScimBaseGroupFromJSON,
     ScimBaseGroupToJSON,
+} from '../models/ScimBaseGroup';
+import {
+    type ScimGroup,
     ScimGroupFromJSON,
     ScimGroupToJSON,
+} from '../models/ScimGroup';
+import {
+    type ScimGroupsListResponse,
     ScimGroupsListResponseFromJSON,
     ScimGroupsListResponseToJSON,
+} from '../models/ScimGroupsListResponse';
+import {
+    type ScimNewUser,
     ScimNewUserFromJSON,
     ScimNewUserToJSON,
+} from '../models/ScimNewUser';
+import {
+    type ScimPatchRequest,
     ScimPatchRequestFromJSON,
     ScimPatchRequestToJSON,
+} from '../models/ScimPatchRequest';
+import {
+    type ScimResourceTypesListResponse,
     ScimResourceTypesListResponseFromJSON,
     ScimResourceTypesListResponseToJSON,
+} from '../models/ScimResourceTypesListResponse';
+import {
+    type ScimSchemasListResponse,
     ScimSchemasListResponseFromJSON,
     ScimSchemasListResponseToJSON,
+} from '../models/ScimSchemasListResponse';
+import {
+    type ScimServiceProviderConfigResponse,
     ScimServiceProviderConfigResponseFromJSON,
     ScimServiceProviderConfigResponseToJSON,
+} from '../models/ScimServiceProviderConfigResponse';
+import {
+    type ScimUser,
     ScimUserFromJSON,
     ScimUserToJSON,
+} from '../models/ScimUser';
+import {
+    type ScimUsersListResponse,
     ScimUsersListResponseFromJSON,
     ScimUsersListResponseToJSON,
+} from '../models/ScimUsersListResponse';
+import {
+    type Session,
     SessionFromJSON,
     SessionToJSON,
+} from '../models/Session';
+import {
+    type Store,
     StoreFromJSON,
     StoreToJSON,
+} from '../models/Store';
+import {
+    type SummarizeCampaignStoreBudget200Response,
     SummarizeCampaignStoreBudget200ResponseFromJSON,
     SummarizeCampaignStoreBudget200ResponseToJSON,
+} from '../models/SummarizeCampaignStoreBudget200Response';
+import {
+    type TransferLoyaltyCard,
     TransferLoyaltyCardFromJSON,
     TransferLoyaltyCardToJSON,
+} from '../models/TransferLoyaltyCard';
+import {
+    type UpdateAchievement,
     UpdateAchievementFromJSON,
     UpdateAchievementToJSON,
+} from '../models/UpdateAchievement';
+import {
+    type UpdateCampaign,
     UpdateCampaignFromJSON,
     UpdateCampaignToJSON,
+} from '../models/UpdateCampaign';
+import {
+    type UpdateCampaignCollection,
     UpdateCampaignCollectionFromJSON,
     UpdateCampaignCollectionToJSON,
+} from '../models/UpdateCampaignCollection';
+import {
+    type UpdateCollection,
     UpdateCollectionFromJSON,
     UpdateCollectionToJSON,
+} from '../models/UpdateCollection';
+import {
+    type UpdateCoupon,
     UpdateCouponFromJSON,
     UpdateCouponToJSON,
+} from '../models/UpdateCoupon';
+import {
+    type UpdateCouponBatch,
     UpdateCouponBatchFromJSON,
     UpdateCouponBatchToJSON,
+} from '../models/UpdateCouponBatch';
+import {
+    type UpdateLoyaltyCardRequest,
     UpdateLoyaltyCardRequestFromJSON,
     UpdateLoyaltyCardRequestToJSON,
+} from '../models/UpdateLoyaltyCardRequest';
+import {
+    type UpdateReferral,
     UpdateReferralFromJSON,
     UpdateReferralToJSON,
+} from '../models/UpdateReferral';
+import {
+    type UpdateUser,
     UpdateUserFromJSON,
     UpdateUserToJSON,
+} from '../models/UpdateUser';
+import {
+    type User,
     UserFromJSON,
     UserToJSON,
+} from '../models/User';
+import {
+    type Webhook,
     WebhookFromJSON,
     WebhookToJSON,
-} from '../models/index';
+} from '../models/Webhook';
 
 export interface ActivateUserByEmailRequest {
     activateUserRequest: ActivateUserRequest;
@@ -1729,8 +1994,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/add_points`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyCardId}', encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
         return {
             path: urlPath,
@@ -1797,8 +2062,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/add_points`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -1865,8 +2130,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/copy`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -1987,8 +2252,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/achievements`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -2155,7 +2420,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/batch`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -2216,7 +2481,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/create_campaign_from_template`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -2284,8 +2549,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -2352,8 +2617,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/collections`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -2425,8 +2690,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/coupons`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -2501,8 +2766,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/coupons_async`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -2570,8 +2835,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/coupons_deletion_jobs`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -2643,8 +2908,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/coupons_with_recipients`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -2924,7 +3189,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/stores`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -3044,8 +3309,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/deduct_points`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyCardId}', encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
         return {
             path: urlPath,
@@ -3096,7 +3361,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/collections/{collectionId}`;
-        urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
+        urlPath = urlPath.replace('{collectionId}', encodeURIComponent(String(requestParameters['collectionId'])));
 
         return {
             path: urlPath,
@@ -3160,9 +3425,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"achievementId"}}`, encodeURIComponent(String(requestParameters['achievementId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{achievementId}', encodeURIComponent(String(requestParameters['achievementId'])));
 
         return {
             path: urlPath,
@@ -3219,8 +3484,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -3285,8 +3550,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -3350,9 +3615,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{collectionId}', encodeURIComponent(String(requestParameters['collectionId'])));
 
         return {
             path: urlPath,
@@ -3416,9 +3681,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"couponId"}}`, encodeURIComponent(String(requestParameters['couponId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{couponId}', encodeURIComponent(String(requestParameters['couponId'])));
 
         return {
             path: urlPath,
@@ -3527,8 +3792,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/coupons`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -3585,8 +3850,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyCardId}', encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
         return {
             path: urlPath,
@@ -3650,9 +3915,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"referralId"}}`, encodeURIComponent(String(requestParameters['referralId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{referralId}', encodeURIComponent(String(requestParameters['referralId'])));
 
         return {
             path: urlPath,
@@ -3709,8 +3974,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/stores/{storeId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"storeId"}}`, encodeURIComponent(String(requestParameters['storeId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{storeId}', encodeURIComponent(String(requestParameters['storeId'])));
 
         return {
             path: urlPath,
@@ -3760,7 +4025,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/users/{userId}`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
         return {
             path: urlPath,
@@ -3911,8 +4176,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/stores`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -3962,7 +4227,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/collections/{collectionId}/export`;
-        urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
+        urlPath = urlPath.replace('{collectionId}', encodeURIComponent(String(requestParameters['collectionId'])));
 
         return {
             path: urlPath,
@@ -4031,9 +4296,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId}/export`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"achievementId"}}`, encodeURIComponent(String(requestParameters['achievementId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{achievementId}', encodeURIComponent(String(requestParameters['achievementId'])));
 
         return {
             path: urlPath,
@@ -4114,7 +4379,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaign_analytics/export`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -4169,7 +4434,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/audiences/{audienceId}/memberships/export`;
-        urlPath = urlPath.replace(`{${"audienceId"}}`, encodeURIComponent(String(requestParameters['audienceId'])));
+        urlPath = urlPath.replace('{audienceId}', encodeURIComponent(String(requestParameters['audienceId'])));
 
         return {
             path: urlPath,
@@ -4239,8 +4504,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/export`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -4302,8 +4567,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/stores/export`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -4372,9 +4637,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/value_maps/{valueMapId}/export`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"valueMapId"}}`, encodeURIComponent(String(requestParameters['valueMapId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{valueMapId}', encodeURIComponent(String(requestParameters['valueMapId'])));
 
         return {
             path: urlPath,
@@ -4443,9 +4708,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/export`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{collectionId}', encodeURIComponent(String(requestParameters['collectionId'])));
 
         return {
             path: urlPath,
@@ -4556,7 +4821,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/export_coupons`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -4631,7 +4896,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/export_customer_sessions`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -4694,7 +4959,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/export_customers_tiers`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -4765,7 +5030,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/export_effects`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -4829,7 +5094,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/export_customer_balance`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -4894,7 +5159,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/export_customer_balances`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -4957,7 +5222,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/export_card_balances`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -5045,8 +5310,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/export_log`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyCardId}', encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
         return {
             path: urlPath,
@@ -5117,7 +5382,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/export`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -5172,7 +5437,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/export_join_dates`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -5260,8 +5525,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/export_log`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -5324,7 +5589,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/giveaways/pools/{poolId}/export`;
-        urlPath = urlPath.replace(`{${"poolId"}}`, encodeURIComponent(String(requestParameters['poolId'])));
+        urlPath = urlPath.replace('{poolId}', encodeURIComponent(String(requestParameters['poolId'])));
 
         return {
             path: urlPath,
@@ -5407,7 +5672,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/export_referrals`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -5574,7 +5839,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/access_logs/no_total`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -5625,7 +5890,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/accounts/{accountId}`;
-        urlPath = urlPath.replace(`{${"accountId"}}`, encodeURIComponent(String(requestParameters['accountId'])));
+        urlPath = urlPath.replace('{accountId}', encodeURIComponent(String(requestParameters['accountId'])));
 
         return {
             path: urlPath,
@@ -5676,7 +5941,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/accounts/{accountId}/analytics`;
-        urlPath = urlPath.replace(`{${"accountId"}}`, encodeURIComponent(String(requestParameters['accountId'])));
+        urlPath = urlPath.replace('{accountId}', encodeURIComponent(String(requestParameters['accountId'])));
 
         return {
             path: urlPath,
@@ -5727,7 +5992,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/collections/{collectionId}`;
-        urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
+        urlPath = urlPath.replace('{collectionId}', encodeURIComponent(String(requestParameters['collectionId'])));
 
         return {
             path: urlPath,
@@ -5792,9 +6057,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"achievementId"}}`, encodeURIComponent(String(requestParameters['achievementId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{achievementId}', encodeURIComponent(String(requestParameters['achievementId'])));
 
         return {
             path: urlPath,
@@ -5845,7 +6110,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/additional_costs/{additionalCostId}`;
-        urlPath = urlPath.replace(`{${"additionalCostId"}}`, encodeURIComponent(String(requestParameters['additionalCostId'])));
+        urlPath = urlPath.replace('{additionalCostId}', encodeURIComponent(String(requestParameters['additionalCostId'])));
 
         return {
             path: urlPath,
@@ -5951,7 +6216,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -6002,7 +6267,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/health_report`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -6067,9 +6332,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/cart_item_filters/{cartItemFilterId}/expressions/{expressionId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"cartItemFilterId"}}`, encodeURIComponent(String(requestParameters['cartItemFilterId'])));
-        urlPath = urlPath.replace(`{${"expressionId"}}`, encodeURIComponent(String(requestParameters['expressionId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{cartItemFilterId}', encodeURIComponent(String(requestParameters['cartItemFilterId'])));
+        urlPath = urlPath.replace('{expressionId}', encodeURIComponent(String(requestParameters['expressionId'])));
 
         return {
             path: urlPath,
@@ -6127,8 +6392,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/customers/{customerId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"customerId"}}`, encodeURIComponent(String(requestParameters['customerId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{customerId}', encodeURIComponent(String(requestParameters['customerId'])));
 
         return {
             path: urlPath,
@@ -6202,8 +6467,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/profile/{integrationId}/friends`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -6270,7 +6535,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/customers`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -6342,7 +6607,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/customer_search`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -6406,7 +6671,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/event_types`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -6517,7 +6782,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/events/no_total`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -6575,8 +6840,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/sessions/{sessionId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"sessionId"}}`, encodeURIComponent(String(requestParameters['sessionId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{sessionId}', encodeURIComponent(String(requestParameters['sessionId'])));
 
         return {
             path: urlPath,
@@ -6675,7 +6940,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/sessions`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -6781,7 +7046,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/attributes/{attributeId}`;
-        urlPath = urlPath.replace(`{${"attributeId"}}`, encodeURIComponent(String(requestParameters['attributeId'])));
+        urlPath = urlPath.replace('{attributeId}', encodeURIComponent(String(requestParameters['attributeId'])));
 
         return {
             path: urlPath,
@@ -6923,7 +7188,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/audiences/{audienceId}/memberships`;
-        urlPath = urlPath.replace(`{${"audienceId"}}`, encodeURIComponent(String(requestParameters['audienceId'])));
+        urlPath = urlPath.replace('{audienceId}', encodeURIComponent(String(requestParameters['audienceId'])));
 
         return {
             path: urlPath,
@@ -7098,8 +7363,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -7183,8 +7448,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/analytics`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -7260,7 +7525,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns_search`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -7312,7 +7577,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/campaign_groups/{campaignGroupId}`;
-        urlPath = urlPath.replace(`{${"campaignGroupId"}}`, encodeURIComponent(String(requestParameters['campaignGroupId'])));
+        urlPath = urlPath.replace('{campaignGroupId}', encodeURIComponent(String(requestParameters['campaignGroupId'])));
 
         return {
             path: urlPath,
@@ -7549,7 +7814,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -7701,9 +7966,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{collectionId}', encodeURIComponent(String(requestParameters['collectionId'])));
 
         return {
             path: urlPath,
@@ -7762,7 +8027,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/collections/{collectionId}/items`;
-        urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
+        urlPath = urlPath.replace('{collectionId}', encodeURIComponent(String(requestParameters['collectionId'])));
 
         return {
             path: urlPath,
@@ -7892,8 +8157,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/coupons/no_total`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -7981,8 +8246,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/customer_activity_reports/{customerId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"customerId"}}`, encodeURIComponent(String(requestParameters['customerId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{customerId}', encodeURIComponent(String(requestParameters['customerId'])));
 
         return {
             path: urlPath,
@@ -8083,7 +8348,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/customer_activity_reports/no_total`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -8153,8 +8418,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/customers/{customerId}/analytics`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"customerId"}}`, encodeURIComponent(String(requestParameters['customerId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{customerId}', encodeURIComponent(String(requestParameters['customerId'])));
 
         return {
             path: urlPath,
@@ -8205,7 +8470,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/customers/{customerId}`;
-        urlPath = urlPath.replace(`{${"customerId"}}`, encodeURIComponent(String(requestParameters['customerId'])));
+        urlPath = urlPath.replace('{customerId}', encodeURIComponent(String(requestParameters['customerId'])));
 
         return {
             path: urlPath,
@@ -8279,8 +8544,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/achievement_progress/{integrationId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -8477,7 +8742,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/dashboard`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -8598,8 +8863,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/experiments/{experimentId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"experimentId"}}`, encodeURIComponent(String(requestParameters['experimentId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{experimentId}', encodeURIComponent(String(requestParameters['experimentId'])));
 
         return {
             path: urlPath,
@@ -8720,8 +8985,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyCardId}', encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
         return {
             path: urlPath,
@@ -8807,8 +9072,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyCardId}', encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
         return {
             path: urlPath,
@@ -8883,7 +9148,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -8957,8 +9222,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_balances`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -9017,8 +9282,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -9071,7 +9336,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -9165,8 +9430,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_transactions`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -9253,7 +9518,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/transactions`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -9348,7 +9613,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/statistics`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -9550,8 +9815,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/referrals/no_total`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -9602,7 +9867,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v2/roles/{roleId}`;
-        urlPath = urlPath.replace(`{${"roleId"}}`, encodeURIComponent(String(requestParameters['roleId'])));
+        urlPath = urlPath.replace('{roleId}', encodeURIComponent(String(requestParameters['roleId'])));
 
         return {
             path: urlPath,
@@ -9667,9 +9932,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"rulesetId"}}`, encodeURIComponent(String(requestParameters['rulesetId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{rulesetId}', encodeURIComponent(String(requestParameters['rulesetId'])));
 
         return {
             path: urlPath,
@@ -9739,8 +10004,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/rulesets`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -9798,8 +10063,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/stores/{storeId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"storeId"}}`, encodeURIComponent(String(requestParameters['storeId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{storeId}', encodeURIComponent(String(requestParameters['storeId'])));
 
         return {
             path: urlPath,
@@ -9850,7 +10115,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/users/{userId}`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
         return {
             path: urlPath,
@@ -9956,7 +10221,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/webhooks/{webhookId}`;
-        urlPath = urlPath.replace(`{${"webhookId"}}`, encodeURIComponent(String(requestParameters['webhookId'])));
+        urlPath = urlPath.replace('{webhookId}', encodeURIComponent(String(requestParameters['webhookId'])));
 
         return {
             path: urlPath,
@@ -10100,7 +10365,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/collections/{collectionId}/import`;
-        urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
+        urlPath = urlPath.replace('{collectionId}', encodeURIComponent(String(requestParameters['collectionId'])));
 
         return {
             path: urlPath,
@@ -10170,7 +10435,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/attributes/{attributeId}/allowed_list/import`;
-        urlPath = urlPath.replace(`{${"attributeId"}}`, encodeURIComponent(String(requestParameters['attributeId'])));
+        urlPath = urlPath.replace('{attributeId}', encodeURIComponent(String(requestParameters['attributeId'])));
 
         return {
             path: urlPath,
@@ -10240,7 +10505,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/audiences/{audienceId}/memberships/import`;
-        urlPath = urlPath.replace(`{${"audienceId"}}`, encodeURIComponent(String(requestParameters['audienceId'])));
+        urlPath = urlPath.replace('{audienceId}', encodeURIComponent(String(requestParameters['audienceId'])));
 
         return {
             path: urlPath,
@@ -10325,8 +10590,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/import`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -10403,8 +10668,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/stores/import`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -10488,9 +10753,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/import`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{collectionId}', encodeURIComponent(String(requestParameters['collectionId'])));
 
         return {
             path: urlPath,
@@ -10571,8 +10836,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/import_coupons`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -10642,7 +10907,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/import_cards`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -10712,7 +10977,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/import_customers_tiers`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -10786,7 +11051,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/import_points`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -10856,7 +11121,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/giveaways/pools/{poolId}/import`;
-        urlPath = urlPath.replace(`{${"poolId"}}`, encodeURIComponent(String(requestParameters['poolId'])));
+        urlPath = urlPath.replace('{poolId}', encodeURIComponent(String(requestParameters['poolId'])));
 
         return {
             path: urlPath,
@@ -10933,8 +11198,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/import_referrals`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -11120,8 +11385,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/achievements`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -11227,7 +11492,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/cart_item_filters`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -11293,8 +11558,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -11365,7 +11630,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/catalogs/{catalogId}/items`;
-        urlPath = urlPath.replace(`{${"catalogId"}}`, encodeURIComponent(String(requestParameters['catalogId'])));
+        urlPath = urlPath.replace('{catalogId}', encodeURIComponent(String(requestParameters['catalogId'])));
 
         return {
             path: urlPath,
@@ -11443,8 +11708,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/collections`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -11515,7 +11780,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/collections`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -11578,7 +11843,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/experiments`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -11661,7 +11926,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/stores`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -11763,7 +12028,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/price_history`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -11831,8 +12096,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/deduct_points`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -12042,7 +12307,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/provisioning/scim/Groups/{groupId}`;
-        urlPath = urlPath.replace(`{${"groupId"}}`, encodeURIComponent(String(requestParameters['groupId'])));
+        urlPath = urlPath.replace('{groupId}', encodeURIComponent(String(requestParameters['groupId'])));
 
         return {
             path: urlPath,
@@ -12092,7 +12357,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/provisioning/scim/Users/{userId}`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
         return {
             path: urlPath,
@@ -12142,7 +12407,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/provisioning/scim/Groups/{groupId}`;
-        urlPath = urlPath.replace(`{${"groupId"}}`, encodeURIComponent(String(requestParameters['groupId'])));
+        urlPath = urlPath.replace('{groupId}', encodeURIComponent(String(requestParameters['groupId'])));
 
         return {
             path: urlPath,
@@ -12365,7 +12630,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/provisioning/scim/Users/{userId}`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
         return {
             path: urlPath,
@@ -12468,7 +12733,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/provisioning/scim/Groups/{groupId}`;
-        urlPath = urlPath.replace(`{${"groupId"}}`, encodeURIComponent(String(requestParameters['groupId'])));
+        urlPath = urlPath.replace('{groupId}', encodeURIComponent(String(requestParameters['groupId'])));
 
         return {
             path: urlPath,
@@ -12529,7 +12794,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/provisioning/scim/Users/{userId}`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
         return {
             path: urlPath,
@@ -12590,7 +12855,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/provisioning/scim/Groups/{groupId}`;
-        urlPath = urlPath.replace(`{${"groupId"}}`, encodeURIComponent(String(requestParameters['groupId'])));
+        urlPath = urlPath.replace('{groupId}', encodeURIComponent(String(requestParameters['groupId'])));
 
         return {
             path: urlPath,
@@ -12651,7 +12916,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/provisioning/scim/Users/{userId}`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
         return {
             path: urlPath,
@@ -12764,7 +13029,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/coupons_search_advanced/no_total`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
 
         return {
             path: urlPath,
@@ -12880,8 +13145,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced/no_total`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -12940,8 +13205,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/summary`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -13008,8 +13273,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transfer`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyCardId}', encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
         return {
             path: urlPath,
@@ -13069,7 +13334,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/collections/{collectionId}`;
-        urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
+        urlPath = urlPath.replace('{collectionId}', encodeURIComponent(String(requestParameters['collectionId'])));
 
         return {
             path: urlPath,
@@ -13144,9 +13409,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"achievementId"}}`, encodeURIComponent(String(requestParameters['achievementId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{achievementId}', encodeURIComponent(String(requestParameters['achievementId'])));
 
         return {
             path: urlPath,
@@ -13207,7 +13472,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/additional_costs/{additionalCostId}`;
-        urlPath = urlPath.replace(`{${"additionalCostId"}}`, encodeURIComponent(String(requestParameters['additionalCostId'])));
+        urlPath = urlPath.replace('{additionalCostId}', encodeURIComponent(String(requestParameters['additionalCostId'])));
 
         return {
             path: urlPath,
@@ -13268,7 +13533,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/attributes/{attributeId}`;
-        urlPath = urlPath.replace(`{${"attributeId"}}`, encodeURIComponent(String(requestParameters['attributeId'])));
+        urlPath = urlPath.replace('{attributeId}', encodeURIComponent(String(requestParameters['attributeId'])));
 
         return {
             path: urlPath,
@@ -13336,8 +13601,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -13412,9 +13677,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"collectionId"}}`, encodeURIComponent(String(requestParameters['collectionId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{collectionId}', encodeURIComponent(String(requestParameters['collectionId'])));
 
         return {
             path: urlPath,
@@ -13489,9 +13754,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"couponId"}}`, encodeURIComponent(String(requestParameters['couponId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{couponId}', encodeURIComponent(String(requestParameters['couponId'])));
 
         return {
             path: urlPath,
@@ -13559,8 +13824,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/coupons`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
 
         return {
             path: urlPath,
@@ -13627,8 +13892,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyCardId}', encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
         return {
             path: urlPath,
@@ -13703,9 +13968,9 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"campaignId"}}`, encodeURIComponent(String(requestParameters['campaignId'])));
-        urlPath = urlPath.replace(`{${"referralId"}}`, encodeURIComponent(String(requestParameters['referralId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{referralId}', encodeURIComponent(String(requestParameters['referralId'])));
 
         return {
             path: urlPath,
@@ -13766,7 +14031,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v2/roles/{roleId}`;
-        urlPath = urlPath.replace(`{${"roleId"}}`, encodeURIComponent(String(requestParameters['roleId'])));
+        urlPath = urlPath.replace('{roleId}', encodeURIComponent(String(requestParameters['roleId'])));
 
         return {
             path: urlPath,
@@ -13834,8 +14099,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/applications/{applicationId}/stores/{storeId}`;
-        urlPath = urlPath.replace(`{${"applicationId"}}`, encodeURIComponent(String(requestParameters['applicationId'])));
-        urlPath = urlPath.replace(`{${"storeId"}}`, encodeURIComponent(String(requestParameters['storeId'])));
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{storeId}', encodeURIComponent(String(requestParameters['storeId'])));
 
         return {
             path: urlPath,
@@ -13896,7 +14161,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/users/{userId}`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
         return {
             path: urlPath,

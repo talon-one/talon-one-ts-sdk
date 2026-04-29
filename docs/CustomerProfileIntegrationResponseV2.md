@@ -12,6 +12,7 @@ Name | Type
 `loyalty` | [Loyalty](Loyalty.md)
 `triggeredCampaigns` | [Array&lt;Campaign&gt;](Campaign.md)
 `ruleFailureReasons` | [Array&lt;RuleFailureReason&gt;](RuleFailureReason.md)
+`campaignEligibility` | [Array&lt;CampaignEligibility&gt;](CampaignEligibility.md)
 `awardedGiveaways` | [Array&lt;Giveaway&gt;](Giveaway.md)
 `effects` | [Array&lt;Effect&gt;](Effect.md)
 `createdCoupons` | [Array&lt;Coupon&gt;](Coupon.md)
@@ -29,6 +30,7 @@ const example = {
   "loyalty": null,
   "triggeredCampaigns": null,
   "ruleFailureReasons": null,
+  "campaignEligibility": null,
   "awardedGiveaways": null,
   "effects": null,
   "createdCoupons": null,
