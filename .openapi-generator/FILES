@@ -121,6 +121,8 @@ docs/CampaignDetail.md
 docs/CampaignEditedNotification.md
 docs/CampaignEditedNotificationItem.md
 docs/CampaignEligibility.md
+docs/CampaignEligibilityDetails.md
+docs/CampaignEligibilityFailureDetails.md
 docs/CampaignEntity.md
 docs/CampaignEvaluationGroup.md
 docs/CampaignEvaluationPosition.md
@@ -590,6 +592,8 @@ docs/RollbackDiscountEffectProps.md
 docs/RollbackIncreasedAchievementProgressEffectProps.md
 docs/RollbackReferralEffectProps.md
 docs/Rule.md
+docs/RuleEligibility.md
+docs/RuleEligibilityFailureDetails.md
 docs/RuleFailureReason.md
 docs/RuleMetadata.md
 docs/Ruleset.md
@@ -828,6 +832,8 @@ src/models/CampaignDetail.ts
 src/models/CampaignEditedNotification.ts
 src/models/CampaignEditedNotificationItem.ts
 src/models/CampaignEligibility.ts
+src/models/CampaignEligibilityDetails.ts
+src/models/CampaignEligibilityFailureDetails.ts
 src/models/CampaignEntity.ts
 src/models/CampaignEvaluationGroup.ts
 src/models/CampaignEvaluationPosition.ts
@@ -1295,6 +1301,8 @@ src/models/RollbackDiscountEffectProps.ts
 src/models/RollbackIncreasedAchievementProgressEffectProps.ts
 src/models/RollbackReferralEffectProps.ts
 src/models/Rule.ts
+src/models/RuleEligibility.ts
+src/models/RuleEligibilityFailureDetails.ts
 src/models/RuleFailureReason.ts
 src/models/RuleMetadata.ts
 src/models/Ruleset.ts

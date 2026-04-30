@@ -10,7 +10,7 @@ Name | Type
 `displayName` | string
 `displayDescription` | string
 `relatedData` | string
-`eligibility` | Array&lt;any&gt;
+`eligibility` | [Array&lt;RuleEligibility&gt;](RuleEligibility.md)
 
 ## Example
 

@@ -12,150 +12,237 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  ActivateLoyaltyPoints,
-  ActivateLoyaltyPointsResponse,
-  Audience,
-  BestPriorPrice,
-  BestPriorPriceRequest,
-  Catalog,
-  CatalogSyncRequest,
-  Coupon,
-  CouponReservations,
-  CreateReferralsForMultipleAdvocates201Response,
-  CustomerInventory,
-  CustomerProfileAudienceRequest,
-  CustomerProfileIntegrationRequestV2,
-  CustomerProfileIntegrationResponseV2,
-  DeleteLoyaltyTransactionsRequest,
-  ErrorResponse,
-  ErrorResponseWithStatus,
-  GenerateLoyaltyCard,
-  GetCustomerAchievementHistory200Response,
-  GetCustomerAchievements200Response,
-  GetLoyaltyCardPoints200Response,
-  GetLoyaltyCardTransactions200Response,
-  GetLoyaltyProgramProfilePoints200Response,
-  GetLoyaltyProgramProfileTransactions200Response,
-  GetReservedCustomers200Response,
-  IntegrationCustomerSessionResponse,
-  IntegrationEventV2Request,
-  IntegrationEventV2Response,
-  IntegrationGetAllCampaigns200Response,
-  IntegrationRequest,
-  IntegrationStateV2,
-  LoyaltyBalancesWithTiers,
-  LoyaltyCard,
-  LoyaltyCardBalances,
-  LoyaltyCardRegistration,
-  MultipleCustomerProfileIntegrationRequest,
-  MultipleCustomerProfileIntegrationResponseV2,
-  NewAudience,
-  NewReferral,
-  NewReferralsForMultipleAdvocates,
-  Referral,
-  ReopenSessionResponse,
-  ReturnIntegrationRequest,
-  UpdateAudience,
-  UpdateCustomerProfileV2409Response,
-  UpdateCustomerSessionV2409Response,
-} from '../models/index';
 import {
+    type ActivateLoyaltyPoints,
     ActivateLoyaltyPointsFromJSON,
     ActivateLoyaltyPointsToJSON,
+} from '../models/ActivateLoyaltyPoints';
+import {
+    type ActivateLoyaltyPointsResponse,
     ActivateLoyaltyPointsResponseFromJSON,
     ActivateLoyaltyPointsResponseToJSON,
+} from '../models/ActivateLoyaltyPointsResponse';
+import {
+    type Audience,
     AudienceFromJSON,
     AudienceToJSON,
+} from '../models/Audience';
+import {
+    type BestPriorPrice,
     BestPriorPriceFromJSON,
     BestPriorPriceToJSON,
+} from '../models/BestPriorPrice';
+import {
+    type BestPriorPriceRequest,
     BestPriorPriceRequestFromJSON,
     BestPriorPriceRequestToJSON,
+} from '../models/BestPriorPriceRequest';
+import {
+    type Catalog,
     CatalogFromJSON,
     CatalogToJSON,
+} from '../models/Catalog';
+import {
+    type CatalogSyncRequest,
     CatalogSyncRequestFromJSON,
     CatalogSyncRequestToJSON,
+} from '../models/CatalogSyncRequest';
+import {
+    type Coupon,
     CouponFromJSON,
     CouponToJSON,
+} from '../models/Coupon';
+import {
+    type CouponReservations,
     CouponReservationsFromJSON,
     CouponReservationsToJSON,
+} from '../models/CouponReservations';
+import {
+    type CreateReferralsForMultipleAdvocates201Response,
     CreateReferralsForMultipleAdvocates201ResponseFromJSON,
     CreateReferralsForMultipleAdvocates201ResponseToJSON,
+} from '../models/CreateReferralsForMultipleAdvocates201Response';
+import {
+    type CustomerInventory,
     CustomerInventoryFromJSON,
     CustomerInventoryToJSON,
+} from '../models/CustomerInventory';
+import {
+    type CustomerProfileAudienceRequest,
     CustomerProfileAudienceRequestFromJSON,
     CustomerProfileAudienceRequestToJSON,
+} from '../models/CustomerProfileAudienceRequest';
+import {
+    type CustomerProfileIntegrationRequestV2,
     CustomerProfileIntegrationRequestV2FromJSON,
     CustomerProfileIntegrationRequestV2ToJSON,
+} from '../models/CustomerProfileIntegrationRequestV2';
+import {
+    type CustomerProfileIntegrationResponseV2,
     CustomerProfileIntegrationResponseV2FromJSON,
     CustomerProfileIntegrationResponseV2ToJSON,
+} from '../models/CustomerProfileIntegrationResponseV2';
+import {
+    type DeleteLoyaltyTransactionsRequest,
     DeleteLoyaltyTransactionsRequestFromJSON,
     DeleteLoyaltyTransactionsRequestToJSON,
+} from '../models/DeleteLoyaltyTransactionsRequest';
+import {
+    type ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+} from '../models/ErrorResponse';
+import {
+    type ErrorResponseWithStatus,
     ErrorResponseWithStatusFromJSON,
     ErrorResponseWithStatusToJSON,
+} from '../models/ErrorResponseWithStatus';
+import {
+    type GenerateLoyaltyCard,
     GenerateLoyaltyCardFromJSON,
     GenerateLoyaltyCardToJSON,
+} from '../models/GenerateLoyaltyCard';
+import {
+    type GetCustomerAchievementHistory200Response,
     GetCustomerAchievementHistory200ResponseFromJSON,
     GetCustomerAchievementHistory200ResponseToJSON,
+} from '../models/GetCustomerAchievementHistory200Response';
+import {
+    type GetCustomerAchievements200Response,
     GetCustomerAchievements200ResponseFromJSON,
     GetCustomerAchievements200ResponseToJSON,
+} from '../models/GetCustomerAchievements200Response';
+import {
+    type GetLoyaltyCardPoints200Response,
     GetLoyaltyCardPoints200ResponseFromJSON,
     GetLoyaltyCardPoints200ResponseToJSON,
+} from '../models/GetLoyaltyCardPoints200Response';
+import {
+    type GetLoyaltyCardTransactions200Response,
     GetLoyaltyCardTransactions200ResponseFromJSON,
     GetLoyaltyCardTransactions200ResponseToJSON,
+} from '../models/GetLoyaltyCardTransactions200Response';
+import {
+    type GetLoyaltyProgramProfilePoints200Response,
     GetLoyaltyProgramProfilePoints200ResponseFromJSON,
     GetLoyaltyProgramProfilePoints200ResponseToJSON,
+} from '../models/GetLoyaltyProgramProfilePoints200Response';
+import {
+    type GetLoyaltyProgramProfileTransactions200Response,
     GetLoyaltyProgramProfileTransactions200ResponseFromJSON,
     GetLoyaltyProgramProfileTransactions200ResponseToJSON,
+} from '../models/GetLoyaltyProgramProfileTransactions200Response';
+import {
+    type GetReservedCustomers200Response,
     GetReservedCustomers200ResponseFromJSON,
     GetReservedCustomers200ResponseToJSON,
+} from '../models/GetReservedCustomers200Response';
+import {
+    type IntegrationCustomerSessionResponse,
     IntegrationCustomerSessionResponseFromJSON,
     IntegrationCustomerSessionResponseToJSON,
+} from '../models/IntegrationCustomerSessionResponse';
+import {
+    type IntegrationEventV2Request,
     IntegrationEventV2RequestFromJSON,
     IntegrationEventV2RequestToJSON,
+} from '../models/IntegrationEventV2Request';
+import {
+    type IntegrationEventV2Response,
     IntegrationEventV2ResponseFromJSON,
     IntegrationEventV2ResponseToJSON,
+} from '../models/IntegrationEventV2Response';
+import {
+    type IntegrationGetAllCampaigns200Response,
     IntegrationGetAllCampaigns200ResponseFromJSON,
     IntegrationGetAllCampaigns200ResponseToJSON,
+} from '../models/IntegrationGetAllCampaigns200Response';
+import {
+    type IntegrationRequest,
     IntegrationRequestFromJSON,
     IntegrationRequestToJSON,
+} from '../models/IntegrationRequest';
+import {
+    type IntegrationStateV2,
     IntegrationStateV2FromJSON,
     IntegrationStateV2ToJSON,
+} from '../models/IntegrationStateV2';
+import {
+    type LoyaltyBalancesWithTiers,
     LoyaltyBalancesWithTiersFromJSON,
     LoyaltyBalancesWithTiersToJSON,
+} from '../models/LoyaltyBalancesWithTiers';
+import {
+    type LoyaltyCard,
     LoyaltyCardFromJSON,
     LoyaltyCardToJSON,
+} from '../models/LoyaltyCard';
+import {
+    type LoyaltyCardBalances,
     LoyaltyCardBalancesFromJSON,
     LoyaltyCardBalancesToJSON,
+} from '../models/LoyaltyCardBalances';
+import {
+    type LoyaltyCardRegistration,
     LoyaltyCardRegistrationFromJSON,
     LoyaltyCardRegistrationToJSON,
+} from '../models/LoyaltyCardRegistration';
+import {
+    type MultipleCustomerProfileIntegrationRequest,
     MultipleCustomerProfileIntegrationRequestFromJSON,
     MultipleCustomerProfileIntegrationRequestToJSON,
+} from '../models/MultipleCustomerProfileIntegrationRequest';
+import {
+    type MultipleCustomerProfileIntegrationResponseV2,
     MultipleCustomerProfileIntegrationResponseV2FromJSON,
     MultipleCustomerProfileIntegrationResponseV2ToJSON,
+} from '../models/MultipleCustomerProfileIntegrationResponseV2';
+import {
+    type NewAudience,
     NewAudienceFromJSON,
     NewAudienceToJSON,
+} from '../models/NewAudience';
+import {
+    type NewReferral,
     NewReferralFromJSON,
     NewReferralToJSON,
+} from '../models/NewReferral';
+import {
+    type NewReferralsForMultipleAdvocates,
     NewReferralsForMultipleAdvocatesFromJSON,
     NewReferralsForMultipleAdvocatesToJSON,
+} from '../models/NewReferralsForMultipleAdvocates';
+import {
+    type Referral,
     ReferralFromJSON,
     ReferralToJSON,
+} from '../models/Referral';
+import {
+    type ReopenSessionResponse,
     ReopenSessionResponseFromJSON,
     ReopenSessionResponseToJSON,
+} from '../models/ReopenSessionResponse';
+import {
+    type ReturnIntegrationRequest,
     ReturnIntegrationRequestFromJSON,
     ReturnIntegrationRequestToJSON,
+} from '../models/ReturnIntegrationRequest';
+import {
+    type UpdateAudience,
     UpdateAudienceFromJSON,
     UpdateAudienceToJSON,
+} from '../models/UpdateAudience';
+import {
+    type UpdateCustomerProfileV2409Response,
     UpdateCustomerProfileV2409ResponseFromJSON,
     UpdateCustomerProfileV2409ResponseToJSON,
+} from '../models/UpdateCustomerProfileV2409Response';
+import {
+    type UpdateCustomerSessionV2409Response,
     UpdateCustomerSessionV2409ResponseFromJSON,
     UpdateCustomerSessionV2409ResponseToJSON,
-} from '../models/index';
+} from '../models/UpdateCustomerSessionV2409Response';
 
 export interface ActivateLoyaltyPointsRequest {
     loyaltyProgramId: number;
@@ -431,7 +518,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/activate_points`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -598,7 +685,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/coupon_reservations/{couponValue}`;
-        urlPath = urlPath.replace(`{${"couponValue"}}`, encodeURIComponent(String(requestParameters['couponValue'])));
+        urlPath = urlPath.replace('{couponValue}', encodeURIComponent(String(requestParameters['couponValue'])));
 
         return {
             path: urlPath,
@@ -767,7 +854,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v2/audiences/{audienceId}/memberships`;
-        urlPath = urlPath.replace(`{${"audienceId"}}`, encodeURIComponent(String(requestParameters['audienceId'])));
+        urlPath = urlPath.replace('{audienceId}', encodeURIComponent(String(requestParameters['audienceId'])));
 
         return {
             path: urlPath,
@@ -817,7 +904,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v2/audiences/{audienceId}`;
-        urlPath = urlPath.replace(`{${"audienceId"}}`, encodeURIComponent(String(requestParameters['audienceId'])));
+        urlPath = urlPath.replace('{audienceId}', encodeURIComponent(String(requestParameters['audienceId'])));
 
         return {
             path: urlPath,
@@ -876,7 +963,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/coupon_reservations/{couponValue}`;
-        urlPath = urlPath.replace(`{${"couponValue"}}`, encodeURIComponent(String(requestParameters['couponValue'])));
+        urlPath = urlPath.replace('{couponValue}', encodeURIComponent(String(requestParameters['couponValue'])));
 
         return {
             path: urlPath,
@@ -927,7 +1014,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/customer_data/{integrationId}`;
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -993,8 +1080,8 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/delete_transactions`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -1054,7 +1141,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
 
         return {
             path: urlPath,
@@ -1133,8 +1220,8 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/customer_profiles/{integrationId}/achievements/{achievementId}`;
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
-        urlPath = urlPath.replace(`{${"achievementId"}}`, encodeURIComponent(String(requestParameters['achievementId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{achievementId}', encodeURIComponent(String(requestParameters['achievementId'])));
 
         return {
             path: urlPath,
@@ -1209,7 +1296,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/customer_profiles/{integrationId}/achievements`;
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -1284,7 +1371,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/customer_profiles/{integrationId}/inventory`;
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -1335,7 +1422,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v2/customer_sessions/{customerSessionId}`;
-        urlPath = urlPath.replace(`{${"customerSessionId"}}`, encodeURIComponent(String(requestParameters['customerSessionId'])));
+        urlPath = urlPath.replace('{customerSessionId}', encodeURIComponent(String(requestParameters['customerSessionId'])));
 
         return {
             path: urlPath,
@@ -1409,8 +1496,8 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -1476,8 +1563,8 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/balances`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyCardId}', encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
         return {
             path: urlPath,
@@ -1563,8 +1650,8 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/points`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyCardId}', encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
         return {
             path: urlPath,
@@ -1658,8 +1745,8 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transactions`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyCardId}', encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
         return {
             path: urlPath,
@@ -1745,8 +1832,8 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/points`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -1840,8 +1927,8 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -1892,7 +1979,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/coupon_reservations/customerprofiles/{couponValue}`;
-        urlPath = urlPath.replace(`{${"couponValue"}}`, encodeURIComponent(String(requestParameters['couponValue'])));
+        urlPath = urlPath.replace('{couponValue}', encodeURIComponent(String(requestParameters['couponValue'])));
 
         return {
             path: urlPath,
@@ -2030,8 +2117,8 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyCardId}', encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
         return {
             path: urlPath,
@@ -2083,7 +2170,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v2/customer_sessions/{customerSessionId}/reopen`;
-        urlPath = urlPath.replace(`{${"customerSessionId"}}`, encodeURIComponent(String(requestParameters['customerSessionId'])));
+        urlPath = urlPath.replace('{customerSessionId}', encodeURIComponent(String(requestParameters['customerSessionId'])));
 
         return {
             path: urlPath,
@@ -2151,7 +2238,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v2/customer_sessions/{customerSessionId}/returns`;
-        urlPath = urlPath.replace(`{${"customerSessionId"}}`, encodeURIComponent(String(requestParameters['customerSessionId'])));
+        urlPath = urlPath.replace('{customerSessionId}', encodeURIComponent(String(requestParameters['customerSessionId'])));
 
         return {
             path: urlPath,
@@ -2212,7 +2299,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v1/catalogs/{catalogId}/sync`;
-        urlPath = urlPath.replace(`{${"catalogId"}}`, encodeURIComponent(String(requestParameters['catalogId'])));
+        urlPath = urlPath.replace('{catalogId}', encodeURIComponent(String(requestParameters['catalogId'])));
 
         return {
             path: urlPath,
@@ -2345,8 +2432,8 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile`;
-        urlPath = urlPath.replace(`{${"loyaltyProgramId"}}`, encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
-        urlPath = urlPath.replace(`{${"loyaltyCardId"}}`, encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyCardId}', encodeURIComponent(String(requestParameters['loyaltyCardId'])));
 
         return {
             path: urlPath,
@@ -2407,7 +2494,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v2/audience_customers/{audienceId}/attributes`;
-        urlPath = urlPath.replace(`{${"audienceId"}}`, encodeURIComponent(String(requestParameters['audienceId'])));
+        urlPath = urlPath.replace('{audienceId}', encodeURIComponent(String(requestParameters['audienceId'])));
 
         return {
             path: urlPath,
@@ -2467,7 +2554,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v2/audiences/{audienceId}`;
-        urlPath = urlPath.replace(`{${"audienceId"}}`, encodeURIComponent(String(requestParameters['audienceId'])));
+        urlPath = urlPath.replace('{audienceId}', encodeURIComponent(String(requestParameters['audienceId'])));
 
         return {
             path: urlPath,
@@ -2588,7 +2675,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v2/customer_profiles/{integrationId}`;
-        urlPath = urlPath.replace(`{${"integrationId"}}`, encodeURIComponent(String(requestParameters['integrationId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
 
         return {
             path: urlPath,
@@ -2714,7 +2801,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 
 
         let urlPath = `/v2/customer_sessions/{customerSessionId}`;
-        urlPath = urlPath.replace(`{${"customerSessionId"}}`, encodeURIComponent(String(requestParameters['customerSessionId'])));
+        urlPath = urlPath.replace('{customerSessionId}', encodeURIComponent(String(requestParameters['customerSessionId'])));
 
         return {
             path: urlPath,

@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { RuleEligibility } from './RuleEligibility';
+import {
+    RuleEligibilityFromJSON,
+    RuleEligibilityFromJSONTyped,
+    RuleEligibilityToJSON,
+    RuleEligibilityToJSONTyped,
+} from './RuleEligibility';
+
 /**
  * 
  * @export
@@ -49,10 +57,10 @@ export interface RuleMetadata {
     relatedData?: string;
     /**
      * 
-     * @type {Array<any>}
+     * @type {Array<RuleEligibility>}
      * @memberof RuleMetadata
      */
-    eligibility?: Array<any>;
+    eligibility?: Array<RuleEligibility>;
 }
 
 /**
@@ -77,7 +85,7 @@ export function RuleMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'displayName': json['displayName'] == null ? undefined : json['displayName'],
         'displayDescription': json['displayDescription'] == null ? undefined : json['displayDescription'],
         'relatedData': json['relatedData'] == null ? undefined : json['relatedData'],
-        'eligibility': json['eligibility'] == null ? undefined : json['eligibility'],
+        'eligibility': json['eligibility'] == null ? undefined : ((json['eligibility'] as Array<any>).map(RuleEligibilityFromJSON)),
     };
 }
 
@@ -96,7 +104,7 @@ export function RuleMetadataToJSONTyped(value?: RuleMetadata | null, ignoreDiscr
         'displayName': value['displayName'],
         'displayDescription': value['displayDescription'],
         'relatedData': value['relatedData'],
-        'eligibility': value['eligibility'],
+        'eligibility': value['eligibility'] == null ? undefined : ((value['eligibility'] as Array<any>).map(RuleEligibilityToJSON)),
     };
 }
 

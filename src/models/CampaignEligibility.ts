@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CampaignEligibilityDetails } from './CampaignEligibilityDetails';
+import {
+    CampaignEligibilityDetailsFromJSON,
+    CampaignEligibilityDetailsFromJSONTyped,
+    CampaignEligibilityDetailsToJSON,
+    CampaignEligibilityDetailsToJSONTyped,
+} from './CampaignEligibilityDetails';
 import type { RuleMetadata } from './RuleMetadata';
 import {
     RuleMetadataFromJSON,
@@ -94,6 +101,12 @@ export interface CampaignEligibility {
      * @memberof CampaignEligibility
      */
     rules?: Array<RuleMetadata>;
+    /**
+     * The customer's eligibility for each campaign in the current customer session.
+     * @type {Array<CampaignEligibilityDetails>}
+     * @memberof CampaignEligibility
+     */
+    eligibility: Array<CampaignEligibilityDetails>;
 }
 
 
@@ -129,6 +142,7 @@ export function instanceOfCampaignEligibility(value: object): value is CampaignE
     if (!('state' in value) || value['state'] === undefined) return false;
     if (!('tags' in value) || value['tags'] === undefined) return false;
     if (!('features' in value) || value['features'] === undefined) return false;
+    if (!('eligibility' in value) || value['eligibility'] === undefined) return false;
     return true;
 }
 
@@ -153,6 +167,7 @@ export function CampaignEligibilityFromJSONTyped(json: any, ignoreDiscriminator:
         'tags': json['tags'],
         'features': json['features'],
         'rules': json['rules'] == null ? undefined : ((json['rules'] as Array<any>).map(RuleMetadataFromJSON)),
+        'eligibility': ((json['eligibility'] as Array<any>).map(CampaignEligibilityDetailsFromJSON)),
     };
 }
 
@@ -178,6 +193,7 @@ export function CampaignEligibilityToJSONTyped(value?: CampaignEligibility | nul
         'tags': value['tags'],
         'features': value['features'],
         'rules': value['rules'] == null ? undefined : ((value['rules'] as Array<any>).map(RuleMetadataToJSON)),
+        'eligibility': ((value['eligibility'] as Array<any>).map(CampaignEligibilityDetailsToJSON)),
     };
 }
 

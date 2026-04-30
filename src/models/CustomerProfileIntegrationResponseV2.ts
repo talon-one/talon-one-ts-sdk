@@ -27,6 +27,13 @@ import {
     CampaignToJSON,
     CampaignToJSONTyped,
 } from './Campaign';
+import type { CampaignEligibility } from './CampaignEligibility';
+import {
+    CampaignEligibilityFromJSON,
+    CampaignEligibilityFromJSONTyped,
+    CampaignEligibilityToJSON,
+    CampaignEligibilityToJSONTyped,
+} from './CampaignEligibility';
 import type { Giveaway } from './Giveaway';
 import {
     GiveawayFromJSON,
@@ -116,6 +123,12 @@ export interface CustomerProfileIntegrationResponseV2 {
     ruleFailureReasons?: Array<RuleFailureReason>;
     /**
      * 
+     * @type {Array<CampaignEligibility>}
+     * @memberof CustomerProfileIntegrationResponseV2
+     */
+    campaignEligibility?: Array<CampaignEligibility>;
+    /**
+     * 
      * @type {Array<Giveaway>}
      * @memberof CustomerProfileIntegrationResponseV2
      */
@@ -165,6 +178,7 @@ export function CustomerProfileIntegrationResponseV2FromJSONTyped(json: any, ign
         'loyalty': json['loyalty'] == null ? undefined : LoyaltyFromJSON(json['loyalty']),
         'triggeredCampaigns': json['triggeredCampaigns'] == null ? undefined : ((json['triggeredCampaigns'] as Array<any>).map(CampaignFromJSON)),
         'ruleFailureReasons': json['ruleFailureReasons'] == null ? undefined : ((json['ruleFailureReasons'] as Array<any>).map(RuleFailureReasonFromJSON)),
+        'campaignEligibility': json['campaignEligibility'] == null ? undefined : ((json['campaignEligibility'] as Array<any>).map(CampaignEligibilityFromJSON)),
         'awardedGiveaways': json['awardedGiveaways'] == null ? undefined : ((json['awardedGiveaways'] as Array<any>).map(GiveawayFromJSON)),
         'effects': ((json['effects'] as Array<any>).map(EffectFromJSON)),
         'createdCoupons': ((json['createdCoupons'] as Array<any>).map(CouponFromJSON)),
@@ -188,6 +202,7 @@ export function CustomerProfileIntegrationResponseV2ToJSONTyped(value?: Customer
         'loyalty': LoyaltyToJSON(value['loyalty']),
         'triggeredCampaigns': value['triggeredCampaigns'] == null ? undefined : ((value['triggeredCampaigns'] as Array<any>).map(CampaignToJSON)),
         'ruleFailureReasons': value['ruleFailureReasons'] == null ? undefined : ((value['ruleFailureReasons'] as Array<any>).map(RuleFailureReasonToJSON)),
+        'campaignEligibility': value['campaignEligibility'] == null ? undefined : ((value['campaignEligibility'] as Array<any>).map(CampaignEligibilityToJSON)),
         'awardedGiveaways': value['awardedGiveaways'] == null ? undefined : ((value['awardedGiveaways'] as Array<any>).map(GiveawayToJSON)),
         'effects': ((value['effects'] as Array<any>).map(EffectToJSON)),
         'createdCoupons': ((value['createdCoupons'] as Array<any>).map(CouponToJSON)),
