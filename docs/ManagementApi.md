@@ -110,12 +110,12 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**getExperiment**](ManagementApi.md#getexperiment) | **GET** /v1/applications/{applicationId}/experiments/{experimentId} | Get experiment in Application |
 | [**getExports**](ManagementApi.md#getexports) | **GET** /v1/exports | Get exports |
 | [**getLoyaltyCard**](ManagementApi.md#getloyaltycard) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Get loyalty card |
-| [**getLoyaltyCardTransactionLogs**](ManagementApi.md#getloyaltycardtransactionlogs) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card\&#39;s transactions |
+| [**getLoyaltyCardTransactionLogs**](ManagementApi.md#getloyaltycardtransactionlogs) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card\&#39;s transactions (Management API) |
 | [**getLoyaltyCards**](ManagementApi.md#getloyaltycards) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards | List loyalty cards |
-| [**getLoyaltyLedgerBalances**](ManagementApi.md#getloyaltyledgerbalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_balances | Get customer\&#39;s loyalty balances |
+| [**getLoyaltyLedgerBalances**](ManagementApi.md#getloyaltyledgerbalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_balances | Get customer\&#39;s loyalty balances (Management API) |
 | [**getLoyaltyPoints**](ManagementApi.md#getloyaltypoints) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId} | Get customer\&#39;s full loyalty ledger |
 | [**getLoyaltyProgram**](ManagementApi.md#getloyaltyprogram) | **GET** /v1/loyalty_programs/{loyaltyProgramId} | Get loyalty program |
-| [**getLoyaltyProgramProfileLedgerTransactions**](ManagementApi.md#getloyaltyprogramprofileledgertransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_transactions | List customer\&#39;s loyalty transactions |
+| [**getLoyaltyProgramProfileLedgerTransactions**](ManagementApi.md#getloyaltyprogramprofileledgertransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_transactions | List customer\&#39;s loyalty transactions (Management API) |
 | [**getLoyaltyProgramTransactions**](ManagementApi.md#getloyaltyprogramtransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/transactions | List loyalty program transactions |
 | [**getLoyaltyPrograms**](ManagementApi.md#getloyaltyprograms) | **GET** /v1/loyalty_programs | List loyalty programs |
 | [**getLoyaltyStatistics**](ManagementApi.md#getloyaltystatistics) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/statistics | Get loyalty program statistics |
@@ -8713,9 +8713,9 @@ example().catch(console.error);
 
 > GetLoyaltyCardTransactionLogs200Response getLoyaltyCardTransactionLogs(loyaltyProgramId, loyaltyCardId, startDate, endDate, pageSize, skip, subledgerId, customerSessionIDs, transactionUUIDs)
 
-List card\&#39;s transactions
+List card\&#39;s transactions (Management API)
 
-Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied. If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
+Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied.  &gt; [!note] For most use cases, especially real-time integrations, use the Integration API endpoint: &gt; [List card\&#39;s transactions](https://docs.talon.one/integration-api#tag/Loyalty-cards/operation/getLoyaltyCardTransactions).  If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
 
 ### Example
 
@@ -8901,9 +8901,9 @@ example().catch(console.error);
 
 > LoyaltyBalancesWithTiers getLoyaltyLedgerBalances(loyaltyProgramId, integrationId, endDate, subledgerId, includeTiers, includeProjectedTier)
 
-Get customer\&#39;s loyalty balances
+Get customer\&#39;s loyalty balances (Management API)
 
-Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  &gt; [!note] If no filtering options are applied, you retrieve all loyalty &gt; balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
+Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint:     [Get customer\&#39;s loyalty balances](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyBalances). &gt; - If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
 
 ### Example
 
@@ -9135,9 +9135,9 @@ example().catch(console.error);
 
 > GetLoyaltyProgramProfileTransactions200Response getLoyaltyProgramProfileLedgerTransactions(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation)
 
-List customer\&#39;s loyalty transactions
+List customer\&#39;s loyalty transactions (Management API)
 
-Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] To retrieve all loyalty program transaction logs in a given &gt; loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) &gt; endpoint. 
+Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint: &gt;   [List customer\&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). &gt; - To retrieve all loyalty program transaction logs in a given loyalty program, use the &gt;   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
 
 ### Example
 
@@ -10326,8 +10326,8 @@ async function example() {
   const body = {
     // number | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.
     collectionId: 789,
-    // string | The file containing the data that is being imported. (optional)
-    upFile: upFile_example,
+    // Blob | The CSV file containing the data that is being imported. (optional)
+    upFile: BINARY_DATA_HERE,
   } satisfies ImportAccountCollectionRequest;
 
   try {
@@ -10348,7 +10348,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint. | [Defaults to `undefined`] |
-| **upFile** | `string` | The file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
+| **upFile** | `Blob` | The CSV file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -10402,8 +10402,8 @@ async function example() {
   const body = {
     // number | The ID of the attribute. You can find the ID in the Campaign Manager\'s URL when you display the details of an attribute in **Account** > **Tools** > **Attributes**.
     attributeId: 789,
-    // string | The file containing the data that is being imported. (optional)
-    upFile: upFile_example,
+    // Blob | The CSV file containing the data that is being imported. (optional)
+    upFile: BINARY_DATA_HERE,
   } satisfies ImportAllowedListRequest;
 
   try {
@@ -10424,7 +10424,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **attributeId** | `number` | The ID of the attribute. You can find the ID in the Campaign Manager\&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**. | [Defaults to `undefined`] |
-| **upFile** | `string` | The file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
+| **upFile** | `Blob` | The CSV file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -10479,8 +10479,8 @@ async function example() {
   const body = {
     // number | The ID of the audience.
     audienceId: 789,
-    // string | The file containing the data that is being imported. (optional)
-    upFile: upFile_example,
+    // Blob | The CSV file containing the data that is being imported. (optional)
+    upFile: BINARY_DATA_HERE,
   } satisfies ImportAudiencesMembershipsRequest;
 
   try {
@@ -10501,7 +10501,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **audienceId** | `number` | The ID of the audience. | [Defaults to `undefined`] |
-| **upFile** | `string` | The file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
+| **upFile** | `Blob` | The CSV file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -10562,8 +10562,8 @@ async function example() {
     action: action_example,
     // 'overall' | 'daily' | 'weekly' | 'monthly' | 'yearly' | The period to which the limit applies.  **Note**: For budgets with no period, set this to `overall`.  (optional)
     period: period_example,
-    // string | The file containing the data that is being imported. (optional)
-    upFile: upFile_example,
+    // Blob | The CSV file containing the data that is being imported. (optional)
+    upFile: BINARY_DATA_HERE,
   } satisfies ImportCampaignStoreBudgetRequest;
 
   try {
@@ -10587,7 +10587,7 @@ example().catch(console.error);
 | **campaignId** | `number` | The ID of the campaign. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **action** | `setDiscount` | The action that this budget is limiting. | [Optional] [Defaults to `undefined`] [Enum: setDiscount] |
 | **period** | `overall`, `daily`, `weekly`, `monthly`, `yearly` | The period to which the limit applies.  **Note**: For budgets with no period, set this to &#x60;overall&#x60;.  | [Optional] [Defaults to `undefined`] [Enum: overall, daily, weekly, monthly, yearly] |
-| **upFile** | `string` | The file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
+| **upFile** | `Blob` | The CSV file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -10642,8 +10642,8 @@ async function example() {
     applicationId: 789,
     // number | The ID of the campaign. It is displayed in your Talon.One deployment URL.
     campaignId: 789,
-    // string | The file containing the data that is being imported. (optional)
-    upFile: upFile_example,
+    // Blob | The CSV file containing the data that is being imported. (optional)
+    upFile: BINARY_DATA_HERE,
   } satisfies ImportCampaignStoresRequest;
 
   try {
@@ -10665,7 +10665,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **campaignId** | `number` | The ID of the campaign. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
-| **upFile** | `string` | The file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
+| **upFile** | `Blob` | The CSV file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -10724,8 +10724,8 @@ async function example() {
     campaignId: 789,
     // number | The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.
     collectionId: 789,
-    // string | The file containing the data that is being imported. (optional)
-    upFile: upFile_example,
+    // Blob | The CSV file containing the data that is being imported. (optional)
+    upFile: BINARY_DATA_HERE,
   } satisfies ImportCollectionRequest;
 
   try {
@@ -10748,7 +10748,7 @@ example().catch(console.error);
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **campaignId** | `number` | The ID of the campaign. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **collectionId** | `number` | The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint. | [Defaults to `undefined`] |
-| **upFile** | `string` | The file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
+| **upFile** | `Blob` | The CSV file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -10805,8 +10805,8 @@ async function example() {
     campaignId: 789,
     // boolean | An indicator of whether to skip duplicate coupon values instead of causing an error. Duplicate values are ignored when `skipDuplicates=true`.  (optional)
     skipDuplicates: true,
-    // string | The file containing the data that is being imported. (optional)
-    upFile: upFile_example,
+    // Blob | The CSV file containing the data that is being imported. (optional)
+    upFile: BINARY_DATA_HERE,
   } satisfies ImportCouponsRequest;
 
   try {
@@ -10829,7 +10829,7 @@ example().catch(console.error);
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **campaignId** | `number` | The ID of the campaign. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **skipDuplicates** | `boolean` | An indicator of whether to skip duplicate coupon values instead of causing an error. Duplicate values are ignored when &#x60;skipDuplicates&#x3D;true&#x60;.  | [Optional] [Defaults to `undefined`] |
-| **upFile** | `string` | The file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
+| **upFile** | `Blob` | The CSV file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -10881,8 +10881,8 @@ async function example() {
   const body = {
     // number | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
     loyaltyProgramId: 789,
-    // string | The file containing the data that is being imported. (optional)
-    upFile: upFile_example,
+    // Blob | The CSV file containing the data that is being imported. (optional)
+    upFile: BINARY_DATA_HERE,
   } satisfies ImportLoyaltyCardsRequest;
 
   try {
@@ -10903,7 +10903,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
-| **upFile** | `string` | The file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
+| **upFile** | `Blob` | The CSV file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -10957,8 +10957,8 @@ async function example() {
   const body = {
     // number | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
     loyaltyProgramId: 789,
-    // string | The file containing the data that is being imported. (optional)
-    upFile: upFile_example,
+    // Blob | The CSV file containing the data that is being imported. (optional)
+    upFile: BINARY_DATA_HERE,
   } satisfies ImportLoyaltyCustomersTiersRequest;
 
   try {
@@ -10979,7 +10979,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
-| **upFile** | `string` | The file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
+| **upFile** | `Blob` | The CSV file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -11036,8 +11036,8 @@ async function example() {
     loyaltyProgramId: 789,
     // boolean | Indicates whether the points import triggers notifications about its effects. For example, a notification is sent if the import upgrades a customer\'s tier or offsets their negative points balance.  This parameter is optional and defaults to `true`.  (optional)
     notificationsEnabled: true,
-    // string | The file containing the data that is being imported. (optional)
-    upFile: upFile_example,
+    // Blob | The CSV file containing the data that is being imported. (optional)
+    upFile: BINARY_DATA_HERE,
   } satisfies ImportLoyaltyPointsRequest;
 
   try {
@@ -11059,7 +11059,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
 | **notificationsEnabled** | `boolean` | Indicates whether the points import triggers notifications about its effects. For example, a notification is sent if the import upgrades a customer\&#39;s tier or offsets their negative points balance.  This parameter is optional and defaults to &#x60;true&#x60;.  | [Optional] [Defaults to `undefined`] |
-| **upFile** | `string` | The file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
+| **upFile** | `Blob` | The CSV file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -11111,8 +11111,8 @@ async function example() {
   const body = {
     // number | The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section.
     poolId: 789,
-    // string | The file containing the data that is being imported. (optional)
-    upFile: upFile_example,
+    // Blob | The CSV file containing the data that is being imported. (optional)
+    upFile: BINARY_DATA_HERE,
   } satisfies ImportPoolGiveawaysRequest;
 
   try {
@@ -11133,7 +11133,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **poolId** | `number` | The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section. | [Defaults to `undefined`] |
-| **upFile** | `string` | The file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
+| **upFile** | `Blob` | The CSV file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -11187,8 +11187,8 @@ async function example() {
     applicationId: 789,
     // number | The ID of the campaign. It is displayed in your Talon.One deployment URL.
     campaignId: 789,
-    // string | The file containing the data that is being imported. (optional)
-    upFile: upFile_example,
+    // Blob | The CSV file containing the data that is being imported. (optional)
+    upFile: BINARY_DATA_HERE,
   } satisfies ImportReferralsRequest;
 
   try {
@@ -11210,7 +11210,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **campaignId** | `number` | The ID of the campaign. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
-| **upFile** | `string` | The file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
+| **upFile** | `Blob` | The CSV file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

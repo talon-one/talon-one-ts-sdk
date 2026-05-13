@@ -339,12 +339,12 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**getExperiment**](docs/ManagementApi.md#getexperiment) | **GET** /v1/applications/{applicationId}/experiments/{experimentId} | Get experiment in Application
 *ManagementApi* | [**getExports**](docs/ManagementApi.md#getexports) | **GET** /v1/exports | Get exports
 *ManagementApi* | [**getLoyaltyCard**](docs/ManagementApi.md#getloyaltycard) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Get loyalty card
-*ManagementApi* | [**getLoyaltyCardTransactionLogs**](docs/ManagementApi.md#getloyaltycardtransactionlogs) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card\&#39;s transactions
+*ManagementApi* | [**getLoyaltyCardTransactionLogs**](docs/ManagementApi.md#getloyaltycardtransactionlogs) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card\&#39;s transactions (Management API)
 *ManagementApi* | [**getLoyaltyCards**](docs/ManagementApi.md#getloyaltycards) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards | List loyalty cards
-*ManagementApi* | [**getLoyaltyLedgerBalances**](docs/ManagementApi.md#getloyaltyledgerbalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_balances | Get customer\&#39;s loyalty balances
+*ManagementApi* | [**getLoyaltyLedgerBalances**](docs/ManagementApi.md#getloyaltyledgerbalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_balances | Get customer\&#39;s loyalty balances (Management API)
 *ManagementApi* | [**getLoyaltyPoints**](docs/ManagementApi.md#getloyaltypoints) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId} | Get customer\&#39;s full loyalty ledger
 *ManagementApi* | [**getLoyaltyProgram**](docs/ManagementApi.md#getloyaltyprogram) | **GET** /v1/loyalty_programs/{loyaltyProgramId} | Get loyalty program
-*ManagementApi* | [**getLoyaltyProgramProfileLedgerTransactions**](docs/ManagementApi.md#getloyaltyprogramprofileledgertransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_transactions | List customer\&#39;s loyalty transactions
+*ManagementApi* | [**getLoyaltyProgramProfileLedgerTransactions**](docs/ManagementApi.md#getloyaltyprogramprofileledgertransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_transactions | List customer\&#39;s loyalty transactions (Management API)
 *ManagementApi* | [**getLoyaltyProgramTransactions**](docs/ManagementApi.md#getloyaltyprogramtransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/transactions | List loyalty program transactions
 *ManagementApi* | [**getLoyaltyPrograms**](docs/ManagementApi.md#getloyaltyprograms) | **GET** /v1/loyalty_programs | List loyalty programs
 *ManagementApi* | [**getLoyaltyStatistics**](docs/ManagementApi.md#getloyaltystatistics) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/statistics | Get loyalty program statistics
@@ -686,6 +686,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [ExtendLoyaltyPointsExpiryDateEffectProps](docs/ExtendLoyaltyPointsExpiryDateEffectProps.md)
 - [ExtendedCoupon](docs/ExtendedCoupon.md)
 - [FeatureFlag](docs/FeatureFlag.md)
+- [FeatureFlagUpdate](docs/FeatureFlagUpdate.md)
 - [FeaturesFeed](docs/FeaturesFeed.md)
 - [FuncArgDef](docs/FuncArgDef.md)
 - [FunctionDef](docs/FunctionDef.md)
@@ -756,6 +757,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [IncreaseAchievementProgressEffectProps](docs/IncreaseAchievementProgressEffectProps.md)
 - [InfluencingCampaignDetails](docs/InfluencingCampaignDetails.md)
 - [IntegrationCampaign](docs/IntegrationCampaign.md)
+- [IntegrationCampaignBase](docs/IntegrationCampaignBase.md)
 - [IntegrationCoupon](docs/IntegrationCoupon.md)
 - [IntegrationCustomerProfileAudienceRequest](docs/IntegrationCustomerProfileAudienceRequest.md)
 - [IntegrationCustomerProfileAudienceRequestItem](docs/IntegrationCustomerProfileAudienceRequestItem.md)
@@ -915,6 +917,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [NewReturn](docs/NewReturn.md)
 - [NewRevisionVersion](docs/NewRevisionVersion.md)
 - [NewReward](docs/NewReward.md)
+- [NewRiskNotification](docs/NewRiskNotification.md)
 - [NewRole](docs/NewRole.md)
 - [NewRoleV2](docs/NewRoleV2.md)
 - [NewRuleset](docs/NewRuleset.md)
@@ -984,6 +987,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [RevisionActivationRequest](docs/RevisionActivationRequest.md)
 - [RevisionVersion](docs/RevisionVersion.md)
 - [Reward](docs/Reward.md)
+- [RiskNotification](docs/RiskNotification.md)
 - [Role](docs/Role.md)
 - [RoleAssign](docs/RoleAssign.md)
 - [RoleMembership](docs/RoleMembership.md)
@@ -1006,6 +1010,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [RuleEligibilityFailureDetails](docs/RuleEligibilityFailureDetails.md)
 - [RuleFailureReason](docs/RuleFailureReason.md)
 - [RuleMetadata](docs/RuleMetadata.md)
+- [RuleMetadataEligibility](docs/RuleMetadataEligibility.md)
 - [Ruleset](docs/Ruleset.md)
 - [SSOConfig](docs/SSOConfig.md)
 - [SamlConnection](docs/SamlConnection.md)

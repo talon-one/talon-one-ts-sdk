@@ -8,6 +8,8 @@ Name | Type
 ------------ | -------------
 `isVariantAssignmentExternal` | boolean
 `campaign` | [UpdateCampaign](UpdateCampaign.md)
+`goalType` | string
+`goalDescription` | string
 
 ## Example
 
@@ -18,6 +20,8 @@ import type { UpdateExperiment } from 'talon_one_sdk'
 const example = {
   "isVariantAssignmentExternal": null,
   "campaign": null,
+  "goalType": null,
+  "goalDescription": Offering free shipping will increase average order revenue more than a 10% discount,
 } satisfies UpdateExperiment
 
 console.log(example)

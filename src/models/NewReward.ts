@@ -13,21 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Binding } from './Binding';
-import {
-    BindingFromJSON,
-    BindingFromJSONTyped,
-    BindingToJSON,
-    BindingToJSONTyped,
-} from './Binding';
-import type { Rule } from './Rule';
-import {
-    RuleFromJSON,
-    RuleFromJSONTyped,
-    RuleToJSON,
-    RuleToJSONTyped,
-} from './Rule';
-
 /**
  * 
  * @export
@@ -67,18 +52,6 @@ export interface NewReward {
      * @memberof NewReward
      */
     sandbox: boolean;
-    /**
-     * Rule to apply.
-     * @type {Array<Rule>}
-     * @memberof NewReward
-     */
-    rule?: Array<Rule>;
-    /**
-     * A list of named variables created before the reward's rules are evaluated.  Each binding pairs a name with a talang expression. The expression is evaluated once  and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.
-     * @type {Array<Binding>}
-     * @memberof NewReward
-     */
-    bindings?: Array<Binding>;
 }
 
 /**
@@ -107,8 +80,6 @@ export function NewRewardFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'description': json['description'] == null ? undefined : json['description'],
         'applicationIds': json['applicationIds'],
         'sandbox': json['sandbox'],
-        'rule': json['rule'] == null ? undefined : ((json['rule'] as Array<any>).map(RuleFromJSON)),
-        'bindings': json['bindings'] == null ? undefined : ((json['bindings'] as Array<any>).map(BindingFromJSON)),
     };
 }
 
@@ -128,8 +99,6 @@ export function NewRewardToJSONTyped(value?: NewReward | null, ignoreDiscriminat
         'description': value['description'],
         'applicationIds': value['applicationIds'],
         'sandbox': value['sandbox'],
-        'rule': value['rule'] == null ? undefined : ((value['rule'] as Array<any>).map(RuleToJSON)),
-        'bindings': value['bindings'] == null ? undefined : ((value['bindings'] as Array<any>).map(BindingToJSON)),
     };
 }
 

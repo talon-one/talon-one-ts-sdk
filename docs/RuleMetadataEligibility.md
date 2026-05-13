@@ -1,5 +1,5 @@
 
-# RuleMetadata
+# RuleMetadataEligibility
 
 
 ## Properties
@@ -10,11 +10,12 @@ Name | Type
 `displayName` | string
 `displayDescription` | string
 `relatedData` | string
+`eligibility` | [Array&lt;RuleEligibility&gt;](RuleEligibility.md)
 
 ## Example
 
 ```typescript
-import type { RuleMetadata } from 'talon_one_sdk'
+import type { RuleMetadataEligibility } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
@@ -22,7 +23,8 @@ const example = {
   "displayName": 20% off all shoes!,
   "displayDescription": Get a 20% discount on all shoes during Thanksgiving! Offer valid till Dec 5 only.,
   "relatedData": https://example.com/discounts/20-off-shoes.png,
-} satisfies RuleMetadata
+  "eligibility": null,
+} satisfies RuleMetadataEligibility
 
 console.log(example)
 
@@ -31,7 +33,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as RuleMetadata
+const exampleParsed = JSON.parse(exampleJSON) as RuleMetadataEligibility
 console.log(exampleParsed)
 ```
 

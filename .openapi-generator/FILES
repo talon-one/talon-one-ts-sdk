@@ -274,6 +274,7 @@ docs/Export.md
 docs/ExtendLoyaltyPointsExpiryDateEffectProps.md
 docs/ExtendedCoupon.md
 docs/FeatureFlag.md
+docs/FeatureFlagUpdate.md
 docs/FeaturesFeed.md
 docs/FuncArgDef.md
 docs/FunctionDef.md
@@ -345,6 +346,7 @@ docs/IncreaseAchievementProgressEffectProps.md
 docs/InfluencingCampaignDetails.md
 docs/IntegrationApi.md
 docs/IntegrationCampaign.md
+docs/IntegrationCampaignBase.md
 docs/IntegrationCoupon.md
 docs/IntegrationCustomerProfileAudienceRequest.md
 docs/IntegrationCustomerProfileAudienceRequestItem.md
@@ -505,6 +507,7 @@ docs/NewReferralsForMultipleAdvocates.md
 docs/NewReturn.md
 docs/NewRevisionVersion.md
 docs/NewReward.md
+docs/NewRiskNotification.md
 docs/NewRole.md
 docs/NewRoleV2.md
 docs/NewRuleset.md
@@ -574,6 +577,7 @@ docs/RevisionActivation.md
 docs/RevisionActivationRequest.md
 docs/RevisionVersion.md
 docs/Reward.md
+docs/RiskNotification.md
 docs/Role.md
 docs/RoleAssign.md
 docs/RoleMembership.md
@@ -596,6 +600,7 @@ docs/RuleEligibility.md
 docs/RuleEligibilityFailureDetails.md
 docs/RuleFailureReason.md
 docs/RuleMetadata.md
+docs/RuleMetadataEligibility.md
 docs/Ruleset.md
 docs/SSOConfig.md
 docs/SamlConnection.md
@@ -985,6 +990,7 @@ src/models/Export.ts
 src/models/ExtendLoyaltyPointsExpiryDateEffectProps.ts
 src/models/ExtendedCoupon.ts
 src/models/FeatureFlag.ts
+src/models/FeatureFlagUpdate.ts
 src/models/FeaturesFeed.ts
 src/models/FuncArgDef.ts
 src/models/FunctionDef.ts
@@ -1055,6 +1061,7 @@ src/models/ImportEntity.ts
 src/models/IncreaseAchievementProgressEffectProps.ts
 src/models/InfluencingCampaignDetails.ts
 src/models/IntegrationCampaign.ts
+src/models/IntegrationCampaignBase.ts
 src/models/IntegrationCoupon.ts
 src/models/IntegrationCustomerProfileAudienceRequest.ts
 src/models/IntegrationCustomerProfileAudienceRequestItem.ts
@@ -1214,6 +1221,7 @@ src/models/NewReferralsForMultipleAdvocates.ts
 src/models/NewReturn.ts
 src/models/NewRevisionVersion.ts
 src/models/NewReward.ts
+src/models/NewRiskNotification.ts
 src/models/NewRole.ts
 src/models/NewRoleV2.ts
 src/models/NewRuleset.ts
@@ -1283,6 +1291,7 @@ src/models/RevisionActivation.ts
 src/models/RevisionActivationRequest.ts
 src/models/RevisionVersion.ts
 src/models/Reward.ts
+src/models/RiskNotification.ts
 src/models/Role.ts
 src/models/RoleAssign.ts
 src/models/RoleMembership.ts
@@ -1305,6 +1314,7 @@ src/models/RuleEligibility.ts
 src/models/RuleEligibilityFailureDetails.ts
 src/models/RuleFailureReason.ts
 src/models/RuleMetadata.ts
+src/models/RuleMetadataEligibility.ts
 src/models/Ruleset.ts
 src/models/SSOConfig.ts
 src/models/SamlConnection.ts

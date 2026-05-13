@@ -14,39 +14,39 @@
 
 import { mapValues } from '../runtime';
 /**
- * setDiscountPerItem member effect in strikethrough pricing payload.
+ * 
  * @export
- * @interface StrikethroughSetDiscountPerItemMemberEffectProps
+ * @interface FeatureFlagUpdate
  */
-export interface StrikethroughSetDiscountPerItemMemberEffectProps {
+export interface FeatureFlagUpdate {
     /**
-     * The effect name.
+     * The name of the feature flag.
      * @type {string}
-     * @memberof StrikethroughSetDiscountPerItemMemberEffectProps
+     * @memberof FeatureFlagUpdate
      */
     name: string;
     /**
-     * 
-     * @type {any}
-     * @memberof StrikethroughSetDiscountPerItemMemberEffectProps
+     * The value of the feature flag.
+     * @type {string}
+     * @memberof FeatureFlagUpdate
      */
-    value: any | null;
+    value: string;
 }
 
 /**
- * Check if a given object implements the StrikethroughSetDiscountPerItemMemberEffectProps interface.
+ * Check if a given object implements the FeatureFlagUpdate interface.
  */
-export function instanceOfStrikethroughSetDiscountPerItemMemberEffectProps(value: object): value is StrikethroughSetDiscountPerItemMemberEffectProps {
+export function instanceOfFeatureFlagUpdate(value: object): value is FeatureFlagUpdate {
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('value' in value) || value['value'] === undefined) return false;
     return true;
 }
 
-export function StrikethroughSetDiscountPerItemMemberEffectPropsFromJSON(json: any): StrikethroughSetDiscountPerItemMemberEffectProps {
-    return StrikethroughSetDiscountPerItemMemberEffectPropsFromJSONTyped(json, false);
+export function FeatureFlagUpdateFromJSON(json: any): FeatureFlagUpdate {
+    return FeatureFlagUpdateFromJSONTyped(json, false);
 }
 
-export function StrikethroughSetDiscountPerItemMemberEffectPropsFromJSONTyped(json: any, ignoreDiscriminator: boolean): StrikethroughSetDiscountPerItemMemberEffectProps {
+export function FeatureFlagUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean): FeatureFlagUpdate {
     if (json == null) {
         return json;
     }
@@ -57,11 +57,11 @@ export function StrikethroughSetDiscountPerItemMemberEffectPropsFromJSONTyped(js
     };
 }
 
-export function StrikethroughSetDiscountPerItemMemberEffectPropsToJSON(json: any): StrikethroughSetDiscountPerItemMemberEffectProps {
-    return StrikethroughSetDiscountPerItemMemberEffectPropsToJSONTyped(json, false);
+export function FeatureFlagUpdateToJSON(json: any): FeatureFlagUpdate {
+    return FeatureFlagUpdateToJSONTyped(json, false);
 }
 
-export function StrikethroughSetDiscountPerItemMemberEffectPropsToJSONTyped(value?: StrikethroughSetDiscountPerItemMemberEffectProps | null, ignoreDiscriminator: boolean = false): any {
+export function FeatureFlagUpdateToJSONTyped(value?: FeatureFlagUpdate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

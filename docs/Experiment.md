@@ -14,6 +14,8 @@ Name | Type
 `activated` | Date
 `state` | string
 `variants` | [Array&lt;ExperimentVariant&gt;](ExperimentVariant.md)
+`goalType` | string
+`goalDescription` | string
 `deletedat` | Date
 
 ## Example
@@ -31,6 +33,8 @@ const example = {
   "activated": null,
   "state": enabled,
   "variants": null,
+  "goalType": null,
+  "goalDescription": Offering free shipping will increase average order revenue more than a 10% discount,
   "deletedat": null,
 } satisfies Experiment
 

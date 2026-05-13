@@ -13,102 +13,88 @@
  */
 
 import { mapValues } from '../runtime';
-import type { RuleMetadata } from './RuleMetadata';
-import {
-    RuleMetadataFromJSON,
-    RuleMetadataFromJSONTyped,
-    RuleMetadataToJSON,
-    RuleMetadataToJSONTyped,
-} from './RuleMetadata';
-
 /**
  * 
  * @export
- * @interface IntegrationCampaign
+ * @interface IntegrationCampaignBase
  */
-export interface IntegrationCampaign {
+export interface IntegrationCampaignBase {
     /**
      * The ID of the Application that owns this entity.
      * @type {number}
-     * @memberof IntegrationCampaign
+     * @memberof IntegrationCampaignBase
      */
     applicationId: number;
     /**
      * Unique ID of Campaign.
      * @type {number}
-     * @memberof IntegrationCampaign
+     * @memberof IntegrationCampaignBase
      */
     id: number;
     /**
      * The name of the campaign.
      * @type {string}
-     * @memberof IntegrationCampaign
+     * @memberof IntegrationCampaignBase
      */
     name: string;
     /**
      * A detailed description of the campaign.
      * @type {string}
-     * @memberof IntegrationCampaign
+     * @memberof IntegrationCampaignBase
      */
     description?: string;
     /**
      * Timestamp when the campaign will become active.
      * @type {Date}
-     * @memberof IntegrationCampaign
+     * @memberof IntegrationCampaignBase
      */
     startTime?: Date;
     /**
      * Timestamp when the campaign will become inactive.
      * @type {Date}
-     * @memberof IntegrationCampaign
+     * @memberof IntegrationCampaignBase
      */
     endTime?: Date;
     /**
      * Arbitrary properties associated with this campaign.
      * @type {object}
-     * @memberof IntegrationCampaign
+     * @memberof IntegrationCampaignBase
      */
     attributes?: object;
     /**
      * The state of the campaign.
      * 
-     * @type {IntegrationCampaignStateEnum}
-     * @memberof IntegrationCampaign
+     * @type {IntegrationCampaignBaseStateEnum}
+     * @memberof IntegrationCampaignBase
      */
-    state: IntegrationCampaignStateEnum;
+    state: IntegrationCampaignBaseStateEnum;
     /**
      * A list of tags for the campaign.
      * @type {Array<string>}
-     * @memberof IntegrationCampaign
+     * @memberof IntegrationCampaignBase
      */
     tags: Array<string>;
     /**
      * The features enabled in this campaign.
-     * @type {Array<IntegrationCampaignFeaturesEnum>}
-     * @memberof IntegrationCampaign
+     * @type {Array<IntegrationCampaignBaseFeaturesEnum>}
+     * @memberof IntegrationCampaignBase
      */
-    features: Array<IntegrationCampaignFeaturesEnum>;
-    /**
-     * A list of rules containing customer-facing details of the rewards defined in the campaign.
-     * @type {Array<RuleMetadata>}
-     * @memberof IntegrationCampaign
-     */
-    rules: Array<RuleMetadata>;
+    features: Array<IntegrationCampaignBaseFeaturesEnum>;
 }
 
 
 /**
  * @export
  */
-export const IntegrationCampaignStateEnum = {
+export const IntegrationCampaignBaseStateEnum = {
     Enabled: 'enabled'
 } as const;
-export type IntegrationCampaignStateEnum = typeof IntegrationCampaignStateEnum[keyof typeof IntegrationCampaignStateEnum];
+export type IntegrationCampaignBaseStateEnum = typeof IntegrationCampaignBaseStateEnum[keyof typeof IntegrationCampaignBaseStateEnum];
 
 /**
  * @export
  */
-export const IntegrationCampaignFeaturesEnum = {
+export const IntegrationCampaignBaseFeaturesEnum = {
     Coupons: 'coupons',
     Referrals: 'referrals',
     Loyalty: 'loyalty',
@@ -116,28 +102,27 @@ export const IntegrationCampaignFeaturesEnum = {
     Strikethrough: 'strikethrough',
     Achievements: 'achievements'
 } as const;
-export type IntegrationCampaignFeaturesEnum = typeof IntegrationCampaignFeaturesEnum[keyof typeof IntegrationCampaignFeaturesEnum];
+export type IntegrationCampaignBaseFeaturesEnum = typeof IntegrationCampaignBaseFeaturesEnum[keyof typeof IntegrationCampaignBaseFeaturesEnum];
 
 
 /**
- * Check if a given object implements the IntegrationCampaign interface.
+ * Check if a given object implements the IntegrationCampaignBase interface.
  */
-export function instanceOfIntegrationCampaign(value: object): value is IntegrationCampaign {
+export function instanceOfIntegrationCampaignBase(value: object): value is IntegrationCampaignBase {
     if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('state' in value) || value['state'] === undefined) return false;
     if (!('tags' in value) || value['tags'] === undefined) return false;
     if (!('features' in value) || value['features'] === undefined) return false;
-    if (!('rules' in value) || value['rules'] === undefined) return false;
     return true;
 }
 
-export function IntegrationCampaignFromJSON(json: any): IntegrationCampaign {
-    return IntegrationCampaignFromJSONTyped(json, false);
+export function IntegrationCampaignBaseFromJSON(json: any): IntegrationCampaignBase {
+    return IntegrationCampaignBaseFromJSONTyped(json, false);
 }
 
-export function IntegrationCampaignFromJSONTyped(json: any, ignoreDiscriminator: boolean): IntegrationCampaign {
+export function IntegrationCampaignBaseFromJSONTyped(json: any, ignoreDiscriminator: boolean): IntegrationCampaignBase {
     if (json == null) {
         return json;
     }
@@ -153,15 +138,14 @@ export function IntegrationCampaignFromJSONTyped(json: any, ignoreDiscriminator:
         'state': json['state'],
         'tags': json['tags'],
         'features': json['features'],
-        'rules': ((json['rules'] as Array<any>).map(RuleMetadataFromJSON)),
     };
 }
 
-export function IntegrationCampaignToJSON(json: any): IntegrationCampaign {
-    return IntegrationCampaignToJSONTyped(json, false);
+export function IntegrationCampaignBaseToJSON(json: any): IntegrationCampaignBase {
+    return IntegrationCampaignBaseToJSONTyped(json, false);
 }
 
-export function IntegrationCampaignToJSONTyped(value?: IntegrationCampaign | null, ignoreDiscriminator: boolean = false): any {
+export function IntegrationCampaignBaseToJSONTyped(value?: IntegrationCampaignBase | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -178,7 +162,6 @@ export function IntegrationCampaignToJSONTyped(value?: IntegrationCampaign | nul
         'state': value['state'],
         'tags': value['tags'],
         'features': value['features'],
-        'rules': ((value['rules'] as Array<any>).map(RuleMetadataToJSON)),
     };
 }
 

@@ -1,5 +1,5 @@
 
-# CampaignEligibility
+# IntegrationCampaignBase
 
 
 ## Properties
@@ -16,13 +16,11 @@ Name | Type
 `state` | string
 `tags` | Array&lt;string&gt;
 `features` | Array&lt;string&gt;
-`eligibility` | [Array&lt;CampaignEligibilityDetails&gt;](CampaignEligibilityDetails.md)
-`rules` | [Array&lt;RuleMetadataEligibility&gt;](RuleMetadataEligibility.md)
 
 ## Example
 
 ```typescript
-import type { CampaignEligibility } from 'talon_one_sdk'
+import type { IntegrationCampaignBase } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
@@ -36,9 +34,7 @@ const example = {
   "state": enabled,
   "tags": [summer],
   "features": [coupons, referrals],
-  "eligibility": null,
-  "rules": null,
-} satisfies CampaignEligibility
+} satisfies IntegrationCampaignBase
 
 console.log(example)
 
@@ -47,7 +43,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as CampaignEligibility
+const exampleParsed = JSON.parse(exampleJSON) as IntegrationCampaignBase
 console.log(exampleParsed)
 ```
 

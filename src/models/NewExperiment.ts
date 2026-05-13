@@ -40,7 +40,34 @@ export interface NewExperiment {
      * @memberof NewExperiment
      */
     campaign: NewCampaign;
+    /**
+     * The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to `other`, multiple metrics are used.
+     * 
+     * @type {NewExperimentGoalTypeEnum}
+     * @memberof NewExperiment
+     */
+    goalType: NewExperimentGoalTypeEnum;
+    /**
+     * A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal.
+     * 
+     * @type {string}
+     * @memberof NewExperiment
+     */
+    goalDescription?: string;
 }
+
+
+/**
+ * @export
+ */
+export const NewExperimentGoalTypeEnum = {
+    Other: 'other',
+    MaximizeRevenue: 'maximize_revenue',
+    OptimizeDiscountEfficiency: 'optimize_discount_efficiency',
+    MaximizeItemsSold: 'maximize_items_sold'
+} as const;
+export type NewExperimentGoalTypeEnum = typeof NewExperimentGoalTypeEnum[keyof typeof NewExperimentGoalTypeEnum];
+
 
 /**
  * Check if a given object implements the NewExperiment interface.
@@ -48,6 +75,7 @@ export interface NewExperiment {
 export function instanceOfNewExperiment(value: object): value is NewExperiment {
     if (!('isVariantAssignmentExternal' in value) || value['isVariantAssignmentExternal'] === undefined) return false;
     if (!('campaign' in value) || value['campaign'] === undefined) return false;
+    if (!('goalType' in value) || value['goalType'] === undefined) return false;
     return true;
 }
 
@@ -63,6 +91,8 @@ export function NewExperimentFromJSONTyped(json: any, ignoreDiscriminator: boole
         
         'isVariantAssignmentExternal': json['isVariantAssignmentExternal'],
         'campaign': NewCampaignFromJSON(json['campaign']),
+        'goalType': json['goalType'],
+        'goalDescription': json['goalDescription'] == null ? undefined : json['goalDescription'],
     };
 }
 
@@ -79,6 +109,8 @@ export function NewExperimentToJSONTyped(value?: NewExperiment | null, ignoreDis
         
         'isVariantAssignmentExternal': value['isVariantAssignmentExternal'],
         'campaign': NewCampaignToJSON(value['campaign']),
+        'goalType': value['goalType'],
+        'goalDescription': value['goalDescription'],
     };
 }
 

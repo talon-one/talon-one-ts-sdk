@@ -86,6 +86,20 @@ export interface Experiment {
      */
     variants?: Array<ExperimentVariant>;
     /**
+     * The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to `other`, multiple metrics are used.
+     * 
+     * @type {ExperimentGoalTypeEnum}
+     * @memberof Experiment
+     */
+    goalType: ExperimentGoalTypeEnum;
+    /**
+     * A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal.
+     * 
+     * @type {string}
+     * @memberof Experiment
+     */
+    goalDescription?: string;
+    /**
      * The date and time the experiment was deleted.
      * 
      * @type {Date}
@@ -105,6 +119,17 @@ export const ExperimentStateEnum = {
 } as const;
 export type ExperimentStateEnum = typeof ExperimentStateEnum[keyof typeof ExperimentStateEnum];
 
+/**
+ * @export
+ */
+export const ExperimentGoalTypeEnum = {
+    Other: 'other',
+    MaximizeRevenue: 'maximize_revenue',
+    OptimizeDiscountEfficiency: 'optimize_discount_efficiency',
+    MaximizeItemsSold: 'maximize_items_sold'
+} as const;
+export type ExperimentGoalTypeEnum = typeof ExperimentGoalTypeEnum[keyof typeof ExperimentGoalTypeEnum];
+
 
 /**
  * Check if a given object implements the Experiment interface.
@@ -114,6 +139,7 @@ export function instanceOfExperiment(value: object): value is Experiment {
     if (!('created' in value) || value['created'] === undefined) return false;
     if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
     if (!('state' in value) || value['state'] === undefined) return false;
+    if (!('goalType' in value) || value['goalType'] === undefined) return false;
     return true;
 }
 
@@ -135,6 +161,8 @@ export function ExperimentFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'activated': json['activated'] == null ? undefined : (new Date(json['activated'])),
         'state': json['state'],
         'variants': json['variants'] == null ? undefined : ((json['variants'] as Array<any>).map(ExperimentVariantFromJSON)),
+        'goalType': json['goalType'],
+        'goalDescription': json['goalDescription'] == null ? undefined : json['goalDescription'],
         'deletedat': json['deletedat'] == null ? undefined : (new Date(json['deletedat'])),
     };
 }
@@ -158,6 +186,8 @@ export function ExperimentToJSONTyped(value?: Experiment | null, ignoreDiscrimin
         'activated': value['activated'] == null ? value['activated'] : value['activated'].toISOString(),
         'state': value['state'],
         'variants': value['variants'] == null ? undefined : ((value['variants'] as Array<any>).map(ExperimentVariantToJSON)),
+        'goalType': value['goalType'],
+        'goalDescription': value['goalDescription'],
         'deletedat': value['deletedat'] == null ? value['deletedat'] : value['deletedat'].toISOString(),
     };
 }

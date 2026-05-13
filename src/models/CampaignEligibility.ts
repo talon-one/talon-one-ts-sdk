@@ -20,13 +20,13 @@ import {
     CampaignEligibilityDetailsToJSON,
     CampaignEligibilityDetailsToJSONTyped,
 } from './CampaignEligibilityDetails';
-import type { RuleMetadata } from './RuleMetadata';
+import type { RuleMetadataEligibility } from './RuleMetadataEligibility';
 import {
-    RuleMetadataFromJSON,
-    RuleMetadataFromJSONTyped,
-    RuleMetadataToJSON,
-    RuleMetadataToJSONTyped,
-} from './RuleMetadata';
+    RuleMetadataEligibilityFromJSON,
+    RuleMetadataEligibilityFromJSONTyped,
+    RuleMetadataEligibilityToJSON,
+    RuleMetadataEligibilityToJSONTyped,
+} from './RuleMetadataEligibility';
 
 /**
  * 
@@ -35,17 +35,17 @@ import {
  */
 export interface CampaignEligibility {
     /**
-     * Unique ID of Campaign.
-     * @type {number}
-     * @memberof CampaignEligibility
-     */
-    id: number;
-    /**
      * The ID of the Application that owns this entity.
      * @type {number}
      * @memberof CampaignEligibility
      */
     applicationId: number;
+    /**
+     * Unique ID of Campaign.
+     * @type {number}
+     * @memberof CampaignEligibility
+     */
+    id: number;
     /**
      * The name of the campaign.
      * @type {string}
@@ -96,17 +96,17 @@ export interface CampaignEligibility {
      */
     features: Array<CampaignEligibilityFeaturesEnum>;
     /**
-     * A list of rules containing customer-facing details of the rewards defined in the campaign.
-     * @type {Array<RuleMetadata>}
-     * @memberof CampaignEligibility
-     */
-    rules?: Array<RuleMetadata>;
-    /**
      * The customer's eligibility for each campaign in the current customer session.
      * @type {Array<CampaignEligibilityDetails>}
      * @memberof CampaignEligibility
      */
     eligibility: Array<CampaignEligibilityDetails>;
+    /**
+     * A list of rules containing customer-facing details of the rewards defined in the campaign.
+     * @type {Array<RuleMetadataEligibility>}
+     * @memberof CampaignEligibility
+     */
+    rules: Array<RuleMetadataEligibility>;
 }
 
 
@@ -136,13 +136,14 @@ export type CampaignEligibilityFeaturesEnum = typeof CampaignEligibilityFeatures
  * Check if a given object implements the CampaignEligibility interface.
  */
 export function instanceOfCampaignEligibility(value: object): value is CampaignEligibility {
-    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('state' in value) || value['state'] === undefined) return false;
     if (!('tags' in value) || value['tags'] === undefined) return false;
     if (!('features' in value) || value['features'] === undefined) return false;
     if (!('eligibility' in value) || value['eligibility'] === undefined) return false;
+    if (!('rules' in value) || value['rules'] === undefined) return false;
     return true;
 }
 
@@ -156,8 +157,8 @@ export function CampaignEligibilityFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'id': json['id'],
         'applicationId': json['applicationId'],
+        'id': json['id'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
         'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
@@ -166,8 +167,8 @@ export function CampaignEligibilityFromJSONTyped(json: any, ignoreDiscriminator:
         'state': json['state'],
         'tags': json['tags'],
         'features': json['features'],
-        'rules': json['rules'] == null ? undefined : ((json['rules'] as Array<any>).map(RuleMetadataFromJSON)),
         'eligibility': ((json['eligibility'] as Array<any>).map(CampaignEligibilityDetailsFromJSON)),
+        'rules': ((json['rules'] as Array<any>).map(RuleMetadataEligibilityFromJSON)),
     };
 }
 
@@ -182,8 +183,8 @@ export function CampaignEligibilityToJSONTyped(value?: CampaignEligibility | nul
 
     return {
         
-        'id': value['id'],
         'applicationId': value['applicationId'],
+        'id': value['id'],
         'name': value['name'],
         'description': value['description'],
         'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
@@ -192,8 +193,8 @@ export function CampaignEligibilityToJSONTyped(value?: CampaignEligibility | nul
         'state': value['state'],
         'tags': value['tags'],
         'features': value['features'],
-        'rules': value['rules'] == null ? undefined : ((value['rules'] as Array<any>).map(RuleMetadataToJSON)),
         'eligibility': ((value['eligibility'] as Array<any>).map(CampaignEligibilityDetailsToJSON)),
+        'rules': ((value['rules'] as Array<any>).map(RuleMetadataEligibilityToJSON)),
     };
 }
 
