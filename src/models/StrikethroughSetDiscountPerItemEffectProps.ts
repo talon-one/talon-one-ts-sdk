@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface StrikethroughSetDiscountPerItemEffectProps {
     /**
-     * effect name.
+     * The effect name.
      * @type {string}
      * @memberof StrikethroughSetDiscountPerItemEffectProps
      */
@@ -32,7 +32,7 @@ export interface StrikethroughSetDiscountPerItemEffectProps {
      */
     value: any | null;
     /**
-     * 
+     * When set to `true`, the applied discount is excluded from the item's price history.
      * @type {boolean}
      * @memberof StrikethroughSetDiscountPerItemEffectProps
      */

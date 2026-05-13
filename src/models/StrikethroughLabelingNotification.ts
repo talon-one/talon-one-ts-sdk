@@ -35,7 +35,8 @@ import {
  */
 export interface StrikethroughLabelingNotification {
     /**
-     * The version of the strikethrough pricing notification.
+     * The version of the strikethrough pricing notification. Set for **scheduled** strikethrough pricing updates only.
+     * 
      * @type {StrikethroughLabelingNotificationVersionEnum}
      * @memberof StrikethroughLabelingNotification
      */

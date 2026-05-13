@@ -1,5 +1,5 @@
 
-# UpdateReward
+# FeatureFlagUpdate
 
 
 ## Properties
@@ -7,26 +7,18 @@
 Name | Type
 ------------ | -------------
 `name` | string
-`description` | string
-`status` | string
-`visibilityConditions` | [Rule](Rule.md)
-`rule` | [Rule](Rule.md)
-`bindings` | [Array&lt;Binding&gt;](Binding.md)
+`value` | string
 
 ## Example
 
 ```typescript
-import type { UpdateReward } from 'talon_one_sdk'
+import type { FeatureFlagUpdate } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "name": Free Coffee,
-  "description": This reward gets you one free coffee.,
-  "status": active,
-  "visibilityConditions": null,
-  "rule": null,
-  "bindings": [],
-} satisfies UpdateReward
+  "name": canCreateCampaignFromTemplate,
+  "value": true,
+} satisfies FeatureFlagUpdate
 
 console.log(example)
 
@@ -35,7 +27,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as UpdateReward
+const exampleParsed = JSON.parse(exampleJSON) as FeatureFlagUpdate
 console.log(exampleParsed)
 ```
 

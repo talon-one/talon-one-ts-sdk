@@ -1568,17 +1568,17 @@ export interface GetWebhooksRequest {
 
 export interface ImportAccountCollectionRequest {
     collectionId: number;
-    upFile?: string;
+    upFile?: Blob;
 }
 
 export interface ImportAllowedListRequest {
     attributeId: number;
-    upFile?: string;
+    upFile?: Blob;
 }
 
 export interface ImportAudiencesMembershipsRequest {
     audienceId: number;
-    upFile?: string;
+    upFile?: Blob;
 }
 
 export interface ImportCampaignStoreBudgetRequest {
@@ -1586,54 +1586,54 @@ export interface ImportCampaignStoreBudgetRequest {
     campaignId: number;
     action?: ImportCampaignStoreBudgetActionEnum;
     period?: ImportCampaignStoreBudgetPeriodEnum;
-    upFile?: string;
+    upFile?: Blob;
 }
 
 export interface ImportCampaignStoresRequest {
     applicationId: number;
     campaignId: number;
-    upFile?: string;
+    upFile?: Blob;
 }
 
 export interface ImportCollectionRequest {
     applicationId: number;
     campaignId: number;
     collectionId: number;
-    upFile?: string;
+    upFile?: Blob;
 }
 
 export interface ImportCouponsRequest {
     applicationId: number;
     campaignId: number;
     skipDuplicates?: boolean;
-    upFile?: string;
+    upFile?: Blob;
 }
 
 export interface ImportLoyaltyCardsRequest {
     loyaltyProgramId: number;
-    upFile?: string;
+    upFile?: Blob;
 }
 
 export interface ImportLoyaltyCustomersTiersRequest {
     loyaltyProgramId: number;
-    upFile?: string;
+    upFile?: Blob;
 }
 
 export interface ImportLoyaltyPointsRequest {
     loyaltyProgramId: number;
     notificationsEnabled?: boolean;
-    upFile?: string;
+    upFile?: Blob;
 }
 
 export interface ImportPoolGiveawaysRequest {
     poolId: number;
-    upFile?: string;
+    upFile?: Blob;
 }
 
 export interface ImportReferralsRequest {
     applicationId: number;
     campaignId: number;
-    upFile?: string;
+    upFile?: Blob;
 }
 
 export interface InviteUserExternalRequest {
@@ -9084,8 +9084,8 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied. If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
-     * List card\'s transactions
+     * Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied.  > [!note] For most use cases, especially real-time integrations, use the Integration API endpoint: > [List card\'s transactions](https://docs.talon.one/integration-api#tag/Loyalty-cards/operation/getLoyaltyCardTransactions).  If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
+     * List card\'s transactions (Management API)
      */
     async getLoyaltyCardTransactionLogsRaw(requestParameters: GetLoyaltyCardTransactionLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyCardTransactionLogs200Response>> {
         const requestOptions = await this.getLoyaltyCardTransactionLogsRequestOpts(requestParameters);
@@ -9095,8 +9095,8 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied. If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
-     * List card\'s transactions
+     * Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied.  > [!note] For most use cases, especially real-time integrations, use the Integration API endpoint: > [List card\'s transactions](https://docs.talon.one/integration-api#tag/Loyalty-cards/operation/getLoyaltyCardTransactions).  If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
+     * List card\'s transactions (Management API)
      */
     async getLoyaltyCardTransactionLogs(requestParameters: GetLoyaltyCardTransactionLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetLoyaltyCardTransactionLogs200Response> {
         const response = await this.getLoyaltyCardTransactionLogsRaw(requestParameters, initOverrides);
@@ -9234,8 +9234,8 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  > [!note] If no filtering options are applied, you retrieve all loyalty > balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
-     * Get customer\'s loyalty balances
+     * Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  > [!note] **Note** > - For most use cases, especially real-time integrations, use the Integration API endpoint:     [Get customer\'s loyalty balances](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyBalances). > - If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
+     * Get customer\'s loyalty balances (Management API)
      */
     async getLoyaltyLedgerBalancesRaw(requestParameters: GetLoyaltyLedgerBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyBalancesWithTiers>> {
         const requestOptions = await this.getLoyaltyLedgerBalancesRequestOpts(requestParameters);
@@ -9245,8 +9245,8 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  > [!note] If no filtering options are applied, you retrieve all loyalty > balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
-     * Get customer\'s loyalty balances
+     * Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  > [!note] **Note** > - For most use cases, especially real-time integrations, use the Integration API endpoint:     [Get customer\'s loyalty balances](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyBalances). > - If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
+     * Get customer\'s loyalty balances (Management API)
      */
     async getLoyaltyLedgerBalances(requestParameters: GetLoyaltyLedgerBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoyaltyBalancesWithTiers> {
         const response = await this.getLoyaltyLedgerBalancesRaw(requestParameters, initOverrides);
@@ -9442,8 +9442,8 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  > [!note] To retrieve all loyalty program transaction logs in a given > loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) > endpoint. 
-     * List customer\'s loyalty transactions
+     * Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  > [!note] **Note** > - For most use cases, especially real-time integrations, use the Integration API endpoint: >   [List customer\'s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). > - To retrieve all loyalty program transaction logs in a given loyalty program, use the >   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+     * List customer\'s loyalty transactions (Management API)
      */
     async getLoyaltyProgramProfileLedgerTransactionsRaw(requestParameters: GetLoyaltyProgramProfileLedgerTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyProgramProfileTransactions200Response>> {
         const requestOptions = await this.getLoyaltyProgramProfileLedgerTransactionsRequestOpts(requestParameters);
@@ -9453,8 +9453,8 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  > [!note] To retrieve all loyalty program transaction logs in a given > loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) > endpoint. 
-     * List customer\'s loyalty transactions
+     * Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  > [!note] **Note** > - For most use cases, especially real-time integrations, use the Integration API endpoint: >   [List customer\'s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). > - To retrieve all loyalty program transaction logs in a given loyalty program, use the >   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+     * List customer\'s loyalty transactions (Management API)
      */
     async getLoyaltyProgramProfileLedgerTransactions(requestParameters: GetLoyaltyProgramProfileLedgerTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetLoyaltyProgramProfileTransactions200Response> {
         const response = await this.getLoyaltyProgramProfileLedgerTransactionsRaw(requestParameters, initOverrides);
@@ -10353,6 +10353,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let formParams: { append(param: string, value: any): any };
         let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
         if (useForm) {
             formParams = new FormData();
         } else {
@@ -10423,6 +10425,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let formParams: { append(param: string, value: any): any };
         let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
         if (useForm) {
             formParams = new FormData();
         } else {
@@ -10493,6 +10497,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let formParams: { append(param: string, value: any): any };
         let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
         if (useForm) {
             formParams = new FormData();
         } else {
@@ -10578,6 +10584,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let formParams: { append(param: string, value: any): any };
         let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
         if (useForm) {
             formParams = new FormData();
         } else {
@@ -10656,6 +10664,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let formParams: { append(param: string, value: any): any };
         let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
         if (useForm) {
             formParams = new FormData();
         } else {
@@ -10741,6 +10751,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let formParams: { append(param: string, value: any): any };
         let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
         if (useForm) {
             formParams = new FormData();
         } else {
@@ -10824,6 +10836,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let formParams: { append(param: string, value: any): any };
         let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
         if (useForm) {
             formParams = new FormData();
         } else {
@@ -10895,6 +10909,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let formParams: { append(param: string, value: any): any };
         let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
         if (useForm) {
             formParams = new FormData();
         } else {
@@ -10965,6 +10981,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let formParams: { append(param: string, value: any): any };
         let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
         if (useForm) {
             formParams = new FormData();
         } else {
@@ -11039,6 +11057,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let formParams: { append(param: string, value: any): any };
         let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
         if (useForm) {
             formParams = new FormData();
         } else {
@@ -11109,6 +11129,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let formParams: { append(param: string, value: any): any };
         let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
         if (useForm) {
             formParams = new FormData();
         } else {
@@ -11186,6 +11208,8 @@ export class ManagementApi extends runtime.BaseAPI {
 
         let formParams: { append(param: string, value: any): any };
         let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
         if (useForm) {
             formParams = new FormData();
         } else {

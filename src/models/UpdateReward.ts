@@ -53,16 +53,27 @@ export interface UpdateReward {
      */
     status: UpdateRewardStatusEnum;
     /**
+     * An optional rule that manages who can see this reward. If not specified, the reward
+     * is visible to all customers.
+     * 
+     * **Note:** Only the `condition` field is evaluated within this rule. The `effects` field must be an empty array,
+     * and `bindings` are not supported.
+     * 
+     * @type {Rule}
+     * @memberof UpdateReward
+     */
+    visibilityConditions?: Rule;
+    /**
      * Rule to apply.
      * 
      * **Note**: The `bindings` field inside the rule must not be used in this
      * endpoint. All bindings should be defined at the reward level via the
      * top-level `bindings` field.
      * 
-     * @type {Array<Rule>}
+     * @type {Rule}
      * @memberof UpdateReward
      */
-    rule?: Array<Rule>;
+    rule?: Rule;
     /**
      * A list of named variables created before the reward's rules are evaluated.  Each binding pairs a name with a talang expression. The expression is evaluated once  and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.
      * @type {Array<Binding>}
@@ -104,7 +115,8 @@ export function UpdateRewardFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
         'status': json['status'],
-        'rule': json['rule'] == null ? undefined : ((json['rule'] as Array<any>).map(RuleFromJSON)),
+        'visibilityConditions': json['visibilityConditions'] == null ? undefined : RuleFromJSON(json['visibilityConditions']),
+        'rule': json['rule'] == null ? undefined : RuleFromJSON(json['rule']),
         'bindings': json['bindings'] == null ? undefined : ((json['bindings'] as Array<any>).map(BindingFromJSON)),
     };
 }
@@ -123,7 +135,8 @@ export function UpdateRewardToJSONTyped(value?: UpdateReward | null, ignoreDiscr
         'name': value['name'],
         'description': value['description'],
         'status': value['status'],
-        'rule': value['rule'] == null ? undefined : ((value['rule'] as Array<any>).map(RuleToJSON)),
+        'visibilityConditions': RuleToJSON(value['visibilityConditions']),
+        'rule': RuleToJSON(value['rule']),
         'bindings': value['bindings'] == null ? undefined : ((value['bindings'] as Array<any>).map(BindingToJSON)),
     };
 }

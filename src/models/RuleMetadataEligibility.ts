@@ -13,22 +13,30 @@
  */
 
 import { mapValues } from '../runtime';
+import type { RuleEligibility } from './RuleEligibility';
+import {
+    RuleEligibilityFromJSON,
+    RuleEligibilityFromJSONTyped,
+    RuleEligibilityToJSON,
+    RuleEligibilityToJSONTyped,
+} from './RuleEligibility';
+
 /**
  * 
  * @export
- * @interface RuleMetadata
+ * @interface RuleMetadataEligibility
  */
-export interface RuleMetadata {
+export interface RuleMetadataEligibility {
     /**
      * A short description of the rule.
      * @type {string}
-     * @memberof RuleMetadata
+     * @memberof RuleMetadataEligibility
      */
     title: string;
     /**
      * A customer-facing name for the rule.
      * @type {string}
-     * @memberof RuleMetadata
+     * @memberof RuleMetadataEligibility
      */
     displayName?: string;
     /**
@@ -37,31 +45,38 @@ export interface RuleMetadata {
      * For example, this property can contain details about eligibility requirements, reward timelines, or terms and conditions.
      * 
      * @type {string}
-     * @memberof RuleMetadata
+     * @memberof RuleMetadataEligibility
      */
     displayDescription?: string;
     /**
      * Any additional data associated with the rule, such as an image URL, vendor name, or a content management system (CMS) ID.
      * 
      * @type {string}
-     * @memberof RuleMetadata
+     * @memberof RuleMetadataEligibility
      */
     relatedData?: string;
+    /**
+     * 
+     * @type {Array<RuleEligibility>}
+     * @memberof RuleMetadataEligibility
+     */
+    eligibility: Array<RuleEligibility>;
 }
 
 /**
- * Check if a given object implements the RuleMetadata interface.
+ * Check if a given object implements the RuleMetadataEligibility interface.
  */
-export function instanceOfRuleMetadata(value: object): value is RuleMetadata {
+export function instanceOfRuleMetadataEligibility(value: object): value is RuleMetadataEligibility {
     if (!('title' in value) || value['title'] === undefined) return false;
+    if (!('eligibility' in value) || value['eligibility'] === undefined) return false;
     return true;
 }
 
-export function RuleMetadataFromJSON(json: any): RuleMetadata {
-    return RuleMetadataFromJSONTyped(json, false);
+export function RuleMetadataEligibilityFromJSON(json: any): RuleMetadataEligibility {
+    return RuleMetadataEligibilityFromJSONTyped(json, false);
 }
 
-export function RuleMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): RuleMetadata {
+export function RuleMetadataEligibilityFromJSONTyped(json: any, ignoreDiscriminator: boolean): RuleMetadataEligibility {
     if (json == null) {
         return json;
     }
@@ -71,14 +86,15 @@ export function RuleMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'displayName': json['displayName'] == null ? undefined : json['displayName'],
         'displayDescription': json['displayDescription'] == null ? undefined : json['displayDescription'],
         'relatedData': json['relatedData'] == null ? undefined : json['relatedData'],
+        'eligibility': ((json['eligibility'] as Array<any>).map(RuleEligibilityFromJSON)),
     };
 }
 
-export function RuleMetadataToJSON(json: any): RuleMetadata {
-    return RuleMetadataToJSONTyped(json, false);
+export function RuleMetadataEligibilityToJSON(json: any): RuleMetadataEligibility {
+    return RuleMetadataEligibilityToJSONTyped(json, false);
 }
 
-export function RuleMetadataToJSONTyped(value?: RuleMetadata | null, ignoreDiscriminator: boolean = false): any {
+export function RuleMetadataEligibilityToJSONTyped(value?: RuleMetadataEligibility | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -89,6 +105,7 @@ export function RuleMetadataToJSONTyped(value?: RuleMetadata | null, ignoreDiscr
         'displayName': value['displayName'],
         'displayDescription': value['displayDescription'],
         'relatedData': value['relatedData'],
+        'eligibility': ((value['eligibility'] as Array<any>).map(RuleEligibilityToJSON)),
     };
 }
 

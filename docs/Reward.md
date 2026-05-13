@@ -14,8 +14,10 @@ Name | Type
 `description` | string
 `applicationIds` | Array&lt;number&gt;
 `sandbox` | boolean
-`rule` | [Array&lt;Rule&gt;](Rule.md)
+`visibilityConditions` | [Rule](Rule.md)
+`rule` | [Rule](Rule.md)
 `bindings` | [Array&lt;Binding&gt;](Binding.md)
+`modified` | Date
 `status` | string
 
 ## Example
@@ -33,8 +35,10 @@ const example = {
   "description": This reward gets you one free coffee.,
   "applicationIds": [1, 2, 3],
   "sandbox": true,
+  "visibilityConditions": null,
   "rule": null,
   "bindings": [],
+  "modified": null,
   "status": active,
 } satisfies Reward
 

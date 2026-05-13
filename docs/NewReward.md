@@ -11,8 +11,6 @@ Name | Type
 `description` | string
 `applicationIds` | Array&lt;number&gt;
 `sandbox` | boolean
-`rule` | [Array&lt;Rule&gt;](Rule.md)
-`bindings` | [Array&lt;Binding&gt;](Binding.md)
 
 ## Example
 
@@ -26,8 +24,6 @@ const example = {
   "description": This reward gets you one free coffee.,
   "applicationIds": [1, 2, 3],
   "sandbox": true,
-  "rule": null,
-  "bindings": [],
 } satisfies NewReward
 
 console.log(example)

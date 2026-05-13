@@ -40,7 +40,34 @@ export interface UpdateExperiment {
      * @memberof UpdateExperiment
      */
     campaign: UpdateCampaign;
+    /**
+     * The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to `other`, multiple metrics are used.
+     * 
+     * @type {UpdateExperimentGoalTypeEnum}
+     * @memberof UpdateExperiment
+     */
+    goalType?: UpdateExperimentGoalTypeEnum;
+    /**
+     * A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal.
+     * 
+     * @type {string}
+     * @memberof UpdateExperiment
+     */
+    goalDescription?: string;
 }
+
+
+/**
+ * @export
+ */
+export const UpdateExperimentGoalTypeEnum = {
+    Other: 'other',
+    MaximizeRevenue: 'maximize_revenue',
+    OptimizeDiscountEfficiency: 'optimize_discount_efficiency',
+    MaximizeItemsSold: 'maximize_items_sold'
+} as const;
+export type UpdateExperimentGoalTypeEnum = typeof UpdateExperimentGoalTypeEnum[keyof typeof UpdateExperimentGoalTypeEnum];
+
 
 /**
  * Check if a given object implements the UpdateExperiment interface.
@@ -63,6 +90,8 @@ export function UpdateExperimentFromJSONTyped(json: any, ignoreDiscriminator: bo
         
         'isVariantAssignmentExternal': json['isVariantAssignmentExternal'],
         'campaign': UpdateCampaignFromJSON(json['campaign']),
+        'goalType': json['goalType'] == null ? undefined : json['goalType'],
+        'goalDescription': json['goalDescription'] == null ? undefined : json['goalDescription'],
     };
 }
 
@@ -79,6 +108,8 @@ export function UpdateExperimentToJSONTyped(value?: UpdateExperiment | null, ign
         
         'isVariantAssignmentExternal': value['isVariantAssignmentExternal'],
         'campaign': UpdateCampaignToJSON(value['campaign']),
+        'goalType': value['goalType'],
+        'goalDescription': value['goalDescription'],
     };
 }
 
