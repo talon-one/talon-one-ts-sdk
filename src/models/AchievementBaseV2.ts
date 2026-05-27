@@ -121,23 +121,11 @@ export interface AchievementBaseV2 {
      */
     allowRollbackAfterCompletion?: boolean;
     /**
-     * Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.
-     * @type {boolean}
-     * @memberof AchievementBaseV2
-     */
-    sandbox?: boolean;
-    /**
      * A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.
      * @type {Array<number>}
      * @memberof AchievementBaseV2
      */
     subscribedApplications?: Array<number>;
-    /**
-     * A string containing an IANA timezone descriptor.
-     * @type {string}
-     * @memberof AchievementBaseV2
-     */
-    timezone?: string;
 }
 
 
@@ -188,9 +176,7 @@ export function AchievementBaseV2FromJSONTyped(json: any, ignoreDiscriminator: b
         'fixedStartDate': json['fixedStartDate'] == null ? undefined : (new Date(json['fixedStartDate'])),
         'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
         'allowRollbackAfterCompletion': json['allowRollbackAfterCompletion'] == null ? undefined : json['allowRollbackAfterCompletion'],
-        'sandbox': json['sandbox'] == null ? undefined : json['sandbox'],
         'subscribedApplications': json['subscribedApplications'] == null ? undefined : json['subscribedApplications'],
-        'timezone': json['timezone'] == null ? undefined : json['timezone'],
     };
 }
 
@@ -215,9 +201,7 @@ export function AchievementBaseV2ToJSONTyped(value?: AchievementBaseV2 | null, i
         'fixedStartDate': value['fixedStartDate'] == null ? value['fixedStartDate'] : value['fixedStartDate'].toISOString(),
         'endDate': value['endDate'] == null ? value['endDate'] : value['endDate'].toISOString(),
         'allowRollbackAfterCompletion': value['allowRollbackAfterCompletion'],
-        'sandbox': value['sandbox'],
         'subscribedApplications': value['subscribedApplications'],
-        'timezone': value['timezone'],
     };
 }
 

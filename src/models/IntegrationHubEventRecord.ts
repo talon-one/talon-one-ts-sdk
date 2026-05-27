@@ -60,6 +60,12 @@ export interface IntegrationHubEventRecord {
      * @type {Date}
      * @memberof IntegrationHubEventRecord
      */
+    deliveredAt?: Date;
+    /**
+     * 
+     * @type {Date}
+     * @memberof IntegrationHubEventRecord
+     */
     processAfter: Date;
     /**
      * 
@@ -99,6 +105,7 @@ export function IntegrationHubEventRecordFromJSONTyped(json: any, ignoreDiscrimi
         'eventData': json['EventData'],
         'publishedAt': (new Date(json['PublishedAt'])),
         'processedAt': json['ProcessedAt'] == null ? undefined : (new Date(json['ProcessedAt'])),
+        'deliveredAt': json['DeliveredAt'] == null ? undefined : (new Date(json['DeliveredAt'])),
         'processAfter': (new Date(json['ProcessAfter'])),
         'retry': json['Retry'],
     };
@@ -121,6 +128,7 @@ export function IntegrationHubEventRecordToJSONTyped(value?: IntegrationHubEvent
         'EventData': value['eventData'],
         'PublishedAt': value['publishedAt'].toISOString(),
         'ProcessedAt': value['processedAt'] == null ? value['processedAt'] : value['processedAt'].toISOString(),
+        'DeliveredAt': value['deliveredAt'] == null ? value['deliveredAt'] : value['deliveredAt'].toISOString(),
         'ProcessAfter': value['processAfter'].toISOString(),
         'Retry': value['retry'],
     };

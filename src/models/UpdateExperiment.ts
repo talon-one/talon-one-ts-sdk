@@ -41,14 +41,14 @@ export interface UpdateExperiment {
      */
     campaign: UpdateCampaign;
     /**
-     * The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to `other`, multiple metrics are used.
+     * The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to `other`, multiple metrics are used. If omitted, the current value is preserved.
      * 
      * @type {UpdateExperimentGoalTypeEnum}
      * @memberof UpdateExperiment
      */
     goalType?: UpdateExperimentGoalTypeEnum;
     /**
-     * A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal.
+     * A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal. If omitted, the current value is preserved.
      * 
      * @type {string}
      * @memberof UpdateExperiment
@@ -63,8 +63,8 @@ export interface UpdateExperiment {
 export const UpdateExperimentGoalTypeEnum = {
     Other: 'other',
     MaximizeRevenue: 'maximize_revenue',
-    OptimizeDiscountEfficiency: 'optimize_discount_efficiency',
-    MaximizeItemsSold: 'maximize_items_sold'
+    MaximizeItemsSold: 'maximize_items_sold',
+    OptimizeDiscountEfficiency: 'optimize_discount_efficiency'
 } as const;
 export type UpdateExperimentGoalTypeEnum = typeof UpdateExperimentGoalTypeEnum[keyof typeof UpdateExperimentGoalTypeEnum];
 

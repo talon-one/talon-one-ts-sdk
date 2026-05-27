@@ -40,6 +40,12 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedNotification {
      */
     loyaltyProgramID: number;
     /**
+     * The name of the loyalty program.
+     * @type {string}
+     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedNotification
+     */
+    loyaltyProgramName: string;
+    /**
      * 
      * @type {string}
      * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedNotification
@@ -51,6 +57,12 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedNotification {
      * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedNotification
      */
     sourceOfEvent: string;
+    /**
+     * The name of the customer's current tier.
+     * @type {string}
+     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedNotification
+     */
+    currentTier: string;
     /**
      * 
      * @type {string}
@@ -81,12 +93,6 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedNotification {
      * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedNotification
      */
     publishedAt: Date;
-    /**
-     * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedNotification
-     */
-    currentTier?: string;
     /**
      * 
      * @type {string}
@@ -125,8 +131,10 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedNotification {
 export function instanceOfIntegrationHubEventPayloadLoyaltyProfileBasedNotification(value: object): value is IntegrationHubEventPayloadLoyaltyProfileBasedNotification {
     if (!('profileIntegrationID' in value) || value['profileIntegrationID'] === undefined) return false;
     if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
+    if (!('loyaltyProgramName' in value) || value['loyaltyProgramName'] === undefined) return false;
     if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
     if (!('sourceOfEvent' in value) || value['sourceOfEvent'] === undefined) return false;
+    if (!('currentTier' in value) || value['currentTier'] === undefined) return false;
     if (!('currentPoints' in value) || value['currentPoints'] === undefined) return false;
     if (!('publishedAt' in value) || value['publishedAt'] === undefined) return false;
     return true;
@@ -144,14 +152,15 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedNotificationFromJSO
         
         'profileIntegrationID': json['ProfileIntegrationID'],
         'loyaltyProgramID': json['LoyaltyProgramID'],
+        'loyaltyProgramName': json['LoyaltyProgramName'],
         'subledgerID': json['SubledgerID'],
         'sourceOfEvent': json['SourceOfEvent'],
+        'currentTier': json['CurrentTier'],
         'employeeName': json['EmployeeName'] == null ? undefined : json['EmployeeName'],
         'userID': json['UserID'] == null ? undefined : json['UserID'],
         'currentPoints': json['CurrentPoints'],
         'actions': json['Actions'] == null ? undefined : ((json['Actions'] as Array<any>).map(IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionFromJSON)),
         'publishedAt': (new Date(json['PublishedAt'])),
-        'currentTier': json['CurrentTier'] == null ? undefined : json['CurrentTier'],
         'oldTier': json['OldTier'] == null ? undefined : json['OldTier'],
         'tierExpirationDate': json['TierExpirationDate'] == null ? undefined : (new Date(json['TierExpirationDate'])),
         'timestampOfTierChange': json['TimestampOfTierChange'] == null ? undefined : (new Date(json['TimestampOfTierChange'])),
@@ -173,14 +182,15 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedNotificationToJSONT
         
         'ProfileIntegrationID': value['profileIntegrationID'],
         'LoyaltyProgramID': value['loyaltyProgramID'],
+        'LoyaltyProgramName': value['loyaltyProgramName'],
         'SubledgerID': value['subledgerID'],
         'SourceOfEvent': value['sourceOfEvent'],
+        'CurrentTier': value['currentTier'],
         'EmployeeName': value['employeeName'],
         'UserID': value['userID'],
         'CurrentPoints': value['currentPoints'],
         'Actions': value['actions'] == null ? undefined : ((value['actions'] as Array<any>).map(IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionToJSON)),
         'PublishedAt': value['publishedAt'].toISOString(),
-        'CurrentTier': value['currentTier'],
         'OldTier': value['oldTier'],
         'TierExpirationDate': value['tierExpirationDate'] == null ? value['tierExpirationDate'] : value['tierExpirationDate'].toISOString(),
         'TimestampOfTierChange': value['timestampOfTierChange'] == null ? value['timestampOfTierChange'] : value['timestampOfTierChange'].toISOString(),

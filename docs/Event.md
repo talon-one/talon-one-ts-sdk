@@ -13,6 +13,7 @@ Name | Type
 `storeIntegrationId` | string
 `type` | string
 `attributes` | object
+`integrationId` | string
 `sessionId` | string
 `effects` | Array&lt;object&gt;
 `ledgerEntries` | [Array&lt;LedgerEntry&gt;](LedgerEntry.md)
@@ -32,6 +33,7 @@ const example = {
   "storeIntegrationId": STORE-001,
   "type": pageViewed,
   "attributes": {myAttribute=myValue},
+  "integrationId": 175KJPS947296,
   "sessionId": 175KJPS947296,
   "effects": null,
   "ledgerEntries": null,

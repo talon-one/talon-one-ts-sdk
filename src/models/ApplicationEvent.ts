@@ -71,13 +71,20 @@ export interface ApplicationEvent {
      */
     storeIntegrationId?: string;
     /**
+     * The unique ID of the event. Only one event with this ID can be registered.
+     * 
+     * @type {string}
+     * @memberof ApplicationEvent
+     */
+    integrationId?: string;
+    /**
      * The globally unique Talon.One ID of the session that contains this event.
      * @type {number}
      * @memberof ApplicationEvent
      */
     sessionId?: number;
     /**
-     * A string representing the event. Must not be a reserved event name.
+     * The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.
      * @type {string}
      * @memberof ApplicationEvent
      */
@@ -131,6 +138,7 @@ export function ApplicationEventFromJSONTyped(json: any, ignoreDiscriminator: bo
         'profileId': json['profileId'] == null ? undefined : json['profileId'],
         'storeId': json['storeId'] == null ? undefined : json['storeId'],
         'storeIntegrationId': json['storeIntegrationId'] == null ? undefined : json['storeIntegrationId'],
+        'integrationId': json['integrationId'] == null ? undefined : json['integrationId'],
         'sessionId': json['sessionId'] == null ? undefined : json['sessionId'],
         'type': json['type'],
         'attributes': json['attributes'],
@@ -156,6 +164,7 @@ export function ApplicationEventToJSONTyped(value?: ApplicationEvent | null, ign
         'profileId': value['profileId'],
         'storeId': value['storeId'],
         'storeIntegrationId': value['storeIntegrationId'],
+        'integrationId': value['integrationId'],
         'sessionId': value['sessionId'],
         'type': value['type'],
         'attributes': value['attributes'],

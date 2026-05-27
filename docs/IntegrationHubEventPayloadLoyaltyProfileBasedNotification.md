@@ -8,14 +8,15 @@ Name | Type
 ------------ | -------------
 `profileIntegrationID` | string
 `loyaltyProgramID` | number
+`loyaltyProgramName` | string
 `subledgerID` | string
 `sourceOfEvent` | string
+`currentTier` | string
 `employeeName` | string
 `userID` | number
 `currentPoints` | number
 `actions` | [Array&lt;IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction&gt;](IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.md)
 `publishedAt` | Date
-`currentTier` | string
 `oldTier` | string
 `tierExpirationDate` | Date
 `timestampOfTierChange` | Date
@@ -31,14 +32,15 @@ import type { IntegrationHubEventPayloadLoyaltyProfileBasedNotification } from '
 const example = {
   "profileIntegrationID": null,
   "loyaltyProgramID": null,
+  "loyaltyProgramName": null,
   "subledgerID": null,
   "sourceOfEvent": null,
+  "currentTier": null,
   "employeeName": null,
   "userID": null,
   "currentPoints": null,
   "actions": null,
   "publishedAt": null,
-  "currentTier": null,
   "oldTier": null,
   "tierExpirationDate": null,
   "timestampOfTierChange": null,

@@ -40,7 +40,34 @@ export interface ExperimentCopyExperiment {
      * @memberof ExperimentCopyExperiment
      */
     campaign: ExperimentCampaignCopy;
+    /**
+     * The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to `other`, multiple metrics are used. If omitted, the value from the source experiment is used.
+     * 
+     * @type {ExperimentCopyExperimentGoalTypeEnum}
+     * @memberof ExperimentCopyExperiment
+     */
+    goalType?: ExperimentCopyExperimentGoalTypeEnum;
+    /**
+     * A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal. If omitted, the value from the source experiment is used.
+     * 
+     * @type {string}
+     * @memberof ExperimentCopyExperiment
+     */
+    goalDescription?: string;
 }
+
+
+/**
+ * @export
+ */
+export const ExperimentCopyExperimentGoalTypeEnum = {
+    Other: 'other',
+    MaximizeRevenue: 'maximize_revenue',
+    MaximizeItemsSold: 'maximize_items_sold',
+    OptimizeDiscountEfficiency: 'optimize_discount_efficiency'
+} as const;
+export type ExperimentCopyExperimentGoalTypeEnum = typeof ExperimentCopyExperimentGoalTypeEnum[keyof typeof ExperimentCopyExperimentGoalTypeEnum];
+
 
 /**
  * Check if a given object implements the ExperimentCopyExperiment interface.
@@ -63,6 +90,8 @@ export function ExperimentCopyExperimentFromJSONTyped(json: any, ignoreDiscrimin
         
         'isVariantAssignmentExternal': json['isVariantAssignmentExternal'],
         'campaign': ExperimentCampaignCopyFromJSON(json['campaign']),
+        'goalType': json['goalType'] == null ? undefined : json['goalType'],
+        'goalDescription': json['goalDescription'] == null ? undefined : json['goalDescription'],
     };
 }
 
@@ -79,6 +108,8 @@ export function ExperimentCopyExperimentToJSONTyped(value?: ExperimentCopyExperi
         
         'isVariantAssignmentExternal': value['isVariantAssignmentExternal'],
         'campaign': ExperimentCampaignCopyToJSON(value['campaign']),
+        'goalType': value['goalType'],
+        'goalDescription': value['goalDescription'],
     };
 }
 

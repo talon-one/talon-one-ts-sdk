@@ -9,11 +9,10 @@ Name | Type
 `profileId` | string
 `storeIntegrationId` | string
 `evaluableCampaignIds` | Array&lt;number&gt;
-`integrationId` | string
 `type` | string
 `attributes` | object
-`connectedSessionID` | string
-`previousEventID` | string
+`integrationId` | string
+`connectedSessionId` | string
 `loyaltyCards` | Array&lt;string&gt;
 `responseContent` | Array&lt;string&gt;
 
@@ -27,11 +26,10 @@ const example = {
   "profileId": URNGV8294NV,
   "storeIntegrationId": STORE-001,
   "evaluableCampaignIds": [10, 12],
-  "integrationId": 175KJPS947296,
   "type": pageViewed,
   "attributes": {myAttribute=myValue},
-  "connectedSessionID": 175KJPS947296,
-  "previousEventID": 175KJPS947296,
+  "integrationId": 175KJPS947296,
+  "connectedSessionId": 175KJPS947296,
   "loyaltyCards": [loyalty-card-1],
   "responseContent": [triggeredCampaigns, customerProfile],
 } satisfies IntegrationEventV3Request

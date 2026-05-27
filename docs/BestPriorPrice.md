@@ -9,6 +9,7 @@ Name | Type
 `id` | number
 `sku` | string
 `observedAt` | Date
+`contextIds` | Array&lt;string&gt;
 `contextId` | string
 `price` | number
 `metadata` | [BestPriorPriceMetadata](BestPriorPriceMetadata.md)
@@ -23,8 +24,9 @@ import type { BestPriorPrice } from 'talon_one_sdk'
 const example = {
   "id": 1,
   "sku": NVR-GN-GV-UUP,
-  "observedAt": 2020-11-10T23:00:00Z,
-  "contextId": Summer Sale 2025,
+  "observedAt": 2025-11-10T23:00:00Z,
+  "contextIds": [SpringSale, SummerSale2025],
+  "contextId": ,
   "price": 99.99,
   "metadata": null,
   "target": null,

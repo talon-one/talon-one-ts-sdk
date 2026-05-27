@@ -436,7 +436,8 @@ export const CampaignFeaturesEnum = {
     Loyalty: 'loyalty',
     Giveaways: 'giveaways',
     Strikethrough: 'strikethrough',
-    Achievements: 'achievements'
+    Achievements: 'achievements',
+    AdvancedEvents: 'advancedEvents'
 } as const;
 export type CampaignFeaturesEnum = typeof CampaignFeaturesEnum[keyof typeof CampaignFeaturesEnum];
 

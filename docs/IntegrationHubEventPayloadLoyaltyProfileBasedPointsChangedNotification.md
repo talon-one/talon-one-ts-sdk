@@ -8,8 +8,10 @@ Name | Type
 ------------ | -------------
 `profileIntegrationID` | string
 `loyaltyProgramID` | number
+`loyaltyProgramName` | string
 `subledgerID` | string
 `sourceOfEvent` | string
+`currentTier` | string
 `employeeName` | string
 `userID` | number
 `currentPoints` | number
@@ -25,8 +27,10 @@ import type { IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotifica
 const example = {
   "profileIntegrationID": null,
   "loyaltyProgramID": null,
+  "loyaltyProgramName": null,
   "subledgerID": null,
   "sourceOfEvent": null,
+  "currentTier": null,
   "employeeName": null,
   "userID": null,
   "currentPoints": null,

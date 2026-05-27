@@ -20,6 +20,13 @@ import {
     BindingToJSON,
     BindingToJSONTyped,
 } from './Binding';
+import type { RewardPointsRequired } from './RewardPointsRequired';
+import {
+    RewardPointsRequiredFromJSON,
+    RewardPointsRequiredFromJSONTyped,
+    RewardPointsRequiredToJSON,
+    RewardPointsRequiredToJSONTyped,
+} from './RewardPointsRequired';
 import type { Rule } from './Rule';
 import {
     RuleFromJSON,
@@ -125,6 +132,12 @@ export interface Reward {
      * @memberof Reward
      */
     status: RewardStatusEnum;
+    /**
+     * The loyalty points required to activate a reward.
+     * @type {Array<RewardPointsRequired>}
+     * @memberof Reward
+     */
+    pointsRequired?: Array<RewardPointsRequired>;
 }
 
 
@@ -176,6 +189,7 @@ export function RewardFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
         'bindings': json['bindings'] == null ? undefined : ((json['bindings'] as Array<any>).map(BindingFromJSON)),
         'modified': json['modified'] == null ? undefined : (new Date(json['modified'])),
         'status': json['status'],
+        'pointsRequired': json['pointsRequired'] == null ? undefined : ((json['pointsRequired'] as Array<any>).map(RewardPointsRequiredFromJSON)),
     };
 }
 
@@ -203,6 +217,7 @@ export function RewardToJSONTyped(value?: Reward | null, ignoreDiscriminator: bo
         'bindings': value['bindings'] == null ? undefined : ((value['bindings'] as Array<any>).map(BindingToJSON)),
         'modified': value['modified'] == null ? value['modified'] : value['modified'].toISOString(),
         'status': value['status'],
+        'pointsRequired': value['pointsRequired'] == null ? undefined : ((value['pointsRequired'] as Array<any>).map(RewardPointsRequiredToJSON)),
     };
 }
 

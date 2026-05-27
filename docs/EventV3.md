@@ -6,14 +6,16 @@
 
 Name | Type
 ------------ | -------------
+`connectedSessionId` | string
+`id` | number
+`created` | Date
+`applicationId` | number
 `profileId` | string
 `storeIntegrationId` | string
-`evaluableCampaignIds` | Array&lt;number&gt;
-`integrationId` | string
 `type` | string
 `attributes` | object
-`connectedSessionID` | string
-`previousEventID` | string
+`integrationId` | string
+`effects` | Array&lt;object&gt;
 
 ## Example
 
@@ -22,14 +24,16 @@ import type { EventV3 } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
+  "connectedSessionId": 175KJPS947296,
+  "id": 6,
+  "created": 2020-06-10T09:05:27.993483Z,
+  "applicationId": 322,
   "profileId": URNGV8294NV,
   "storeIntegrationId": STORE-001,
-  "evaluableCampaignIds": [10, 12],
-  "integrationId": 175KJPS947296,
   "type": pageViewed,
   "attributes": {myAttribute=myValue},
-  "connectedSessionID": 175KJPS947296,
-  "previousEventID": 175KJPS947296,
+  "integrationId": 175KJPS947296,
+  "effects": null,
 } satisfies EventV3
 
 console.log(example)

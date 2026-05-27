@@ -8,6 +8,8 @@ Name | Type
 ------------ | -------------
 `isVariantAssignmentExternal` | boolean
 `campaign` | [ExperimentCampaignCopy](ExperimentCampaignCopy.md)
+`goalType` | string
+`goalDescription` | string
 
 ## Example
 
@@ -18,6 +20,8 @@ import type { ExperimentCopyExperiment } from 'talon_one_sdk'
 const example = {
   "isVariantAssignmentExternal": null,
   "campaign": null,
+  "goalType": null,
+  "goalDescription": null,
 } satisfies ExperimentCopyExperiment
 
 console.log(example)

@@ -68,7 +68,7 @@ export interface Event {
      */
     storeIntegrationId?: string;
     /**
-     * A string representing the event. Must not be a reserved event name.
+     * The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.
      * @type {string}
      * @memberof Event
      */
@@ -79,6 +79,13 @@ export interface Event {
      * @memberof Event
      */
     attributes: object;
+    /**
+     * The unique ID of the event. Only one event with this ID can be registered.
+     * 
+     * @type {string}
+     * @memberof Event
+     */
+    integrationId?: string;
     /**
      * The ID of the session that this event occurred in.
      * @type {string}
@@ -138,6 +145,7 @@ export function EventFromJSONTyped(json: any, ignoreDiscriminator: boolean): Eve
         'storeIntegrationId': json['storeIntegrationId'] == null ? undefined : json['storeIntegrationId'],
         'type': json['type'],
         'attributes': json['attributes'],
+        'integrationId': json['integrationId'] == null ? undefined : json['integrationId'],
         'sessionId': json['sessionId'] == null ? undefined : json['sessionId'],
         'effects': json['effects'],
         'ledgerEntries': json['ledgerEntries'] == null ? undefined : ((json['ledgerEntries'] as Array<any>).map(LedgerEntryFromJSON)),
@@ -163,6 +171,7 @@ export function EventToJSONTyped(value?: Event | null, ignoreDiscriminator: bool
         'storeIntegrationId': value['storeIntegrationId'],
         'type': value['type'],
         'attributes': value['attributes'],
+        'integrationId': value['integrationId'],
         'sessionId': value['sessionId'],
         'effects': value['effects'],
         'ledgerEntries': value['ledgerEntries'] == null ? undefined : ((value['ledgerEntries'] as Array<any>).map(LedgerEntryToJSON)),

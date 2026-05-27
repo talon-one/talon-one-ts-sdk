@@ -40,12 +40,19 @@ export interface History {
      */
     observedAt: Date;
     /**
-     * Identifier of the relevant context at the time the price was observed (e.g. summer sale).
+     * The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
+     * 
+     * @type {Array<string>}
+     * @memberof History
+     */
+    contextIds: Array<string>;
+    /**
+     * This property is **deprecated**. Use `contextIds` instead. Defaults to an empty string.
      * 
      * @type {string}
      * @memberof History
      */
-    contextId: string;
+    contextId?: string;
     /**
      * Price of the item.
      * @type {number}
@@ -72,7 +79,7 @@ export interface History {
 export function instanceOfHistory(value: object): value is History {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('observedAt' in value) || value['observedAt'] === undefined) return false;
-    if (!('contextId' in value) || value['contextId'] === undefined) return false;
+    if (!('contextIds' in value) || value['contextIds'] === undefined) return false;
     if (!('price' in value) || value['price'] === undefined) return false;
     if (!('metadata' in value) || value['metadata'] === undefined) return false;
     if (!('target' in value) || value['target'] === undefined) return false;
@@ -91,7 +98,8 @@ export function HistoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): H
         
         'id': json['id'],
         'observedAt': (new Date(json['observedAt'])),
-        'contextId': json['contextId'],
+        'contextIds': json['contextIds'],
+        'contextId': json['contextId'] == null ? undefined : json['contextId'],
         'price': json['price'],
         'metadata': BestPriorPriceMetadataFromJSON(json['metadata']),
         'target': json['target'],
@@ -111,6 +119,7 @@ export function HistoryToJSONTyped(value?: History | null, ignoreDiscriminator: 
         
         'id': value['id'],
         'observedAt': value['observedAt'].toISOString(),
+        'contextIds': value['contextIds'],
         'contextId': value['contextId'],
         'price': value['price'],
         'metadata': BestPriorPriceMetadataToJSON(value['metadata']),

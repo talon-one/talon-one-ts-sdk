@@ -16,9 +16,7 @@ Name | Type
 `fixedStartDate` | Date
 `endDate` | Date
 `allowRollbackAfterCompletion` | boolean
-`sandbox` | boolean
 `subscribedApplications` | Array&lt;number&gt;
-`timezone` | string
 
 ## Example
 
@@ -37,9 +35,7 @@ const example = {
   "fixedStartDate": 2024-01-15T15:04:05+07:00,
   "endDate": 2024-01-15T15:04:05+07:00,
   "allowRollbackAfterCompletion": false,
-  "sandbox": true,
   "subscribedApplications": [132, 97],
-  "timezone": Europe/Berlin,
 } satisfies AchievementBaseV2
 
 console.log(example)

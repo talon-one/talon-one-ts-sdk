@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CatalogAction } from './CatalogAction';
+import {
+    CatalogActionFromJSON,
+    CatalogActionFromJSONTyped,
+    CatalogActionToJSON,
+    CatalogActionToJSONTyped,
+} from './CatalogAction';
+
 /**
  * 
  * @export
@@ -21,10 +29,10 @@ import { mapValues } from '../runtime';
 export interface CatalogSyncRequest {
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<CatalogAction>}
      * @memberof CatalogSyncRequest
      */
-    actions: Array<object>;
+    actions: Array<CatalogAction>;
     /**
      * The version number of the catalog to apply the actions on.
      * @type {number}
@@ -51,7 +59,7 @@ export function CatalogSyncRequestFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'actions': json['actions'],
+        'actions': ((json['actions'] as Array<any>).map(CatalogActionFromJSON)),
         'version': json['version'] == null ? undefined : json['version'],
     };
 }
@@ -67,7 +75,7 @@ export function CatalogSyncRequestToJSONTyped(value?: CatalogSyncRequest | null,
 
     return {
         
-        'actions': value['actions'],
+        'actions': ((value['actions'] as Array<any>).map(CatalogActionToJSON)),
         'version': value['version'],
     };
 }

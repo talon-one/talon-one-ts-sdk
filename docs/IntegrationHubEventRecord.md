@@ -12,6 +12,7 @@ Name | Type
 `eventData` | any
 `publishedAt` | Date
 `processedAt` | Date
+`deliveredAt` | Date
 `processAfter` | Date
 `retry` | number
 
@@ -28,6 +29,7 @@ const example = {
   "eventData": null,
   "publishedAt": null,
   "processedAt": null,
+  "deliveredAt": null,
   "processAfter": null,
   "retry": null,
 } satisfies IntegrationHubEventRecord

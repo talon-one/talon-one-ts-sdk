@@ -8,6 +8,7 @@ Name | Type
 ------------ | -------------
 `profileIntegrationID` | string
 `loyaltyProgramID` | number
+`loyaltyProgramName` | string
 `subledgerID` | string
 `sourceOfEvent` | string
 `currentTier` | string
@@ -28,6 +29,7 @@ import type { IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotificati
 const example = {
   "profileIntegrationID": null,
   "loyaltyProgramID": null,
+  "loyaltyProgramName": null,
   "subledgerID": null,
   "sourceOfEvent": null,
   "currentTier": null,
