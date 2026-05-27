@@ -32,6 +32,12 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotific
      */
     loyaltyProgramID: number;
     /**
+     * The name of the loyalty program.
+     * @type {string}
+     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
+     */
+    loyaltyProgramName: string;
+    /**
      * 
      * @type {string}
      * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
@@ -44,11 +50,11 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotific
      */
     sourceOfEvent: string;
     /**
-     * 
+     * The name of the customer's current tier.
      * @type {string}
      * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
-    currentTier?: string;
+    currentTier: string;
     /**
      * 
      * @type {number}
@@ -99,8 +105,10 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotific
 export function instanceOfIntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification(value: object): value is IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification {
     if (!('profileIntegrationID' in value) || value['profileIntegrationID'] === undefined) return false;
     if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
+    if (!('loyaltyProgramName' in value) || value['loyaltyProgramName'] === undefined) return false;
     if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
     if (!('sourceOfEvent' in value) || value['sourceOfEvent'] === undefined) return false;
+    if (!('currentTier' in value) || value['currentTier'] === undefined) return false;
     if (!('currentPoints' in value) || value['currentPoints'] === undefined) return false;
     if (!('publishedAt' in value) || value['publishedAt'] === undefined) return false;
     return true;
@@ -118,9 +126,10 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotifica
         
         'profileIntegrationID': json['ProfileIntegrationID'],
         'loyaltyProgramID': json['LoyaltyProgramID'],
+        'loyaltyProgramName': json['LoyaltyProgramName'],
         'subledgerID': json['SubledgerID'],
         'sourceOfEvent': json['SourceOfEvent'],
-        'currentTier': json['CurrentTier'] == null ? undefined : json['CurrentTier'],
+        'currentTier': json['CurrentTier'],
         'currentPoints': json['CurrentPoints'],
         'oldTier': json['OldTier'] == null ? undefined : json['OldTier'],
         'pointsRequiredToTheNextTier': json['PointsRequiredToTheNextTier'] == null ? undefined : json['PointsRequiredToTheNextTier'],
@@ -144,6 +153,7 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotifica
         
         'ProfileIntegrationID': value['profileIntegrationID'],
         'LoyaltyProgramID': value['loyaltyProgramID'],
+        'LoyaltyProgramName': value['loyaltyProgramName'],
         'SubledgerID': value['subledgerID'],
         'SourceOfEvent': value['sourceOfEvent'],
         'CurrentTier': value['currentTier'],

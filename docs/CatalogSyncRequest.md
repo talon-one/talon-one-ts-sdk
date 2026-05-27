@@ -6,7 +6,7 @@
 
 Name | Type
 ------------ | -------------
-`actions` | Array&lt;object&gt;
+`actions` | [Array&lt;CatalogAction&gt;](CatalogAction.md)
 `version` | number
 
 ## Example

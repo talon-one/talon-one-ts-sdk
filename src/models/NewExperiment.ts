@@ -63,8 +63,8 @@ export interface NewExperiment {
 export const NewExperimentGoalTypeEnum = {
     Other: 'other',
     MaximizeRevenue: 'maximize_revenue',
-    OptimizeDiscountEfficiency: 'optimize_discount_efficiency',
-    MaximizeItemsSold: 'maximize_items_sold'
+    MaximizeItemsSold: 'maximize_items_sold',
+    OptimizeDiscountEfficiency: 'optimize_discount_efficiency'
 } as const;
 export type NewExperimentGoalTypeEnum = typeof NewExperimentGoalTypeEnum[keyof typeof NewExperimentGoalTypeEnum];
 

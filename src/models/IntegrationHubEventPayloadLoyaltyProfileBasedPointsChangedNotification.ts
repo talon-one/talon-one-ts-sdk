@@ -40,6 +40,12 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotif
      */
     loyaltyProgramID: number;
     /**
+     * The name of the loyalty program.
+     * @type {string}
+     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
+     */
+    loyaltyProgramName: string;
+    /**
      * 
      * @type {string}
      * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
@@ -51,6 +57,12 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotif
      * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
      */
     sourceOfEvent: string;
+    /**
+     * The name of the customer's current tier.
+     * @type {string}
+     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
+     */
+    currentTier: string;
     /**
      * 
      * @type {string}
@@ -89,8 +101,10 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotif
 export function instanceOfIntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(value: object): value is IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification {
     if (!('profileIntegrationID' in value) || value['profileIntegrationID'] === undefined) return false;
     if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
+    if (!('loyaltyProgramName' in value) || value['loyaltyProgramName'] === undefined) return false;
     if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
     if (!('sourceOfEvent' in value) || value['sourceOfEvent'] === undefined) return false;
+    if (!('currentTier' in value) || value['currentTier'] === undefined) return false;
     if (!('currentPoints' in value) || value['currentPoints'] === undefined) return false;
     if (!('publishedAt' in value) || value['publishedAt'] === undefined) return false;
     return true;
@@ -108,8 +122,10 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotifi
         
         'profileIntegrationID': json['ProfileIntegrationID'],
         'loyaltyProgramID': json['LoyaltyProgramID'],
+        'loyaltyProgramName': json['LoyaltyProgramName'],
         'subledgerID': json['SubledgerID'],
         'sourceOfEvent': json['SourceOfEvent'],
+        'currentTier': json['CurrentTier'],
         'employeeName': json['EmployeeName'] == null ? undefined : json['EmployeeName'],
         'userID': json['UserID'] == null ? undefined : json['UserID'],
         'currentPoints': json['CurrentPoints'],
@@ -131,8 +147,10 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotifi
         
         'ProfileIntegrationID': value['profileIntegrationID'],
         'LoyaltyProgramID': value['loyaltyProgramID'],
+        'LoyaltyProgramName': value['loyaltyProgramName'],
         'SubledgerID': value['subledgerID'],
         'SourceOfEvent': value['sourceOfEvent'],
+        'CurrentTier': value['currentTier'],
         'EmployeeName': value['employeeName'],
         'UserID': value['userID'],
         'CurrentPoints': value['currentPoints'],

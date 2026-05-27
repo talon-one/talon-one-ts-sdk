@@ -12,6 +12,7 @@ Name | Type
 `profileId` | number
 `storeId` | number
 `storeIntegrationId` | string
+`integrationId` | string
 `sessionId` | number
 `type` | string
 `attributes` | object
@@ -31,6 +32,7 @@ const example = {
   "profileId": 138,
   "storeId": null,
   "storeIntegrationId": STORE-001,
+  "integrationId": 175KJPS947296,
   "sessionId": null,
   "type": null,
   "attributes": null,

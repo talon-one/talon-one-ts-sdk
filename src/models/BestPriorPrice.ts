@@ -46,12 +46,19 @@ export interface BestPriorPrice {
      */
     observedAt: Date;
     /**
-     * The context ID of the context active at the time of observation.
+     * The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
+     * 
+     * @type {Array<string>}
+     * @memberof BestPriorPrice
+     */
+    contextIds: Array<string>;
+    /**
+     * This property is **deprecated**. Use `contextIds` instead. Defaults to an empty string.
      * 
      * @type {string}
      * @memberof BestPriorPrice
      */
-    contextId: string;
+    contextId?: string;
     /**
      * Price of the item.
      * @type {number}
@@ -79,7 +86,7 @@ export function instanceOfBestPriorPrice(value: object): value is BestPriorPrice
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('sku' in value) || value['sku'] === undefined) return false;
     if (!('observedAt' in value) || value['observedAt'] === undefined) return false;
-    if (!('contextId' in value) || value['contextId'] === undefined) return false;
+    if (!('contextIds' in value) || value['contextIds'] === undefined) return false;
     if (!('price' in value) || value['price'] === undefined) return false;
     if (!('metadata' in value) || value['metadata'] === undefined) return false;
     if (!('target' in value) || value['target'] === undefined) return false;
@@ -99,7 +106,8 @@ export function BestPriorPriceFromJSONTyped(json: any, ignoreDiscriminator: bool
         'id': json['id'],
         'sku': json['sku'],
         'observedAt': (new Date(json['observedAt'])),
-        'contextId': json['contextId'],
+        'contextIds': json['contextIds'],
+        'contextId': json['contextId'] == null ? undefined : json['contextId'],
         'price': json['price'],
         'metadata': BestPriorPriceMetadataFromJSON(json['metadata']),
         'target': json['target'],
@@ -120,6 +128,7 @@ export function BestPriorPriceToJSONTyped(value?: BestPriorPrice | null, ignoreD
         'id': value['id'],
         'sku': value['sku'],
         'observedAt': value['observedAt'].toISOString(),
+        'contextIds': value['contextIds'],
         'contextId': value['contextId'],
         'price': value['price'],
         'metadata': BestPriorPriceMetadataToJSON(value['metadata']),

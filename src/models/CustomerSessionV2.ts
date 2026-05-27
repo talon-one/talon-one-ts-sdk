@@ -218,6 +218,12 @@ export interface CustomerSessionV2 {
      */
     additionalCostTotal: number;
     /**
+     * The total value of additional costs applied to individual items, before any discounts are applied.
+     * @type {number}
+     * @memberof CustomerSessionV2
+     */
+    readonly cartItemAdditionalCostTotal: number;
+    /**
      * Timestamp of the most recent event received on this session.
      * @type {Date}
      * @memberof CustomerSessionV2
@@ -251,6 +257,7 @@ export function instanceOfCustomerSessionV2(value: object): value is CustomerSes
     if (!('total' in value) || value['total'] === undefined) return false;
     if (!('cartItemTotal' in value) || value['cartItemTotal'] === undefined) return false;
     if (!('additionalCostTotal' in value) || value['additionalCostTotal'] === undefined) return false;
+    if (!('cartItemAdditionalCostTotal' in value) || value['cartItemAdditionalCostTotal'] === undefined) return false;
     if (!('updated' in value) || value['updated'] === undefined) return false;
     return true;
 }
@@ -286,6 +293,7 @@ export function CustomerSessionV2FromJSONTyped(json: any, ignoreDiscriminator: b
         'total': json['total'],
         'cartItemTotal': json['cartItemTotal'],
         'additionalCostTotal': json['additionalCostTotal'],
+        'cartItemAdditionalCostTotal': json['cartItemAdditionalCostTotal'],
         'updated': (new Date(json['updated'])),
     };
 }
@@ -294,7 +302,7 @@ export function CustomerSessionV2ToJSON(json: any): CustomerSessionV2 {
     return CustomerSessionV2ToJSONTyped(json, false);
 }
 
-export function CustomerSessionV2ToJSONTyped(value?: CustomerSessionV2 | null, ignoreDiscriminator: boolean = false): any {
+export function CustomerSessionV2ToJSONTyped(value?: Omit<CustomerSessionV2, 'cartItemAdditionalCostTotal'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

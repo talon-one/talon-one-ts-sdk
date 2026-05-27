@@ -8,6 +8,7 @@ Name | Type
 ------------ | -------------
 `id` | number
 `observedAt` | Date
+`contextIds` | Array&lt;string&gt;
 `contextId` | string
 `price` | number
 `metadata` | [BestPriorPriceMetadata](BestPriorPriceMetadata.md)
@@ -21,8 +22,9 @@ import type { History } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "id": 1,
-  "observedAt": 2020-11-10T23:00:00Z,
-  "contextId": Summer Sale 2025,
+  "observedAt": 2025-11-10T23:00:00Z,
+  "contextIds": [SpringSale, SummerSale2025],
+  "contextId": ,
   "price": 99.99,
   "metadata": null,
   "target": null,

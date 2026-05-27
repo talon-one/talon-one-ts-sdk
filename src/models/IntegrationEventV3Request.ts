@@ -44,15 +44,7 @@ export interface IntegrationEventV3Request {
      */
     evaluableCampaignIds?: Array<number>;
     /**
-     * The unique ID of the current event. Only one event with this ID could be activated, duplicated events are forbidden.
-     * 
-     * @type {string}
-     * @memberof IntegrationEventV3Request
-     */
-    integrationId: string;
-    /**
-     * A string representing the event name. Must not be a reserved event name. You create this value when you [create an attribute](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) of type `event` in the Campaign Manager.
-     * 
+     * The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.
      * @type {string}
      * @memberof IntegrationEventV3Request
      */
@@ -64,17 +56,18 @@ export interface IntegrationEventV3Request {
      */
     attributes?: object;
     /**
-     * The ID of the session that happened in the past.
+     * The unique ID of the event. Only one event with this ID can be registered.
+     * 
      * @type {string}
      * @memberof IntegrationEventV3Request
      */
-    connectedSessionID?: string;
+    integrationId: string;
     /**
-     * The unique identifier of the event that happened in the past.
+     * The ID of the session to reference. The session must be in `closed` state. Otherwise, the API call will fail.
      * @type {string}
      * @memberof IntegrationEventV3Request
      */
-    previousEventID?: string;
+    connectedSessionId?: string;
     /**
      * Identifiers of the loyalty cards used during this event.
      * @type {Array<string>}
@@ -110,8 +103,8 @@ export type IntegrationEventV3RequestResponseContentEnum = typeof IntegrationEve
  */
 export function instanceOfIntegrationEventV3Request(value: object): value is IntegrationEventV3Request {
     if (!('profileId' in value) || value['profileId'] === undefined) return false;
-    if (!('integrationId' in value) || value['integrationId'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('integrationId' in value) || value['integrationId'] === undefined) return false;
     return true;
 }
 
@@ -128,11 +121,10 @@ export function IntegrationEventV3RequestFromJSONTyped(json: any, ignoreDiscrimi
         'profileId': json['profileId'],
         'storeIntegrationId': json['storeIntegrationId'] == null ? undefined : json['storeIntegrationId'],
         'evaluableCampaignIds': json['evaluableCampaignIds'] == null ? undefined : json['evaluableCampaignIds'],
-        'integrationId': json['integrationId'],
         'type': json['type'],
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
-        'connectedSessionID': json['connectedSessionID'] == null ? undefined : json['connectedSessionID'],
-        'previousEventID': json['previousEventID'] == null ? undefined : json['previousEventID'],
+        'integrationId': json['integrationId'],
+        'connectedSessionId': json['connectedSessionId'] == null ? undefined : json['connectedSessionId'],
         'loyaltyCards': json['loyaltyCards'] == null ? undefined : json['loyaltyCards'],
         'responseContent': json['responseContent'] == null ? undefined : json['responseContent'],
     };
@@ -152,11 +144,10 @@ export function IntegrationEventV3RequestToJSONTyped(value?: IntegrationEventV3R
         'profileId': value['profileId'],
         'storeIntegrationId': value['storeIntegrationId'],
         'evaluableCampaignIds': value['evaluableCampaignIds'],
-        'integrationId': value['integrationId'],
         'type': value['type'],
         'attributes': value['attributes'],
-        'connectedSessionID': value['connectedSessionID'],
-        'previousEventID': value['previousEventID'],
+        'integrationId': value['integrationId'],
+        'connectedSessionId': value['connectedSessionId'],
         'loyaltyCards': value['loyaltyCards'],
         'responseContent': value['responseContent'],
     };

@@ -19,6 +19,7 @@ Name | Type
 `bindings` | [Array&lt;Binding&gt;](Binding.md)
 `modified` | Date
 `status` | string
+`pointsRequired` | [Array&lt;RewardPointsRequired&gt;](RewardPointsRequired.md)
 
 ## Example
 
@@ -40,6 +41,7 @@ const example = {
   "bindings": [],
   "modified": null,
   "status": active,
+  "pointsRequired": null,
 } satisfies Reward
 
 console.log(example)

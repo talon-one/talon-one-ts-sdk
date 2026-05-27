@@ -121,17 +121,17 @@ export interface CreateAchievementV2 {
      */
     allowRollbackAfterCompletion?: boolean;
     /**
-     * Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.
-     * @type {boolean}
-     * @memberof CreateAchievementV2
-     */
-    sandbox: boolean;
-    /**
      * A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.
      * @type {Array<number>}
      * @memberof CreateAchievementV2
      */
     subscribedApplications?: Array<number>;
+    /**
+     * Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.
+     * @type {boolean}
+     * @memberof CreateAchievementV2
+     */
+    sandbox: boolean;
     /**
      * A string containing an IANA timezone descriptor.
      * @type {string}
@@ -194,8 +194,8 @@ export function CreateAchievementV2FromJSONTyped(json: any, ignoreDiscriminator:
         'fixedStartDate': json['fixedStartDate'] == null ? undefined : (new Date(json['fixedStartDate'])),
         'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
         'allowRollbackAfterCompletion': json['allowRollbackAfterCompletion'] == null ? undefined : json['allowRollbackAfterCompletion'],
-        'sandbox': json['sandbox'],
         'subscribedApplications': json['subscribedApplications'] == null ? undefined : json['subscribedApplications'],
+        'sandbox': json['sandbox'],
         'timezone': json['timezone'],
     };
 }
@@ -221,8 +221,8 @@ export function CreateAchievementV2ToJSONTyped(value?: CreateAchievementV2 | nul
         'fixedStartDate': value['fixedStartDate'] == null ? value['fixedStartDate'] : value['fixedStartDate'].toISOString(),
         'endDate': value['endDate'] == null ? value['endDate'] : value['endDate'].toISOString(),
         'allowRollbackAfterCompletion': value['allowRollbackAfterCompletion'],
-        'sandbox': value['sandbox'],
         'subscribedApplications': value['subscribedApplications'],
+        'sandbox': value['sandbox'],
         'timezone': value['timezone'],
     };
 }

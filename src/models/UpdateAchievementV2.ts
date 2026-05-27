@@ -27,25 +27,25 @@ export interface UpdateAchievementV2 {
      * @type {string}
      * @memberof UpdateAchievementV2
      */
-    name?: string;
+    name: string;
     /**
      * The display name for the achievement in the Campaign Manager.
      * @type {string}
      * @memberof UpdateAchievementV2
      */
-    title?: string;
+    title: string;
     /**
      * A description of the achievement.
      * @type {string}
      * @memberof UpdateAchievementV2
      */
-    description?: string;
+    description: string;
     /**
      * The required number of actions or the transactional milestone to complete the achievement.
      * @type {number}
      * @memberof UpdateAchievementV2
      */
-    target?: number;
+    target: number;
     /**
      * The relative duration after which the achievement ends and resets for a particular customer profile.
      * 
@@ -121,23 +121,11 @@ export interface UpdateAchievementV2 {
      */
     allowRollbackAfterCompletion?: boolean;
     /**
-     * Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.
-     * @type {boolean}
-     * @memberof UpdateAchievementV2
-     */
-    sandbox?: boolean;
-    /**
      * A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.
      * @type {Array<number>}
      * @memberof UpdateAchievementV2
      */
-    subscribedApplications?: Array<number>;
-    /**
-     * A string containing an IANA timezone descriptor.
-     * @type {string}
-     * @memberof UpdateAchievementV2
-     */
-    timezone?: string;
+    subscribedApplications: Array<number>;
 }
 
 
@@ -165,6 +153,11 @@ export type UpdateAchievementV2ActivationPolicyEnum = typeof UpdateAchievementV2
  * Check if a given object implements the UpdateAchievementV2 interface.
  */
 export function instanceOfUpdateAchievementV2(value: object): value is UpdateAchievementV2 {
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('title' in value) || value['title'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('target' in value) || value['target'] === undefined) return false;
+    if (!('subscribedApplications' in value) || value['subscribedApplications'] === undefined) return false;
     return true;
 }
 
@@ -178,19 +171,17 @@ export function UpdateAchievementV2FromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'name': json['name'] == null ? undefined : json['name'],
-        'title': json['title'] == null ? undefined : json['title'],
-        'description': json['description'] == null ? undefined : json['description'],
-        'target': json['target'] == null ? undefined : json['target'],
+        'name': json['name'],
+        'title': json['title'],
+        'description': json['description'],
+        'target': json['target'],
         'period': json['period'] == null ? undefined : json['period'],
         'recurrencePolicy': json['recurrencePolicy'] == null ? undefined : json['recurrencePolicy'],
         'activationPolicy': json['activationPolicy'] == null ? undefined : json['activationPolicy'],
         'fixedStartDate': json['fixedStartDate'] == null ? undefined : (new Date(json['fixedStartDate'])),
         'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
         'allowRollbackAfterCompletion': json['allowRollbackAfterCompletion'] == null ? undefined : json['allowRollbackAfterCompletion'],
-        'sandbox': json['sandbox'] == null ? undefined : json['sandbox'],
-        'subscribedApplications': json['subscribedApplications'] == null ? undefined : json['subscribedApplications'],
-        'timezone': json['timezone'] == null ? undefined : json['timezone'],
+        'subscribedApplications': json['subscribedApplications'],
     };
 }
 
@@ -215,9 +206,7 @@ export function UpdateAchievementV2ToJSONTyped(value?: UpdateAchievementV2 | nul
         'fixedStartDate': value['fixedStartDate'] == null ? value['fixedStartDate'] : value['fixedStartDate'].toISOString(),
         'endDate': value['endDate'] == null ? value['endDate'] : value['endDate'].toISOString(),
         'allowRollbackAfterCompletion': value['allowRollbackAfterCompletion'],
-        'sandbox': value['sandbox'],
         'subscribedApplications': value['subscribedApplications'],
-        'timezone': value['timezone'],
     };
 }
 

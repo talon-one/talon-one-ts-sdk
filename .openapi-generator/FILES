@@ -163,6 +163,7 @@ docs/CardLedgerTransactionLogEntryIntegrationAPI.md
 docs/CartItem.md
 docs/CartItemFilterTemplate.md
 docs/Catalog.md
+docs/CatalogAction.md
 docs/CatalogActionFilter.md
 docs/CatalogItem.md
 docs/CatalogRule.md
@@ -242,6 +243,9 @@ docs/EventAttributesEntity.md
 docs/EventType.md
 docs/EventV2.md
 docs/EventV3.md
+docs/EventV3Connections.md
+docs/EventV3Entity.md
+docs/EventV3RequestEntity.md
 docs/Experiment.md
 docs/ExperimentCampaignCopy.md
 docs/ExperimentCopy.md
@@ -367,6 +371,7 @@ docs/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActio
 docs/IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.md
 docs/IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.md
 docs/IntegrationHubEventRecord.md
+docs/IntegrationHubEventStatusUpdate.md
 docs/IntegrationHubFlow.md
 docs/IntegrationHubFlowConfig.md
 docs/IntegrationHubFlowConfigResponse.md
@@ -481,6 +486,7 @@ docs/NewCustomerSession.md
 docs/NewCustomerSessionV2.md
 docs/NewEvent.md
 docs/NewEventType.md
+docs/NewEventV3Entity.md
 docs/NewExperiment.md
 docs/NewExperimentVariant.md
 docs/NewExperimentVariantArray.md
@@ -577,6 +583,7 @@ docs/RevisionActivation.md
 docs/RevisionActivationRequest.md
 docs/RevisionVersion.md
 docs/Reward.md
+docs/RewardPointsRequired.md
 docs/RiskNotification.md
 docs/Role.md
 docs/RoleAssign.md
@@ -651,6 +658,8 @@ docs/StrikethroughSetDiscountPerItemMemberEffectProps.md
 docs/StrikethroughTrigger.md
 docs/SummarizeCampaignStoreBudget200Response.md
 docs/SummaryCampaignStoreBudget.md
+docs/SupportRequest.md
+docs/SupportRequestInput.md
 docs/TalangAttribute.md
 docs/TalangAttributeVisibility.md
 docs/TemplateArgDef.md
@@ -708,6 +717,7 @@ docs/UpdateReferralBatch.md
 docs/UpdateReward.md
 docs/UpdateRole.md
 docs/UpdateStore.md
+docs/UpdateSupportRequest.md
 docs/UpdateUser.md
 docs/User.md
 docs/UserEntity.md
@@ -879,6 +889,7 @@ src/models/CardLedgerTransactionLogEntryIntegrationAPI.ts
 src/models/CartItem.ts
 src/models/CartItemFilterTemplate.ts
 src/models/Catalog.ts
+src/models/CatalogAction.ts
 src/models/CatalogActionFilter.ts
 src/models/CatalogItem.ts
 src/models/CatalogRule.ts
@@ -958,6 +969,9 @@ src/models/EventAttributesEntity.ts
 src/models/EventType.ts
 src/models/EventV2.ts
 src/models/EventV3.ts
+src/models/EventV3Connections.ts
+src/models/EventV3Entity.ts
+src/models/EventV3RequestEntity.ts
 src/models/Experiment.ts
 src/models/ExperimentCampaignCopy.ts
 src/models/ExperimentCopy.ts
@@ -1082,6 +1096,7 @@ src/models/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificatio
 src/models/IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.ts
 src/models/IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.ts
 src/models/IntegrationHubEventRecord.ts
+src/models/IntegrationHubEventStatusUpdate.ts
 src/models/IntegrationHubFlow.ts
 src/models/IntegrationHubFlowConfig.ts
 src/models/IntegrationHubFlowConfigResponse.ts
@@ -1195,6 +1210,7 @@ src/models/NewCustomerSession.ts
 src/models/NewCustomerSessionV2.ts
 src/models/NewEvent.ts
 src/models/NewEventType.ts
+src/models/NewEventV3Entity.ts
 src/models/NewExperiment.ts
 src/models/NewExperimentVariant.ts
 src/models/NewExperimentVariantArray.ts
@@ -1291,6 +1307,7 @@ src/models/RevisionActivation.ts
 src/models/RevisionActivationRequest.ts
 src/models/RevisionVersion.ts
 src/models/Reward.ts
+src/models/RewardPointsRequired.ts
 src/models/RiskNotification.ts
 src/models/Role.ts
 src/models/RoleAssign.ts
@@ -1365,6 +1382,8 @@ src/models/StrikethroughSetDiscountPerItemMemberEffectProps.ts
 src/models/StrikethroughTrigger.ts
 src/models/SummarizeCampaignStoreBudget200Response.ts
 src/models/SummaryCampaignStoreBudget.ts
+src/models/SupportRequest.ts
+src/models/SupportRequestInput.ts
 src/models/TalangAttribute.ts
 src/models/TalangAttributeVisibility.ts
 src/models/TemplateArgDef.ts
@@ -1422,6 +1441,7 @@ src/models/UpdateReferralBatch.ts
 src/models/UpdateReward.ts
 src/models/UpdateRole.ts
 src/models/UpdateStore.ts
+src/models/UpdateSupportRequest.ts
 src/models/UpdateUser.ts
 src/models/User.ts
 src/models/UserEntity.ts

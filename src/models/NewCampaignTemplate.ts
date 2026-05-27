@@ -182,7 +182,8 @@ export const NewCampaignTemplateFeaturesEnum = {
     Loyalty: 'loyalty',
     Giveaways: 'giveaways',
     Strikethrough: 'strikethrough',
-    Achievements: 'achievements'
+    Achievements: 'achievements',
+    AdvancedEvents: 'advancedEvents'
 } as const;
 export type NewCampaignTemplateFeaturesEnum = typeof NewCampaignTemplateFeaturesEnum[keyof typeof NewCampaignTemplateFeaturesEnum];
 

@@ -100,7 +100,9 @@ export const TalangAttributeEntityEnum = {
     Referral: 'Referral',
     Session: 'Session',
     Store: 'Store',
-    Achievements: 'Achievements'
+    Achievements: 'Achievements',
+    AdvancedEvent: 'AdvancedEvent',
+    AdvancedEventConnectedSession: 'AdvancedEventConnectedSession'
 } as const;
 export type TalangAttributeEntityEnum = typeof TalangAttributeEntityEnum[keyof typeof TalangAttributeEntityEnum];
 

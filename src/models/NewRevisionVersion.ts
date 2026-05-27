@@ -124,7 +124,8 @@ export const NewRevisionVersionFeaturesEnum = {
     Loyalty: 'loyalty',
     Giveaways: 'giveaways',
     Strikethrough: 'strikethrough',
-    Achievements: 'achievements'
+    Achievements: 'achievements',
+    AdvancedEvents: 'advancedEvents'
 } as const;
 export type NewRevisionVersionFeaturesEnum = typeof NewRevisionVersionFeaturesEnum[keyof typeof NewRevisionVersionFeaturesEnum];
 

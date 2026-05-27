@@ -12,6 +12,7 @@ Name | Type
 `visibilityConditions` | [Rule](Rule.md)
 `rule` | [Rule](Rule.md)
 `bindings` | [Array&lt;Binding&gt;](Binding.md)
+`pointsRequired` | [Array&lt;RewardPointsRequired&gt;](RewardPointsRequired.md)
 
 ## Example
 
@@ -26,6 +27,7 @@ const example = {
   "visibilityConditions": null,
   "rule": null,
   "bindings": [],
+  "pointsRequired": null,
 } satisfies UpdateReward
 
 console.log(example)

@@ -27,6 +27,7 @@ Name | Type
 `total` | number
 `cartItemTotal` | number
 `additionalCostTotal` | number
+`cartItemAdditionalCostTotal` | number
 `updated` | Date
 
 ## Example
@@ -54,9 +55,10 @@ const example = {
   "attributes": {ShippingCity=Berlin},
   "firstSession": true,
   "updateCount": 3,
-  "total": 119.99,
+  "total": 134.99,
   "cartItemTotal": 99.99,
   "additionalCostTotal": 20,
+  "cartItemAdditionalCostTotal": 15,
   "updated": 2020-02-08T14:15:22Z,
 } satisfies CustomerSessionV2
 
