@@ -1,23 +1,22 @@
 
-# ScimServiceProviderConfigResponsePatch
+# ExperimentConfidenceTimeline
 
-Configuration settings related to patch operations, which allow partial updates to SCIM resources.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`supported` | boolean
+`data` | [Array&lt;ExperimentConfidenceTimelineDataPoint&gt;](ExperimentConfidenceTimelineDataPoint.md)
 
 ## Example
 
 ```typescript
-import type { ScimServiceProviderConfigResponsePatch } from 'talon_one_sdk'
+import type { ExperimentConfidenceTimeline } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "supported": null,
-} satisfies ScimServiceProviderConfigResponsePatch
+  "data": null,
+} satisfies ExperimentConfidenceTimeline
 
 console.log(example)
 
@@ -26,7 +25,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ScimServiceProviderConfigResponsePatch
+const exampleParsed = JSON.parse(exampleJSON) as ExperimentConfidenceTimeline
 console.log(exampleParsed)
 ```
 

@@ -22,7 +22,7 @@ const example = {
   "profileId": URNGV8294NV,
   "storeIntegrationId": STORE-001,
   "type": pageViewed,
-  "attributes": {myAttribute=myValue},
+  "attributes": null,
   "sessionId": 175KJPS947296,
 } satisfies NewEvent
 

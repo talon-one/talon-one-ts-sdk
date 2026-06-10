@@ -72,9 +72,9 @@ export type IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificati
  * Check if a given object implements the IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction interface.
  */
 export function instanceOfIntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction(value: object): value is IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction {
-    if (!('amount' in value) || value['amount'] === undefined) return false;
-    if (!('operation' in value) || value['operation'] === undefined) return false;
-    if (!('transactionUUID' in value) || value['transactionUUID'] === undefined) return false;
+    if ((!('amount' in value) && !('Amount' in value)) || (value['amount'] === undefined && value['Amount'] === undefined)) return false;
+    if ((!('operation' in value) && !('Operation' in value)) || (value['operation'] === undefined && value['Operation'] === undefined)) return false;
+    if ((!('transactionUUID' in value) && !('TransactionUUID' in value)) || (value['transactionUUID'] === undefined && value['TransactionUUID'] === undefined)) return false;
     return true;
 }
 

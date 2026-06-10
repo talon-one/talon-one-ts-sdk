@@ -27,8 +27,8 @@ const example = {
   "userId": 388,
   "applicationId": 359,
   "entity": /v1/applications/359/campaigns/6727,
-  "old": {},
-  "_new": {applicationId"=359, attributes"={}, campaignGroups"=[], created"=2022-07-08T13:04:02.972762328Z, description"=, features"=[referrals, loyalty], id=6727},
+  "old": null,
+  "_new": null,
   "managementKeyId": 3,
 } satisfies Change
 

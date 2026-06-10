@@ -73,12 +73,12 @@ export interface TierWillDowngradeData {
  * Check if a given object implements the TierWillDowngradeData interface.
  */
 export function instanceOfTierWillDowngradeData(value: object): value is TierWillDowngradeData {
-    if (!('customerProfileID' in value) || value['customerProfileID'] === undefined) return false;
-    if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
-    if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
-    if (!('currentTier' in value) || value['currentTier'] === undefined) return false;
-    if (!('currentPoints' in value) || value['currentPoints'] === undefined) return false;
-    if (!('pointsRequiredToRemain' in value) || value['pointsRequiredToRemain'] === undefined) return false;
+    if ((!('customerProfileID' in value) && !('CustomerProfileID' in value)) || (value['customerProfileID'] === undefined && value['CustomerProfileID'] === undefined)) return false;
+    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
+    if ((!('currentTier' in value) && !('CurrentTier' in value)) || (value['currentTier'] === undefined && value['CurrentTier'] === undefined)) return false;
+    if ((!('currentPoints' in value) && !('CurrentPoints' in value)) || (value['currentPoints'] === undefined && value['CurrentPoints'] === undefined)) return false;
+    if ((!('pointsRequiredToRemain' in value) && !('PointsRequiredToRemain' in value)) || (value['pointsRequiredToRemain'] === undefined && value['PointsRequiredToRemain'] === undefined)) return false;
     return true;
 }
 

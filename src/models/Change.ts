@@ -50,13 +50,13 @@ export interface Change {
      */
     entity: string;
     /**
-     * Resource before the change occurred.
+     * Arbitrary properties associated with this campaign.
      * @type {object}
      * @memberof Change
      */
     old?: object;
     /**
-     * Resource after the change occurred.
+     * Arbitrary properties associated with this campaign.
      * @type {object}
      * @memberof Change
      */

@@ -103,7 +103,7 @@ export interface CouponCreationJob {
      */
     couponSettings?: CodeGeneratorSettings;
     /**
-     * Arbitrary properties associated with coupons.
+     * Arbitrary properties associated with this campaign.
      * @type {object}
      * @memberof CouponCreationJob
      */

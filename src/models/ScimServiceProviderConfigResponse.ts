@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ScimServiceProviderConfigResponsePatch } from './ScimServiceProviderConfigResponsePatch';
-import {
-    ScimServiceProviderConfigResponsePatchFromJSON,
-    ScimServiceProviderConfigResponsePatchFromJSONTyped,
-    ScimServiceProviderConfigResponsePatchToJSON,
-    ScimServiceProviderConfigResponsePatchToJSONTyped,
-} from './ScimServiceProviderConfigResponsePatch';
 import type { ScimServiceProviderConfigResponseFilter } from './ScimServiceProviderConfigResponseFilter';
 import {
     ScimServiceProviderConfigResponseFilterFromJSON,
@@ -27,13 +20,6 @@ import {
     ScimServiceProviderConfigResponseFilterToJSON,
     ScimServiceProviderConfigResponseFilterToJSONTyped,
 } from './ScimServiceProviderConfigResponseFilter';
-import type { ScimServiceProviderConfigResponseSort } from './ScimServiceProviderConfigResponseSort';
-import {
-    ScimServiceProviderConfigResponseSortFromJSON,
-    ScimServiceProviderConfigResponseSortFromJSONTyped,
-    ScimServiceProviderConfigResponseSortToJSON,
-    ScimServiceProviderConfigResponseSortToJSONTyped,
-} from './ScimServiceProviderConfigResponseSort';
 import type { ScimServiceProviderConfigResponseBulk } from './ScimServiceProviderConfigResponseBulk';
 import {
     ScimServiceProviderConfigResponseBulkFromJSON,
@@ -81,10 +67,10 @@ export interface ScimServiceProviderConfigResponse {
     filter?: ScimServiceProviderConfigResponseFilter;
     /**
      * 
-     * @type {ScimServiceProviderConfigResponsePatch}
+     * @type {ScimServiceProviderConfigResponseChangePassword}
      * @memberof ScimServiceProviderConfigResponse
      */
-    patch?: ScimServiceProviderConfigResponsePatch;
+    patch?: ScimServiceProviderConfigResponseChangePassword;
     /**
      * A list of SCIM schemas that define the structure and data types supported by the service provider.
      * @type {Array<string>}
@@ -93,10 +79,10 @@ export interface ScimServiceProviderConfigResponse {
     schemas?: Array<string>;
     /**
      * 
-     * @type {ScimServiceProviderConfigResponseSort}
+     * @type {ScimServiceProviderConfigResponseChangePassword}
      * @memberof ScimServiceProviderConfigResponse
      */
-    sort?: ScimServiceProviderConfigResponseSort;
+    sort?: ScimServiceProviderConfigResponseChangePassword;
 }
 
 /**
@@ -120,9 +106,9 @@ export function ScimServiceProviderConfigResponseFromJSONTyped(json: any, ignore
         'changePassword': json['changePassword'] == null ? undefined : ScimServiceProviderConfigResponseChangePasswordFromJSON(json['changePassword']),
         'documentationUri': json['documentationUri'] == null ? undefined : json['documentationUri'],
         'filter': json['filter'] == null ? undefined : ScimServiceProviderConfigResponseFilterFromJSON(json['filter']),
-        'patch': json['patch'] == null ? undefined : ScimServiceProviderConfigResponsePatchFromJSON(json['patch']),
+        'patch': json['patch'] == null ? undefined : ScimServiceProviderConfigResponseChangePasswordFromJSON(json['patch']),
         'schemas': json['schemas'] == null ? undefined : json['schemas'],
-        'sort': json['sort'] == null ? undefined : ScimServiceProviderConfigResponseSortFromJSON(json['sort']),
+        'sort': json['sort'] == null ? undefined : ScimServiceProviderConfigResponseChangePasswordFromJSON(json['sort']),
     };
 }
 
@@ -141,9 +127,9 @@ export function ScimServiceProviderConfigResponseToJSONTyped(value?: ScimService
         'changePassword': ScimServiceProviderConfigResponseChangePasswordToJSON(value['changePassword']),
         'documentationUri': value['documentationUri'],
         'filter': ScimServiceProviderConfigResponseFilterToJSON(value['filter']),
-        'patch': ScimServiceProviderConfigResponsePatchToJSON(value['patch']),
+        'patch': ScimServiceProviderConfigResponseChangePasswordToJSON(value['patch']),
         'schemas': value['schemas'],
-        'sort': ScimServiceProviderConfigResponseSortToJSON(value['sort']),
+        'sort': ScimServiceProviderConfigResponseChangePasswordToJSON(value['sort']),
     };
 }
 

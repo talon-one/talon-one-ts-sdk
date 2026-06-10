@@ -38,7 +38,7 @@ export interface TemplateArgDef {
      */
     title: string;
     /**
-     * Arbitrary metadata that may be used to render an input for this argument.
+     * Arbitrary properties associated with this campaign.
      * @type {object}
      * @memberof TemplateArgDef
      */

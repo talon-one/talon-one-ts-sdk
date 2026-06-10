@@ -61,8 +61,10 @@ export type CampaignEvaluationTreeChangedMessageNotificationTypeEnum = typeof Ca
  * Check if a given object implements the CampaignEvaluationTreeChangedMessage interface.
  */
 export function instanceOfCampaignEvaluationTreeChangedMessage(value: object): value is CampaignEvaluationTreeChangedMessage {
-    if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
-    if (!('totalResultSize' in value) || value['totalResultSize'] === undefined) return false;
+    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
+    if (value['notificationType'] !== 'CampaignNotification' && value['NotificationType'] !== 'CampaignNotification') return false;
+    
+    if ((!('totalResultSize' in value) && !('TotalResultSize' in value)) || (value['totalResultSize'] === undefined && value['TotalResultSize'] === undefined)) return false;
     return true;
 }
 

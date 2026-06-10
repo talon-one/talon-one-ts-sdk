@@ -49,9 +49,9 @@ export interface IntegrationHubEventPayloadCouponBasedNotificationsLimits {
  * Check if a given object implements the IntegrationHubEventPayloadCouponBasedNotificationsLimits interface.
  */
 export function instanceOfIntegrationHubEventPayloadCouponBasedNotificationsLimits(value: object): value is IntegrationHubEventPayloadCouponBasedNotificationsLimits {
-    if (!('action' in value) || value['action'] === undefined) return false;
-    if (!('limit' in value) || value['limit'] === undefined) return false;
-    if (!('entities' in value) || value['entities'] === undefined) return false;
+    if ((!('action' in value) && !('Action' in value)) || (value['action'] === undefined && value['Action'] === undefined)) return false;
+    if ((!('limit' in value) && !('Limit' in value)) || (value['limit'] === undefined && value['Limit'] === undefined)) return false;
+    if ((!('entities' in value) && !('Entities' in value)) || (value['entities'] === undefined && value['Entities'] === undefined)) return false;
     return true;
 }
 

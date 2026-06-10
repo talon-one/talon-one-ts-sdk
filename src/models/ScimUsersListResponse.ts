@@ -51,7 +51,7 @@ export interface ScimUsersListResponse {
  * Check if a given object implements the ScimUsersListResponse interface.
  */
 export function instanceOfScimUsersListResponse(value: object): value is ScimUsersListResponse {
-    if (!('resources' in value) || value['resources'] === undefined) return false;
+    if ((!('resources' in value) && !('Resources' in value)) || (value['resources'] === undefined && value['Resources'] === undefined)) return false;
     return true;
 }
 

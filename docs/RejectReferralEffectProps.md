@@ -1,7 +1,7 @@
 
 # RejectReferralEffectProps
 
-The properties specific to the \"rejectReferral\" effect. This gets triggered whenever the referral code was rejected. See rejectionReason for more info on why.
+This effect indicates that the provided referral code is invalid.
 
 ## Properties
 

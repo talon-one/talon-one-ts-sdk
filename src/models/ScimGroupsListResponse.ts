@@ -52,7 +52,7 @@ export interface ScimGroupsListResponse {
  * Check if a given object implements the ScimGroupsListResponse interface.
  */
 export function instanceOfScimGroupsListResponse(value: object): value is ScimGroupsListResponse {
-    if (!('resources' in value) || value['resources'] === undefined) return false;
+    if ((!('resources' in value) && !('Resources' in value)) || (value['resources'] === undefined && value['Resources'] === undefined)) return false;
     return true;
 }
 

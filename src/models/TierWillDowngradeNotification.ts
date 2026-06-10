@@ -61,9 +61,11 @@ export type TierWillDowngradeNotificationNotificationTypeEnum = typeof TierWillD
  * Check if a given object implements the TierWillDowngradeNotification interface.
  */
 export function instanceOfTierWillDowngradeNotification(value: object): value is TierWillDowngradeNotification {
-    if (!('totalResultSize' in value) || value['totalResultSize'] === undefined) return false;
-    if (!('data' in value) || value['data'] === undefined) return false;
-    if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
+    if ((!('totalResultSize' in value) && !('TotalResultSize' in value)) || (value['totalResultSize'] === undefined && value['TotalResultSize'] === undefined)) return false;
+    if ((!('data' in value) && !('Data' in value)) || (value['data'] === undefined && value['Data'] === undefined)) return false;
+    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
+    if (value['notificationType'] !== 'TierWillDowngrade' && value['NotificationType'] !== 'TierWillDowngrade') return false;
+    
     return true;
 }
 

@@ -69,13 +69,13 @@ export interface ExpiringCardPointsData {
  * Check if a given object implements the ExpiringCardPointsData interface.
  */
 export function instanceOfExpiringCardPointsData(value: object): value is ExpiringCardPointsData {
-    if (!('expiryDate' in value) || value['expiryDate'] === undefined) return false;
-    if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
-    if (!('amountOfExpiringPoints' in value) || value['amountOfExpiringPoints'] === undefined) return false;
-    if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
-    if (!('cardIdentifier' in value) || value['cardIdentifier'] === undefined) return false;
-    if (!('usersPerCardLimit' in value) || value['usersPerCardLimit'] === undefined) return false;
-    if (!('profiles' in value) || value['profiles'] === undefined) return false;
+    if ((!('expiryDate' in value) && !('ExpiryDate' in value)) || (value['expiryDate'] === undefined && value['ExpiryDate'] === undefined)) return false;
+    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('amountOfExpiringPoints' in value) && !('AmountOfExpiringPoints' in value)) || (value['amountOfExpiringPoints'] === undefined && value['AmountOfExpiringPoints'] === undefined)) return false;
+    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
+    if ((!('cardIdentifier' in value) && !('CardIdentifier' in value)) || (value['cardIdentifier'] === undefined && value['CardIdentifier'] === undefined)) return false;
+    if ((!('usersPerCardLimit' in value) && !('UsersPerCardLimit' in value)) || (value['usersPerCardLimit'] === undefined && value['UsersPerCardLimit'] === undefined)) return false;
+    if ((!('profiles' in value) && !('Profiles' in value)) || (value['profiles'] === undefined && value['Profiles'] === undefined)) return false;
     return true;
 }
 

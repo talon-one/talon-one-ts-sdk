@@ -86,7 +86,7 @@ export interface CampaignStateChangedNotificationItem {
  * Check if a given object implements the CampaignStateChangedNotificationItem interface.
  */
 export function instanceOfCampaignStateChangedNotificationItem(value: object): value is CampaignStateChangedNotificationItem {
-    if (!('event' in value) || value['event'] === undefined) return false;
+    if ((!('event' in value) && !('Event' in value)) || (value['event'] === undefined && value['Event'] === undefined)) return false;
     if (!('campaign' in value) || value['campaign'] === undefined) return false;
     if (!('oldState' in value) || value['oldState'] === undefined) return false;
     if (!('newState' in value) || value['newState'] === undefined) return false;

@@ -124,7 +124,7 @@ export interface IntegrationHubEventPayloadCouponBasedNotifications {
      */
     batchId?: string;
     /**
-     * 
+     * Arbitrary properties associated with this campaign.
      * @type {object}
      * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
@@ -159,15 +159,15 @@ export interface IntegrationHubEventPayloadCouponBasedNotifications {
  * Check if a given object implements the IntegrationHubEventPayloadCouponBasedNotifications interface.
  */
 export function instanceOfIntegrationHubEventPayloadCouponBasedNotifications(value: object): value is IntegrationHubEventPayloadCouponBasedNotifications {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('usageLimit' in value) || value['usageLimit'] === undefined) return false;
-    if (!('usageCounter' in value) || value['usageCounter'] === undefined) return false;
-    if (!('publishedAt' in value) || value['publishedAt'] === undefined) return false;
-    if (!('sourceOfEvent' in value) || value['sourceOfEvent'] === undefined) return false;
-    if (!('employeeName' in value) || value['employeeName'] === undefined) return false;
+    if ((!('id' in value) && !('Id' in value)) || (value['id'] === undefined && value['Id'] === undefined)) return false;
+    if ((!('created' in value) && !('Created' in value)) || (value['created'] === undefined && value['Created'] === undefined)) return false;
+    if ((!('campaignId' in value) && !('CampaignId' in value)) || (value['campaignId'] === undefined && value['CampaignId'] === undefined)) return false;
+    if ((!('value' in value) && !('Value' in value)) || (value['value'] === undefined && value['Value'] === undefined)) return false;
+    if ((!('usageLimit' in value) && !('UsageLimit' in value)) || (value['usageLimit'] === undefined && value['UsageLimit'] === undefined)) return false;
+    if ((!('usageCounter' in value) && !('UsageCounter' in value)) || (value['usageCounter'] === undefined && value['UsageCounter'] === undefined)) return false;
+    if ((!('publishedAt' in value) && !('PublishedAt' in value)) || (value['publishedAt'] === undefined && value['PublishedAt'] === undefined)) return false;
+    if ((!('sourceOfEvent' in value) && !('SourceOfEvent' in value)) || (value['sourceOfEvent'] === undefined && value['SourceOfEvent'] === undefined)) return false;
+    if ((!('employeeName' in value) && !('EmployeeName' in value)) || (value['employeeName'] === undefined && value['EmployeeName'] === undefined)) return false;
     return true;
 }
 

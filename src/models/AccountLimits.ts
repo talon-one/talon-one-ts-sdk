@@ -121,7 +121,7 @@ export function instanceOfAccountLimits(value: object): value is AccountLimits {
     if (!('users' in value) || value['users'] === undefined) return false;
     if (!('apiVolume' in value) || value['apiVolume'] === undefined) return false;
     if (!('promotionTypes' in value) || value['promotionTypes'] === undefined) return false;
-    if (!('secondaryDeploymentPrice' in value) || value['secondaryDeploymentPrice'] === undefined) return false;
+    if ((!('secondaryDeploymentPrice' in value) && !('SecondaryDeploymentPrice' in value)) || (value['secondaryDeploymentPrice'] === undefined && value['SecondaryDeploymentPrice'] === undefined)) return false;
     if (!('currencyCode' in value) || value['currencyCode'] === undefined) return false;
     return true;
 }

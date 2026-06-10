@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`loyaltyProgramId` | number
 `loyaltyPointsLimit` | number
 
 ## Example
@@ -15,6 +16,7 @@ import type { RolesV2Thresholds } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
+  "loyaltyProgramId": 8,
   "loyaltyPointsLimit": 100,
 } satisfies RolesV2Thresholds
 

@@ -52,7 +52,7 @@ export interface CampaignDeletedNotificationItem {
  * Check if a given object implements the CampaignDeletedNotificationItem interface.
  */
 export function instanceOfCampaignDeletedNotificationItem(value: object): value is CampaignDeletedNotificationItem {
-    if (!('event' in value) || value['event'] === undefined) return false;
+    if ((!('event' in value) && !('Event' in value)) || (value['event'] === undefined && value['Event'] === undefined)) return false;
     if (!('campaign' in value) || value['campaign'] === undefined) return false;
     if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
     return true;

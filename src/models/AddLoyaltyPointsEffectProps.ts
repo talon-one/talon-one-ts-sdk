@@ -14,14 +14,27 @@
 
 import { mapValues } from '../runtime';
 /**
- * The properties specific to the "addLoyaltyPoints" effect. This gets triggered whenever a validated rule contained an "add loyalty" effect. These points are automatically stored and managed inside Talon.One.
+ * This effect indicates that a defined amount of loyalty points was successfully added to the customer's profile or to a loyalty card.
  * 
+ * If you use the [Add loyalty points per item effect](https://docs.talon.one/docs/product/rules/effects/available-effects#reward-effects), use the `cartItemPosition` property to identify which item to add the loyalty points for.
+ * 
+ * Enabling [partial rewards](https://docs.talon.one/docs/product/applications/manage-general-settings#partial-rewards) allows a rule that would fail because of insufficient budget to pass. The rule still fails when the budget reaches 0. Use the `desiredValue` property to identify the original amount of loyalty points.
+ * 
+ * If you use **Add loyalty points per item** and if the session contains some cart items with _quantity > 1_, use the `cartItemSubPosition` property to identify the item unit in its line item. See the example below for more information.
+ * 
+ * If your list of cart items is a [bundle definition](https://docs.talon.one/docs/product/rules/create-and-manage-bundles), use the `bundleIndex` and `bundleName` properties to identify the bundle containing the items for which loyalty points are added.
+ * 
+ * If you have set custom activation and expiration dates for the loyalty points, use the `startDate` and `expiryDate` properties to identify when the reward will be active and when will expire.
+ * 
+ * If the loyalty program is [profile-based](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types), use the `recipientIntegrationId` property to identify the user who receives the loyalty points. If the loyalty program is [card-based](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types), use the `cardIdentifier` property to identify the loyalty card on which these points are added.
+ * 
+ * The points only persist when the session is closed.
  * @export
  * @interface AddLoyaltyPointsEffectProps
  */
 export interface AddLoyaltyPointsEffectProps {
     /**
-     * The name / description of this loyalty point addition.
+     * The reason of this loyalty point addition.
      * @type {string}
      * @memberof AddLoyaltyPointsEffectProps
      */
@@ -45,7 +58,7 @@ export interface AddLoyaltyPointsEffectProps {
      */
     value: number;
     /**
-     * The original amount of loyalty points to be awarded.
+     * (Partial rewards enabled only) The amount of loyalty points to be awarded without considering budget limitations.
      * @type {number}
      * @memberof AddLoyaltyPointsEffectProps
      */
@@ -57,68 +70,61 @@ export interface AddLoyaltyPointsEffectProps {
      */
     recipientIntegrationId: string;
     /**
-     * Date after which points will be valid.
+     * The date after which the added points will be valid.
      * @type {Date}
      * @memberof AddLoyaltyPointsEffectProps
      */
     startDate?: Date;
     /**
-     * Date after which points will expire.
+     * The date after which the added points will expire.
      * @type {Date}
      * @memberof AddLoyaltyPointsEffectProps
      */
     expiryDate?: Date;
     /**
-     * The identifier of this addition in the loyalty ledger.
+     * The identifier of this loyalty point transaction.
      * @type {string}
      * @memberof AddLoyaltyPointsEffectProps
      */
     transactionUUID: string;
     /**
-     * The index of the item in the cart items list on which the loyal points addition should be applied.
+     * (_Add points per cart item_ only.) The index of the item in the `cartItem` object for which these points were added.
      * @type {number}
      * @memberof AddLoyaltyPointsEffectProps
      */
     cartItemPosition?: number;
     /**
-     * For cart items with `quantity` > 1, the sub position indicates to which item the loyalty points addition is applied.
-     * 
+     * (_Add points per cart item_ ) The index of the item unit in its line item.
      * @type {number}
      * @memberof AddLoyaltyPointsEffectProps
      */
     cartItemSubPosition?: number;
     /**
-     * The card on which these points were added.
+     * The identifier of the card on which these points were added.
      * @type {string}
      * @memberof AddLoyaltyPointsEffectProps
      */
     cardIdentifier?: string;
     /**
-     * The position of the bundle in a list of item bundles created from the same bundle definition.
+     * _(With bundles only)_ The position of the specific bundle in the list of bundles created from the same bundle definition.
      * @type {number}
      * @memberof AddLoyaltyPointsEffectProps
      */
     bundleIndex?: number;
     /**
-     * The name of the bundle definition.
+     * _(With bundles only)_ The name of the bundle definition.
      * @type {string}
      * @memberof AddLoyaltyPointsEffectProps
      */
     bundleName?: string;
     /**
-     * If `true`, the loyalty points remain pending until a specific action is complete. The `startDate` parameter automatically sets to `on_action`.
-     * 
+     * Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.
      * @type {boolean}
      * @memberof AddLoyaltyPointsEffectProps
      */
     awaitsActivation?: boolean;
     /**
-     * The duration for which the points remain active, calculated relative to the 
-     * activation date.  
-     * 
-     * **Note**: This value is returned only if `awaitsActivation` is `true` 
-     * and `expiryDate` is not set.
-     * 
+     * The duration for which the points remain active, calculated relative to their start date.
      * @type {string}
      * @memberof AddLoyaltyPointsEffectProps
      */

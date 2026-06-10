@@ -47,8 +47,10 @@ export type CampaignNotificationBaseNotificationTypeEnum = typeof CampaignNotifi
  * Check if a given object implements the CampaignNotificationBase interface.
  */
 export function instanceOfCampaignNotificationBase(value: object): value is CampaignNotificationBase {
-    if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
-    if (!('totalResultSize' in value) || value['totalResultSize'] === undefined) return false;
+    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
+    if (value['notificationType'] !== 'CampaignNotification' && value['NotificationType'] !== 'CampaignNotification') return false;
+    
+    if ((!('totalResultSize' in value) && !('TotalResultSize' in value)) || (value['totalResultSize'] === undefined && value['TotalResultSize'] === undefined)) return false;
     return true;
 }
 

@@ -14,19 +14,19 @@
 
 import { mapValues } from '../runtime';
 /**
- * The properties specific to the "triggerWebhook" effect. This gets triggered whenever a validated rule contained a "trigger webhook" effect. This is communicated as an FYI and should usually not require action on your side.
+ * This effect is triggered when a rule containing a [webhook effect](https://docs.talon.one/docs/product/rules/effects/available-effects#webhooks) is validated. The details are shared with you for your information only. It usually doesn't require an action on your side.
  * @export
  * @interface TriggerWebhookEffectProps
  */
 export interface TriggerWebhookEffectProps {
     /**
-     * The ID of the webhook that was triggered.
+     * The internal ID of the webhook.
      * @type {number}
      * @memberof TriggerWebhookEffectProps
      */
     webhookId: number;
     /**
-     * The name of the webhook that was triggered.
+     * The name of the webhook.
      * @type {string}
      * @memberof TriggerWebhookEffectProps
      */

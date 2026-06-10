@@ -85,16 +85,16 @@ export interface GiveawayPoolNotificationData {
  * Check if a given object implements the GiveawayPoolNotificationData interface.
  */
 export function instanceOfGiveawayPoolNotificationData(value: object): value is GiveawayPoolNotificationData {
-    if (!('event' in value) || value['event'] === undefined) return false;
-    if (!('poolId' in value) || value['poolId'] === undefined) return false;
-    if (!('poolName' in value) || value['poolName'] === undefined) return false;
-    if (!('poolDescription' in value) || value['poolDescription'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('totalCodes' in value) || value['totalCodes'] === undefined) return false;
-    if (!('usedCodes' in value) || value['usedCodes'] === undefined) return false;
-    if (!('remainingCodes' in value) || value['remainingCodes'] === undefined) return false;
-    if (!('thresholdPercent' in value) || value['thresholdPercent'] === undefined) return false;
+    if ((!('event' in value) && !('Event' in value)) || (value['event'] === undefined && value['Event'] === undefined)) return false;
+    if ((!('poolId' in value) && !('PoolId' in value)) || (value['poolId'] === undefined && value['PoolId'] === undefined)) return false;
+    if ((!('poolName' in value) && !('PoolName' in value)) || (value['poolName'] === undefined && value['PoolName'] === undefined)) return false;
+    if ((!('poolDescription' in value) && !('PoolDescription' in value)) || (value['poolDescription'] === undefined && value['PoolDescription'] === undefined)) return false;
+    if ((!('accountId' in value) && !('AccountId' in value)) || (value['accountId'] === undefined && value['AccountId'] === undefined)) return false;
+    if ((!('applicationId' in value) && !('ApplicationId' in value)) || (value['applicationId'] === undefined && value['ApplicationId'] === undefined)) return false;
+    if ((!('totalCodes' in value) && !('TotalCodes' in value)) || (value['totalCodes'] === undefined && value['TotalCodes'] === undefined)) return false;
+    if ((!('usedCodes' in value) && !('UsedCodes' in value)) || (value['usedCodes'] === undefined && value['UsedCodes'] === undefined)) return false;
+    if ((!('remainingCodes' in value) && !('RemainingCodes' in value)) || (value['remainingCodes'] === undefined && value['RemainingCodes'] === undefined)) return false;
+    if ((!('thresholdPercent' in value) && !('ThresholdPercent' in value)) || (value['thresholdPercent'] === undefined && value['ThresholdPercent'] === undefined)) return false;
     return true;
 }
 

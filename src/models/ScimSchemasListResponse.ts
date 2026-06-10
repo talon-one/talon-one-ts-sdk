@@ -51,7 +51,7 @@ export interface ScimSchemasListResponse {
  * Check if a given object implements the ScimSchemasListResponse interface.
  */
 export function instanceOfScimSchemasListResponse(value: object): value is ScimSchemasListResponse {
-    if (!('resources' in value) || value['resources'] === undefined) return false;
+    if ((!('resources' in value) && !('Resources' in value)) || (value['resources'] === undefined && value['Resources'] === undefined)) return false;
     return true;
 }
 

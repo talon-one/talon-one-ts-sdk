@@ -8,7 +8,7 @@ Name | Type
 ------------ | -------------
 `totalResultSize` | number
 `batchedAt` | Date
-`eventType` | string
+`eventType` | [IntegrationHubEventType](IntegrationHubEventType.md)
 `data` | Array&lt;any&gt;
 
 ## Example

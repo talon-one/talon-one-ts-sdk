@@ -7,7 +7,8 @@
 Name | Type
 ------------ | -------------
 `applicationID` | number
-`eventType` | string
+`loyaltyProgramID` | number
+`eventType` | [IntegrationHubEventType](IntegrationHubEventType.md)
 `integrationHubFlowUrl` | string
 
 ## Example
@@ -18,6 +19,7 @@ import type { IntegrationHubFlow } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "applicationID": 54,
+  "loyaltyProgramID": 12,
   "eventType": null,
   "integrationHubFlowUrl": null,
 } satisfies IntegrationHubFlow

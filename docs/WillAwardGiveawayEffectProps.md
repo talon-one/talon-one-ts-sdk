@@ -1,7 +1,7 @@
 
 # WillAwardGiveawayEffectProps
 
-The properties specific to the \"awardGiveaway\" effect when the session is not closed yet. This effect replaces \"awardGiveaway\" only when updating a session with any state other than \"closed\". This is to ensure no giveaway codes are leaked when they are still not guaranteed to be awarded.
+The equivalent of the `awardGiveaway` effect but returned when updating a session with any state other than `closed`. This ensures no giveaway codes are leaked when they are still not guaranteed to be awarded.  For more information about session states, see [Manage the session\'s state](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#manage-the-sessions-state).
 
 ## Properties
 

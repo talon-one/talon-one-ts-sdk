@@ -129,18 +129,20 @@ export type CardAddedDeductedPointsBalancesNotificationTypeOfChangeEnum = typeof
  * Check if a given object implements the CardAddedDeductedPointsBalancesNotification interface.
  */
 export function instanceOfCardAddedDeductedPointsBalancesNotification(value: object): value is CardAddedDeductedPointsBalancesNotification {
-    if (!('cardIdentifier' in value) || value['cardIdentifier'] === undefined) return false;
-    if (!('employeeName' in value) || value['employeeName'] === undefined) return false;
-    if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
-    if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
-    if (!('profileIntegrationIDs' in value) || value['profileIntegrationIDs'] === undefined) return false;
-    if (!('sessionIntegrationID' in value) || value['sessionIntegrationID'] === undefined) return false;
-    if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
-    if (!('typeOfChange' in value) || value['typeOfChange'] === undefined) return false;
-    if (!('userID' in value) || value['userID'] === undefined) return false;
-    if (!('usersPerCardLimit' in value) || value['usersPerCardLimit'] === undefined) return false;
-    if (!('actions' in value) || value['actions'] === undefined) return false;
-    if (!('currentPoints' in value) || value['currentPoints'] === undefined) return false;
+    if ((!('cardIdentifier' in value) && !('CardIdentifier' in value)) || (value['cardIdentifier'] === undefined && value['CardIdentifier'] === undefined)) return false;
+    if ((!('employeeName' in value) && !('EmployeeName' in value)) || (value['employeeName'] === undefined && value['EmployeeName'] === undefined)) return false;
+    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
+    if (value['notificationType'] !== 'LoyaltyCardAddedDeductedPointsBalances' && value['NotificationType'] !== 'LoyaltyCardAddedDeductedPointsBalances') return false;
+    
+    if ((!('profileIntegrationIDs' in value) && !('ProfileIntegrationIDs' in value)) || (value['profileIntegrationIDs'] === undefined && value['ProfileIntegrationIDs'] === undefined)) return false;
+    if ((!('sessionIntegrationID' in value) && !('SessionIntegrationID' in value)) || (value['sessionIntegrationID'] === undefined && value['SessionIntegrationID'] === undefined)) return false;
+    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
+    if ((!('typeOfChange' in value) && !('TypeOfChange' in value)) || (value['typeOfChange'] === undefined && value['TypeOfChange'] === undefined)) return false;
+    if ((!('userID' in value) && !('UserID' in value)) || (value['userID'] === undefined && value['UserID'] === undefined)) return false;
+    if ((!('usersPerCardLimit' in value) && !('UsersPerCardLimit' in value)) || (value['usersPerCardLimit'] === undefined && value['UsersPerCardLimit'] === undefined)) return false;
+    if ((!('actions' in value) && !('Actions' in value)) || (value['actions'] === undefined && value['Actions'] === undefined)) return false;
+    if ((!('currentPoints' in value) && !('CurrentPoints' in value)) || (value['currentPoints'] === undefined && value['CurrentPoints'] === undefined)) return false;
     return true;
 }
 

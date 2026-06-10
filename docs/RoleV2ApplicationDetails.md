@@ -10,7 +10,6 @@ Name | Type
 `campaign` | string
 `draftCampaign` | string
 `tools` | string
-`thresholds` | [RolesV2Thresholds](RolesV2Thresholds.md)
 
 ## Example
 
@@ -23,7 +22,6 @@ const example = {
   "campaign": null,
   "draftCampaign": null,
   "tools": Tools permission set,
-  "thresholds": null,
 } satisfies RoleV2ApplicationDetails
 
 console.log(example)

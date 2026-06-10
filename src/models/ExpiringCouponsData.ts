@@ -86,11 +86,11 @@ export interface ExpiringCouponsData {
  * Check if a given object implements the ExpiringCouponsData interface.
  */
 export function instanceOfExpiringCouponsData(value: object): value is ExpiringCouponsData {
-    if (!('couponValue' in value) || value['couponValue'] === undefined) return false;
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('usageLimit' in value) || value['usageLimit'] === undefined) return false;
-    if (!('usageCounter' in value) || value['usageCounter'] === undefined) return false;
-    if (!('attributes' in value) || value['attributes'] === undefined) return false;
+    if ((!('couponValue' in value) && !('CouponValue' in value)) || (value['couponValue'] === undefined && value['CouponValue'] === undefined)) return false;
+    if ((!('campaignId' in value) && !('CampaignId' in value)) || (value['campaignId'] === undefined && value['CampaignId'] === undefined)) return false;
+    if ((!('usageLimit' in value) && !('UsageLimit' in value)) || (value['usageLimit'] === undefined && value['UsageLimit'] === undefined)) return false;
+    if ((!('usageCounter' in value) && !('UsageCounter' in value)) || (value['usageCounter'] === undefined && value['UsageCounter'] === undefined)) return false;
+    if ((!('attributes' in value) && !('Attributes' in value)) || (value['attributes'] === undefined && value['Attributes'] === undefined)) return false;
     return true;
 }
 

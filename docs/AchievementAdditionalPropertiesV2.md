@@ -8,6 +8,7 @@ Name | Type
 ------------ | -------------
 `userId` | number
 `createdBy` | string
+`periodEndOverride` | [TimePoint](TimePoint.md)
 `hasProgress` | boolean
 `status` | string
 
@@ -20,8 +21,9 @@ import type { AchievementAdditionalPropertiesV2 } from 'talon_one_sdk'
 const example = {
   "userId": 1234,
   "createdBy": John Doe,
+  "periodEndOverride": null,
   "hasProgress": null,
-  "status": inprogress,
+  "status": active,
 } satisfies AchievementAdditionalPropertiesV2
 
 console.log(example)

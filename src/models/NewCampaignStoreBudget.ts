@@ -73,6 +73,8 @@ export type NewCampaignStoreBudgetPeriodEnum = typeof NewCampaignStoreBudgetPeri
  */
 export function instanceOfNewCampaignStoreBudget(value: object): value is NewCampaignStoreBudget {
     if (!('action' in value) || value['action'] === undefined) return false;
+    if (value['action'] !== 'setDiscount') return false;
+    
     if (!('storeLimits' in value) || value['storeLimits'] === undefined) return false;
     return true;
 }

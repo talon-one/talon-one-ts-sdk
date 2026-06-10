@@ -14,7 +14,17 @@
 
 import { mapValues } from '../runtime';
 /**
- * The properties specific to the "rollbackDeductedLoyaltyPoints" effect. This effect is triggered whenever a previously closed session is cancelled and a deductLoyaltyPoints effect was revoked.
+ * This effect is triggered in the following cases:
+ * 
+ * - A session is _cancelled_ and this session deducted loyalty points. The rollback action returns the redeemed loyalty points to the customer.
+ * - A session is impacted by a _partial return_. Only added loyalty points that are still **pending** are rolled back.
+ * - A session in which loyalty points were spent is reopened.
+ * 
+ * See the [session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states).
+ * 
+ * If you set custom activation and expiration dates for the loyalty points, use the `startDate` and `expiryDate` properties to identify when the reward will be active and when will expire.
+ * 
+ * If the loyalty program is [profile-based](https://docs.talon.one/docs/product/loyalty-programs/profile-based/profile-based-overview), use the `recipientIntegrationId` property to identify the user who receives the loyalty points. If the loyalty program is [card-based](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types), use the `cardIdentifier` property to identify the loyalty card where the points are reimbursed.
  * @export
  * @interface RollbackDeductedLoyaltyPointsEffectProps
  */
@@ -32,7 +42,7 @@ export interface RollbackDeductedLoyaltyPointsEffectProps {
      */
     subLedgerId: string;
     /**
-     * The amount of reimbursed points that were added.
+     * The amount of points that were reimbursed.
      * @type {number}
      * @memberof RollbackDeductedLoyaltyPointsEffectProps
      */
@@ -44,25 +54,25 @@ export interface RollbackDeductedLoyaltyPointsEffectProps {
      */
     recipientIntegrationId: string;
     /**
-     * Date after which the reimbursed points will be valid.
+     * The date after which the reimbursed points will be valid.
      * @type {Date}
      * @memberof RollbackDeductedLoyaltyPointsEffectProps
      */
     startDate?: Date;
     /**
-     * Date after which the reimbursed points will expire.
+     * The date after which the reimbursed points will expire.
      * @type {Date}
      * @memberof RollbackDeductedLoyaltyPointsEffectProps
      */
     expiryDate?: Date;
     /**
-     * The identifier of 'addition' entries added to the ledger as the `deductLoyaltyPoints` effect is rolled back.
+     * The identifier of this loyalty point transaction.
      * @type {string}
      * @memberof RollbackDeductedLoyaltyPointsEffectProps
      */
     transactionUUID: string;
     /**
-     * The card on which these points were added.
+     * The identifier of the card from which these points were originally deducted.
      * @type {string}
      * @memberof RollbackDeductedLoyaltyPointsEffectProps
      */

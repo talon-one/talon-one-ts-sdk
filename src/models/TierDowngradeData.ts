@@ -73,12 +73,12 @@ export interface TierDowngradeData {
  * Check if a given object implements the TierDowngradeData interface.
  */
 export function instanceOfTierDowngradeData(value: object): value is TierDowngradeData {
-    if (!('customerProfileID' in value) || value['customerProfileID'] === undefined) return false;
-    if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
-    if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
-    if (!('currentPoints' in value) || value['currentPoints'] === undefined) return false;
-    if (!('oldTier' in value) || value['oldTier'] === undefined) return false;
-    if (!('timestampOfTierChange' in value) || value['timestampOfTierChange'] === undefined) return false;
+    if ((!('customerProfileID' in value) && !('CustomerProfileID' in value)) || (value['customerProfileID'] === undefined && value['CustomerProfileID'] === undefined)) return false;
+    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
+    if ((!('currentPoints' in value) && !('CurrentPoints' in value)) || (value['currentPoints'] === undefined && value['CurrentPoints'] === undefined)) return false;
+    if ((!('oldTier' in value) && !('OldTier' in value)) || (value['oldTier'] === undefined && value['OldTier'] === undefined)) return false;
+    if ((!('timestampOfTierChange' in value) && !('TimestampOfTierChange' in value)) || (value['timestampOfTierChange'] === undefined && value['TimestampOfTierChange'] === undefined)) return false;
     return true;
 }
 

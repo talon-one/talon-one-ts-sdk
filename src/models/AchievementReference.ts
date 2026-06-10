@@ -43,6 +43,12 @@ export interface AchievementReference {
      * @memberof AchievementReference
      */
     campaignId: number;
+    /**
+     * The name of the campaign that references this achievement.
+     * @type {string}
+     * @memberof AchievementReference
+     */
+    campaignName: string;
 }
 
 /**
@@ -53,6 +59,7 @@ export function instanceOfAchievementReference(value: object): value is Achievem
     if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
     if (!('applicationName' in value) || value['applicationName'] === undefined) return false;
     if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
+    if (!('campaignName' in value) || value['campaignName'] === undefined) return false;
     return true;
 }
 
@@ -70,6 +77,7 @@ export function AchievementReferenceFromJSONTyped(json: any, ignoreDiscriminator
         'applicationId': json['applicationId'],
         'applicationName': json['applicationName'],
         'campaignId': json['campaignId'],
+        'campaignName': json['campaignName'],
     };
 }
 
@@ -88,6 +96,7 @@ export function AchievementReferenceToJSONTyped(value?: AchievementReference | n
         'applicationId': value['applicationId'],
         'applicationName': value['applicationName'],
         'campaignId': value['campaignId'],
+        'campaignName': value['campaignName'],
     };
 }
 

@@ -67,10 +67,10 @@ export interface PendingActivePointsData {
  * Check if a given object implements the PendingActivePointsData interface.
  */
 export function instanceOfPendingActivePointsData(value: object): value is PendingActivePointsData {
-    if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
-    if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
-    if (!('customerProfileID' in value) || value['customerProfileID'] === undefined) return false;
-    if (!('points' in value) || value['points'] === undefined) return false;
+    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
+    if ((!('customerProfileID' in value) && !('CustomerProfileID' in value)) || (value['customerProfileID'] === undefined && value['CustomerProfileID'] === undefined)) return false;
+    if ((!('points' in value) && !('Points' in value)) || (value['points'] === undefined && value['Points'] === undefined)) return false;
     return true;
 }
 

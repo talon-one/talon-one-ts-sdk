@@ -10,6 +10,7 @@ Name | Type
 `applicationId` | number
 `applicationName` | string
 `campaignId` | number
+`campaignName` | string
 
 ## Example
 
@@ -22,6 +23,7 @@ const example = {
   "applicationId": 101,
   "applicationName": North America Storefront,
   "campaignId": 4501,
+  "campaignName": Summer promotions,
 } satisfies AchievementReference
 
 console.log(example)

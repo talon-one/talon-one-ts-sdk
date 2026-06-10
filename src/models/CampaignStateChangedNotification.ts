@@ -61,8 +61,10 @@ export type CampaignStateChangedNotificationNotificationTypeEnum = typeof Campai
  * Check if a given object implements the CampaignStateChangedNotification interface.
  */
 export function instanceOfCampaignStateChangedNotification(value: object): value is CampaignStateChangedNotification {
-    if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
-    if (!('totalResultSize' in value) || value['totalResultSize'] === undefined) return false;
+    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
+    if (value['notificationType'] !== 'CampaignNotification' && value['NotificationType'] !== 'CampaignNotification') return false;
+    
+    if ((!('totalResultSize' in value) && !('TotalResultSize' in value)) || (value['totalResultSize'] === undefined && value['TotalResultSize'] === undefined)) return false;
     return true;
 }
 

@@ -20,6 +20,12 @@ import { mapValues } from '../runtime';
  */
 export interface RolesV2Thresholds {
     /**
+     * Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * @type {number}
+     * @memberof RolesV2Thresholds
+     */
+    loyaltyProgramId?: number;
+    /**
      * Maximum number of loyalty points a support user can award without approval.
      * @type {number}
      * @memberof RolesV2Thresholds
@@ -44,6 +50,7 @@ export function RolesV2ThresholdsFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
+        'loyaltyProgramId': json['loyaltyProgramId'] == null ? undefined : json['loyaltyProgramId'],
         'loyaltyPointsLimit': json['loyaltyPointsLimit'] == null ? undefined : json['loyaltyPointsLimit'],
     };
 }
@@ -59,6 +66,7 @@ export function RolesV2ThresholdsToJSONTyped(value?: RolesV2Thresholds | null, i
 
     return {
         
+        'loyaltyProgramId': value['loyaltyProgramId'],
         'loyaltyPointsLimit': value['loyaltyPointsLimit'],
     };
 }
