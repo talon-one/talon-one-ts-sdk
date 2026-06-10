@@ -53,12 +53,7 @@ export interface UpdateCouponBatch {
      */
     expiryDate?: Date;
     /**
-     * Optional property to set the value of custom coupon attributes. They are defined in the Campaign Manager,
-     * see [Managing attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes).
-     * 
-     * Coupon attributes can also be set to _mandatory_ in your Application [settings](https://docs.talon.one/docs/product/applications/using-attributes#making-attributes-mandatory).
-     * If your Application uses mandatory attributes, you must use this property to set their value.
-     * 
+     * Arbitrary properties associated with this campaign.
      * @type {object}
      * @memberof UpdateCouponBatch
      */

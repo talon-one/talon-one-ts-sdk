@@ -13,14 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { RolesV2Thresholds } from './RolesV2Thresholds';
-import {
-    RolesV2ThresholdsFromJSON,
-    RolesV2ThresholdsFromJSONTyped,
-    RolesV2ThresholdsToJSON,
-    RolesV2ThresholdsToJSONTyped,
-} from './RolesV2Thresholds';
-
 /**
  * 
  * @export
@@ -51,12 +43,6 @@ export interface RoleV2ApplicationDetails {
      * @memberof RoleV2ApplicationDetails
      */
     tools?: string;
-    /**
-     * Support user limits for actions that require admin approval within the given application.
-     * @type {RolesV2Thresholds}
-     * @memberof RoleV2ApplicationDetails
-     */
-    thresholds?: RolesV2Thresholds;
 }
 
 /**
@@ -80,7 +66,6 @@ export function RoleV2ApplicationDetailsFromJSONTyped(json: any, ignoreDiscrimin
         'campaign': json['campaign'] == null ? undefined : json['campaign'],
         'draftCampaign': json['draftCampaign'] == null ? undefined : json['draftCampaign'],
         'tools': json['tools'] == null ? undefined : json['tools'],
-        'thresholds': json['thresholds'] == null ? undefined : RolesV2ThresholdsFromJSON(json['thresholds']),
     };
 }
 
@@ -99,7 +84,6 @@ export function RoleV2ApplicationDetailsToJSONTyped(value?: RoleV2ApplicationDet
         'campaign': value['campaign'],
         'draftCampaign': value['draftCampaign'],
         'tools': value['tools'],
-        'thresholds': RolesV2ThresholdsToJSON(value['thresholds']),
     };
 }
 

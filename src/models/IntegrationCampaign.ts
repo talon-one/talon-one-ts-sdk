@@ -127,6 +127,8 @@ export function instanceOfIntegrationCampaign(value: object): value is Integrati
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('state' in value) || value['state'] === undefined) return false;
+    if (value['state'] !== 'enabled') return false;
+    
     if (!('tags' in value) || value['tags'] === undefined) return false;
     if (!('features' in value) || value['features'] === undefined) return false;
     if (!('rules' in value) || value['rules'] === undefined) return false;

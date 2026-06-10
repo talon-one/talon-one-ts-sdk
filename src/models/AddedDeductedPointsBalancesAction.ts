@@ -72,10 +72,10 @@ export type AddedDeductedPointsBalancesActionOperationEnum = typeof AddedDeducte
  * Check if a given object implements the AddedDeductedPointsBalancesAction interface.
  */
 export function instanceOfAddedDeductedPointsBalancesAction(value: object): value is AddedDeductedPointsBalancesAction {
-    if (!('amount' in value) || value['amount'] === undefined) return false;
-    if (!('reason' in value) || value['reason'] === undefined) return false;
-    if (!('operation' in value) || value['operation'] === undefined) return false;
-    if (!('transactionUUID' in value) || value['transactionUUID'] === undefined) return false;
+    if ((!('amount' in value) && !('Amount' in value)) || (value['amount'] === undefined && value['Amount'] === undefined)) return false;
+    if ((!('reason' in value) && !('Reason' in value)) || (value['reason'] === undefined && value['Reason'] === undefined)) return false;
+    if ((!('operation' in value) && !('Operation' in value)) || (value['operation'] === undefined && value['Operation'] === undefined)) return false;
+    if ((!('transactionUUID' in value) && !('TransactionUUID' in value)) || (value['transactionUUID'] === undefined && value['TransactionUUID'] === undefined)) return false;
     return true;
 }
 

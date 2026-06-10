@@ -18,6 +18,7 @@ Name | Type
 `features` | Array&lt;string&gt;
 `eligibility` | [Array&lt;CampaignEligibilityDetails&gt;](CampaignEligibilityDetails.md)
 `rules` | [Array&lt;RuleMetadataEligibility&gt;](RuleMetadataEligibility.md)
+`experiment` | [CampaignEligibilityExperiment](CampaignEligibilityExperiment.md)
 
 ## Example
 
@@ -38,6 +39,7 @@ const example = {
   "features": [coupons, referrals],
   "eligibility": null,
   "rules": null,
+  "experiment": null,
 } satisfies CampaignEligibility
 
 console.log(example)

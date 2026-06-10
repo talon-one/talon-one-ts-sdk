@@ -122,6 +122,7 @@ docs/CampaignEditedNotification.md
 docs/CampaignEditedNotificationItem.md
 docs/CampaignEligibility.md
 docs/CampaignEligibilityDetails.md
+docs/CampaignEligibilityExperiment.md
 docs/CampaignEligibilityFailureDetails.md
 docs/CampaignEntity.md
 docs/CampaignEvaluationGroup.md
@@ -248,6 +249,8 @@ docs/EventV3Entity.md
 docs/EventV3RequestEntity.md
 docs/Experiment.md
 docs/ExperimentCampaignCopy.md
+docs/ExperimentConfidenceTimeline.md
+docs/ExperimentConfidenceTimelineDataPoint.md
 docs/ExperimentCopy.md
 docs/ExperimentCopyExperiment.md
 docs/ExperimentListResults.md
@@ -365,13 +368,13 @@ docs/IntegrationGetAllCampaigns200Response.md
 docs/IntegrationHubConfig.md
 docs/IntegrationHubEventPayloadCouponBasedNotifications.md
 docs/IntegrationHubEventPayloadCouponBasedNotificationsLimits.md
-docs/IntegrationHubEventPayloadLoyaltyProfileBasedNotification.md
 docs/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.md
 docs/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.md
 docs/IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.md
 docs/IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.md
 docs/IntegrationHubEventRecord.md
 docs/IntegrationHubEventStatusUpdate.md
+docs/IntegrationHubEventType.md
 docs/IntegrationHubFlow.md
 docs/IntegrationHubFlowConfig.md
 docs/IntegrationHubFlowConfigResponse.md
@@ -631,8 +634,6 @@ docs/ScimServiceProviderConfigResponse.md
 docs/ScimServiceProviderConfigResponseBulk.md
 docs/ScimServiceProviderConfigResponseChangePassword.md
 docs/ScimServiceProviderConfigResponseFilter.md
-docs/ScimServiceProviderConfigResponsePatch.md
-docs/ScimServiceProviderConfigResponseSort.md
 docs/ScimUser.md
 docs/ScimUsersListResponse.md
 docs/SecondaryDeployment.md
@@ -700,7 +701,6 @@ docs/UpdateCoupon.md
 docs/UpdateCouponBatch.md
 docs/UpdateCouponsData.md
 docs/UpdateCustomEffect.md
-docs/UpdateCustomerProfileV2409Response.md
 docs/UpdateCustomerSessionV2409Response.md
 docs/UpdateExperiment.md
 docs/UpdateExperimentVariant.md
@@ -715,6 +715,7 @@ docs/UpdatePriceType.md
 docs/UpdateReferral.md
 docs/UpdateReferralBatch.md
 docs/UpdateReward.md
+docs/UpdateRiskNotification.md
 docs/UpdateRole.md
 docs/UpdateStore.md
 docs/UpdateSupportRequest.md
@@ -848,6 +849,7 @@ src/models/CampaignEditedNotification.ts
 src/models/CampaignEditedNotificationItem.ts
 src/models/CampaignEligibility.ts
 src/models/CampaignEligibilityDetails.ts
+src/models/CampaignEligibilityExperiment.ts
 src/models/CampaignEligibilityFailureDetails.ts
 src/models/CampaignEntity.ts
 src/models/CampaignEvaluationGroup.ts
@@ -974,6 +976,8 @@ src/models/EventV3Entity.ts
 src/models/EventV3RequestEntity.ts
 src/models/Experiment.ts
 src/models/ExperimentCampaignCopy.ts
+src/models/ExperimentConfidenceTimeline.ts
+src/models/ExperimentConfidenceTimelineDataPoint.ts
 src/models/ExperimentCopy.ts
 src/models/ExperimentCopyExperiment.ts
 src/models/ExperimentListResults.ts
@@ -1090,13 +1094,13 @@ src/models/IntegrationGetAllCampaigns200Response.ts
 src/models/IntegrationHubConfig.ts
 src/models/IntegrationHubEventPayloadCouponBasedNotifications.ts
 src/models/IntegrationHubEventPayloadCouponBasedNotificationsLimits.ts
-src/models/IntegrationHubEventPayloadLoyaltyProfileBasedNotification.ts
 src/models/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.ts
 src/models/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.ts
 src/models/IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.ts
 src/models/IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.ts
 src/models/IntegrationHubEventRecord.ts
 src/models/IntegrationHubEventStatusUpdate.ts
+src/models/IntegrationHubEventType.ts
 src/models/IntegrationHubFlow.ts
 src/models/IntegrationHubFlowConfig.ts
 src/models/IntegrationHubFlowConfigResponse.ts
@@ -1355,8 +1359,6 @@ src/models/ScimServiceProviderConfigResponse.ts
 src/models/ScimServiceProviderConfigResponseBulk.ts
 src/models/ScimServiceProviderConfigResponseChangePassword.ts
 src/models/ScimServiceProviderConfigResponseFilter.ts
-src/models/ScimServiceProviderConfigResponsePatch.ts
-src/models/ScimServiceProviderConfigResponseSort.ts
 src/models/ScimUser.ts
 src/models/ScimUsersListResponse.ts
 src/models/SecondaryDeployment.ts
@@ -1424,7 +1426,6 @@ src/models/UpdateCoupon.ts
 src/models/UpdateCouponBatch.ts
 src/models/UpdateCouponsData.ts
 src/models/UpdateCustomEffect.ts
-src/models/UpdateCustomerProfileV2409Response.ts
 src/models/UpdateCustomerSessionV2409Response.ts
 src/models/UpdateExperiment.ts
 src/models/UpdateExperimentVariant.ts
@@ -1439,6 +1440,7 @@ src/models/UpdatePriceType.ts
 src/models/UpdateReferral.ts
 src/models/UpdateReferralBatch.ts
 src/models/UpdateReward.ts
+src/models/UpdateRiskNotification.ts
 src/models/UpdateRole.ts
 src/models/UpdateStore.ts
 src/models/UpdateSupportRequest.ts

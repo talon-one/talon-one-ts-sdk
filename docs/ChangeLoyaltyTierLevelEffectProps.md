@@ -1,7 +1,7 @@
 
 # ChangeLoyaltyTierLevelEffectProps
 
-The properties specific to the \"changeLoyaltyTierLevel\" effect. This is triggered whenever the user\'s loyalty tier is upgraded due to a validated rule that contained an \"addLoyaltyPoints\" effect. 
+This effect indicates that a customer\'s loyalty tier has been upgraded.  This effect is generated only when the [Add loyalty points](https://docs.talon.one/docs/product/rules/effects/use-effects#add-loyalty-points) and the [Add loyalty points per cart item](https://docs.talon.one/docs/product/rules/effects/use-effects#add-loyalty-points-per-cart-item) effects are triggered for a particular customer, and, as a result, the customer\'s loyalty tier is upgraded.
 
 ## Properties
 

@@ -69,7 +69,7 @@ export interface Referral {
      */
     friendProfileIntegrationId?: string;
     /**
-     * Arbitrary properties associated with this item.
+     * Arbitrary properties associated with this campaign.
      * @type {object}
      * @memberof Referral
      */

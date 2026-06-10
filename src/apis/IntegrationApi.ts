@@ -99,6 +99,11 @@ import {
     ErrorResponseWithStatusToJSON,
 } from '../models/ErrorResponseWithStatus';
 import {
+    type EventV3,
+    EventV3FromJSON,
+    EventV3ToJSON,
+} from '../models/EventV3';
+import {
     type GenerateLoyaltyCard,
     GenerateLoyaltyCardFromJSON,
     GenerateLoyaltyCardToJSON,
@@ -153,6 +158,16 @@ import {
     IntegrationEventV2ResponseFromJSON,
     IntegrationEventV2ResponseToJSON,
 } from '../models/IntegrationEventV2Response';
+import {
+    type IntegrationEventV3Request,
+    IntegrationEventV3RequestFromJSON,
+    IntegrationEventV3RequestToJSON,
+} from '../models/IntegrationEventV3Request';
+import {
+    type IntegrationEventV3Response,
+    IntegrationEventV3ResponseFromJSON,
+    IntegrationEventV3ResponseToJSON,
+} from '../models/IntegrationEventV3Response';
 import {
     type IntegrationGetAllCampaigns200Response,
     IntegrationGetAllCampaigns200ResponseFromJSON,
@@ -233,11 +248,6 @@ import {
     UpdateAudienceFromJSON,
     UpdateAudienceToJSON,
 } from '../models/UpdateAudience';
-import {
-    type UpdateCustomerProfileV2409Response,
-    UpdateCustomerProfileV2409ResponseFromJSON,
-    UpdateCustomerProfileV2409ResponseToJSON,
-} from '../models/UpdateCustomerProfileV2409Response';
 import {
     type UpdateCustomerSessionV2409Response,
     UpdateCustomerSessionV2409ResponseFromJSON,
@@ -333,6 +343,10 @@ export interface GetCustomerSessionRequest {
     customerSessionId: string;
 }
 
+export interface GetEventV3Request {
+    integrationId: string;
+}
+
 export interface GetLoyaltyBalancesRequest {
     loyaltyProgramId: number;
     integrationId: string;
@@ -379,7 +393,7 @@ export interface GetLoyaltyProgramProfilePointsRequest {
     loyaltyProgramId: number;
     integrationId: string;
     status?: GetLoyaltyProgramProfilePointsStatusEnum;
-    subledgerId?: string;
+    subledgerId?: Array<string>;
     customerSessionIDs?: Array<string>;
     transactionUUIDs?: Array<string>;
     pageSize?: number;
@@ -439,6 +453,13 @@ export interface SyncCatalogRequest {
 
 export interface TrackEventV2Request {
     integrationEventV2Request: IntegrationEventV2Request;
+    silent?: string;
+    dry?: boolean;
+    forceCompleteEvaluation?: boolean;
+}
+
+export interface TrackEventV3Request {
+    integrationEventV3Request: IntegrationEventV3Request;
     silent?: string;
     dry?: boolean;
     forceCompleteEvaluation?: boolean;
@@ -915,7 +936,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete an audience created by a third-party integration.  > [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  > [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
+     * Delete an audience.  > [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  > [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
      * Delete audience
      */
     async deleteAudienceV2Raw(requestParameters: DeleteAudienceV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -926,7 +947,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete an audience created by a third-party integration.  > [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  > [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
+     * Delete an audience.  > [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  > [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
      * Delete audience
      */
     async deleteAudienceV2(requestParameters: DeleteAudienceV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
@@ -1449,6 +1470,57 @@ export class IntegrationApi extends runtime.BaseAPI {
      */
     async getCustomerSession(requestParameters: GetCustomerSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationCustomerSessionResponse> {
         const response = await this.getCustomerSessionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getEventV3 without sending the request
+     */
+    async getEventV3RequestOpts(requestParameters: GetEventV3Request): Promise<runtime.RequestOpts> {
+        if (requestParameters['integrationId'] == null) {
+            throw new runtime.RequiredError(
+                'integrationId',
+                'Required parameter "integrationId" was null or undefined when calling getEventV3().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v3/events/{integrationId}`;
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Retrieve an advanced event by its identifier. 
+     * Get advanced event
+     */
+    async getEventV3Raw(requestParameters: GetEventV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventV3>> {
+        const requestOptions = await this.getEventV3RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EventV3FromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve an advanced event by its identifier. 
+     * Get advanced event
+     */
+    async getEventV3(requestParameters: GetEventV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventV3> {
+        const response = await this.getEventV3Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2376,7 +2448,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Triggers a custom event.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  > [!note] **Note** > - `profileId` is required even though the schema does not specify it. > - If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. > - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
+     * Trigger a custom event.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  > [!note] **Note** > - `profileId` is required even though the schema does not specify it. > - If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. > - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
      * Track event
      */
     async trackEventV2Raw(requestParameters: TrackEventV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationEventV2Response>> {
@@ -2387,11 +2459,76 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Triggers a custom event.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  > [!note] **Note** > - `profileId` is required even though the schema does not specify it. > - If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. > - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
+     * Trigger a custom event.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  > [!note] **Note** > - `profileId` is required even though the schema does not specify it. > - If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. > - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
      * Track event
      */
     async trackEventV2(requestParameters: TrackEventV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationEventV2Response> {
         const response = await this.trackEventV2Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for trackEventV3 without sending the request
+     */
+    async trackEventV3RequestOpts(requestParameters: TrackEventV3Request): Promise<runtime.RequestOpts> {
+        if (requestParameters['integrationEventV3Request'] == null) {
+            throw new runtime.RequiredError(
+                'integrationEventV3Request',
+                'Required parameter "integrationEventV3Request" was null or undefined when calling trackEventV3().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['silent'] != null) {
+            queryParameters['silent'] = requestParameters['silent'];
+        }
+
+        if (requestParameters['dry'] != null) {
+            queryParameters['dry'] = requestParameters['dry'];
+        }
+
+        if (requestParameters['forceCompleteEvaluation'] != null) {
+            queryParameters['forceCompleteEvaluation'] = requestParameters['forceCompleteEvaluation'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v3/events`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: IntegrationEventV3RequestToJSON(requestParameters['integrationEventV3Request']),
+        };
+    }
+
+    /**
+     * Trigger an advanced event.  Advanced events are idempotent, uniquely identifiable events. They can also reference a previously closed session to add more context for rule evaluation.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  > [!note] **Note** > - If the customer profile does not exist, it will be created. However, the `customer_profile_created` [built-in event](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. > - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
+     * Track advanced event
+     */
+    async trackEventV3Raw(requestParameters: TrackEventV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationEventV3Response>> {
+        const requestOptions = await this.trackEventV3RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => IntegrationEventV3ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Trigger an advanced event.  Advanced events are idempotent, uniquely identifiable events. They can also reference a previously closed session to add more context for rule evaluation.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  > [!note] **Note** > - If the customer profile does not exist, it will be created. However, the `customer_profile_created` [built-in event](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. > - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
+     * Track advanced event
+     */
+    async trackEventV3(requestParameters: TrackEventV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationEventV3Response> {
+        const response = await this.trackEventV3Raw(requestParameters, initOverrides);
         return await response.value();
     }
 

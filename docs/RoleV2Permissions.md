@@ -8,6 +8,7 @@ Name | Type
 ------------ | -------------
 `permissionSets` | [Array&lt;RoleV2PermissionSet&gt;](RoleV2PermissionSet.md)
 `roles` | [RoleV2RolesGroup](RoleV2RolesGroup.md)
+`thresholds` | [Array&lt;RolesV2Thresholds&gt;](RolesV2Thresholds.md)
 
 ## Example
 
@@ -18,6 +19,7 @@ import type { RoleV2Permissions } from 'talon_one_sdk'
 const example = {
   "permissionSets": [{name=Application permission set, logicalOperations=[getApplicationOperations, editApplicationOperations]}, {name=Campaign manager permission set, logicalOperations=[getCampaignOperations, createCampaignOperations, updateCampaignOperations]}, {name=Campaign read-only permission set, logicalOperations=[getCampaignOperations]}, {name=Loyalty program read-only permission set, logicalOperations=[getLoyaltyProgramOperations]}, {name=Campaign access group manager permission set, logicalOperations=[getCampaignAccessGroupOperations, updateCampaignAccessGroupOperations, deleteCampaignAccessGroupOperations]}],
   "roles": null,
+  "thresholds": null,
 } satisfies RoleV2Permissions
 
 console.log(example)

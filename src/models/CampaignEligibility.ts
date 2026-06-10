@@ -20,6 +20,13 @@ import {
     CampaignEligibilityDetailsToJSON,
     CampaignEligibilityDetailsToJSONTyped,
 } from './CampaignEligibilityDetails';
+import type { CampaignEligibilityExperiment } from './CampaignEligibilityExperiment';
+import {
+    CampaignEligibilityExperimentFromJSON,
+    CampaignEligibilityExperimentFromJSONTyped,
+    CampaignEligibilityExperimentToJSON,
+    CampaignEligibilityExperimentToJSONTyped,
+} from './CampaignEligibilityExperiment';
 import type { RuleMetadataEligibility } from './RuleMetadataEligibility';
 import {
     RuleMetadataEligibilityFromJSON,
@@ -107,6 +114,12 @@ export interface CampaignEligibility {
      * @memberof CampaignEligibility
      */
     rules: Array<RuleMetadataEligibility>;
+    /**
+     * 
+     * @type {CampaignEligibilityExperiment}
+     * @memberof CampaignEligibility
+     */
+    experiment?: CampaignEligibilityExperiment;
 }
 
 
@@ -140,6 +153,8 @@ export function instanceOfCampaignEligibility(value: object): value is CampaignE
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('state' in value) || value['state'] === undefined) return false;
+    if (value['state'] !== 'enabled') return false;
+    
     if (!('tags' in value) || value['tags'] === undefined) return false;
     if (!('features' in value) || value['features'] === undefined) return false;
     if (!('eligibility' in value) || value['eligibility'] === undefined) return false;
@@ -169,6 +184,7 @@ export function CampaignEligibilityFromJSONTyped(json: any, ignoreDiscriminator:
         'features': json['features'],
         'eligibility': ((json['eligibility'] as Array<any>).map(CampaignEligibilityDetailsFromJSON)),
         'rules': ((json['rules'] as Array<any>).map(RuleMetadataEligibilityFromJSON)),
+        'experiment': json['experiment'] == null ? undefined : CampaignEligibilityExperimentFromJSON(json['experiment']),
     };
 }
 
@@ -195,6 +211,7 @@ export function CampaignEligibilityToJSONTyped(value?: CampaignEligibility | nul
         'features': value['features'],
         'eligibility': ((value['eligibility'] as Array<any>).map(CampaignEligibilityDetailsToJSON)),
         'rules': ((value['rules'] as Array<any>).map(RuleMetadataEligibilityToJSON)),
+        'experiment': CampaignEligibilityExperimentToJSON(value['experiment']),
     };
 }
 

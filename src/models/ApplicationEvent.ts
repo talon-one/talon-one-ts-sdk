@@ -90,7 +90,7 @@ export interface ApplicationEvent {
      */
     type: string;
     /**
-     * Additional JSON serialized data associated with the event.
+     * Arbitrary properties associated with this campaign.
      * @type {object}
      * @memberof ApplicationEvent
      */

@@ -1,7 +1,7 @@
 
 # ExtendLoyaltyPointsExpiryDateEffectProps
 
-The properties specific to the \"extendLoyaltyPointsExpiryDate\" effect. This gets triggered when a validated rule contains the \"extend expiry date\" effect. The current expiry date gets extended by the time frame given in the effect. 
+If loyalty points have an expiry date, this effect extends the expiry of all active and pending point transactions by a selected duration. 
 
 ## Properties
 

@@ -113,6 +113,8 @@ export function instanceOfIntegrationCampaignBase(value: object): value is Integ
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('state' in value) || value['state'] === undefined) return false;
+    if (value['state'] !== 'enabled') return false;
+    
     if (!('tags' in value) || value['tags'] === undefined) return false;
     if (!('features' in value) || value['features'] === undefined) return false;
     return true;

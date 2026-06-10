@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { IntegrationHubEventType } from './IntegrationHubEventType';
+import {
+    IntegrationHubEventTypeFromJSON,
+    IntegrationHubEventTypeFromJSONTyped,
+    IntegrationHubEventTypeToJSON,
+    IntegrationHubEventTypeToJSONTyped,
+} from './IntegrationHubEventType';
+
 /**
  * 
  * @export
@@ -33,10 +41,10 @@ export interface IntegrationHubPaginatedEventPayload {
     batchedAt?: Date;
     /**
      * 
-     * @type {IntegrationHubPaginatedEventPayloadEventTypeEnum}
+     * @type {IntegrationHubEventType}
      * @memberof IntegrationHubPaginatedEventPayload
      */
-    eventType: IntegrationHubPaginatedEventPayloadEventTypeEnum;
+    eventType: IntegrationHubEventType;
     /**
      * 
      * @type {Array<any>}
@@ -46,27 +54,14 @@ export interface IntegrationHubPaginatedEventPayload {
 }
 
 
-/**
- * @export
- */
-export const IntegrationHubPaginatedEventPayloadEventTypeEnum = {
-    LoyaltyPointsChanged: 'LoyaltyPointsChanged',
-    LoyaltyTierDowngrade: 'LoyaltyTierDowngrade',
-    LoyaltyTierUpgrade: 'LoyaltyTierUpgrade',
-    CouponCreated: 'CouponCreated',
-    CouponUpdated: 'CouponUpdated',
-    CouponDeleted: 'CouponDeleted'
-} as const;
-export type IntegrationHubPaginatedEventPayloadEventTypeEnum = typeof IntegrationHubPaginatedEventPayloadEventTypeEnum[keyof typeof IntegrationHubPaginatedEventPayloadEventTypeEnum];
-
 
 /**
  * Check if a given object implements the IntegrationHubPaginatedEventPayload interface.
  */
 export function instanceOfIntegrationHubPaginatedEventPayload(value: object): value is IntegrationHubPaginatedEventPayload {
-    if (!('totalResultSize' in value) || value['totalResultSize'] === undefined) return false;
-    if (!('eventType' in value) || value['eventType'] === undefined) return false;
-    if (!('data' in value) || value['data'] === undefined) return false;
+    if ((!('totalResultSize' in value) && !('TotalResultSize' in value)) || (value['totalResultSize'] === undefined && value['TotalResultSize'] === undefined)) return false;
+    if ((!('eventType' in value) && !('EventType' in value)) || (value['eventType'] === undefined && value['EventType'] === undefined)) return false;
+    if ((!('data' in value) && !('Data' in value)) || (value['data'] === undefined && value['Data'] === undefined)) return false;
     return true;
 }
 
@@ -82,7 +77,7 @@ export function IntegrationHubPaginatedEventPayloadFromJSONTyped(json: any, igno
         
         'totalResultSize': json['TotalResultSize'],
         'batchedAt': json['BatchedAt'] == null ? undefined : (new Date(json['BatchedAt'])),
-        'eventType': json['EventType'],
+        'eventType': IntegrationHubEventTypeFromJSON(json['EventType']),
         'data': json['Data'],
     };
 }
@@ -100,7 +95,7 @@ export function IntegrationHubPaginatedEventPayloadToJSONTyped(value?: Integrati
         
         'TotalResultSize': value['totalResultSize'],
         'BatchedAt': value['batchedAt'] == null ? value['batchedAt'] : value['batchedAt'].toISOString(),
-        'EventType': value['eventType'],
+        'EventType': IntegrationHubEventTypeToJSON(value['eventType']),
         'Data': value['data'],
     };
 }

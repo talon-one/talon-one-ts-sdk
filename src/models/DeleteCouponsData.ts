@@ -83,14 +83,16 @@ export type DeleteCouponsDataNotificationTypeEnum = typeof DeleteCouponsDataNoti
  * Check if a given object implements the DeleteCouponsData interface.
  */
 export function instanceOfDeleteCouponsData(value: object): value is DeleteCouponsData {
-    if (!('typeOfChange' in value) || value['typeOfChange'] === undefined) return false;
-    if (!('operation' in value) || value['operation'] === undefined) return false;
-    if (!('employeeName' in value) || value['employeeName'] === undefined) return false;
-    if (!('batchID' in value) || value['batchID'] === undefined) return false;
-    if (!('applicationID' in value) || value['applicationID'] === undefined) return false;
-    if (!('campaignID' in value) || value['campaignID'] === undefined) return false;
-    if (!('totalResultSize' in value) || value['totalResultSize'] === undefined) return false;
-    if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
+    if ((!('typeOfChange' in value) && !('TypeOfChange' in value)) || (value['typeOfChange'] === undefined && value['TypeOfChange'] === undefined)) return false;
+    if ((!('operation' in value) && !('Operation' in value)) || (value['operation'] === undefined && value['Operation'] === undefined)) return false;
+    if ((!('employeeName' in value) && !('EmployeeName' in value)) || (value['employeeName'] === undefined && value['EmployeeName'] === undefined)) return false;
+    if ((!('batchID' in value) && !('BatchID' in value)) || (value['batchID'] === undefined && value['BatchID'] === undefined)) return false;
+    if ((!('applicationID' in value) && !('ApplicationID' in value)) || (value['applicationID'] === undefined && value['ApplicationID'] === undefined)) return false;
+    if ((!('campaignID' in value) && !('CampaignID' in value)) || (value['campaignID'] === undefined && value['CampaignID'] === undefined)) return false;
+    if ((!('totalResultSize' in value) && !('TotalResultSize' in value)) || (value['totalResultSize'] === undefined && value['TotalResultSize'] === undefined)) return false;
+    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
+    if (value['notificationType'] !== 'CouponsDeleted' && value['NotificationType'] !== 'CouponsDeleted') return false;
+    
     return true;
 }
 

@@ -1,7 +1,7 @@
 
 # RejectCouponEffectProps
 
-The properties specific to the \"rejectCoupon\" effect. This gets triggered whenever the coupon was rejected. See rejectionReason for more info on why.
+This effect indicates that the coupon code supplied couldn\'t be used.  You should handle this effect by informing their user the coupon code is invalid.
 
 ## Properties
 

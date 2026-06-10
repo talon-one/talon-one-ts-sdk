@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { IntegrationHubEventType } from './IntegrationHubEventType';
+import {
+    IntegrationHubEventTypeFromJSON,
+    IntegrationHubEventTypeFromJSONTyped,
+    IntegrationHubEventTypeToJSON,
+    IntegrationHubEventTypeToJSONTyped,
+} from './IntegrationHubEventType';
+
 /**
  * 
  * @export
@@ -20,60 +28,74 @@ import { mapValues } from '../runtime';
  */
 export interface IntegrationHubEventRecord {
     /**
-     * 
+     * ID of the event record.
      * @type {number}
      * @memberof IntegrationHubEventRecord
      */
     id: number;
     /**
-     * 
+     * ID of the integration hub flow.
      * @type {number}
      * @memberof IntegrationHubEventRecord
      */
     flowId: number;
     /**
-     * 
+     * Name of the integration.
      * @type {string}
      * @memberof IntegrationHubEventRecord
      */
-    eventType: string;
+    integrationName?: string;
     /**
-     * 
-     * @type {any}
+     * Name of the integration instance.
+     * @type {string}
      * @memberof IntegrationHubEventRecord
      */
-    eventData: any | null;
+    instanceName?: string;
     /**
      * 
+     * @type {IntegrationHubEventType}
+     * @memberof IntegrationHubEventRecord
+     */
+    eventType: IntegrationHubEventType;
+    /**
+     * Timestamp when the event was published.
      * @type {Date}
      * @memberof IntegrationHubEventRecord
      */
     publishedAt: Date;
     /**
-     * 
+     * Timestamp when the event was processed.
      * @type {Date}
      * @memberof IntegrationHubEventRecord
      */
     processedAt?: Date;
     /**
-     * 
+     * Timestamp when the event was delivered.
      * @type {Date}
      * @memberof IntegrationHubEventRecord
      */
     deliveredAt?: Date;
     /**
-     * 
+     * Timestamp after which the event is scheduled to be processed.
      * @type {Date}
      * @memberof IntegrationHubEventRecord
      */
-    processAfter: Date;
+    scheduledTo: Date;
     /**
-     * 
+     * Number of delivery retries attempted.
      * @type {number}
      * @memberof IntegrationHubEventRecord
      */
     retry: number;
+    /**
+     * The event payload as a formatted JSON string.
+     * @type {string}
+     * @memberof IntegrationHubEventRecord
+     */
+    payload: string;
 }
+
+
 
 /**
  * Check if a given object implements the IntegrationHubEventRecord interface.
@@ -82,10 +104,10 @@ export function instanceOfIntegrationHubEventRecord(value: object): value is Int
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('flowId' in value) || value['flowId'] === undefined) return false;
     if (!('eventType' in value) || value['eventType'] === undefined) return false;
-    if (!('eventData' in value) || value['eventData'] === undefined) return false;
     if (!('publishedAt' in value) || value['publishedAt'] === undefined) return false;
-    if (!('processAfter' in value) || value['processAfter'] === undefined) return false;
+    if (!('scheduledTo' in value) || value['scheduledTo'] === undefined) return false;
     if (!('retry' in value) || value['retry'] === undefined) return false;
+    if (!('payload' in value) || value['payload'] === undefined) return false;
     return true;
 }
 
@@ -99,15 +121,17 @@ export function IntegrationHubEventRecordFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'id': json['Id'],
-        'flowId': json['FlowId'],
-        'eventType': json['EventType'],
-        'eventData': json['EventData'],
-        'publishedAt': (new Date(json['PublishedAt'])),
-        'processedAt': json['ProcessedAt'] == null ? undefined : (new Date(json['ProcessedAt'])),
-        'deliveredAt': json['DeliveredAt'] == null ? undefined : (new Date(json['DeliveredAt'])),
-        'processAfter': (new Date(json['ProcessAfter'])),
-        'retry': json['Retry'],
+        'id': json['id'],
+        'flowId': json['flowId'],
+        'integrationName': json['integrationName'] == null ? undefined : json['integrationName'],
+        'instanceName': json['instanceName'] == null ? undefined : json['instanceName'],
+        'eventType': IntegrationHubEventTypeFromJSON(json['eventType']),
+        'publishedAt': (new Date(json['publishedAt'])),
+        'processedAt': json['processedAt'] == null ? undefined : (new Date(json['processedAt'])),
+        'deliveredAt': json['deliveredAt'] == null ? undefined : (new Date(json['deliveredAt'])),
+        'scheduledTo': (new Date(json['scheduledTo'])),
+        'retry': json['retry'],
+        'payload': json['payload'],
     };
 }
 
@@ -122,15 +146,17 @@ export function IntegrationHubEventRecordToJSONTyped(value?: IntegrationHubEvent
 
     return {
         
-        'Id': value['id'],
-        'FlowId': value['flowId'],
-        'EventType': value['eventType'],
-        'EventData': value['eventData'],
-        'PublishedAt': value['publishedAt'].toISOString(),
-        'ProcessedAt': value['processedAt'] == null ? value['processedAt'] : value['processedAt'].toISOString(),
-        'DeliveredAt': value['deliveredAt'] == null ? value['deliveredAt'] : value['deliveredAt'].toISOString(),
-        'ProcessAfter': value['processAfter'].toISOString(),
-        'Retry': value['retry'],
+        'id': value['id'],
+        'flowId': value['flowId'],
+        'integrationName': value['integrationName'],
+        'instanceName': value['instanceName'],
+        'eventType': IntegrationHubEventTypeToJSON(value['eventType']),
+        'publishedAt': value['publishedAt'].toISOString(),
+        'processedAt': value['processedAt'] == null ? value['processedAt'] : value['processedAt'].toISOString(),
+        'deliveredAt': value['deliveredAt'] == null ? value['deliveredAt'] : value['deliveredAt'].toISOString(),
+        'scheduledTo': value['scheduledTo'].toISOString(),
+        'retry': value['retry'],
+        'payload': value['payload'],
     };
 }
 

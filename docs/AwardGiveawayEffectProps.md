@@ -1,7 +1,7 @@
 
 # AwardGiveawayEffectProps
 
-The properties specific to the \"awardGiveaway\" effect. This effect contains information on the giveaway item, and which profile it was awarded to.
+This effect indicates the awarded giveaway item and to which profile the item was awarded. Learn more about [giveaways](https://docs.talon.one/docs/product/giveaways/overview).
 
 ## Properties
 

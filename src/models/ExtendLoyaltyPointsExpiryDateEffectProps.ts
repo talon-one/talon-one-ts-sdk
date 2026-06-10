@@ -22,7 +22,7 @@ import {
 } from './LoyaltyLedgerEntryExpiryDateChange';
 
 /**
- * The properties specific to the "extendLoyaltyPointsExpiryDate" effect. This gets triggered when a validated rule contains the "extend expiry date" effect. The current expiry date gets extended by the time frame given in the effect.
+ * If loyalty points have an expiry date, this effect extends the expiry of all active and pending point transactions by a selected duration.
  * 
  * @export
  * @interface ExtendLoyaltyPointsExpiryDateEffectProps
@@ -35,7 +35,7 @@ export interface ExtendLoyaltyPointsExpiryDateEffectProps {
      */
     programId: number;
     /**
-     * API name of the loyalty program subledger that contains these points. added.
+     * API name of the loyalty program subledger that contains these points.
      * @type {string}
      * @memberof ExtendLoyaltyPointsExpiryDateEffectProps
      */

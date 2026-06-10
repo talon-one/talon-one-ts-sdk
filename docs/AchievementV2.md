@@ -21,6 +21,7 @@ Name | Type
 `subscribedApplications` | Array&lt;number&gt;
 `userId` | number
 `createdBy` | string
+`periodEndOverride` | [TimePoint](TimePoint.md)
 `hasProgress` | boolean
 `status` | string
 `sandbox` | boolean
@@ -48,8 +49,9 @@ const example = {
   "subscribedApplications": [132, 97],
   "userId": 1234,
   "createdBy": John Doe,
+  "periodEndOverride": null,
   "hasProgress": null,
-  "status": inprogress,
+  "status": active,
   "sandbox": true,
   "timezone": Europe/Berlin,
 } satisfies AchievementV2

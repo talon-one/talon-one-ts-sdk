@@ -95,7 +95,7 @@ export interface User {
      */
     authMethod?: string;
     /**
-     * Application notifications that the user is subscribed to.
+     * Arbitrary properties associated with this campaign.
      * @type {object}
      * @memberof User
      */
@@ -119,7 +119,7 @@ export interface User {
      */
     latestFeedTimestamp?: Date;
     /**
-     * Additional user attributes, created and used by external identity providers.
+     * Arbitrary properties associated with this campaign.
      * @type {object}
      * @memberof User
      */

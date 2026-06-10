@@ -84,7 +84,7 @@ export interface CampaignRulesetChangedNotificationItem {
  * Check if a given object implements the CampaignRulesetChangedNotificationItem interface.
  */
 export function instanceOfCampaignRulesetChangedNotificationItem(value: object): value is CampaignRulesetChangedNotificationItem {
-    if (!('event' in value) || value['event'] === undefined) return false;
+    if ((!('event' in value) && !('Event' in value)) || (value['event'] === undefined && value['Event'] === undefined)) return false;
     if (!('campaign' in value) || value['campaign'] === undefined) return false;
     return true;
 }

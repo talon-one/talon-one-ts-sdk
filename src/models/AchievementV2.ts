@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { TimePoint } from './TimePoint';
+import {
+    TimePointFromJSON,
+    TimePointFromJSONTyped,
+    TimePointToJSON,
+    TimePointToJSONTyped,
+} from './TimePoint';
+
 /**
  * 
  * @export
@@ -154,13 +162,24 @@ export interface AchievementV2 {
      */
     createdBy?: string;
     /**
+     * 
+     * @type {TimePoint}
+     * @memberof AchievementV2
+     * @deprecated
+     */
+    periodEndOverride?: TimePoint;
+    /**
      * Indicates if a customer has made progress in the achievement.
      * @type {boolean}
      * @memberof AchievementV2
      */
     hasProgress?: boolean;
     /**
-     * The status of the achievement.
+     * The status of the achievement.                                                                                              
+     * - `active`: The achievement is available to customers.
+     * - `scheduled`: The achievement has a `fixedStartDate` set in the future.
+     * - `expired`: The achievement's `endDate` is in the past.
+     * 
      * @type {AchievementV2StatusEnum}
      * @memberof AchievementV2
      */
@@ -203,10 +222,9 @@ export type AchievementV2ActivationPolicyEnum = typeof AchievementV2ActivationPo
  * @export
  */
 export const AchievementV2StatusEnum = {
-    Inprogress: 'inprogress',
-    Expired: 'expired',
-    NotStarted: 'not_started',
-    Completed: 'completed'
+    Active: 'active',
+    Scheduled: 'scheduled',
+    Expired: 'expired'
 } as const;
 export type AchievementV2StatusEnum = typeof AchievementV2StatusEnum[keyof typeof AchievementV2StatusEnum];
 
@@ -255,6 +273,7 @@ export function AchievementV2FromJSONTyped(json: any, ignoreDiscriminator: boole
         'subscribedApplications': json['subscribedApplications'],
         'userId': json['userId'],
         'createdBy': json['createdBy'] == null ? undefined : json['createdBy'],
+        'periodEndOverride': json['periodEndOverride'] == null ? undefined : TimePointFromJSON(json['periodEndOverride']),
         'hasProgress': json['hasProgress'] == null ? undefined : json['hasProgress'],
         'status': json['status'] == null ? undefined : json['status'],
         'sandbox': json['sandbox'],
@@ -288,6 +307,7 @@ export function AchievementV2ToJSONTyped(value?: AchievementV2 | null, ignoreDis
         'subscribedApplications': value['subscribedApplications'],
         'userId': value['userId'],
         'createdBy': value['createdBy'],
+        'periodEndOverride': TimePointToJSON(value['periodEndOverride']),
         'hasProgress': value['hasProgress'],
         'status': value['status'],
         'sandbox': value['sandbox'],

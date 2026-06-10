@@ -68,11 +68,13 @@ export type AsyncCouponsDataNotificationTypeEnum = typeof AsyncCouponsDataNotifi
  * Check if a given object implements the AsyncCouponsData interface.
  */
 export function instanceOfAsyncCouponsData(value: object): value is AsyncCouponsData {
-    if (!('batchID' in value) || value['batchID'] === undefined) return false;
-    if (!('typeOfChange' in value) || value['typeOfChange'] === undefined) return false;
-    if (!('operation' in value) || value['operation'] === undefined) return false;
-    if (!('employeeName' in value) || value['employeeName'] === undefined) return false;
-    if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
+    if ((!('batchID' in value) && !('BatchID' in value)) || (value['batchID'] === undefined && value['BatchID'] === undefined)) return false;
+    if ((!('typeOfChange' in value) && !('TypeOfChange' in value)) || (value['typeOfChange'] === undefined && value['TypeOfChange'] === undefined)) return false;
+    if ((!('operation' in value) && !('Operation' in value)) || (value['operation'] === undefined && value['Operation'] === undefined)) return false;
+    if ((!('employeeName' in value) && !('EmployeeName' in value)) || (value['employeeName'] === undefined && value['EmployeeName'] === undefined)) return false;
+    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
+    if (value['notificationType'] !== 'AsyncCouponsCreated' && value['NotificationType'] !== 'AsyncCouponsCreated') return false;
+    
     return true;
 }
 

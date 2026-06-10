@@ -39,7 +39,7 @@ export interface ScimResourceTypesListResponse {
  * Check if a given object implements the ScimResourceTypesListResponse interface.
  */
 export function instanceOfScimResourceTypesListResponse(value: object): value is ScimResourceTypesListResponse {
-    if (!('resources' in value) || value['resources'] === undefined) return false;
+    if ((!('resources' in value) && !('Resources' in value)) || (value['resources'] === undefined && value['Resources'] === undefined)) return false;
     return true;
 }
 

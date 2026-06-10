@@ -138,6 +138,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**importCoupons**](ManagementApi.md#importcoupons) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/import_coupons | Import coupons |
 | [**importLoyaltyCards**](ManagementApi.md#importloyaltycards) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/import_cards | Import loyalty cards |
 | [**importLoyaltyCustomersTiers**](ManagementApi.md#importloyaltycustomerstiers) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/import_customers_tiers | Import customers into loyalty tiers |
+| [**importLoyaltyJoinDates**](ManagementApi.md#importloyaltyjoindates) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/import_join_dates | Import join dates for a loyalty program |
 | [**importLoyaltyPoints**](ManagementApi.md#importloyaltypoints) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/import_points | Import loyalty points |
 | [**importPoolGiveaways**](ManagementApi.md#importpoolgiveaways) | **POST** /v1/giveaways/pools/{poolId}/import | Import giveaway codes into a giveaway pool |
 | [**importReferrals**](ManagementApi.md#importreferrals) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/import_referrals | Import referrals |
@@ -3754,7 +3755,7 @@ example().catch(console.error);
 
 ## exportCustomerSessions
 
-> string exportCustomerSessions(applicationId, createdBefore, createdAfter, profileIntegrationId, dateFormat, customerSessionState)
+> string exportCustomerSessions(applicationId, createdBefore, createdAfter, updatedBefore, updatedAfter, profileIntegrationId, dateFormat, customerSessionState)
 
 Export customer sessions
 
@@ -3784,6 +3785,10 @@ async function example() {
     createdBefore: 2013-10-20T19:20:30+01:00,
     // Date | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)
     createdAfter: 2013-10-20T19:20:30+01:00,
+    // Date | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)
+    updatedBefore: 2013-10-20T19:20:30+01:00,
+    // Date | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)
+    updatedAfter: 2013-10-20T19:20:30+01:00,
     // string | Only return sessions for the customer that matches this customer integration ID. (optional)
     profileIntegrationId: profileIntegrationId_example,
     // 'excel' | 'ISO8601' | Determines the format of dates in the export document. (optional)
@@ -3812,6 +3817,8 @@ example().catch(console.error);
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **createdBefore** | `Date` | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. | [Optional] [Defaults to `undefined`] |
 | **createdAfter** | `Date` | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. | [Optional] [Defaults to `undefined`] |
+| **updatedBefore** | `Date` | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. | [Optional] [Defaults to `undefined`] |
+| **updatedAfter** | `Date` | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. | [Optional] [Defaults to `undefined`] |
 | **profileIntegrationId** | `string` | Only return sessions for the customer that matches this customer integration ID. | [Optional] [Defaults to `undefined`] |
 | **dateFormat** | `excel`, `ISO8601` | Determines the format of dates in the export document. | [Optional] [Defaults to `undefined`] [Enum: excel, ISO8601] |
 | **customerSessionState** | `open`, `closed`, `partially_returned`, `cancelled` | Filter results by state. | [Optional] [Defaults to `undefined`] [Enum: open, closed, partially_returned, cancelled] |
@@ -4326,7 +4333,7 @@ example().catch(console.error);
 
 Export loyalty cards
 
-Download a CSV file containing the loyalty cards from a specified loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;identifier&#x60;: The unique identifier of the loyalty card. - &#x60;created&#x60;: The date and time the loyalty card was created. - &#x60;status&#x60;: The status of the loyalty card. - &#x60;userpercardlimit&#x60;: The maximum number of customer profiles that can be linked to the card. - &#x60;customerprofileids&#x60;: Integration IDs of the customer profiles linked to the card. - &#x60;blockreason&#x60;: The reason for transferring and blocking the loyalty card. - &#x60;generated&#x60;: An indicator of whether the loyalty card was generated. - &#x60;batchid&#x60;: The ID of the batch the loyalty card is in. - &#x60;attributes&#x60;: The custom attributes of this loyalty card. Currently, this feature is only available upon request. 
+Download a CSV file containing the loyalty cards from a specified loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;identifier&#x60;: The unique identifier of the loyalty card. - &#x60;created&#x60;: The date and time the loyalty card was created. - &#x60;status&#x60;: The status of the loyalty card. - &#x60;userpercardlimit&#x60;: The maximum number of customer profiles that can be linked to the card. - &#x60;customerprofileids&#x60;: Integration IDs of the customer profiles linked to the card. - &#x60;blockreason&#x60;: The reason for transferring and blocking the loyalty card. - &#x60;generated&#x60;: An indicator of whether the loyalty card was generated. - &#x60;batchid&#x60;: The ID of the batch the loyalty card is in. - &#x60;attributes&#x60;: The custom attributes of this loyalty card. 
 
 ### Example
 
@@ -6699,7 +6706,7 @@ async function example() {
   const api = new ManagementApi(config);
 
   const body = {
-    // string | The IDs of one or more audiences, separated by commas, by which to filter results.
+    // string | The IDs of one or more audiences, separated by commas, by which to filter results. Do not provide more than 1000 audience IDs.
     audienceIds: audienceIds_example,
     // string | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)
     sort: sort_example,
@@ -6722,7 +6729,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **audienceIds** | `string` | The IDs of one or more audiences, separated by commas, by which to filter results. | [Defaults to `undefined`] |
+| **audienceIds** | `string` | The IDs of one or more audiences, separated by commas, by which to filter results. Do not provide more than 1000 audience IDs. | [Defaults to `undefined`] |
 | **sort** | `string` | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
@@ -10859,7 +10866,7 @@ example().catch(console.error);
 
 Import loyalty cards
 
-Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  &gt; [!note] Your CSV file must contain less than 500,000 rows. Requests time out after 30 seconds.  ## Example  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
+Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - &#x60;attributes&#x60; (optional): A JSON object that contains the loyalty card\&#39;s custom attributes and their values. These attributes must be created and connected to this loyalty program before they can be assigned to the cards through this endpoint.  &gt; [!note] Your CSV file must contain less than 500,000 rows. Requests time out after 30 seconds.  ## Example  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,\&#39;{\&quot;\&quot;my_attributes\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
 
 ### Example
 
@@ -10979,6 +10986,83 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loyaltyProgramId** | `number` | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
+| **upFile** | `Blob` | The CSV file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
+
+### Return type
+
+[**Import**](Import.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: `multipart/form-data`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## importLoyaltyJoinDates
+
+> Import importLoyaltyJoinDates(loyaltyProgramId, upFile)
+
+Import join dates for a loyalty program
+
+Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;newjoindate&#x60;: The new join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { ImportLoyaltyJoinDatesRequest } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // number | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
+    loyaltyProgramId: 789,
+    // Blob | The CSV file containing the data that is being imported. (optional)
+    upFile: BINARY_DATA_HERE,
+  } satisfies ImportLoyaltyJoinDatesRequest;
+
+  try {
+    const data = await api.importLoyaltyJoinDates(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **loyaltyProgramId** | `number` | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | [Defaults to `undefined`] |
 | **upFile** | `Blob` | The CSV file containing the data that is being imported. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
@@ -11539,7 +11623,7 @@ This endpoint does not need any parameter.
 
 ## listApplicationCartItemFilters
 
-> ListApplicationCartItemFilters200Response listApplicationCartItemFilters(applicationId, pageSize, skip, title)
+> ListApplicationCartItemFilters200Response listApplicationCartItemFilters(applicationId, pageSize, skip, name)
 
 List Application cart item filters
 
@@ -11569,8 +11653,8 @@ async function example() {
     pageSize: 789,
     // number | The number of items to skip when paging through large result sets. (optional)
     skip: 789,
-    // string | Filter by the display name of the Application cart item filter in the Application.  **Note**: If no `title` is provided, all the Application cart item filters in the Application are returned.  (optional)
-    title: title_example,
+    // string | Filter by the display name of the Application cart item filter in the Application.  **Note**: If no `name` is provided, all the Application cart item filters in the Application are returned.  (optional)
+    name: name_example,
   } satisfies ListApplicationCartItemFiltersRequest;
 
   try {
@@ -11593,7 +11677,7 @@ example().catch(console.error);
 | **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
 | **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `50`] |
 | **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
-| **title** | `string` | Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;title&#x60; is provided, all the Application cart item filters in the Application are returned.  | [Optional] [Defaults to `undefined`] |
+| **name** | `string` | Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;name&#x60; is provided, all the Application cart item filters in the Application are returned.  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

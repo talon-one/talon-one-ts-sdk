@@ -20,6 +20,13 @@ import {
     RoleV2PermissionSetToJSON,
     RoleV2PermissionSetToJSONTyped,
 } from './RoleV2PermissionSet';
+import type { RolesV2Thresholds } from './RolesV2Thresholds';
+import {
+    RolesV2ThresholdsFromJSON,
+    RolesV2ThresholdsFromJSONTyped,
+    RolesV2ThresholdsToJSON,
+    RolesV2ThresholdsToJSONTyped,
+} from './RolesV2Thresholds';
 import type { RoleV2RolesGroup } from './RoleV2RolesGroup';
 import {
     RoleV2RolesGroupFromJSON,
@@ -46,6 +53,12 @@ export interface RoleV2Permissions {
      * @memberof RoleV2Permissions
      */
     roles?: RoleV2RolesGroup;
+    /**
+     * Support user limits for actions that require admin approval within the given application.
+     * @type {Array<RolesV2Thresholds>}
+     * @memberof RoleV2Permissions
+     */
+    thresholds?: Array<RolesV2Thresholds>;
 }
 
 /**
@@ -67,6 +80,7 @@ export function RoleV2PermissionsFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'permissionSets': json['permissionSets'] == null ? undefined : ((json['permissionSets'] as Array<any>).map(RoleV2PermissionSetFromJSON)),
         'roles': json['roles'] == null ? undefined : RoleV2RolesGroupFromJSON(json['roles']),
+        'thresholds': json['thresholds'] == null ? undefined : ((json['thresholds'] as Array<any>).map(RolesV2ThresholdsFromJSON)),
     };
 }
 
@@ -83,6 +97,7 @@ export function RoleV2PermissionsToJSONTyped(value?: RoleV2Permissions | null, i
         
         'permissionSets': value['permissionSets'] == null ? undefined : ((value['permissionSets'] as Array<any>).map(RoleV2PermissionSetToJSON)),
         'roles': RoleV2RolesGroupToJSON(value['roles']),
+        'thresholds': value['thresholds'] == null ? undefined : ((value['thresholds'] as Array<any>).map(RolesV2ThresholdsToJSON)),
     };
 }
 

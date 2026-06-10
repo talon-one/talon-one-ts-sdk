@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { TimePoint } from './TimePoint';
+import {
+    TimePointFromJSON,
+    TimePointFromJSONTyped,
+    TimePointToJSON,
+    TimePointToJSONTyped,
+} from './TimePoint';
+
 /**
  * 
  * @export
@@ -35,13 +43,24 @@ export interface AchievementAdditionalPropertiesV2 {
      */
     createdBy?: string;
     /**
+     * 
+     * @type {TimePoint}
+     * @memberof AchievementAdditionalPropertiesV2
+     * @deprecated
+     */
+    periodEndOverride?: TimePoint;
+    /**
      * Indicates if a customer has made progress in the achievement.
      * @type {boolean}
      * @memberof AchievementAdditionalPropertiesV2
      */
     hasProgress?: boolean;
     /**
-     * The status of the achievement.
+     * The status of the achievement.                                                                                              
+     * - `active`: The achievement is available to customers.
+     * - `scheduled`: The achievement has a `fixedStartDate` set in the future.
+     * - `expired`: The achievement's `endDate` is in the past.
+     * 
      * @type {AchievementAdditionalPropertiesV2StatusEnum}
      * @memberof AchievementAdditionalPropertiesV2
      */
@@ -53,10 +72,9 @@ export interface AchievementAdditionalPropertiesV2 {
  * @export
  */
 export const AchievementAdditionalPropertiesV2StatusEnum = {
-    Inprogress: 'inprogress',
-    Expired: 'expired',
-    NotStarted: 'not_started',
-    Completed: 'completed'
+    Active: 'active',
+    Scheduled: 'scheduled',
+    Expired: 'expired'
 } as const;
 export type AchievementAdditionalPropertiesV2StatusEnum = typeof AchievementAdditionalPropertiesV2StatusEnum[keyof typeof AchievementAdditionalPropertiesV2StatusEnum];
 
@@ -81,6 +99,7 @@ export function AchievementAdditionalPropertiesV2FromJSONTyped(json: any, ignore
         
         'userId': json['userId'],
         'createdBy': json['createdBy'] == null ? undefined : json['createdBy'],
+        'periodEndOverride': json['periodEndOverride'] == null ? undefined : TimePointFromJSON(json['periodEndOverride']),
         'hasProgress': json['hasProgress'] == null ? undefined : json['hasProgress'],
         'status': json['status'] == null ? undefined : json['status'],
     };
@@ -99,6 +118,7 @@ export function AchievementAdditionalPropertiesV2ToJSONTyped(value?: Achievement
         
         'userId': value['userId'],
         'createdBy': value['createdBy'],
+        'periodEndOverride': TimePointToJSON(value['periodEndOverride']),
         'hasProgress': value['hasProgress'],
         'status': value['status'],
     };

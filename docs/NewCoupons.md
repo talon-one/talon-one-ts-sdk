@@ -36,7 +36,7 @@ const example = {
   "limits": null,
   "numberOfCoupons": 1,
   "uniquePrefix": ,
-  "attributes": {venueId=12},
+  "attributes": null,
   "recipientIntegrationId": URNGV8294NV,
   "validCharacters": [A, B, G, Y],
   "couponPattern": SUMMER-#####,

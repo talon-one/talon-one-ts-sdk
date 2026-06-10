@@ -119,7 +119,9 @@ export function instanceOfStrikethroughLabelingNotification(value: object): valu
     if (!('totalBatches' in value) || value['totalBatches'] === undefined) return false;
     if (!('trigger' in value) || value['trigger'] === undefined) return false;
     if (!('changedItems' in value) || value['changedItems'] === undefined) return false;
-    if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
+    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
+    if (value['notificationType'] !== 'StrikethroughPrice' && value['NotificationType'] !== 'StrikethroughPrice') return false;
+    
     if (!('sentAt' in value) || value['sentAt'] === undefined) return false;
     return true;
 }

@@ -48,6 +48,8 @@ export type CampaignSetLeafNodeTypeEnum = typeof CampaignSetLeafNodeTypeEnum[key
  */
 export function instanceOfCampaignSetLeafNode(value: object): value is CampaignSetLeafNode {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'CAMPAIGN') return false;
+    
     if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
     return true;
 }

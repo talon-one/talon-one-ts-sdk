@@ -8,13 +8,15 @@ Name | Type
 ------------ | -------------
 `id` | number
 `flowId` | number
-`eventType` | string
-`eventData` | any
+`integrationName` | string
+`instanceName` | string
+`eventType` | [IntegrationHubEventType](IntegrationHubEventType.md)
 `publishedAt` | Date
 `processedAt` | Date
 `deliveredAt` | Date
-`processAfter` | Date
+`scheduledTo` | Date
 `retry` | number
+`payload` | string
 
 ## Example
 
@@ -25,13 +27,15 @@ import type { IntegrationHubEventRecord } from 'talon_one_sdk'
 const example = {
   "id": null,
   "flowId": null,
+  "integrationName": null,
+  "instanceName": null,
   "eventType": null,
-  "eventData": null,
   "publishedAt": null,
   "processedAt": null,
   "deliveredAt": null,
-  "processAfter": null,
+  "scheduledTo": null,
   "retry": null,
+  "payload": null,
 } satisfies IntegrationHubEventRecord
 
 console.log(example)

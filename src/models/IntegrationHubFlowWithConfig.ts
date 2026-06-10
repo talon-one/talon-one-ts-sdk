@@ -20,6 +20,13 @@ import {
     IntegrationHubFlowConfigToJSON,
     IntegrationHubFlowConfigToJSONTyped,
 } from './IntegrationHubFlowConfig';
+import type { IntegrationHubEventType } from './IntegrationHubEventType';
+import {
+    IntegrationHubEventTypeFromJSON,
+    IntegrationHubEventTypeFromJSONTyped,
+    IntegrationHubEventTypeToJSON,
+    IntegrationHubEventTypeToJSONTyped,
+} from './IntegrationHubEventType';
 
 /**
  * 
@@ -28,17 +35,23 @@ import {
  */
 export interface IntegrationHubFlowWithConfig {
     /**
-     * ID of application the flow is registered for.
+     * ID of the application the flow is registered for.
      * @type {number}
      * @memberof IntegrationHubFlowWithConfig
      */
     applicationID?: number;
     /**
-     * The event type we want to register a flow for.
-     * @type {string}
+     * ID of the loyalty program the flow is registered for.
+     * @type {number}
      * @memberof IntegrationHubFlowWithConfig
      */
-    eventType: string;
+    loyaltyProgramID?: number;
+    /**
+     * 
+     * @type {IntegrationHubEventType}
+     * @memberof IntegrationHubFlowWithConfig
+     */
+    eventType: IntegrationHubEventType;
     /**
      * The URL of the integration hub flow that we want to trigger for the event.
      * @type {string}
@@ -53,13 +66,15 @@ export interface IntegrationHubFlowWithConfig {
     config: IntegrationHubFlowConfig;
 }
 
+
+
 /**
  * Check if a given object implements the IntegrationHubFlowWithConfig interface.
  */
 export function instanceOfIntegrationHubFlowWithConfig(value: object): value is IntegrationHubFlowWithConfig {
-    if (!('eventType' in value) || value['eventType'] === undefined) return false;
-    if (!('integrationHubFlowUrl' in value) || value['integrationHubFlowUrl'] === undefined) return false;
-    if (!('config' in value) || value['config'] === undefined) return false;
+    if ((!('eventType' in value) && !('EventType' in value)) || (value['eventType'] === undefined && value['EventType'] === undefined)) return false;
+    if ((!('integrationHubFlowUrl' in value) && !('IntegrationHubFlowUrl' in value)) || (value['integrationHubFlowUrl'] === undefined && value['IntegrationHubFlowUrl'] === undefined)) return false;
+    if ((!('config' in value) && !('Config' in value)) || (value['config'] === undefined && value['Config'] === undefined)) return false;
     return true;
 }
 
@@ -74,7 +89,8 @@ export function IntegrationHubFlowWithConfigFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'applicationID': json['ApplicationID'] == null ? undefined : json['ApplicationID'],
-        'eventType': json['EventType'],
+        'loyaltyProgramID': json['LoyaltyProgramID'] == null ? undefined : json['LoyaltyProgramID'],
+        'eventType': IntegrationHubEventTypeFromJSON(json['EventType']),
         'integrationHubFlowUrl': json['IntegrationHubFlowUrl'],
         'config': IntegrationHubFlowConfigFromJSON(json['Config']),
     };
@@ -92,7 +108,8 @@ export function IntegrationHubFlowWithConfigToJSONTyped(value?: IntegrationHubFl
     return {
         
         'ApplicationID': value['applicationID'],
-        'EventType': value['eventType'],
+        'LoyaltyProgramID': value['loyaltyProgramID'],
+        'EventType': IntegrationHubEventTypeToJSON(value['eventType']),
         'IntegrationHubFlowUrl': value['integrationHubFlowUrl'],
         'Config': IntegrationHubFlowConfigToJSON(value['config']),
     };

@@ -1,7 +1,7 @@
 
 # RollbackDiscountEffectProps
 
-The properties specific to the \"rollbackDiscount\" effect. This gets triggered whenever previously closed session is now cancelled or partially returned and a setDiscount effect was cancelled on our internal discount limit counters.
+This effect indicates that a discounted session, cart item, or additional cost has been cancelled or partially returned. This effect can only happen when you set the status of a session to `cancel` or the status changes to `partially_returned`.  If the session contains some cart items with _quantity > 1_, use the `cartItemSubPosition` property to identify the specific item unit in its line item. See the example below.
 
 ## Properties
 

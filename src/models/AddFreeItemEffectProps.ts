@@ -14,7 +14,9 @@
 
 import { mapValues } from '../runtime';
 /**
- * The properties specific to the "addFreeItem" effect. This gets triggered whenever a validated rule contained an "add free item" effect.
+ * This effect indicates that a free item should be added to the shopping cart in the current session. In this example, add the SKU to the shopping cart and set its price to `0`.
+ * 
+ * The effect of a successful referral can mean a free item for someone else, such as the referrer.
  * @export
  * @interface AddFreeItemEffectProps
  */
@@ -26,7 +28,7 @@ export interface AddFreeItemEffectProps {
      */
     sku: string;
     /**
-     * The name / description of the effect
+     * Description of the effect.
      * @type {string}
      * @memberof AddFreeItemEffectProps
      */

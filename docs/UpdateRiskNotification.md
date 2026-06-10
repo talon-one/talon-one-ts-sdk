@@ -1,26 +1,29 @@
 
-# UpdateCustomerProfileV2409Response
+# UpdateRiskNotification
 
+Data for updating a risk notification.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`message` | string
-`errors` | Array&lt;any&gt;
-`statusCode` | number
+`entity` | string
+`activity` | string
+`timeFrame` | string
+`active` | boolean
 
 ## Example
 
 ```typescript
-import type { UpdateCustomerProfileV2409Response } from 'talon_one_sdk'
+import type { UpdateRiskNotification } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "message": Too many requests are updating this profile at the same time,
-  "errors": null,
-  "statusCode": 409,
-} satisfies UpdateCustomerProfileV2409Response
+  "entity": customer_profile,
+  "activity": loyalty_points_earned,
+  "timeFrame": 1_week,
+  "active": true,
+} satisfies UpdateRiskNotification
 
 console.log(example)
 
@@ -29,7 +32,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as UpdateCustomerProfileV2409Response
+const exampleParsed = JSON.parse(exampleJSON) as UpdateRiskNotification
 console.log(exampleParsed)
 ```
 

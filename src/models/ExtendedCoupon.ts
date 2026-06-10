@@ -186,7 +186,7 @@ export function instanceOfExtendedCoupon(value: object): value is ExtendedCoupon
     if (!('created' in value) || value['created'] === undefined) return false;
     if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
     if (!('usageCounter' in value) || value['usageCounter'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
+    if ((!('applicationId' in value) && !('ApplicationId' in value)) || (value['applicationId'] === undefined && value['ApplicationId'] === undefined)) return false;
     return true;
 }
 

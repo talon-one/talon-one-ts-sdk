@@ -42,6 +42,8 @@ export type LabelTargetNoneTypeEnum = typeof LabelTargetNoneTypeEnum[keyof typeo
  */
 export function instanceOfLabelTargetNone(value: object): value is LabelTargetNone {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'NONE') return false;
+    
     return true;
 }
 

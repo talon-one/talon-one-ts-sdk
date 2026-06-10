@@ -34,11 +34,41 @@ export interface IntegrationHubFlowResponse {
      */
     id: number;
     /**
-     * ID of application the flow is registered for.
+     * Name of the integration.
+     * @type {string}
+     * @memberof IntegrationHubFlowResponse
+     */
+    integrationName?: string;
+    /**
+     * Name of the integration instance.
+     * @type {string}
+     * @memberof IntegrationHubFlowResponse
+     */
+    instanceName?: string;
+    /**
+     * Timestamp when the flow was created.
+     * @type {Date}
+     * @memberof IntegrationHubFlowResponse
+     */
+    createdAt: Date;
+    /**
+     * Timestamp until which the flow is disabled. Null when the flow is active.
+     * @type {Date}
+     * @memberof IntegrationHubFlowResponse
+     */
+    disabledUntil?: Date | null;
+    /**
+     * ID of the application the flow is registered for.
      * @type {number}
      * @memberof IntegrationHubFlowResponse
      */
-    applicationID?: number;
+    applicationId?: number;
+    /**
+     * ID of the loyalty program the flow is registered for.
+     * @type {number}
+     * @memberof IntegrationHubFlowResponse
+     */
+    loyaltyProgramId?: number;
     /**
      * The event type we want to register a flow for.
      * @type {string}
@@ -64,6 +94,7 @@ export interface IntegrationHubFlowResponse {
  */
 export function instanceOfIntegrationHubFlowResponse(value: object): value is IntegrationHubFlowResponse {
     if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('eventType' in value) || value['eventType'] === undefined) return false;
     if (!('integrationHubFlowUrl' in value) || value['integrationHubFlowUrl'] === undefined) return false;
     if (!('config' in value) || value['config'] === undefined) return false;
@@ -80,11 +111,16 @@ export function IntegrationHubFlowResponseFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'id': json['Id'],
-        'applicationID': json['ApplicationID'] == null ? undefined : json['ApplicationID'],
-        'eventType': json['EventType'],
-        'integrationHubFlowUrl': json['IntegrationHubFlowUrl'],
-        'config': IntegrationHubFlowConfigResponseFromJSON(json['Config']),
+        'id': json['id'],
+        'integrationName': json['integrationName'] == null ? undefined : json['integrationName'],
+        'instanceName': json['instanceName'] == null ? undefined : json['instanceName'],
+        'createdAt': (new Date(json['createdAt'])),
+        'disabledUntil': json['disabledUntil'] == null ? undefined : (new Date(json['disabledUntil'])),
+        'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
+        'loyaltyProgramId': json['loyaltyProgramId'] == null ? undefined : json['loyaltyProgramId'],
+        'eventType': json['eventType'],
+        'integrationHubFlowUrl': json['integrationHubFlowUrl'],
+        'config': IntegrationHubFlowConfigResponseFromJSON(json['config']),
     };
 }
 
@@ -99,11 +135,16 @@ export function IntegrationHubFlowResponseToJSONTyped(value?: IntegrationHubFlow
 
     return {
         
-        'Id': value['id'],
-        'ApplicationID': value['applicationID'],
-        'EventType': value['eventType'],
-        'IntegrationHubFlowUrl': value['integrationHubFlowUrl'],
-        'Config': IntegrationHubFlowConfigResponseToJSON(value['config']),
+        'id': value['id'],
+        'integrationName': value['integrationName'],
+        'instanceName': value['instanceName'],
+        'createdAt': value['createdAt'].toISOString(),
+        'disabledUntil': value['disabledUntil'] == null ? value['disabledUntil'] : value['disabledUntil'].toISOString(),
+        'applicationId': value['applicationId'],
+        'loyaltyProgramId': value['loyaltyProgramId'],
+        'eventType': value['eventType'],
+        'integrationHubFlowUrl': value['integrationHubFlowUrl'],
+        'config': IntegrationHubFlowConfigResponseToJSON(value['config']),
     };
 }
 

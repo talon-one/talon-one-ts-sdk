@@ -74,7 +74,7 @@ export interface Event {
      */
     type: string;
     /**
-     * Arbitrary additional JSON data associated with the event.
+     * Arbitrary properties associated with this campaign.
      * @type {object}
      * @memberof Event
      */

@@ -37,8 +37,8 @@ export interface RoleMembership {
  * Check if a given object implements the RoleMembership interface.
  */
 export function instanceOfRoleMembership(value: object): value is RoleMembership {
-    if (!('roleID' in value) || value['roleID'] === undefined) return false;
-    if (!('userID' in value) || value['userID'] === undefined) return false;
+    if ((!('roleID' in value) && !('RoleID' in value)) || (value['roleID'] === undefined && value['RoleID'] === undefined)) return false;
+    if ((!('userID' in value) && !('UserID' in value)) || (value['userID'] === undefined && value['UserID'] === undefined)) return false;
     return true;
 }
 

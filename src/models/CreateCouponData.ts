@@ -88,10 +88,12 @@ export type CreateCouponDataNotificationTypeEnum = typeof CreateCouponDataNotifi
  * Check if a given object implements the CreateCouponData interface.
  */
 export function instanceOfCreateCouponData(value: object): value is CreateCouponData {
-    if (!('typeOfChange' in value) || value['typeOfChange'] === undefined) return false;
-    if (!('operation' in value) || value['operation'] === undefined) return false;
-    if (!('employeeName' in value) || value['employeeName'] === undefined) return false;
-    if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
+    if ((!('typeOfChange' in value) && !('TypeOfChange' in value)) || (value['typeOfChange'] === undefined && value['TypeOfChange'] === undefined)) return false;
+    if ((!('operation' in value) && !('Operation' in value)) || (value['operation'] === undefined && value['Operation'] === undefined)) return false;
+    if ((!('employeeName' in value) && !('EmployeeName' in value)) || (value['employeeName'] === undefined && value['EmployeeName'] === undefined)) return false;
+    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
+    if (value['notificationType'] !== 'CouponCreated' && value['NotificationType'] !== 'CouponCreated') return false;
+    
     return true;
 }
 

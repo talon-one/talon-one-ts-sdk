@@ -85,13 +85,13 @@ export interface TierUpgradeData {
  * Check if a given object implements the TierUpgradeData interface.
  */
 export function instanceOfTierUpgradeData(value: object): value is TierUpgradeData {
-    if (!('customerProfileID' in value) || value['customerProfileID'] === undefined) return false;
-    if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
-    if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
-    if (!('currentTier' in value) || value['currentTier'] === undefined) return false;
-    if (!('currentPoints' in value) || value['currentPoints'] === undefined) return false;
-    if (!('tierExpirationDate' in value) || value['tierExpirationDate'] === undefined) return false;
-    if (!('timestampOfTierChange' in value) || value['timestampOfTierChange'] === undefined) return false;
+    if ((!('customerProfileID' in value) && !('CustomerProfileID' in value)) || (value['customerProfileID'] === undefined && value['CustomerProfileID'] === undefined)) return false;
+    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
+    if ((!('currentTier' in value) && !('CurrentTier' in value)) || (value['currentTier'] === undefined && value['CurrentTier'] === undefined)) return false;
+    if ((!('currentPoints' in value) && !('CurrentPoints' in value)) || (value['currentPoints'] === undefined && value['CurrentPoints'] === undefined)) return false;
+    if ((!('tierExpirationDate' in value) && !('TierExpirationDate' in value)) || (value['tierExpirationDate'] === undefined && value['TierExpirationDate'] === undefined)) return false;
+    if ((!('timestampOfTierChange' in value) && !('TimestampOfTierChange' in value)) || (value['timestampOfTierChange'] === undefined && value['TimestampOfTierChange'] === undefined)) return false;
     return true;
 }
 

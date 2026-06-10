@@ -57,6 +57,8 @@ export type LabelTargetAudienceTypeEnum = typeof LabelTargetAudienceTypeEnum[key
  */
 export function instanceOfLabelTargetAudience(value: object): value is LabelTargetAudience {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'AUDIENCE') return false;
+    
     if (!('audience' in value) || value['audience'] === undefined) return false;
     return true;
 }

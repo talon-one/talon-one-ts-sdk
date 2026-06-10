@@ -55,11 +55,11 @@ export interface ExpiringPointsData {
  * Check if a given object implements the ExpiringPointsData interface.
  */
 export function instanceOfExpiringPointsData(value: object): value is ExpiringPointsData {
-    if (!('expiryDate' in value) || value['expiryDate'] === undefined) return false;
-    if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
-    if (!('customerProfileID' in value) || value['customerProfileID'] === undefined) return false;
-    if (!('amountOfExpiringPoints' in value) || value['amountOfExpiringPoints'] === undefined) return false;
-    if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
+    if ((!('expiryDate' in value) && !('ExpiryDate' in value)) || (value['expiryDate'] === undefined && value['ExpiryDate'] === undefined)) return false;
+    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('customerProfileID' in value) && !('CustomerProfileID' in value)) || (value['customerProfileID'] === undefined && value['CustomerProfileID'] === undefined)) return false;
+    if ((!('amountOfExpiringPoints' in value) && !('AmountOfExpiringPoints' in value)) || (value['amountOfExpiringPoints'] === undefined && value['AmountOfExpiringPoints'] === undefined)) return false;
+    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
     return true;
 }
 

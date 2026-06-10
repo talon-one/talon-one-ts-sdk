@@ -27,7 +27,7 @@ const example = {
   "campaignId": 78,
   "advocateProfileIntegrationId": URNGV8294NV,
   "friendProfileIntegrationId": BZGGC2454PA,
-  "attributes": {channel=web},
+  "attributes": null,
 } satisfies NewReferral
 
 console.log(example)

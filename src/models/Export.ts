@@ -50,7 +50,7 @@ export interface Export {
      */
     entity: ExportEntityEnum;
     /**
-     * Map of keys and values that were used to filter the exported rows.
+     * Arbitrary properties associated with this campaign.
      * @type {object}
      * @memberof Export
      */

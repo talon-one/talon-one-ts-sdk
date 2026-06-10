@@ -127,6 +127,8 @@ export type CampaignSetBranchNodeEvaluationScopeEnum = typeof CampaignSetBranchN
  */
 export function instanceOfCampaignSetBranchNode(value: object): value is CampaignSetBranchNode {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'SET') return false;
+    
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('operator' in value) || value['operator'] === undefined) return false;
     if (!('elements' in value) || value['elements'] === undefined) return false;

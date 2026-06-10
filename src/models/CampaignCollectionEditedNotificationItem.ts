@@ -85,7 +85,7 @@ export interface CampaignCollectionEditedNotificationItem {
  * Check if a given object implements the CampaignCollectionEditedNotificationItem interface.
  */
 export function instanceOfCampaignCollectionEditedNotificationItem(value: object): value is CampaignCollectionEditedNotificationItem {
-    if (!('event' in value) || value['event'] === undefined) return false;
+    if ((!('event' in value) && !('Event' in value)) || (value['event'] === undefined && value['Event'] === undefined)) return false;
     if (!('campaign' in value) || value['campaign'] === undefined) return false;
     if (!('collection' in value) || value['collection'] === undefined) return false;
     return true;

@@ -1,23 +1,21 @@
 
-# ScimServiceProviderConfigResponseSort
+# IntegrationHubEventType
 
-Configuration settings related to sorting SCIM resources in query responses.
+The type of integration hub event.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`supported` | boolean
 
 ## Example
 
 ```typescript
-import type { ScimServiceProviderConfigResponseSort } from 'talon_one_sdk'
+import type { IntegrationHubEventType } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "supported": null,
-} satisfies ScimServiceProviderConfigResponseSort
+} satisfies IntegrationHubEventType
 
 console.log(example)
 
@@ -26,7 +24,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ScimServiceProviderConfigResponseSort
+const exampleParsed = JSON.parse(exampleJSON) as IntegrationHubEventType
 console.log(exampleParsed)
 ```
 

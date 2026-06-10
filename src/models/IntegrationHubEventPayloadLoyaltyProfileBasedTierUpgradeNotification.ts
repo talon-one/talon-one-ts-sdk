@@ -103,14 +103,14 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotific
  * Check if a given object implements the IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification interface.
  */
 export function instanceOfIntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification(value: object): value is IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification {
-    if (!('profileIntegrationID' in value) || value['profileIntegrationID'] === undefined) return false;
-    if (!('loyaltyProgramID' in value) || value['loyaltyProgramID'] === undefined) return false;
-    if (!('loyaltyProgramName' in value) || value['loyaltyProgramName'] === undefined) return false;
-    if (!('subledgerID' in value) || value['subledgerID'] === undefined) return false;
-    if (!('sourceOfEvent' in value) || value['sourceOfEvent'] === undefined) return false;
-    if (!('currentTier' in value) || value['currentTier'] === undefined) return false;
-    if (!('currentPoints' in value) || value['currentPoints'] === undefined) return false;
-    if (!('publishedAt' in value) || value['publishedAt'] === undefined) return false;
+    if ((!('profileIntegrationID' in value) && !('ProfileIntegrationID' in value)) || (value['profileIntegrationID'] === undefined && value['ProfileIntegrationID'] === undefined)) return false;
+    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('loyaltyProgramName' in value) && !('LoyaltyProgramName' in value)) || (value['loyaltyProgramName'] === undefined && value['LoyaltyProgramName'] === undefined)) return false;
+    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
+    if ((!('sourceOfEvent' in value) && !('SourceOfEvent' in value)) || (value['sourceOfEvent'] === undefined && value['SourceOfEvent'] === undefined)) return false;
+    if ((!('currentTier' in value) && !('CurrentTier' in value)) || (value['currentTier'] === undefined && value['CurrentTier'] === undefined)) return false;
+    if ((!('currentPoints' in value) && !('CurrentPoints' in value)) || (value['currentPoints'] === undefined && value['CurrentPoints'] === undefined)) return false;
+    if ((!('publishedAt' in value) && !('PublishedAt' in value)) || (value['publishedAt'] === undefined && value['PublishedAt'] === undefined)) return false;
     return true;
 }
 

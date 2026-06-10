@@ -31,7 +31,7 @@ const example = {
   "profileId": URNGV8294NV,
   "storeIntegrationId": STORE-001,
   "type": pageViewed,
-  "attributes": {myAttribute=myValue},
+  "attributes": null,
   "integrationId": 175KJPS947296,
   "effects": null,
 } satisfies EventV3

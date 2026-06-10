@@ -61,9 +61,11 @@ export type ExpiringPointsNotificationNotificationTypeEnum = typeof ExpiringPoin
  * Check if a given object implements the ExpiringPointsNotification interface.
  */
 export function instanceOfExpiringPointsNotification(value: object): value is ExpiringPointsNotification {
-    if (!('totalResultSize' in value) || value['totalResultSize'] === undefined) return false;
-    if (!('data' in value) || value['data'] === undefined) return false;
-    if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
+    if ((!('totalResultSize' in value) && !('TotalResultSize' in value)) || (value['totalResultSize'] === undefined && value['TotalResultSize'] === undefined)) return false;
+    if ((!('data' in value) && !('Data' in value)) || (value['data'] === undefined && value['Data'] === undefined)) return false;
+    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
+    if (value['notificationType'] !== 'LoyaltyPointsExpiring' && value['NotificationType'] !== 'LoyaltyPointsExpiring') return false;
+    
     return true;
 }
 

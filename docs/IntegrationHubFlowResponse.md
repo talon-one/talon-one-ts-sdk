@@ -7,7 +7,12 @@
 Name | Type
 ------------ | -------------
 `id` | number
-`applicationID` | number
+`integrationName` | string
+`instanceName` | string
+`createdAt` | Date
+`disabledUntil` | Date
+`applicationId` | number
+`loyaltyProgramId` | number
 `eventType` | string
 `integrationHubFlowUrl` | string
 `config` | [IntegrationHubFlowConfigResponse](IntegrationHubFlowConfigResponse.md)
@@ -20,7 +25,12 @@ import type { IntegrationHubFlowResponse } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "id": null,
-  "applicationID": 54,
+  "integrationName": null,
+  "instanceName": null,
+  "createdAt": null,
+  "disabledUntil": null,
+  "applicationId": 54,
+  "loyaltyProgramId": 12,
   "eventType": null,
   "integrationHubFlowUrl": null,
   "config": null,
