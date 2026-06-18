@@ -37,6 +37,7 @@ export interface GenerateRuleTitleRule {
  * Check if a given object implements the GenerateRuleTitleRule interface.
  */
 export function instanceOfGenerateRuleTitleRule(value: object): value is GenerateRuleTitleRule {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

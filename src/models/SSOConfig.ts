@@ -40,7 +40,8 @@ export interface SSOConfig {
  * Check if a given object implements the SSOConfig interface.
  */
 export function instanceOfSSOConfig(value: object): value is SSOConfig {
-    if (!('enforced' in value) || value['enforced'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('enforced' in _v) || _v['enforced'] === undefined) return false;
     return true;
 }
 

@@ -39,6 +39,7 @@ export interface ListCampaignStoreBudgetLimits200Response {
  * Check if a given object implements the ListCampaignStoreBudgetLimits200Response interface.
  */
 export function instanceOfListCampaignStoreBudgetLimits200Response(value: object): value is ListCampaignStoreBudgetLimits200Response {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

@@ -47,9 +47,10 @@ export interface ShowBundleMetadataEffectProps {
  * Check if a given object implements the ShowBundleMetadataEffectProps interface.
  */
 export function instanceOfShowBundleMetadataEffectProps(value: object): value is ShowBundleMetadataEffectProps {
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('bundleAttributes' in value) || value['bundleAttributes'] === undefined) return false;
-    if (!('itemsIndices' in value) || value['itemsIndices'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
+    if (!('bundleAttributes' in _v) || _v['bundleAttributes'] === undefined) return false;
+    if (!('itemsIndices' in _v) || _v['itemsIndices'] === undefined) return false;
     return true;
 }
 

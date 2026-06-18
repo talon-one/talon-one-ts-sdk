@@ -65,6 +65,7 @@ export interface RoleV2Permissions {
  * Check if a given object implements the RoleV2Permissions interface.
  */
 export function instanceOfRoleV2Permissions(value: object): value is RoleV2Permissions {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

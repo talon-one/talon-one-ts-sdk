@@ -83,7 +83,8 @@ export type NewBlueprintCategoryEnum = typeof NewBlueprintCategoryEnum[keyof typ
  * Check if a given object implements the NewBlueprint interface.
  */
 export function instanceOfNewBlueprint(value: object): value is NewBlueprint {
-    if (!('title' in value) || value['title'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
     return true;
 }
 

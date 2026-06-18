@@ -95,13 +95,14 @@ export type LibraryAttributeTypeEnum = typeof LibraryAttributeTypeEnum[keyof typ
  * Check if a given object implements the LibraryAttribute interface.
  */
 export function instanceOfLibraryAttribute(value: object): value is LibraryAttribute {
-    if (!('entity' in value) || value['entity'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('presets' in value) || value['presets'] === undefined) return false;
-    if (!('suggestions' in value) || value['suggestions'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('entity' in _v) || _v['entity'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
+    if (!('presets' in _v) || _v['presets'] === undefined) return false;
+    if (!('suggestions' in _v) || _v['suggestions'] === undefined) return false;
     return true;
 }
 

@@ -43,7 +43,8 @@ export interface CatalogsStrikethroughNotificationPolicy {
  * Check if a given object implements the CatalogsStrikethroughNotificationPolicy interface.
  */
 export function instanceOfCatalogsStrikethroughNotificationPolicy(value: object): value is CatalogsStrikethroughNotificationPolicy {
-    if (!('name' in value) || value['name'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
     return true;
 }
 

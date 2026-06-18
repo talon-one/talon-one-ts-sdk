@@ -87,10 +87,11 @@ export interface RoleV2 {
  * Check if a given object implements the RoleV2 interface.
  */
 export function instanceOfRoleV2(value: object): value is RoleV2 {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('modified' in value) || value['modified'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('modified' in _v) || _v['modified'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
     return true;
 }
 

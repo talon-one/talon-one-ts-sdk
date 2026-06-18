@@ -85,16 +85,17 @@ export interface GiveawayPoolNotificationData {
  * Check if a given object implements the GiveawayPoolNotificationData interface.
  */
 export function instanceOfGiveawayPoolNotificationData(value: object): value is GiveawayPoolNotificationData {
-    if ((!('event' in value) && !('Event' in value)) || (value['event'] === undefined && value['Event'] === undefined)) return false;
-    if ((!('poolId' in value) && !('PoolId' in value)) || (value['poolId'] === undefined && value['PoolId'] === undefined)) return false;
-    if ((!('poolName' in value) && !('PoolName' in value)) || (value['poolName'] === undefined && value['PoolName'] === undefined)) return false;
-    if ((!('poolDescription' in value) && !('PoolDescription' in value)) || (value['poolDescription'] === undefined && value['PoolDescription'] === undefined)) return false;
-    if ((!('accountId' in value) && !('AccountId' in value)) || (value['accountId'] === undefined && value['AccountId'] === undefined)) return false;
-    if ((!('applicationId' in value) && !('ApplicationId' in value)) || (value['applicationId'] === undefined && value['ApplicationId'] === undefined)) return false;
-    if ((!('totalCodes' in value) && !('TotalCodes' in value)) || (value['totalCodes'] === undefined && value['TotalCodes'] === undefined)) return false;
-    if ((!('usedCodes' in value) && !('UsedCodes' in value)) || (value['usedCodes'] === undefined && value['UsedCodes'] === undefined)) return false;
-    if ((!('remainingCodes' in value) && !('RemainingCodes' in value)) || (value['remainingCodes'] === undefined && value['RemainingCodes'] === undefined)) return false;
-    if ((!('thresholdPercent' in value) && !('ThresholdPercent' in value)) || (value['thresholdPercent'] === undefined && value['ThresholdPercent'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('event' in _v) && !('Event' in _v)) || (_v['event'] === undefined && _v['Event'] === undefined)) return false;
+    if ((!('poolId' in _v) && !('PoolId' in _v)) || (_v['poolId'] === undefined && _v['PoolId'] === undefined)) return false;
+    if ((!('poolName' in _v) && !('PoolName' in _v)) || (_v['poolName'] === undefined && _v['PoolName'] === undefined)) return false;
+    if ((!('poolDescription' in _v) && !('PoolDescription' in _v)) || (_v['poolDescription'] === undefined && _v['PoolDescription'] === undefined)) return false;
+    if ((!('accountId' in _v) && !('AccountId' in _v)) || (_v['accountId'] === undefined && _v['AccountId'] === undefined)) return false;
+    if ((!('applicationId' in _v) && !('ApplicationId' in _v)) || (_v['applicationId'] === undefined && _v['ApplicationId'] === undefined)) return false;
+    if ((!('totalCodes' in _v) && !('TotalCodes' in _v)) || (_v['totalCodes'] === undefined && _v['TotalCodes'] === undefined)) return false;
+    if ((!('usedCodes' in _v) && !('UsedCodes' in _v)) || (_v['usedCodes'] === undefined && _v['UsedCodes'] === undefined)) return false;
+    if ((!('remainingCodes' in _v) && !('RemainingCodes' in _v)) || (_v['remainingCodes'] === undefined && _v['RemainingCodes'] === undefined)) return false;
+    if ((!('thresholdPercent' in _v) && !('ThresholdPercent' in _v)) || (_v['thresholdPercent'] === undefined && _v['ThresholdPercent'] === undefined)) return false;
     return true;
 }
 

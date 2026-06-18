@@ -43,8 +43,9 @@ export interface NewCatalog {
  * Check if a given object implements the NewCatalog interface.
  */
 export function instanceOfNewCatalog(value: object): value is NewCatalog {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
     return true;
 }
 

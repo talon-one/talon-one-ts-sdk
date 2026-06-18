@@ -37,8 +37,9 @@ export interface Entity {
  * Check if a given object implements the Entity interface.
  */
 export function instanceOfEntity(value: object): value is Entity {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
     return true;
 }
 

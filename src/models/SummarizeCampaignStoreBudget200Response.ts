@@ -39,6 +39,7 @@ export interface SummarizeCampaignStoreBudget200Response {
  * Check if a given object implements the SummarizeCampaignStoreBudget200Response interface.
  */
 export function instanceOfSummarizeCampaignStoreBudget200Response(value: object): value is SummarizeCampaignStoreBudget200Response {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

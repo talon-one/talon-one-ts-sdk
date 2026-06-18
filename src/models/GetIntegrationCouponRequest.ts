@@ -37,8 +37,9 @@ export interface GetIntegrationCouponRequest {
  * Check if a given object implements the GetIntegrationCouponRequest interface.
  */
 export function instanceOfGetIntegrationCouponRequest(value: object): value is GetIntegrationCouponRequest {
-    if (!('campaignIds' in value) || value['campaignIds'] === undefined) return false;
-    if (!('limit' in value) || value['limit'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('campaignIds' in _v) || _v['campaignIds'] === undefined) return false;
+    if (!('limit' in _v) || _v['limit'] === undefined) return false;
     return true;
 }
 

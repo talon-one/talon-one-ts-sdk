@@ -74,10 +74,11 @@ export type MultipleAudiencesItemStatusEnum = typeof MultipleAudiencesItemStatus
  * Check if a given object implements the MultipleAudiencesItem interface.
  */
 export function instanceOfMultipleAudiencesItem(value: object): value is MultipleAudiencesItem {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('status' in _v) || _v['status'] === undefined) return false;
     return true;
 }
 

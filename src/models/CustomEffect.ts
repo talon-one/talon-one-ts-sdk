@@ -117,16 +117,17 @@ export interface CustomEffect {
  * Check if a given object implements the CustomEffect interface.
  */
 export function instanceOfCustomEffect(value: object): value is CustomEffect {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('modified' in value) || value['modified'] === undefined) return false;
-    if (!('applicationIds' in value) || value['applicationIds'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('payload' in value) || value['payload'] === undefined) return false;
-    if (!('enabled' in value) || value['enabled'] === undefined) return false;
-    if (!('createdBy' in value) || value['createdBy'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('modified' in _v) || _v['modified'] === undefined) return false;
+    if (!('applicationIds' in _v) || _v['applicationIds'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('payload' in _v) || _v['payload'] === undefined) return false;
+    if (!('enabled' in _v) || _v['enabled'] === undefined) return false;
+    if (!('createdBy' in _v) || _v['createdBy'] === undefined) return false;
     return true;
 }
 

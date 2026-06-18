@@ -39,6 +39,7 @@ export interface ExperimentListResults {
  * Check if a given object implements the ExperimentListResults interface.
  */
 export function instanceOfExperimentListResults(value: object): value is ExperimentListResults {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

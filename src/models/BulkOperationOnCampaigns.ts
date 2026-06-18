@@ -59,8 +59,9 @@ export type BulkOperationOnCampaignsOperationEnum = typeof BulkOperationOnCampai
  * Check if a given object implements the BulkOperationOnCampaigns interface.
  */
 export function instanceOfBulkOperationOnCampaigns(value: object): value is BulkOperationOnCampaigns {
-    if (!('operation' in value) || value['operation'] === undefined) return false;
-    if (!('campaignIds' in value) || value['campaignIds'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('operation' in _v) || _v['operation'] === undefined) return false;
+    if (!('campaignIds' in _v) || _v['campaignIds'] === undefined) return false;
     return true;
 }
 

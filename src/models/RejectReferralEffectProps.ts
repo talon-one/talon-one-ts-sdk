@@ -81,8 +81,9 @@ export interface RejectReferralEffectProps {
  * Check if a given object implements the RejectReferralEffectProps interface.
  */
 export function instanceOfRejectReferralEffectProps(value: object): value is RejectReferralEffectProps {
-    if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('rejectionReason' in value) || value['rejectionReason'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
+    if (!('rejectionReason' in _v) || _v['rejectionReason'] === undefined) return false;
     return true;
 }
 

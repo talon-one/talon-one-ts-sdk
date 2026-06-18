@@ -37,8 +37,9 @@ export interface NewPassword {
  * Check if a given object implements the NewPassword interface.
  */
 export function instanceOfNewPassword(value: object): value is NewPassword {
-    if (!('password' in value) || value['password'] === undefined) return false;
-    if (!('resetToken' in value) || value['resetToken'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('password' in _v) || _v['password'] === undefined) return false;
+    if (!('resetToken' in _v) || _v['resetToken'] === undefined) return false;
     return true;
 }
 

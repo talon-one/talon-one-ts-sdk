@@ -37,8 +37,9 @@ export interface LoyaltyCardBatchResponse {
  * Check if a given object implements the LoyaltyCardBatchResponse interface.
  */
 export function instanceOfLoyaltyCardBatchResponse(value: object): value is LoyaltyCardBatchResponse {
-    if (!('numberOfCardsGenerated' in value) || value['numberOfCardsGenerated'] === undefined) return false;
-    if (!('batchId' in value) || value['batchId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('numberOfCardsGenerated' in _v) || _v['numberOfCardsGenerated'] === undefined) return false;
+    if (!('batchId' in _v) || _v['batchId'] === undefined) return false;
     return true;
 }
 

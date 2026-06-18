@@ -137,12 +137,13 @@ export type ApplicationCampaignAnalyticsCampaignStateEnum = typeof ApplicationCa
  * Check if a given object implements the ApplicationCampaignAnalytics interface.
  */
 export function instanceOfApplicationCampaignAnalytics(value: object): value is ApplicationCampaignAnalytics {
-    if (!('startTime' in value) || value['startTime'] === undefined) return false;
-    if (!('endTime' in value) || value['endTime'] === undefined) return false;
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('campaignName' in value) || value['campaignName'] === undefined) return false;
-    if (!('campaignTags' in value) || value['campaignTags'] === undefined) return false;
-    if (!('campaignState' in value) || value['campaignState'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('startTime' in _v) || _v['startTime'] === undefined) return false;
+    if (!('endTime' in _v) || _v['endTime'] === undefined) return false;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('campaignName' in _v) || _v['campaignName'] === undefined) return false;
+    if (!('campaignTags' in _v) || _v['campaignTags'] === undefined) return false;
+    if (!('campaignState' in _v) || _v['campaignState'] === undefined) return false;
     return true;
 }
 

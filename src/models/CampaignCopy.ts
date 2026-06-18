@@ -67,7 +67,8 @@ export interface CampaignCopy {
  * Check if a given object implements the CampaignCopy interface.
  */
 export function instanceOfCampaignCopy(value: object): value is CampaignCopy {
-    if (!('applicationIds' in value) || value['applicationIds'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('applicationIds' in _v) || _v['applicationIds'] === undefined) return false;
     return true;
 }
 

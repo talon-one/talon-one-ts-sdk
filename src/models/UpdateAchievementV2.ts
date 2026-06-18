@@ -153,11 +153,12 @@ export type UpdateAchievementV2ActivationPolicyEnum = typeof UpdateAchievementV2
  * Check if a given object implements the UpdateAchievementV2 interface.
  */
 export function instanceOfUpdateAchievementV2(value: object): value is UpdateAchievementV2 {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('target' in value) || value['target'] === undefined) return false;
-    if (!('subscribedApplications' in value) || value['subscribedApplications'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
+    if (!('target' in _v) || _v['target'] === undefined) return false;
+    if (!('subscribedApplications' in _v) || _v['subscribedApplications'] === undefined) return false;
     return true;
 }
 

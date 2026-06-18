@@ -31,7 +31,8 @@ export interface CouponReservations {
  * Check if a given object implements the CouponReservations interface.
  */
 export function instanceOfCouponReservations(value: object): value is CouponReservations {
-    if (!('integrationIDs' in value) || value['integrationIDs'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('integrationIDs' in _v) || _v['integrationIDs'] === undefined) return false;
     return true;
 }
 

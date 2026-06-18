@@ -37,8 +37,9 @@ export interface RoleAssign {
  * Check if a given object implements the RoleAssign interface.
  */
 export function instanceOfRoleAssign(value: object): value is RoleAssign {
-    if (!('users' in value) || value['users'] === undefined) return false;
-    if (!('roles' in value) || value['roles'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('users' in _v) || _v['users'] === undefined) return false;
+    if (!('roles' in _v) || _v['roles'] === undefined) return false;
     return true;
 }
 

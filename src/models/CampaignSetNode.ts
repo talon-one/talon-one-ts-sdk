@@ -31,7 +31,8 @@ export interface CampaignSetNode {
  * Check if a given object implements the CampaignSetNode interface.
  */
 export function instanceOfCampaignSetNode(value: object): value is CampaignSetNode {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
     return true;
 }
 

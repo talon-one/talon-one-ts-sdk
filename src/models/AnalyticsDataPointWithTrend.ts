@@ -37,8 +37,9 @@ export interface AnalyticsDataPointWithTrend {
  * Check if a given object implements the AnalyticsDataPointWithTrend interface.
  */
 export function instanceOfAnalyticsDataPointWithTrend(value: object): value is AnalyticsDataPointWithTrend {
-    if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('trend' in value) || value['trend'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
+    if (!('trend' in _v) || _v['trend'] === undefined) return false;
     return true;
 }
 

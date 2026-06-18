@@ -45,8 +45,9 @@ export interface GenerateRuleTitle {
  * Check if a given object implements the GenerateRuleTitle interface.
  */
 export function instanceOfGenerateRuleTitle(value: object): value is GenerateRuleTitle {
-    if (!('rule' in value) || value['rule'] === undefined) return false;
-    if (!('currency' in value) || value['currency'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('rule' in _v) || _v['rule'] === undefined) return false;
+    if (!('currency' in _v) || _v['currency'] === undefined) return false;
     return true;
 }
 

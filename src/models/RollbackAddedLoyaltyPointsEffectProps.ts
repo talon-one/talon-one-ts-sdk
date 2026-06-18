@@ -82,11 +82,12 @@ export interface RollbackAddedLoyaltyPointsEffectProps {
  * Check if a given object implements the RollbackAddedLoyaltyPointsEffectProps interface.
  */
 export function instanceOfRollbackAddedLoyaltyPointsEffectProps(value: object): value is RollbackAddedLoyaltyPointsEffectProps {
-    if (!('programId' in value) || value['programId'] === undefined) return false;
-    if (!('subLedgerId' in value) || value['subLedgerId'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('recipientIntegrationId' in value) || value['recipientIntegrationId'] === undefined) return false;
-    if (!('transactionUUID' in value) || value['transactionUUID'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('programId' in _v) || _v['programId'] === undefined) return false;
+    if (!('subLedgerId' in _v) || _v['subLedgerId'] === undefined) return false;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
+    if (!('recipientIntegrationId' in _v) || _v['recipientIntegrationId'] === undefined) return false;
+    if (!('transactionUUID' in _v) || _v['transactionUUID'] === undefined) return false;
     return true;
 }
 

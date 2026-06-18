@@ -43,9 +43,10 @@ export interface AnalyticsDataPointWithTrendAndInfluencedRate {
  * Check if a given object implements the AnalyticsDataPointWithTrendAndInfluencedRate interface.
  */
 export function instanceOfAnalyticsDataPointWithTrendAndInfluencedRate(value: object): value is AnalyticsDataPointWithTrendAndInfluencedRate {
-    if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('influencedRate' in value) || value['influencedRate'] === undefined) return false;
-    if (!('trend' in value) || value['trend'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
+    if (!('influencedRate' in _v) || _v['influencedRate'] === undefined) return false;
+    if (!('trend' in _v) || _v['trend'] === undefined) return false;
     return true;
 }
 

@@ -950,6 +950,8 @@ export interface ExportCouponsRequest {
     dateFormat?: ExportCouponsDateFormatEnum;
     campaignState?: ExportCouponsCampaignStateEnum;
     valuesOnly?: boolean;
+    deletedBefore?: Date;
+    deletedAfter?: Date;
 }
 
 export interface ExportCustomerSessionsRequest {
@@ -1194,6 +1196,7 @@ export interface GetAttributesRequest {
     sort?: string;
     entity?: string;
     applicationIds?: string;
+    loyaltyProgramIds?: string;
     type?: string;
     kind?: GetAttributesKindEnum;
     search?: string;
@@ -4820,6 +4823,14 @@ export class ManagementApi extends runtime.BaseAPI {
             queryParameters['valuesOnly'] = requestParameters['valuesOnly'];
         }
 
+        if (requestParameters['deletedBefore'] != null) {
+            queryParameters['deletedBefore'] = (requestParameters['deletedBefore'] as any).toISOString();
+        }
+
+        if (requestParameters['deletedAfter'] != null) {
+            queryParameters['deletedAfter'] = (requestParameters['deletedAfter'] as any).toISOString();
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
@@ -7115,6 +7126,10 @@ export class ManagementApi extends runtime.BaseAPI {
 
         if (requestParameters['applicationIds'] != null) {
             queryParameters['applicationIds'] = requestParameters['applicationIds'];
+        }
+
+        if (requestParameters['loyaltyProgramIds'] != null) {
+            queryParameters['loyaltyProgramIds'] = requestParameters['loyaltyProgramIds'];
         }
 
         if (requestParameters['type'] != null) {

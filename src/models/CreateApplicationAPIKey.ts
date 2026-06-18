@@ -90,8 +90,9 @@ export type CreateApplicationAPIKeyTypeEnum = typeof CreateApplicationAPIKeyType
  * Check if a given object implements the CreateApplicationAPIKey interface.
  */
 export function instanceOfCreateApplicationAPIKey(value: object): value is CreateApplicationAPIKey {
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('expires' in value) || value['expires'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('expires' in _v) || _v['expires'] === undefined) return false;
     return true;
 }
 

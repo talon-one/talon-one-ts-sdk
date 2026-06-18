@@ -61,12 +61,13 @@ export interface ApplicationCampaignStats {
  * Check if a given object implements the ApplicationCampaignStats interface.
  */
 export function instanceOfApplicationCampaignStats(value: object): value is ApplicationCampaignStats {
-    if (!('disabled' in value) || value['disabled'] === undefined) return false;
-    if (!('staged' in value) || value['staged'] === undefined) return false;
-    if (!('scheduled' in value) || value['scheduled'] === undefined) return false;
-    if (!('running' in value) || value['running'] === undefined) return false;
-    if (!('expired' in value) || value['expired'] === undefined) return false;
-    if (!('archived' in value) || value['archived'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('disabled' in _v) || _v['disabled'] === undefined) return false;
+    if (!('staged' in _v) || _v['staged'] === undefined) return false;
+    if (!('scheduled' in _v) || _v['scheduled'] === undefined) return false;
+    if (!('running' in _v) || _v['running'] === undefined) return false;
+    if (!('expired' in _v) || _v['expired'] === undefined) return false;
+    if (!('archived' in _v) || _v['archived'] === undefined) return false;
     return true;
 }
 

@@ -42,6 +42,7 @@ export interface LoyaltyProgramBalance {
      * 
      * @type {number}
      * @memberof LoyaltyProgramBalance
+     * @deprecated
      */
     expiredBalance: number;
     /**
@@ -49,6 +50,7 @@ export interface LoyaltyProgramBalance {
      * 
      * @type {number}
      * @memberof LoyaltyProgramBalance
+     * @deprecated
      */
     spentBalance: number;
     /**
@@ -84,11 +86,12 @@ export interface LoyaltyProgramBalance {
  * Check if a given object implements the LoyaltyProgramBalance interface.
  */
 export function instanceOfLoyaltyProgramBalance(value: object): value is LoyaltyProgramBalance {
-    if (!('currentBalance' in value) || value['currentBalance'] === undefined) return false;
-    if (!('pendingBalance' in value) || value['pendingBalance'] === undefined) return false;
-    if (!('expiredBalance' in value) || value['expiredBalance'] === undefined) return false;
-    if (!('spentBalance' in value) || value['spentBalance'] === undefined) return false;
-    if (!('tentativeCurrentBalance' in value) || value['tentativeCurrentBalance'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('currentBalance' in _v) || _v['currentBalance'] === undefined) return false;
+    if (!('pendingBalance' in _v) || _v['pendingBalance'] === undefined) return false;
+    if (!('expiredBalance' in _v) || _v['expiredBalance'] === undefined) return false;
+    if (!('spentBalance' in _v) || _v['spentBalance'] === undefined) return false;
+    if (!('tentativeCurrentBalance' in _v) || _v['tentativeCurrentBalance'] === undefined) return false;
     return true;
 }
 

@@ -99,14 +99,15 @@ export interface TemplateDef {
  * Check if a given object implements the TemplateDef interface.
  */
 export function instanceOfTemplateDef(value: object): value is TemplateDef {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('category' in value) || value['category'] === undefined) return false;
-    if (!('expr' in value) || value['expr'] === undefined) return false;
-    if (!('args' in value) || value['args'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('category' in _v) || _v['category'] === undefined) return false;
+    if (!('expr' in _v) || _v['expr'] === undefined) return false;
+    if (!('args' in _v) || _v['args'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
     return true;
 }
 

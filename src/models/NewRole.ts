@@ -49,9 +49,10 @@ export interface NewRole {
  * Check if a given object implements the NewRole interface.
  */
 export function instanceOfNewRole(value: object): value is NewRole {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('acl' in value) || value['acl'] === undefined) return false;
-    if (!('members' in value) || value['members'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('acl' in _v) || _v['acl'] === undefined) return false;
+    if (!('members' in _v) || _v['members'] === undefined) return false;
     return true;
 }
 

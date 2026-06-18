@@ -57,8 +57,9 @@ export interface NewRoleV2 {
  * Check if a given object implements the NewRoleV2 interface.
  */
 export function instanceOfNewRoleV2(value: object): value is NewRoleV2 {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
     return true;
 }
 

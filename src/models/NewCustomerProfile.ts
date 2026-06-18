@@ -31,6 +31,7 @@ export interface NewCustomerProfile {
  * Check if a given object implements the NewCustomerProfile interface.
  */
 export function instanceOfNewCustomerProfile(value: object): value is NewCustomerProfile {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

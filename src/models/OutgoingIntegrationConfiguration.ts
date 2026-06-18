@@ -49,10 +49,11 @@ export interface OutgoingIntegrationConfiguration {
  * Check if a given object implements the OutgoingIntegrationConfiguration interface.
  */
 export function instanceOfOutgoingIntegrationConfiguration(value: object): value is OutgoingIntegrationConfiguration {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('typeId' in value) || value['typeId'] === undefined) return false;
-    if (!('policy' in value) || value['policy'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('typeId' in _v) || _v['typeId'] === undefined) return false;
+    if (!('policy' in _v) || _v['policy'] === undefined) return false;
     return true;
 }
 

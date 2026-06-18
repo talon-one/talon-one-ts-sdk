@@ -45,7 +45,8 @@ export interface CatalogSyncRequest {
  * Check if a given object implements the CatalogSyncRequest interface.
  */
 export function instanceOfCatalogSyncRequest(value: object): value is CatalogSyncRequest {
-    if (!('actions' in value) || value['actions'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('actions' in _v) || _v['actions'] === undefined) return false;
     return true;
 }
 

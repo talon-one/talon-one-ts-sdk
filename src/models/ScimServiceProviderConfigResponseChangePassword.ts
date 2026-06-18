@@ -31,6 +31,7 @@ export interface ScimServiceProviderConfigResponseChangePassword {
  * Check if a given object implements the ScimServiceProviderConfigResponseChangePassword interface.
  */
 export function instanceOfScimServiceProviderConfigResponseChangePassword(value: object): value is ScimServiceProviderConfigResponseChangePassword {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

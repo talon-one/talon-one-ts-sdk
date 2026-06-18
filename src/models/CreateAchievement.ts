@@ -162,10 +162,11 @@ export type CreateAchievementActivationPolicyEnum = typeof CreateAchievementActi
  * Check if a given object implements the CreateAchievement interface.
  */
 export function instanceOfCreateAchievement(value: object): value is CreateAchievement {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('target' in value) || value['target'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
+    if (!('target' in _v) || _v['target'] === undefined) return false;
     return true;
 }
 

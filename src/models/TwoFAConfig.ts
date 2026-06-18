@@ -40,7 +40,8 @@ export interface TwoFAConfig {
  * Check if a given object implements the TwoFAConfig interface.
  */
 export function instanceOfTwoFAConfig(value: object): value is TwoFAConfig {
-    if (!('enabled' in value) || value['enabled'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('enabled' in _v) || _v['enabled'] === undefined) return false;
     return true;
 }
 

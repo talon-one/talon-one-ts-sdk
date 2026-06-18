@@ -37,8 +37,9 @@ export interface GenerateUserSessionSummary {
  * Check if a given object implements the GenerateUserSessionSummary interface.
  */
 export function instanceOfGenerateUserSessionSummary(value: object): value is GenerateUserSessionSummary {
-    if (!('sessionID' in value) || value['sessionID'] === undefined) return false;
-    if (!('applicationID' in value) || value['applicationID'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('sessionID' in _v) || _v['sessionID'] === undefined) return false;
+    if (!('applicationID' in _v) || _v['applicationID'] === undefined) return false;
     return true;
 }
 

@@ -43,7 +43,8 @@ export interface AudienceReference {
  * Check if a given object implements the AudienceReference interface.
  */
 export function instanceOfAudienceReference(value: object): value is AudienceReference {
-    if (!('id' in value) || value['id'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
     return true;
 }
 

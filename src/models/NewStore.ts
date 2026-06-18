@@ -52,9 +52,10 @@ export interface NewStore {
  * Check if a given object implements the NewStore interface.
  */
 export function instanceOfNewStore(value: object): value is NewStore {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('integrationId' in value) || value['integrationId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
+    if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
     return true;
 }
 

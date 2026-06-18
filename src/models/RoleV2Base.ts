@@ -57,6 +57,7 @@ export interface RoleV2Base {
  * Check if a given object implements the RoleV2Base interface.
  */
 export function instanceOfRoleV2Base(value: object): value is RoleV2Base {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

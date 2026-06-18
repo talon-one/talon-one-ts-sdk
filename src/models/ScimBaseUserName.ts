@@ -31,6 +31,7 @@ export interface ScimBaseUserName {
  * Check if a given object implements the ScimBaseUserName interface.
  */
 export function instanceOfScimBaseUserName(value: object): value is ScimBaseUserName {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

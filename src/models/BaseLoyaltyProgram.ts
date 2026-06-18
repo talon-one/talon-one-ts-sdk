@@ -214,6 +214,7 @@ export type BaseLoyaltyProgramReturnPolicyEnum = typeof BaseLoyaltyProgramReturn
  * Check if a given object implements the BaseLoyaltyProgram interface.
  */
 export function instanceOfBaseLoyaltyProgram(value: object): value is BaseLoyaltyProgram {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

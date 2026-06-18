@@ -180,9 +180,10 @@ export type UpdateApplicationDefaultDiscountAdditionalCostPerItemScopeEnum = typ
  * Check if a given object implements the UpdateApplication interface.
  */
 export function instanceOfUpdateApplication(value: object): value is UpdateApplication {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('timezone' in value) || value['timezone'] === undefined) return false;
-    if (!('currency' in value) || value['currency'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('timezone' in _v) || _v['timezone'] === undefined) return false;
+    if (!('currency' in _v) || _v['currency'] === undefined) return false;
     return true;
 }
 

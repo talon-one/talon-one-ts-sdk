@@ -85,13 +85,14 @@ export interface TierUpgradeData {
  * Check if a given object implements the TierUpgradeData interface.
  */
 export function instanceOfTierUpgradeData(value: object): value is TierUpgradeData {
-    if ((!('customerProfileID' in value) && !('CustomerProfileID' in value)) || (value['customerProfileID'] === undefined && value['CustomerProfileID'] === undefined)) return false;
-    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
-    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
-    if ((!('currentTier' in value) && !('CurrentTier' in value)) || (value['currentTier'] === undefined && value['CurrentTier'] === undefined)) return false;
-    if ((!('currentPoints' in value) && !('CurrentPoints' in value)) || (value['currentPoints'] === undefined && value['CurrentPoints'] === undefined)) return false;
-    if ((!('tierExpirationDate' in value) && !('TierExpirationDate' in value)) || (value['tierExpirationDate'] === undefined && value['TierExpirationDate'] === undefined)) return false;
-    if ((!('timestampOfTierChange' in value) && !('TimestampOfTierChange' in value)) || (value['timestampOfTierChange'] === undefined && value['TimestampOfTierChange'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('customerProfileID' in _v) && !('CustomerProfileID' in _v)) || (_v['customerProfileID'] === undefined && _v['CustomerProfileID'] === undefined)) return false;
+    if ((!('loyaltyProgramID' in _v) && !('LoyaltyProgramID' in _v)) || (_v['loyaltyProgramID'] === undefined && _v['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('subledgerID' in _v) && !('SubledgerID' in _v)) || (_v['subledgerID'] === undefined && _v['SubledgerID'] === undefined)) return false;
+    if ((!('currentTier' in _v) && !('CurrentTier' in _v)) || (_v['currentTier'] === undefined && _v['CurrentTier'] === undefined)) return false;
+    if ((!('currentPoints' in _v) && !('CurrentPoints' in _v)) || (_v['currentPoints'] === undefined && _v['CurrentPoints'] === undefined)) return false;
+    if ((!('tierExpirationDate' in _v) && !('TierExpirationDate' in _v)) || (_v['tierExpirationDate'] === undefined && _v['TierExpirationDate'] === undefined)) return false;
+    if ((!('timestampOfTierChange' in _v) && !('TimestampOfTierChange' in _v)) || (_v['timestampOfTierChange'] === undefined && _v['TimestampOfTierChange'] === undefined)) return false;
     return true;
 }
 

@@ -45,8 +45,9 @@ export interface BulkApplicationNotification {
  * Check if a given object implements the BulkApplicationNotification interface.
  */
 export function instanceOfBulkApplicationNotification(value: object): value is BulkApplicationNotification {
-    if (!('totalResultSize' in value) || value['totalResultSize'] === undefined) return false;
-    if (!('data' in value) || value['data'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('totalResultSize' in _v) || _v['totalResultSize'] === undefined) return false;
+    if (!('data' in _v) || _v['data'] === undefined) return false;
     return true;
 }
 

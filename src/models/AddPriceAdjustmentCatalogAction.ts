@@ -49,8 +49,9 @@ export interface AddPriceAdjustmentCatalogAction {
  * Check if a given object implements the AddPriceAdjustmentCatalogAction interface.
  */
 export function instanceOfAddPriceAdjustmentCatalogAction(value: object): value is AddPriceAdjustmentCatalogAction {
-    if (!('sku' in value) || value['sku'] === undefined) return false;
-    if (!('adjustments' in value) || value['adjustments'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('sku' in _v) || _v['sku'] === undefined) return false;
+    if (!('adjustments' in _v) || _v['adjustments'] === undefined) return false;
     return true;
 }
 

@@ -43,9 +43,10 @@ export interface SamlLoginEndpoint {
  * Check if a given object implements the SamlLoginEndpoint interface.
  */
 export function instanceOfSamlLoginEndpoint(value: object): value is SamlLoginEndpoint {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('loginURL' in value) || value['loginURL'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('loginURL' in _v) || _v['loginURL'] === undefined) return false;
     return true;
 }
 

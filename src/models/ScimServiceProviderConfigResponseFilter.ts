@@ -37,6 +37,7 @@ export interface ScimServiceProviderConfigResponseFilter {
  * Check if a given object implements the ScimServiceProviderConfigResponseFilter interface.
  */
 export function instanceOfScimServiceProviderConfigResponseFilter(value: object): value is ScimServiceProviderConfigResponseFilter {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

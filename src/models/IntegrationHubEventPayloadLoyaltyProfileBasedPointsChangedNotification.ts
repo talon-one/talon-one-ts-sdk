@@ -99,14 +99,15 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotif
  * Check if a given object implements the IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification interface.
  */
 export function instanceOfIntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(value: object): value is IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification {
-    if ((!('profileIntegrationID' in value) && !('ProfileIntegrationID' in value)) || (value['profileIntegrationID'] === undefined && value['ProfileIntegrationID'] === undefined)) return false;
-    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
-    if ((!('loyaltyProgramName' in value) && !('LoyaltyProgramName' in value)) || (value['loyaltyProgramName'] === undefined && value['LoyaltyProgramName'] === undefined)) return false;
-    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
-    if ((!('sourceOfEvent' in value) && !('SourceOfEvent' in value)) || (value['sourceOfEvent'] === undefined && value['SourceOfEvent'] === undefined)) return false;
-    if ((!('currentTier' in value) && !('CurrentTier' in value)) || (value['currentTier'] === undefined && value['CurrentTier'] === undefined)) return false;
-    if ((!('currentPoints' in value) && !('CurrentPoints' in value)) || (value['currentPoints'] === undefined && value['CurrentPoints'] === undefined)) return false;
-    if ((!('publishedAt' in value) && !('PublishedAt' in value)) || (value['publishedAt'] === undefined && value['PublishedAt'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('profileIntegrationID' in _v) && !('ProfileIntegrationID' in _v)) || (_v['profileIntegrationID'] === undefined && _v['ProfileIntegrationID'] === undefined)) return false;
+    if ((!('loyaltyProgramID' in _v) && !('LoyaltyProgramID' in _v)) || (_v['loyaltyProgramID'] === undefined && _v['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('loyaltyProgramName' in _v) && !('LoyaltyProgramName' in _v)) || (_v['loyaltyProgramName'] === undefined && _v['LoyaltyProgramName'] === undefined)) return false;
+    if ((!('subledgerID' in _v) && !('SubledgerID' in _v)) || (_v['subledgerID'] === undefined && _v['SubledgerID'] === undefined)) return false;
+    if ((!('sourceOfEvent' in _v) && !('SourceOfEvent' in _v)) || (_v['sourceOfEvent'] === undefined && _v['SourceOfEvent'] === undefined)) return false;
+    if ((!('currentTier' in _v) && !('CurrentTier' in _v)) || (_v['currentTier'] === undefined && _v['CurrentTier'] === undefined)) return false;
+    if ((!('currentPoints' in _v) && !('CurrentPoints' in _v)) || (_v['currentPoints'] === undefined && _v['CurrentPoints'] === undefined)) return false;
+    if ((!('publishedAt' in _v) && !('PublishedAt' in _v)) || (_v['publishedAt'] === undefined && _v['PublishedAt'] === undefined)) return false;
     return true;
 }
 

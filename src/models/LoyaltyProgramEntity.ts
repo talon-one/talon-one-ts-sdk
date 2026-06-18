@@ -43,7 +43,8 @@ export interface LoyaltyProgramEntity {
  * Check if a given object implements the LoyaltyProgramEntity interface.
  */
 export function instanceOfLoyaltyProgramEntity(value: object): value is LoyaltyProgramEntity {
-    if (!('programID' in value) || value['programID'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('programID' in _v) || _v['programID'] === undefined) return false;
     return true;
 }
 

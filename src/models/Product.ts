@@ -31,7 +31,8 @@ export interface Product {
  * Check if a given object implements the Product interface.
  */
 export function instanceOfProduct(value: object): value is Product {
-    if (!('name' in value) || value['name'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
     return true;
 }
 

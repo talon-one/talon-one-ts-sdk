@@ -67,8 +67,9 @@ export interface RuleMetadataEligibility {
  * Check if a given object implements the RuleMetadataEligibility interface.
  */
 export function instanceOfRuleMetadataEligibility(value: object): value is RuleMetadataEligibility {
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('eligibility' in value) || value['eligibility'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('eligibility' in _v) || _v['eligibility'] === undefined) return false;
     return true;
 }
 

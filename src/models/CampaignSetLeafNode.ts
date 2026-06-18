@@ -47,10 +47,11 @@ export type CampaignSetLeafNodeTypeEnum = typeof CampaignSetLeafNodeTypeEnum[key
  * Check if a given object implements the CampaignSetLeafNode interface.
  */
 export function instanceOfCampaignSetLeafNode(value: object): value is CampaignSetLeafNode {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (value['type'] !== 'CAMPAIGN') return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'CAMPAIGN') return false;
     
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
     return true;
 }
 

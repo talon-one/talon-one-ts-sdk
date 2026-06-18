@@ -37,6 +37,7 @@ export interface RolesV2Thresholds {
  * Check if a given object implements the RolesV2Thresholds interface.
  */
 export function instanceOfRolesV2Thresholds(value: object): value is RolesV2Thresholds {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

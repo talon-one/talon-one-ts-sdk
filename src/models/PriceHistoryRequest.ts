@@ -43,9 +43,10 @@ export interface PriceHistoryRequest {
  * Check if a given object implements the PriceHistoryRequest interface.
  */
 export function instanceOfPriceHistoryRequest(value: object): value is PriceHistoryRequest {
-    if (!('sku' in value) || value['sku'] === undefined) return false;
-    if (!('startDate' in value) || value['startDate'] === undefined) return false;
-    if (!('endDate' in value) || value['endDate'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('sku' in _v) || _v['sku'] === undefined) return false;
+    if (!('startDate' in _v) || _v['startDate'] === undefined) return false;
+    if (!('endDate' in _v) || _v['endDate'] === undefined) return false;
     return true;
 }
 

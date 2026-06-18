@@ -62,12 +62,13 @@ export interface Import {
  * Check if a given object implements the Import interface.
  */
 export function instanceOfImport(value: object): value is Import {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('entity' in value) || value['entity'] === undefined) return false;
-    if (!('amount' in value) || value['amount'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('userId' in _v) || _v['userId'] === undefined) return false;
+    if (!('entity' in _v) || _v['entity'] === undefined) return false;
+    if (!('amount' in _v) || _v['amount'] === undefined) return false;
     return true;
 }
 

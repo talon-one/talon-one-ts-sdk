@@ -57,8 +57,9 @@ export interface TierWillDowngradeNotificationPolicy {
  * Check if a given object implements the TierWillDowngradeNotificationPolicy interface.
  */
 export function instanceOfTierWillDowngradeNotificationPolicy(value: object): value is TierWillDowngradeNotificationPolicy {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('triggers' in value) || value['triggers'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('triggers' in _v) || _v['triggers'] === undefined) return false;
     return true;
 }
 

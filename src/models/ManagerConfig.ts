@@ -31,7 +31,8 @@ export interface ManagerConfig {
  * Check if a given object implements the ManagerConfig interface.
  */
 export function instanceOfManagerConfig(value: object): value is ManagerConfig {
-    if (!('schemaVersion' in value) || value['schemaVersion'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('schemaVersion' in _v) || _v['schemaVersion'] === undefined) return false;
     return true;
 }
 

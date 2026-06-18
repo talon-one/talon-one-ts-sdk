@@ -182,6 +182,7 @@ export type NewCustomerSessionV2StateEnum = typeof NewCustomerSessionV2StateEnum
  * Check if a given object implements the NewCustomerSessionV2 interface.
  */
 export function instanceOfNewCustomerSessionV2(value: object): value is NewCustomerSessionV2 {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

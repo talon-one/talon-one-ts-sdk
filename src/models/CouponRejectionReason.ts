@@ -64,9 +64,10 @@ export type CouponRejectionReasonReasonEnum = typeof CouponRejectionReasonReason
  * Check if a given object implements the CouponRejectionReason interface.
  */
 export function instanceOfCouponRejectionReason(value: object): value is CouponRejectionReason {
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('couponId' in value) || value['couponId'] === undefined) return false;
-    if (!('reason' in value) || value['reason'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('couponId' in _v) || _v['couponId'] === undefined) return false;
+    if (!('reason' in _v) || _v['reason'] === undefined) return false;
     return true;
 }
 

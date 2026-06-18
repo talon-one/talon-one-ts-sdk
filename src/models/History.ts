@@ -51,6 +51,7 @@ export interface History {
      * 
      * @type {string}
      * @memberof History
+     * @deprecated
      */
     contextId?: string;
     /**
@@ -77,12 +78,13 @@ export interface History {
  * Check if a given object implements the History interface.
  */
 export function instanceOfHistory(value: object): value is History {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('observedAt' in value) || value['observedAt'] === undefined) return false;
-    if (!('contextIds' in value) || value['contextIds'] === undefined) return false;
-    if (!('price' in value) || value['price'] === undefined) return false;
-    if (!('metadata' in value) || value['metadata'] === undefined) return false;
-    if (!('target' in value) || value['target'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('observedAt' in _v) || _v['observedAt'] === undefined) return false;
+    if (!('contextIds' in _v) || _v['contextIds'] === undefined) return false;
+    if (!('price' in _v) || _v['price'] === undefined) return false;
+    if (!('metadata' in _v) || _v['metadata'] === undefined) return false;
+    if (!('target' in _v) || _v['target'] === undefined) return false;
     return true;
 }
 

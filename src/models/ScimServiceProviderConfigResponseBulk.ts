@@ -43,6 +43,7 @@ export interface ScimServiceProviderConfigResponseBulk {
  * Check if a given object implements the ScimServiceProviderConfigResponseBulk interface.
  */
 export function instanceOfScimServiceProviderConfigResponseBulk(value: object): value is ScimServiceProviderConfigResponseBulk {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

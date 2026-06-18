@@ -17,7 +17,7 @@ import type { PriceHistoryRequest } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "sku": [sku-124],
+  "sku": SKU1241028,
   "startDate": 2020-11-10T23:00:00Z,
   "endDate": 2020-12-10T23:00:00Z,
 } satisfies PriceHistoryRequest

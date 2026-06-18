@@ -51,6 +51,7 @@ export interface ErrorResponseWithStatus {
  * Check if a given object implements the ErrorResponseWithStatus interface.
  */
 export function instanceOfErrorResponseWithStatus(value: object): value is ErrorResponseWithStatus {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

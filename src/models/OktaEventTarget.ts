@@ -43,9 +43,10 @@ export interface OktaEventTarget {
  * Check if a given object implements the OktaEventTarget interface.
  */
 export function instanceOfOktaEventTarget(value: object): value is OktaEventTarget {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('alternateId' in value) || value['alternateId'] === undefined) return false;
-    if (!('displayName' in value) || value['displayName'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('alternateId' in _v) || _v['alternateId'] === undefined) return false;
+    if (!('displayName' in _v) || _v['displayName'] === undefined) return false;
     return true;
 }
 

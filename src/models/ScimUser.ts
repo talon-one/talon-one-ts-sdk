@@ -63,8 +63,9 @@ export interface ScimUser {
  * Check if a given object implements the ScimUser interface.
  */
 export function instanceOfScimUser(value: object): value is ScimUser {
-    if (!('userName' in value) || value['userName'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('userName' in _v) || _v['userName'] === undefined) return false;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
     return true;
 }
 

@@ -110,13 +110,14 @@ export interface InventoryReferral {
  * Check if a given object implements the InventoryReferral interface.
  */
 export function instanceOfInventoryReferral(value: object): value is InventoryReferral {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('advocateProfileIntegrationId' in value) || value['advocateProfileIntegrationId'] === undefined) return false;
-    if (!('code' in value) || value['code'] === undefined) return false;
-    if (!('usageCounter' in value) || value['usageCounter'] === undefined) return false;
-    if (!('referredCustomers' in value) || value['referredCustomers'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('advocateProfileIntegrationId' in _v) || _v['advocateProfileIntegrationId'] === undefined) return false;
+    if (!('code' in _v) || _v['code'] === undefined) return false;
+    if (!('usageCounter' in _v) || _v['usageCounter'] === undefined) return false;
+    if (!('referredCustomers' in _v) || _v['referredCustomers'] === undefined) return false;
     return true;
 }
 

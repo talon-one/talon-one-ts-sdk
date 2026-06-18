@@ -43,7 +43,8 @@ export interface ProductSearchMatch {
  * Check if a given object implements the ProductSearchMatch interface.
  */
 export function instanceOfProductSearchMatch(value: object): value is ProductSearchMatch {
-    if (!('value' in value) || value['value'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
     return true;
 }
 

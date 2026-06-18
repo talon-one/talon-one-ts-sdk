@@ -69,7 +69,8 @@ export interface AddItemCatalogAction {
  * Check if a given object implements the AddItemCatalogAction interface.
  */
 export function instanceOfAddItemCatalogAction(value: object): value is AddItemCatalogAction {
-    if (!('sku' in value) || value['sku'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('sku' in _v) || _v['sku'] === undefined) return false;
     return true;
 }
 

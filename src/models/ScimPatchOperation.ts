@@ -55,7 +55,8 @@ export type ScimPatchOperationOpEnum = typeof ScimPatchOperationOpEnum[keyof typ
  * Check if a given object implements the ScimPatchOperation interface.
  */
 export function instanceOfScimPatchOperation(value: object): value is ScimPatchOperation {
-    if (!('op' in value) || value['op'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('op' in _v) || _v['op'] === undefined) return false;
     return true;
 }
 

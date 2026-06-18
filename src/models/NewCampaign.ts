@@ -196,11 +196,12 @@ export type NewCampaignTypeEnum = typeof NewCampaignTypeEnum[keyof typeof NewCam
  * Check if a given object implements the NewCampaign interface.
  */
 export function instanceOfNewCampaign(value: object): value is NewCampaign {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('state' in value) || value['state'] === undefined) return false;
-    if (!('tags' in value) || value['tags'] === undefined) return false;
-    if (!('features' in value) || value['features'] === undefined) return false;
-    if (!('limits' in value) || value['limits'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('state' in _v) || _v['state'] === undefined) return false;
+    if (!('tags' in _v) || _v['tags'] === undefined) return false;
+    if (!('features' in _v) || _v['features'] === undefined) return false;
+    if (!('limits' in _v) || _v['limits'] === undefined) return false;
     return true;
 }
 

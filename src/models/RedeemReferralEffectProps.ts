@@ -39,8 +39,9 @@ export interface RedeemReferralEffectProps {
  * Check if a given object implements the RedeemReferralEffectProps interface.
  */
 export function instanceOfRedeemReferralEffectProps(value: object): value is RedeemReferralEffectProps {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
     return true;
 }
 

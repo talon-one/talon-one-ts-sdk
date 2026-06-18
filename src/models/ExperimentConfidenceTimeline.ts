@@ -40,7 +40,8 @@ export interface ExperimentConfidenceTimeline {
  * Check if a given object implements the ExperimentConfidenceTimeline interface.
  */
 export function instanceOfExperimentConfidenceTimeline(value: object): value is ExperimentConfidenceTimeline {
-    if (!('data' in value) || value['data'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('data' in _v) || _v['data'] === undefined) return false;
     return true;
 }
 

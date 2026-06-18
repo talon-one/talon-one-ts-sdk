@@ -43,9 +43,10 @@ export interface ExperimentVariantResultConfidence {
  * Check if a given object implements the ExperimentVariantResultConfidence interface.
  */
 export function instanceOfExperimentVariantResultConfidence(value: object): value is ExperimentVariantResultConfidence {
-    if (!('avgSessionValue' in value) || value['avgSessionValue'] === undefined) return false;
-    if (!('avgDiscountedSessionValue' in value) || value['avgDiscountedSessionValue'] === undefined) return false;
-    if (!('avgItemsPerSession' in value) || value['avgItemsPerSession'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('avgSessionValue' in _v) || _v['avgSessionValue'] === undefined) return false;
+    if (!('avgDiscountedSessionValue' in _v) || _v['avgDiscountedSessionValue'] === undefined) return false;
+    if (!('avgItemsPerSession' in _v) || _v['avgItemsPerSession'] === undefined) return false;
     return true;
 }
 

@@ -37,6 +37,7 @@ export interface AttributesMandatory {
  * Check if a given object implements the AttributesMandatory interface.
  */
 export function instanceOfAttributesMandatory(value: object): value is AttributesMandatory {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

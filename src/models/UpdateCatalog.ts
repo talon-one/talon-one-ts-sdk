@@ -43,6 +43,7 @@ export interface UpdateCatalog {
  * Check if a given object implements the UpdateCatalog interface.
  */
 export function instanceOfUpdateCatalog(value: object): value is UpdateCatalog {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

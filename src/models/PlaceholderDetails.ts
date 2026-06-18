@@ -43,9 +43,10 @@ export interface PlaceholderDetails {
  * Check if a given object implements the PlaceholderDetails interface.
  */
 export function instanceOfPlaceholderDetails(value: object): value is PlaceholderDetails {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
     return true;
 }
 

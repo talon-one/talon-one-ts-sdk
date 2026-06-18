@@ -52,8 +52,9 @@ export interface ExperimentResults {
  * Check if a given object implements the ExperimentResults interface.
  */
 export function instanceOfExperimentResults(value: object): value is ExperimentResults {
-    if (!('variants' in value) || value['variants'] === undefined) return false;
-    if (!('confidence' in value) || value['confidence'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('variants' in _v) || _v['variants'] === undefined) return false;
+    if (!('confidence' in _v) || _v['confidence'] === undefined) return false;
     return true;
 }
 

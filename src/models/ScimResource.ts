@@ -43,6 +43,7 @@ export interface ScimResource {
  * Check if a given object implements the ScimResource interface.
  */
 export function instanceOfScimResource(value: object): value is ScimResource {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

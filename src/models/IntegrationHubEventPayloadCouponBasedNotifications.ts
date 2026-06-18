@@ -159,15 +159,16 @@ export interface IntegrationHubEventPayloadCouponBasedNotifications {
  * Check if a given object implements the IntegrationHubEventPayloadCouponBasedNotifications interface.
  */
 export function instanceOfIntegrationHubEventPayloadCouponBasedNotifications(value: object): value is IntegrationHubEventPayloadCouponBasedNotifications {
-    if ((!('id' in value) && !('Id' in value)) || (value['id'] === undefined && value['Id'] === undefined)) return false;
-    if ((!('created' in value) && !('Created' in value)) || (value['created'] === undefined && value['Created'] === undefined)) return false;
-    if ((!('campaignId' in value) && !('CampaignId' in value)) || (value['campaignId'] === undefined && value['CampaignId'] === undefined)) return false;
-    if ((!('value' in value) && !('Value' in value)) || (value['value'] === undefined && value['Value'] === undefined)) return false;
-    if ((!('usageLimit' in value) && !('UsageLimit' in value)) || (value['usageLimit'] === undefined && value['UsageLimit'] === undefined)) return false;
-    if ((!('usageCounter' in value) && !('UsageCounter' in value)) || (value['usageCounter'] === undefined && value['UsageCounter'] === undefined)) return false;
-    if ((!('publishedAt' in value) && !('PublishedAt' in value)) || (value['publishedAt'] === undefined && value['PublishedAt'] === undefined)) return false;
-    if ((!('sourceOfEvent' in value) && !('SourceOfEvent' in value)) || (value['sourceOfEvent'] === undefined && value['SourceOfEvent'] === undefined)) return false;
-    if ((!('employeeName' in value) && !('EmployeeName' in value)) || (value['employeeName'] === undefined && value['EmployeeName'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('id' in _v) && !('Id' in _v)) || (_v['id'] === undefined && _v['Id'] === undefined)) return false;
+    if ((!('created' in _v) && !('Created' in _v)) || (_v['created'] === undefined && _v['Created'] === undefined)) return false;
+    if ((!('campaignId' in _v) && !('CampaignId' in _v)) || (_v['campaignId'] === undefined && _v['CampaignId'] === undefined)) return false;
+    if ((!('value' in _v) && !('Value' in _v)) || (_v['value'] === undefined && _v['Value'] === undefined)) return false;
+    if ((!('usageLimit' in _v) && !('UsageLimit' in _v)) || (_v['usageLimit'] === undefined && _v['UsageLimit'] === undefined)) return false;
+    if ((!('usageCounter' in _v) && !('UsageCounter' in _v)) || (_v['usageCounter'] === undefined && _v['UsageCounter'] === undefined)) return false;
+    if ((!('publishedAt' in _v) && !('PublishedAt' in _v)) || (_v['publishedAt'] === undefined && _v['PublishedAt'] === undefined)) return false;
+    if ((!('sourceOfEvent' in _v) && !('SourceOfEvent' in _v)) || (_v['sourceOfEvent'] === undefined && _v['SourceOfEvent'] === undefined)) return false;
+    if ((!('employeeName' in _v) && !('EmployeeName' in _v)) || (_v['employeeName'] === undefined && _v['EmployeeName'] === undefined)) return false;
     return true;
 }
 

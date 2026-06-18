@@ -97,12 +97,13 @@ export interface StrikethroughEffect {
  * Check if a given object implements the StrikethroughEffect interface.
  */
 export function instanceOfStrikethroughEffect(value: object): value is StrikethroughEffect {
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('rulesetId' in value) || value['rulesetId'] === undefined) return false;
-    if (!('ruleIndex' in value) || value['ruleIndex'] === undefined) return false;
-    if (!('ruleName' in value) || value['ruleName'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('props' in value) || value['props'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('rulesetId' in _v) || _v['rulesetId'] === undefined) return false;
+    if (!('ruleIndex' in _v) || _v['ruleIndex'] === undefined) return false;
+    if (!('ruleName' in _v) || _v['ruleName'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('props' in _v) || _v['props'] === undefined) return false;
     return true;
 }
 

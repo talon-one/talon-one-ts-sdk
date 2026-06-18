@@ -67,13 +67,14 @@ export interface CustomerAnalytics {
  * Check if a given object implements the CustomerAnalytics interface.
  */
 export function instanceOfCustomerAnalytics(value: object): value is CustomerAnalytics {
-    if (!('acceptedCoupons' in value) || value['acceptedCoupons'] === undefined) return false;
-    if (!('createdCoupons' in value) || value['createdCoupons'] === undefined) return false;
-    if (!('freeItems' in value) || value['freeItems'] === undefined) return false;
-    if (!('totalOrders' in value) || value['totalOrders'] === undefined) return false;
-    if (!('totalDiscountedOrders' in value) || value['totalDiscountedOrders'] === undefined) return false;
-    if (!('totalRevenue' in value) || value['totalRevenue'] === undefined) return false;
-    if (!('totalDiscounts' in value) || value['totalDiscounts'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('acceptedCoupons' in _v) || _v['acceptedCoupons'] === undefined) return false;
+    if (!('createdCoupons' in _v) || _v['createdCoupons'] === undefined) return false;
+    if (!('freeItems' in _v) || _v['freeItems'] === undefined) return false;
+    if (!('totalOrders' in _v) || _v['totalOrders'] === undefined) return false;
+    if (!('totalDiscountedOrders' in _v) || _v['totalDiscountedOrders'] === undefined) return false;
+    if (!('totalRevenue' in _v) || _v['totalRevenue'] === undefined) return false;
+    if (!('totalDiscounts' in _v) || _v['totalDiscounts'] === undefined) return false;
     return true;
 }
 

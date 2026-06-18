@@ -37,8 +37,9 @@ export interface MessageLogRequest {
  * Check if a given object implements the MessageLogRequest interface.
  */
 export function instanceOfMessageLogRequest(value: object): value is MessageLogRequest {
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-    if (!('request' in value) || value['request'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('createdAt' in _v) || _v['createdAt'] === undefined) return false;
+    if (!('request' in _v) || _v['request'] === undefined) return false;
     return true;
 }
 

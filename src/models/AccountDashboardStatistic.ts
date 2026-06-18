@@ -91,7 +91,8 @@ export interface AccountDashboardStatistic {
  * Check if a given object implements the AccountDashboardStatistic interface.
  */
 export function instanceOfAccountDashboardStatistic(value: object): value is AccountDashboardStatistic {
-    if (!('campaigns' in value) || value['campaigns'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('campaigns' in _v) || _v['campaigns'] === undefined) return false;
     return true;
 }
 

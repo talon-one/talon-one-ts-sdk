@@ -69,7 +69,7 @@ export interface UpdateReward {
      * @type {Rule}
      * @memberof UpdateReward
      */
-    visibilityConditions?: Rule;
+    eligibilityConditions?: Rule;
     /**
      * Rule to apply.
      * 
@@ -117,8 +117,9 @@ export type UpdateRewardStatusEnum = typeof UpdateRewardStatusEnum[keyof typeof 
  * Check if a given object implements the UpdateReward interface.
  */
 export function instanceOfUpdateReward(value: object): value is UpdateReward {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('status' in _v) || _v['status'] === undefined) return false;
     return true;
 }
 
@@ -135,7 +136,7 @@ export function UpdateRewardFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
         'status': json['status'],
-        'visibilityConditions': json['visibilityConditions'] == null ? undefined : RuleFromJSON(json['visibilityConditions']),
+        'eligibilityConditions': json['eligibilityConditions'] == null ? undefined : RuleFromJSON(json['eligibilityConditions']),
         'rule': json['rule'] == null ? undefined : RuleFromJSON(json['rule']),
         'bindings': json['bindings'] == null ? undefined : ((json['bindings'] as Array<any>).map(BindingFromJSON)),
         'pointsRequired': json['pointsRequired'] == null ? undefined : ((json['pointsRequired'] as Array<any>).map(RewardPointsRequiredFromJSON)),
@@ -156,7 +157,7 @@ export function UpdateRewardToJSONTyped(value?: UpdateReward | null, ignoreDiscr
         'name': value['name'],
         'description': value['description'],
         'status': value['status'],
-        'visibilityConditions': RuleToJSON(value['visibilityConditions']),
+        'eligibilityConditions': RuleToJSON(value['eligibilityConditions']),
         'rule': RuleToJSON(value['rule']),
         'bindings': value['bindings'] == null ? undefined : ((value['bindings'] as Array<any>).map(BindingToJSON)),
         'pointsRequired': value['pointsRequired'] == null ? undefined : ((value['pointsRequired'] as Array<any>).map(RewardPointsRequiredToJSON)),

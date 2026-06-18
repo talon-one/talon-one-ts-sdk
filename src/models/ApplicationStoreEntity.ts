@@ -31,6 +31,7 @@ export interface ApplicationStoreEntity {
  * Check if a given object implements the ApplicationStoreEntity interface.
  */
 export function instanceOfApplicationStoreEntity(value: object): value is ApplicationStoreEntity {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

@@ -44,6 +44,7 @@ export interface CouponLimitConfigs {
  * Check if a given object implements the CouponLimitConfigs interface.
  */
 export function instanceOfCouponLimitConfigs(value: object): value is CouponLimitConfigs {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

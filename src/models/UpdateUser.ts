@@ -80,6 +80,7 @@ export type UpdateUserStateEnum = typeof UpdateUserStateEnum[keyof typeof Update
  * Check if a given object implements the UpdateUser interface.
  */
 export function instanceOfUpdateUser(value: object): value is UpdateUser {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

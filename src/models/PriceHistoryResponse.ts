@@ -45,8 +45,9 @@ export interface PriceHistoryResponse {
  * Check if a given object implements the PriceHistoryResponse interface.
  */
 export function instanceOfPriceHistoryResponse(value: object): value is PriceHistoryResponse {
-    if (!('sku' in value) || value['sku'] === undefined) return false;
-    if (!('history' in value) || value['history'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('sku' in _v) || _v['sku'] === undefined) return false;
+    if (!('history' in _v) || _v['history'] === undefined) return false;
     return true;
 }
 

@@ -72,10 +72,11 @@ export interface LoyaltyProgramLedgers {
  * Check if a given object implements the LoyaltyProgramLedgers interface.
  */
 export function instanceOfLoyaltyProgramLedgers(value: object): value is LoyaltyProgramLedgers {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('ledger' in value) || value['ledger'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('ledger' in _v) || _v['ledger'] === undefined) return false;
     return true;
 }
 

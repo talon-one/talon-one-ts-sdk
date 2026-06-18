@@ -31,7 +31,8 @@ export interface CouponSearch {
  * Check if a given object implements the CouponSearch interface.
  */
 export function instanceOfCouponSearch(value: object): value is CouponSearch {
-    if (!('attributes' in value) || value['attributes'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('attributes' in _v) || _v['attributes'] === undefined) return false;
     return true;
 }
 

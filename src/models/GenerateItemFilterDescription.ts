@@ -31,7 +31,8 @@ export interface GenerateItemFilterDescription {
  * Check if a given object implements the GenerateItemFilterDescription interface.
  */
 export function instanceOfGenerateItemFilterDescription(value: object): value is GenerateItemFilterDescription {
-    if (!('itemFilter' in value) || value['itemFilter'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('itemFilter' in _v) || _v['itemFilter'] === undefined) return false;
     return true;
 }
 

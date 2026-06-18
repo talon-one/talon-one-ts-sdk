@@ -31,7 +31,8 @@ export interface IdentifiableEntity {
  * Check if a given object implements the IdentifiableEntity interface.
  */
 export function instanceOfIdentifiableEntity(value: object): value is IdentifiableEntity {
-    if (!('id' in value) || value['id'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
     return true;
 }
 

@@ -37,8 +37,9 @@ export interface IntegrationHubConfig {
  * Check if a given object implements the IntegrationHubConfig interface.
  */
 export function instanceOfIntegrationHubConfig(value: object): value is IntegrationHubConfig {
-    if (!('integrationHubUrl' in value) || value['integrationHubUrl'] === undefined) return false;
-    if (!('accessToken' in value) || value['accessToken'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('integrationHubUrl' in _v) || _v['integrationHubUrl'] === undefined) return false;
+    if (!('accessToken' in _v) || _v['accessToken'] === undefined) return false;
     return true;
 }
 

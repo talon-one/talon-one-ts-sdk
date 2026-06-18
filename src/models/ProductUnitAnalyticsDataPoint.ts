@@ -63,11 +63,12 @@ export interface ProductUnitAnalyticsDataPoint {
  * Check if a given object implements the ProductUnitAnalyticsDataPoint interface.
  */
 export function instanceOfProductUnitAnalyticsDataPoint(value: object): value is ProductUnitAnalyticsDataPoint {
-    if (!('startTime' in value) || value['startTime'] === undefined) return false;
-    if (!('endTime' in value) || value['endTime'] === undefined) return false;
-    if (!('unitsSold' in value) || value['unitsSold'] === undefined) return false;
-    if (!('productId' in value) || value['productId'] === undefined) return false;
-    if (!('productName' in value) || value['productName'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('startTime' in _v) || _v['startTime'] === undefined) return false;
+    if (!('endTime' in _v) || _v['endTime'] === undefined) return false;
+    if (!('unitsSold' in _v) || _v['unitsSold'] === undefined) return false;
+    if (!('productId' in _v) || _v['productId'] === undefined) return false;
+    if (!('productName' in _v) || _v['productName'] === undefined) return false;
     return true;
 }
 

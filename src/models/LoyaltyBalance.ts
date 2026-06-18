@@ -55,6 +55,7 @@ export interface LoyaltyBalance {
  * Check if a given object implements the LoyaltyBalance interface.
  */
 export function instanceOfLoyaltyBalance(value: object): value is LoyaltyBalance {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

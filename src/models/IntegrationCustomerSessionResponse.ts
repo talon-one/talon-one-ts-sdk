@@ -55,6 +55,7 @@ export interface IntegrationCustomerSessionResponse {
  * Check if a given object implements the IntegrationCustomerSessionResponse interface.
  */
 export function instanceOfIntegrationCustomerSessionResponse(value: object): value is IntegrationCustomerSessionResponse {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

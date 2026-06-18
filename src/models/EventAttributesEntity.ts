@@ -37,7 +37,8 @@ export interface EventAttributesEntity {
  * Check if a given object implements the EventAttributesEntity interface.
  */
 export function instanceOfEventAttributesEntity(value: object): value is EventAttributesEntity {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
     return true;
 }
 

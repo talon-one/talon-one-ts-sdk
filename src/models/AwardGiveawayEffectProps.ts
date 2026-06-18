@@ -55,11 +55,12 @@ export interface AwardGiveawayEffectProps {
  * Check if a given object implements the AwardGiveawayEffectProps interface.
  */
 export function instanceOfAwardGiveawayEffectProps(value: object): value is AwardGiveawayEffectProps {
-    if (!('poolId' in value) || value['poolId'] === undefined) return false;
-    if (!('poolName' in value) || value['poolName'] === undefined) return false;
-    if (!('recipientIntegrationId' in value) || value['recipientIntegrationId'] === undefined) return false;
-    if (!('giveawayId' in value) || value['giveawayId'] === undefined) return false;
-    if (!('code' in value) || value['code'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('poolId' in _v) || _v['poolId'] === undefined) return false;
+    if (!('poolName' in _v) || _v['poolName'] === undefined) return false;
+    if (!('recipientIntegrationId' in _v) || _v['recipientIntegrationId'] === undefined) return false;
+    if (!('giveawayId' in _v) || _v['giveawayId'] === undefined) return false;
+    if (!('code' in _v) || _v['code'] === undefined) return false;
     return true;
 }
 

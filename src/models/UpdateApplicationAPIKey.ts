@@ -32,7 +32,8 @@ export interface UpdateApplicationAPIKey {
  * Check if a given object implements the UpdateApplicationAPIKey interface.
  */
 export function instanceOfUpdateApplicationAPIKey(value: object): value is UpdateApplicationAPIKey {
-    if (!('timeOffset' in value) || value['timeOffset'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('timeOffset' in _v) || _v['timeOffset'] === undefined) return false;
     return true;
 }
 

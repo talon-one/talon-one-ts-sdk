@@ -114,15 +114,16 @@ export type StrikethroughLabelingNotificationNotificationTypeEnum = typeof Strik
  * Check if a given object implements the StrikethroughLabelingNotification interface.
  */
 export function instanceOfStrikethroughLabelingNotification(value: object): value is StrikethroughLabelingNotification {
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('currentBatch' in value) || value['currentBatch'] === undefined) return false;
-    if (!('totalBatches' in value) || value['totalBatches'] === undefined) return false;
-    if (!('trigger' in value) || value['trigger'] === undefined) return false;
-    if (!('changedItems' in value) || value['changedItems'] === undefined) return false;
-    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
-    if (value['notificationType'] !== 'StrikethroughPrice' && value['NotificationType'] !== 'StrikethroughPrice') return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('currentBatch' in _v) || _v['currentBatch'] === undefined) return false;
+    if (!('totalBatches' in _v) || _v['totalBatches'] === undefined) return false;
+    if (!('trigger' in _v) || _v['trigger'] === undefined) return false;
+    if (!('changedItems' in _v) || _v['changedItems'] === undefined) return false;
+    if ((!('notificationType' in _v) && !('NotificationType' in _v)) || (_v['notificationType'] === undefined && _v['NotificationType'] === undefined)) return false;
+    if (_v['notificationType'] !== 'StrikethroughPrice' && _v['NotificationType'] !== 'StrikethroughPrice') return false;
     
-    if (!('sentAt' in value) || value['sentAt'] === undefined) return false;
+    if (!('sentAt' in _v) || _v['sentAt'] === undefined) return false;
     return true;
 }
 

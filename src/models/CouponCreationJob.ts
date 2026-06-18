@@ -180,22 +180,23 @@ export interface CouponCreationJob {
  * Check if a given object implements the CouponCreationJob interface.
  */
 export function instanceOfCouponCreationJob(value: object): value is CouponCreationJob {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('usageLimit' in value) || value['usageLimit'] === undefined) return false;
-    if (!('numberOfCoupons' in value) || value['numberOfCoupons'] === undefined) return false;
-    if (!('attributes' in value) || value['attributes'] === undefined) return false;
-    if (!('batchId' in value) || value['batchId'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('createdAmount' in value) || value['createdAmount'] === undefined) return false;
-    if (!('failCount' in value) || value['failCount'] === undefined) return false;
-    if (!('errors' in value) || value['errors'] === undefined) return false;
-    if (!('createdBy' in value) || value['createdBy'] === undefined) return false;
-    if (!('communicated' in value) || value['communicated'] === undefined) return false;
-    if (!('chunkExecutionCount' in value) || value['chunkExecutionCount'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('usageLimit' in _v) || _v['usageLimit'] === undefined) return false;
+    if (!('numberOfCoupons' in _v) || _v['numberOfCoupons'] === undefined) return false;
+    if (!('attributes' in _v) || _v['attributes'] === undefined) return false;
+    if (!('batchId' in _v) || _v['batchId'] === undefined) return false;
+    if (!('status' in _v) || _v['status'] === undefined) return false;
+    if (!('createdAmount' in _v) || _v['createdAmount'] === undefined) return false;
+    if (!('failCount' in _v) || _v['failCount'] === undefined) return false;
+    if (!('errors' in _v) || _v['errors'] === undefined) return false;
+    if (!('createdBy' in _v) || _v['createdBy'] === undefined) return false;
+    if (!('communicated' in _v) || _v['communicated'] === undefined) return false;
+    if (!('chunkExecutionCount' in _v) || _v['chunkExecutionCount'] === undefined) return false;
     return true;
 }
 

@@ -184,16 +184,17 @@ export type LoyaltyProgramTransactionTypeEnum = typeof LoyaltyProgramTransaction
  * Check if a given object implements the LoyaltyProgramTransaction interface.
  */
 export function instanceOfLoyaltyProgramTransaction(value: object): value is LoyaltyProgramTransaction {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('transactionUUID' in value) || value['transactionUUID'] === undefined) return false;
-    if (!('programId' in value) || value['programId'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('amount' in value) || value['amount'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('startDate' in value) || value['startDate'] === undefined) return false;
-    if (!('expiryDate' in value) || value['expiryDate'] === undefined) return false;
-    if (!('subledgerId' in value) || value['subledgerId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('transactionUUID' in _v) || _v['transactionUUID'] === undefined) return false;
+    if (!('programId' in _v) || _v['programId'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('amount' in _v) || _v['amount'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('startDate' in _v) || _v['startDate'] === undefined) return false;
+    if (!('expiryDate' in _v) || _v['expiryDate'] === undefined) return false;
+    if (!('subledgerId' in _v) || _v['subledgerId'] === undefined) return false;
     return true;
 }
 

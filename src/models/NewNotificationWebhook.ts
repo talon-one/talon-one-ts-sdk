@@ -43,8 +43,9 @@ export interface NewNotificationWebhook {
  * Check if a given object implements the NewNotificationWebhook interface.
  */
 export function instanceOfNewNotificationWebhook(value: object): value is NewNotificationWebhook {
-    if (!('url' in value) || value['url'] === undefined) return false;
-    if (!('headers' in value) || value['headers'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('url' in _v) || _v['url'] === undefined) return false;
+    if (!('headers' in _v) || _v['headers'] === undefined) return false;
     return true;
 }
 

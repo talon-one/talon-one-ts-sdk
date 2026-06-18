@@ -55,11 +55,12 @@ export interface ExpiringPointsData {
  * Check if a given object implements the ExpiringPointsData interface.
  */
 export function instanceOfExpiringPointsData(value: object): value is ExpiringPointsData {
-    if ((!('expiryDate' in value) && !('ExpiryDate' in value)) || (value['expiryDate'] === undefined && value['ExpiryDate'] === undefined)) return false;
-    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
-    if ((!('customerProfileID' in value) && !('CustomerProfileID' in value)) || (value['customerProfileID'] === undefined && value['CustomerProfileID'] === undefined)) return false;
-    if ((!('amountOfExpiringPoints' in value) && !('AmountOfExpiringPoints' in value)) || (value['amountOfExpiringPoints'] === undefined && value['AmountOfExpiringPoints'] === undefined)) return false;
-    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('expiryDate' in _v) && !('ExpiryDate' in _v)) || (_v['expiryDate'] === undefined && _v['ExpiryDate'] === undefined)) return false;
+    if ((!('loyaltyProgramID' in _v) && !('LoyaltyProgramID' in _v)) || (_v['loyaltyProgramID'] === undefined && _v['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('customerProfileID' in _v) && !('CustomerProfileID' in _v)) || (_v['customerProfileID'] === undefined && _v['CustomerProfileID'] === undefined)) return false;
+    if ((!('amountOfExpiringPoints' in _v) && !('AmountOfExpiringPoints' in _v)) || (_v['amountOfExpiringPoints'] === undefined && _v['AmountOfExpiringPoints'] === undefined)) return false;
+    if ((!('subledgerID' in _v) && !('SubledgerID' in _v)) || (_v['subledgerID'] === undefined && _v['SubledgerID'] === undefined)) return false;
     return true;
 }
 

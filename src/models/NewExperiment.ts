@@ -73,9 +73,10 @@ export type NewExperimentGoalTypeEnum = typeof NewExperimentGoalTypeEnum[keyof t
  * Check if a given object implements the NewExperiment interface.
  */
 export function instanceOfNewExperiment(value: object): value is NewExperiment {
-    if (!('isVariantAssignmentExternal' in value) || value['isVariantAssignmentExternal'] === undefined) return false;
-    if (!('campaign' in value) || value['campaign'] === undefined) return false;
-    if (!('goalType' in value) || value['goalType'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('isVariantAssignmentExternal' in _v) || _v['isVariantAssignmentExternal'] === undefined) return false;
+    if (!('campaign' in _v) || _v['campaign'] === undefined) return false;
+    if (!('goalType' in _v) || _v['goalType'] === undefined) return false;
     return true;
 }
 

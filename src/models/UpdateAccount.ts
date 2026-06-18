@@ -66,8 +66,9 @@ export type UpdateAccountStateEnum = typeof UpdateAccountStateEnum[keyof typeof 
  * Check if a given object implements the UpdateAccount interface.
  */
 export function instanceOfUpdateAccount(value: object): value is UpdateAccount {
-    if (!('companyName' in value) || value['companyName'] === undefined) return false;
-    if (!('billingEmail' in value) || value['billingEmail'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('companyName' in _v) || _v['companyName'] === undefined) return false;
+    if (!('billingEmail' in _v) || _v['billingEmail'] === undefined) return false;
     return true;
 }
 

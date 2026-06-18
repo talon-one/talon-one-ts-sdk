@@ -39,6 +39,7 @@ export interface MultipleCustomerProfileIntegrationResponseV2 {
  * Check if a given object implements the MultipleCustomerProfileIntegrationResponseV2 interface.
  */
 export function instanceOfMultipleCustomerProfileIntegrationResponseV2(value: object): value is MultipleCustomerProfileIntegrationResponseV2 {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

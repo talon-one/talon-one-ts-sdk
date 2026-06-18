@@ -57,6 +57,7 @@ export interface ScimBaseUser {
  * Check if a given object implements the ScimBaseUser interface.
  */
 export function instanceOfScimBaseUser(value: object): value is ScimBaseUser {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

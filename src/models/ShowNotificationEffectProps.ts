@@ -52,9 +52,10 @@ export interface ShowNotificationEffectProps {
  * Check if a given object implements the ShowNotificationEffectProps interface.
  */
 export function instanceOfShowNotificationEffectProps(value: object): value is ShowNotificationEffectProps {
-    if (!('notificationType' in value) || value['notificationType'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('body' in value) || value['body'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('notificationType' in _v) || _v['notificationType'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('body' in _v) || _v['body'] === undefined) return false;
     return true;
 }
 

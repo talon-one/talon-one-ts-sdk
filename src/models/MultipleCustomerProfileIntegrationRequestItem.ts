@@ -41,7 +41,8 @@ export interface MultipleCustomerProfileIntegrationRequestItem {
  * Check if a given object implements the MultipleCustomerProfileIntegrationRequestItem interface.
  */
 export function instanceOfMultipleCustomerProfileIntegrationRequestItem(value: object): value is MultipleCustomerProfileIntegrationRequestItem {
-    if (!('integrationId' in value) || value['integrationId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
     return true;
 }
 

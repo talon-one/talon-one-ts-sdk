@@ -91,8 +91,9 @@ export type NewMessageTestVerbEnum = typeof NewMessageTestVerbEnum[keyof typeof 
  * Check if a given object implements the NewMessageTest interface.
  */
 export function instanceOfNewMessageTest(value: object): value is NewMessageTest {
-    if (!('verb' in value) || value['verb'] === undefined) return false;
-    if (!('url' in value) || value['url'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('verb' in _v) || _v['verb'] === undefined) return false;
+    if (!('url' in _v) || _v['url'] === undefined) return false;
     return true;
 }
 

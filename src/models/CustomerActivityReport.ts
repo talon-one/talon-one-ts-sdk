@@ -103,18 +103,19 @@ export interface CustomerActivityReport {
  * Check if a given object implements the CustomerActivityReport interface.
  */
 export function instanceOfCustomerActivityReport(value: object): value is CustomerActivityReport {
-    if (!('integrationId' in value) || value['integrationId'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('customerId' in value) || value['customerId'] === undefined) return false;
-    if (!('couponRedemptions' in value) || value['couponRedemptions'] === undefined) return false;
-    if (!('couponUseAttempts' in value) || value['couponUseAttempts'] === undefined) return false;
-    if (!('couponFailedAttempts' in value) || value['couponFailedAttempts'] === undefined) return false;
-    if (!('accruedDiscounts' in value) || value['accruedDiscounts'] === undefined) return false;
-    if (!('accruedRevenue' in value) || value['accruedRevenue'] === undefined) return false;
-    if (!('totalOrders' in value) || value['totalOrders'] === undefined) return false;
-    if (!('totalOrdersNoCoupon' in value) || value['totalOrdersNoCoupon'] === undefined) return false;
-    if (!('campaignName' in value) || value['campaignName'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('customerId' in _v) || _v['customerId'] === undefined) return false;
+    if (!('couponRedemptions' in _v) || _v['couponRedemptions'] === undefined) return false;
+    if (!('couponUseAttempts' in _v) || _v['couponUseAttempts'] === undefined) return false;
+    if (!('couponFailedAttempts' in _v) || _v['couponFailedAttempts'] === undefined) return false;
+    if (!('accruedDiscounts' in _v) || _v['accruedDiscounts'] === undefined) return false;
+    if (!('accruedRevenue' in _v) || _v['accruedRevenue'] === undefined) return false;
+    if (!('totalOrders' in _v) || _v['totalOrders'] === undefined) return false;
+    if (!('totalOrdersNoCoupon' in _v) || _v['totalOrdersNoCoupon'] === undefined) return false;
+    if (!('campaignName' in _v) || _v['campaignName'] === undefined) return false;
     return true;
 }
 

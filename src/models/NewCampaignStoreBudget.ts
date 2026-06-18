@@ -72,10 +72,11 @@ export type NewCampaignStoreBudgetPeriodEnum = typeof NewCampaignStoreBudgetPeri
  * Check if a given object implements the NewCampaignStoreBudget interface.
  */
 export function instanceOfNewCampaignStoreBudget(value: object): value is NewCampaignStoreBudget {
-    if (!('action' in value) || value['action'] === undefined) return false;
-    if (value['action'] !== 'setDiscount') return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('action' in _v) || _v['action'] === undefined) return false;
+    if (_v['action'] !== 'setDiscount') return false;
     
-    if (!('storeLimits' in value) || value['storeLimits'] === undefined) return false;
+    if (!('storeLimits' in _v) || _v['storeLimits'] === undefined) return false;
     return true;
 }
 

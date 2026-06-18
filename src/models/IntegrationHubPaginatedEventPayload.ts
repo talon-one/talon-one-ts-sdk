@@ -59,9 +59,10 @@ export interface IntegrationHubPaginatedEventPayload {
  * Check if a given object implements the IntegrationHubPaginatedEventPayload interface.
  */
 export function instanceOfIntegrationHubPaginatedEventPayload(value: object): value is IntegrationHubPaginatedEventPayload {
-    if ((!('totalResultSize' in value) && !('TotalResultSize' in value)) || (value['totalResultSize'] === undefined && value['TotalResultSize'] === undefined)) return false;
-    if ((!('eventType' in value) && !('EventType' in value)) || (value['eventType'] === undefined && value['EventType'] === undefined)) return false;
-    if ((!('data' in value) && !('Data' in value)) || (value['data'] === undefined && value['Data'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('totalResultSize' in _v) && !('TotalResultSize' in _v)) || (_v['totalResultSize'] === undefined && _v['TotalResultSize'] === undefined)) return false;
+    if ((!('eventType' in _v) && !('EventType' in _v)) || (_v['eventType'] === undefined && _v['EventType'] === undefined)) return false;
+    if ((!('data' in _v) && !('Data' in _v)) || (_v['data'] === undefined && _v['Data'] === undefined)) return false;
     return true;
 }
 

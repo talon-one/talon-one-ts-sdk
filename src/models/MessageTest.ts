@@ -37,8 +37,9 @@ export interface MessageTest {
  * Check if a given object implements the MessageTest interface.
  */
 export function instanceOfMessageTest(value: object): value is MessageTest {
-    if (!('httpResponse' in value) || value['httpResponse'] === undefined) return false;
-    if (!('httpStatus' in value) || value['httpStatus'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('httpResponse' in _v) || _v['httpResponse'] === undefined) return false;
+    if (!('httpStatus' in _v) || _v['httpStatus'] === undefined) return false;
     return true;
 }
 

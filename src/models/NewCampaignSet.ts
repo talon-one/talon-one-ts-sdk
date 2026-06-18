@@ -51,9 +51,10 @@ export interface NewCampaignSet {
  * Check if a given object implements the NewCampaignSet interface.
  */
 export function instanceOfNewCampaignSet(value: object): value is NewCampaignSet {
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('version' in value) || value['version'] === undefined) return false;
-    if (!('set' in value) || value['set'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('version' in _v) || _v['version'] === undefined) return false;
+    if (!('set' in _v) || _v['set'] === undefined) return false;
     return true;
 }
 

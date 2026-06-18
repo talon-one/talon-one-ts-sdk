@@ -51,10 +51,11 @@ export interface NotificationListItem {
  * Check if a given object implements the NotificationListItem interface.
  */
 export function instanceOfNotificationListItem(value: object): value is NotificationListItem {
-    if (!('notificationId' in value) || value['notificationId'] === undefined) return false;
-    if (!('notificationName' in value) || value['notificationName'] === undefined) return false;
-    if (!('entityId' in value) || value['entityId'] === undefined) return false;
-    if (!('enabled' in value) || value['enabled'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('notificationId' in _v) || _v['notificationId'] === undefined) return false;
+    if (!('notificationName' in _v) || _v['notificationName'] === undefined) return false;
+    if (!('entityId' in _v) || _v['entityId'] === undefined) return false;
+    if (!('enabled' in _v) || _v['enabled'] === undefined) return false;
     return true;
 }
 

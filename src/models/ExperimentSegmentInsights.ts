@@ -61,10 +61,11 @@ export interface ExperimentSegmentInsights {
  * Check if a given object implements the ExperimentSegmentInsights interface.
  */
 export function instanceOfExperimentSegmentInsights(value: object): value is ExperimentSegmentInsights {
-    if (!('metrics' in value) || value['metrics'] === undefined) return false;
-    if (!('totalSegmentsTested' in value) || value['totalSegmentsTested'] === undefined) return false;
-    if (!('dimensionsTested' in value) || value['dimensionsTested'] === undefined) return false;
-    if (!('reason' in value) || value['reason'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('metrics' in _v) || _v['metrics'] === undefined) return false;
+    if (!('totalSegmentsTested' in _v) || _v['totalSegmentsTested'] === undefined) return false;
+    if (!('dimensionsTested' in _v) || _v['dimensionsTested'] === undefined) return false;
+    if (!('reason' in _v) || _v['reason'] === undefined) return false;
     return true;
 }
 

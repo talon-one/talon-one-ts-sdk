@@ -61,7 +61,8 @@ export interface EventV2 {
  * Check if a given object implements the EventV2 interface.
  */
 export function instanceOfEventV2(value: object): value is EventV2 {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
     return true;
 }
 

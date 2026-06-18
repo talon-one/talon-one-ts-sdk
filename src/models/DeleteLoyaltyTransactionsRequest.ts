@@ -54,7 +54,8 @@ export type DeleteLoyaltyTransactionsRequestScopeEnum = typeof DeleteLoyaltyTran
  * Check if a given object implements the DeleteLoyaltyTransactionsRequest interface.
  */
 export function instanceOfDeleteLoyaltyTransactionsRequest(value: object): value is DeleteLoyaltyTransactionsRequest {
-    if (!('scope' in value) || value['scope'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('scope' in _v) || _v['scope'] === undefined) return false;
     return true;
 }
 

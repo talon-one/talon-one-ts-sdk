@@ -55,10 +55,11 @@ export interface GenerateCouponFailureDetailedSummary {
  * Check if a given object implements the GenerateCouponFailureDetailedSummary interface.
  */
 export function instanceOfGenerateCouponFailureDetailedSummary(value: object): value is GenerateCouponFailureDetailedSummary {
-    if (!('applicationID' in value) || value['applicationID'] === undefined) return false;
-    if (!('sessionID' in value) || value['sessionID'] === undefined) return false;
-    if (!('eventID' in value) || value['eventID'] === undefined) return false;
-    if (!('coupon' in value) || value['coupon'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('applicationID' in _v) || _v['applicationID'] === undefined) return false;
+    if (!('sessionID' in _v) || _v['sessionID'] === undefined) return false;
+    if (!('eventID' in _v) || _v['eventID'] === undefined) return false;
+    if (!('coupon' in _v) || _v['coupon'] === undefined) return false;
     return true;
 }
 

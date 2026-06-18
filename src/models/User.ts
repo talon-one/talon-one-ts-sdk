@@ -142,15 +142,16 @@ export type UserStateEnum = typeof UserStateEnum[keyof typeof UserStateEnum];
  * Check if a given object implements the User interface.
  */
 export function instanceOfUser(value: object): value is User {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('modified' in value) || value['modified'] === undefined) return false;
-    if (!('email' in value) || value['email'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('state' in value) || value['state'] === undefined) return false;
-    if (!('inviteToken' in value) || value['inviteToken'] === undefined) return false;
-    if (!('policy' in value) || value['policy'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('modified' in _v) || _v['modified'] === undefined) return false;
+    if (!('email' in _v) || _v['email'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('state' in _v) || _v['state'] === undefined) return false;
+    if (!('inviteToken' in _v) || _v['inviteToken'] === undefined) return false;
+    if (!('policy' in _v) || _v['policy'] === undefined) return false;
     return true;
 }
 

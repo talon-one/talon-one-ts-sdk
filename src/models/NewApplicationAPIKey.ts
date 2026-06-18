@@ -126,14 +126,15 @@ export type NewApplicationAPIKeyTypeEnum = typeof NewApplicationAPIKeyTypeEnum[k
  * Check if a given object implements the NewApplicationAPIKey interface.
  */
 export function instanceOfNewApplicationAPIKey(value: object): value is NewApplicationAPIKey {
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('expires' in value) || value['expires'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('createdBy' in value) || value['createdBy'] === undefined) return false;
-    if (!('accountID' in value) || value['accountID'] === undefined) return false;
-    if (!('applicationID' in value) || value['applicationID'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('key' in value) || value['key'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('expires' in _v) || _v['expires'] === undefined) return false;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('createdBy' in _v) || _v['createdBy'] === undefined) return false;
+    if (!('accountID' in _v) || _v['accountID'] === undefined) return false;
+    if (!('applicationID' in _v) || _v['applicationID'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('key' in _v) || _v['key'] === undefined) return false;
     return true;
 }
 

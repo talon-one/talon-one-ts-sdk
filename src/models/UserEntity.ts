@@ -31,7 +31,8 @@ export interface UserEntity {
  * Check if a given object implements the UserEntity interface.
  */
 export function instanceOfUserEntity(value: object): value is UserEntity {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('userId' in _v) || _v['userId'] === undefined) return false;
     return true;
 }
 

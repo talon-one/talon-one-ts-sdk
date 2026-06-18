@@ -31,7 +31,8 @@ export interface CampaignEntity {
  * Check if a given object implements the CampaignEntity interface.
  */
 export function instanceOfCampaignEntity(value: object): value is CampaignEntity {
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
     return true;
 }
 

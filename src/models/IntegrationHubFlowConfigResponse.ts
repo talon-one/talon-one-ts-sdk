@@ -43,6 +43,7 @@ export interface IntegrationHubFlowConfigResponse {
  * Check if a given object implements the IntegrationHubFlowConfigResponse interface.
  */
 export function instanceOfIntegrationHubFlowConfigResponse(value: object): value is IntegrationHubFlowConfigResponse {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

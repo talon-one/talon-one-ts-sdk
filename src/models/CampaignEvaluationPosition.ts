@@ -43,9 +43,10 @@ export interface CampaignEvaluationPosition {
  * Check if a given object implements the CampaignEvaluationPosition interface.
  */
 export function instanceOfCampaignEvaluationPosition(value: object): value is CampaignEvaluationPosition {
-    if (!('groupId' in value) || value['groupId'] === undefined) return false;
-    if (!('groupName' in value) || value['groupName'] === undefined) return false;
-    if (!('position' in value) || value['position'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('groupId' in _v) || _v['groupId'] === undefined) return false;
+    if (!('groupName' in _v) || _v['groupName'] === undefined) return false;
+    if (!('position' in _v) || _v['position'] === undefined) return false;
     return true;
 }
 

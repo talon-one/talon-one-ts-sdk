@@ -37,7 +37,8 @@ export interface AcceptCouponEffectProps {
  * Check if a given object implements the AcceptCouponEffectProps interface.
  */
 export function instanceOfAcceptCouponEffectProps(value: object): value is AcceptCouponEffectProps {
-    if (!('value' in value) || value['value'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
     return true;
 }
 

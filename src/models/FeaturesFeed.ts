@@ -37,6 +37,7 @@ export interface FeaturesFeed {
  * Check if a given object implements the FeaturesFeed interface.
  */
 export function instanceOfFeaturesFeed(value: object): value is FeaturesFeed {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

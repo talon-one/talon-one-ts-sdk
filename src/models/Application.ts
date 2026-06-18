@@ -217,14 +217,15 @@ export type ApplicationDefaultDiscountAdditionalCostPerItemScopeEnum = typeof Ap
  * Check if a given object implements the Application interface.
  */
 export function instanceOfApplication(value: object): value is Application {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('modified' in value) || value['modified'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('timezone' in value) || value['timezone'] === undefined) return false;
-    if (!('currency' in value) || value['currency'] === undefined) return false;
-    if (!('loyaltyPrograms' in value) || value['loyaltyPrograms'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('modified' in _v) || _v['modified'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('timezone' in _v) || _v['timezone'] === undefined) return false;
+    if (!('currency' in _v) || _v['currency'] === undefined) return false;
+    if (!('loyaltyPrograms' in _v) || _v['loyaltyPrograms'] === undefined) return false;
     return true;
 }
 

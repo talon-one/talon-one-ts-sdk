@@ -196,6 +196,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     couponRedemptionCount?: number;
     /**
@@ -204,6 +205,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     referralRedemptionCount?: number;
     /**
@@ -212,6 +214,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     discountCount?: number;
     /**
@@ -220,6 +223,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     discountEffectCount?: number;
     /**
@@ -228,6 +232,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     couponCreationCount?: number;
     /**
@@ -236,6 +241,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     customEffectCount?: number;
     /**
@@ -244,6 +250,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     referralCreationCount?: number;
     /**
@@ -252,6 +259,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     addFreeItemEffectCount?: number;
     /**
@@ -260,6 +268,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     awardedGiveawaysCount?: number;
     /**
@@ -268,6 +277,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     createdLoyaltyPointsCount?: number;
     /**
@@ -276,6 +286,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     createdLoyaltyPointsEffectCount?: number;
     /**
@@ -284,6 +295,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     redeemedLoyaltyPointsCount?: number;
     /**
@@ -292,6 +304,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     redeemedLoyaltyPointsEffectCount?: number;
     /**
@@ -300,6 +313,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     callApiEffectCount?: number;
     /**
@@ -308,6 +322,7 @@ export interface Campaign {
      * 
      * @type {number}
      * @memberof Campaign
+     * @deprecated
      */
     reservecouponEffectCount?: number;
     /**
@@ -477,18 +492,19 @@ export type CampaignRevisionFrontendStateEnum = typeof CampaignRevisionFrontendS
  * Check if a given object implements the Campaign interface.
  */
 export function instanceOfCampaign(value: object): value is Campaign {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('state' in value) || value['state'] === undefined) return false;
-    if (!('tags' in value) || value['tags'] === undefined) return false;
-    if (!('reevaluateOnReturn' in value) || value['reevaluateOnReturn'] === undefined) return false;
-    if (!('features' in value) || value['features'] === undefined) return false;
-    if (!('limits' in value) || value['limits'] === undefined) return false;
-    if (!('frontendState' in value) || value['frontendState'] === undefined) return false;
-    if (!('storesImported' in value) || value['storesImported'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('userId' in _v) || _v['userId'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('state' in _v) || _v['state'] === undefined) return false;
+    if (!('tags' in _v) || _v['tags'] === undefined) return false;
+    if (!('reevaluateOnReturn' in _v) || _v['reevaluateOnReturn'] === undefined) return false;
+    if (!('features' in _v) || _v['features'] === undefined) return false;
+    if (!('limits' in _v) || _v['limits'] === undefined) return false;
+    if (!('frontendState' in _v) || _v['frontendState'] === undefined) return false;
+    if (!('storesImported' in _v) || _v['storesImported'] === undefined) return false;
     return true;
 }
 

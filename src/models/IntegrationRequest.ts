@@ -69,7 +69,8 @@ export type IntegrationRequestResponseContentEnum = typeof IntegrationRequestRes
  * Check if a given object implements the IntegrationRequest interface.
  */
 export function instanceOfIntegrationRequest(value: object): value is IntegrationRequest {
-    if (!('customerSession' in value) || value['customerSession'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('customerSession' in _v) || _v['customerSession'] === undefined) return false;
     return true;
 }
 

@@ -90,12 +90,13 @@ export interface StrikethroughChangedItem {
  * Check if a given object implements the StrikethroughChangedItem interface.
  */
 export function instanceOfStrikethroughChangedItem(value: object): value is StrikethroughChangedItem {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('catalogId' in value) || value['catalogId'] === undefined) return false;
-    if (!('sku' in value) || value['sku'] === undefined) return false;
-    if (!('version' in value) || value['version'] === undefined) return false;
-    if (!('price' in value) || value['price'] === undefined) return false;
-    if (!('evaluatedAt' in value) || value['evaluatedAt'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('catalogId' in _v) || _v['catalogId'] === undefined) return false;
+    if (!('sku' in _v) || _v['sku'] === undefined) return false;
+    if (!('version' in _v) || _v['version'] === undefined) return false;
+    if (!('price' in _v) || _v['price'] === undefined) return false;
+    if (!('evaluatedAt' in _v) || _v['evaluatedAt'] === undefined) return false;
     return true;
 }
 

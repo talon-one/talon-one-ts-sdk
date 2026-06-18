@@ -57,10 +57,11 @@ export interface NewExperimentVariant {
  * Check if a given object implements the NewExperimentVariant interface.
  */
 export function instanceOfNewExperimentVariant(value: object): value is NewExperimentVariant {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('weight' in value) || value['weight'] === undefined) return false;
-    if (!('ruleset' in value) || value['ruleset'] === undefined) return false;
-    if (!('isPrimary' in value) || value['isPrimary'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('weight' in _v) || _v['weight'] === undefined) return false;
+    if (!('ruleset' in _v) || _v['ruleset'] === undefined) return false;
+    if (!('isPrimary' in _v) || _v['isPrimary'] === undefined) return false;
     return true;
 }
 

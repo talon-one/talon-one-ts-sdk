@@ -126,16 +126,17 @@ export type CampaignSetBranchNodeEvaluationScopeEnum = typeof CampaignSetBranchN
  * Check if a given object implements the CampaignSetBranchNode interface.
  */
 export function instanceOfCampaignSetBranchNode(value: object): value is CampaignSetBranchNode {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (value['type'] !== 'SET') return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'SET') return false;
     
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('operator' in value) || value['operator'] === undefined) return false;
-    if (!('elements' in value) || value['elements'] === undefined) return false;
-    if (!('groupId' in value) || value['groupId'] === undefined) return false;
-    if (!('locked' in value) || value['locked'] === undefined) return false;
-    if (!('evaluationMode' in value) || value['evaluationMode'] === undefined) return false;
-    if (!('evaluationScope' in value) || value['evaluationScope'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('operator' in _v) || _v['operator'] === undefined) return false;
+    if (!('elements' in _v) || _v['elements'] === undefined) return false;
+    if (!('groupId' in _v) || _v['groupId'] === undefined) return false;
+    if (!('locked' in _v) || _v['locked'] === undefined) return false;
+    if (!('evaluationMode' in _v) || _v['evaluationMode'] === undefined) return false;
+    if (!('evaluationScope' in _v) || _v['evaluationScope'] === undefined) return false;
     return true;
 }
 

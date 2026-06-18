@@ -31,6 +31,7 @@ export interface ImportEntity {
  * Check if a given object implements the ImportEntity interface.
  */
 export function instanceOfImportEntity(value: object): value is ImportEntity {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

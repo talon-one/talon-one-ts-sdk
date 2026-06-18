@@ -52,8 +52,9 @@ export interface SkuUnitAnalytics {
  * Check if a given object implements the SkuUnitAnalytics interface.
  */
 export function instanceOfSkuUnitAnalytics(value: object): value is SkuUnitAnalytics {
-    if (!('data' in value) || value['data'] === undefined) return false;
-    if (!('totals' in value) || value['totals'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('data' in _v) || _v['data'] === undefined) return false;
+    if (!('totals' in _v) || _v['totals'] === undefined) return false;
     return true;
 }
 

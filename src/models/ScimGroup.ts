@@ -52,7 +52,8 @@ export interface ScimGroup {
  * Check if a given object implements the ScimGroup interface.
  */
 export function instanceOfScimGroup(value: object): value is ScimGroup {
-    if (!('id' in value) || value['id'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
     return true;
 }
 

@@ -49,6 +49,7 @@ export interface AddToAudienceEffectProps {
  * Check if a given object implements the AddToAudienceEffectProps interface.
  */
 export function instanceOfAddToAudienceEffectProps(value: object): value is AddToAudienceEffectProps {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

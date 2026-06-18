@@ -53,7 +53,8 @@ export interface RuleMetadata {
  * Check if a given object implements the RuleMetadata interface.
  */
 export function instanceOfRuleMetadata(value: object): value is RuleMetadata {
-    if (!('title' in value) || value['title'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
     return true;
 }
 

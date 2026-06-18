@@ -48,7 +48,8 @@ export type UpdateSupportRequestRequestStatusEnum = typeof UpdateSupportRequestR
  * Check if a given object implements the UpdateSupportRequest interface.
  */
 export function instanceOfUpdateSupportRequest(value: object): value is UpdateSupportRequest {
-    if (!('requestStatus' in value) || value['requestStatus'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('requestStatus' in _v) || _v['requestStatus'] === undefined) return false;
     return true;
 }
 

@@ -17,6 +17,8 @@ Name | Type
 `tags` | Array&lt;string&gt;
 `features` | Array&lt;string&gt;
 `rules` | [Array&lt;RuleMetadata&gt;](RuleMetadata.md)
+`linkedStoreIds` | Array&lt;number&gt;
+`linkedAudienceIds` | Array&lt;number&gt;
 
 ## Example
 
@@ -36,6 +38,8 @@ const example = {
   "tags": [summer],
   "features": [coupons, referrals],
   "rules": null,
+  "linkedStoreIds": [1, 2],
+  "linkedAudienceIds": [3, 4],
 } satisfies IntegrationCampaign
 
 console.log(example)

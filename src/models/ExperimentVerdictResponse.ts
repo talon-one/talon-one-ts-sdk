@@ -45,8 +45,9 @@ export interface ExperimentVerdictResponse {
  * Check if a given object implements the ExperimentVerdictResponse interface.
  */
 export function instanceOfExperimentVerdictResponse(value: object): value is ExperimentVerdictResponse {
-    if (!('verdict' in value) || value['verdict'] === undefined) return false;
-    if (!('generated' in value) || value['generated'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('verdict' in _v) || _v['verdict'] === undefined) return false;
+    if (!('generated' in _v) || _v['generated'] === undefined) return false;
     return true;
 }
 

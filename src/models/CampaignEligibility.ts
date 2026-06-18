@@ -149,16 +149,17 @@ export type CampaignEligibilityFeaturesEnum = typeof CampaignEligibilityFeatures
  * Check if a given object implements the CampaignEligibility interface.
  */
 export function instanceOfCampaignEligibility(value: object): value is CampaignEligibility {
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('state' in value) || value['state'] === undefined) return false;
-    if (value['state'] !== 'enabled') return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('state' in _v) || _v['state'] === undefined) return false;
+    if (_v['state'] !== 'enabled') return false;
     
-    if (!('tags' in value) || value['tags'] === undefined) return false;
-    if (!('features' in value) || value['features'] === undefined) return false;
-    if (!('eligibility' in value) || value['eligibility'] === undefined) return false;
-    if (!('rules' in value) || value['rules'] === undefined) return false;
+    if (!('tags' in _v) || _v['tags'] === undefined) return false;
+    if (!('features' in _v) || _v['features'] === undefined) return false;
+    if (!('eligibility' in _v) || _v['eligibility'] === undefined) return false;
+    if (!('rules' in _v) || _v['rules'] === undefined) return false;
     return true;
 }
 

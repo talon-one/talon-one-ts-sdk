@@ -49,8 +49,9 @@ export interface ValueMap {
  * Check if a given object implements the ValueMap interface.
  */
 export function instanceOfValueMap(value: object): value is ValueMap {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
     return true;
 }
 

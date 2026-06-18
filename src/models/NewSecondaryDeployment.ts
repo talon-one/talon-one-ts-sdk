@@ -31,7 +31,8 @@ export interface NewSecondaryDeployment {
  * Check if a given object implements the NewSecondaryDeployment interface.
  */
 export function instanceOfNewSecondaryDeployment(value: object): value is NewSecondaryDeployment {
-    if (!('name' in value) || value['name'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
     return true;
 }
 

@@ -57,9 +57,10 @@ export interface ListCampaignStoreBudgets {
  * Check if a given object implements the ListCampaignStoreBudgets interface.
  */
 export function instanceOfListCampaignStoreBudgets(value: object): value is ListCampaignStoreBudgets {
-    if (!('store' in value) || value['store'] === undefined) return false;
-    if (!('limit' in value) || value['limit'] === undefined) return false;
-    if (!('action' in value) || value['action'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('store' in _v) || _v['store'] === undefined) return false;
+    if (!('limit' in _v) || _v['limit'] === undefined) return false;
+    if (!('action' in _v) || _v['action'] === undefined) return false;
     return true;
 }
 

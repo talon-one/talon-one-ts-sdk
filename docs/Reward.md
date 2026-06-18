@@ -14,7 +14,7 @@ Name | Type
 `description` | string
 `applicationIds` | Array&lt;number&gt;
 `sandbox` | boolean
-`visibilityConditions` | [Rule](Rule.md)
+`eligibilityConditions` | [Rule](Rule.md)
 `rule` | [Rule](Rule.md)
 `bindings` | [Array&lt;Binding&gt;](Binding.md)
 `modified` | Date
@@ -36,7 +36,7 @@ const example = {
   "description": This reward gets you one free coffee.,
   "applicationIds": [1, 2, 3],
   "sandbox": true,
-  "visibilityConditions": null,
+  "eligibilityConditions": null,
   "rule": null,
   "bindings": [],
   "modified": null,

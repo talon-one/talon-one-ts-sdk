@@ -90,7 +90,8 @@ export type IntegrationEventV2RequestResponseContentEnum = typeof IntegrationEve
  * Check if a given object implements the IntegrationEventV2Request interface.
  */
 export function instanceOfIntegrationEventV2Request(value: object): value is IntegrationEventV2Request {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
     return true;
 }
 

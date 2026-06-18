@@ -73,8 +73,9 @@ export type UpdateExperimentGoalTypeEnum = typeof UpdateExperimentGoalTypeEnum[k
  * Check if a given object implements the UpdateExperiment interface.
  */
 export function instanceOfUpdateExperiment(value: object): value is UpdateExperiment {
-    if (!('isVariantAssignmentExternal' in value) || value['isVariantAssignmentExternal'] === undefined) return false;
-    if (!('campaign' in value) || value['campaign'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('isVariantAssignmentExternal' in _v) || _v['isVariantAssignmentExternal'] === undefined) return false;
+    if (!('campaign' in _v) || _v['campaign'] === undefined) return false;
     return true;
 }
 

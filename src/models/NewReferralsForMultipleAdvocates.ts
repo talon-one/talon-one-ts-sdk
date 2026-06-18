@@ -77,8 +77,9 @@ export interface NewReferralsForMultipleAdvocates {
  * Check if a given object implements the NewReferralsForMultipleAdvocates interface.
  */
 export function instanceOfNewReferralsForMultipleAdvocates(value: object): value is NewReferralsForMultipleAdvocates {
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('advocateProfileIntegrationIds' in value) || value['advocateProfileIntegrationIds'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('advocateProfileIntegrationIds' in _v) || _v['advocateProfileIntegrationIds'] === undefined) return false;
     return true;
 }
 

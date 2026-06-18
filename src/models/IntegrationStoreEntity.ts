@@ -31,6 +31,7 @@ export interface IntegrationStoreEntity {
  * Check if a given object implements the IntegrationStoreEntity interface.
  */
 export function instanceOfIntegrationStoreEntity(value: object): value is IntegrationStoreEntity {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

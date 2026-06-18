@@ -65,12 +65,13 @@ export interface RollbackIncreasedAchievementProgressEffectProps {
  * Check if a given object implements the RollbackIncreasedAchievementProgressEffectProps interface.
  */
 export function instanceOfRollbackIncreasedAchievementProgressEffectProps(value: object): value is RollbackIncreasedAchievementProgressEffectProps {
-    if (!('achievementId' in value) || value['achievementId'] === undefined) return false;
-    if (!('achievementName' in value) || value['achievementName'] === undefined) return false;
-    if (!('progressTrackerId' in value) || value['progressTrackerId'] === undefined) return false;
-    if (!('decreaseProgressBy' in value) || value['decreaseProgressBy'] === undefined) return false;
-    if (!('currentProgress' in value) || value['currentProgress'] === undefined) return false;
-    if (!('target' in value) || value['target'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('achievementId' in _v) || _v['achievementId'] === undefined) return false;
+    if (!('achievementName' in _v) || _v['achievementName'] === undefined) return false;
+    if (!('progressTrackerId' in _v) || _v['progressTrackerId'] === undefined) return false;
+    if (!('decreaseProgressBy' in _v) || _v['decreaseProgressBy'] === undefined) return false;
+    if (!('currentProgress' in _v) || _v['currentProgress'] === undefined) return false;
+    if (!('target' in _v) || _v['target'] === undefined) return false;
     return true;
 }
 

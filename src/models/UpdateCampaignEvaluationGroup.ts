@@ -83,11 +83,12 @@ export type UpdateCampaignEvaluationGroupEvaluationScopeEnum = typeof UpdateCamp
  * Check if a given object implements the UpdateCampaignEvaluationGroup interface.
  */
 export function instanceOfUpdateCampaignEvaluationGroup(value: object): value is UpdateCampaignEvaluationGroup {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('parentId' in value) || value['parentId'] === undefined) return false;
-    if (!('evaluationMode' in value) || value['evaluationMode'] === undefined) return false;
-    if (!('evaluationScope' in value) || value['evaluationScope'] === undefined) return false;
-    if (!('locked' in value) || value['locked'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('parentId' in _v) || _v['parentId'] === undefined) return false;
+    if (!('evaluationMode' in _v) || _v['evaluationMode'] === undefined) return false;
+    if (!('evaluationScope' in _v) || _v['evaluationScope'] === undefined) return false;
+    if (!('locked' in _v) || _v['locked'] === undefined) return false;
     return true;
 }
 

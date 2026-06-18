@@ -49,10 +49,11 @@ export interface OutgoingIntegrationMoEngagePolicy {
  * Check if a given object implements the OutgoingIntegrationMoEngagePolicy interface.
  */
 export function instanceOfOutgoingIntegrationMoEngagePolicy(value: object): value is OutgoingIntegrationMoEngagePolicy {
-    if (!('baseUrl' in value) || value['baseUrl'] === undefined) return false;
-    if (!('appId' in value) || value['appId'] === undefined) return false;
-    if (!('dataApiId' in value) || value['dataApiId'] === undefined) return false;
-    if (!('dataApiKey' in value) || value['dataApiKey'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('baseUrl' in _v) || _v['baseUrl'] === undefined) return false;
+    if (!('appId' in _v) || _v['appId'] === undefined) return false;
+    if (!('dataApiId' in _v) || _v['dataApiId'] === undefined) return false;
+    if (!('dataApiKey' in _v) || _v['dataApiKey'] === undefined) return false;
     return true;
 }
 

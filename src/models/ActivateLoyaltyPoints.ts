@@ -43,6 +43,7 @@ export interface ActivateLoyaltyPoints {
  * Check if a given object implements the ActivateLoyaltyPoints interface.
  */
 export function instanceOfActivateLoyaltyPoints(value: object): value is ActivateLoyaltyPoints {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

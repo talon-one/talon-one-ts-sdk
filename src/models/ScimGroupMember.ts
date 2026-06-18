@@ -37,6 +37,7 @@ export interface ScimGroupMember {
  * Check if a given object implements the ScimGroupMember interface.
  */
 export function instanceOfScimGroupMember(value: object): value is ScimGroupMember {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

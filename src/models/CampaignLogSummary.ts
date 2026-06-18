@@ -67,11 +67,12 @@ export type CampaignLogSummaryActionEnum = typeof CampaignLogSummaryActionEnum[k
  * Check if a given object implements the CampaignLogSummary interface.
  */
 export function instanceOfCampaignLogSummary(value: object): value is CampaignLogSummary {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('email' in value) || value['email'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('action' in value) || value['action'] === undefined) return false;
-    if (!('summary' in value) || value['summary'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('email' in _v) || _v['email'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('action' in _v) || _v['action'] === undefined) return false;
+    if (!('summary' in _v) || _v['summary'] === undefined) return false;
     return true;
 }
 

@@ -31,7 +31,8 @@ export interface CollectionItem {
  * Check if a given object implements the CollectionItem interface.
  */
 export function instanceOfCollectionItem(value: object): value is CollectionItem {
-    if (!('item' in value) || value['item'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('item' in _v) || _v['item'] === undefined) return false;
     return true;
 }
 

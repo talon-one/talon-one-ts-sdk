@@ -79,10 +79,11 @@ export type BestPriorPriceRequestTimeframeEndDateTypeEnum = typeof BestPriorPric
  * Check if a given object implements the BestPriorPriceRequest interface.
  */
 export function instanceOfBestPriorPriceRequest(value: object): value is BestPriorPriceRequest {
-    if (!('skus' in value) || value['skus'] === undefined) return false;
-    if (!('timeframeEndDate' in value) || value['timeframeEndDate'] === undefined) return false;
-    if (!('timeframe' in value) || value['timeframe'] === undefined) return false;
-    if (!('timeframeEndDateType' in value) || value['timeframeEndDateType'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('skus' in _v) || _v['skus'] === undefined) return false;
+    if (!('timeframeEndDate' in _v) || _v['timeframeEndDate'] === undefined) return false;
+    if (!('timeframe' in _v) || _v['timeframe'] === undefined) return false;
+    if (!('timeframeEndDateType' in _v) || _v['timeframeEndDateType'] === undefined) return false;
     return true;
 }
 

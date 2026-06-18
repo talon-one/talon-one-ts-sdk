@@ -39,7 +39,8 @@ export interface TransferLoyaltyCard {
  * Check if a given object implements the TransferLoyaltyCard interface.
  */
 export function instanceOfTransferLoyaltyCard(value: object): value is TransferLoyaltyCard {
-    if (!('newCardIdentifier' in value) || value['newCardIdentifier'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('newCardIdentifier' in _v) || _v['newCardIdentifier'] === undefined) return false;
     return true;
 }
 

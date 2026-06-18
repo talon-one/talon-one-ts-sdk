@@ -39,6 +39,7 @@ export interface CustomerProfileAudienceRequest {
  * Check if a given object implements the CustomerProfileAudienceRequest interface.
  */
 export function instanceOfCustomerProfileAudienceRequest(value: object): value is CustomerProfileAudienceRequest {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

@@ -95,13 +95,14 @@ export type CampaignEvaluationGroupEvaluationScopeEnum = typeof CampaignEvaluati
  * Check if a given object implements the CampaignEvaluationGroup interface.
  */
 export function instanceOfCampaignEvaluationGroup(value: object): value is CampaignEvaluationGroup {
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('parentId' in value) || value['parentId'] === undefined) return false;
-    if (!('evaluationMode' in value) || value['evaluationMode'] === undefined) return false;
-    if (!('evaluationScope' in value) || value['evaluationScope'] === undefined) return false;
-    if (!('locked' in value) || value['locked'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('parentId' in _v) || _v['parentId'] === undefined) return false;
+    if (!('evaluationMode' in _v) || _v['evaluationMode'] === undefined) return false;
+    if (!('evaluationScope' in _v) || _v['evaluationScope'] === undefined) return false;
+    if (!('locked' in _v) || _v['locked'] === undefined) return false;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
     return true;
 }
 

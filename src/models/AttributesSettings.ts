@@ -39,6 +39,7 @@ export interface AttributesSettings {
  * Check if a given object implements the AttributesSettings interface.
  */
 export function instanceOfAttributesSettings(value: object): value is AttributesSettings {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

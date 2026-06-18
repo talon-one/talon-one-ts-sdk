@@ -39,8 +39,9 @@ export interface RoleV2PermissionSet {
  * Check if a given object implements the RoleV2PermissionSet interface.
  */
 export function instanceOfRoleV2PermissionSet(value: object): value is RoleV2PermissionSet {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('logicalOperations' in value) || value['logicalOperations'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('logicalOperations' in _v) || _v['logicalOperations'] === undefined) return false;
     return true;
 }
 

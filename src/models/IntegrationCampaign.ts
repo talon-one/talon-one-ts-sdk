@@ -94,6 +94,18 @@ export interface IntegrationCampaign {
      * @memberof IntegrationCampaign
      */
     rules: Array<RuleMetadata>;
+    /**
+     * A list of store IDs linked to this campaign.
+     * @type {Array<number>}
+     * @memberof IntegrationCampaign
+     */
+    linkedStoreIds?: Array<number>;
+    /**
+     * A list of audience IDs linked to this campaign.
+     * @type {Array<number>}
+     * @memberof IntegrationCampaign
+     */
+    linkedAudienceIds?: Array<number>;
 }
 
 
@@ -123,15 +135,16 @@ export type IntegrationCampaignFeaturesEnum = typeof IntegrationCampaignFeatures
  * Check if a given object implements the IntegrationCampaign interface.
  */
 export function instanceOfIntegrationCampaign(value: object): value is IntegrationCampaign {
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('state' in value) || value['state'] === undefined) return false;
-    if (value['state'] !== 'enabled') return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('state' in _v) || _v['state'] === undefined) return false;
+    if (_v['state'] !== 'enabled') return false;
     
-    if (!('tags' in value) || value['tags'] === undefined) return false;
-    if (!('features' in value) || value['features'] === undefined) return false;
-    if (!('rules' in value) || value['rules'] === undefined) return false;
+    if (!('tags' in _v) || _v['tags'] === undefined) return false;
+    if (!('features' in _v) || _v['features'] === undefined) return false;
+    if (!('rules' in _v) || _v['rules'] === undefined) return false;
     return true;
 }
 
@@ -156,6 +169,8 @@ export function IntegrationCampaignFromJSONTyped(json: any, ignoreDiscriminator:
         'tags': json['tags'],
         'features': json['features'],
         'rules': ((json['rules'] as Array<any>).map(RuleMetadataFromJSON)),
+        'linkedStoreIds': json['linkedStoreIds'] == null ? undefined : json['linkedStoreIds'],
+        'linkedAudienceIds': json['linkedAudienceIds'] == null ? undefined : json['linkedAudienceIds'],
     };
 }
 
@@ -181,6 +196,8 @@ export function IntegrationCampaignToJSONTyped(value?: IntegrationCampaign | nul
         'tags': value['tags'],
         'features': value['features'],
         'rules': ((value['rules'] as Array<any>).map(RuleMetadataToJSON)),
+        'linkedStoreIds': value['linkedStoreIds'],
+        'linkedAudienceIds': value['linkedAudienceIds'],
     };
 }
 

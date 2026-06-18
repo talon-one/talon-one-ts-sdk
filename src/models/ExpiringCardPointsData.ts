@@ -69,13 +69,14 @@ export interface ExpiringCardPointsData {
  * Check if a given object implements the ExpiringCardPointsData interface.
  */
 export function instanceOfExpiringCardPointsData(value: object): value is ExpiringCardPointsData {
-    if ((!('expiryDate' in value) && !('ExpiryDate' in value)) || (value['expiryDate'] === undefined && value['ExpiryDate'] === undefined)) return false;
-    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
-    if ((!('amountOfExpiringPoints' in value) && !('AmountOfExpiringPoints' in value)) || (value['amountOfExpiringPoints'] === undefined && value['AmountOfExpiringPoints'] === undefined)) return false;
-    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
-    if ((!('cardIdentifier' in value) && !('CardIdentifier' in value)) || (value['cardIdentifier'] === undefined && value['CardIdentifier'] === undefined)) return false;
-    if ((!('usersPerCardLimit' in value) && !('UsersPerCardLimit' in value)) || (value['usersPerCardLimit'] === undefined && value['UsersPerCardLimit'] === undefined)) return false;
-    if ((!('profiles' in value) && !('Profiles' in value)) || (value['profiles'] === undefined && value['Profiles'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('expiryDate' in _v) && !('ExpiryDate' in _v)) || (_v['expiryDate'] === undefined && _v['ExpiryDate'] === undefined)) return false;
+    if ((!('loyaltyProgramID' in _v) && !('LoyaltyProgramID' in _v)) || (_v['loyaltyProgramID'] === undefined && _v['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('amountOfExpiringPoints' in _v) && !('AmountOfExpiringPoints' in _v)) || (_v['amountOfExpiringPoints'] === undefined && _v['AmountOfExpiringPoints'] === undefined)) return false;
+    if ((!('subledgerID' in _v) && !('SubledgerID' in _v)) || (_v['subledgerID'] === undefined && _v['SubledgerID'] === undefined)) return false;
+    if ((!('cardIdentifier' in _v) && !('CardIdentifier' in _v)) || (_v['cardIdentifier'] === undefined && _v['CardIdentifier'] === undefined)) return false;
+    if ((!('usersPerCardLimit' in _v) && !('UsersPerCardLimit' in _v)) || (_v['usersPerCardLimit'] === undefined && _v['UsersPerCardLimit'] === undefined)) return false;
+    if ((!('profiles' in _v) && !('Profiles' in _v)) || (_v['profiles'] === undefined && _v['Profiles'] === undefined)) return false;
     return true;
 }
 

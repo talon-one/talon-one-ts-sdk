@@ -37,8 +37,9 @@ export interface AnalyticsDataPoint {
  * Check if a given object implements the AnalyticsDataPoint interface.
  */
 export function instanceOfAnalyticsDataPoint(value: object): value is AnalyticsDataPoint {
-    if (!('total' in value) || value['total'] === undefined) return false;
-    if (!('influenced' in value) || value['influenced'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('total' in _v) || _v['total'] === undefined) return false;
+    if (!('influenced' in _v) || _v['influenced'] === undefined) return false;
     return true;
 }
 

@@ -106,11 +106,12 @@ export interface Ruleset {
  * Check if a given object implements the Ruleset interface.
  */
 export function instanceOfRuleset(value: object): value is Ruleset {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('rules' in value) || value['rules'] === undefined) return false;
-    if (!('bindings' in value) || value['bindings'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('userId' in _v) || _v['userId'] === undefined) return false;
+    if (!('rules' in _v) || _v['rules'] === undefined) return false;
+    if (!('bindings' in _v) || _v['bindings'] === undefined) return false;
     return true;
 }
 

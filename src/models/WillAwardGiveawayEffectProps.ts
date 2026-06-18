@@ -45,9 +45,10 @@ export interface WillAwardGiveawayEffectProps {
  * Check if a given object implements the WillAwardGiveawayEffectProps interface.
  */
 export function instanceOfWillAwardGiveawayEffectProps(value: object): value is WillAwardGiveawayEffectProps {
-    if (!('poolId' in value) || value['poolId'] === undefined) return false;
-    if (!('poolName' in value) || value['poolName'] === undefined) return false;
-    if (!('recipientIntegrationId' in value) || value['recipientIntegrationId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('poolId' in _v) || _v['poolId'] === undefined) return false;
+    if (!('poolName' in _v) || _v['poolName'] === undefined) return false;
+    if (!('recipientIntegrationId' in _v) || _v['recipientIntegrationId'] === undefined) return false;
     return true;
 }
 

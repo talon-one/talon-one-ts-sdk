@@ -51,8 +51,9 @@ export interface NewBaseNotification {
  * Check if a given object implements the NewBaseNotification interface.
  */
 export function instanceOfNewBaseNotification(value: object): value is NewBaseNotification {
-    if (!('policy' in value) || value['policy'] === undefined) return false;
-    if (!('webhook' in value) || value['webhook'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('policy' in _v) || _v['policy'] === undefined) return false;
+    if (!('webhook' in _v) || _v['webhook'] === undefined) return false;
     return true;
 }
 

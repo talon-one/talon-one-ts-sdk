@@ -67,11 +67,12 @@ export interface LoyaltyTier {
  * Check if a given object implements the LoyaltyTier interface.
  */
 export function instanceOfLoyaltyTier(value: object): value is LoyaltyTier {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('programID' in value) || value['programID'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('minPoints' in value) || value['minPoints'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('programID' in _v) || _v['programID'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('minPoints' in _v) || _v['minPoints'] === undefined) return false;
     return true;
 }
 

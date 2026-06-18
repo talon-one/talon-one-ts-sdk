@@ -31,6 +31,7 @@ export interface CouponValue {
  * Check if a given object implements the CouponValue interface.
  */
 export function instanceOfCouponValue(value: object): value is CouponValue {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

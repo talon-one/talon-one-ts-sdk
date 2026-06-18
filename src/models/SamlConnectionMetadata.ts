@@ -49,10 +49,11 @@ export interface SamlConnectionMetadata {
  * Check if a given object implements the SamlConnectionMetadata interface.
  */
 export function instanceOfSamlConnectionMetadata(value: object): value is SamlConnectionMetadata {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('enabled' in value) || value['enabled'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('metadataDocument' in value) || value['metadataDocument'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('enabled' in _v) || _v['enabled'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('metadataDocument' in _v) || _v['metadataDocument'] === undefined) return false;
     return true;
 }
 

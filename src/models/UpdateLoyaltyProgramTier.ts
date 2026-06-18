@@ -43,7 +43,8 @@ export interface UpdateLoyaltyProgramTier {
  * Check if a given object implements the UpdateLoyaltyProgramTier interface.
  */
 export function instanceOfUpdateLoyaltyProgramTier(value: object): value is UpdateLoyaltyProgramTier {
-    if (!('id' in value) || value['id'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
     return true;
 }
 

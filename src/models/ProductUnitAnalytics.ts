@@ -52,8 +52,9 @@ export interface ProductUnitAnalytics {
  * Check if a given object implements the ProductUnitAnalytics interface.
  */
 export function instanceOfProductUnitAnalytics(value: object): value is ProductUnitAnalytics {
-    if (!('data' in value) || value['data'] === undefined) return false;
-    if (!('totals' in value) || value['totals'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('data' in _v) || _v['data'] === undefined) return false;
+    if (!('totals' in _v) || _v['totals'] === undefined) return false;
     return true;
 }
 

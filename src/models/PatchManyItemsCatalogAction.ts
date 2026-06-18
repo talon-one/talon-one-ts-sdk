@@ -54,6 +54,7 @@ export interface PatchManyItemsCatalogAction {
  * Check if a given object implements the PatchManyItemsCatalogAction interface.
  */
 export function instanceOfPatchManyItemsCatalogAction(value: object): value is PatchManyItemsCatalogAction {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

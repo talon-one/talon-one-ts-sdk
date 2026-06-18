@@ -61,10 +61,11 @@ export type CampaignCollectionEditedNotificationNotificationTypeEnum = typeof Ca
  * Check if a given object implements the CampaignCollectionEditedNotification interface.
  */
 export function instanceOfCampaignCollectionEditedNotification(value: object): value is CampaignCollectionEditedNotification {
-    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
-    if (value['notificationType'] !== 'CampaignNotification' && value['NotificationType'] !== 'CampaignNotification') return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('notificationType' in _v) && !('NotificationType' in _v)) || (_v['notificationType'] === undefined && _v['NotificationType'] === undefined)) return false;
+    if (_v['notificationType'] !== 'CampaignNotification' && _v['NotificationType'] !== 'CampaignNotification') return false;
     
-    if ((!('totalResultSize' in value) && !('TotalResultSize' in value)) || (value['totalResultSize'] === undefined && value['TotalResultSize'] === undefined)) return false;
+    if ((!('totalResultSize' in _v) && !('TotalResultSize' in _v)) || (_v['totalResultSize'] === undefined && _v['TotalResultSize'] === undefined)) return false;
     return true;
 }
 

@@ -91,10 +91,11 @@ export interface Giveaway {
  * Check if a given object implements the Giveaway interface.
  */
 export function instanceOfGiveaway(value: object): value is Giveaway {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('code' in value) || value['code'] === undefined) return false;
-    if (!('poolId' in value) || value['poolId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('code' in _v) || _v['code'] === undefined) return false;
+    if (!('poolId' in _v) || _v['poolId'] === undefined) return false;
     return true;
 }
 

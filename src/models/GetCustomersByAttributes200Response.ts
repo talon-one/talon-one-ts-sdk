@@ -51,7 +51,8 @@ export interface GetCustomersByAttributes200Response {
  * Check if a given object implements the GetCustomersByAttributes200Response interface.
  */
 export function instanceOfGetCustomersByAttributes200Response(value: object): value is GetCustomersByAttributes200Response {
-    if (!('data' in value) || value['data'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('data' in _v) || _v['data'] === undefined) return false;
     return true;
 }
 

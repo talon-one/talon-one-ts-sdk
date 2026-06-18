@@ -99,13 +99,14 @@ export type RiskNotificationTimeFrameEnum = typeof RiskNotificationTimeFrameEnum
  * Check if a given object implements the RiskNotification interface.
  */
 export function instanceOfRiskNotification(value: object): value is RiskNotification {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('entity' in value) || value['entity'] === undefined) return false;
-    if (!('activity' in value) || value['activity'] === undefined) return false;
-    if (!('timeFrame' in value) || value['timeFrame'] === undefined) return false;
-    if (!('active' in value) || value['active'] === undefined) return false;
-    if (!('modified' in value) || value['modified'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('entity' in _v) || _v['entity'] === undefined) return false;
+    if (!('activity' in _v) || _v['activity'] === undefined) return false;
+    if (!('timeFrame' in _v) || _v['timeFrame'] === undefined) return false;
+    if (!('active' in _v) || _v['active'] === undefined) return false;
+    if (!('modified' in _v) || _v['modified'] === undefined) return false;
     return true;
 }
 

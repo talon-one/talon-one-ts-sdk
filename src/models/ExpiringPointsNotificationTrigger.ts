@@ -48,8 +48,9 @@ export type ExpiringPointsNotificationTriggerPeriodEnum = typeof ExpiringPointsN
  * Check if a given object implements the ExpiringPointsNotificationTrigger interface.
  */
 export function instanceOfExpiringPointsNotificationTrigger(value: object): value is ExpiringPointsNotificationTrigger {
-    if (!('amount' in value) || value['amount'] === undefined) return false;
-    if (!('period' in value) || value['period'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('amount' in _v) || _v['amount'] === undefined) return false;
+    if (!('period' in _v) || _v['period'] === undefined) return false;
     return true;
 }
 

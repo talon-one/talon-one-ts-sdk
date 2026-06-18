@@ -50,6 +50,7 @@ export interface ErrorSource {
  * Check if a given object implements the ErrorSource interface.
  */
 export function instanceOfErrorSource(value: object): value is ErrorSource {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

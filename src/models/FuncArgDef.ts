@@ -52,7 +52,8 @@ export type FuncArgDefTypeEnum = typeof FuncArgDefTypeEnum[keyof typeof FuncArgD
  * Check if a given object implements the FuncArgDef interface.
  */
 export function instanceOfFuncArgDef(value: object): value is FuncArgDef {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
     return true;
 }
 

@@ -151,13 +151,14 @@ export type CustomerSessionStateEnum = typeof CustomerSessionStateEnum[keyof typ
  * Check if a given object implements the CustomerSession interface.
  */
 export function instanceOfCustomerSession(value: object): value is CustomerSession {
-    if (!('integrationId' in value) || value['integrationId'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('firstSession' in value) || value['firstSession'] === undefined) return false;
-    if (!('updateCount' in value) || value['updateCount'] === undefined) return false;
-    if (!('discounts' in value) || value['discounts'] === undefined) return false;
-    if (!('updated' in value) || value['updated'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('firstSession' in _v) || _v['firstSession'] === undefined) return false;
+    if (!('updateCount' in _v) || _v['updateCount'] === undefined) return false;
+    if (!('discounts' in _v) || _v['discounts'] === undefined) return false;
+    if (!('updated' in _v) || _v['updated'] === undefined) return false;
     return true;
 }
 

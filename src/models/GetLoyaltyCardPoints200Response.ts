@@ -45,8 +45,9 @@ export interface GetLoyaltyCardPoints200Response {
  * Check if a given object implements the GetLoyaltyCardPoints200Response interface.
  */
 export function instanceOfGetLoyaltyCardPoints200Response(value: object): value is GetLoyaltyCardPoints200Response {
-    if (!('hasMore' in value) || value['hasMore'] === undefined) return false;
-    if (!('data' in value) || value['data'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('hasMore' in _v) || _v['hasMore'] === undefined) return false;
+    if (!('data' in _v) || _v['data'] === undefined) return false;
     return true;
 }
 

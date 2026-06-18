@@ -48,8 +48,9 @@ export type ExpiringCouponsNotificationTriggerPeriodEnum = typeof ExpiringCoupon
  * Check if a given object implements the ExpiringCouponsNotificationTrigger interface.
  */
 export function instanceOfExpiringCouponsNotificationTrigger(value: object): value is ExpiringCouponsNotificationTrigger {
-    if (!('amount' in value) || value['amount'] === undefined) return false;
-    if (!('period' in value) || value['period'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('amount' in _v) || _v['amount'] === undefined) return false;
+    if (!('period' in _v) || _v['period'] === undefined) return false;
     return true;
 }
 

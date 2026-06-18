@@ -55,11 +55,12 @@ export interface ExperimentVerdict {
  * Check if a given object implements the ExperimentVerdict interface.
  */
 export function instanceOfExperimentVerdict(value: object): value is ExperimentVerdict {
-    if (!('winnerVariantName' in value) || value['winnerVariantName'] === undefined) return false;
-    if (!('verdictSummary' in value) || value['verdictSummary'] === undefined) return false;
-    if (!('keyFindings' in value) || value['keyFindings'] === undefined) return false;
-    if (!('aiConfidenceLevel' in value) || value['aiConfidenceLevel'] === undefined) return false;
-    if (!('recommendation' in value) || value['recommendation'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('winnerVariantName' in _v) || _v['winnerVariantName'] === undefined) return false;
+    if (!('verdictSummary' in _v) || _v['verdictSummary'] === undefined) return false;
+    if (!('keyFindings' in _v) || _v['keyFindings'] === undefined) return false;
+    if (!('aiConfidenceLevel' in _v) || _v['aiConfidenceLevel'] === undefined) return false;
+    if (!('recommendation' in _v) || _v['recommendation'] === undefined) return false;
     return true;
 }
 

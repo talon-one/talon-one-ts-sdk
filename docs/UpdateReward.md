@@ -9,7 +9,7 @@ Name | Type
 `name` | string
 `description` | string
 `status` | string
-`visibilityConditions` | [Rule](Rule.md)
+`eligibilityConditions` | [Rule](Rule.md)
 `rule` | [Rule](Rule.md)
 `bindings` | [Array&lt;Binding&gt;](Binding.md)
 `pointsRequired` | [Array&lt;RewardPointsRequired&gt;](RewardPointsRequired.md)
@@ -24,7 +24,7 @@ const example = {
   "name": Free Coffee,
   "description": This reward gets you one free coffee.,
   "status": active,
-  "visibilityConditions": null,
+  "eligibilityConditions": null,
   "rule": null,
   "bindings": [],
   "pointsRequired": null,

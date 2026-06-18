@@ -45,6 +45,7 @@ export interface LoyaltyLedgerTransactions {
  * Check if a given object implements the LoyaltyLedgerTransactions interface.
  */
 export function instanceOfLoyaltyLedgerTransactions(value: object): value is LoyaltyLedgerTransactions {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

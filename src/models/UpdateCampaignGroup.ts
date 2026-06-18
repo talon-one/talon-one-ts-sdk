@@ -49,7 +49,8 @@ export interface UpdateCampaignGroup {
  * Check if a given object implements the UpdateCampaignGroup interface.
  */
 export function instanceOfUpdateCampaignGroup(value: object): value is UpdateCampaignGroup {
-    if (!('name' in value) || value['name'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
     return true;
 }
 

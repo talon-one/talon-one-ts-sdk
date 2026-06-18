@@ -34,6 +34,7 @@ export interface EvaluableCampaignIds {
  * Check if a given object implements the EvaluableCampaignIds interface.
  */
 export function instanceOfEvaluableCampaignIds(value: object): value is EvaluableCampaignIds {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

@@ -101,13 +101,14 @@ export interface IntegrationHubEventRecord {
  * Check if a given object implements the IntegrationHubEventRecord interface.
  */
 export function instanceOfIntegrationHubEventRecord(value: object): value is IntegrationHubEventRecord {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('flowId' in value) || value['flowId'] === undefined) return false;
-    if (!('eventType' in value) || value['eventType'] === undefined) return false;
-    if (!('publishedAt' in value) || value['publishedAt'] === undefined) return false;
-    if (!('scheduledTo' in value) || value['scheduledTo'] === undefined) return false;
-    if (!('retry' in value) || value['retry'] === undefined) return false;
-    if (!('payload' in value) || value['payload'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('flowId' in _v) || _v['flowId'] === undefined) return false;
+    if (!('eventType' in _v) || _v['eventType'] === undefined) return false;
+    if (!('publishedAt' in _v) || _v['publishedAt'] === undefined) return false;
+    if (!('scheduledTo' in _v) || _v['scheduledTo'] === undefined) return false;
+    if (!('retry' in _v) || _v['retry'] === undefined) return false;
+    if (!('payload' in _v) || _v['payload'] === undefined) return false;
     return true;
 }
 

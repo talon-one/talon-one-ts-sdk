@@ -115,13 +115,14 @@ export interface LimitCounter {
  * Check if a given object implements the LimitCounter interface.
  */
 export function instanceOfLimitCounter(value: object): value is LimitCounter {
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('action' in value) || value['action'] === undefined) return false;
-    if (!('limit' in value) || value['limit'] === undefined) return false;
-    if (!('counter' in value) || value['counter'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('action' in _v) || _v['action'] === undefined) return false;
+    if (!('limit' in _v) || _v['limit'] === undefined) return false;
+    if (!('counter' in _v) || _v['counter'] === undefined) return false;
     return true;
 }
 

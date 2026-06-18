@@ -3642,7 +3642,7 @@ example().catch(console.error);
 
 ## exportCoupons
 
-> string exportCoupons(applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly)
+> string exportCoupons(applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly, deletedBefore, deletedAfter)
 
 Export coupons
 
@@ -3696,6 +3696,10 @@ async function example() {
     campaignState: campaignState_example,
     // boolean | Filter results to only return the coupon codes (`value` column) without the associated coupon data. (optional)
     valuesOnly: true,
+    // Date | Timestamp that filters the results to only contain coupons deleted before this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.  **Note:** Only coupons deleted in the last 7 days will appear in the results. (optional)
+    deletedBefore: 2013-10-20T19:20:30+01:00,
+    // Date | Timestamp that filters the results to only contain coupons deleted after this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.  **Note:** Only coupons deleted in the last 7 days will appear in the results. (optional)
+    deletedAfter: 2013-10-20T19:20:30+01:00,
   } satisfies ExportCouponsRequest;
 
   try {
@@ -3730,6 +3734,8 @@ example().catch(console.error);
 | **dateFormat** | `excel`, `ISO8601` | Determines the format of dates in the export document. | [Optional] [Defaults to `undefined`] [Enum: excel, ISO8601] |
 | **campaignState** | `enabled`, `disabled`, `archived`, `scheduled`, `running`, `expired`, `staged` | Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived.  | [Optional] [Defaults to `undefined`] [Enum: enabled, disabled, archived, scheduled, running, expired, staged] |
 | **valuesOnly** | `boolean` | Filter results to only return the coupon codes (&#x60;value&#x60; column) without the associated coupon data. | [Optional] [Defaults to `false`] |
+| **deletedBefore** | `Date` | Timestamp that filters the results to only contain coupons deleted before this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.  **Note:** Only coupons deleted in the last 7 days will appear in the results. | [Optional] [Defaults to `undefined`] |
+| **deletedAfter** | `Date` | Timestamp that filters the results to only contain coupons deleted after this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.  **Note:** Only coupons deleted in the last 7 days will appear in the results. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -6426,7 +6432,7 @@ example().catch(console.error);
 
 ## getAttributes
 
-> GetAttributes200Response getAttributes(pageSize, skip, sort, entity, applicationIds, type, kind, search)
+> GetAttributes200Response getAttributes(pageSize, skip, sort, entity, applicationIds, loyaltyProgramIds, type, kind, search)
 
 List custom attributes
 
@@ -6460,6 +6466,8 @@ async function example() {
     entity: entity_example,
     // string | Returned attributes will be filtered by supplied application ids (optional)
     applicationIds: applicationIds_example,
+    // string | Returned attributes will be filtered by the specified loyalty program ids, separated by commas. You can only use this parameter when `entity` is `LoyaltyCard`. (optional)
+    loyaltyProgramIds: loyaltyProgramIds_example,
     // string | Returned attributes will be filtered by supplied type (optional)
     type: type_example,
     // 'builtin' | 'custom' | Returned attributes will be filtered by supplied kind (builtin or custom) (optional)
@@ -6490,6 +6498,7 @@ example().catch(console.error);
 | **sort** | `string` | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [Optional] [Defaults to `undefined`] |
 | **entity** | `string` | Returned attributes will be filtered by supplied entity. | [Optional] [Defaults to `undefined`] |
 | **applicationIds** | `string` | Returned attributes will be filtered by supplied application ids | [Optional] [Defaults to `undefined`] |
+| **loyaltyProgramIds** | `string` | Returned attributes will be filtered by the specified loyalty program ids, separated by commas. You can only use this parameter when &#x60;entity&#x60; is &#x60;LoyaltyCard&#x60;. | [Optional] [Defaults to `undefined`] |
 | **type** | `string` | Returned attributes will be filtered by supplied type | [Optional] [Defaults to `undefined`] |
 | **kind** | `builtin`, `custom` | Returned attributes will be filtered by supplied kind (builtin or custom) | [Optional] [Defaults to `undefined`] [Enum: builtin, custom] |
 | **search** | `string` | Returned attributes will be filtered by searching case insensitive through Attribute name, description and type | [Optional] [Defaults to `undefined`] |

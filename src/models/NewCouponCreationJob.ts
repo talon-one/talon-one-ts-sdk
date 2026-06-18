@@ -90,8 +90,9 @@ export interface NewCouponCreationJob {
  * Check if a given object implements the NewCouponCreationJob interface.
  */
 export function instanceOfNewCouponCreationJob(value: object): value is NewCouponCreationJob {
-    if (!('numberOfCoupons' in value) || value['numberOfCoupons'] === undefined) return false;
-    if (!('attributes' in value) || value['attributes'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('numberOfCoupons' in _v) || _v['numberOfCoupons'] === undefined) return false;
+    if (!('attributes' in _v) || _v['attributes'] === undefined) return false;
     return true;
 }
 

@@ -48,6 +48,7 @@ export type ResponseContentObjectResponseContentEnum = typeof ResponseContentObj
  * Check if a given object implements the ResponseContentObject interface.
  */
 export function instanceOfResponseContentObject(value: object): value is ResponseContentObject {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

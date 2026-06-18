@@ -248,14 +248,15 @@ export type NewLoyaltyProgramReturnPolicyEnum = typeof NewLoyaltyProgramReturnPo
  * Check if a given object implements the NewLoyaltyProgram interface.
  */
 export function instanceOfNewLoyaltyProgram(value: object): value is NewLoyaltyProgram {
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('defaultValidity' in value) || value['defaultValidity'] === undefined) return false;
-    if (!('defaultPending' in value) || value['defaultPending'] === undefined) return false;
-    if (!('allowSubledger' in value) || value['allowSubledger'] === undefined) return false;
-    if (!('sandbox' in value) || value['sandbox'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('timezone' in value) || value['timezone'] === undefined) return false;
-    if (!('cardBased' in value) || value['cardBased'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('defaultValidity' in _v) || _v['defaultValidity'] === undefined) return false;
+    if (!('defaultPending' in _v) || _v['defaultPending'] === undefined) return false;
+    if (!('allowSubledger' in _v) || _v['allowSubledger'] === undefined) return false;
+    if (!('sandbox' in _v) || _v['sandbox'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('timezone' in _v) || _v['timezone'] === undefined) return false;
+    if (!('cardBased' in _v) || _v['cardBased'] === undefined) return false;
     return true;
 }
 

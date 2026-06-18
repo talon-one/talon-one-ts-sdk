@@ -75,9 +75,10 @@ export type NewRiskNotificationTimeFrameEnum = typeof NewRiskNotificationTimeFra
  * Check if a given object implements the NewRiskNotification interface.
  */
 export function instanceOfNewRiskNotification(value: object): value is NewRiskNotification {
-    if (!('entity' in value) || value['entity'] === undefined) return false;
-    if (!('activity' in value) || value['activity'] === undefined) return false;
-    if (!('timeFrame' in value) || value['timeFrame'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('entity' in _v) || _v['entity'] === undefined) return false;
+    if (!('activity' in _v) || _v['activity'] === undefined) return false;
+    if (!('timeFrame' in _v) || _v['timeFrame'] === undefined) return false;
     return true;
 }
 

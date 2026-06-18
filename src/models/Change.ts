@@ -73,10 +73,11 @@ export interface Change {
  * Check if a given object implements the Change interface.
  */
 export function instanceOfChange(value: object): value is Change {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('entity' in value) || value['entity'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('userId' in _v) || _v['userId'] === undefined) return false;
+    if (!('entity' in _v) || _v['entity'] === undefined) return false;
     return true;
 }
 

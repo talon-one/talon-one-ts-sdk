@@ -67,8 +67,9 @@ export interface NewPriceAdjustment {
  * Check if a given object implements the NewPriceAdjustment interface.
  */
 export function instanceOfNewPriceAdjustment(value: object): value is NewPriceAdjustment {
-    if (!('priceType' in value) || value['priceType'] === undefined) return false;
-    if (!('referenceId' in value) || value['referenceId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('priceType' in _v) || _v['priceType'] === undefined) return false;
+    if (!('referenceId' in _v) || _v['referenceId'] === undefined) return false;
     return true;
 }
 

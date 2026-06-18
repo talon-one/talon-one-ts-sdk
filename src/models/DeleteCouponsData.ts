@@ -83,15 +83,16 @@ export type DeleteCouponsDataNotificationTypeEnum = typeof DeleteCouponsDataNoti
  * Check if a given object implements the DeleteCouponsData interface.
  */
 export function instanceOfDeleteCouponsData(value: object): value is DeleteCouponsData {
-    if ((!('typeOfChange' in value) && !('TypeOfChange' in value)) || (value['typeOfChange'] === undefined && value['TypeOfChange'] === undefined)) return false;
-    if ((!('operation' in value) && !('Operation' in value)) || (value['operation'] === undefined && value['Operation'] === undefined)) return false;
-    if ((!('employeeName' in value) && !('EmployeeName' in value)) || (value['employeeName'] === undefined && value['EmployeeName'] === undefined)) return false;
-    if ((!('batchID' in value) && !('BatchID' in value)) || (value['batchID'] === undefined && value['BatchID'] === undefined)) return false;
-    if ((!('applicationID' in value) && !('ApplicationID' in value)) || (value['applicationID'] === undefined && value['ApplicationID'] === undefined)) return false;
-    if ((!('campaignID' in value) && !('CampaignID' in value)) || (value['campaignID'] === undefined && value['CampaignID'] === undefined)) return false;
-    if ((!('totalResultSize' in value) && !('TotalResultSize' in value)) || (value['totalResultSize'] === undefined && value['TotalResultSize'] === undefined)) return false;
-    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
-    if (value['notificationType'] !== 'CouponsDeleted' && value['NotificationType'] !== 'CouponsDeleted') return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('typeOfChange' in _v) && !('TypeOfChange' in _v)) || (_v['typeOfChange'] === undefined && _v['TypeOfChange'] === undefined)) return false;
+    if ((!('operation' in _v) && !('Operation' in _v)) || (_v['operation'] === undefined && _v['Operation'] === undefined)) return false;
+    if ((!('employeeName' in _v) && !('EmployeeName' in _v)) || (_v['employeeName'] === undefined && _v['EmployeeName'] === undefined)) return false;
+    if ((!('batchID' in _v) && !('BatchID' in _v)) || (_v['batchID'] === undefined && _v['BatchID'] === undefined)) return false;
+    if ((!('applicationID' in _v) && !('ApplicationID' in _v)) || (_v['applicationID'] === undefined && _v['ApplicationID'] === undefined)) return false;
+    if ((!('campaignID' in _v) && !('CampaignID' in _v)) || (_v['campaignID'] === undefined && _v['CampaignID'] === undefined)) return false;
+    if ((!('totalResultSize' in _v) && !('TotalResultSize' in _v)) || (_v['totalResultSize'] === undefined && _v['TotalResultSize'] === undefined)) return false;
+    if ((!('notificationType' in _v) && !('NotificationType' in _v)) || (_v['notificationType'] === undefined && _v['NotificationType'] === undefined)) return false;
+    if (_v['notificationType'] !== 'CouponsDeleted' && _v['NotificationType'] !== 'CouponsDeleted') return false;
     
     return true;
 }

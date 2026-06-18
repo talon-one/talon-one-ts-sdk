@@ -233,18 +233,19 @@ export type AchievementV2StatusEnum = typeof AchievementV2StatusEnum[keyof typeo
  * Check if a given object implements the AchievementV2 interface.
  */
 export function instanceOfAchievementV2(value: object): value is AchievementV2 {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('target' in value) || value['target'] === undefined) return false;
-    if (!('recurrencePolicy' in value) || value['recurrencePolicy'] === undefined) return false;
-    if (!('activationPolicy' in value) || value['activationPolicy'] === undefined) return false;
-    if (!('subscribedApplications' in value) || value['subscribedApplications'] === undefined) return false;
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('sandbox' in value) || value['sandbox'] === undefined) return false;
-    if (!('timezone' in value) || value['timezone'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
+    if (!('target' in _v) || _v['target'] === undefined) return false;
+    if (!('recurrencePolicy' in _v) || _v['recurrencePolicy'] === undefined) return false;
+    if (!('activationPolicy' in _v) || _v['activationPolicy'] === undefined) return false;
+    if (!('subscribedApplications' in _v) || _v['subscribedApplications'] === undefined) return false;
+    if (!('userId' in _v) || _v['userId'] === undefined) return false;
+    if (!('sandbox' in _v) || _v['sandbox'] === undefined) return false;
+    if (!('timezone' in _v) || _v['timezone'] === undefined) return false;
     return true;
 }
 

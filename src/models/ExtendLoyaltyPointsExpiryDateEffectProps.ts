@@ -79,9 +79,10 @@ export interface ExtendLoyaltyPointsExpiryDateEffectProps {
  * Check if a given object implements the ExtendLoyaltyPointsExpiryDateEffectProps interface.
  */
 export function instanceOfExtendLoyaltyPointsExpiryDateEffectProps(value: object): value is ExtendLoyaltyPointsExpiryDateEffectProps {
-    if (!('programId' in value) || value['programId'] === undefined) return false;
-    if (!('subLedgerId' in value) || value['subLedgerId'] === undefined) return false;
-    if (!('extensionDuration' in value) || value['extensionDuration'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('programId' in _v) || _v['programId'] === undefined) return false;
+    if (!('subLedgerId' in _v) || _v['subLedgerId'] === undefined) return false;
+    if (!('extensionDuration' in _v) || _v['extensionDuration'] === undefined) return false;
     return true;
 }
 

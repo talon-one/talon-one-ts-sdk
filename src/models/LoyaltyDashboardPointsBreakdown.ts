@@ -37,8 +37,9 @@ export interface LoyaltyDashboardPointsBreakdown {
  * Check if a given object implements the LoyaltyDashboardPointsBreakdown interface.
  */
 export function instanceOfLoyaltyDashboardPointsBreakdown(value: object): value is LoyaltyDashboardPointsBreakdown {
-    if (!('createdManually' in value) || value['createdManually'] === undefined) return false;
-    if (!('createdViaRuleEngine' in value) || value['createdViaRuleEngine'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('createdManually' in _v) || _v['createdManually'] === undefined) return false;
+    if (!('createdViaRuleEngine' in _v) || _v['createdViaRuleEngine'] === undefined) return false;
     return true;
 }
 

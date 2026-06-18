@@ -44,6 +44,7 @@ export interface ReferralConstraints {
  * Check if a given object implements the ReferralConstraints interface.
  */
 export function instanceOfReferralConstraints(value: object): value is ReferralConstraints {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

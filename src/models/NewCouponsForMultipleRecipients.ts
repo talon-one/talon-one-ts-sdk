@@ -85,7 +85,8 @@ export interface NewCouponsForMultipleRecipients {
  * Check if a given object implements the NewCouponsForMultipleRecipients interface.
  */
 export function instanceOfNewCouponsForMultipleRecipients(value: object): value is NewCouponsForMultipleRecipients {
-    if (!('recipientsIntegrationIds' in value) || value['recipientsIntegrationIds'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('recipientsIntegrationIds' in _v) || _v['recipientsIntegrationIds'] === undefined) return false;
     return true;
 }
 

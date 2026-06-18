@@ -39,6 +39,7 @@ export interface MultipleAttribute {
  * Check if a given object implements the MultipleAttribute interface.
  */
 export function instanceOfMultipleAttribute(value: object): value is MultipleAttribute {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

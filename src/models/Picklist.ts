@@ -86,11 +86,12 @@ export type PicklistTypeEnum = typeof PicklistTypeEnum[keyof typeof PicklistType
  * Check if a given object implements the Picklist interface.
  */
 export function instanceOfPicklist(value: object): value is Picklist {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('values' in value) || value['values'] === undefined) return false;
-    if (!('createdBy' in value) || value['createdBy'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('values' in _v) || _v['values'] === undefined) return false;
+    if (!('createdBy' in _v) || _v['createdBy'] === undefined) return false;
     return true;
 }
 

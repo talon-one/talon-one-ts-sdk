@@ -93,15 +93,16 @@ export interface SamlConnection {
  * Check if a given object implements the SamlConnection interface.
  */
 export function instanceOfSamlConnection(value: object): value is SamlConnection {
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('enabled' in value) || value['enabled'] === undefined) return false;
-    if (!('issuer' in value) || value['issuer'] === undefined) return false;
-    if (!('signOnURL' in value) || value['signOnURL'] === undefined) return false;
-    if (!('audienceURI' in value) || value['audienceURI'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('assertionConsumerServiceURL' in value) || value['assertionConsumerServiceURL'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('enabled' in _v) || _v['enabled'] === undefined) return false;
+    if (!('issuer' in _v) || _v['issuer'] === undefined) return false;
+    if (!('signOnURL' in _v) || _v['signOnURL'] === undefined) return false;
+    if (!('audienceURI' in _v) || _v['audienceURI'] === undefined) return false;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('assertionConsumerServiceURL' in _v) || _v['assertionConsumerServiceURL'] === undefined) return false;
     return true;
 }
 

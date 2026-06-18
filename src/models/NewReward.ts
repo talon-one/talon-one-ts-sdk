@@ -58,10 +58,11 @@ export interface NewReward {
  * Check if a given object implements the NewReward interface.
  */
 export function instanceOfNewReward(value: object): value is NewReward {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('apiName' in value) || value['apiName'] === undefined) return false;
-    if (!('applicationIds' in value) || value['applicationIds'] === undefined) return false;
-    if (!('sandbox' in value) || value['sandbox'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('apiName' in _v) || _v['apiName'] === undefined) return false;
+    if (!('applicationIds' in _v) || _v['applicationIds'] === undefined) return false;
+    if (!('sandbox' in _v) || _v['sandbox'] === undefined) return false;
     return true;
 }
 

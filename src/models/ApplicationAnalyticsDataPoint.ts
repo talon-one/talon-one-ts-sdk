@@ -81,8 +81,9 @@ export interface ApplicationAnalyticsDataPoint {
  * Check if a given object implements the ApplicationAnalyticsDataPoint interface.
  */
 export function instanceOfApplicationAnalyticsDataPoint(value: object): value is ApplicationAnalyticsDataPoint {
-    if (!('startTime' in value) || value['startTime'] === undefined) return false;
-    if (!('endTime' in value) || value['endTime'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('startTime' in _v) || _v['startTime'] === undefined) return false;
+    if (!('endTime' in _v) || _v['endTime'] === undefined) return false;
     return true;
 }
 

@@ -37,6 +37,7 @@ export interface TalangAttributeVisibility {
  * Check if a given object implements the TalangAttributeVisibility interface.
  */
 export function instanceOfTalangAttributeVisibility(value: object): value is TalangAttributeVisibility {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

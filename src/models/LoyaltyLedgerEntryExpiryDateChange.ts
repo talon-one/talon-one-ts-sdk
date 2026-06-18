@@ -43,8 +43,9 @@ export interface LoyaltyLedgerEntryExpiryDateChange {
  * Check if a given object implements the LoyaltyLedgerEntryExpiryDateChange interface.
  */
 export function instanceOfLoyaltyLedgerEntryExpiryDateChange(value: object): value is LoyaltyLedgerEntryExpiryDateChange {
-    if (!('transactionUUID' in value) || value['transactionUUID'] === undefined) return false;
-    if (!('newExpiryDate' in value) || value['newExpiryDate'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('transactionUUID' in _v) || _v['transactionUUID'] === undefined) return false;
+    if (!('newExpiryDate' in _v) || _v['newExpiryDate'] === undefined) return false;
     return true;
 }
 

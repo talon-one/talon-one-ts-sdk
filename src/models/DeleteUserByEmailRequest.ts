@@ -31,7 +31,8 @@ export interface DeleteUserByEmailRequest {
  * Check if a given object implements the DeleteUserByEmailRequest interface.
  */
 export function instanceOfDeleteUserByEmailRequest(value: object): value is DeleteUserByEmailRequest {
-    if (!('email' in value) || value['email'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('email' in _v) || _v['email'] === undefined) return false;
     return true;
 }
 

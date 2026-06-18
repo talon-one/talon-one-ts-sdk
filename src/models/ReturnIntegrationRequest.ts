@@ -64,7 +64,8 @@ export type ReturnIntegrationRequestResponseContentEnum = typeof ReturnIntegrati
  * Check if a given object implements the ReturnIntegrationRequest interface.
  */
 export function instanceOfReturnIntegrationRequest(value: object): value is ReturnIntegrationRequest {
-    if ((!('_return' in value) && !('return' in value)) || (value['_return'] === undefined && value['return'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('_return' in _v) && !('return' in _v)) || (_v['_return'] === undefined && _v['return'] === undefined)) return false;
     return true;
 }
 

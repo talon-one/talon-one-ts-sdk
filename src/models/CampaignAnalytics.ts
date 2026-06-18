@@ -175,31 +175,32 @@ export interface CampaignAnalytics {
  * Check if a given object implements the CampaignAnalytics interface.
  */
 export function instanceOfCampaignAnalytics(value: object): value is CampaignAnalytics {
-    if (!('date' in value) || value['date'] === undefined) return false;
-    if (!('campaignRevenue' in value) || value['campaignRevenue'] === undefined) return false;
-    if (!('totalCampaignRevenue' in value) || value['totalCampaignRevenue'] === undefined) return false;
-    if (!('campaignRefund' in value) || value['campaignRefund'] === undefined) return false;
-    if (!('totalCampaignRefund' in value) || value['totalCampaignRefund'] === undefined) return false;
-    if (!('campaignDiscountCosts' in value) || value['campaignDiscountCosts'] === undefined) return false;
-    if (!('totalCampaignDiscountCosts' in value) || value['totalCampaignDiscountCosts'] === undefined) return false;
-    if (!('campaignRefundedDiscounts' in value) || value['campaignRefundedDiscounts'] === undefined) return false;
-    if (!('totalCampaignRefundedDiscounts' in value) || value['totalCampaignRefundedDiscounts'] === undefined) return false;
-    if (!('campaignFreeItems' in value) || value['campaignFreeItems'] === undefined) return false;
-    if (!('totalCampaignFreeItems' in value) || value['totalCampaignFreeItems'] === undefined) return false;
-    if (!('couponRedemptions' in value) || value['couponRedemptions'] === undefined) return false;
-    if (!('totalCouponRedemptions' in value) || value['totalCouponRedemptions'] === undefined) return false;
-    if (!('couponRolledbackRedemptions' in value) || value['couponRolledbackRedemptions'] === undefined) return false;
-    if (!('totalCouponRolledbackRedemptions' in value) || value['totalCouponRolledbackRedemptions'] === undefined) return false;
-    if (!('referralRedemptions' in value) || value['referralRedemptions'] === undefined) return false;
-    if (!('totalReferralRedemptions' in value) || value['totalReferralRedemptions'] === undefined) return false;
-    if (!('couponsCreated' in value) || value['couponsCreated'] === undefined) return false;
-    if (!('totalCouponsCreated' in value) || value['totalCouponsCreated'] === undefined) return false;
-    if (!('referralsCreated' in value) || value['referralsCreated'] === undefined) return false;
-    if (!('totalReferralsCreated' in value) || value['totalReferralsCreated'] === undefined) return false;
-    if (!('addedLoyaltyPoints' in value) || value['addedLoyaltyPoints'] === undefined) return false;
-    if (!('totalAddedLoyaltyPoints' in value) || value['totalAddedLoyaltyPoints'] === undefined) return false;
-    if (!('deductedLoyaltyPoints' in value) || value['deductedLoyaltyPoints'] === undefined) return false;
-    if (!('totalDeductedLoyaltyPoints' in value) || value['totalDeductedLoyaltyPoints'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('date' in _v) || _v['date'] === undefined) return false;
+    if (!('campaignRevenue' in _v) || _v['campaignRevenue'] === undefined) return false;
+    if (!('totalCampaignRevenue' in _v) || _v['totalCampaignRevenue'] === undefined) return false;
+    if (!('campaignRefund' in _v) || _v['campaignRefund'] === undefined) return false;
+    if (!('totalCampaignRefund' in _v) || _v['totalCampaignRefund'] === undefined) return false;
+    if (!('campaignDiscountCosts' in _v) || _v['campaignDiscountCosts'] === undefined) return false;
+    if (!('totalCampaignDiscountCosts' in _v) || _v['totalCampaignDiscountCosts'] === undefined) return false;
+    if (!('campaignRefundedDiscounts' in _v) || _v['campaignRefundedDiscounts'] === undefined) return false;
+    if (!('totalCampaignRefundedDiscounts' in _v) || _v['totalCampaignRefundedDiscounts'] === undefined) return false;
+    if (!('campaignFreeItems' in _v) || _v['campaignFreeItems'] === undefined) return false;
+    if (!('totalCampaignFreeItems' in _v) || _v['totalCampaignFreeItems'] === undefined) return false;
+    if (!('couponRedemptions' in _v) || _v['couponRedemptions'] === undefined) return false;
+    if (!('totalCouponRedemptions' in _v) || _v['totalCouponRedemptions'] === undefined) return false;
+    if (!('couponRolledbackRedemptions' in _v) || _v['couponRolledbackRedemptions'] === undefined) return false;
+    if (!('totalCouponRolledbackRedemptions' in _v) || _v['totalCouponRolledbackRedemptions'] === undefined) return false;
+    if (!('referralRedemptions' in _v) || _v['referralRedemptions'] === undefined) return false;
+    if (!('totalReferralRedemptions' in _v) || _v['totalReferralRedemptions'] === undefined) return false;
+    if (!('couponsCreated' in _v) || _v['couponsCreated'] === undefined) return false;
+    if (!('totalCouponsCreated' in _v) || _v['totalCouponsCreated'] === undefined) return false;
+    if (!('referralsCreated' in _v) || _v['referralsCreated'] === undefined) return false;
+    if (!('totalReferralsCreated' in _v) || _v['totalReferralsCreated'] === undefined) return false;
+    if (!('addedLoyaltyPoints' in _v) || _v['addedLoyaltyPoints'] === undefined) return false;
+    if (!('totalAddedLoyaltyPoints' in _v) || _v['totalAddedLoyaltyPoints'] === undefined) return false;
+    if (!('deductedLoyaltyPoints' in _v) || _v['deductedLoyaltyPoints'] === undefined) return false;
+    if (!('totalDeductedLoyaltyPoints' in _v) || _v['totalDeductedLoyaltyPoints'] === undefined) return false;
     return true;
 }
 

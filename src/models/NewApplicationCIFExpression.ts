@@ -43,6 +43,7 @@ export interface NewApplicationCIFExpression {
  * Check if a given object implements the NewApplicationCIFExpression interface.
  */
 export function instanceOfNewApplicationCIFExpression(value: object): value is NewApplicationCIFExpression {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

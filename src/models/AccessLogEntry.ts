@@ -67,13 +67,14 @@ export interface AccessLogEntry {
  * Check if a given object implements the AccessLogEntry interface.
  */
 export function instanceOfAccessLogEntry(value: object): value is AccessLogEntry {
-    if (!('uuid' in value) || value['uuid'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('method' in value) || value['method'] === undefined) return false;
-    if (!('requestUri' in value) || value['requestUri'] === undefined) return false;
-    if (!('time' in value) || value['time'] === undefined) return false;
-    if (!('requestPayload' in value) || value['requestPayload'] === undefined) return false;
-    if (!('responsePayload' in value) || value['responsePayload'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('uuid' in _v) || _v['uuid'] === undefined) return false;
+    if (!('status' in _v) || _v['status'] === undefined) return false;
+    if (!('method' in _v) || _v['method'] === undefined) return false;
+    if (!('requestUri' in _v) || _v['requestUri'] === undefined) return false;
+    if (!('time' in _v) || _v['time'] === undefined) return false;
+    if (!('requestPayload' in _v) || _v['requestPayload'] === undefined) return false;
+    if (!('responsePayload' in _v) || _v['responsePayload'] === undefined) return false;
     return true;
 }
 

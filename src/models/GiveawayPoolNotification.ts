@@ -61,10 +61,11 @@ export type GiveawayPoolNotificationNotificationTypeEnum = typeof GiveawayPoolNo
  * Check if a given object implements the GiveawayPoolNotification interface.
  */
 export function instanceOfGiveawayPoolNotification(value: object): value is GiveawayPoolNotification {
-    if ((!('totalResultSize' in value) && !('TotalResultSize' in value)) || (value['totalResultSize'] === undefined && value['TotalResultSize'] === undefined)) return false;
-    if ((!('data' in value) && !('Data' in value)) || (value['data'] === undefined && value['Data'] === undefined)) return false;
-    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
-    if (value['notificationType'] !== 'GiveawayPoolNotification' && value['NotificationType'] !== 'GiveawayPoolNotification') return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('totalResultSize' in _v) && !('TotalResultSize' in _v)) || (_v['totalResultSize'] === undefined && _v['TotalResultSize'] === undefined)) return false;
+    if ((!('data' in _v) && !('Data' in _v)) || (_v['data'] === undefined && _v['Data'] === undefined)) return false;
+    if ((!('notificationType' in _v) && !('NotificationType' in _v)) || (_v['notificationType'] === undefined && _v['NotificationType'] === undefined)) return false;
+    if (_v['notificationType'] !== 'GiveawayPoolNotification' && _v['NotificationType'] !== 'GiveawayPoolNotification') return false;
     
     return true;
 }

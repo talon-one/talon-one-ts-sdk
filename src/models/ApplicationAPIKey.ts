@@ -120,13 +120,14 @@ export type ApplicationAPIKeyTypeEnum = typeof ApplicationAPIKeyTypeEnum[keyof t
  * Check if a given object implements the ApplicationAPIKey interface.
  */
 export function instanceOfApplicationAPIKey(value: object): value is ApplicationAPIKey {
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('expires' in value) || value['expires'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('createdBy' in value) || value['createdBy'] === undefined) return false;
-    if (!('accountID' in value) || value['accountID'] === undefined) return false;
-    if (!('applicationID' in value) || value['applicationID'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('expires' in _v) || _v['expires'] === undefined) return false;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('createdBy' in _v) || _v['createdBy'] === undefined) return false;
+    if (!('accountID' in _v) || _v['accountID'] === undefined) return false;
+    if (!('applicationID' in _v) || _v['applicationID'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
     return true;
 }
 

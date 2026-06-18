@@ -31,7 +31,8 @@ export interface GenerateAuditLogSummary {
  * Check if a given object implements the GenerateAuditLogSummary interface.
  */
 export function instanceOfGenerateAuditLogSummary(value: object): value is GenerateAuditLogSummary {
-    if (!('logID' in value) || value['logID'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('logID' in _v) || _v['logID'] === undefined) return false;
     return true;
 }
 

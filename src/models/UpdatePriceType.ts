@@ -43,8 +43,9 @@ export interface UpdatePriceType {
  * Check if a given object implements the UpdatePriceType interface.
  */
 export function instanceOfUpdatePriceType(value: object): value is UpdatePriceType {
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('targetedAudiencesIds' in value) || value['targetedAudiencesIds'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('targetedAudiencesIds' in _v) || _v['targetedAudiencesIds'] === undefined) return false;
     return true;
 }
 

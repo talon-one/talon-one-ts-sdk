@@ -143,10 +143,11 @@ export type MessageLogEntryEntityTypeEnum = typeof MessageLogEntryEntityTypeEnum
  * Check if a given object implements the MessageLogEntry interface.
  */
 export function instanceOfMessageLogEntry(value: object): value is MessageLogEntry {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('service' in value) || value['service'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-    if (!('entityType' in value) || value['entityType'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('service' in _v) || _v['service'] === undefined) return false;
+    if (!('createdAt' in _v) || _v['createdAt'] === undefined) return false;
+    if (!('entityType' in _v) || _v['entityType'] === undefined) return false;
     return true;
 }
 

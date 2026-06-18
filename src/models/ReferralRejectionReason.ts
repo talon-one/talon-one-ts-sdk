@@ -64,9 +64,10 @@ export type ReferralRejectionReasonReasonEnum = typeof ReferralRejectionReasonRe
  * Check if a given object implements the ReferralRejectionReason interface.
  */
 export function instanceOfReferralRejectionReason(value: object): value is ReferralRejectionReason {
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('referralId' in value) || value['referralId'] === undefined) return false;
-    if (!('reason' in value) || value['reason'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('referralId' in _v) || _v['referralId'] === undefined) return false;
+    if (!('reason' in _v) || _v['reason'] === undefined) return false;
     return true;
 }
 

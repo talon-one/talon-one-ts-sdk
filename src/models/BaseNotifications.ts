@@ -39,6 +39,7 @@ export interface BaseNotifications {
  * Check if a given object implements the BaseNotifications interface.
  */
 export function instanceOfBaseNotifications(value: object): value is BaseNotifications {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

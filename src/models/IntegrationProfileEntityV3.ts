@@ -34,7 +34,8 @@ export interface IntegrationProfileEntityV3 {
  * Check if a given object implements the IntegrationProfileEntityV3 interface.
  */
 export function instanceOfIntegrationProfileEntityV3(value: object): value is IntegrationProfileEntityV3 {
-    if (!('profileId' in value) || value['profileId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('profileId' in _v) || _v['profileId'] === undefined) return false;
     return true;
 }
 

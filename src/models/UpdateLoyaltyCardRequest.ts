@@ -32,6 +32,7 @@ export interface UpdateLoyaltyCardRequest {
  * Check if a given object implements the UpdateLoyaltyCardRequest interface.
  */
 export function instanceOfUpdateLoyaltyCardRequest(value: object): value is UpdateLoyaltyCardRequest {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

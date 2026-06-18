@@ -45,7 +45,8 @@ export interface PriceTypeReferences {
  * Check if a given object implements the PriceTypeReferences interface.
  */
 export function instanceOfPriceTypeReferences(value: object): value is PriceTypeReferences {
-    if (!('priceTypeId' in value) || value['priceTypeId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('priceTypeId' in _v) || _v['priceTypeId'] === undefined) return false;
     return true;
 }
 

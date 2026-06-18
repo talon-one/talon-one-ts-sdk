@@ -39,6 +39,7 @@ export interface ProductUnitAnalyticsTotals {
  * Check if a given object implements the ProductUnitAnalyticsTotals interface.
  */
 export function instanceOfProductUnitAnalyticsTotals(value: object): value is ProductUnitAnalyticsTotals {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

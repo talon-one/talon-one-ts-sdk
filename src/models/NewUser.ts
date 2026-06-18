@@ -49,9 +49,10 @@ export interface NewUser {
  * Check if a given object implements the NewUser interface.
  */
 export function instanceOfNewUser(value: object): value is NewUser {
-    if (!('email' in value) || value['email'] === undefined) return false;
-    if (!('password' in value) || value['password'] === undefined) return false;
-    if (!('inviteToken' in value) || value['inviteToken'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('email' in _v) || _v['email'] === undefined) return false;
+    if (!('password' in _v) || _v['password'] === undefined) return false;
+    if (!('inviteToken' in _v) || _v['inviteToken'] === undefined) return false;
     return true;
 }
 

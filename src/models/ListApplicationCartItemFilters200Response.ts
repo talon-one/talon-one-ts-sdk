@@ -45,7 +45,8 @@ export interface ListApplicationCartItemFilters200Response {
  * Check if a given object implements the ListApplicationCartItemFilters200Response interface.
  */
 export function instanceOfListApplicationCartItemFilters200Response(value: object): value is ListApplicationCartItemFilters200Response {
-    if (!('data' in value) || value['data'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('data' in _v) || _v['data'] === undefined) return false;
     return true;
 }
 

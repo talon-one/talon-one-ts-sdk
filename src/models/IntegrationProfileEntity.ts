@@ -34,6 +34,7 @@ export interface IntegrationProfileEntity {
  * Check if a given object implements the IntegrationProfileEntity interface.
  */
 export function instanceOfIntegrationProfileEntity(value: object): value is IntegrationProfileEntity {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

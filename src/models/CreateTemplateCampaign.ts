@@ -106,8 +106,9 @@ export interface CreateTemplateCampaign {
  * Check if a given object implements the CreateTemplateCampaign interface.
  */
 export function instanceOfCreateTemplateCampaign(value: object): value is CreateTemplateCampaign {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('templateId' in value) || value['templateId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('templateId' in _v) || _v['templateId'] === undefined) return false;
     return true;
 }
 
