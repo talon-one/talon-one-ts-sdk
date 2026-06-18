@@ -57,8 +57,9 @@ export type ApplicationApiHealthSummaryEnum = typeof ApplicationApiHealthSummary
  * Check if a given object implements the ApplicationApiHealth interface.
  */
 export function instanceOfApplicationApiHealth(value: object): value is ApplicationApiHealth {
-    if (!('summary' in value) || value['summary'] === undefined) return false;
-    if (!('lastUsed' in value) || value['lastUsed'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('summary' in _v) || _v['summary'] === undefined) return false;
+    if (!('lastUsed' in _v) || _v['lastUsed'] === undefined) return false;
     return true;
 }
 

@@ -70,8 +70,9 @@ export interface NewRuleset {
  * Check if a given object implements the NewRuleset interface.
  */
 export function instanceOfNewRuleset(value: object): value is NewRuleset {
-    if (!('rules' in value) || value['rules'] === undefined) return false;
-    if (!('bindings' in value) || value['bindings'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('rules' in _v) || _v['rules'] === undefined) return false;
+    if (!('bindings' in _v) || _v['bindings'] === undefined) return false;
     return true;
 }
 

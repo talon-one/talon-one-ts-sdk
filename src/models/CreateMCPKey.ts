@@ -37,8 +37,9 @@ export interface CreateMCPKey {
  * Check if a given object implements the CreateMCPKey interface.
  */
 export function instanceOfCreateMCPKey(value: object): value is CreateMCPKey {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('expiryDate' in value) || value['expiryDate'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('expiryDate' in _v) || _v['expiryDate'] === undefined) return false;
     return true;
 }
 

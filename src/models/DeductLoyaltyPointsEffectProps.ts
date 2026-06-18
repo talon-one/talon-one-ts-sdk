@@ -77,12 +77,13 @@ export interface DeductLoyaltyPointsEffectProps {
  * Check if a given object implements the DeductLoyaltyPointsEffectProps interface.
  */
 export function instanceOfDeductLoyaltyPointsEffectProps(value: object): value is DeductLoyaltyPointsEffectProps {
-    if (!('ruleTitle' in value) || value['ruleTitle'] === undefined) return false;
-    if (!('programId' in value) || value['programId'] === undefined) return false;
-    if (!('subLedgerId' in value) || value['subLedgerId'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('transactionUUID' in value) || value['transactionUUID'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('ruleTitle' in _v) || _v['ruleTitle'] === undefined) return false;
+    if (!('programId' in _v) || _v['programId'] === undefined) return false;
+    if (!('subLedgerId' in _v) || _v['subLedgerId'] === undefined) return false;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
+    if (!('transactionUUID' in _v) || _v['transactionUUID'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
     return true;
 }
 

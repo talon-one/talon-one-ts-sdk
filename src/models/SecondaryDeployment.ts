@@ -86,11 +86,12 @@ export type SecondaryDeploymentStatusEnum = typeof SecondaryDeploymentStatusEnum
  * Check if a given object implements the SecondaryDeployment interface.
  */
 export function instanceOfSecondaryDeployment(value: object): value is SecondaryDeployment {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('userId' in _v) || _v['userId'] === undefined) return false;
+    if (!('status' in _v) || _v['status'] === undefined) return false;
+    if (!('createdAt' in _v) || _v['createdAt'] === undefined) return false;
     return true;
 }
 

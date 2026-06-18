@@ -51,7 +51,8 @@ export interface RuleEligibility {
  * Check if a given object implements the RuleEligibility interface.
  */
 export function instanceOfRuleEligibility(value: object): value is RuleEligibility {
-    if (!('passed' in value) || value['passed'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('passed' in _v) || _v['passed'] === undefined) return false;
     return true;
 }
 

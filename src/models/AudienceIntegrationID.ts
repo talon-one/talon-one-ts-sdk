@@ -31,6 +31,7 @@ export interface AudienceIntegrationID {
  * Check if a given object implements the AudienceIntegrationID interface.
  */
 export function instanceOfAudienceIntegrationID(value: object): value is AudienceIntegrationID {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

@@ -138,14 +138,15 @@ export type SupportRequestRequestStatusEnum = typeof SupportRequestRequestStatus
  * Check if a given object implements the SupportRequest interface.
  */
 export function instanceOfSupportRequest(value: object): value is SupportRequest {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('createdByUser' in value) || value['createdByUser'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-    if (!('customerProfileId' in value) || value['customerProfileId'] === undefined) return false;
-    if (!('requestType' in value) || value['requestType'] === undefined) return false;
-    if (!('requestNote' in value) || value['requestNote'] === undefined) return false;
-    if (!('requestStatus' in value) || value['requestStatus'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('createdByUser' in _v) || _v['createdByUser'] === undefined) return false;
+    if (!('createdAt' in _v) || _v['createdAt'] === undefined) return false;
+    if (!('customerProfileId' in _v) || _v['customerProfileId'] === undefined) return false;
+    if (!('requestType' in _v) || _v['requestType'] === undefined) return false;
+    if (!('requestNote' in _v) || _v['requestNote'] === undefined) return false;
+    if (!('requestStatus' in _v) || _v['requestStatus'] === undefined) return false;
     return true;
 }
 

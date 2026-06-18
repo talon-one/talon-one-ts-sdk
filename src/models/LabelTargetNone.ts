@@ -41,8 +41,9 @@ export type LabelTargetNoneTypeEnum = typeof LabelTargetNoneTypeEnum[keyof typeo
  * Check if a given object implements the LabelTargetNone interface.
  */
 export function instanceOfLabelTargetNone(value: object): value is LabelTargetNone {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (value['type'] !== 'NONE') return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'NONE') return false;
     
     return true;
 }

@@ -109,20 +109,21 @@ export interface AccountLimits {
  * Check if a given object implements the AccountLimits interface.
  */
 export function instanceOfAccountLimits(value: object): value is AccountLimits {
-    if (!('liveApplications' in value) || value['liveApplications'] === undefined) return false;
-    if (!('sandboxApplications' in value) || value['sandboxApplications'] === undefined) return false;
-    if (!('activeCampaigns' in value) || value['activeCampaigns'] === undefined) return false;
-    if (!('coupons' in value) || value['coupons'] === undefined) return false;
-    if (!('referralCodes' in value) || value['referralCodes'] === undefined) return false;
-    if (!('activeRules' in value) || value['activeRules'] === undefined) return false;
-    if (!('liveLoyaltyPrograms' in value) || value['liveLoyaltyPrograms'] === undefined) return false;
-    if (!('sandboxLoyaltyPrograms' in value) || value['sandboxLoyaltyPrograms'] === undefined) return false;
-    if (!('webhooks' in value) || value['webhooks'] === undefined) return false;
-    if (!('users' in value) || value['users'] === undefined) return false;
-    if (!('apiVolume' in value) || value['apiVolume'] === undefined) return false;
-    if (!('promotionTypes' in value) || value['promotionTypes'] === undefined) return false;
-    if ((!('secondaryDeploymentPrice' in value) && !('SecondaryDeploymentPrice' in value)) || (value['secondaryDeploymentPrice'] === undefined && value['SecondaryDeploymentPrice'] === undefined)) return false;
-    if (!('currencyCode' in value) || value['currencyCode'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('liveApplications' in _v) || _v['liveApplications'] === undefined) return false;
+    if (!('sandboxApplications' in _v) || _v['sandboxApplications'] === undefined) return false;
+    if (!('activeCampaigns' in _v) || _v['activeCampaigns'] === undefined) return false;
+    if (!('coupons' in _v) || _v['coupons'] === undefined) return false;
+    if (!('referralCodes' in _v) || _v['referralCodes'] === undefined) return false;
+    if (!('activeRules' in _v) || _v['activeRules'] === undefined) return false;
+    if (!('liveLoyaltyPrograms' in _v) || _v['liveLoyaltyPrograms'] === undefined) return false;
+    if (!('sandboxLoyaltyPrograms' in _v) || _v['sandboxLoyaltyPrograms'] === undefined) return false;
+    if (!('webhooks' in _v) || _v['webhooks'] === undefined) return false;
+    if (!('users' in _v) || _v['users'] === undefined) return false;
+    if (!('apiVolume' in _v) || _v['apiVolume'] === undefined) return false;
+    if (!('promotionTypes' in _v) || _v['promotionTypes'] === undefined) return false;
+    if ((!('secondaryDeploymentPrice' in _v) && !('SecondaryDeploymentPrice' in _v)) || (_v['secondaryDeploymentPrice'] === undefined && _v['SecondaryDeploymentPrice'] === undefined)) return false;
+    if (!('currencyCode' in _v) || _v['currencyCode'] === undefined) return false;
     return true;
 }
 

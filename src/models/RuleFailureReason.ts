@@ -109,11 +109,12 @@ export interface RuleFailureReason {
  * Check if a given object implements the RuleFailureReason interface.
  */
 export function instanceOfRuleFailureReason(value: object): value is RuleFailureReason {
-    if (!('campaignID' in value) || value['campaignID'] === undefined) return false;
-    if (!('campaignName' in value) || value['campaignName'] === undefined) return false;
-    if (!('rulesetID' in value) || value['rulesetID'] === undefined) return false;
-    if (!('ruleIndex' in value) || value['ruleIndex'] === undefined) return false;
-    if (!('ruleName' in value) || value['ruleName'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('campaignID' in _v) || _v['campaignID'] === undefined) return false;
+    if (!('campaignName' in _v) || _v['campaignName'] === undefined) return false;
+    if (!('rulesetID' in _v) || _v['rulesetID'] === undefined) return false;
+    if (!('ruleIndex' in _v) || _v['ruleIndex'] === undefined) return false;
+    if (!('ruleName' in _v) || _v['ruleName'] === undefined) return false;
     return true;
 }
 

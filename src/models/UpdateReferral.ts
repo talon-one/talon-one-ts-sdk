@@ -56,6 +56,7 @@ export interface UpdateReferral {
  * Check if a given object implements the UpdateReferral interface.
  */
 export function instanceOfUpdateReferral(value: object): value is UpdateReferral {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

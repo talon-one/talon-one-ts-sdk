@@ -88,11 +88,12 @@ export type CreateCouponDataNotificationTypeEnum = typeof CreateCouponDataNotifi
  * Check if a given object implements the CreateCouponData interface.
  */
 export function instanceOfCreateCouponData(value: object): value is CreateCouponData {
-    if ((!('typeOfChange' in value) && !('TypeOfChange' in value)) || (value['typeOfChange'] === undefined && value['TypeOfChange'] === undefined)) return false;
-    if ((!('operation' in value) && !('Operation' in value)) || (value['operation'] === undefined && value['Operation'] === undefined)) return false;
-    if ((!('employeeName' in value) && !('EmployeeName' in value)) || (value['employeeName'] === undefined && value['EmployeeName'] === undefined)) return false;
-    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
-    if (value['notificationType'] !== 'CouponCreated' && value['NotificationType'] !== 'CouponCreated') return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('typeOfChange' in _v) && !('TypeOfChange' in _v)) || (_v['typeOfChange'] === undefined && _v['TypeOfChange'] === undefined)) return false;
+    if ((!('operation' in _v) && !('Operation' in _v)) || (_v['operation'] === undefined && _v['Operation'] === undefined)) return false;
+    if ((!('employeeName' in _v) && !('EmployeeName' in _v)) || (_v['employeeName'] === undefined && _v['EmployeeName'] === undefined)) return false;
+    if ((!('notificationType' in _v) && !('NotificationType' in _v)) || (_v['notificationType'] === undefined && _v['NotificationType'] === undefined)) return false;
+    if (_v['notificationType'] !== 'CouponCreated' && _v['NotificationType'] !== 'CouponCreated') return false;
     
     return true;
 }

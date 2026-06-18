@@ -39,7 +39,8 @@ export interface UpdateExperimentVariantArray {
  * Check if a given object implements the UpdateExperimentVariantArray interface.
  */
 export function instanceOfUpdateExperimentVariantArray(value: object): value is UpdateExperimentVariantArray {
-    if (!('variants' in value) || value['variants'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('variants' in _v) || _v['variants'] === undefined) return false;
     return true;
 }
 

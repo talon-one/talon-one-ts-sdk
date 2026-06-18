@@ -427,6 +427,13 @@ export interface IntegrationGetAllCampaignsRequest {
     startBefore?: Date;
     endAfter?: Date;
     endBefore?: Date;
+    storeId?: number;
+    audienceId?: number;
+}
+
+export interface JoinLoyaltyProgramRequest {
+    loyaltyProgramId: number;
+    integrationId: string;
 }
 
 export interface LinkLoyaltyCardToProfileRequest {
@@ -2115,6 +2122,14 @@ export class IntegrationApi extends runtime.BaseAPI {
             queryParameters['endBefore'] = (requestParameters['endBefore'] as any).toISOString();
         }
 
+        if (requestParameters['storeId'] != null) {
+            queryParameters['storeId'] = requestParameters['storeId'];
+        }
+
+        if (requestParameters['audienceId'] != null) {
+            queryParameters['audienceId'] = requestParameters['audienceId'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
@@ -2150,6 +2165,64 @@ export class IntegrationApi extends runtime.BaseAPI {
     async integrationGetAllCampaigns(requestParameters: IntegrationGetAllCampaignsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationGetAllCampaigns200Response> {
         const response = await this.integrationGetAllCampaignsRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Creates request options for joinLoyaltyProgram without sending the request
+     */
+    async joinLoyaltyProgramRequestOpts(requestParameters: JoinLoyaltyProgramRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['loyaltyProgramId'] == null) {
+            throw new runtime.RequiredError(
+                'loyaltyProgramId',
+                'Required parameter "loyaltyProgramId" was null or undefined when calling joinLoyaltyProgram().'
+            );
+        }
+
+        if (requestParameters['integrationId'] == null) {
+            throw new runtime.RequiredError(
+                'integrationId',
+                'Required parameter "integrationId" was null or undefined when calling joinLoyaltyProgram().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/join`;
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Join a customer profile to the specified loyalty program.  If the customer profile does not exist, it will be created first using the provided `integrationId`, then joined to the loyalty program.  > [!note] This endpoint only works with profile-based loyalty programs.  **Behavior**: - If the loyalty program does not exist, the request fails. - If the customer profile is already joined to the loyalty program, the request fails. - If the customer profile does not exist, it is created and then joined to the loyalty program. 
+     * Join customer profile to loyalty program
+     */
+    async joinLoyaltyProgramRaw(requestParameters: JoinLoyaltyProgramRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.joinLoyaltyProgramRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Join a customer profile to the specified loyalty program.  If the customer profile does not exist, it will be created first using the provided `integrationId`, then joined to the loyalty program.  > [!note] This endpoint only works with profile-based loyalty programs.  **Behavior**: - If the loyalty program does not exist, the request fails. - If the customer profile is already joined to the loyalty program, the request fails. - If the customer profile does not exist, it is created and then joined to the loyalty program. 
+     * Join customer profile to loyalty program
+     */
+    async joinLoyaltyProgram(requestParameters: JoinLoyaltyProgramRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.joinLoyaltyProgramRaw(requestParameters, initOverrides);
     }
 
     /**

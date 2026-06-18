@@ -87,14 +87,15 @@ export type OutgoingIntegrationTemplateMethodEnum = typeof OutgoingIntegrationTe
  * Check if a given object implements the OutgoingIntegrationTemplate interface.
  */
 export function instanceOfOutgoingIntegrationTemplate(value: object): value is OutgoingIntegrationTemplate {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('integrationType' in value) || value['integrationType'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('payload' in value) || value['payload'] === undefined) return false;
-    if (!('method' in value) || value['method'] === undefined) return false;
-    if (!('relativeUrl' in value) || value['relativeUrl'] === undefined) return false;
-    if (!('headers' in value) || value['headers'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('integrationType' in _v) || _v['integrationType'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
+    if (!('payload' in _v) || _v['payload'] === undefined) return false;
+    if (!('method' in _v) || _v['method'] === undefined) return false;
+    if (!('relativeUrl' in _v) || _v['relativeUrl'] === undefined) return false;
+    if (!('headers' in _v) || _v['headers'] === undefined) return false;
     return true;
 }
 

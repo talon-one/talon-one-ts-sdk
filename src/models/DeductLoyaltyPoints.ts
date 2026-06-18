@@ -49,7 +49,8 @@ export interface DeductLoyaltyPoints {
  * Check if a given object implements the DeductLoyaltyPoints interface.
  */
 export function instanceOfDeductLoyaltyPoints(value: object): value is DeductLoyaltyPoints {
-    if (!('points' in value) || value['points'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('points' in _v) || _v['points'] === undefined) return false;
     return true;
 }
 

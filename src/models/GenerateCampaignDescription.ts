@@ -43,9 +43,10 @@ export interface GenerateCampaignDescription {
  * Check if a given object implements the GenerateCampaignDescription interface.
  */
 export function instanceOfGenerateCampaignDescription(value: object): value is GenerateCampaignDescription {
-    if (!('campaignID' in value) || value['campaignID'] === undefined) return false;
-    if (!('rulesetID' in value) || value['rulesetID'] === undefined) return false;
-    if (!('currency' in value) || value['currency'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('campaignID' in _v) || _v['campaignID'] === undefined) return false;
+    if (!('rulesetID' in _v) || _v['rulesetID'] === undefined) return false;
+    if (!('currency' in _v) || _v['currency'] === undefined) return false;
     return true;
 }
 

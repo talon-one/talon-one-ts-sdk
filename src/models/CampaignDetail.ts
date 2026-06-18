@@ -37,6 +37,7 @@ export interface CampaignDetail {
  * Check if a given object implements the CampaignDetail interface.
  */
 export function instanceOfCampaignDetail(value: object): value is CampaignDetail {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

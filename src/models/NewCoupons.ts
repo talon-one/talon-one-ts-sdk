@@ -82,6 +82,7 @@ export interface NewCoupons {
      * 
      * @type {string}
      * @memberof NewCoupons
+     * @deprecated
      */
     uniquePrefix?: string;
     /**
@@ -130,7 +131,8 @@ export interface NewCoupons {
  * Check if a given object implements the NewCoupons interface.
  */
 export function instanceOfNewCoupons(value: object): value is NewCoupons {
-    if (!('numberOfCoupons' in value) || value['numberOfCoupons'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('numberOfCoupons' in _v) || _v['numberOfCoupons'] === undefined) return false;
     return true;
 }
 

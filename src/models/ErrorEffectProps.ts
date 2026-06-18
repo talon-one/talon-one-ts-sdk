@@ -31,7 +31,8 @@ export interface ErrorEffectProps {
  * Check if a given object implements the ErrorEffectProps interface.
  */
 export function instanceOfErrorEffectProps(value: object): value is ErrorEffectProps {
-    if (!('message' in value) || value['message'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('message' in _v) || _v['message'] === undefined) return false;
     return true;
 }
 

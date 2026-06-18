@@ -37,6 +37,7 @@ export interface AudienceAnalytics {
  * Check if a given object implements the AudienceAnalytics interface.
  */
 export function instanceOfAudienceAnalytics(value: object): value is AudienceAnalytics {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

@@ -120,11 +120,12 @@ export type TalangAttributeKindEnum = typeof TalangAttributeKindEnum[keyof typeo
  * Check if a given object implements the TalangAttribute interface.
  */
 export function instanceOfTalangAttribute(value: object): value is TalangAttribute {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('visible' in value) || value['visible'] === undefined) return false;
-    if (!('kind' in value) || value['kind'] === undefined) return false;
-    if (!('campaignsCount' in value) || value['campaignsCount'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('visible' in _v) || _v['visible'] === undefined) return false;
+    if (!('kind' in _v) || _v['kind'] === undefined) return false;
+    if (!('campaignsCount' in _v) || _v['campaignsCount'] === undefined) return false;
     return true;
 }
 

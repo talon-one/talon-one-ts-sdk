@@ -48,9 +48,10 @@ export interface CampaignBudget {
  * Check if a given object implements the CampaignBudget interface.
  */
 export function instanceOfCampaignBudget(value: object): value is CampaignBudget {
-    if (!('action' in value) || value['action'] === undefined) return false;
-    if (!('limit' in value) || value['limit'] === undefined) return false;
-    if (!('counter' in value) || value['counter'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('action' in _v) || _v['action'] === undefined) return false;
+    if (!('limit' in _v) || _v['limit'] === undefined) return false;
+    if (!('counter' in _v) || _v['counter'] === undefined) return false;
     return true;
 }
 

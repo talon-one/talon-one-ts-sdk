@@ -74,9 +74,10 @@ export interface EventV3RequestEntity {
  * Check if a given object implements the EventV3RequestEntity interface.
  */
 export function instanceOfEventV3RequestEntity(value: object): value is EventV3RequestEntity {
-    if (!('profileId' in value) || value['profileId'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('integrationId' in value) || value['integrationId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('profileId' in _v) || _v['profileId'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
     return true;
 }
 

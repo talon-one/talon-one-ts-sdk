@@ -73,11 +73,12 @@ export interface CampaignGroup {
  * Check if a given object implements the CampaignGroup interface.
  */
 export function instanceOfCampaignGroup(value: object): value is CampaignGroup {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('modified' in value) || value['modified'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('modified' in _v) || _v['modified'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
     return true;
 }
 

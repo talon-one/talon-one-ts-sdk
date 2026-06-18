@@ -56,7 +56,8 @@ export interface UpdateReferralBatch {
  * Check if a given object implements the UpdateReferralBatch interface.
  */
 export function instanceOfUpdateReferralBatch(value: object): value is UpdateReferralBatch {
-    if (!('batchID' in value) || value['batchID'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('batchID' in _v) || _v['batchID'] === undefined) return false;
     return true;
 }
 

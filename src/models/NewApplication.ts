@@ -174,9 +174,10 @@ export type NewApplicationDefaultDiscountAdditionalCostPerItemScopeEnum = typeof
  * Check if a given object implements the NewApplication interface.
  */
 export function instanceOfNewApplication(value: object): value is NewApplication {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('timezone' in value) || value['timezone'] === undefined) return false;
-    if (!('currency' in value) || value['currency'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('timezone' in _v) || _v['timezone'] === undefined) return false;
+    if (!('currency' in _v) || _v['currency'] === undefined) return false;
     return true;
 }
 

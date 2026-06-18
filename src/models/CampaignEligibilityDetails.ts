@@ -51,7 +51,8 @@ export interface CampaignEligibilityDetails {
  * Check if a given object implements the CampaignEligibilityDetails interface.
  */
 export function instanceOfCampaignEligibilityDetails(value: object): value is CampaignEligibilityDetails {
-    if (!('passed' in value) || value['passed'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('passed' in _v) || _v['passed'] === undefined) return false;
     return true;
 }
 

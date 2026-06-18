@@ -49,10 +49,11 @@ export interface ExperimentSegmentInsightVariant {
  * Check if a given object implements the ExperimentSegmentInsightVariant interface.
  */
 export function instanceOfExperimentSegmentInsightVariant(value: object): value is ExperimentSegmentInsightVariant {
-    if (!('variantId' in value) || value['variantId'] === undefined) return false;
-    if (!('variantName' in value) || value['variantName'] === undefined) return false;
-    if (!('sessionsCount' in value) || value['sessionsCount'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('variantId' in _v) || _v['variantId'] === undefined) return false;
+    if (!('variantName' in _v) || _v['variantName'] === undefined) return false;
+    if (!('sessionsCount' in _v) || _v['sessionsCount'] === undefined) return false;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
     return true;
 }
 

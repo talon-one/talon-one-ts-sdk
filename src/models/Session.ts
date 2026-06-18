@@ -43,9 +43,10 @@ export interface Session {
  * Check if a given object implements the Session interface.
  */
 export function instanceOfSession(value: object): value is Session {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('token' in value) || value['token'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('userId' in _v) || _v['userId'] === undefined) return false;
+    if (!('token' in _v) || _v['token'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
     return true;
 }
 

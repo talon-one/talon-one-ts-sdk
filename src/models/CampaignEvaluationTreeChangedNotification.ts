@@ -51,8 +51,9 @@ export interface CampaignEvaluationTreeChangedNotification {
  * Check if a given object implements the CampaignEvaluationTreeChangedNotification interface.
  */
 export function instanceOfCampaignEvaluationTreeChangedNotification(value: object): value is CampaignEvaluationTreeChangedNotification {
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('evaluationTree' in value) || value['evaluationTree'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('evaluationTree' in _v) || _v['evaluationTree'] === undefined) return false;
     return true;
 }
 

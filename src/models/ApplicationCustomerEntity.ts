@@ -31,6 +31,7 @@ export interface ApplicationCustomerEntity {
  * Check if a given object implements the ApplicationCustomerEntity interface.
  */
 export function instanceOfApplicationCustomerEntity(value: object): value is ApplicationCustomerEntity {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

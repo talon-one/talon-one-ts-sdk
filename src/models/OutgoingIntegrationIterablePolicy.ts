@@ -37,8 +37,9 @@ export interface OutgoingIntegrationIterablePolicy {
  * Check if a given object implements the OutgoingIntegrationIterablePolicy interface.
  */
 export function instanceOfOutgoingIntegrationIterablePolicy(value: object): value is OutgoingIntegrationIterablePolicy {
-    if (!('baseUrl' in value) || value['baseUrl'] === undefined) return false;
-    if (!('apiKey' in value) || value['apiKey'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('baseUrl' in _v) || _v['baseUrl'] === undefined) return false;
+    if (!('apiKey' in _v) || _v['apiKey'] === undefined) return false;
     return true;
 }
 

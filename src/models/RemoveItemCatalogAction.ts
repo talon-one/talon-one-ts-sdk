@@ -31,7 +31,8 @@ export interface RemoveItemCatalogAction {
  * Check if a given object implements the RemoveItemCatalogAction interface.
  */
 export function instanceOfRemoveItemCatalogAction(value: object): value is RemoveItemCatalogAction {
-    if (!('sku' in value) || value['sku'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('sku' in _v) || _v['sku'] === undefined) return false;
     return true;
 }
 

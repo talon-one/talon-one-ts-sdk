@@ -31,6 +31,7 @@ export interface EventV3Connections {
  * Check if a given object implements the EventV3Connections interface.
  */
 export function instanceOfEventV3Connections(value: object): value is EventV3Connections {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

@@ -248,17 +248,18 @@ export type CustomerSessionV2StateEnum = typeof CustomerSessionV2StateEnum[keyof
  * Check if a given object implements the CustomerSessionV2 interface.
  */
 export function instanceOfCustomerSessionV2(value: object): value is CustomerSessionV2 {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('integrationId' in value) || value['integrationId'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('firstSession' in value) || value['firstSession'] === undefined) return false;
-    if (!('updateCount' in value) || value['updateCount'] === undefined) return false;
-    if (!('total' in value) || value['total'] === undefined) return false;
-    if (!('cartItemTotal' in value) || value['cartItemTotal'] === undefined) return false;
-    if (!('additionalCostTotal' in value) || value['additionalCostTotal'] === undefined) return false;
-    if (!('cartItemAdditionalCostTotal' in value) || value['cartItemAdditionalCostTotal'] === undefined) return false;
-    if (!('updated' in value) || value['updated'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('firstSession' in _v) || _v['firstSession'] === undefined) return false;
+    if (!('updateCount' in _v) || _v['updateCount'] === undefined) return false;
+    if (!('total' in _v) || _v['total'] === undefined) return false;
+    if (!('cartItemTotal' in _v) || _v['cartItemTotal'] === undefined) return false;
+    if (!('additionalCostTotal' in _v) || _v['additionalCostTotal'] === undefined) return false;
+    if (!('cartItemAdditionalCostTotal' in _v) || _v['cartItemAdditionalCostTotal'] === undefined) return false;
+    if (!('updated' in _v) || _v['updated'] === undefined) return false;
     return true;
 }
 

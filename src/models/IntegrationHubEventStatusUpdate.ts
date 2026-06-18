@@ -48,8 +48,9 @@ export type IntegrationHubEventStatusUpdateStatusEnum = typeof IntegrationHubEve
  * Check if a given object implements the IntegrationHubEventStatusUpdate interface.
  */
 export function instanceOfIntegrationHubEventStatusUpdate(value: object): value is IntegrationHubEventStatusUpdate {
-    if ((!('eventId' in value) && !('EventId' in value)) || (value['eventId'] === undefined && value['EventId'] === undefined)) return false;
-    if ((!('status' in value) && !('Status' in value)) || (value['status'] === undefined && value['Status'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('eventId' in _v) && !('EventId' in _v)) || (_v['eventId'] === undefined && _v['EventId'] === undefined)) return false;
+    if ((!('status' in _v) && !('Status' in _v)) || (_v['status'] === undefined && _v['Status'] === undefined)) return false;
     return true;
 }
 

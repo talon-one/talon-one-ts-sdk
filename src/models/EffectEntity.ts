@@ -121,11 +121,12 @@ export interface EffectEntity {
  * Check if a given object implements the EffectEntity interface.
  */
 export function instanceOfEffectEntity(value: object): value is EffectEntity {
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('rulesetId' in value) || value['rulesetId'] === undefined) return false;
-    if (!('ruleIndex' in value) || value['ruleIndex'] === undefined) return false;
-    if (!('ruleName' in value) || value['ruleName'] === undefined) return false;
-    if (!('effectType' in value) || value['effectType'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('rulesetId' in _v) || _v['rulesetId'] === undefined) return false;
+    if (!('ruleIndex' in _v) || _v['ruleIndex'] === undefined) return false;
+    if (!('ruleName' in _v) || _v['ruleName'] === undefined) return false;
+    if (!('effectType' in _v) || _v['effectType'] === undefined) return false;
     return true;
 }
 

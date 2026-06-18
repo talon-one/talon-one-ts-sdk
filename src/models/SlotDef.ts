@@ -61,10 +61,11 @@ export interface SlotDef {
  * Check if a given object implements the SlotDef interface.
  */
 export function instanceOfSlotDef(value: object): value is SlotDef {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('writable' in value) || value['writable'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('writable' in _v) || _v['writable'] === undefined) return false;
     return true;
 }
 

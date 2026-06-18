@@ -75,10 +75,11 @@ export interface NewTemplateDef {
  * Check if a given object implements the NewTemplateDef interface.
  */
 export function instanceOfNewTemplateDef(value: object): value is NewTemplateDef {
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('category' in value) || value['category'] === undefined) return false;
-    if (!('expr' in value) || value['expr'] === undefined) return false;
-    if (!('args' in value) || value['args'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('category' in _v) || _v['category'] === undefined) return false;
+    if (!('expr' in _v) || _v['expr'] === undefined) return false;
+    if (!('args' in _v) || _v['args'] === undefined) return false;
     return true;
 }
 

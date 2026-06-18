@@ -31,7 +31,8 @@ export interface ApplicationEntity {
  * Check if a given object implements the ApplicationEntity interface.
  */
 export function instanceOfApplicationEntity(value: object): value is ApplicationEntity {
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
     return true;
 }
 

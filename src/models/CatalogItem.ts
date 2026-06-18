@@ -88,11 +88,12 @@ export interface CatalogItem {
  * Check if a given object implements the CatalogItem interface.
  */
 export function instanceOfCatalogItem(value: object): value is CatalogItem {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('sku' in value) || value['sku'] === undefined) return false;
-    if (!('catalogid' in value) || value['catalogid'] === undefined) return false;
-    if (!('version' in value) || value['version'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('sku' in _v) || _v['sku'] === undefined) return false;
+    if (!('catalogid' in _v) || _v['catalogid'] === undefined) return false;
+    if (!('version' in _v) || _v['version'] === undefined) return false;
     return true;
 }
 

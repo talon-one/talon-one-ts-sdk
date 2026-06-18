@@ -39,7 +39,8 @@ export interface NewCouponDeletionJob {
  * Check if a given object implements the NewCouponDeletionJob interface.
  */
 export function instanceOfNewCouponDeletionJob(value: object): value is NewCouponDeletionJob {
-    if (!('filters' in value) || value['filters'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('filters' in _v) || _v['filters'] === undefined) return false;
     return true;
 }
 

@@ -43,9 +43,10 @@ export interface OutgoingIntegrationCleverTapPolicy {
  * Check if a given object implements the OutgoingIntegrationCleverTapPolicy interface.
  */
 export function instanceOfOutgoingIntegrationCleverTapPolicy(value: object): value is OutgoingIntegrationCleverTapPolicy {
-    if (!('baseUrl' in value) || value['baseUrl'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('passcode' in value) || value['passcode'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('baseUrl' in _v) || _v['baseUrl'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('passcode' in _v) || _v['passcode'] === undefined) return false;
     return true;
 }
 

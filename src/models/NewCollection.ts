@@ -43,7 +43,8 @@ export interface NewCollection {
  * Check if a given object implements the NewCollection interface.
  */
 export function instanceOfNewCollection(value: object): value is NewCollection {
-    if (!('name' in value) || value['name'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
     return true;
 }
 

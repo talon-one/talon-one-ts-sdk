@@ -54,9 +54,10 @@ export interface RewardPointsRequired {
  * Check if a given object implements the RewardPointsRequired interface.
  */
 export function instanceOfRewardPointsRequired(value: object): value is RewardPointsRequired {
-    if (!('amount' in value) || value['amount'] === undefined) return false;
-    if (!('loyaltyProgramId' in value) || value['loyaltyProgramId'] === undefined) return false;
-    if (!('subledgerId' in value) || value['subledgerId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('amount' in _v) || _v['amount'] === undefined) return false;
+    if (!('loyaltyProgramId' in _v) || _v['loyaltyProgramId'] === undefined) return false;
+    if (!('subledgerId' in _v) || _v['subledgerId'] === undefined) return false;
     return true;
 }
 

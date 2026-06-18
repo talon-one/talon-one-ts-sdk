@@ -140,12 +140,13 @@ export interface LoyaltyCard {
  * Check if a given object implements the LoyaltyCard interface.
  */
 export function instanceOfLoyaltyCard(value: object): value is LoyaltyCard {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('programID' in value) || value['programID'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('identifier' in value) || value['identifier'] === undefined) return false;
-    if (!('usersPerCardLimit' in value) || value['usersPerCardLimit'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('programID' in _v) || _v['programID'] === undefined) return false;
+    if (!('status' in _v) || _v['status'] === undefined) return false;
+    if (!('identifier' in _v) || _v['identifier'] === undefined) return false;
+    if (!('usersPerCardLimit' in _v) || _v['usersPerCardLimit'] === undefined) return false;
     return true;
 }
 

@@ -45,8 +45,9 @@ export interface NewAppWideCouponDeletionJob {
  * Check if a given object implements the NewAppWideCouponDeletionJob interface.
  */
 export function instanceOfNewAppWideCouponDeletionJob(value: object): value is NewAppWideCouponDeletionJob {
-    if (!('filters' in value) || value['filters'] === undefined) return false;
-    if (!('campaignids' in value) || value['campaignids'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('filters' in _v) || _v['filters'] === undefined) return false;
+    if (!('campaignids' in _v) || _v['campaignids'] === undefined) return false;
     return true;
 }
 

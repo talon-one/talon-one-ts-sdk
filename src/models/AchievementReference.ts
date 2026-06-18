@@ -55,11 +55,12 @@ export interface AchievementReference {
  * Check if a given object implements the AchievementReference interface.
  */
 export function instanceOfAchievementReference(value: object): value is AchievementReference {
-    if (!('achievementId' in value) || value['achievementId'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('applicationName' in value) || value['applicationName'] === undefined) return false;
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('campaignName' in value) || value['campaignName'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('achievementId' in _v) || _v['achievementId'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('applicationName' in _v) || _v['applicationName'] === undefined) return false;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('campaignName' in _v) || _v['campaignName'] === undefined) return false;
     return true;
 }
 

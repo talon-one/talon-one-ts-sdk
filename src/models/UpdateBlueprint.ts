@@ -83,6 +83,7 @@ export type UpdateBlueprintCategoryEnum = typeof UpdateBlueprintCategoryEnum[key
  * Check if a given object implements the UpdateBlueprint interface.
  */
 export function instanceOfUpdateBlueprint(value: object): value is UpdateBlueprint {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

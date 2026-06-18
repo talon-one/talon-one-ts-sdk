@@ -91,6 +91,7 @@ export interface ExperimentVariantResult {
  * Check if a given object implements the ExperimentVariantResult interface.
  */
 export function instanceOfExperimentVariantResult(value: object): value is ExperimentVariantResult {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

@@ -145,26 +145,27 @@ export interface AccountAnalytics {
  * Check if a given object implements the AccountAnalytics interface.
  */
 export function instanceOfAccountAnalytics(value: object): value is AccountAnalytics {
-    if (!('applications' in value) || value['applications'] === undefined) return false;
-    if (!('liveApplications' in value) || value['liveApplications'] === undefined) return false;
-    if (!('sandboxApplications' in value) || value['sandboxApplications'] === undefined) return false;
-    if (!('campaigns' in value) || value['campaigns'] === undefined) return false;
-    if (!('activeCampaigns' in value) || value['activeCampaigns'] === undefined) return false;
-    if (!('liveActiveCampaigns' in value) || value['liveActiveCampaigns'] === undefined) return false;
-    if (!('coupons' in value) || value['coupons'] === undefined) return false;
-    if (!('activeCoupons' in value) || value['activeCoupons'] === undefined) return false;
-    if (!('expiredCoupons' in value) || value['expiredCoupons'] === undefined) return false;
-    if (!('referralCodes' in value) || value['referralCodes'] === undefined) return false;
-    if (!('activeReferralCodes' in value) || value['activeReferralCodes'] === undefined) return false;
-    if (!('expiredReferralCodes' in value) || value['expiredReferralCodes'] === undefined) return false;
-    if (!('activeRules' in value) || value['activeRules'] === undefined) return false;
-    if (!('users' in value) || value['users'] === undefined) return false;
-    if (!('roles' in value) || value['roles'] === undefined) return false;
-    if (!('customAttributes' in value) || value['customAttributes'] === undefined) return false;
-    if (!('webhooks' in value) || value['webhooks'] === undefined) return false;
-    if (!('loyaltyPrograms' in value) || value['loyaltyPrograms'] === undefined) return false;
-    if (!('liveLoyaltyPrograms' in value) || value['liveLoyaltyPrograms'] === undefined) return false;
-    if (!('lastUpdatedAt' in value) || value['lastUpdatedAt'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('applications' in _v) || _v['applications'] === undefined) return false;
+    if (!('liveApplications' in _v) || _v['liveApplications'] === undefined) return false;
+    if (!('sandboxApplications' in _v) || _v['sandboxApplications'] === undefined) return false;
+    if (!('campaigns' in _v) || _v['campaigns'] === undefined) return false;
+    if (!('activeCampaigns' in _v) || _v['activeCampaigns'] === undefined) return false;
+    if (!('liveActiveCampaigns' in _v) || _v['liveActiveCampaigns'] === undefined) return false;
+    if (!('coupons' in _v) || _v['coupons'] === undefined) return false;
+    if (!('activeCoupons' in _v) || _v['activeCoupons'] === undefined) return false;
+    if (!('expiredCoupons' in _v) || _v['expiredCoupons'] === undefined) return false;
+    if (!('referralCodes' in _v) || _v['referralCodes'] === undefined) return false;
+    if (!('activeReferralCodes' in _v) || _v['activeReferralCodes'] === undefined) return false;
+    if (!('expiredReferralCodes' in _v) || _v['expiredReferralCodes'] === undefined) return false;
+    if (!('activeRules' in _v) || _v['activeRules'] === undefined) return false;
+    if (!('users' in _v) || _v['users'] === undefined) return false;
+    if (!('roles' in _v) || _v['roles'] === undefined) return false;
+    if (!('customAttributes' in _v) || _v['customAttributes'] === undefined) return false;
+    if (!('webhooks' in _v) || _v['webhooks'] === undefined) return false;
+    if (!('loyaltyPrograms' in _v) || _v['loyaltyPrograms'] === undefined) return false;
+    if (!('liveLoyaltyPrograms' in _v) || _v['liveLoyaltyPrograms'] === undefined) return false;
+    if (!('lastUpdatedAt' in _v) || _v['lastUpdatedAt'] === undefined) return false;
     return true;
 }
 

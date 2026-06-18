@@ -147,18 +147,19 @@ export type AddedDeductedPointsNotificationOperationEnum = typeof AddedDeductedP
  * Check if a given object implements the AddedDeductedPointsNotification interface.
  */
 export function instanceOfAddedDeductedPointsNotification(value: object): value is AddedDeductedPointsNotification {
-    if ((!('employeeName' in value) && !('EmployeeName' in value)) || (value['employeeName'] === undefined && value['EmployeeName'] === undefined)) return false;
-    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
-    if ((!('notificationType' in value) && !('NotificationType' in value)) || (value['notificationType'] === undefined && value['NotificationType'] === undefined)) return false;
-    if ((!('profileIntegrationID' in value) && !('ProfileIntegrationID' in value)) || (value['profileIntegrationID'] === undefined && value['ProfileIntegrationID'] === undefined)) return false;
-    if ((!('sessionIntegrationID' in value) && !('SessionIntegrationID' in value)) || (value['sessionIntegrationID'] === undefined && value['SessionIntegrationID'] === undefined)) return false;
-    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
-    if ((!('typeOfChange' in value) && !('TypeOfChange' in value)) || (value['typeOfChange'] === undefined && value['TypeOfChange'] === undefined)) return false;
-    if ((!('userID' in value) && !('UserID' in value)) || (value['userID'] === undefined && value['UserID'] === undefined)) return false;
-    if ((!('amount' in value) && !('Amount' in value)) || (value['amount'] === undefined && value['Amount'] === undefined)) return false;
-    if ((!('operation' in value) && !('Operation' in value)) || (value['operation'] === undefined && value['Operation'] === undefined)) return false;
-    if ((!('reason' in value) && !('Reason' in value)) || (value['reason'] === undefined && value['Reason'] === undefined)) return false;
-    if ((!('transactionUUID' in value) && !('TransactionUUID' in value)) || (value['transactionUUID'] === undefined && value['TransactionUUID'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('employeeName' in _v) && !('EmployeeName' in _v)) || (_v['employeeName'] === undefined && _v['EmployeeName'] === undefined)) return false;
+    if ((!('loyaltyProgramID' in _v) && !('LoyaltyProgramID' in _v)) || (_v['loyaltyProgramID'] === undefined && _v['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('notificationType' in _v) && !('NotificationType' in _v)) || (_v['notificationType'] === undefined && _v['NotificationType'] === undefined)) return false;
+    if ((!('profileIntegrationID' in _v) && !('ProfileIntegrationID' in _v)) || (_v['profileIntegrationID'] === undefined && _v['ProfileIntegrationID'] === undefined)) return false;
+    if ((!('sessionIntegrationID' in _v) && !('SessionIntegrationID' in _v)) || (_v['sessionIntegrationID'] === undefined && _v['SessionIntegrationID'] === undefined)) return false;
+    if ((!('subledgerID' in _v) && !('SubledgerID' in _v)) || (_v['subledgerID'] === undefined && _v['SubledgerID'] === undefined)) return false;
+    if ((!('typeOfChange' in _v) && !('TypeOfChange' in _v)) || (_v['typeOfChange'] === undefined && _v['TypeOfChange'] === undefined)) return false;
+    if ((!('userID' in _v) && !('UserID' in _v)) || (_v['userID'] === undefined && _v['UserID'] === undefined)) return false;
+    if ((!('amount' in _v) && !('Amount' in _v)) || (_v['amount'] === undefined && _v['Amount'] === undefined)) return false;
+    if ((!('operation' in _v) && !('Operation' in _v)) || (_v['operation'] === undefined && _v['Operation'] === undefined)) return false;
+    if ((!('reason' in _v) && !('Reason' in _v)) || (_v['reason'] === undefined && _v['Reason'] === undefined)) return false;
+    if ((!('transactionUUID' in _v) && !('TransactionUUID' in _v)) || (_v['transactionUUID'] === undefined && _v['TransactionUUID'] === undefined)) return false;
     return true;
 }
 

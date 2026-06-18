@@ -61,11 +61,12 @@ export interface BaseNotificationWebhook {
  * Check if a given object implements the BaseNotificationWebhook interface.
  */
 export function instanceOfBaseNotificationWebhook(value: object): value is BaseNotificationWebhook {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('modified' in value) || value['modified'] === undefined) return false;
-    if (!('url' in value) || value['url'] === undefined) return false;
-    if (!('headers' in value) || value['headers'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('modified' in _v) || _v['modified'] === undefined) return false;
+    if (!('url' in _v) || _v['url'] === undefined) return false;
+    if (!('headers' in _v) || _v['headers'] === undefined) return false;
     return true;
 }
 

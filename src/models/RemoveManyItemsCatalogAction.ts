@@ -42,6 +42,7 @@ export interface RemoveManyItemsCatalogAction {
  * Check if a given object implements the RemoveManyItemsCatalogAction interface.
  */
 export function instanceOfRemoveManyItemsCatalogAction(value: object): value is RemoveManyItemsCatalogAction {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

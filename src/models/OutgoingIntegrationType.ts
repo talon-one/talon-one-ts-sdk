@@ -55,8 +55,9 @@ export interface OutgoingIntegrationType {
  * Check if a given object implements the OutgoingIntegrationType interface.
  */
 export function instanceOfOutgoingIntegrationType(value: object): value is OutgoingIntegrationType {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
     return true;
 }
 

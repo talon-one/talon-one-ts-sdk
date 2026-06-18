@@ -37,8 +37,9 @@ export interface ProfileAudiencesChanges {
  * Check if a given object implements the ProfileAudiencesChanges interface.
  */
 export function instanceOfProfileAudiencesChanges(value: object): value is ProfileAudiencesChanges {
-    if (!('adds' in value) || value['adds'] === undefined) return false;
-    if (!('deletes' in value) || value['deletes'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('adds' in _v) || _v['adds'] === undefined) return false;
+    if (!('deletes' in _v) || _v['deletes'] === undefined) return false;
     return true;
 }
 

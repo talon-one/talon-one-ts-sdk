@@ -120,7 +120,8 @@ export interface AddLoyaltyPoints {
  * Check if a given object implements the AddLoyaltyPoints interface.
  */
 export function instanceOfAddLoyaltyPoints(value: object): value is AddLoyaltyPoints {
-    if (!('points' in value) || value['points'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('points' in _v) || _v['points'] === undefined) return false;
     return true;
 }
 

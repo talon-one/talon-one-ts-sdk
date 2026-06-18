@@ -73,12 +73,13 @@ export interface TierDowngradeData {
  * Check if a given object implements the TierDowngradeData interface.
  */
 export function instanceOfTierDowngradeData(value: object): value is TierDowngradeData {
-    if ((!('customerProfileID' in value) && !('CustomerProfileID' in value)) || (value['customerProfileID'] === undefined && value['CustomerProfileID'] === undefined)) return false;
-    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
-    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
-    if ((!('currentPoints' in value) && !('CurrentPoints' in value)) || (value['currentPoints'] === undefined && value['CurrentPoints'] === undefined)) return false;
-    if ((!('oldTier' in value) && !('OldTier' in value)) || (value['oldTier'] === undefined && value['OldTier'] === undefined)) return false;
-    if ((!('timestampOfTierChange' in value) && !('TimestampOfTierChange' in value)) || (value['timestampOfTierChange'] === undefined && value['TimestampOfTierChange'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('customerProfileID' in _v) && !('CustomerProfileID' in _v)) || (_v['customerProfileID'] === undefined && _v['CustomerProfileID'] === undefined)) return false;
+    if ((!('loyaltyProgramID' in _v) && !('LoyaltyProgramID' in _v)) || (_v['loyaltyProgramID'] === undefined && _v['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('subledgerID' in _v) && !('SubledgerID' in _v)) || (_v['subledgerID'] === undefined && _v['SubledgerID'] === undefined)) return false;
+    if ((!('currentPoints' in _v) && !('CurrentPoints' in _v)) || (_v['currentPoints'] === undefined && _v['CurrentPoints'] === undefined)) return false;
+    if ((!('oldTier' in _v) && !('OldTier' in _v)) || (_v['oldTier'] === undefined && _v['OldTier'] === undefined)) return false;
+    if ((!('timestampOfTierChange' in _v) && !('TimestampOfTierChange' in _v)) || (_v['timestampOfTierChange'] === undefined && _v['TimestampOfTierChange'] === undefined)) return false;
     return true;
 }
 

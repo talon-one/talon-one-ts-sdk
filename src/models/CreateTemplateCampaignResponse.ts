@@ -65,8 +65,9 @@ export interface CreateTemplateCampaignResponse {
  * Check if a given object implements the CreateTemplateCampaignResponse interface.
  */
 export function instanceOfCreateTemplateCampaignResponse(value: object): value is CreateTemplateCampaignResponse {
-    if (!('campaign' in value) || value['campaign'] === undefined) return false;
-    if (!('ruleset' in value) || value['ruleset'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('campaign' in _v) || _v['campaign'] === undefined) return false;
+    if (!('ruleset' in _v) || _v['ruleset'] === undefined) return false;
     return true;
 }
 

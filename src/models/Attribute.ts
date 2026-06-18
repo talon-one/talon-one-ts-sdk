@@ -177,16 +177,17 @@ export type AttributeAllowedSubscriptionsEnum = typeof AttributeAllowedSubscript
  * Check if a given object implements the Attribute interface.
  */
 export function instanceOfAttribute(value: object): value is Attribute {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('entity' in value) || value['entity'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('suggestions' in value) || value['suggestions'] === undefined) return false;
-    if (!('editable' in value) || value['editable'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('entity' in _v) || _v['entity'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
+    if (!('suggestions' in _v) || _v['suggestions'] === undefined) return false;
+    if (!('editable' in _v) || _v['editable'] === undefined) return false;
     return true;
 }
 

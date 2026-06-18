@@ -67,10 +67,11 @@ export interface PendingActivePointsData {
  * Check if a given object implements the PendingActivePointsData interface.
  */
 export function instanceOfPendingActivePointsData(value: object): value is PendingActivePointsData {
-    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
-    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
-    if ((!('customerProfileID' in value) && !('CustomerProfileID' in value)) || (value['customerProfileID'] === undefined && value['CustomerProfileID'] === undefined)) return false;
-    if ((!('points' in value) && !('Points' in value)) || (value['points'] === undefined && value['Points'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('loyaltyProgramID' in _v) && !('LoyaltyProgramID' in _v)) || (_v['loyaltyProgramID'] === undefined && _v['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('subledgerID' in _v) && !('SubledgerID' in _v)) || (_v['subledgerID'] === undefined && _v['SubledgerID'] === undefined)) return false;
+    if ((!('customerProfileID' in _v) && !('CustomerProfileID' in _v)) || (_v['customerProfileID'] === undefined && _v['CustomerProfileID'] === undefined)) return false;
+    if ((!('points' in _v) && !('Points' in _v)) || (_v['points'] === undefined && _v['Points'] === undefined)) return false;
     return true;
 }
 

@@ -55,11 +55,12 @@ export interface StrikethroughTrigger {
  * Check if a given object implements the StrikethroughTrigger interface.
  */
 export function instanceOfStrikethroughTrigger(value: object): value is StrikethroughTrigger {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('triggeredAt' in value) || value['triggeredAt'] === undefined) return false;
-    if (!('totalAffectedItems' in value) || value['totalAffectedItems'] === undefined) return false;
-    if (!('payload' in value) || value['payload'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('triggeredAt' in _v) || _v['triggeredAt'] === undefined) return false;
+    if (!('totalAffectedItems' in _v) || _v['totalAffectedItems'] === undefined) return false;
+    if (!('payload' in _v) || _v['payload'] === undefined) return false;
     return true;
 }
 

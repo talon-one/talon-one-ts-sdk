@@ -38,6 +38,7 @@ export interface CampaignTemplateCouponReservationSettings {
  * Check if a given object implements the CampaignTemplateCouponReservationSettings interface.
  */
 export function instanceOfCampaignTemplateCouponReservationSettings(value: object): value is CampaignTemplateCouponReservationSettings {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

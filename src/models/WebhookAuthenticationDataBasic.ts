@@ -37,8 +37,9 @@ export interface WebhookAuthenticationDataBasic {
  * Check if a given object implements the WebhookAuthenticationDataBasic interface.
  */
 export function instanceOfWebhookAuthenticationDataBasic(value: object): value is WebhookAuthenticationDataBasic {
-    if (!('username' in value) || value['username'] === undefined) return false;
-    if (!('password' in value) || value['password'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('username' in _v) || _v['username'] === undefined) return false;
+    if (!('password' in _v) || _v['password'] === undefined) return false;
     return true;
 }
 

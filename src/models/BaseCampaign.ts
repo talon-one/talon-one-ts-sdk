@@ -190,11 +190,12 @@ export type BaseCampaignTypeEnum = typeof BaseCampaignTypeEnum[keyof typeof Base
  * Check if a given object implements the BaseCampaign interface.
  */
 export function instanceOfBaseCampaign(value: object): value is BaseCampaign {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('state' in value) || value['state'] === undefined) return false;
-    if (!('tags' in value) || value['tags'] === undefined) return false;
-    if (!('features' in value) || value['features'] === undefined) return false;
-    if (!('limits' in value) || value['limits'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('state' in _v) || _v['state'] === undefined) return false;
+    if (!('tags' in _v) || _v['tags'] === undefined) return false;
+    if (!('features' in _v) || _v['features'] === undefined) return false;
+    if (!('limits' in _v) || _v['limits'] === undefined) return false;
     return true;
 }
 

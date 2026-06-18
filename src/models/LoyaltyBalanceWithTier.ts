@@ -99,6 +99,7 @@ export interface LoyaltyBalanceWithTier {
  * Check if a given object implements the LoyaltyBalanceWithTier interface.
  */
 export function instanceOfLoyaltyBalanceWithTier(value: object): value is LoyaltyBalanceWithTier {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

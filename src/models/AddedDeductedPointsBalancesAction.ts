@@ -72,10 +72,11 @@ export type AddedDeductedPointsBalancesActionOperationEnum = typeof AddedDeducte
  * Check if a given object implements the AddedDeductedPointsBalancesAction interface.
  */
 export function instanceOfAddedDeductedPointsBalancesAction(value: object): value is AddedDeductedPointsBalancesAction {
-    if ((!('amount' in value) && !('Amount' in value)) || (value['amount'] === undefined && value['Amount'] === undefined)) return false;
-    if ((!('reason' in value) && !('Reason' in value)) || (value['reason'] === undefined && value['Reason'] === undefined)) return false;
-    if ((!('operation' in value) && !('Operation' in value)) || (value['operation'] === undefined && value['Operation'] === undefined)) return false;
-    if ((!('transactionUUID' in value) && !('TransactionUUID' in value)) || (value['transactionUUID'] === undefined && value['TransactionUUID'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('amount' in _v) && !('Amount' in _v)) || (_v['amount'] === undefined && _v['Amount'] === undefined)) return false;
+    if ((!('reason' in _v) && !('Reason' in _v)) || (_v['reason'] === undefined && _v['Reason'] === undefined)) return false;
+    if ((!('operation' in _v) && !('Operation' in _v)) || (_v['operation'] === undefined && _v['Operation'] === undefined)) return false;
+    if ((!('transactionUUID' in _v) && !('TransactionUUID' in _v)) || (_v['transactionUUID'] === undefined && _v['TransactionUUID'] === undefined)) return false;
     return true;
 }
 

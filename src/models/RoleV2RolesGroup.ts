@@ -57,6 +57,7 @@ export interface RoleV2RolesGroup {
  * Check if a given object implements the RoleV2RolesGroup interface.
  */
 export function instanceOfRoleV2RolesGroup(value: object): value is RoleV2RolesGroup {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

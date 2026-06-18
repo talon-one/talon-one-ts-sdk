@@ -85,9 +85,10 @@ export type SummaryCampaignStoreBudgetPeriodEnum = typeof SummaryCampaignStoreBu
  * Check if a given object implements the SummaryCampaignStoreBudget interface.
  */
 export function instanceOfSummaryCampaignStoreBudget(value: object): value is SummaryCampaignStoreBudget {
-    if (!('action' in value) || value['action'] === undefined) return false;
-    if (!('storeCount' in value) || value['storeCount'] === undefined) return false;
-    if (!('imported' in value) || value['imported'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('action' in _v) || _v['action'] === undefined) return false;
+    if (!('storeCount' in _v) || _v['storeCount'] === undefined) return false;
+    if (!('imported' in _v) || _v['imported'] === undefined) return false;
     return true;
 }
 

@@ -31,7 +31,8 @@ export interface ReferralCreatedEffectProps {
  * Check if a given object implements the ReferralCreatedEffectProps interface.
  */
 export function instanceOfReferralCreatedEffectProps(value: object): value is ReferralCreatedEffectProps {
-    if (!('value' in value) || value['value'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
     return true;
 }
 

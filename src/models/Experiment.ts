@@ -135,11 +135,12 @@ export type ExperimentGoalTypeEnum = typeof ExperimentGoalTypeEnum[keyof typeof 
  * Check if a given object implements the Experiment interface.
  */
 export function instanceOfExperiment(value: object): value is Experiment {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('state' in value) || value['state'] === undefined) return false;
-    if (!('goalType' in value) || value['goalType'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('state' in _v) || _v['state'] === undefined) return false;
+    if (!('goalType' in _v) || _v['goalType'] === undefined) return false;
     return true;
 }
 

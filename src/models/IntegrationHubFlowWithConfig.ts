@@ -72,9 +72,10 @@ export interface IntegrationHubFlowWithConfig {
  * Check if a given object implements the IntegrationHubFlowWithConfig interface.
  */
 export function instanceOfIntegrationHubFlowWithConfig(value: object): value is IntegrationHubFlowWithConfig {
-    if ((!('eventType' in value) && !('EventType' in value)) || (value['eventType'] === undefined && value['EventType'] === undefined)) return false;
-    if ((!('integrationHubFlowUrl' in value) && !('IntegrationHubFlowUrl' in value)) || (value['integrationHubFlowUrl'] === undefined && value['IntegrationHubFlowUrl'] === undefined)) return false;
-    if ((!('config' in value) && !('Config' in value)) || (value['config'] === undefined && value['Config'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('eventType' in _v) && !('EventType' in _v)) || (_v['eventType'] === undefined && _v['EventType'] === undefined)) return false;
+    if ((!('integrationHubFlowUrl' in _v) && !('IntegrationHubFlowUrl' in _v)) || (_v['integrationHubFlowUrl'] === undefined && _v['IntegrationHubFlowUrl'] === undefined)) return false;
+    if ((!('config' in _v) && !('Config' in _v)) || (_v['config'] === undefined && _v['Config'] === undefined)) return false;
     return true;
 }
 

@@ -45,6 +45,7 @@ export interface ApplicationCIFReferences {
  * Check if a given object implements the ApplicationCIFReferences interface.
  */
 export function instanceOfApplicationCIFReferences(value: object): value is ApplicationCIFReferences {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

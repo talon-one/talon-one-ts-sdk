@@ -39,7 +39,8 @@ export interface OktaEventPayload {
  * Check if a given object implements the OktaEventPayload interface.
  */
 export function instanceOfOktaEventPayload(value: object): value is OktaEventPayload {
-    if (!('data' in value) || value['data'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('data' in _v) || _v['data'] === undefined) return false;
     return true;
 }
 

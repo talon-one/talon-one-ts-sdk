@@ -165,12 +165,13 @@ export type CreateAchievementV2ActivationPolicyEnum = typeof CreateAchievementV2
  * Check if a given object implements the CreateAchievementV2 interface.
  */
 export function instanceOfCreateAchievementV2(value: object): value is CreateAchievementV2 {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('target' in value) || value['target'] === undefined) return false;
-    if (!('sandbox' in value) || value['sandbox'] === undefined) return false;
-    if (!('timezone' in value) || value['timezone'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
+    if (!('target' in _v) || _v['target'] === undefined) return false;
+    if (!('sandbox' in _v) || _v['sandbox'] === undefined) return false;
+    if (!('timezone' in _v) || _v['timezone'] === undefined) return false;
     return true;
 }
 

@@ -49,6 +49,7 @@ export interface RemoveFromAudienceEffectProps {
  * Check if a given object implements the RemoveFromAudienceEffectProps interface.
  */
 export function instanceOfRemoveFromAudienceEffectProps(value: object): value is RemoveFromAudienceEffectProps {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

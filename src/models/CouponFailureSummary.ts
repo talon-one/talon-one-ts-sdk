@@ -85,14 +85,15 @@ export interface CouponFailureSummary {
  * Check if a given object implements the CouponFailureSummary interface.
  */
 export function instanceOfCouponFailureSummary(value: object): value is CouponFailureSummary {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('eventID' in value) || value['eventID'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('couponCode' in value) || value['couponCode'] === undefined) return false;
-    if (!('language' in value) || value['language'] === undefined) return false;
-    if (!('summary' in value) || value['summary'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('eventID' in _v) || _v['eventID'] === undefined) return false;
+    if (!('status' in _v) || _v['status'] === undefined) return false;
+    if (!('couponCode' in _v) || _v['couponCode'] === undefined) return false;
+    if (!('language' in _v) || _v['language'] === undefined) return false;
+    if (!('summary' in _v) || _v['summary'] === undefined) return false;
+    if (!('createdAt' in _v) || _v['createdAt'] === undefined) return false;
+    if (!('updatedAt' in _v) || _v['updatedAt'] === undefined) return false;
     return true;
 }
 

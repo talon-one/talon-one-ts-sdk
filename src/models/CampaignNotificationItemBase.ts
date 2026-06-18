@@ -32,7 +32,8 @@ export interface CampaignNotificationItemBase {
  * Check if a given object implements the CampaignNotificationItemBase interface.
  */
 export function instanceOfCampaignNotificationItemBase(value: object): value is CampaignNotificationItemBase {
-    if ((!('event' in value) && !('Event' in value)) || (value['event'] === undefined && value['Event'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('event' in _v) && !('Event' in _v)) || (_v['event'] === undefined && _v['Event'] === undefined)) return false;
     return true;
 }
 

@@ -57,10 +57,11 @@ export interface SkuUnitAnalyticsDataPoint {
  * Check if a given object implements the SkuUnitAnalyticsDataPoint interface.
  */
 export function instanceOfSkuUnitAnalyticsDataPoint(value: object): value is SkuUnitAnalyticsDataPoint {
-    if (!('startTime' in value) || value['startTime'] === undefined) return false;
-    if (!('endTime' in value) || value['endTime'] === undefined) return false;
-    if (!('unitsSold' in value) || value['unitsSold'] === undefined) return false;
-    if (!('sku' in value) || value['sku'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('startTime' in _v) || _v['startTime'] === undefined) return false;
+    if (!('endTime' in _v) || _v['endTime'] === undefined) return false;
+    if (!('unitsSold' in _v) || _v['unitsSold'] === undefined) return false;
+    if (!('sku' in _v) || _v['sku'] === undefined) return false;
     return true;
 }
 

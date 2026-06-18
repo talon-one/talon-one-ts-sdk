@@ -70,12 +70,13 @@ export interface IncreaseAchievementProgressEffectProps {
  * Check if a given object implements the IncreaseAchievementProgressEffectProps interface.
  */
 export function instanceOfIncreaseAchievementProgressEffectProps(value: object): value is IncreaseAchievementProgressEffectProps {
-    if (!('achievementId' in value) || value['achievementId'] === undefined) return false;
-    if (!('achievementName' in value) || value['achievementName'] === undefined) return false;
-    if (!('delta' in value) || value['delta'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('target' in value) || value['target'] === undefined) return false;
-    if (!('isJustCompleted' in value) || value['isJustCompleted'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('achievementId' in _v) || _v['achievementId'] === undefined) return false;
+    if (!('achievementName' in _v) || _v['achievementName'] === undefined) return false;
+    if (!('delta' in _v) || _v['delta'] === undefined) return false;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
+    if (!('target' in _v) || _v['target'] === undefined) return false;
+    if (!('isJustCompleted' in _v) || _v['isJustCompleted'] === undefined) return false;
     return true;
 }
 

@@ -31,7 +31,8 @@ export interface Endpoint {
  * Check if a given object implements the Endpoint interface.
  */
 export function instanceOfEndpoint(value: object): value is Endpoint {
-    if (!('path' in value) || value['path'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('path' in _v) || _v['path'] === undefined) return false;
     return true;
 }
 

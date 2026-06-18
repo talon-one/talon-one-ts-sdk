@@ -84,6 +84,7 @@ export type CampaignVersionsRevisionFrontendStateEnum = typeof CampaignVersionsR
  * Check if a given object implements the CampaignVersions interface.
  */
 export function instanceOfCampaignVersions(value: object): value is CampaignVersions {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

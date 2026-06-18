@@ -113,12 +113,13 @@ export interface ApplicationEvent {
  * Check if a given object implements the ApplicationEvent interface.
  */
 export function instanceOfApplicationEvent(value: object): value is ApplicationEvent {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('attributes' in value) || value['attributes'] === undefined) return false;
-    if (!('effects' in value) || value['effects'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('attributes' in _v) || _v['attributes'] === undefined) return false;
+    if (!('effects' in _v) || _v['effects'] === undefined) return false;
     return true;
 }
 

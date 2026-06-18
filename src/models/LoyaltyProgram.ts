@@ -294,12 +294,13 @@ export type LoyaltyProgramReturnPolicyEnum = typeof LoyaltyProgramReturnPolicyEn
  * Check if a given object implements the LoyaltyProgram interface.
  */
 export function instanceOfLoyaltyProgram(value: object): value is LoyaltyProgram {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('accountID' in value) || value['accountID'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('timezone' in value) || value['timezone'] === undefined) return false;
-    if (!('cardBased' in value) || value['cardBased'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('accountID' in _v) || _v['accountID'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('timezone' in _v) || _v['timezone'] === undefined) return false;
+    if (!('cardBased' in _v) || _v['cardBased'] === undefined) return false;
     return true;
 }
 

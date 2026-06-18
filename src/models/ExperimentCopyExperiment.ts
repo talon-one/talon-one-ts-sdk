@@ -73,8 +73,9 @@ export type ExperimentCopyExperimentGoalTypeEnum = typeof ExperimentCopyExperime
  * Check if a given object implements the ExperimentCopyExperiment interface.
  */
 export function instanceOfExperimentCopyExperiment(value: object): value is ExperimentCopyExperiment {
-    if (!('isVariantAssignmentExternal' in value) || value['isVariantAssignmentExternal'] === undefined) return false;
-    if (!('campaign' in value) || value['campaign'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('isVariantAssignmentExternal' in _v) || _v['isVariantAssignmentExternal'] === undefined) return false;
+    if (!('campaign' in _v) || _v['campaign'] === undefined) return false;
     return true;
 }
 

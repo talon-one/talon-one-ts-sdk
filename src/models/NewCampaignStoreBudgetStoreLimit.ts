@@ -39,8 +39,9 @@ export interface NewCampaignStoreBudgetStoreLimit {
  * Check if a given object implements the NewCampaignStoreBudgetStoreLimit interface.
  */
 export function instanceOfNewCampaignStoreBudgetStoreLimit(value: object): value is NewCampaignStoreBudgetStoreLimit {
-    if (!('storeId' in value) || value['storeId'] === undefined) return false;
-    if (!('limit' in value) || value['limit'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('storeId' in _v) || _v['storeId'] === undefined) return false;
+    if (!('limit' in _v) || _v['limit'] === undefined) return false;
     return true;
 }
 

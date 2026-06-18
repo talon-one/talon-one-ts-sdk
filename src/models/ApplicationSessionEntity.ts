@@ -31,7 +31,8 @@ export interface ApplicationSessionEntity {
  * Check if a given object implements the ApplicationSessionEntity interface.
  */
 export function instanceOfApplicationSessionEntity(value: object): value is ApplicationSessionEntity {
-    if (!('sessionId' in value) || value['sessionId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('sessionId' in _v) || _v['sessionId'] === undefined) return false;
     return true;
 }
 

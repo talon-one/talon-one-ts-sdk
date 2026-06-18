@@ -31,7 +31,8 @@ export interface EmailEntity {
  * Check if a given object implements the EmailEntity interface.
  */
 export function instanceOfEmailEntity(value: object): value is EmailEntity {
-    if (!('email' in value) || value['email'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('email' in _v) || _v['email'] === undefined) return false;
     return true;
 }
 

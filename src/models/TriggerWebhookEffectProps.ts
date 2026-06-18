@@ -37,8 +37,9 @@ export interface TriggerWebhookEffectProps {
  * Check if a given object implements the TriggerWebhookEffectProps interface.
  */
 export function instanceOfTriggerWebhookEffectProps(value: object): value is TriggerWebhookEffectProps {
-    if (!('webhookId' in value) || value['webhookId'] === undefined) return false;
-    if (!('webhookName' in value) || value['webhookName'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('webhookId' in _v) || _v['webhookId'] === undefined) return false;
+    if (!('webhookName' in _v) || _v['webhookName'] === undefined) return false;
     return true;
 }
 

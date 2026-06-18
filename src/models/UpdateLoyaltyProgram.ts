@@ -227,6 +227,7 @@ export type UpdateLoyaltyProgramReturnPolicyEnum = typeof UpdateLoyaltyProgramRe
  * Check if a given object implements the UpdateLoyaltyProgram interface.
  */
 export function instanceOfUpdateLoyaltyProgram(value: object): value is UpdateLoyaltyProgram {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

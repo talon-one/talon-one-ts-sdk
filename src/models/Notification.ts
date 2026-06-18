@@ -43,9 +43,10 @@ export interface Notification {
  * Check if a given object implements the Notification interface.
  */
 export function instanceOfNotification(value: object): value is Notification {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
     return true;
 }
 

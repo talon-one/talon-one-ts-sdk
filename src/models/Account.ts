@@ -144,17 +144,18 @@ export type AccountStateEnum = typeof AccountStateEnum[keyof typeof AccountState
  * Check if a given object implements the Account interface.
  */
 export function instanceOfAccount(value: object): value is Account {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('modified' in value) || value['modified'] === undefined) return false;
-    if (!('companyName' in value) || value['companyName'] === undefined) return false;
-    if (!('domainName' in value) || value['domainName'] === undefined) return false;
-    if (!('state' in value) || value['state'] === undefined) return false;
-    if (!('billingEmail' in value) || value['billingEmail'] === undefined) return false;
-    if (!('applicationCount' in value) || value['applicationCount'] === undefined) return false;
-    if (!('userCount' in value) || value['userCount'] === undefined) return false;
-    if (!('campaignsActiveCount' in value) || value['campaignsActiveCount'] === undefined) return false;
-    if (!('campaignsInactiveCount' in value) || value['campaignsInactiveCount'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('modified' in _v) || _v['modified'] === undefined) return false;
+    if (!('companyName' in _v) || _v['companyName'] === undefined) return false;
+    if (!('domainName' in _v) || _v['domainName'] === undefined) return false;
+    if (!('state' in _v) || _v['state'] === undefined) return false;
+    if (!('billingEmail' in _v) || _v['billingEmail'] === undefined) return false;
+    if (!('applicationCount' in _v) || _v['applicationCount'] === undefined) return false;
+    if (!('userCount' in _v) || _v['userCount'] === undefined) return false;
+    if (!('campaignsActiveCount' in _v) || _v['campaignsActiveCount'] === undefined) return false;
+    if (!('campaignsInactiveCount' in _v) || _v['campaignsInactiveCount'] === undefined) return false;
     return true;
 }
 

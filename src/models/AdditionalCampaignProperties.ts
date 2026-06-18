@@ -43,6 +43,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     couponRedemptionCount?: number;
     /**
@@ -51,6 +52,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     referralRedemptionCount?: number;
     /**
@@ -59,6 +61,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     discountCount?: number;
     /**
@@ -67,6 +70,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     discountEffectCount?: number;
     /**
@@ -75,6 +79,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     couponCreationCount?: number;
     /**
@@ -83,6 +88,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     customEffectCount?: number;
     /**
@@ -91,6 +97,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     referralCreationCount?: number;
     /**
@@ -99,6 +106,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     addFreeItemEffectCount?: number;
     /**
@@ -107,6 +115,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     awardedGiveawaysCount?: number;
     /**
@@ -115,6 +124,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     createdLoyaltyPointsCount?: number;
     /**
@@ -123,6 +133,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     createdLoyaltyPointsEffectCount?: number;
     /**
@@ -131,6 +142,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     redeemedLoyaltyPointsCount?: number;
     /**
@@ -139,6 +151,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     redeemedLoyaltyPointsEffectCount?: number;
     /**
@@ -147,6 +160,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     callApiEffectCount?: number;
     /**
@@ -155,6 +169,7 @@ export interface AdditionalCampaignProperties {
      * 
      * @type {number}
      * @memberof AdditionalCampaignProperties
+     * @deprecated
      */
     reservecouponEffectCount?: number;
     /**
@@ -234,8 +249,9 @@ export type AdditionalCampaignPropertiesFrontendStateEnum = typeof AdditionalCam
  * Check if a given object implements the AdditionalCampaignProperties interface.
  */
 export function instanceOfAdditionalCampaignProperties(value: object): value is AdditionalCampaignProperties {
-    if (!('frontendState' in value) || value['frontendState'] === undefined) return false;
-    if (!('storesImported' in value) || value['storesImported'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('frontendState' in _v) || _v['frontendState'] === undefined) return false;
+    if (!('storesImported' in _v) || _v['storesImported'] === undefined) return false;
     return true;
 }
 

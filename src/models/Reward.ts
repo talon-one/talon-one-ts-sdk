@@ -102,7 +102,7 @@ export interface Reward {
      * @type {Rule}
      * @memberof Reward
      */
-    visibilityConditions?: Rule;
+    eligibilityConditions?: Rule;
     /**
      * Rule to apply.
      * 
@@ -155,14 +155,15 @@ export type RewardStatusEnum = typeof RewardStatusEnum[keyof typeof RewardStatus
  * Check if a given object implements the Reward interface.
  */
 export function instanceOfReward(value: object): value is Reward {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('apiName' in value) || value['apiName'] === undefined) return false;
-    if (!('applicationIds' in value) || value['applicationIds'] === undefined) return false;
-    if (!('sandbox' in value) || value['sandbox'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('apiName' in _v) || _v['apiName'] === undefined) return false;
+    if (!('applicationIds' in _v) || _v['applicationIds'] === undefined) return false;
+    if (!('sandbox' in _v) || _v['sandbox'] === undefined) return false;
+    if (!('status' in _v) || _v['status'] === undefined) return false;
     return true;
 }
 
@@ -184,7 +185,7 @@ export function RewardFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
         'description': json['description'] == null ? undefined : json['description'],
         'applicationIds': json['applicationIds'],
         'sandbox': json['sandbox'],
-        'visibilityConditions': json['visibilityConditions'] == null ? undefined : RuleFromJSON(json['visibilityConditions']),
+        'eligibilityConditions': json['eligibilityConditions'] == null ? undefined : RuleFromJSON(json['eligibilityConditions']),
         'rule': json['rule'] == null ? undefined : RuleFromJSON(json['rule']),
         'bindings': json['bindings'] == null ? undefined : ((json['bindings'] as Array<any>).map(BindingFromJSON)),
         'modified': json['modified'] == null ? undefined : (new Date(json['modified'])),
@@ -212,7 +213,7 @@ export function RewardToJSONTyped(value?: Reward | null, ignoreDiscriminator: bo
         'description': value['description'],
         'applicationIds': value['applicationIds'],
         'sandbox': value['sandbox'],
-        'visibilityConditions': RuleToJSON(value['visibilityConditions']),
+        'eligibilityConditions': RuleToJSON(value['eligibilityConditions']),
         'rule': RuleToJSON(value['rule']),
         'bindings': value['bindings'] == null ? undefined : ((value['bindings'] as Array<any>).map(BindingToJSON)),
         'modified': value['modified'] == null ? value['modified'] : value['modified'].toISOString(),

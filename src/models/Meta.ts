@@ -70,6 +70,7 @@ export interface Meta {
  * Check if a given object implements the Meta interface.
  */
 export function instanceOfMeta(value: object): value is Meta {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

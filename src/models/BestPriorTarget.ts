@@ -48,7 +48,8 @@ export type BestPriorTargetTargetTypeEnum = typeof BestPriorTargetTargetTypeEnum
  * Check if a given object implements the BestPriorTarget interface.
  */
 export function instanceOfBestPriorTarget(value: object): value is BestPriorTarget {
-    if (!('targetType' in value) || value['targetType'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('targetType' in _v) || _v['targetType'] === undefined) return false;
     return true;
 }
 

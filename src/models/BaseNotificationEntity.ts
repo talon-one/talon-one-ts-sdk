@@ -37,7 +37,8 @@ export interface BaseNotificationEntity {
  * Check if a given object implements the BaseNotificationEntity interface.
  */
 export function instanceOfBaseNotificationEntity(value: object): value is BaseNotificationEntity {
-    if (!('policy' in value) || value['policy'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('policy' in _v) || _v['policy'] === undefined) return false;
     return true;
 }
 

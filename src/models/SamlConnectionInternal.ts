@@ -37,8 +37,9 @@ export interface SamlConnectionInternal {
  * Check if a given object implements the SamlConnectionInternal interface.
  */
 export function instanceOfSamlConnectionInternal(value: object): value is SamlConnectionInternal {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('metadataDocument' in value) || value['metadataDocument'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('metadataDocument' in _v) || _v['metadataDocument'] === undefined) return false;
     return true;
 }
 

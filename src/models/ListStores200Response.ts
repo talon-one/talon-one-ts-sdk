@@ -51,7 +51,8 @@ export interface ListStores200Response {
  * Check if a given object implements the ListStores200Response interface.
  */
 export function instanceOfListStores200Response(value: object): value is ListStores200Response {
-    if (!('data' in value) || value['data'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('data' in _v) || _v['data'] === undefined) return false;
     return true;
 }
 

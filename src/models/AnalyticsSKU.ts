@@ -69,8 +69,9 @@ export interface AnalyticsSKU {
  * Check if a given object implements the AnalyticsSKU interface.
  */
 export function instanceOfAnalyticsSKU(value: object): value is AnalyticsSKU {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('sku' in value) || value['sku'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('sku' in _v) || _v['sku'] === undefined) return false;
     return true;
 }
 

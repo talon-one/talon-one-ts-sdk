@@ -49,8 +49,9 @@ export interface NewGiveawaysPool {
  * Check if a given object implements the NewGiveawaysPool interface.
  */
 export function instanceOfNewGiveawaysPool(value: object): value is NewGiveawaysPool {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('sandbox' in value) || value['sandbox'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('sandbox' in _v) || _v['sandbox'] === undefined) return false;
     return true;
 }
 

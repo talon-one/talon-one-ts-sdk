@@ -75,9 +75,10 @@ export interface Rule {
  * Check if a given object implements the Rule interface.
  */
 export function instanceOfRule(value: object): value is Rule {
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('condition' in value) || value['condition'] === undefined) return false;
-    if (!('effects' in value) || value['effects'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('condition' in _v) || _v['condition'] === undefined) return false;
+    if (!('effects' in _v) || _v['effects'] === undefined) return false;
     return true;
 }
 

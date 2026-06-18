@@ -31,7 +31,8 @@ export interface NotificationActivation {
  * Check if a given object implements the NotificationActivation interface.
  */
 export function instanceOfNotificationActivation(value: object): value is NotificationActivation {
-    if (!('enabled' in value) || value['enabled'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('enabled' in _v) || _v['enabled'] === undefined) return false;
     return true;
 }
 

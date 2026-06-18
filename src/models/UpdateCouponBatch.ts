@@ -70,6 +70,7 @@ export interface UpdateCouponBatch {
  * Check if a given object implements the UpdateCouponBatch interface.
  */
 export function instanceOfUpdateCouponBatch(value: object): value is UpdateCouponBatch {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

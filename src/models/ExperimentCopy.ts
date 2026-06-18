@@ -46,8 +46,9 @@ export interface ExperimentCopy {
  * Check if a given object implements the ExperimentCopy interface.
  */
 export function instanceOfExperimentCopy(value: object): value is ExperimentCopy {
-    if (!('targetApplicationId' in value) || value['targetApplicationId'] === undefined) return false;
-    if (!('experiment' in value) || value['experiment'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('targetApplicationId' in _v) || _v['targetApplicationId'] === undefined) return false;
+    if (!('experiment' in _v) || _v['experiment'] === undefined) return false;
     return true;
 }
 

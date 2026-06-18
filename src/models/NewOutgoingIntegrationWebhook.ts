@@ -43,8 +43,9 @@ export interface NewOutgoingIntegrationWebhook {
  * Check if a given object implements the NewOutgoingIntegrationWebhook interface.
  */
 export function instanceOfNewOutgoingIntegrationWebhook(value: object): value is NewOutgoingIntegrationWebhook {
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('applicationIds' in value) || value['applicationIds'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('applicationIds' in _v) || _v['applicationIds'] === undefined) return false;
     return true;
 }
 

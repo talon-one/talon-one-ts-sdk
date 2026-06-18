@@ -37,7 +37,8 @@ export interface GenerateCouponFailureSummary {
  * Check if a given object implements the GenerateCouponFailureSummary interface.
  */
 export function instanceOfGenerateCouponFailureSummary(value: object): value is GenerateCouponFailureSummary {
-    if (!('eventID' in value) || value['eventID'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('eventID' in _v) || _v['eventID'] === undefined) return false;
     return true;
 }
 

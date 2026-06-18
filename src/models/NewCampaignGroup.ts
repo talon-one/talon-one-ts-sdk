@@ -49,7 +49,8 @@ export interface NewCampaignGroup {
  * Check if a given object implements the NewCampaignGroup interface.
  */
 export function instanceOfNewCampaignGroup(value: object): value is NewCampaignGroup {
-    if (!('name' in value) || value['name'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
     return true;
 }
 

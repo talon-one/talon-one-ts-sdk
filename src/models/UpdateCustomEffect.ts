@@ -81,11 +81,12 @@ export interface UpdateCustomEffect {
  * Check if a given object implements the UpdateCustomEffect interface.
  */
 export function instanceOfUpdateCustomEffect(value: object): value is UpdateCustomEffect {
-    if (!('applicationIds' in value) || value['applicationIds'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('payload' in value) || value['payload'] === undefined) return false;
-    if (!('enabled' in value) || value['enabled'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('applicationIds' in _v) || _v['applicationIds'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('payload' in _v) || _v['payload'] === undefined) return false;
+    if (!('enabled' in _v) || _v['enabled'] === undefined) return false;
     return true;
 }
 

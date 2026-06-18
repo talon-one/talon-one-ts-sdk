@@ -39,8 +39,9 @@ export interface CampaignEligibilityExperiment {
  * Check if a given object implements the CampaignEligibilityExperiment interface.
  */
 export function instanceOfCampaignEligibilityExperiment(value: object): value is CampaignEligibilityExperiment {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('variantId' in value) || value['variantId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('variantId' in _v) || _v['variantId'] === undefined) return false;
     return true;
 }
 

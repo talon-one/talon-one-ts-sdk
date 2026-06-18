@@ -52,8 +52,9 @@ export interface IntegrationEvent {
  * Check if a given object implements the IntegrationEvent interface.
  */
 export function instanceOfIntegrationEvent(value: object): value is IntegrationEvent {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('attributes' in value) || value['attributes'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('attributes' in _v) || _v['attributes'] === undefined) return false;
     return true;
 }
 

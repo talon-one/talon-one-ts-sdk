@@ -49,6 +49,7 @@ export interface UpdateRole {
  * Check if a given object implements the UpdateRole interface.
  */
 export function instanceOfUpdateRole(value: object): value is UpdateRole {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

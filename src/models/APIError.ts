@@ -51,8 +51,9 @@ export interface APIError {
  * Check if a given object implements the APIError interface.
  */
 export function instanceOfAPIError(value: object): value is APIError {
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('source' in value) || value['source'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('source' in _v) || _v['source'] === undefined) return false;
     return true;
 }
 

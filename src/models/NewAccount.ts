@@ -31,7 +31,8 @@ export interface NewAccount {
  * Check if a given object implements the NewAccount interface.
  */
 export function instanceOfNewAccount(value: object): value is NewAccount {
-    if (!('companyName' in value) || value['companyName'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('companyName' in _v) || _v['companyName'] === undefined) return false;
     return true;
 }
 

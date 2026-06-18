@@ -33,7 +33,8 @@ export interface RollbackReferralEffectProps {
  * Check if a given object implements the RollbackReferralEffectProps interface.
  */
 export function instanceOfRollbackReferralEffectProps(value: object): value is RollbackReferralEffectProps {
-    if (!('value' in value) || value['value'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
     return true;
 }
 

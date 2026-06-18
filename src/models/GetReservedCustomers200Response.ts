@@ -45,8 +45,9 @@ export interface GetReservedCustomers200Response {
  * Check if a given object implements the GetReservedCustomers200Response interface.
  */
 export function instanceOfGetReservedCustomers200Response(value: object): value is GetReservedCustomers200Response {
-    if (!('totalResultSize' in value) || value['totalResultSize'] === undefined) return false;
-    if (!('data' in value) || value['data'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('totalResultSize' in _v) || _v['totalResultSize'] === undefined) return false;
+    if (!('data' in _v) || _v['data'] === undefined) return false;
     return true;
 }
 

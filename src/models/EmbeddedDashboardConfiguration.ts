@@ -37,8 +37,9 @@ export interface EmbeddedDashboardConfiguration {
  * Check if a given object implements the EmbeddedDashboardConfiguration interface.
  */
 export function instanceOfEmbeddedDashboardConfiguration(value: object): value is EmbeddedDashboardConfiguration {
-    if (!('workspaceId' in value) || value['workspaceId'] === undefined) return false;
-    if (!('dashboardId' in value) || value['dashboardId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('workspaceId' in _v) || _v['workspaceId'] === undefined) return false;
+    if (!('dashboardId' in _v) || _v['dashboardId'] === undefined) return false;
     return true;
 }
 

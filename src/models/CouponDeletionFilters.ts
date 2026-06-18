@@ -132,6 +132,7 @@ export type CouponDeletionFiltersValidEnum = typeof CouponDeletionFiltersValidEn
  * Check if a given object implements the CouponDeletionFilters interface.
  */
 export function instanceOfCouponDeletionFilters(value: object): value is CouponDeletionFilters {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

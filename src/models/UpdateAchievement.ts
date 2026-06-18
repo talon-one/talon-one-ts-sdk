@@ -162,6 +162,7 @@ export type UpdateAchievementActivationPolicyEnum = typeof UpdateAchievementActi
  * Check if a given object implements the UpdateAchievement interface.
  */
 export function instanceOfUpdateAchievement(value: object): value is UpdateAchievement {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

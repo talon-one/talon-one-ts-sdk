@@ -58,6 +58,7 @@ export interface LoyaltyCardBalances {
  * Check if a given object implements the LoyaltyCardBalances interface.
  */
 export function instanceOfLoyaltyCardBalances(value: object): value is LoyaltyCardBalances {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

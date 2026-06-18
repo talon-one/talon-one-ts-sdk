@@ -63,9 +63,10 @@ export interface FunctionDef {
  * Check if a given object implements the FunctionDef interface.
  */
 export function instanceOfFunctionDef(value: object): value is FunctionDef {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('args' in value) || value['args'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('args' in _v) || _v['args'] === undefined) return false;
     return true;
 }
 

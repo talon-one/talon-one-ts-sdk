@@ -55,6 +55,7 @@ export type GenerateLoyaltyCardStatusEnum = typeof GenerateLoyaltyCardStatusEnum
  * Check if a given object implements the GenerateLoyaltyCard interface.
  */
 export function instanceOfGenerateLoyaltyCard(value: object): value is GenerateLoyaltyCard {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

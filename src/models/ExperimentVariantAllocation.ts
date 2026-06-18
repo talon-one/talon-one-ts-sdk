@@ -37,8 +37,9 @@ export interface ExperimentVariantAllocation {
  * Check if a given object implements the ExperimentVariantAllocation interface.
  */
 export function instanceOfExperimentVariantAllocation(value: object): value is ExperimentVariantAllocation {
-    if (!('experimentID' in value) || value['experimentID'] === undefined) return false;
-    if (!('variantID' in value) || value['variantID'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('experimentID' in _v) || _v['experimentID'] === undefined) return false;
+    if (!('variantID' in _v) || _v['variantID'] === undefined) return false;
     return true;
 }
 

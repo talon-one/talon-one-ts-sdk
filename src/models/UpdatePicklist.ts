@@ -50,8 +50,9 @@ export type UpdatePicklistTypeEnum = typeof UpdatePicklistTypeEnum[keyof typeof 
  * Check if a given object implements the UpdatePicklist interface.
  */
 export function instanceOfUpdatePicklist(value: object): value is UpdatePicklist {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('values' in value) || value['values'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('values' in _v) || _v['values'] === undefined) return false;
     return true;
 }
 

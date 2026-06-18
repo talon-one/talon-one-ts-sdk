@@ -39,8 +39,9 @@ export interface CodeGeneratorSettings {
  * Check if a given object implements the CodeGeneratorSettings interface.
  */
 export function instanceOfCodeGeneratorSettings(value: object): value is CodeGeneratorSettings {
-    if (!('validCharacters' in value) || value['validCharacters'] === undefined) return false;
-    if (!('couponPattern' in value) || value['couponPattern'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('validCharacters' in _v) || _v['validCharacters'] === undefined) return false;
+    if (!('couponPattern' in _v) || _v['couponPattern'] === undefined) return false;
     return true;
 }
 

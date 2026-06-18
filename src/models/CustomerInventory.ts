@@ -105,6 +105,7 @@ export interface CustomerInventory {
  * Check if a given object implements the CustomerInventory interface.
  */
 export function instanceOfCustomerInventory(value: object): value is CustomerInventory {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

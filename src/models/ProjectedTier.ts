@@ -46,7 +46,8 @@ export interface ProjectedTier {
  * Check if a given object implements the ProjectedTier interface.
  */
 export function instanceOfProjectedTier(value: object): value is ProjectedTier {
-    if (!('projectedActivePoints' in value) || value['projectedActivePoints'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('projectedActivePoints' in _v) || _v['projectedActivePoints'] === undefined) return false;
     return true;
 }
 

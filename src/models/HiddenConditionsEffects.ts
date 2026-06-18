@@ -49,6 +49,7 @@ export interface HiddenConditionsEffects {
  * Check if a given object implements the HiddenConditionsEffects interface.
  */
 export function instanceOfHiddenConditionsEffects(value: object): value is HiddenConditionsEffects {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

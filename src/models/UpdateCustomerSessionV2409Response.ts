@@ -43,6 +43,7 @@ export interface UpdateCustomerSessionV2409Response {
  * Check if a given object implements the UpdateCustomerSessionV2409Response interface.
  */
 export function instanceOfUpdateCustomerSessionV2409Response(value: object): value is UpdateCustomerSessionV2409Response {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

@@ -45,7 +45,8 @@ export interface GetAudiencesAnalytics200Response {
  * Check if a given object implements the GetAudiencesAnalytics200Response interface.
  */
 export function instanceOfGetAudiencesAnalytics200Response(value: object): value is GetAudiencesAnalytics200Response {
-    if (!('data' in value) || value['data'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('data' in _v) || _v['data'] === undefined) return false;
     return true;
 }
 

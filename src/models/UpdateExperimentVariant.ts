@@ -57,10 +57,11 @@ export interface UpdateExperimentVariant {
  * Check if a given object implements the UpdateExperimentVariant interface.
  */
 export function instanceOfUpdateExperimentVariant(value: object): value is UpdateExperimentVariant {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('ruleset' in value) || value['ruleset'] === undefined) return false;
-    if (!('weight' in value) || value['weight'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('ruleset' in _v) || _v['ruleset'] === undefined) return false;
+    if (!('weight' in _v) || _v['weight'] === undefined) return false;
     return true;
 }
 

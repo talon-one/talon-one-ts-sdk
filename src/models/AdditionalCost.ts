@@ -31,7 +31,8 @@ export interface AdditionalCost {
  * Check if a given object implements the AdditionalCost interface.
  */
 export function instanceOfAdditionalCost(value: object): value is AdditionalCost {
-    if (!('price' in value) || value['price'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('price' in _v) || _v['price'] === undefined) return false;
     return true;
 }
 

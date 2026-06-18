@@ -44,8 +44,9 @@ export interface NewEventType {
  * Check if a given object implements the NewEventType interface.
  */
 export function instanceOfNewEventType(value: object): value is NewEventType {
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
     return true;
 }
 

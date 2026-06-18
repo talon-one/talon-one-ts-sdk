@@ -31,7 +31,8 @@ export interface DeactivateUserRequest {
  * Check if a given object implements the DeactivateUserRequest interface.
  */
 export function instanceOfDeactivateUserRequest(value: object): value is DeactivateUserRequest {
-    if (!('email' in value) || value['email'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('email' in _v) || _v['email'] === undefined) return false;
     return true;
 }
 

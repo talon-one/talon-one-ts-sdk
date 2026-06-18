@@ -41,8 +41,9 @@ export interface CouponCreatedEffectProps {
  * Check if a given object implements the CouponCreatedEffectProps interface.
  */
 export function instanceOfCouponCreatedEffectProps(value: object): value is CouponCreatedEffectProps {
-    if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('profileId' in value) || value['profileId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
+    if (!('profileId' in _v) || _v['profileId'] === undefined) return false;
     return true;
 }
 

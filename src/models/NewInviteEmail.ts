@@ -37,8 +37,9 @@ export interface NewInviteEmail {
  * Check if a given object implements the NewInviteEmail interface.
  */
 export function instanceOfNewInviteEmail(value: object): value is NewInviteEmail {
-    if (!('email' in value) || value['email'] === undefined) return false;
-    if (!('token' in value) || value['token'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('email' in _v) || _v['email'] === undefined) return false;
+    if (!('token' in _v) || _v['token'] === undefined) return false;
     return true;
 }
 

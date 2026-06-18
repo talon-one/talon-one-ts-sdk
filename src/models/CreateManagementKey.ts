@@ -59,9 +59,10 @@ export interface CreateManagementKey {
  * Check if a given object implements the CreateManagementKey interface.
  */
 export function instanceOfCreateManagementKey(value: object): value is CreateManagementKey {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('expiryDate' in value) || value['expiryDate'] === undefined) return false;
-    if (!('endpoints' in value) || value['endpoints'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('expiryDate' in _v) || _v['expiryDate'] === undefined) return false;
+    if (!('endpoints' in _v) || _v['endpoints'] === undefined) return false;
     return true;
 }
 

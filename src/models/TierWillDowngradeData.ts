@@ -73,12 +73,13 @@ export interface TierWillDowngradeData {
  * Check if a given object implements the TierWillDowngradeData interface.
  */
 export function instanceOfTierWillDowngradeData(value: object): value is TierWillDowngradeData {
-    if ((!('customerProfileID' in value) && !('CustomerProfileID' in value)) || (value['customerProfileID'] === undefined && value['CustomerProfileID'] === undefined)) return false;
-    if ((!('loyaltyProgramID' in value) && !('LoyaltyProgramID' in value)) || (value['loyaltyProgramID'] === undefined && value['LoyaltyProgramID'] === undefined)) return false;
-    if ((!('subledgerID' in value) && !('SubledgerID' in value)) || (value['subledgerID'] === undefined && value['SubledgerID'] === undefined)) return false;
-    if ((!('currentTier' in value) && !('CurrentTier' in value)) || (value['currentTier'] === undefined && value['CurrentTier'] === undefined)) return false;
-    if ((!('currentPoints' in value) && !('CurrentPoints' in value)) || (value['currentPoints'] === undefined && value['CurrentPoints'] === undefined)) return false;
-    if ((!('pointsRequiredToRemain' in value) && !('PointsRequiredToRemain' in value)) || (value['pointsRequiredToRemain'] === undefined && value['PointsRequiredToRemain'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('customerProfileID' in _v) && !('CustomerProfileID' in _v)) || (_v['customerProfileID'] === undefined && _v['CustomerProfileID'] === undefined)) return false;
+    if ((!('loyaltyProgramID' in _v) && !('LoyaltyProgramID' in _v)) || (_v['loyaltyProgramID'] === undefined && _v['LoyaltyProgramID'] === undefined)) return false;
+    if ((!('subledgerID' in _v) && !('SubledgerID' in _v)) || (_v['subledgerID'] === undefined && _v['SubledgerID'] === undefined)) return false;
+    if ((!('currentTier' in _v) && !('CurrentTier' in _v)) || (_v['currentTier'] === undefined && _v['CurrentTier'] === undefined)) return false;
+    if ((!('currentPoints' in _v) && !('CurrentPoints' in _v)) || (_v['currentPoints'] === undefined && _v['CurrentPoints'] === undefined)) return false;
+    if ((!('pointsRequiredToRemain' in _v) && !('PointsRequiredToRemain' in _v)) || (_v['pointsRequiredToRemain'] === undefined && _v['PointsRequiredToRemain'] === undefined)) return false;
     return true;
 }
 

@@ -31,7 +31,8 @@ export interface GenerateCampaignTags {
  * Check if a given object implements the GenerateCampaignTags interface.
  */
 export function instanceOfGenerateCampaignTags(value: object): value is GenerateCampaignTags {
-    if (!('rulesetID' in value) || value['rulesetID'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('rulesetID' in _v) || _v['rulesetID'] === undefined) return false;
     return true;
 }
 

@@ -80,9 +80,10 @@ export type LimitConfigEntitiesEnum = typeof LimitConfigEntitiesEnum[keyof typeo
  * Check if a given object implements the LimitConfig interface.
  */
 export function instanceOfLimitConfig(value: object): value is LimitConfig {
-    if (!('action' in value) || value['action'] === undefined) return false;
-    if (!('limit' in value) || value['limit'] === undefined) return false;
-    if (!('entities' in value) || value['entities'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('action' in _v) || _v['action'] === undefined) return false;
+    if (!('limit' in _v) || _v['limit'] === undefined) return false;
+    if (!('entities' in _v) || _v['entities'] === undefined) return false;
     return true;
 }
 

@@ -55,6 +55,7 @@ export interface PriceDetail {
  * Check if a given object implements the PriceDetail interface.
  */
 export function instanceOfPriceDetail(value: object): value is PriceDetail {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

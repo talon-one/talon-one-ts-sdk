@@ -44,6 +44,7 @@ export interface ReturnedCartItem {
  * Check if a given object implements the ReturnedCartItem interface.
  */
 export function instanceOfReturnedCartItem(value: object): value is ReturnedCartItem {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

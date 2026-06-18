@@ -86,10 +86,11 @@ export type CampaignStoreBudgetLimitConfigEntitiesEnum = typeof CampaignStoreBud
  * Check if a given object implements the CampaignStoreBudgetLimitConfig interface.
  */
 export function instanceOfCampaignStoreBudgetLimitConfig(value: object): value is CampaignStoreBudgetLimitConfig {
-    if (!('action' in value) || value['action'] === undefined) return false;
-    if (!('limit' in value) || value['limit'] === undefined) return false;
-    if (!('entities' in value) || value['entities'] === undefined) return false;
-    if (!('imported' in value) || value['imported'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('action' in _v) || _v['action'] === undefined) return false;
+    if (!('limit' in _v) || _v['limit'] === undefined) return false;
+    if (!('entities' in _v) || _v['entities'] === undefined) return false;
+    if (!('imported' in _v) || _v['imported'] === undefined) return false;
     return true;
 }
 

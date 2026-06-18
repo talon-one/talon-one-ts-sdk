@@ -31,6 +31,7 @@ export interface RoleV2Readonly {
  * Check if a given object implements the RoleV2Readonly interface.
  */
 export function instanceOfRoleV2Readonly(value: object): value is RoleV2Readonly {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

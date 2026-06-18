@@ -45,7 +45,8 @@ export interface ScimPatchRequest {
  * Check if a given object implements the ScimPatchRequest interface.
  */
 export function instanceOfScimPatchRequest(value: object): value is ScimPatchRequest {
-    if ((!('operations' in value) && !('Operations' in value)) || (value['operations'] === undefined && value['Operations'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('operations' in _v) && !('Operations' in _v)) || (_v['operations'] === undefined && _v['Operations'] === undefined)) return false;
     return true;
 }
 

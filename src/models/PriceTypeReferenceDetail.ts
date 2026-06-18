@@ -61,9 +61,10 @@ export type PriceTypeReferenceDetailReferencingTypeEnum = typeof PriceTypeRefere
  * Check if a given object implements the PriceTypeReferenceDetail interface.
  */
 export function instanceOfPriceTypeReferenceDetail(value: object): value is PriceTypeReferenceDetail {
-    if (!('referencingType' in value) || value['referencingType'] === undefined) return false;
-    if (!('referencingId' in value) || value['referencingId'] === undefined) return false;
-    if (!('referencingName' in value) || value['referencingName'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('referencingType' in _v) || _v['referencingType'] === undefined) return false;
+    if (!('referencingId' in _v) || _v['referencingId'] === undefined) return false;
+    if (!('referencingName' in _v) || _v['referencingName'] === undefined) return false;
     return true;
 }
 

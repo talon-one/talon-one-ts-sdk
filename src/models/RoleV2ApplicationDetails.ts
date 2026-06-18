@@ -49,6 +49,7 @@ export interface RoleV2ApplicationDetails {
  * Check if a given object implements the RoleV2ApplicationDetails interface.
  */
 export function instanceOfRoleV2ApplicationDetails(value: object): value is RoleV2ApplicationDetails {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

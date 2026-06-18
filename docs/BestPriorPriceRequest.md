@@ -19,7 +19,7 @@ import type { BestPriorPriceRequest } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "skus": [comma, period],
+  "skus": [SKU1241028, SKU7345278],
   "timeframeEndDate": 2020-11-10T23:00:00Z,
   "timeframe": 30,
   "timeframeEndDateType": sale,

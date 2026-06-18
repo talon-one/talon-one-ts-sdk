@@ -58,6 +58,7 @@ export interface CouponConstraints {
  * Check if a given object implements the CouponConstraints interface.
  */
 export function instanceOfCouponConstraints(value: object): value is CouponConstraints {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

@@ -31,7 +31,8 @@ export interface WebhookAuthenticationDataCustom {
  * Check if a given object implements the WebhookAuthenticationDataCustom interface.
  */
 export function instanceOfWebhookAuthenticationDataCustom(value: object): value is WebhookAuthenticationDataCustom {
-    if (!('headers' in value) || value['headers'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('headers' in _v) || _v['headers'] === undefined) return false;
     return true;
 }
 

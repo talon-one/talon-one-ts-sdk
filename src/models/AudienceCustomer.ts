@@ -86,6 +86,7 @@ export interface AudienceCustomer {
      * 
      * @type {Array<LoyaltyMembership>}
      * @memberof AudienceCustomer
+     * @deprecated
      */
     loyaltyMemberships?: Array<LoyaltyMembership>;
     /**
@@ -131,13 +132,14 @@ export interface AudienceCustomer {
  * Check if a given object implements the AudienceCustomer interface.
  */
 export function instanceOfAudienceCustomer(value: object): value is AudienceCustomer {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('integrationId' in value) || value['integrationId'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('closedSessions' in value) || value['closedSessions'] === undefined) return false;
-    if (!('totalSales' in value) || value['totalSales'] === undefined) return false;
-    if (!('lastActivity' in value) || value['lastActivity'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('closedSessions' in _v) || _v['closedSessions'] === undefined) return false;
+    if (!('totalSales' in _v) || _v['totalSales'] === undefined) return false;
+    if (!('lastActivity' in _v) || _v['lastActivity'] === undefined) return false;
     return true;
 }
 

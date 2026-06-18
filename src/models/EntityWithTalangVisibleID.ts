@@ -37,8 +37,9 @@ export interface EntityWithTalangVisibleID {
  * Check if a given object implements the EntityWithTalangVisibleID interface.
  */
 export function instanceOfEntityWithTalangVisibleID(value: object): value is EntityWithTalangVisibleID {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
     return true;
 }
 

@@ -150,17 +150,18 @@ export type ApplicationSessionStateEnum = typeof ApplicationSessionStateEnum[key
  * Check if a given object implements the ApplicationSession interface.
  */
 export function instanceOfApplicationSession(value: object): value is ApplicationSession {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('integrationId' in value) || value['integrationId'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('coupon' in value) || value['coupon'] === undefined) return false;
-    if (!('referral' in value) || value['referral'] === undefined) return false;
-    if (!('state' in value) || value['state'] === undefined) return false;
-    if (!('cartItems' in value) || value['cartItems'] === undefined) return false;
-    if (!('discounts' in value) || value['discounts'] === undefined) return false;
-    if (!('totalDiscounts' in value) || value['totalDiscounts'] === undefined) return false;
-    if (!('total' in value) || value['total'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('coupon' in _v) || _v['coupon'] === undefined) return false;
+    if (!('referral' in _v) || _v['referral'] === undefined) return false;
+    if (!('state' in _v) || _v['state'] === undefined) return false;
+    if (!('cartItems' in _v) || _v['cartItems'] === undefined) return false;
+    if (!('discounts' in _v) || _v['discounts'] === undefined) return false;
+    if (!('totalDiscounts' in _v) || _v['totalDiscounts'] === undefined) return false;
+    if (!('total' in _v) || _v['total'] === undefined) return false;
     return true;
 }
 

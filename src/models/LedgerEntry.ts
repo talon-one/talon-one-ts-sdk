@@ -88,14 +88,15 @@ export interface LedgerEntry {
  * Check if a given object implements the LedgerEntry interface.
  */
 export function instanceOfLedgerEntry(value: object): value is LedgerEntry {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('loyaltyProgramId' in value) || value['loyaltyProgramId'] === undefined) return false;
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
-    if (!('amount' in value) || value['amount'] === undefined) return false;
-    if (!('reason' in value) || value['reason'] === undefined) return false;
-    if (!('expiryDate' in value) || value['expiryDate'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('loyaltyProgramId' in _v) || _v['loyaltyProgramId'] === undefined) return false;
+    if (!('eventId' in _v) || _v['eventId'] === undefined) return false;
+    if (!('amount' in _v) || _v['amount'] === undefined) return false;
+    if (!('reason' in _v) || _v['reason'] === undefined) return false;
+    if (!('expiryDate' in _v) || _v['expiryDate'] === undefined) return false;
     return true;
 }
 

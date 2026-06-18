@@ -115,14 +115,15 @@ export type NewWebhookVerbEnum = typeof NewWebhookVerbEnum[keyof typeof NewWebho
  * Check if a given object implements the NewWebhook interface.
  */
 export function instanceOfNewWebhook(value: object): value is NewWebhook {
-    if (!('applicationIds' in value) || value['applicationIds'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('draft' in value) || value['draft'] === undefined) return false;
-    if (!('verb' in value) || value['verb'] === undefined) return false;
-    if (!('url' in value) || value['url'] === undefined) return false;
-    if (!('headers' in value) || value['headers'] === undefined) return false;
-    if (!('params' in value) || value['params'] === undefined) return false;
-    if (!('enabled' in value) || value['enabled'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('applicationIds' in _v) || _v['applicationIds'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('draft' in _v) || _v['draft'] === undefined) return false;
+    if (!('verb' in _v) || _v['verb'] === undefined) return false;
+    if (!('url' in _v) || _v['url'] === undefined) return false;
+    if (!('headers' in _v) || _v['headers'] === undefined) return false;
+    if (!('params' in _v) || _v['params'] === undefined) return false;
+    if (!('enabled' in _v) || _v['enabled'] === undefined) return false;
     return true;
 }
 

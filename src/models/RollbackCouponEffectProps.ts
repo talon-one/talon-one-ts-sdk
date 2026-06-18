@@ -33,7 +33,8 @@ export interface RollbackCouponEffectProps {
  * Check if a given object implements the RollbackCouponEffectProps interface.
  */
 export function instanceOfRollbackCouponEffectProps(value: object): value is RollbackCouponEffectProps {
-    if (!('value' in value) || value['value'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
     return true;
 }
 

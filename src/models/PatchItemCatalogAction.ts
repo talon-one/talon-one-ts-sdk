@@ -68,7 +68,8 @@ export interface PatchItemCatalogAction {
  * Check if a given object implements the PatchItemCatalogAction interface.
  */
 export function instanceOfPatchItemCatalogAction(value: object): value is PatchItemCatalogAction {
-    if (!('sku' in value) || value['sku'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('sku' in _v) || _v['sku'] === undefined) return false;
     return true;
 }
 

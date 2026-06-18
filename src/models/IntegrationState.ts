@@ -92,9 +92,10 @@ export interface IntegrationState {
  * Check if a given object implements the IntegrationState interface.
  */
 export function instanceOfIntegrationState(value: object): value is IntegrationState {
-    if (!('session' in value) || value['session'] === undefined) return false;
-    if (!('profile' in value) || value['profile'] === undefined) return false;
-    if (!('event' in value) || value['event'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('session' in _v) || _v['session'] === undefined) return false;
+    if (!('profile' in _v) || _v['profile'] === undefined) return false;
+    if (!('event' in _v) || _v['event'] === undefined) return false;
     return true;
 }
 

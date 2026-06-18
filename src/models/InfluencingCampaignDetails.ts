@@ -37,8 +37,9 @@ export interface InfluencingCampaignDetails {
  * Check if a given object implements the InfluencingCampaignDetails interface.
  */
 export function instanceOfInfluencingCampaignDetails(value: object): value is InfluencingCampaignDetails {
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('discountValue' in value) || value['discountValue'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('discountValue' in _v) || _v['discountValue'] === undefined) return false;
     return true;
 }
 

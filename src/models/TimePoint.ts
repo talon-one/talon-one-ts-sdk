@@ -73,9 +73,10 @@ export interface TimePoint {
  * Check if a given object implements the TimePoint interface.
  */
 export function instanceOfTimePoint(value: object): value is TimePoint {
-    if (!('hour' in value) || value['hour'] === undefined) return false;
-    if (!('minute' in value) || value['minute'] === undefined) return false;
-    if (!('second' in value) || value['second'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('hour' in _v) || _v['hour'] === undefined) return false;
+    if (!('minute' in _v) || _v['minute'] === undefined) return false;
+    if (!('second' in _v) || _v['second'] === undefined) return false;
     return true;
 }
 

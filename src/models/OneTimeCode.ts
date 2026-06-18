@@ -49,9 +49,10 @@ export interface OneTimeCode {
  * Check if a given object implements the OneTimeCode interface.
  */
 export function instanceOfOneTimeCode(value: object): value is OneTimeCode {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('token' in value) || value['token'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('userId' in _v) || _v['userId'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('token' in _v) || _v['token'] === undefined) return false;
     return true;
 }
 

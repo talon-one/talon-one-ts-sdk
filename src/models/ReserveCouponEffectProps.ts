@@ -45,9 +45,10 @@ export interface ReserveCouponEffectProps {
  * Check if a given object implements the ReserveCouponEffectProps interface.
  */
 export function instanceOfReserveCouponEffectProps(value: object): value is ReserveCouponEffectProps {
-    if (!('couponValue' in value) || value['couponValue'] === undefined) return false;
-    if (!('profileIntegrationId' in value) || value['profileIntegrationId'] === undefined) return false;
-    if (!('isNewReservation' in value) || value['isNewReservation'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('couponValue' in _v) || _v['couponValue'] === undefined) return false;
+    if (!('profileIntegrationId' in _v) || _v['profileIntegrationId'] === undefined) return false;
+    if (!('isNewReservation' in _v) || _v['isNewReservation'] === undefined) return false;
     return true;
 }
 

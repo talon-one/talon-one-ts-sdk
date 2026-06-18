@@ -31,7 +31,8 @@ export interface MultiApplicationEntity {
  * Check if a given object implements the MultiApplicationEntity interface.
  */
 export function instanceOfMultiApplicationEntity(value: object): value is MultiApplicationEntity {
-    if (!('applicationIds' in value) || value['applicationIds'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('applicationIds' in _v) || _v['applicationIds'] === undefined) return false;
     return true;
 }
 

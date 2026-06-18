@@ -182,11 +182,12 @@ export interface ExtendedCoupon {
  * Check if a given object implements the ExtendedCoupon interface.
  */
 export function instanceOfExtendedCoupon(value: object): value is ExtendedCoupon {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('usageCounter' in value) || value['usageCounter'] === undefined) return false;
-    if ((!('applicationId' in value) && !('ApplicationId' in value)) || (value['applicationId'] === undefined && value['ApplicationId'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('usageCounter' in _v) || _v['usageCounter'] === undefined) return false;
+    if ((!('applicationId' in _v) && !('ApplicationId' in _v)) || (_v['applicationId'] === undefined && _v['ApplicationId'] === undefined)) return false;
     return true;
 }
 

@@ -45,7 +45,8 @@ export interface GetApplicationSessions200Response {
  * Check if a given object implements the GetApplicationSessions200Response interface.
  */
 export function instanceOfGetApplicationSessions200Response(value: object): value is GetApplicationSessions200Response {
-    if (!('data' in value) || value['data'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('data' in _v) || _v['data'] === undefined) return false;
     return true;
 }
 

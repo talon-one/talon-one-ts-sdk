@@ -45,7 +45,8 @@ export interface LoyaltyLedger {
  * Check if a given object implements the LoyaltyLedger interface.
  */
 export function instanceOfLoyaltyLedger(value: object): value is LoyaltyLedger {
-    if (!('ledger' in value) || value['ledger'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('ledger' in _v) || _v['ledger'] === undefined) return false;
     return true;
 }
 

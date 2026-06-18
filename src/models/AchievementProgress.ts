@@ -68,8 +68,9 @@ export type AchievementProgressStatusEnum = typeof AchievementProgressStatusEnum
  * Check if a given object implements the AchievementProgress interface.
  */
 export function instanceOfAchievementProgress(value: object): value is AchievementProgress {
-    if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('progress' in value) || value['progress'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('status' in _v) || _v['status'] === undefined) return false;
+    if (!('progress' in _v) || _v['progress'] === undefined) return false;
     return true;
 }
 

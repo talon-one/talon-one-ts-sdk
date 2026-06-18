@@ -31,7 +31,8 @@ export interface ActivateUserRequest {
  * Check if a given object implements the ActivateUserRequest interface.
  */
 export function instanceOfActivateUserRequest(value: object): value is ActivateUserRequest {
-    if (!('email' in value) || value['email'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('email' in _v) || _v['email'] === undefined) return false;
     return true;
 }
 

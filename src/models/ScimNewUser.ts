@@ -57,7 +57,8 @@ export interface ScimNewUser {
  * Check if a given object implements the ScimNewUser interface.
  */
 export function instanceOfScimNewUser(value: object): value is ScimNewUser {
-    if (!('userName' in value) || value['userName'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('userName' in _v) || _v['userName'] === undefined) return false;
     return true;
 }
 

@@ -31,7 +31,8 @@ export interface ExperimentListResultsRequest {
  * Check if a given object implements the ExperimentListResultsRequest interface.
  */
 export function instanceOfExperimentListResultsRequest(value: object): value is ExperimentListResultsRequest {
-    if (!('experimentIds' in value) || value['experimentIds'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('experimentIds' in _v) || _v['experimentIds'] === undefined) return false;
     return true;
 }
 

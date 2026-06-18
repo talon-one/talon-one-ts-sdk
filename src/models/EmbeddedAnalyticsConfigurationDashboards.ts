@@ -39,6 +39,7 @@ export interface EmbeddedAnalyticsConfigurationDashboards {
  * Check if a given object implements the EmbeddedAnalyticsConfigurationDashboards interface.
  */
 export function instanceOfEmbeddedAnalyticsConfigurationDashboards(value: object): value is EmbeddedAnalyticsConfigurationDashboards {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

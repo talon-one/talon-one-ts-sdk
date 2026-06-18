@@ -43,9 +43,10 @@ export interface AccountDashboardStatisticRevenue {
  * Check if a given object implements the AccountDashboardStatisticRevenue interface.
  */
 export function instanceOfAccountDashboardStatisticRevenue(value: object): value is AccountDashboardStatisticRevenue {
-    if (!('total' in value) || value['total'] === undefined) return false;
-    if (!('influenced' in value) || value['influenced'] === undefined) return false;
-    if (!('datetime' in value) || value['datetime'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('total' in _v) || _v['total'] === undefined) return false;
+    if (!('influenced' in _v) || _v['influenced'] === undefined) return false;
+    if (!('datetime' in _v) || _v['datetime'] === undefined) return false;
     return true;
 }
 

@@ -31,6 +31,7 @@ export interface CampaignGroupEntity {
  * Check if a given object implements the CampaignGroupEntity interface.
  */
 export function instanceOfCampaignGroupEntity(value: object): value is CampaignGroupEntity {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

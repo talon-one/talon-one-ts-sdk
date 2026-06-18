@@ -43,6 +43,7 @@ export interface CustomerProfileSearchQuery {
  * Check if a given object implements the CustomerProfileSearchQuery interface.
  */
 export function instanceOfCustomerProfileSearchQuery(value: object): value is CustomerProfileSearchQuery {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

@@ -56,10 +56,11 @@ export type LabelTargetAudienceTypeEnum = typeof LabelTargetAudienceTypeEnum[key
  * Check if a given object implements the LabelTargetAudience interface.
  */
 export function instanceOfLabelTargetAudience(value: object): value is LabelTargetAudience {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (value['type'] !== 'AUDIENCE') return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'AUDIENCE') return false;
     
-    if (!('audience' in value) || value['audience'] === undefined) return false;
+    if (!('audience' in _v) || _v['audience'] === undefined) return false;
     return true;
 }
 

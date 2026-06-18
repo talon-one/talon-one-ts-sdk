@@ -31,7 +31,8 @@ export interface AsyncCouponCreationResponse {
  * Check if a given object implements the AsyncCouponCreationResponse interface.
  */
 export function instanceOfAsyncCouponCreationResponse(value: object): value is AsyncCouponCreationResponse {
-    if (!('batchId' in value) || value['batchId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('batchId' in _v) || _v['batchId'] === undefined) return false;
     return true;
 }
 

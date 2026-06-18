@@ -31,7 +31,8 @@ export interface LoyaltyCardRegistration {
  * Check if a given object implements the LoyaltyCardRegistration interface.
  */
 export function instanceOfLoyaltyCardRegistration(value: object): value is LoyaltyCardRegistration {
-    if (!('integrationId' in value) || value['integrationId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
     return true;
 }
 

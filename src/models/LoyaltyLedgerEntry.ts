@@ -137,12 +137,13 @@ export interface LoyaltyLedgerEntry {
  * Check if a given object implements the LoyaltyLedgerEntry interface.
  */
 export function instanceOfLoyaltyLedgerEntry(value: object): value is LoyaltyLedgerEntry {
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('programID' in value) || value['programID'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('amount' in value) || value['amount'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('subLedgerID' in value) || value['subLedgerID'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('programID' in _v) || _v['programID'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('amount' in _v) || _v['amount'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('subLedgerID' in _v) || _v['subLedgerID'] === undefined) return false;
     return true;
 }
 

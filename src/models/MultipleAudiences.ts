@@ -45,8 +45,9 @@ export interface MultipleAudiences {
  * Check if a given object implements the MultipleAudiences interface.
  */
 export function instanceOfMultipleAudiences(value: object): value is MultipleAudiences {
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('audiences' in value) || value['audiences'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('audiences' in _v) || _v['audiences'] === undefined) return false;
     return true;
 }
 

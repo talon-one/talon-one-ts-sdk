@@ -43,6 +43,7 @@ export interface MessageLogResponse {
  * Check if a given object implements the MessageLogResponse interface.
  */
 export function instanceOfMessageLogResponse(value: object): value is MessageLogResponse {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

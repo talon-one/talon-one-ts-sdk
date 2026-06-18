@@ -99,14 +99,15 @@ export interface Return {
  * Check if a given object implements the Return interface.
  */
 export function instanceOfReturn(value: object): value is Return {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('returnedCartItems' in value) || value['returnedCartItems'] === undefined) return false;
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
-    if (!('sessionId' in value) || value['sessionId'] === undefined) return false;
-    if (!('sessionIntegrationId' in value) || value['sessionIntegrationId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('returnedCartItems' in _v) || _v['returnedCartItems'] === undefined) return false;
+    if (!('eventId' in _v) || _v['eventId'] === undefined) return false;
+    if (!('sessionId' in _v) || _v['sessionId'] === undefined) return false;
+    if (!('sessionIntegrationId' in _v) || _v['sessionIntegrationId'] === undefined) return false;
     return true;
 }
 

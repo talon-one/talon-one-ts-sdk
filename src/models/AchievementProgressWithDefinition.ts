@@ -167,15 +167,16 @@ export type AchievementProgressWithDefinitionAchievementActivationPolicyEnum = t
  * Check if a given object implements the AchievementProgressWithDefinition interface.
  */
 export function instanceOfAchievementProgressWithDefinition(value: object): value is AchievementProgressWithDefinition {
-    if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('progress' in value) || value['progress'] === undefined) return false;
-    if (!('achievementId' in value) || value['achievementId'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('achievementRecurrencePolicy' in value) || value['achievementRecurrencePolicy'] === undefined) return false;
-    if (!('achievementActivationPolicy' in value) || value['achievementActivationPolicy'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('status' in _v) || _v['status'] === undefined) return false;
+    if (!('progress' in _v) || _v['progress'] === undefined) return false;
+    if (!('achievementId' in _v) || _v['achievementId'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('achievementRecurrencePolicy' in _v) || _v['achievementRecurrencePolicy'] === undefined) return false;
+    if (!('achievementActivationPolicy' in _v) || _v['achievementActivationPolicy'] === undefined) return false;
     return true;
 }
 

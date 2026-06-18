@@ -45,6 +45,7 @@ export interface ScimBaseGroup {
  * Check if a given object implements the ScimBaseGroup interface.
  */
 export function instanceOfScimBaseGroup(value: object): value is ScimBaseGroup {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

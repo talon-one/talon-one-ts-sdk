@@ -31,7 +31,8 @@ export interface MutableEntity {
  * Check if a given object implements the MutableEntity interface.
  */
 export function instanceOfMutableEntity(value: object): value is MutableEntity {
-    if (!('modified' in value) || value['modified'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('modified' in _v) || _v['modified'] === undefined) return false;
     return true;
 }
 

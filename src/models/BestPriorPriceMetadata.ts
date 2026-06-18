@@ -52,7 +52,8 @@ export interface BestPriorPriceMetadata {
  * Check if a given object implements the BestPriorPriceMetadata interface.
  */
 export function instanceOfBestPriorPriceMetadata(value: object): value is BestPriorPriceMetadata {
-    if (!('influencingCampaignDetails' in value) || value['influencingCampaignDetails'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('influencingCampaignDetails' in _v) || _v['influencingCampaignDetails'] === undefined) return false;
     return true;
 }
 

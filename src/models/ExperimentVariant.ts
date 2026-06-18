@@ -75,10 +75,11 @@ export interface ExperimentVariant {
  * Check if a given object implements the ExperimentVariant interface.
  */
 export function instanceOfExperimentVariant(value: object): value is ExperimentVariant {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('isPrimary' in value) || value['isPrimary'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('isPrimary' in _v) || _v['isPrimary'] === undefined) return false;
     return true;
 }
 

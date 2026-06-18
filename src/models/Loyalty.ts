@@ -52,7 +52,8 @@ export interface Loyalty {
  * Check if a given object implements the Loyalty interface.
  */
 export function instanceOfLoyalty(value: object): value is Loyalty {
-    if (!('programs' in value) || value['programs'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('programs' in _v) || _v['programs'] === undefined) return false;
     return true;
 }
 

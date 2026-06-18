@@ -134,6 +134,7 @@ export type NewRevisionVersionFeaturesEnum = typeof NewRevisionVersionFeaturesEn
  * Check if a given object implements the NewRevisionVersion interface.
  */
 export function instanceOfNewRevisionVersion(value: object): value is NewRevisionVersion {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

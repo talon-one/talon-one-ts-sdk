@@ -99,10 +99,11 @@ export interface Audience {
  * Check if a given object implements the Audience interface.
  */
 export function instanceOfAudience(value: object): value is Audience {
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
     return true;
 }
 

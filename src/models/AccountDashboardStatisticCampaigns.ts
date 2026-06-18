@@ -43,9 +43,10 @@ export interface AccountDashboardStatisticCampaigns {
  * Check if a given object implements the AccountDashboardStatisticCampaigns interface.
  */
 export function instanceOfAccountDashboardStatisticCampaigns(value: object): value is AccountDashboardStatisticCampaigns {
-    if (!('live' in value) || value['live'] === undefined) return false;
-    if (!('endingSoon' in value) || value['endingSoon'] === undefined) return false;
-    if (!('lowOnBudget' in value) || value['lowOnBudget'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('live' in _v) || _v['live'] === undefined) return false;
+    if (!('endingSoon' in _v) || _v['endingSoon'] === undefined) return false;
+    if (!('lowOnBudget' in _v) || _v['lowOnBudget'] === undefined) return false;
     return true;
 }
 

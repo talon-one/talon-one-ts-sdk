@@ -88,8 +88,9 @@ export type RuleEligibilityFailureDetailsFailureCodeEnum = typeof RuleEligibilit
  * Check if a given object implements the RuleEligibilityFailureDetails interface.
  */
 export function instanceOfRuleEligibilityFailureDetails(value: object): value is RuleEligibilityFailureDetails {
-    if (!('failureCode' in value) || value['failureCode'] === undefined) return false;
-    if (!('details' in value) || value['details'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('failureCode' in _v) || _v['failureCode'] === undefined) return false;
+    if (!('details' in _v) || _v['details'] === undefined) return false;
     return true;
 }
 

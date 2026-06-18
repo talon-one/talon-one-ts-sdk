@@ -39,6 +39,7 @@ export interface LoyaltySubLedger {
      * 
      * @type {number}
      * @memberof LoyaltySubLedger
+     * @deprecated
      */
     total: number;
     /**
@@ -113,12 +114,13 @@ export interface LoyaltySubLedger {
  * Check if a given object implements the LoyaltySubLedger interface.
  */
 export function instanceOfLoyaltySubLedger(value: object): value is LoyaltySubLedger {
-    if (!('total' in value) || value['total'] === undefined) return false;
-    if (!('totalActivePoints' in value) || value['totalActivePoints'] === undefined) return false;
-    if (!('totalPendingPoints' in value) || value['totalPendingPoints'] === undefined) return false;
-    if (!('totalSpentPoints' in value) || value['totalSpentPoints'] === undefined) return false;
-    if (!('totalExpiredPoints' in value) || value['totalExpiredPoints'] === undefined) return false;
-    if (!('totalNegativePoints' in value) || value['totalNegativePoints'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('total' in _v) || _v['total'] === undefined) return false;
+    if (!('totalActivePoints' in _v) || _v['totalActivePoints'] === undefined) return false;
+    if (!('totalPendingPoints' in _v) || _v['totalPendingPoints'] === undefined) return false;
+    if (!('totalSpentPoints' in _v) || _v['totalSpentPoints'] === undefined) return false;
+    if (!('totalExpiredPoints' in _v) || _v['totalExpiredPoints'] === undefined) return false;
+    if (!('totalNegativePoints' in _v) || _v['totalNegativePoints'] === undefined) return false;
     return true;
 }
 

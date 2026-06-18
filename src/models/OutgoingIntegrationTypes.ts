@@ -39,6 +39,7 @@ export interface OutgoingIntegrationTypes {
  * Check if a given object implements the OutgoingIntegrationTypes interface.
  */
 export function instanceOfOutgoingIntegrationTypes(value: object): value is OutgoingIntegrationTypes {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

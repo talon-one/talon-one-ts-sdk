@@ -45,8 +45,9 @@ export interface CreateCoupons200Response {
  * Check if a given object implements the CreateCoupons200Response interface.
  */
 export function instanceOfCreateCoupons200Response(value: object): value is CreateCoupons200Response {
-    if (!('totalResultSize' in value) || value['totalResultSize'] === undefined) return false;
-    if (!('data' in value) || value['data'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('totalResultSize' in _v) || _v['totalResultSize'] === undefined) return false;
+    if (!('data' in _v) || _v['data'] === undefined) return false;
     return true;
 }
 

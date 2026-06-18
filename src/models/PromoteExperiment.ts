@@ -60,9 +60,10 @@ export interface PromoteExperiment {
  * Check if a given object implements the PromoteExperiment interface.
  */
 export function instanceOfPromoteExperiment(value: object): value is PromoteExperiment {
-    if (!('targetApplicationId' in value) || value['targetApplicationId'] === undefined) return false;
-    if (!('variantId' in value) || value['variantId'] === undefined) return false;
-    if (!('campaign' in value) || value['campaign'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('targetApplicationId' in _v) || _v['targetApplicationId'] === undefined) return false;
+    if (!('variantId' in _v) || _v['variantId'] === undefined) return false;
+    if (!('campaign' in _v) || _v['campaign'] === undefined) return false;
     return true;
 }
 

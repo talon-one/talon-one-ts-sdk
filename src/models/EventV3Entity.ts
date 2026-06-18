@@ -32,6 +32,7 @@ export interface EventV3Entity {
  * Check if a given object implements the EventV3Entity interface.
  */
 export function instanceOfEventV3Entity(value: object): value is EventV3Entity {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

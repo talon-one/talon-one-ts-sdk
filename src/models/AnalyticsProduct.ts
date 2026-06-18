@@ -58,9 +58,10 @@ export interface AnalyticsProduct {
  * Check if a given object implements the AnalyticsProduct interface.
  */
 export function instanceOfAnalyticsProduct(value: object): value is AnalyticsProduct {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('catalogId' in value) || value['catalogId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('catalogId' in _v) || _v['catalogId'] === undefined) return false;
     return true;
 }
 

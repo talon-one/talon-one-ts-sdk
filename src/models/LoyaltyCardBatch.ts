@@ -68,7 +68,8 @@ export type LoyaltyCardBatchStatusEnum = typeof LoyaltyCardBatchStatusEnum[keyof
  * Check if a given object implements the LoyaltyCardBatch interface.
  */
 export function instanceOfLoyaltyCardBatch(value: object): value is LoyaltyCardBatch {
-    if (!('numberOfCards' in value) || value['numberOfCards'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('numberOfCards' in _v) || _v['numberOfCards'] === undefined) return false;
     return true;
 }
 

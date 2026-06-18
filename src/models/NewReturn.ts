@@ -39,7 +39,8 @@ export interface NewReturn {
  * Check if a given object implements the NewReturn interface.
  */
 export function instanceOfNewReturn(value: object): value is NewReturn {
-    if (!('returnedCartItems' in value) || value['returnedCartItems'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('returnedCartItems' in _v) || _v['returnedCartItems'] === undefined) return false;
     return true;
 }
 

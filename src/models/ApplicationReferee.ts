@@ -61,12 +61,13 @@ export interface ApplicationReferee {
  * Check if a given object implements the ApplicationReferee interface.
  */
 export function instanceOfApplicationReferee(value: object): value is ApplicationReferee {
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('sessionId' in value) || value['sessionId'] === undefined) return false;
-    if (!('advocateIntegrationId' in value) || value['advocateIntegrationId'] === undefined) return false;
-    if (!('friendIntegrationId' in value) || value['friendIntegrationId'] === undefined) return false;
-    if (!('code' in value) || value['code'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('sessionId' in _v) || _v['sessionId'] === undefined) return false;
+    if (!('advocateIntegrationId' in _v) || _v['advocateIntegrationId'] === undefined) return false;
+    if (!('friendIntegrationId' in _v) || _v['friendIntegrationId'] === undefined) return false;
+    if (!('code' in _v) || _v['code'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
     return true;
 }
 

@@ -77,6 +77,7 @@ export type CustomerProfileIntegrationRequestV2ResponseContentEnum = typeof Cust
  * Check if a given object implements the CustomerProfileIntegrationRequestV2 interface.
  */
 export function instanceOfCustomerProfileIntegrationRequestV2(value: object): value is CustomerProfileIntegrationRequestV2 {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

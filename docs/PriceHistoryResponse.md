@@ -16,7 +16,7 @@ import type { PriceHistoryResponse } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "sku": [SKU1241028],
+  "sku": SKU1241028,
   "history": null,
 } satisfies PriceHistoryResponse
 

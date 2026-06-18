@@ -45,7 +45,8 @@ export interface ErrorResponse {
  * Check if a given object implements the ErrorResponse interface.
  */
 export function instanceOfErrorResponse(value: object): value is ErrorResponse {
-    if (!('message' in value) || value['message'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('message' in _v) || _v['message'] === undefined) return false;
     return true;
 }
 

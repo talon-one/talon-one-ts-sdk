@@ -152,9 +152,10 @@ export interface IntegrationResponse {
  * Check if a given object implements the IntegrationResponse interface.
  */
 export function instanceOfIntegrationResponse(value: object): value is IntegrationResponse {
-    if (!('effects' in value) || value['effects'] === undefined) return false;
-    if (!('createdCoupons' in value) || value['createdCoupons'] === undefined) return false;
-    if (!('createdReferrals' in value) || value['createdReferrals'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('effects' in _v) || _v['effects'] === undefined) return false;
+    if (!('createdCoupons' in _v) || _v['createdCoupons'] === undefined) return false;
+    if (!('createdReferrals' in _v) || _v['createdReferrals'] === undefined) return false;
     return true;
 }
 

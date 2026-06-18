@@ -59,8 +59,9 @@ export interface SetDiscountEffectProps {
  * Check if a given object implements the SetDiscountEffectProps interface.
  */
 export function instanceOfSetDiscountEffectProps(value: object): value is SetDiscountEffectProps {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
     return true;
 }
 

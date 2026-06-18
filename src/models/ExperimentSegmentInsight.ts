@@ -89,11 +89,12 @@ export type ExperimentSegmentInsightBucketEnum = typeof ExperimentSegmentInsight
  * Check if a given object implements the ExperimentSegmentInsight interface.
  */
 export function instanceOfExperimentSegmentInsight(value: object): value is ExperimentSegmentInsight {
-    if (!('dimension' in value) || value['dimension'] === undefined) return false;
-    if (!('bucket' in value) || value['bucket'] === undefined) return false;
-    if (!('confidence' in value) || value['confidence'] === undefined) return false;
-    if (!('winnerVariantId' in value) || value['winnerVariantId'] === undefined) return false;
-    if (!('variants' in value) || value['variants'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('dimension' in _v) || _v['dimension'] === undefined) return false;
+    if (!('bucket' in _v) || _v['bucket'] === undefined) return false;
+    if (!('confidence' in _v) || _v['confidence'] === undefined) return false;
+    if (!('winnerVariantId' in _v) || _v['winnerVariantId'] === undefined) return false;
+    if (!('variants' in _v) || _v['variants'] === undefined) return false;
     return true;
 }
 

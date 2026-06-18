@@ -57,8 +57,9 @@ export interface ExpiringPointsNotificationPolicy {
  * Check if a given object implements the ExpiringPointsNotificationPolicy interface.
  */
 export function instanceOfExpiringPointsNotificationPolicy(value: object): value is ExpiringPointsNotificationPolicy {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('triggers' in value) || value['triggers'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('triggers' in _v) || _v['triggers'] === undefined) return false;
     return true;
 }
 

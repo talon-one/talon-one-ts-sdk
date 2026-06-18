@@ -60,9 +60,10 @@ export type CustomerProfileAudienceRequestItemActionEnum = typeof CustomerProfil
  * Check if a given object implements the CustomerProfileAudienceRequestItem interface.
  */
 export function instanceOfCustomerProfileAudienceRequestItem(value: object): value is CustomerProfileAudienceRequestItem {
-    if (!('action' in value) || value['action'] === undefined) return false;
-    if (!('profileIntegrationId' in value) || value['profileIntegrationId'] === undefined) return false;
-    if (!('audienceId' in value) || value['audienceId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('action' in _v) || _v['action'] === undefined) return false;
+    if (!('profileIntegrationId' in _v) || _v['profileIntegrationId'] === undefined) return false;
+    if (!('audienceId' in _v) || _v['audienceId'] === undefined) return false;
     return true;
 }
 

@@ -50,8 +50,9 @@ export type CardAddedDeductedPointsBalancesNotificationPolicyScopesEnum = typeof
  * Check if a given object implements the CardAddedDeductedPointsBalancesNotificationPolicy interface.
  */
 export function instanceOfCardAddedDeductedPointsBalancesNotificationPolicy(value: object): value is CardAddedDeductedPointsBalancesNotificationPolicy {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('scopes' in value) || value['scopes'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('scopes' in _v) || _v['scopes'] === undefined) return false;
     return true;
 }
 

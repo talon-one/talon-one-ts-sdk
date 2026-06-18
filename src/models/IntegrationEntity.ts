@@ -37,8 +37,9 @@ export interface IntegrationEntity {
  * Check if a given object implements the IntegrationEntity interface.
  */
 export function instanceOfIntegrationEntity(value: object): value is IntegrationEntity {
-    if (!('integrationId' in value) || value['integrationId'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
     return true;
 }
 

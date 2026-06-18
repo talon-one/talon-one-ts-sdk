@@ -73,12 +73,13 @@ export interface MCPKey {
  * Check if a given object implements the MCPKey interface.
  */
 export function instanceOfMCPKey(value: object): value is MCPKey {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('expiryDate' in value) || value['expiryDate'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('createdBy' in value) || value['createdBy'] === undefined) return false;
-    if (!('accountID' in value) || value['accountID'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('expiryDate' in _v) || _v['expiryDate'] === undefined) return false;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('createdBy' in _v) || _v['createdBy'] === undefined) return false;
+    if (!('accountID' in _v) || _v['accountID'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
     return true;
 }
 

@@ -43,9 +43,10 @@ export interface AdjustmentDetails {
  * Check if a given object implements the AdjustmentDetails interface.
  */
 export function instanceOfAdjustmentDetails(value: object): value is AdjustmentDetails {
-    if (!('referenceId' in value) || value['referenceId'] === undefined) return false;
-    if (!('selectedPriceType' in value) || value['selectedPriceType'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('referenceId' in _v) || _v['referenceId'] === undefined) return false;
+    if (!('selectedPriceType' in _v) || _v['selectedPriceType'] === undefined) return false;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
     return true;
 }
 

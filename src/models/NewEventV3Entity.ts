@@ -32,7 +32,8 @@ export interface NewEventV3Entity {
  * Check if a given object implements the NewEventV3Entity interface.
  */
 export function instanceOfNewEventV3Entity(value: object): value is NewEventV3Entity {
-    if (!('integrationId' in value) || value['integrationId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
     return true;
 }
 

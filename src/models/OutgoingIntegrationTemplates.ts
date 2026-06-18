@@ -39,6 +39,7 @@ export interface OutgoingIntegrationTemplates {
  * Check if a given object implements the OutgoingIntegrationTemplates interface.
  */
 export function instanceOfOutgoingIntegrationTemplates(value: object): value is OutgoingIntegrationTemplates {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

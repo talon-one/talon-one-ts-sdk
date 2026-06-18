@@ -86,10 +86,11 @@ export type BaseNotificationTypeEnum = typeof BaseNotificationTypeEnum[keyof typ
  * Check if a given object implements the BaseNotification interface.
  */
 export function instanceOfBaseNotification(value: object): value is BaseNotification {
-    if (!('policy' in value) || value['policy'] === undefined) return false;
-    if (!('webhook' in value) || value['webhook'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('policy' in _v) || _v['policy'] === undefined) return false;
+    if (!('webhook' in _v) || _v['webhook'] === undefined) return false;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
     return true;
 }
 

@@ -52,8 +52,9 @@ export type CatalogActionTypeEnum = typeof CatalogActionTypeEnum[keyof typeof Ca
  * Check if a given object implements the CatalogAction interface.
  */
 export function instanceOfCatalogAction(value: object): value is CatalogAction {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('payload' in value) || value['payload'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('payload' in _v) || _v['payload'] === undefined) return false;
     return true;
 }
 

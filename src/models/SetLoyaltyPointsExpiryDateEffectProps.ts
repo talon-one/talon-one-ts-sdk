@@ -58,9 +58,10 @@ export interface SetLoyaltyPointsExpiryDateEffectProps {
  * Check if a given object implements the SetLoyaltyPointsExpiryDateEffectProps interface.
  */
 export function instanceOfSetLoyaltyPointsExpiryDateEffectProps(value: object): value is SetLoyaltyPointsExpiryDateEffectProps {
-    if (!('programId' in value) || value['programId'] === undefined) return false;
-    if (!('subLedgerId' in value) || value['subLedgerId'] === undefined) return false;
-    if (!('newExpiryDate' in value) || value['newExpiryDate'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('programId' in _v) || _v['programId'] === undefined) return false;
+    if (!('subLedgerId' in _v) || _v['subLedgerId'] === undefined) return false;
+    if (!('newExpiryDate' in _v) || _v['newExpiryDate'] === undefined) return false;
     return true;
 }
 

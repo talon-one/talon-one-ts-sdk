@@ -37,6 +37,7 @@ export interface UpdateCollection {
  * Check if a given object implements the UpdateCollection interface.
  */
 export function instanceOfUpdateCollection(value: object): value is UpdateCollection {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

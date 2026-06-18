@@ -61,6 +61,7 @@ export interface ExperimentCampaignCopy {
  * Check if a given object implements the ExperimentCampaignCopy interface.
  */
 export function instanceOfExperimentCampaignCopy(value: object): value is ExperimentCampaignCopy {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

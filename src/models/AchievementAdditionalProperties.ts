@@ -71,8 +71,9 @@ export type AchievementAdditionalPropertiesStatusEnum = typeof AchievementAdditi
  * Check if a given object implements the AchievementAdditionalProperties interface.
  */
 export function instanceOfAchievementAdditionalProperties(value: object): value is AchievementAdditionalProperties {
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('userId' in value) || value['userId'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('userId' in _v) || _v['userId'] === undefined) return false;
     return true;
 }
 

@@ -186,8 +186,9 @@ export interface CartItem {
  * Check if a given object implements the CartItem interface.
  */
 export function instanceOfCartItem(value: object): value is CartItem {
-    if (!('sku' in value) || value['sku'] === undefined) return false;
-    if (!('quantity' in value) || value['quantity'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('sku' in _v) || _v['sku'] === undefined) return false;
+    if (!('quantity' in _v) || _v['quantity'] === undefined) return false;
     return true;
 }
 

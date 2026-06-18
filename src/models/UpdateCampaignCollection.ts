@@ -31,6 +31,7 @@ export interface UpdateCampaignCollection {
  * Check if a given object implements the UpdateCampaignCollection interface.
  */
 export function instanceOfUpdateCampaignCollection(value: object): value is UpdateCampaignCollection {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

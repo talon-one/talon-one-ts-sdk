@@ -58,9 +58,10 @@ export type CatalogActionFilterOpEnum = typeof CatalogActionFilterOpEnum[keyof t
  * Check if a given object implements the CatalogActionFilter interface.
  */
 export function instanceOfCatalogActionFilter(value: object): value is CatalogActionFilter {
-    if (!('attr' in value) || value['attr'] === undefined) return false;
-    if (!('op' in value) || value['op'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('attr' in _v) || _v['attr'] === undefined) return false;
+    if (!('op' in _v) || _v['op'] === undefined) return false;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
     return true;
 }
 

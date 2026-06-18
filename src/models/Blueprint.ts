@@ -140,16 +140,17 @@ export type BlueprintSourceEnum = typeof BlueprintSourceEnum[keyof typeof Bluepr
  * Check if a given object implements the Blueprint interface.
  */
 export function instanceOfBlueprint(value: object): value is Blueprint {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('category' in value) || value['category'] === undefined) return false;
-    if (!('source' in value) || value['source'] === undefined) return false;
-    if (!('rules' in value) || value['rules'] === undefined) return false;
-    if (!('cartItemFilters' in value) || value['cartItemFilters'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('createdBy' in value) || value['createdBy'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('category' in _v) || _v['category'] === undefined) return false;
+    if (!('source' in _v) || _v['source'] === undefined) return false;
+    if (!('rules' in _v) || _v['rules'] === undefined) return false;
+    if (!('cartItemFilters' in _v) || _v['cartItemFilters'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('createdBy' in _v) || _v['createdBy'] === undefined) return false;
     return true;
 }
 

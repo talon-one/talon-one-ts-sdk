@@ -51,7 +51,8 @@ export interface GetChanges200Response {
  * Check if a given object implements the GetChanges200Response interface.
  */
 export function instanceOfGetChanges200Response(value: object): value is GetChanges200Response {
-    if (!('data' in value) || value['data'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('data' in _v) || _v['data'] === undefined) return false;
     return true;
 }
 

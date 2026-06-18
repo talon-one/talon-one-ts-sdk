@@ -31,6 +31,7 @@ export interface RevisionActivation {
  * Check if a given object implements the RevisionActivation interface.
  */
 export function instanceOfRevisionActivation(value: object): value is RevisionActivation {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

@@ -110,16 +110,17 @@ export interface CouponDeletionJob {
  * Check if a given object implements the CouponDeletionJob interface.
  */
 export function instanceOfCouponDeletionJob(value: object): value is CouponDeletionJob {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('filters' in value) || value['filters'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('failCount' in value) || value['failCount'] === undefined) return false;
-    if (!('errors' in value) || value['errors'] === undefined) return false;
-    if (!('createdBy' in value) || value['createdBy'] === undefined) return false;
-    if (!('communicated' in value) || value['communicated'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('filters' in _v) || _v['filters'] === undefined) return false;
+    if (!('status' in _v) || _v['status'] === undefined) return false;
+    if (!('failCount' in _v) || _v['failCount'] === undefined) return false;
+    if (!('errors' in _v) || _v['errors'] === undefined) return false;
+    if (!('createdBy' in _v) || _v['createdBy'] === undefined) return false;
+    if (!('communicated' in _v) || _v['communicated'] === undefined) return false;
     return true;
 }
 

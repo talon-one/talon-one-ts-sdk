@@ -37,8 +37,9 @@ export interface ChangeProfilePassword {
  * Check if a given object implements the ChangeProfilePassword interface.
  */
 export function instanceOfChangeProfilePassword(value: object): value is ChangeProfilePassword {
-    if (!('password' in value) || value['password'] === undefined) return false;
-    if (!('newPassword' in value) || value['newPassword'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('password' in _v) || _v['password'] === undefined) return false;
+    if (!('newPassword' in _v) || _v['newPassword'] === undefined) return false;
     return true;
 }
 

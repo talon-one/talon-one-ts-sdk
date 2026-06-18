@@ -88,6 +88,7 @@ docs/AudienceIntegrationID.md
 docs/AudienceMembership.md
 docs/AudienceReference.md
 docs/AwardGiveawayEffectProps.md
+docs/BaseBlock.md
 docs/BaseCampaign.md
 docs/BaseLoyaltyProgram.md
 docs/BaseNotification.md
@@ -544,6 +545,7 @@ docs/OutgoingIntegrationTemplateWithConfigurationDetails.md
 docs/OutgoingIntegrationTemplates.md
 docs/OutgoingIntegrationType.md
 docs/OutgoingIntegrationTypes.md
+docs/PassthroughBlock.md
 docs/PatchItemCatalogAction.md
 docs/PatchManyItemsCatalogAction.md
 docs/PendingActivePointsData.md
@@ -565,6 +567,8 @@ docs/ProductUnitAnalyticsTotals.md
 docs/ProfileAudiencesChanges.md
 docs/ProjectedTier.md
 docs/PromoteExperiment.md
+docs/PromotionGroupBlock.md
+docs/PromotionRuleV2.md
 docs/RedeemReferralEffectProps.md
 docs/Referral.md
 docs/ReferralConstraints.md
@@ -611,7 +615,9 @@ docs/RuleEligibilityFailureDetails.md
 docs/RuleFailureReason.md
 docs/RuleMetadata.md
 docs/RuleMetadataEligibility.md
+docs/RuleV2.md
 docs/Ruleset.md
+docs/RulesetV2.md
 docs/SSOConfig.md
 docs/SamlConnection.md
 docs/SamlConnectionInternal.md
@@ -653,7 +659,9 @@ docs/StrikethroughChangedItem.md
 docs/StrikethroughCustomEffectPerItemProps.md
 docs/StrikethroughDebugResponse.md
 docs/StrikethroughEffect.md
+docs/StrikethroughGroupBlock.md
 docs/StrikethroughLabelingNotification.md
+docs/StrikethroughRuleV2.md
 docs/StrikethroughSetDiscountPerItemEffectProps.md
 docs/StrikethroughSetDiscountPerItemMemberEffectProps.md
 docs/StrikethroughTrigger.md
@@ -815,6 +823,7 @@ src/models/AudienceIntegrationID.ts
 src/models/AudienceMembership.ts
 src/models/AudienceReference.ts
 src/models/AwardGiveawayEffectProps.ts
+src/models/BaseBlock.ts
 src/models/BaseCampaign.ts
 src/models/BaseLoyaltyProgram.ts
 src/models/BaseNotification.ts
@@ -1269,6 +1278,7 @@ src/models/OutgoingIntegrationTemplateWithConfigurationDetails.ts
 src/models/OutgoingIntegrationTemplates.ts
 src/models/OutgoingIntegrationType.ts
 src/models/OutgoingIntegrationTypes.ts
+src/models/PassthroughBlock.ts
 src/models/PatchItemCatalogAction.ts
 src/models/PatchManyItemsCatalogAction.ts
 src/models/PendingActivePointsData.ts
@@ -1290,6 +1300,8 @@ src/models/ProductUnitAnalyticsTotals.ts
 src/models/ProfileAudiencesChanges.ts
 src/models/ProjectedTier.ts
 src/models/PromoteExperiment.ts
+src/models/PromotionGroupBlock.ts
+src/models/PromotionRuleV2.ts
 src/models/RedeemReferralEffectProps.ts
 src/models/Referral.ts
 src/models/ReferralConstraints.ts
@@ -1336,7 +1348,9 @@ src/models/RuleEligibilityFailureDetails.ts
 src/models/RuleFailureReason.ts
 src/models/RuleMetadata.ts
 src/models/RuleMetadataEligibility.ts
+src/models/RuleV2.ts
 src/models/Ruleset.ts
+src/models/RulesetV2.ts
 src/models/SSOConfig.ts
 src/models/SamlConnection.ts
 src/models/SamlConnectionInternal.ts
@@ -1378,7 +1392,9 @@ src/models/StrikethroughChangedItem.ts
 src/models/StrikethroughCustomEffectPerItemProps.ts
 src/models/StrikethroughDebugResponse.ts
 src/models/StrikethroughEffect.ts
+src/models/StrikethroughGroupBlock.ts
 src/models/StrikethroughLabelingNotification.ts
+src/models/StrikethroughRuleV2.ts
 src/models/StrikethroughSetDiscountPerItemEffectProps.ts
 src/models/StrikethroughSetDiscountPerItemMemberEffectProps.ts
 src/models/StrikethroughTrigger.ts

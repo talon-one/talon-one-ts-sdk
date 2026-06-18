@@ -72,9 +72,10 @@ export interface CustomEffectProps {
  * Check if a given object implements the CustomEffectProps interface.
  */
 export function instanceOfCustomEffectProps(value: object): value is CustomEffectProps {
-    if (!('effectId' in value) || value['effectId'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('payload' in value) || value['payload'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('effectId' in _v) || _v['effectId'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('payload' in _v) || _v['payload'] === undefined) return false;
     return true;
 }
 

@@ -182,14 +182,15 @@ export type RevisionVersionFeaturesEnum = typeof RevisionVersionFeaturesEnum[key
  * Check if a given object implements the RevisionVersion interface.
  */
 export function instanceOfRevisionVersion(value: object): value is RevisionVersion {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('accountId' in value) || value['accountId'] === undefined) return false;
-    if (!('applicationId' in value) || value['applicationId'] === undefined) return false;
-    if (!('campaignId' in value) || value['campaignId'] === undefined) return false;
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('createdBy' in value) || value['createdBy'] === undefined) return false;
-    if (!('revisionId' in value) || value['revisionId'] === undefined) return false;
-    if (!('version' in value) || value['version'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
+    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('createdBy' in _v) || _v['createdBy'] === undefined) return false;
+    if (!('revisionId' in _v) || _v['revisionId'] === undefined) return false;
+    if (!('version' in _v) || _v['version'] === undefined) return false;
     return true;
 }
 

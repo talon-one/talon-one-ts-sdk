@@ -45,6 +45,7 @@ export interface StrikethroughDebugResponse {
  * Check if a given object implements the StrikethroughDebugResponse interface.
  */
 export function instanceOfStrikethroughDebugResponse(value: object): value is StrikethroughDebugResponse {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

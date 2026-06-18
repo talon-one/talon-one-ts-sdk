@@ -45,8 +45,9 @@ export interface ExperimentConfidenceTimelineDataPoint {
  * Check if a given object implements the ExperimentConfidenceTimelineDataPoint interface.
  */
 export function instanceOfExperimentConfidenceTimelineDataPoint(value: object): value is ExperimentConfidenceTimelineDataPoint {
-    if (!('date' in value) || value['date'] === undefined) return false;
-    if (!('confidence' in value) || value['confidence'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('date' in _v) || _v['date'] === undefined) return false;
+    if (!('confidence' in _v) || _v['confidence'] === undefined) return false;
     return true;
 }
 

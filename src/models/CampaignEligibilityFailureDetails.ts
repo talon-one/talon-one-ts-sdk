@@ -43,7 +43,8 @@ export type CampaignEligibilityFailureDetailsFailureCodeEnum = typeof CampaignEl
  * Check if a given object implements the CampaignEligibilityFailureDetails interface.
  */
 export function instanceOfCampaignEligibilityFailureDetails(value: object): value is CampaignEligibilityFailureDetails {
-    if (!('failureCode' in value) || value['failureCode'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('failureCode' in _v) || _v['failureCode'] === undefined) return false;
     return true;
 }
 

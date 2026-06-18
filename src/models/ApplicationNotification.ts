@@ -32,7 +32,8 @@ export interface ApplicationNotification {
  * Check if a given object implements the ApplicationNotification interface.
  */
 export function instanceOfApplicationNotification(value: object): value is ApplicationNotification {
-    if (!('event' in value) || value['event'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('event' in _v) || _v['event'] === undefined) return false;
     return true;
 }
 

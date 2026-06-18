@@ -86,11 +86,12 @@ export interface ExpiringCouponsData {
  * Check if a given object implements the ExpiringCouponsData interface.
  */
 export function instanceOfExpiringCouponsData(value: object): value is ExpiringCouponsData {
-    if ((!('couponValue' in value) && !('CouponValue' in value)) || (value['couponValue'] === undefined && value['CouponValue'] === undefined)) return false;
-    if ((!('campaignId' in value) && !('CampaignId' in value)) || (value['campaignId'] === undefined && value['CampaignId'] === undefined)) return false;
-    if ((!('usageLimit' in value) && !('UsageLimit' in value)) || (value['usageLimit'] === undefined && value['UsageLimit'] === undefined)) return false;
-    if ((!('usageCounter' in value) && !('UsageCounter' in value)) || (value['usageCounter'] === undefined && value['UsageCounter'] === undefined)) return false;
-    if ((!('attributes' in value) && !('Attributes' in value)) || (value['attributes'] === undefined && value['Attributes'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('couponValue' in _v) && !('CouponValue' in _v)) || (_v['couponValue'] === undefined && _v['CouponValue'] === undefined)) return false;
+    if ((!('campaignId' in _v) && !('CampaignId' in _v)) || (_v['campaignId'] === undefined && _v['CampaignId'] === undefined)) return false;
+    if ((!('usageLimit' in _v) && !('UsageLimit' in _v)) || (_v['usageLimit'] === undefined && _v['UsageLimit'] === undefined)) return false;
+    if ((!('usageCounter' in _v) && !('UsageCounter' in _v)) || (_v['usageCounter'] === undefined && _v['UsageCounter'] === undefined)) return false;
+    if ((!('attributes' in _v) && !('Attributes' in _v)) || (_v['attributes'] === undefined && _v['Attributes'] === undefined)) return false;
     return true;
 }
 

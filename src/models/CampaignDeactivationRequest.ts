@@ -31,7 +31,8 @@ export interface CampaignDeactivationRequest {
  * Check if a given object implements the CampaignDeactivationRequest interface.
  */
 export function instanceOfCampaignDeactivationRequest(value: object): value is CampaignDeactivationRequest {
-    if (!('userIds' in value) || value['userIds'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('userIds' in _v) || _v['userIds'] === undefined) return false;
     return true;
 }
 

@@ -40,7 +40,8 @@ export interface CustomerProfileUpdateV2Response {
  * Check if a given object implements the CustomerProfileUpdateV2Response interface.
  */
 export function instanceOfCustomerProfileUpdateV2Response(value: object): value is CustomerProfileUpdateV2Response {
-    if (!('customerProfile' in value) || value['customerProfile'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('customerProfile' in _v) || _v['customerProfile'] === undefined) return false;
     return true;
 }
 

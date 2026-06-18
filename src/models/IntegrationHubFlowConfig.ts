@@ -49,7 +49,8 @@ export interface IntegrationHubFlowConfig {
  * Check if a given object implements the IntegrationHubFlowConfig interface.
  */
 export function instanceOfIntegrationHubFlowConfig(value: object): value is IntegrationHubFlowConfig {
-    if ((!('apiKey' in value) && !('ApiKey' in value)) || (value['apiKey'] === undefined && value['ApiKey'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('apiKey' in _v) && !('ApiKey' in _v)) || (_v['apiKey'] === undefined && _v['ApiKey'] === undefined)) return false;
     return true;
 }
 

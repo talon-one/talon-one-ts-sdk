@@ -55,7 +55,8 @@ export interface NewInvitation {
  * Check if a given object implements the NewInvitation interface.
  */
 export function instanceOfNewInvitation(value: object): value is NewInvitation {
-    if (!('email' in value) || value['email'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('email' in _v) || _v['email'] === undefined) return false;
     return true;
 }
 

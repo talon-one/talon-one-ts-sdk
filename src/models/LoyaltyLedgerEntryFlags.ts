@@ -31,6 +31,7 @@ export interface LoyaltyLedgerEntryFlags {
  * Check if a given object implements the LoyaltyLedgerEntryFlags interface.
  */
 export function instanceOfLoyaltyLedgerEntryFlags(value: object): value is LoyaltyLedgerEntryFlags {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

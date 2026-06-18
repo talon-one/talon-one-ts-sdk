@@ -101,6 +101,7 @@ export interface UpdateCoupon {
  * Check if a given object implements the UpdateCoupon interface.
  */
 export function instanceOfUpdateCoupon(value: object): value is UpdateCoupon {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

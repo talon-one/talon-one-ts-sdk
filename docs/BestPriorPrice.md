@@ -23,7 +23,7 @@ import type { BestPriorPrice } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "id": 1,
-  "sku": NVR-GN-GV-UUP,
+  "sku": SKU7345278,
   "observedAt": 2025-11-10T23:00:00Z,
   "contextIds": [SpringSale, SummerSale2025],
   "contextId": ,

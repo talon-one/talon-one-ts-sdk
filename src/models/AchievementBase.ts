@@ -162,6 +162,7 @@ export type AchievementBaseActivationPolicyEnum = typeof AchievementBaseActivati
  * Check if a given object implements the AchievementBase interface.
  */
 export function instanceOfAchievementBase(value: object): value is AchievementBase {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

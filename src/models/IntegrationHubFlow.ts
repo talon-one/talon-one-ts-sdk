@@ -59,8 +59,9 @@ export interface IntegrationHubFlow {
  * Check if a given object implements the IntegrationHubFlow interface.
  */
 export function instanceOfIntegrationHubFlow(value: object): value is IntegrationHubFlow {
-    if ((!('eventType' in value) && !('EventType' in value)) || (value['eventType'] === undefined && value['EventType'] === undefined)) return false;
-    if ((!('integrationHubFlowUrl' in value) && !('IntegrationHubFlowUrl' in value)) || (value['integrationHubFlowUrl'] === undefined && value['IntegrationHubFlowUrl'] === undefined)) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if ((!('eventType' in _v) && !('EventType' in _v)) || (_v['eventType'] === undefined && _v['EventType'] === undefined)) return false;
+    if ((!('integrationHubFlowUrl' in _v) && !('IntegrationHubFlowUrl' in _v)) || (_v['integrationHubFlowUrl'] === undefined && _v['IntegrationHubFlowUrl'] === undefined)) return false;
     return true;
 }
 

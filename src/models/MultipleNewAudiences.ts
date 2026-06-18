@@ -39,7 +39,8 @@ export interface MultipleNewAudiences {
  * Check if a given object implements the MultipleNewAudiences interface.
  */
 export function instanceOfMultipleNewAudiences(value: object): value is MultipleNewAudiences {
-    if (!('audiences' in value) || value['audiences'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('audiences' in _v) || _v['audiences'] === undefined) return false;
     return true;
 }
 

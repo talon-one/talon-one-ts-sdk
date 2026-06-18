@@ -58,8 +58,9 @@ export type ExperimentSegmentInsightMetricMetricEnum = typeof ExperimentSegmentI
  * Check if a given object implements the ExperimentSegmentInsightMetric interface.
  */
 export function instanceOfExperimentSegmentInsightMetric(value: object): value is ExperimentSegmentInsightMetric {
-    if (!('metric' in value) || value['metric'] === undefined) return false;
-    if (!('segments' in value) || value['segments'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('metric' in _v) || _v['metric'] === undefined) return false;
+    if (!('segments' in _v) || _v['segments'] === undefined) return false;
     return true;
 }
 

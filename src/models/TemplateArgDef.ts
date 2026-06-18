@@ -82,9 +82,10 @@ export type TemplateArgDefTypeEnum = typeof TemplateArgDefTypeEnum[keyof typeof 
  * Check if a given object implements the TemplateArgDef interface.
  */
 export function instanceOfTemplateArgDef(value: object): value is TemplateArgDef {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('ui' in value) || value['ui'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('ui' in _v) || _v['ui'] === undefined) return false;
     return true;
 }
 

@@ -49,6 +49,7 @@ export interface UpdateApplicationCIF {
  * Check if a given object implements the UpdateApplicationCIF interface.
  */
 export function instanceOfUpdateApplicationCIF(value: object): value is UpdateApplicationCIF {
+    const _v = value as Record<PropertyKey, unknown>;
     return true;
 }
 

@@ -40,7 +40,8 @@ export interface ReopenSessionResponse {
  * Check if a given object implements the ReopenSessionResponse interface.
  */
 export function instanceOfReopenSessionResponse(value: object): value is ReopenSessionResponse {
-    if (!('effects' in value) || value['effects'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('effects' in _v) || _v['effects'] === undefined) return false;
     return true;
 }
 

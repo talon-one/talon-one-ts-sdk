@@ -80,9 +80,10 @@ export type TemplateLimitConfigEntitiesEnum = typeof TemplateLimitConfigEntities
  * Check if a given object implements the TemplateLimitConfig interface.
  */
 export function instanceOfTemplateLimitConfig(value: object): value is TemplateLimitConfig {
-    if (!('action' in value) || value['action'] === undefined) return false;
-    if (!('limit' in value) || value['limit'] === undefined) return false;
-    if (!('entities' in value) || value['entities'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('action' in _v) || _v['action'] === undefined) return false;
+    if (!('limit' in _v) || _v['limit'] === undefined) return false;
+    if (!('entities' in _v) || _v['entities'] === undefined) return false;
     return true;
 }
 

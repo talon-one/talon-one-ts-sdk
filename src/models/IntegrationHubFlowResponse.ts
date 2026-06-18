@@ -93,11 +93,12 @@ export interface IntegrationHubFlowResponse {
  * Check if a given object implements the IntegrationHubFlowResponse interface.
  */
 export function instanceOfIntegrationHubFlowResponse(value: object): value is IntegrationHubFlowResponse {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-    if (!('eventType' in value) || value['eventType'] === undefined) return false;
-    if (!('integrationHubFlowUrl' in value) || value['integrationHubFlowUrl'] === undefined) return false;
-    if (!('config' in value) || value['config'] === undefined) return false;
+    const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('createdAt' in _v) || _v['createdAt'] === undefined) return false;
+    if (!('eventType' in _v) || _v['eventType'] === undefined) return false;
+    if (!('integrationHubFlowUrl' in _v) || _v['integrationHubFlowUrl'] === undefined) return false;
+    if (!('config' in _v) || _v['config'] === undefined) return false;
     return true;
 }
 
