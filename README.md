@@ -355,6 +355,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**getReferralsWithoutTotalCount**](docs/ManagementApi.md#getreferralswithouttotalcount) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/no_total | List referrals
 *ManagementApi* | [**getRoleV2**](docs/ManagementApi.md#getrolev2) | **GET** /v2/roles/{roleId} | Get role
 *ManagementApi* | [**getRuleset**](docs/ManagementApi.md#getruleset) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get ruleset
+*ManagementApi* | [**getRulesetV2**](docs/ManagementApi.md#getrulesetv2) | **GET** /v2/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get ruleset (V2)
 *ManagementApi* | [**getRulesets**](docs/ManagementApi.md#getrulesets) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets | List campaign rulesets
 *ManagementApi* | [**getStore**](docs/ManagementApi.md#getstore) | **GET** /v1/applications/{applicationId}/stores/{storeId} | Get store
 *ManagementApi* | [**getUser**](docs/ManagementApi.md#getuser) | **GET** /v1/users/{userId} | Get user
@@ -622,6 +623,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [CreateTemplateCampaignResponse](docs/CreateTemplateCampaignResponse.md)
 - [CustomEffect](docs/CustomEffect.md)
 - [CustomEffectProps](docs/CustomEffectProps.md)
+- [CustomerAchievement](docs/CustomerAchievement.md)
 - [CustomerActivityReport](docs/CustomerActivityReport.md)
 - [CustomerAnalytics](docs/CustomerAnalytics.md)
 - [CustomerInventory](docs/CustomerInventory.md)
@@ -1005,6 +1007,9 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [RevisionVersion](docs/RevisionVersion.md)
 - [Reward](docs/Reward.md)
 - [RewardPointsRequired](docs/RewardPointsRequired.md)
+- [Risk](docs/Risk.md)
+- [RiskAffectedEntityItem](docs/RiskAffectedEntityItem.md)
+- [RiskDetail](docs/RiskDetail.md)
 - [RiskNotification](docs/RiskNotification.md)
 - [Role](docs/Role.md)
 - [RoleAssign](docs/RoleAssign.md)

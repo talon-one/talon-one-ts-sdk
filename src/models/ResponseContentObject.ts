@@ -39,7 +39,8 @@ export const ResponseContentObjectResponseContentEnum = {
     Event: 'event',
     AwardedGiveaways: 'awardedGiveaways',
     RuleFailureReasons: 'ruleFailureReasons',
-    CampaignEligibility: 'campaignEligibility'
+    CampaignEligibility: 'campaignEligibility',
+    Achievements: 'achievements'
 } as const;
 export type ResponseContentObjectResponseContentEnum = typeof ResponseContentObjectResponseContentEnum[keyof typeof ResponseContentObjectResponseContentEnum];
 

@@ -564,6 +564,11 @@ import {
     RulesetToJSON,
 } from '../models/Ruleset';
 import {
+    type RulesetV2,
+    RulesetV2FromJSON,
+    RulesetV2ToJSON,
+} from '../models/RulesetV2';
+import {
     type ScimBaseGroup,
     ScimBaseGroupFromJSON,
     ScimBaseGroupToJSON,
@@ -1528,6 +1533,12 @@ export interface GetRoleV2Request {
 }
 
 export interface GetRulesetRequest {
+    applicationId: number;
+    campaignId: number;
+    rulesetId: number;
+}
+
+export interface GetRulesetV2Request {
     applicationId: number;
     campaignId: number;
     rulesetId: number;
@@ -9991,6 +10002,73 @@ export class ManagementApi extends runtime.BaseAPI {
      */
     async getRuleset(requestParameters: GetRulesetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Ruleset> {
         const response = await this.getRulesetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getRulesetV2 without sending the request
+     */
+    async getRulesetV2RequestOpts(requestParameters: GetRulesetV2Request): Promise<runtime.RequestOpts> {
+        if (requestParameters['applicationId'] == null) {
+            throw new runtime.RequiredError(
+                'applicationId',
+                'Required parameter "applicationId" was null or undefined when calling getRulesetV2().'
+            );
+        }
+
+        if (requestParameters['campaignId'] == null) {
+            throw new runtime.RequiredError(
+                'campaignId',
+                'Required parameter "campaignId" was null or undefined when calling getRulesetV2().'
+            );
+        }
+
+        if (requestParameters['rulesetId'] == null) {
+            throw new runtime.RequiredError(
+                'rulesetId',
+                'Required parameter "rulesetId" was null or undefined when calling getRulesetV2().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v2/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId}`;
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+        urlPath = urlPath.replace('{rulesetId}', encodeURIComponent(String(requestParameters['rulesetId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Retrieve the specified ruleset as a JSON object.
+     * Get ruleset (V2)
+     */
+    async getRulesetV2Raw(requestParameters: GetRulesetV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RulesetV2>> {
+        const requestOptions = await this.getRulesetV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RulesetV2FromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve the specified ruleset as a JSON object.
+     * Get ruleset (V2)
+     */
+    async getRulesetV2(requestParameters: GetRulesetV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RulesetV2> {
+        const response = await this.getRulesetV2Raw(requestParameters, initOverrides);
         return await response.value();
     }
 

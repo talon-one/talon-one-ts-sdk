@@ -76,6 +76,13 @@ import {
     LoyaltyToJSON,
     LoyaltyToJSONTyped,
 } from './Loyalty';
+import type { CustomerAchievement } from './CustomerAchievement';
+import {
+    CustomerAchievementFromJSON,
+    CustomerAchievementFromJSONTyped,
+    CustomerAchievementToJSON,
+    CustomerAchievementToJSONTyped,
+} from './CustomerAchievement';
 import type { RuleFailureReason } from './RuleFailureReason';
 import {
     RuleFailureReasonFromJSON,
@@ -153,6 +160,12 @@ export interface IntegrationEventV3Response {
      */
     awardedGiveaways?: Array<Giveaway>;
     /**
+     * The achievements progress of the customer.
+     * @type {Array<CustomerAchievement>}
+     * @memberof IntegrationEventV3Response
+     */
+    achievements?: Array<CustomerAchievement>;
+    /**
      * The advanced event that was processed.
      * @type {EventV3}
      * @memberof IntegrationEventV3Response
@@ -190,6 +203,7 @@ export function IntegrationEventV3ResponseFromJSONTyped(json: any, ignoreDiscrim
         'createdCoupons': ((json['createdCoupons'] as Array<any>).map(CouponFromJSON)),
         'createdReferrals': ((json['createdReferrals'] as Array<any>).map(ReferralFromJSON)),
         'awardedGiveaways': json['awardedGiveaways'] == null ? undefined : ((json['awardedGiveaways'] as Array<any>).map(GiveawayFromJSON)),
+        'achievements': json['achievements'] == null ? undefined : ((json['achievements'] as Array<any>).map(CustomerAchievementFromJSON)),
         'advancedEvent': json['advancedEvent'] == null ? undefined : EventV3FromJSON(json['advancedEvent']),
     };
 }
@@ -214,6 +228,7 @@ export function IntegrationEventV3ResponseToJSONTyped(value?: IntegrationEventV3
         'createdCoupons': ((value['createdCoupons'] as Array<any>).map(CouponToJSON)),
         'createdReferrals': ((value['createdReferrals'] as Array<any>).map(ReferralToJSON)),
         'awardedGiveaways': value['awardedGiveaways'] == null ? undefined : ((value['awardedGiveaways'] as Array<any>).map(GiveawayToJSON)),
+        'achievements': value['achievements'] == null ? undefined : ((value['achievements'] as Array<any>).map(CustomerAchievementToJSON)),
         'advancedEvent': EventV3ToJSON(value['advancedEvent']),
     };
 }

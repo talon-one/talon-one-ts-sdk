@@ -69,6 +69,13 @@ import {
     LoyaltyToJSON,
     LoyaltyToJSONTyped,
 } from './Loyalty';
+import type { CustomerAchievement } from './CustomerAchievement';
+import {
+    CustomerAchievementFromJSON,
+    CustomerAchievementFromJSONTyped,
+    CustomerAchievementToJSON,
+    CustomerAchievementToJSONTyped,
+} from './CustomerAchievement';
 import type { RuleFailureReason } from './RuleFailureReason';
 import {
     RuleFailureReasonFromJSON,
@@ -146,6 +153,12 @@ export interface IntegrationResponse {
      * @memberof IntegrationResponse
      */
     awardedGiveaways?: Array<Giveaway>;
+    /**
+     * The achievements progress of the customer.
+     * @type {Array<CustomerAchievement>}
+     * @memberof IntegrationResponse
+     */
+    achievements?: Array<CustomerAchievement>;
 }
 
 /**
@@ -178,6 +191,7 @@ export function IntegrationResponseFromJSONTyped(json: any, ignoreDiscriminator:
         'createdCoupons': ((json['createdCoupons'] as Array<any>).map(CouponFromJSON)),
         'createdReferrals': ((json['createdReferrals'] as Array<any>).map(ReferralFromJSON)),
         'awardedGiveaways': json['awardedGiveaways'] == null ? undefined : ((json['awardedGiveaways'] as Array<any>).map(GiveawayFromJSON)),
+        'achievements': json['achievements'] == null ? undefined : ((json['achievements'] as Array<any>).map(CustomerAchievementFromJSON)),
     };
 }
 
@@ -201,6 +215,7 @@ export function IntegrationResponseToJSONTyped(value?: IntegrationResponse | nul
         'createdCoupons': ((value['createdCoupons'] as Array<any>).map(CouponToJSON)),
         'createdReferrals': ((value['createdReferrals'] as Array<any>).map(ReferralToJSON)),
         'awardedGiveaways': value['awardedGiveaways'] == null ? undefined : ((value['awardedGiveaways'] as Array<any>).map(GiveawayToJSON)),
+        'achievements': value['achievements'] == null ? undefined : ((value['achievements'] as Array<any>).map(CustomerAchievementToJSON)),
     };
 }
 

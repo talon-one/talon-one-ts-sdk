@@ -64,6 +64,12 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotif
      */
     currentTier: string;
     /**
+     * The integration ID of the session through which the points were earned or lost. Only set when the change results from a rule engine execution; empty otherwise.
+     * @type {string}
+     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
+     */
+    sessionIntegrationID?: string;
+    /**
      * 
      * @type {string}
      * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
@@ -127,6 +133,7 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotifi
         'subledgerID': json['SubledgerID'],
         'sourceOfEvent': json['SourceOfEvent'],
         'currentTier': json['CurrentTier'],
+        'sessionIntegrationID': json['SessionIntegrationID'] == null ? undefined : json['SessionIntegrationID'],
         'employeeName': json['EmployeeName'] == null ? undefined : json['EmployeeName'],
         'userID': json['UserID'] == null ? undefined : json['UserID'],
         'currentPoints': json['CurrentPoints'],
@@ -152,6 +159,7 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotifi
         'SubledgerID': value['subledgerID'],
         'SourceOfEvent': value['sourceOfEvent'],
         'CurrentTier': value['currentTier'],
+        'SessionIntegrationID': value['sessionIntegrationID'],
         'EmployeeName': value['employeeName'],
         'UserID': value['userID'],
         'CurrentPoints': value['currentPoints'],

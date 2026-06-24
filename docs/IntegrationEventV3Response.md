@@ -15,6 +15,7 @@ Name | Type
 `createdCoupons` | [Array&lt;Coupon&gt;](Coupon.md)
 `createdReferrals` | [Array&lt;Referral&gt;](Referral.md)
 `awardedGiveaways` | [Array&lt;Giveaway&gt;](Giveaway.md)
+`achievements` | [Array&lt;CustomerAchievement&gt;](CustomerAchievement.md)
 `advancedEvent` | [EventV3](EventV3.md)
 
 ## Example
@@ -33,6 +34,7 @@ const example = {
   "createdCoupons": null,
   "createdReferrals": null,
   "awardedGiveaways": null,
+  "achievements": null,
   "advancedEvent": null,
 } satisfies IntegrationEventV3Response
 
