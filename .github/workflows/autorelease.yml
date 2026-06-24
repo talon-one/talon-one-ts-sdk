@@ -2,8 +2,8 @@ name: Auto-release on main
 
 on:
   pull_request:
-    branches: [ main ]
-    types: [ closed ]
+    branches: [main]
+    types: [closed]
   workflow_dispatch:
     inputs:
       SDK_VERSION:
@@ -99,23 +99,20 @@ jobs:
 
           echo "notes_file=release-notes.md" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         if: ${{ steps.get_version.outputs.version != '' }}
         with:
           node-version: 24
           registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false
       - name: Install dependencies
         if: ${{ steps.get_version.outputs.version != '' }}
         run: |
           npm install;
           npm run build;
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish the package
         run: npm publish --provenance --access public
         if: ${{ steps.get_version.outputs.version != '' }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create Git tag
         if: ${{ steps.get_version.outputs.version != '' }}
