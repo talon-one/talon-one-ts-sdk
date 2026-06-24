@@ -12,6 +12,7 @@ Name | Type
 `subledgerID` | string
 `sourceOfEvent` | string
 `currentTier` | string
+`sessionIntegrationID` | string
 `employeeName` | string
 `userID` | number
 `currentPoints` | number
@@ -31,6 +32,7 @@ const example = {
   "subledgerID": null,
   "sourceOfEvent": null,
   "currentTier": null,
+  "sessionIntegrationID": null,
   "employeeName": null,
   "userID": null,
   "currentPoints": null,

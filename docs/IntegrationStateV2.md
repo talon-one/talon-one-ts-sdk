@@ -15,6 +15,7 @@ Name | Type
 `createdCoupons` | [Array&lt;Coupon&gt;](Coupon.md)
 `createdReferrals` | [Array&lt;Referral&gt;](Referral.md)
 `awardedGiveaways` | [Array&lt;Giveaway&gt;](Giveaway.md)
+`achievements` | [Array&lt;CustomerAchievement&gt;](CustomerAchievement.md)
 `referral` | [InventoryReferral](InventoryReferral.md)
 `coupons` | [Array&lt;IntegrationCoupon&gt;](IntegrationCoupon.md)
 `event` | [Event](Event.md)
@@ -39,6 +40,7 @@ const example = {
   "createdCoupons": null,
   "createdReferrals": null,
   "awardedGiveaways": null,
+  "achievements": null,
   "referral": null,
   "coupons": null,
   "event": null,

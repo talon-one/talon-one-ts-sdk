@@ -206,6 +206,7 @@ docs/CreateTemplateCampaign.md
 docs/CreateTemplateCampaignResponse.md
 docs/CustomEffect.md
 docs/CustomEffectProps.md
+docs/CustomerAchievement.md
 docs/CustomerActivityReport.md
 docs/CustomerAnalytics.md
 docs/CustomerInventory.md
@@ -591,6 +592,9 @@ docs/RevisionActivationRequest.md
 docs/RevisionVersion.md
 docs/Reward.md
 docs/RewardPointsRequired.md
+docs/Risk.md
+docs/RiskAffectedEntityItem.md
+docs/RiskDetail.md
 docs/RiskNotification.md
 docs/Role.md
 docs/RoleAssign.md
@@ -941,6 +945,7 @@ src/models/CreateTemplateCampaign.ts
 src/models/CreateTemplateCampaignResponse.ts
 src/models/CustomEffect.ts
 src/models/CustomEffectProps.ts
+src/models/CustomerAchievement.ts
 src/models/CustomerActivityReport.ts
 src/models/CustomerAnalytics.ts
 src/models/CustomerInventory.ts
@@ -1324,6 +1329,9 @@ src/models/RevisionActivationRequest.ts
 src/models/RevisionVersion.ts
 src/models/Reward.ts
 src/models/RewardPointsRequired.ts
+src/models/Risk.ts
+src/models/RiskAffectedEntityItem.ts
+src/models/RiskDetail.ts
 src/models/RiskNotification.ts
 src/models/Role.ts
 src/models/RoleAssign.ts

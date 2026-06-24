@@ -55,6 +55,13 @@ import {
     CustomerProfileToJSON,
     CustomerProfileToJSONTyped,
 } from './CustomerProfile';
+import type { CustomerAchievement } from './CustomerAchievement';
+import {
+    CustomerAchievementFromJSON,
+    CustomerAchievementFromJSONTyped,
+    CustomerAchievementToJSON,
+    CustomerAchievementToJSONTyped,
+} from './CustomerAchievement';
 import type { IntegrationCoupon } from './IntegrationCoupon';
 import {
     IntegrationCouponFromJSON,
@@ -188,6 +195,12 @@ export interface IntegrationStateV2 {
      */
     awardedGiveaways?: Array<Giveaway>;
     /**
+     * The achievements progress of the customer.
+     * @type {Array<CustomerAchievement>}
+     * @memberof IntegrationStateV2
+     */
+    achievements?: Array<CustomerAchievement>;
+    /**
      * The referral that was processed.
      * @type {InventoryReferral}
      * @memberof IntegrationStateV2
@@ -261,6 +274,7 @@ export function IntegrationStateV2FromJSONTyped(json: any, ignoreDiscriminator: 
         'createdCoupons': ((json['createdCoupons'] as Array<any>).map(CouponFromJSON)),
         'createdReferrals': ((json['createdReferrals'] as Array<any>).map(ReferralFromJSON)),
         'awardedGiveaways': json['awardedGiveaways'] == null ? undefined : ((json['awardedGiveaways'] as Array<any>).map(GiveawayFromJSON)),
+        'achievements': json['achievements'] == null ? undefined : ((json['achievements'] as Array<any>).map(CustomerAchievementFromJSON)),
         'referral': json['referral'] == null ? undefined : InventoryReferralFromJSON(json['referral']),
         'coupons': json['coupons'] == null ? undefined : ((json['coupons'] as Array<any>).map(IntegrationCouponFromJSON)),
         'event': json['event'] == null ? undefined : EventFromJSON(json['event']),
@@ -291,6 +305,7 @@ export function IntegrationStateV2ToJSONTyped(value?: IntegrationStateV2 | null,
         'createdCoupons': ((value['createdCoupons'] as Array<any>).map(CouponToJSON)),
         'createdReferrals': ((value['createdReferrals'] as Array<any>).map(ReferralToJSON)),
         'awardedGiveaways': value['awardedGiveaways'] == null ? undefined : ((value['awardedGiveaways'] as Array<any>).map(GiveawayToJSON)),
+        'achievements': value['achievements'] == null ? undefined : ((value['achievements'] as Array<any>).map(CustomerAchievementToJSON)),
         'referral': InventoryReferralToJSON(value['referral']),
         'coupons': value['coupons'] == null ? undefined : ((value['coupons'] as Array<any>).map(IntegrationCouponToJSON)),
         'event': EventToJSON(value['event']),

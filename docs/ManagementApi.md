@@ -123,6 +123,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**getReferralsWithoutTotalCount**](ManagementApi.md#getreferralswithouttotalcount) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/no_total | List referrals |
 | [**getRoleV2**](ManagementApi.md#getrolev2) | **GET** /v2/roles/{roleId} | Get role |
 | [**getRuleset**](ManagementApi.md#getruleset) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get ruleset |
+| [**getRulesetV2**](ManagementApi.md#getrulesetv2) | **GET** /v2/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get ruleset (V2) |
 | [**getRulesets**](ManagementApi.md#getrulesets) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets | List campaign rulesets |
 | [**getStore**](ManagementApi.md#getstore) | **GET** /v1/applications/{applicationId}/stores/{storeId} | Get store |
 | [**getUser**](ManagementApi.md#getuser) | **GET** /v1/users/{userId} | Get user |
@@ -9826,6 +9827,83 @@ example().catch(console.error);
 ### Return type
 
 [**Ruleset**](Ruleset.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## getRulesetV2
+
+> RulesetV2 getRulesetV2(applicationId, campaignId, rulesetId)
+
+Get ruleset (V2)
+
+Retrieve the specified ruleset as a JSON object.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { GetRulesetV2Request } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // number | The ID of the Application. It is displayed in your Talon.One deployment URL.
+    applicationId: 789,
+    // number | The ID of the campaign. It is displayed in your Talon.One deployment URL.
+    campaignId: 789,
+    // number | The ID of the ruleset.
+    rulesetId: 789,
+  } satisfies GetRulesetV2Request;
+
+  try {
+    const data = await api.getRulesetV2(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
+| **campaignId** | `number` | The ID of the campaign. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
+| **rulesetId** | `number` | The ID of the ruleset. | [Defaults to `undefined`] |
+
+### Return type
+
+[**RulesetV2**](RulesetV2.md)
 
 ### Authorization
 
