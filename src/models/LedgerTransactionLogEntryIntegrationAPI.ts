@@ -52,6 +52,12 @@ export interface LedgerTransactionLogEntryIntegrationAPI {
      */
     customerSessionId?: string;
     /**
+     * The integration ID of the store where the transaction occurred. Only set for transactions created by a customer session or event that referenced a store.
+     * @type {string}
+     * @memberof LedgerTransactionLogEntryIntegrationAPI
+     */
+    storeIntegrationId?: string;
+    /**
      * Type of transaction. Possible values:
      *   - `addition`: Signifies added points.
      *   - `subtraction`: Signifies deducted points.
@@ -175,6 +181,7 @@ export function LedgerTransactionLogEntryIntegrationAPIFromJSONTyped(json: any, 
         'created': (new Date(json['created'])),
         'programId': json['programId'],
         'customerSessionId': json['customerSessionId'] == null ? undefined : json['customerSessionId'],
+        'storeIntegrationId': json['storeIntegrationId'] == null ? undefined : json['storeIntegrationId'],
         'type': json['type'],
         'name': json['name'],
         'startDate': json['startDate'],
@@ -204,6 +211,7 @@ export function LedgerTransactionLogEntryIntegrationAPIToJSONTyped(value?: Ledge
         'created': value['created'].toISOString(),
         'programId': value['programId'],
         'customerSessionId': value['customerSessionId'],
+        'storeIntegrationId': value['storeIntegrationId'],
         'type': value['type'],
         'name': value['name'],
         'startDate': value['startDate'],

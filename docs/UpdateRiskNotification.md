@@ -21,7 +21,7 @@ import type { UpdateRiskNotification } from 'talon_one_sdk'
 const example = {
   "entity": customer_profile,
   "activity": loyalty_points_earned,
-  "timeFrame": 1_week,
+  "timeFrame": 7D,
   "active": true,
 } satisfies UpdateRiskNotification
 

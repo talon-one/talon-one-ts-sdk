@@ -13,6 +13,28 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Binding } from './Binding';
+import {
+    BindingFromJSON,
+    BindingFromJSONTyped,
+    BindingToJSON,
+    BindingToJSONTyped,
+} from './Binding';
+import type { RewardPointsRequired } from './RewardPointsRequired';
+import {
+    RewardPointsRequiredFromJSON,
+    RewardPointsRequiredFromJSONTyped,
+    RewardPointsRequiredToJSON,
+    RewardPointsRequiredToJSONTyped,
+} from './RewardPointsRequired';
+import type { Rule } from './Rule';
+import {
+    RuleFromJSON,
+    RuleFromJSONTyped,
+    RuleToJSON,
+    RuleToJSONTyped,
+} from './Rule';
+
 /**
  * 
  * @export
@@ -52,6 +74,45 @@ export interface NewReward {
      * @memberof NewReward
      */
     sandbox: boolean;
+    /**
+     * An optional rule that manages who can see this reward. If not specified, the reward
+     * is visible to all customers.
+     * 
+     * **Note:** Only the `condition` field is evaluated within this rule. The `effects` field must be an empty array,
+     * and `bindings` are not supported.
+     * 
+     * @type {Rule}
+     * @memberof NewReward
+     */
+    eligibilityConditions?: Rule;
+    /**
+     * Rule to apply.
+     * 
+     * **Note**: The `bindings` field inside the rule must not be used in this
+     * endpoint. All bindings should be defined at the reward level via the
+     * top-level `bindings` field.
+     * 
+     * @type {Rule}
+     * @memberof NewReward
+     */
+    rule?: Rule;
+    /**
+     * A list of named variables created before the reward's rules are evaluated. Each binding pairs a name with a talang expression. The expression is evaluated once and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.
+     * @type {Array<Binding>}
+     * @memberof NewReward
+     */
+    bindings?: Array<Binding>;
+    /**
+     * The loyalty points required to activate the reward. Each object defines the specific
+     * loyalty program and subledger from which points are deducted when activating the reward.
+     * 
+     * **Note:** When creating a reward, the `id` of each entry is ignored and a new entry is
+     * always created.
+     * 
+     * @type {Array<RewardPointsRequired>}
+     * @memberof NewReward
+     */
+    pointsRequired?: Array<RewardPointsRequired>;
 }
 
 /**
@@ -81,6 +142,10 @@ export function NewRewardFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'description': json['description'] == null ? undefined : json['description'],
         'applicationIds': json['applicationIds'],
         'sandbox': json['sandbox'],
+        'eligibilityConditions': json['eligibilityConditions'] == null ? undefined : RuleFromJSON(json['eligibilityConditions']),
+        'rule': json['rule'] == null ? undefined : RuleFromJSON(json['rule']),
+        'bindings': json['bindings'] == null ? undefined : ((json['bindings'] as Array<any>).map(BindingFromJSON)),
+        'pointsRequired': json['pointsRequired'] == null ? undefined : ((json['pointsRequired'] as Array<any>).map(RewardPointsRequiredFromJSON)),
     };
 }
 
@@ -100,6 +165,10 @@ export function NewRewardToJSONTyped(value?: NewReward | null, ignoreDiscriminat
         'description': value['description'],
         'applicationIds': value['applicationIds'],
         'sandbox': value['sandbox'],
+        'eligibilityConditions': RuleToJSON(value['eligibilityConditions']),
+        'rule': RuleToJSON(value['rule']),
+        'bindings': value['bindings'] == null ? undefined : ((value['bindings'] as Array<any>).map(BindingToJSON)),
+        'pointsRequired': value['pointsRequired'] == null ? undefined : ((value['pointsRequired'] as Array<any>).map(RewardPointsRequiredToJSON)),
     };
 }
 

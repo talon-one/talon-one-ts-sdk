@@ -22,6 +22,7 @@ Name | Type
 `defaultDiscountAdditionalCostPerItemScope` | string
 `key` | string
 `enableCampaignStateManagement` | boolean
+`bestPriorPriceSettings` | [BestPriorPriceSettings](BestPriorPriceSettings.md)
 
 ## Example
 
@@ -46,6 +47,7 @@ const example = {
   "defaultDiscountAdditionalCostPerItemScope": null,
   "key": null,
   "enableCampaignStateManagement": false,
+  "bestPriorPriceSettings": null,
 } satisfies NewApplication
 
 console.log(example)

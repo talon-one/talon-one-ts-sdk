@@ -87,6 +87,12 @@ export interface SamlConnection {
      * @memberof SamlConnection
      */
     assertionConsumerServiceURL: string;
+    /**
+     * The expiry date of the X.509 certificate.
+     * @type {Date}
+     * @memberof SamlConnection
+     */
+    certificateExpiry?: Date;
 }
 
 /**
@@ -127,6 +133,7 @@ export function SamlConnectionFromJSONTyped(json: any, ignoreDiscriminator: bool
         'id': json['id'],
         'created': (new Date(json['created'])),
         'assertionConsumerServiceURL': json['assertionConsumerServiceURL'],
+        'certificateExpiry': json['certificateExpiry'] == null ? undefined : (new Date(json['certificateExpiry'])),
     };
 }
 
@@ -152,6 +159,7 @@ export function SamlConnectionToJSONTyped(value?: SamlConnection | null, ignoreD
         'id': value['id'],
         'created': value['created'].toISOString(),
         'assertionConsumerServiceURL': value['assertionConsumerServiceURL'],
+        'certificateExpiry': value['certificateExpiry'] == null ? value['certificateExpiry'] : value['certificateExpiry'].toISOString(),
     };
 }
 

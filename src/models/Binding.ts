@@ -37,13 +37,19 @@ export interface Binding {
      */
     type?: string;
     /**
-     * A Talang expression that will be evaluated and its result attached to the name of the binding.
+     * A Talang expression that is evaluated, and its result is bound to the name of
+     * the binding. The first element must be one of the functions or operators supported
+     * by Talang, followed by its arguments. The arguments can be strings, numbers, or
+     * nested expressions. For example:
+     * - `["list", "10014", "10015"]` calls the `list` function to build a list of strings.
+     * - `["+", 2, 0]` uses the `+` operator to add two numbers.
+     * 
      * @type {Array<any>}
      * @memberof Binding
      */
     expression: Array<any>;
     /**
-     * Can be one of the following:
+     * The data type of the value. One of the following:
      * - `string`
      * - `number`
      * - `boolean`
@@ -65,13 +71,13 @@ export interface Binding {
      */
     maxValue?: number;
     /**
-     * Id of the attribute attached to the placeholder.
+     * Identifier of the attribute attached to the placeholder.
      * @type {number}
      * @memberof Binding
      */
     attributeId?: number;
     /**
-     * Describes the placeholder field and value in the template. This description can be used when creating campaigns from this template.
+     * Description of the placeholder field and its value in the template. This text can be shown when creating campaigns from this template.
      * @type {string}
      * @memberof Binding
      */

@@ -24,7 +24,7 @@ const example = {
   "created": 2020-06-10T09:05:27.993483Z,
   "cartItemFilterId": 216,
   "createdBy": 216,
-  "expression": {expr=[filter, [., Session, CartItems], [[Item], [catch, false, [=, [., Item, Category], Kitchen]]]]},
+  "expression": {expr=[filter, [., Session, CartItems], [[Item], [catch, false, [contains, [., Item, Category], Kitchen]]]]},
   "applicationId": 322,
 } satisfies ApplicationCIFExpression
 

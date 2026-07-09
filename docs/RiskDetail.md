@@ -10,7 +10,7 @@ Name | Type
 `id` | number
 `created` | Date
 `notificationId` | number
-`runDate` | Date
+`featureDate` | Date
 `groupKey` | string
 `applicationId` | number
 `status` | string
@@ -34,14 +34,14 @@ const example = {
   "id": 6,
   "created": 2020-06-10T09:05:27.993483Z,
   "notificationId": 3,
-  "runDate": 2026-06-05,
+  "featureDate": 2026-06-05,
   "groupKey": 7,
   "applicationId": 7,
   "status": active,
   "criticality": critical,
   "entity": customer_profile,
   "activity": discounted_amount,
-  "timeFrame": 1_week,
+  "timeFrame": 7D,
   "reportedDate": 2026-06-05T06:26:13.698884Z,
   "affectedEntityCount": 4437,
   "description": Unusual discount usage detected for 4437 customer profiles.,

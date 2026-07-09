@@ -20,6 +20,13 @@ import {
     LimitConfigToJSON,
     LimitConfigToJSONTyped,
 } from './LimitConfig';
+import type { BestPriorPriceSettings } from './BestPriorPriceSettings';
+import {
+    BestPriorPriceSettingsFromJSON,
+    BestPriorPriceSettingsFromJSONTyped,
+    BestPriorPriceSettingsToJSON,
+    BestPriorPriceSettingsToJSONTyped,
+} from './BestPriorPriceSettings';
 import type { AttributesSettings } from './AttributesSettings';
 import {
     AttributesSettingsFromJSON,
@@ -136,6 +143,12 @@ export interface NewApplication {
      * @memberof NewApplication
      */
     enableCampaignStateManagement?: boolean;
+    /**
+     * 
+     * @type {BestPriorPriceSettings}
+     * @memberof NewApplication
+     */
+    bestPriorPriceSettings?: BestPriorPriceSettings;
 }
 
 
@@ -207,6 +220,7 @@ export function NewApplicationFromJSONTyped(json: any, ignoreDiscriminator: bool
         'defaultDiscountAdditionalCostPerItemScope': json['defaultDiscountAdditionalCostPerItemScope'] == null ? undefined : json['defaultDiscountAdditionalCostPerItemScope'],
         'key': json['key'] == null ? undefined : json['key'],
         'enableCampaignStateManagement': json['enableCampaignStateManagement'] == null ? undefined : json['enableCampaignStateManagement'],
+        'bestPriorPriceSettings': json['bestPriorPriceSettings'] == null ? undefined : BestPriorPriceSettingsFromJSON(json['bestPriorPriceSettings']),
     };
 }
 
@@ -237,6 +251,7 @@ export function NewApplicationToJSONTyped(value?: NewApplication | null, ignoreD
         'defaultDiscountAdditionalCostPerItemScope': value['defaultDiscountAdditionalCostPerItemScope'],
         'key': value['key'],
         'enableCampaignStateManagement': value['enableCampaignStateManagement'],
+        'bestPriorPriceSettings': BestPriorPriceSettingsToJSON(value['bestPriorPriceSettings']),
     };
 }
 

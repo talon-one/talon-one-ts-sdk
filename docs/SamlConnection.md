@@ -17,6 +17,7 @@ Name | Type
 `id` | number
 `created` | Date
 `assertionConsumerServiceURL` | string
+`certificateExpiry` | Date
 
 ## Example
 
@@ -36,6 +37,7 @@ const example = {
   "id": 6,
   "created": 2020-06-10T09:05:27.993483Z,
   "assertionConsumerServiceURL": null,
+  "certificateExpiry": 2021-07-20T21:59:00Z,
 } satisfies SamlConnection
 
 console.log(example)

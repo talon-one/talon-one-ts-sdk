@@ -46,11 +46,14 @@ export interface RiskDetail {
      */
     notificationId: number;
     /**
-     * The date of the ML pipeline run that detected this risk.
+     * The date of the activity data in which this risk was detected. The anomaly
+     * detection pipeline scores complete 24-hour cycles, so this is always the day
+     * before the risk was reported, not the reporting date itself.
+     * 
      * @type {Date}
      * @memberof RiskDetail
      */
-    runDate: Date;
+    featureDate: Date;
     /**
      * The Application group this risk was detected in. Contains the Application ID,
      * or `__GLOBAL__` for metrics that are not grouped by Application.
@@ -172,9 +175,9 @@ export type RiskDetailActivityEnum = typeof RiskDetailActivityEnum[keyof typeof 
  * @export
  */
 export const RiskDetailTimeFrameEnum = {
-    _1Day: '1_day',
-    _1Week: '1_week',
-    _1Month: '1_month'
+    _1D: '1D',
+    _7D: '7D',
+    _30D: '30D'
 } as const;
 export type RiskDetailTimeFrameEnum = typeof RiskDetailTimeFrameEnum[keyof typeof RiskDetailTimeFrameEnum];
 
@@ -187,7 +190,7 @@ export function instanceOfRiskDetail(value: object): value is RiskDetail {
     if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('created' in _v) || _v['created'] === undefined) return false;
     if (!('notificationId' in _v) || _v['notificationId'] === undefined) return false;
-    if (!('runDate' in _v) || _v['runDate'] === undefined) return false;
+    if (!('featureDate' in _v) || _v['featureDate'] === undefined) return false;
     if (!('groupKey' in _v) || _v['groupKey'] === undefined) return false;
     if (!('status' in _v) || _v['status'] === undefined) return false;
     if (!('criticality' in _v) || _v['criticality'] === undefined) return false;
@@ -214,7 +217,7 @@ export function RiskDetailFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'id': json['id'],
         'created': (new Date(json['created'])),
         'notificationId': json['notificationId'],
-        'runDate': (new Date(json['runDate'])),
+        'featureDate': (new Date(json['featureDate'])),
         'groupKey': json['groupKey'],
         'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
         'status': json['status'],
@@ -244,7 +247,7 @@ export function RiskDetailToJSONTyped(value?: RiskDetail | null, ignoreDiscrimin
         'id': value['id'],
         'created': value['created'].toISOString(),
         'notificationId': value['notificationId'],
-        'runDate': value['runDate'].toISOString().substring(0,10),
+        'featureDate': value['featureDate'].toISOString().substring(0,10),
         'groupKey': value['groupKey'],
         'applicationId': value['applicationId'],
         'status': value['status'],

@@ -17,9 +17,9 @@ Name | Type
 `eligibilityConditions` | [Rule](Rule.md)
 `rule` | [Rule](Rule.md)
 `bindings` | [Array&lt;Binding&gt;](Binding.md)
+`pointsRequired` | [Array&lt;RewardPointsRequired&gt;](RewardPointsRequired.md)
 `modified` | Date
 `status` | string
-`pointsRequired` | [Array&lt;RewardPointsRequired&gt;](RewardPointsRequired.md)
 
 ## Example
 
@@ -39,9 +39,9 @@ const example = {
   "eligibilityConditions": null,
   "rule": null,
   "bindings": [],
+  "pointsRequired": null,
   "modified": null,
   "status": active,
-  "pointsRequired": null,
 } satisfies Reward
 
 console.log(example)
