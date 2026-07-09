@@ -229,6 +229,11 @@ import {
     GetApplicationSessions200ResponseToJSON,
 } from '../models/GetApplicationSessions200Response';
 import {
+    type GetApplicationSessionsByCustomerAttributes200Response,
+    GetApplicationSessionsByCustomerAttributes200ResponseFromJSON,
+    GetApplicationSessionsByCustomerAttributes200ResponseToJSON,
+} from '../models/GetApplicationSessionsByCustomerAttributes200Response';
+import {
     type GetApplications200Response,
     GetApplications200ResponseFromJSON,
     GetApplications200ResponseToJSON,
@@ -1185,6 +1190,14 @@ export interface GetApplicationSessionsRequest {
     storeIntegrationId?: string;
 }
 
+export interface GetApplicationSessionsByCustomerAttributesRequest {
+    applicationId: number;
+    customerProfileSearchQuery: CustomerProfileSearchQuery;
+    pageSize?: number;
+    skip?: number;
+    withTotalResultSize?: boolean;
+}
+
 export interface GetApplicationsRequest {
     pageSize?: number;
     skip?: number;
@@ -1276,7 +1289,7 @@ export interface GetCampaignsRequest {
     sort?: string;
     campaignState?: GetCampaignsCampaignStateEnum;
     name?: string;
-    tags?: string;
+    tags?: Array<string>;
     createdBefore?: Date;
     createdAfter?: Date;
     startBefore?: Date;
@@ -7004,6 +7017,79 @@ export class ManagementApi extends runtime.BaseAPI {
      */
     async getApplicationSessions(requestParameters: GetApplicationSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApplicationSessions200Response> {
         const response = await this.getApplicationSessionsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getApplicationSessionsByCustomerAttributes without sending the request
+     */
+    async getApplicationSessionsByCustomerAttributesRequestOpts(requestParameters: GetApplicationSessionsByCustomerAttributesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['applicationId'] == null) {
+            throw new runtime.RequiredError(
+                'applicationId',
+                'Required parameter "applicationId" was null or undefined when calling getApplicationSessionsByCustomerAttributes().'
+            );
+        }
+
+        if (requestParameters['customerProfileSearchQuery'] == null) {
+            throw new runtime.RequiredError(
+                'customerProfileSearchQuery',
+                'Required parameter "customerProfileSearchQuery" was null or undefined when calling getApplicationSessionsByCustomerAttributes().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['withTotalResultSize'] != null) {
+            queryParameters['withTotalResultSize'] = requestParameters['withTotalResultSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/applications/{applicationId}/sessions_search`;
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CustomerProfileSearchQueryToJSON(requestParameters['customerProfileSearchQuery']),
+        };
+    }
+
+    /**
+     * Get a list of the Application sessions matching the provided customer profile attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request. 
+     * List Application sessions matching the given customer attributes
+     */
+    async getApplicationSessionsByCustomerAttributesRaw(requestParameters: GetApplicationSessionsByCustomerAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApplicationSessionsByCustomerAttributes200Response>> {
+        const requestOptions = await this.getApplicationSessionsByCustomerAttributesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetApplicationSessionsByCustomerAttributes200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a list of the Application sessions matching the provided customer profile attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request. 
+     * List Application sessions matching the given customer attributes
+     */
+    async getApplicationSessionsByCustomerAttributes(requestParameters: GetApplicationSessionsByCustomerAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApplicationSessionsByCustomerAttributes200Response> {
+        const response = await this.getApplicationSessionsByCustomerAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

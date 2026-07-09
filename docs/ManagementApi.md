@@ -81,6 +81,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**getApplicationEventsWithoutTotalCount**](ManagementApi.md#getapplicationeventswithouttotalcount) | **GET** /v1/applications/{applicationId}/events/no_total | List Applications events |
 | [**getApplicationSession**](ManagementApi.md#getapplicationsession) | **GET** /v1/applications/{applicationId}/sessions/{sessionId} | Get Application session |
 | [**getApplicationSessions**](ManagementApi.md#getapplicationsessions) | **GET** /v1/applications/{applicationId}/sessions | List Application sessions |
+| [**getApplicationSessionsByCustomerAttributes**](ManagementApi.md#getapplicationsessionsbycustomerattributes) | **POST** /v1/applications/{applicationId}/sessions_search | List Application sessions matching the given customer attributes |
 | [**getApplications**](ManagementApi.md#getapplications) | **GET** /v1/applications | List Applications |
 | [**getAttribute**](ManagementApi.md#getattribute) | **GET** /v1/attributes/{attributeId} | Get custom attribute |
 | [**getAttributes**](ManagementApi.md#getattributes) | **GET** /v1/attributes | List custom attributes |
@@ -6283,6 +6284,89 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## getApplicationSessionsByCustomerAttributes
+
+> GetApplicationSessionsByCustomerAttributes200Response getApplicationSessionsByCustomerAttributes(applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize)
+
+List Application sessions matching the given customer attributes
+
+Get a list of the Application sessions matching the provided customer profile attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request. 
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { GetApplicationSessionsByCustomerAttributesRequest } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // number | The ID of the Application. It is displayed in your Talon.One deployment URL.
+    applicationId: 789,
+    // CustomerProfileSearchQuery | body
+    customerProfileSearchQuery: ...,
+    // number | The number of items in the response. (optional)
+    pageSize: 789,
+    // number | The number of items to skip when paging through large result sets. (optional)
+    skip: 789,
+    // boolean | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets. - When `true`: `totalResultSize` contains the total number of results for this query. - When `false`: Only `hasMore` is returned, and it is set to `true` when there are more results than shown on the page.  (optional)
+    withTotalResultSize: true,
+  } satisfies GetApplicationSessionsByCustomerAttributesRequest;
+
+  try {
+    const data = await api.getApplicationSessionsByCustomerAttributes(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
+| **customerProfileSearchQuery** | [CustomerProfileSearchQuery](CustomerProfileSearchQuery.md) | body | |
+| **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `1000`] |
+| **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
+| **withTotalResultSize** | `boolean` | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets. - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [Optional] [Defaults to `undefined`] |
+
+### Return type
+
+[**GetApplicationSessionsByCustomerAttributes200Response**](GetApplicationSessionsByCustomerAttributes200Response.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## getApplications
 
 > GetApplications200Response getApplications(pageSize, skip, sort)
@@ -7282,8 +7366,8 @@ async function example() {
     campaignState: campaignState_example,
     // string | Filter results performing case-insensitive matching against the name of the campaign. (optional)
     name: name_example,
-    // string | Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \"name\" query parameter, a logical OR will be performed to search both tags and name for the provided values  (optional)
-    tags: tags_example,
+    // Array<string> | Filter results performing case-insensitive matching against the tags of the campaign.  (optional)
+    tags: ...,
     // Date | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)
     createdBefore: 2013-10-20T19:20:30+01:00,
     // Date | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)
@@ -7327,7 +7411,7 @@ example().catch(console.error);
 | **sort** | `string` | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [Optional] [Defaults to `undefined`] |
 | **campaignState** | `enabled`, `disabled`, `archived`, `scheduled`, `running`, `expired`, `staged` | Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived.  | [Optional] [Defaults to `undefined`] [Enum: enabled, disabled, archived, scheduled, running, expired, staged] |
 | **name** | `string` | Filter results performing case-insensitive matching against the name of the campaign. | [Optional] [Defaults to `undefined`] |
-| **tags** | `string` | Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  | [Optional] [Defaults to `undefined`] |
+| **tags** | `Array<string>` | Filter results performing case-insensitive matching against the tags of the campaign.  | [Optional] |
 | **createdBefore** | `Date` | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | [Optional] [Defaults to `undefined`] |
 | **createdAfter** | `Date` | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | [Optional] [Defaults to `undefined`] |
 | **startBefore** | `Date` | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | [Optional] [Defaults to `undefined`] |

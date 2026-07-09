@@ -19,7 +19,7 @@ import type { NewApplicationCIFExpression } from 'talon_one_sdk'
 const example = {
   "cartItemFilterId": 216,
   "createdBy": 216,
-  "expression": {expr=[filter, [., Session, CartItems], [[Item], [catch, false, [=, [., Item, Category], Kitchen]]]]},
+  "expression": {expr=[filter, [., Session, CartItems], [[Item], [catch, false, [contains, [., Item, Category], Kitchen]]]]},
 } satisfies NewApplicationCIFExpression
 
 console.log(example)

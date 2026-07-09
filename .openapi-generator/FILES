@@ -87,7 +87,10 @@ docs/AudienceCustomer.md
 docs/AudienceIntegrationID.md
 docs/AudienceMembership.md
 docs/AudienceReference.md
+docs/AwardGiveawayBlock.md
+docs/AwardGiveawayBlock1GiveawayPool.md
 docs/AwardGiveawayEffectProps.md
+docs/AwardItemBlock.md
 docs/BaseBlock.md
 docs/BaseCampaign.md
 docs/BaseLoyaltyProgram.md
@@ -99,7 +102,9 @@ docs/BaseSamlConnection.md
 docs/BestPriorPrice.md
 docs/BestPriorPriceMetadata.md
 docs/BestPriorPriceRequest.md
+docs/BestPriorPriceSettings.md
 docs/BestPriorTarget.md
+docs/BetweenCheckAttributeBlock.md
 docs/Binding.md
 docs/Blueprint.md
 docs/BulkApplicationNotification.md
@@ -174,6 +179,11 @@ docs/CatalogsStrikethroughNotificationPolicy.md
 docs/Change.md
 docs/ChangeLoyaltyTierLevelEffectProps.md
 docs/ChangeProfilePassword.md
+docs/CheckAttributeBlock.md
+docs/CheckAudienceBlock.md
+docs/CheckAudienceBlock1Audience.md
+docs/CheckCouponBlock.md
+docs/CheckReferralBlock.md
 docs/CodeGeneratorSettings.md
 docs/Collection.md
 docs/CollectionItem.md
@@ -307,6 +317,7 @@ docs/GetApplicationCustomersByAttributes200Response.md
 docs/GetApplicationEventTypes200Response.md
 docs/GetApplicationEventsWithoutTotalCount200Response.md
 docs/GetApplicationSessions200Response.md
+docs/GetApplicationSessionsByCustomerAttributes200Response.md
 docs/GetApplications200Response.md
 docs/GetAttributes200Response.md
 docs/GetAudienceMemberships200Response.md
@@ -410,8 +421,10 @@ docs/ListCampaignStoreBudgetLimits200Response.md
 docs/ListCampaignStoreBudgets.md
 docs/ListCampaignStoreBudgetsStore.md
 docs/ListCatalogItems200Response.md
+docs/ListCheckAttributeBlock.md
 docs/ListExperiments200Response.md
 docs/ListStores200Response.md
+docs/ListWithCountCheckAttributeBlock.md
 docs/LoginParams.md
 docs/Loyalty.md
 docs/LoyaltyBalance.md
@@ -568,6 +581,7 @@ docs/ProductUnitAnalyticsTotals.md
 docs/ProfileAudiencesChanges.md
 docs/ProjectedTier.md
 docs/PromoteExperiment.md
+docs/PromotionCheckAttributeBlock.md
 docs/PromotionGroupBlock.md
 docs/PromotionRuleV2.md
 docs/RedeemReferralEffectProps.md
@@ -627,6 +641,7 @@ docs/SamlConnection.md
 docs/SamlConnectionInternal.md
 docs/SamlConnectionMetadata.md
 docs/SamlLoginEndpoint.md
+docs/ScalarCheckAttributeBlock.md
 docs/ScimBaseGroup.md
 docs/ScimBaseUser.md
 docs/ScimBaseUserName.md
@@ -654,12 +669,14 @@ docs/SetDiscountPerAdditionalCostPerItemEffectProps.md
 docs/SetDiscountPerItemEffectProps.md
 docs/SetLoyaltyPointsExpiryDateEffectProps.md
 docs/ShowBundleMetadataEffectProps.md
+docs/ShowNotificationBlock.md
 docs/ShowNotificationEffectProps.md
 docs/SkuUnitAnalytics.md
 docs/SkuUnitAnalyticsDataPoint.md
 docs/SlotDef.md
 docs/Store.md
 docs/StrikethroughChangedItem.md
+docs/StrikethroughCheckAttributeBlock.md
 docs/StrikethroughCustomEffectPerItemProps.md
 docs/StrikethroughDebugResponse.md
 docs/StrikethroughEffect.md
@@ -693,6 +710,7 @@ docs/TimePoint.md
 docs/TransferLoyaltyCard.md
 docs/TriggerWebhookEffectProps.md
 docs/TwoFAConfig.md
+docs/UnaryCheckAttributeBlock.md
 docs/UpdateAccount.md
 docs/UpdateAchievement.md
 docs/UpdateAchievementV2.md
@@ -826,7 +844,10 @@ src/models/AudienceCustomer.ts
 src/models/AudienceIntegrationID.ts
 src/models/AudienceMembership.ts
 src/models/AudienceReference.ts
+src/models/AwardGiveawayBlock.ts
+src/models/AwardGiveawayBlock1GiveawayPool.ts
 src/models/AwardGiveawayEffectProps.ts
+src/models/AwardItemBlock.ts
 src/models/BaseBlock.ts
 src/models/BaseCampaign.ts
 src/models/BaseLoyaltyProgram.ts
@@ -838,7 +859,9 @@ src/models/BaseSamlConnection.ts
 src/models/BestPriorPrice.ts
 src/models/BestPriorPriceMetadata.ts
 src/models/BestPriorPriceRequest.ts
+src/models/BestPriorPriceSettings.ts
 src/models/BestPriorTarget.ts
+src/models/BetweenCheckAttributeBlock.ts
 src/models/Binding.ts
 src/models/Blueprint.ts
 src/models/BulkApplicationNotification.ts
@@ -913,6 +936,11 @@ src/models/CatalogsStrikethroughNotificationPolicy.ts
 src/models/Change.ts
 src/models/ChangeLoyaltyTierLevelEffectProps.ts
 src/models/ChangeProfilePassword.ts
+src/models/CheckAttributeBlock.ts
+src/models/CheckAudienceBlock.ts
+src/models/CheckAudienceBlock1Audience.ts
+src/models/CheckCouponBlock.ts
+src/models/CheckReferralBlock.ts
 src/models/CodeGeneratorSettings.ts
 src/models/Collection.ts
 src/models/CollectionItem.ts
@@ -1046,6 +1074,7 @@ src/models/GetApplicationCustomersByAttributes200Response.ts
 src/models/GetApplicationEventTypes200Response.ts
 src/models/GetApplicationEventsWithoutTotalCount200Response.ts
 src/models/GetApplicationSessions200Response.ts
+src/models/GetApplicationSessionsByCustomerAttributes200Response.ts
 src/models/GetApplications200Response.ts
 src/models/GetAttributes200Response.ts
 src/models/GetAudienceMemberships200Response.ts
@@ -1148,8 +1177,10 @@ src/models/ListCampaignStoreBudgetLimits200Response.ts
 src/models/ListCampaignStoreBudgets.ts
 src/models/ListCampaignStoreBudgetsStore.ts
 src/models/ListCatalogItems200Response.ts
+src/models/ListCheckAttributeBlock.ts
 src/models/ListExperiments200Response.ts
 src/models/ListStores200Response.ts
+src/models/ListWithCountCheckAttributeBlock.ts
 src/models/LoginParams.ts
 src/models/Loyalty.ts
 src/models/LoyaltyBalance.ts
@@ -1305,6 +1336,7 @@ src/models/ProductUnitAnalyticsTotals.ts
 src/models/ProfileAudiencesChanges.ts
 src/models/ProjectedTier.ts
 src/models/PromoteExperiment.ts
+src/models/PromotionCheckAttributeBlock.ts
 src/models/PromotionGroupBlock.ts
 src/models/PromotionRuleV2.ts
 src/models/RedeemReferralEffectProps.ts
@@ -1364,6 +1396,7 @@ src/models/SamlConnection.ts
 src/models/SamlConnectionInternal.ts
 src/models/SamlConnectionMetadata.ts
 src/models/SamlLoginEndpoint.ts
+src/models/ScalarCheckAttributeBlock.ts
 src/models/ScimBaseGroup.ts
 src/models/ScimBaseUser.ts
 src/models/ScimBaseUserName.ts
@@ -1391,12 +1424,14 @@ src/models/SetDiscountPerAdditionalCostPerItemEffectProps.ts
 src/models/SetDiscountPerItemEffectProps.ts
 src/models/SetLoyaltyPointsExpiryDateEffectProps.ts
 src/models/ShowBundleMetadataEffectProps.ts
+src/models/ShowNotificationBlock.ts
 src/models/ShowNotificationEffectProps.ts
 src/models/SkuUnitAnalytics.ts
 src/models/SkuUnitAnalyticsDataPoint.ts
 src/models/SlotDef.ts
 src/models/Store.ts
 src/models/StrikethroughChangedItem.ts
+src/models/StrikethroughCheckAttributeBlock.ts
 src/models/StrikethroughCustomEffectPerItemProps.ts
 src/models/StrikethroughDebugResponse.ts
 src/models/StrikethroughEffect.ts
@@ -1430,6 +1465,7 @@ src/models/TimePoint.ts
 src/models/TransferLoyaltyCard.ts
 src/models/TriggerWebhookEffectProps.ts
 src/models/TwoFAConfig.ts
+src/models/UnaryCheckAttributeBlock.ts
 src/models/UpdateAccount.ts
 src/models/UpdateAchievement.ts
 src/models/UpdateAchievementV2.ts

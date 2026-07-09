@@ -23,6 +23,7 @@ Name | Type
 `defaultEvaluationGroupId` | number
 `defaultCartItemFilterId` | number
 `enableCampaignStateManagement` | boolean
+`bestPriorPriceSettings` | [BestPriorPriceSettings](BestPriorPriceSettings.md)
 
 ## Example
 
@@ -48,6 +49,7 @@ const example = {
   "defaultEvaluationGroupId": 3,
   "defaultCartItemFilterId": 3,
   "enableCampaignStateManagement": false,
+  "bestPriorPriceSettings": null,
 } satisfies UpdateApplication
 
 console.log(example)

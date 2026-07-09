@@ -22,14 +22,14 @@ import type { Binding } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "name": my property,
+  "name": Discount percentage,
   "type": templateParameter,
-  "expression": [string1, string2],
-  "valueType": string,
+  "expression": [identity, 10],
+  "valueType": number,
   "minValue": 0,
   "maxValue": 19.9,
   "attributeId": 100,
-  "description": This is a template parameter of type `number`.,
+  "description": The percentage discount applied to the cart total.,
 } satisfies Binding
 
 console.log(example)

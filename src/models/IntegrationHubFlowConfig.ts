@@ -43,6 +43,18 @@ export interface IntegrationHubFlowConfig {
      * @memberof IntegrationHubFlowConfig
      */
     maxRetries?: number;
+    /**
+     * Name of the Prismatic instance that registered this flow.
+     * @type {string}
+     * @memberof IntegrationHubFlowConfig
+     */
+    instanceName?: string;
+    /**
+     * Name of the Prismatic integration that registered this flow.
+     * @type {string}
+     * @memberof IntegrationHubFlowConfig
+     */
+    integrationName?: string;
 }
 
 /**
@@ -68,6 +80,8 @@ export function IntegrationHubFlowConfigFromJSONTyped(json: any, ignoreDiscrimin
         'workerCount': json['WorkerCount'] == null ? undefined : json['WorkerCount'],
         'maxEventsPerMessage': json['MaxEventsPerMessage'] == null ? undefined : json['MaxEventsPerMessage'],
         'maxRetries': json['MaxRetries'] == null ? undefined : json['MaxRetries'],
+        'instanceName': json['InstanceName'] == null ? undefined : json['InstanceName'],
+        'integrationName': json['IntegrationName'] == null ? undefined : json['IntegrationName'],
     };
 }
 
@@ -86,6 +100,8 @@ export function IntegrationHubFlowConfigToJSONTyped(value?: IntegrationHubFlowCo
         'WorkerCount': value['workerCount'],
         'MaxEventsPerMessage': value['maxEventsPerMessage'],
         'MaxRetries': value['maxRetries'],
+        'InstanceName': value['instanceName'],
+        'IntegrationName': value['integrationName'],
     };
 }
 

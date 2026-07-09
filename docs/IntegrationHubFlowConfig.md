@@ -10,6 +10,8 @@ Name | Type
 `workerCount` | number
 `maxEventsPerMessage` | number
 `maxRetries` | number
+`instanceName` | string
+`integrationName` | string
 
 ## Example
 
@@ -22,6 +24,8 @@ const example = {
   "workerCount": null,
   "maxEventsPerMessage": null,
   "maxRetries": null,
+  "instanceName": null,
+  "integrationName": null,
 } satisfies IntegrationHubFlowConfig
 
 console.log(example)

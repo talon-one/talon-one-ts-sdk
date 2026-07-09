@@ -26,7 +26,7 @@ const example = {
   "created": 2020-06-10T09:05:27.993483Z,
   "entity": customer_profile,
   "activity": loyalty_points_earned,
-  "timeFrame": 1_week,
+  "timeFrame": 7D,
   "active": true,
   "modified": 2026-04-16T09:05:27.993483Z,
 } satisfies RiskNotification

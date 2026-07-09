@@ -20,7 +20,7 @@ import type { NewRiskNotification } from 'talon_one_sdk'
 const example = {
   "entity": customer_profile,
   "activity": loyalty_points_earned,
-  "timeFrame": 1_week,
+  "timeFrame": 7D,
 } satisfies NewRiskNotification
 
 console.log(example)

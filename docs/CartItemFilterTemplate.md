@@ -18,7 +18,7 @@ import type { CartItemFilterTemplate } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "name": Filter items by product,
-  "expression": [filter, [., Session, CartItems], [[Item], [catch, false, [=, [., Item, Category], Kitchen]]]],
+  "expression": [filter, [., Session, CartItems], [[Item], [catch, false, [contains, [., Item, Category], Kitchen]]]],
 } satisfies CartItemFilterTemplate
 
 console.log(example)

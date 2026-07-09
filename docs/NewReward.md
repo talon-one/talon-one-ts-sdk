@@ -11,6 +11,10 @@ Name | Type
 `description` | string
 `applicationIds` | Array&lt;number&gt;
 `sandbox` | boolean
+`eligibilityConditions` | [Rule](Rule.md)
+`rule` | [Rule](Rule.md)
+`bindings` | [Array&lt;Binding&gt;](Binding.md)
+`pointsRequired` | [Array&lt;RewardPointsRequired&gt;](RewardPointsRequired.md)
 
 ## Example
 
@@ -24,6 +28,10 @@ const example = {
   "description": This reward gets you one free coffee.,
   "applicationIds": [1, 2, 3],
   "sandbox": true,
+  "eligibilityConditions": null,
+  "rule": null,
+  "bindings": [],
+  "pointsRequired": null,
 } satisfies NewReward
 
 console.log(example)

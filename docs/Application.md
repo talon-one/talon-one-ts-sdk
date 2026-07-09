@@ -27,6 +27,7 @@ Name | Type
 `defaultEvaluationGroupId` | number
 `defaultCartItemFilterId` | number
 `enableCampaignStateManagement` | boolean
+`bestPriorPriceSettings` | [BestPriorPriceSettings](BestPriorPriceSettings.md)
 `loyaltyPrograms` | [Array&lt;LoyaltyProgram&gt;](LoyaltyProgram.md)
 
 ## Example
@@ -57,6 +58,7 @@ const example = {
   "defaultEvaluationGroupId": 3,
   "defaultCartItemFilterId": 3,
   "enableCampaignStateManagement": false,
+  "bestPriorPriceSettings": null,
   "loyaltyPrograms": null,
 } satisfies Application
 

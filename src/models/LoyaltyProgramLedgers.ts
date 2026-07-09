@@ -61,7 +61,7 @@ export interface LoyaltyProgramLedgers {
      */
     ledger: LedgerInfo;
     /**
-     * A map containing information about each loyalty subledger.
+     * A map containing information about each loyalty subledger. Subledgers for which all balances are zero are excluded from the response.
      * @type {{ [key: string]: LedgerInfo; }}
      * @memberof LoyaltyProgramLedgers
      */

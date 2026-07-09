@@ -105,7 +105,7 @@ const example = {
   "callApiEffectCount": 0,
   "reservecouponEffectCount": 9,
   "lastActivity": 2022-11-10T23:00:00Z,
-  "updated": 2022-10-97T35:00:00Z,
+  "updated": 2022-10-27T15:00:00Z,
   "createdBy": John Doe,
   "updatedBy": Jane Doe,
   "templateId": 3,

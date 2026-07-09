@@ -88,9 +88,9 @@ export type RiskNotificationActivityEnum = typeof RiskNotificationActivityEnum[k
  * @export
  */
 export const RiskNotificationTimeFrameEnum = {
-    _1Day: '1_day',
-    _1Week: '1_week',
-    _1Month: '1_month'
+    _1D: '1D',
+    _7D: '7D',
+    _30D: '30D'
 } as const;
 export type RiskNotificationTimeFrameEnum = typeof RiskNotificationTimeFrameEnum[keyof typeof RiskNotificationTimeFrameEnum];
 

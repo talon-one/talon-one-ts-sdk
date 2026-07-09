@@ -27,6 +27,13 @@ import {
     LimitConfigToJSON,
     LimitConfigToJSONTyped,
 } from './LimitConfig';
+import type { BestPriorPriceSettings } from './BestPriorPriceSettings';
+import {
+    BestPriorPriceSettingsFromJSON,
+    BestPriorPriceSettingsFromJSONTyped,
+    BestPriorPriceSettingsToJSON,
+    BestPriorPriceSettingsToJSONTyped,
+} from './BestPriorPriceSettings';
 import type { AttributesSettings } from './AttributesSettings';
 import {
     AttributesSettingsFromJSON,
@@ -174,6 +181,12 @@ export interface Application {
      */
     enableCampaignStateManagement?: boolean;
     /**
+     * 
+     * @type {BestPriorPriceSettings}
+     * @memberof Application
+     */
+    bestPriorPriceSettings?: BestPriorPriceSettings;
+    /**
      * An array containing all the loyalty programs to which this application is subscribed.
      * @type {Array<LoyaltyProgram>}
      * @memberof Application
@@ -260,6 +273,7 @@ export function ApplicationFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'defaultEvaluationGroupId': json['defaultEvaluationGroupId'] == null ? undefined : json['defaultEvaluationGroupId'],
         'defaultCartItemFilterId': json['defaultCartItemFilterId'] == null ? undefined : json['defaultCartItemFilterId'],
         'enableCampaignStateManagement': json['enableCampaignStateManagement'] == null ? undefined : json['enableCampaignStateManagement'],
+        'bestPriorPriceSettings': json['bestPriorPriceSettings'] == null ? undefined : BestPriorPriceSettingsFromJSON(json['bestPriorPriceSettings']),
         'loyaltyPrograms': ((json['loyaltyPrograms'] as Array<any>).map(LoyaltyProgramFromJSON)),
     };
 }
@@ -296,6 +310,7 @@ export function ApplicationToJSONTyped(value?: Application | null, ignoreDiscrim
         'defaultEvaluationGroupId': value['defaultEvaluationGroupId'],
         'defaultCartItemFilterId': value['defaultCartItemFilterId'],
         'enableCampaignStateManagement': value['enableCampaignStateManagement'],
+        'bestPriorPriceSettings': BestPriorPriceSettingsToJSON(value['bestPriorPriceSettings']),
         'loyaltyPrograms': ((value['loyaltyPrograms'] as Array<any>).map(LoyaltyProgramToJSON)),
     };
 }

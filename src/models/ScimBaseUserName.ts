@@ -14,7 +14,7 @@
 
 import { mapValues } from '../runtime';
 /**
- * The components of the user’s real name.
+ * The components of the user's real name.
  * @export
  * @interface ScimBaseUserName
  */

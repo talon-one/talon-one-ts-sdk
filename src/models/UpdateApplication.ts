@@ -20,6 +20,13 @@ import {
     LimitConfigToJSON,
     LimitConfigToJSONTyped,
 } from './LimitConfig';
+import type { BestPriorPriceSettings } from './BestPriorPriceSettings';
+import {
+    BestPriorPriceSettingsFromJSON,
+    BestPriorPriceSettingsFromJSONTyped,
+    BestPriorPriceSettingsToJSON,
+    BestPriorPriceSettingsToJSONTyped,
+} from './BestPriorPriceSettings';
 import type { AttributesSettings } from './AttributesSettings';
 import {
     AttributesSettingsFromJSON,
@@ -142,6 +149,12 @@ export interface UpdateApplication {
      * @memberof UpdateApplication
      */
     enableCampaignStateManagement?: boolean;
+    /**
+     * 
+     * @type {BestPriorPriceSettings}
+     * @memberof UpdateApplication
+     */
+    bestPriorPriceSettings?: BestPriorPriceSettings;
 }
 
 
@@ -214,6 +227,7 @@ export function UpdateApplicationFromJSONTyped(json: any, ignoreDiscriminator: b
         'defaultEvaluationGroupId': json['defaultEvaluationGroupId'] == null ? undefined : json['defaultEvaluationGroupId'],
         'defaultCartItemFilterId': json['defaultCartItemFilterId'] == null ? undefined : json['defaultCartItemFilterId'],
         'enableCampaignStateManagement': json['enableCampaignStateManagement'] == null ? undefined : json['enableCampaignStateManagement'],
+        'bestPriorPriceSettings': json['bestPriorPriceSettings'] == null ? undefined : BestPriorPriceSettingsFromJSON(json['bestPriorPriceSettings']),
     };
 }
 
@@ -245,6 +259,7 @@ export function UpdateApplicationToJSONTyped(value?: UpdateApplication | null, i
         'defaultEvaluationGroupId': value['defaultEvaluationGroupId'],
         'defaultCartItemFilterId': value['defaultCartItemFilterId'],
         'enableCampaignStateManagement': value['enableCampaignStateManagement'],
+        'bestPriorPriceSettings': BestPriorPriceSettingsToJSON(value['bestPriorPriceSettings']),
     };
 }
 

@@ -115,11 +115,22 @@ export interface Reward {
      */
     rule?: Rule;
     /**
-     * A list of named variables created before the reward's rules are evaluated.  Each binding pairs a name with a talang expression. The expression is evaluated once  and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.
+     * A list of named variables created before the reward's rules are evaluated. Each binding pairs a name with a talang expression. The expression is evaluated once and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.
      * @type {Array<Binding>}
      * @memberof Reward
      */
     bindings?: Array<Binding>;
+    /**
+     * The loyalty points required to activate the reward. Each object defines the specific
+     * loyalty program and subledger from which points are deducted when activating the reward.
+     * 
+     * **Note:** When creating a reward, the `id` of each entry is ignored and a new entry is
+     * always created.
+     * 
+     * @type {Array<RewardPointsRequired>}
+     * @memberof Reward
+     */
+    pointsRequired?: Array<RewardPointsRequired>;
     /**
      * The timestamp when the reward was last updated in RFC3339 format.
      * @type {Date}
@@ -132,12 +143,6 @@ export interface Reward {
      * @memberof Reward
      */
     status: RewardStatusEnum;
-    /**
-     * The loyalty points required to activate a reward.
-     * @type {Array<RewardPointsRequired>}
-     * @memberof Reward
-     */
-    pointsRequired?: Array<RewardPointsRequired>;
 }
 
 
@@ -188,9 +193,9 @@ export function RewardFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
         'eligibilityConditions': json['eligibilityConditions'] == null ? undefined : RuleFromJSON(json['eligibilityConditions']),
         'rule': json['rule'] == null ? undefined : RuleFromJSON(json['rule']),
         'bindings': json['bindings'] == null ? undefined : ((json['bindings'] as Array<any>).map(BindingFromJSON)),
+        'pointsRequired': json['pointsRequired'] == null ? undefined : ((json['pointsRequired'] as Array<any>).map(RewardPointsRequiredFromJSON)),
         'modified': json['modified'] == null ? undefined : (new Date(json['modified'])),
         'status': json['status'],
-        'pointsRequired': json['pointsRequired'] == null ? undefined : ((json['pointsRequired'] as Array<any>).map(RewardPointsRequiredFromJSON)),
     };
 }
 
@@ -216,9 +221,9 @@ export function RewardToJSONTyped(value?: Reward | null, ignoreDiscriminator: bo
         'eligibilityConditions': RuleToJSON(value['eligibilityConditions']),
         'rule': RuleToJSON(value['rule']),
         'bindings': value['bindings'] == null ? undefined : ((value['bindings'] as Array<any>).map(BindingToJSON)),
+        'pointsRequired': value['pointsRequired'] == null ? undefined : ((value['pointsRequired'] as Array<any>).map(RewardPointsRequiredToJSON)),
         'modified': value['modified'] == null ? value['modified'] : value['modified'].toISOString(),
         'status': value['status'],
-        'pointsRequired': value['pointsRequired'] == null ? undefined : ((value['pointsRequired'] as Array<any>).map(RewardPointsRequiredToJSON)),
     };
 }
 

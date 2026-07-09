@@ -11,6 +11,7 @@ Name | Type
 `created` | Date
 `programId` | number
 `customerSessionId` | string
+`storeIntegrationId` | string
 `type` | string
 `name` | string
 `startDate` | string
@@ -34,6 +35,7 @@ const example = {
   "created": 2022-01-02T15:04:05Z07:00,
   "programId": 324,
   "customerSessionId": 05c2da0d-48fa-4aa1-b629-898f58f1584d,
+  "storeIntegrationId": STORE-001,
   "type": addition,
   "name": Reward 10% points of a purchase's current total,
   "startDate": 2022-01-02T15:04:05Z07:00,

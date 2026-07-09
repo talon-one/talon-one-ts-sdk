@@ -98,13 +98,13 @@ export interface NewCustomerSessionV2 {
     /**
      * Indicates the current state of the session. Sessions can be created as `open` or `closed`. The state transitions are:
      * 
-     * 1. `open` → `closed`
-     * 2. `open` → `cancelled`
+     * 1. `open` -> `closed`
+     * 2. `open` -> `cancelled`
      * 3. Either:
-     *    - `closed` → `cancelled` (**only** via [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)) or
-     *    - `closed` → `partially_returned` (**only** via [Return cart items](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/returnCartItems))
-     *    - `closed` → `open` (**only** via [Reopen customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession))
-     * 4. `partially_returned` → `cancelled`
+     *    - `closed` -> `cancelled` (**only** via [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)) or
+     *    - `closed` -> `partially_returned` (**only** via [Return cart items](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/returnCartItems))
+     *    - `closed` -> `open` (**only** via [Reopen customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession))
+     * 4. `partially_returned` -> `cancelled`
      * 
      * For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
      * 
