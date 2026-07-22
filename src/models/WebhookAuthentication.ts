@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { WebhookAuthenticationAllOfData } from './WebhookAuthenticationAllOfData';
+import {
+    WebhookAuthenticationAllOfDataFromJSON,
+    WebhookAuthenticationAllOfDataFromJSONTyped,
+    WebhookAuthenticationAllOfDataToJSON,
+    WebhookAuthenticationAllOfDataToJSONTyped,
+} from './WebhookAuthenticationAllOfData';
 import type { WebhookAuthenticationWebhookRef } from './WebhookAuthenticationWebhookRef';
 import {
     WebhookAuthenticationWebhookRefFromJSON,
@@ -77,10 +84,10 @@ export interface WebhookAuthentication {
     type: WebhookAuthenticationTypeEnum;
     /**
      * 
-     * @type {any}
+     * @type {WebhookAuthenticationAllOfData}
      * @memberof WebhookAuthentication
      */
-    data: any | null;
+    data: WebhookAuthenticationAllOfData;
 }
 
 
@@ -129,7 +136,7 @@ export function WebhookAuthenticationFromJSONTyped(json: any, ignoreDiscriminato
         'webhooks': ((json['webhooks'] as Array<any>).map(WebhookAuthenticationWebhookRefFromJSON)),
         'name': json['name'],
         'type': json['type'],
-        'data': json['data'],
+        'data': WebhookAuthenticationAllOfDataFromJSON(json['data']),
     };
 }
 
@@ -152,7 +159,7 @@ export function WebhookAuthenticationToJSONTyped(value?: WebhookAuthentication |
         'webhooks': ((value['webhooks'] as Array<any>).map(WebhookAuthenticationWebhookRefToJSON)),
         'name': value['name'],
         'type': value['type'],
-        'data': value['data'],
+        'data': WebhookAuthenticationAllOfDataToJSON(value['data']),
     };
 }
 

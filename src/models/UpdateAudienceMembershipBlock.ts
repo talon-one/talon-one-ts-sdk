@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CheckAudienceBlock1Audience } from './CheckAudienceBlock1Audience';
+import type { UpdateAudienceMembershipBlock1Audience } from './UpdateAudienceMembershipBlock1Audience';
 import {
-    CheckAudienceBlock1AudienceFromJSON,
-    CheckAudienceBlock1AudienceFromJSONTyped,
-    CheckAudienceBlock1AudienceToJSON,
-    CheckAudienceBlock1AudienceToJSONTyped,
-} from './CheckAudienceBlock1Audience';
+    UpdateAudienceMembershipBlock1AudienceFromJSON,
+    UpdateAudienceMembershipBlock1AudienceFromJSONTyped,
+    UpdateAudienceMembershipBlock1AudienceToJSON,
+    UpdateAudienceMembershipBlock1AudienceToJSONTyped,
+} from './UpdateAudienceMembershipBlock1Audience';
 
 /**
  * 
@@ -59,10 +59,10 @@ export interface UpdateAudienceMembershipBlock {
     profile: UpdateAudienceMembershipBlockProfileEnum;
     /**
      * 
-     * @type {CheckAudienceBlock1Audience}
+     * @type {UpdateAudienceMembershipBlock1Audience}
      * @memberof UpdateAudienceMembershipBlock
      */
-    audience: CheckAudienceBlock1Audience;
+    audience: UpdateAudienceMembershipBlock1Audience;
 }
 
 
@@ -113,7 +113,7 @@ export function UpdateAudienceMembershipBlockFromJSONTyped(json: any, ignoreDisc
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
         'profile': json['profile'],
-        'audience': CheckAudienceBlock1AudienceFromJSON(json['audience']),
+        'audience': UpdateAudienceMembershipBlock1AudienceFromJSON(json['audience']),
     };
 }
 
@@ -133,7 +133,7 @@ export function UpdateAudienceMembershipBlockToJSONTyped(value?: UpdateAudienceM
         'tags': value['tags'],
         'operator': value['operator'],
         'profile': value['profile'],
-        'audience': CheckAudienceBlock1AudienceToJSON(value['audience']),
+        'audience': UpdateAudienceMembershipBlock1AudienceToJSON(value['audience']),
     };
 }
 

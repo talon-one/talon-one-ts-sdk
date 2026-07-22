@@ -43,11 +43,11 @@ const example = {
   "policy": {Role=127},
   "roles": [71],
   "authMethod": basic_auth,
-  "applicationNotificationSubscriptions": null,
+  "applicationNotificationSubscriptions": {},
   "lastSignedIn": 2021-09-12T10:12:42Z,
   "lastAccessed": 2021-09-12T10:14:42Z,
   "latestFeedTimestamp": 2020-06-01T00:00:00Z,
-  "additionalAttributes": null,
+  "additionalAttributes": {},
 } satisfies User
 
 console.log(example)

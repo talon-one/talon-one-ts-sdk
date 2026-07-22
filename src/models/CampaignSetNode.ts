@@ -12,29 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-/**
- * 
- * @export
- * @interface CampaignSetNode
- */
-export interface CampaignSetNode {
-    /**
-     * 
-     * @type {string}
-     * @memberof CampaignSetNode
-     */
-    type: string;
-}
+import type { CampaignSetBranchNode } from './CampaignSetBranchNode';
+import {
+    instanceOfCampaignSetBranchNode,
+    CampaignSetBranchNodeFromJSON,
+    CampaignSetBranchNodeFromJSONTyped,
+    CampaignSetBranchNodeToJSON,
+} from './CampaignSetBranchNode';
+import type { CampaignSetLeafNode } from './CampaignSetLeafNode';
+import {
+    instanceOfCampaignSetLeafNode,
+    CampaignSetLeafNodeFromJSON,
+    CampaignSetLeafNodeFromJSONTyped,
+    CampaignSetLeafNodeToJSON,
+} from './CampaignSetLeafNode';
 
 /**
- * Check if a given object implements the CampaignSetNode interface.
+ * @type CampaignSetNode
+ * 
+ * @export
  */
-export function instanceOfCampaignSetNode(value: object): value is CampaignSetNode {
-    const _v = value as Record<PropertyKey, unknown>;
-    if (!('type' in _v) || _v['type'] === undefined) return false;
-    return true;
-}
+export type CampaignSetNode = CampaignSetBranchNode | CampaignSetLeafNode;
 
 export function CampaignSetNodeFromJSON(json: any): CampaignSetNode {
     return CampaignSetNodeFromJSONTyped(json, false);
@@ -44,13 +42,19 @@ export function CampaignSetNodeFromJSONTyped(json: any, ignoreDiscriminator: boo
     if (json == null) {
         return json;
     }
-    return {
-        
-        'type': json['type'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfCampaignSetBranchNode(json)) {
+        return CampaignSetBranchNodeFromJSONTyped(json, true);
+    }
+    if (instanceOfCampaignSetLeafNode(json)) {
+        return CampaignSetLeafNodeFromJSONTyped(json, true);
+    }
+    return {} as any;
 }
 
-export function CampaignSetNodeToJSON(json: any): CampaignSetNode {
+export function CampaignSetNodeToJSON(json: any): any {
     return CampaignSetNodeToJSONTyped(json, false);
 }
 
@@ -58,10 +62,15 @@ export function CampaignSetNodeToJSONTyped(value?: CampaignSetNode | null, ignor
     if (value == null) {
         return value;
     }
-
-    return {
-        
-        'type': value['type'],
-    };
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfCampaignSetBranchNode(value)) {
+        return CampaignSetBranchNodeToJSON(value as CampaignSetBranchNode);
+    }
+    if (instanceOfCampaignSetLeafNode(value)) {
+        return CampaignSetLeafNodeToJSON(value as CampaignSetLeafNode);
+    }
+    return {};
 }
 

@@ -10,9 +10,9 @@ Name | Type
 `type` | string
 `tags` | Array&lt;string&gt;
 `operator` | string
-`blocks` | Array&lt;any&gt;
-`onFailure` | Array&lt;any&gt;
-`onError` | { [key: string]: Array&lt;any&gt;; }
+`blocks` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
+`onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
+`onError` | { [key: string]: Array&lt;PromotionBlock&gt;; }
 
 ## Example
 

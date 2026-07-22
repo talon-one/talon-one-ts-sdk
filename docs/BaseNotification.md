@@ -6,7 +6,7 @@
 
 Name | Type
 ------------ | -------------
-`policy` | object
+`policy` | [BaseNotificationPolicy](BaseNotificationPolicy.md)
 `enabled` | boolean
 `webhook` | [BaseNotificationWebhook](BaseNotificationWebhook.md)
 `id` | number

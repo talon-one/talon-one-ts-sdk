@@ -13,6 +13,21 @@
  */
 
 import { mapValues } from '../runtime';
+import type { LabelTarget } from './LabelTarget';
+import {
+    LabelTargetFromJSON,
+    LabelTargetFromJSONTyped,
+    LabelTargetToJSON,
+    LabelTargetToJSONTyped,
+} from './LabelTarget';
+import type { StrikethroughEffectProps } from './StrikethroughEffectProps';
+import {
+    StrikethroughEffectPropsFromJSON,
+    StrikethroughEffectPropsFromJSONTyped,
+    StrikethroughEffectPropsToJSON,
+    StrikethroughEffectPropsToJSONTyped,
+} from './StrikethroughEffectProps';
+
 /**
  * The effect produced for the catalog item.
  * @export
@@ -51,10 +66,10 @@ export interface StrikethroughEffect {
     type: string;
     /**
      * Arbitrary properties associated with this effect type.
-     * @type {object}
+     * @type {StrikethroughEffectProps}
      * @memberof StrikethroughEffect
      */
-    props: object;
+    props: StrikethroughEffectProps;
     /**
      * The start of the time frame where the effect is active in UTC.
      * @type {Date}
@@ -87,10 +102,10 @@ export interface StrikethroughEffect {
     adjustmentReferenceId?: string;
     /**
      * A list of entities (e.g. audiences) targeted by this effect.
-     * @type {Array<object>}
+     * @type {Array<LabelTarget>}
      * @memberof StrikethroughEffect
      */
-    targets?: Array<object>;
+    targets?: Array<LabelTarget>;
 }
 
 /**
@@ -122,13 +137,13 @@ export function StrikethroughEffectFromJSONTyped(json: any, ignoreDiscriminator:
         'ruleIndex': json['ruleIndex'],
         'ruleName': json['ruleName'],
         'type': json['type'],
-        'props': json['props'],
+        'props': StrikethroughEffectPropsFromJSON(json['props']),
         'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
         'endTime': json['endTime'] == null ? undefined : (new Date(json['endTime'])),
         'selectedPriceType': json['selectedPriceType'] == null ? undefined : json['selectedPriceType'],
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
-        'targets': json['targets'] == null ? undefined : json['targets'],
+        'targets': json['targets'] == null ? undefined : ((json['targets'] as Array<any>).map(LabelTargetFromJSON)),
     };
 }
 
@@ -148,13 +163,13 @@ export function StrikethroughEffectToJSONTyped(value?: StrikethroughEffect | nul
         'ruleIndex': value['ruleIndex'],
         'ruleName': value['ruleName'],
         'type': value['type'],
-        'props': value['props'],
+        'props': StrikethroughEffectPropsToJSON(value['props']),
         'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
         'endTime': value['endTime'] == null ? value['endTime'] : value['endTime'].toISOString(),
         'selectedPriceType': value['selectedPriceType'],
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
-        'targets': value['targets'],
+        'targets': value['targets'] == null ? undefined : ((value['targets'] as Array<any>).map(LabelTargetToJSON)),
     };
 }
 

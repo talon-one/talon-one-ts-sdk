@@ -6,7 +6,17 @@
 
 Name | Type
 ------------ | -------------
-`onFailure` | Array&lt;any&gt;
+`id` | string
+`type` | string
+`tags` | Array&lt;string&gt;
+`operator` | string
+`attribute` | string
+`value` | any
+`min` | any
+`max` | any
+`values` | any
+`count` | any
+`onFailure` | [Array&lt;StrikethroughBlock&gt;](StrikethroughBlock.md)
 
 ## Example
 
@@ -15,6 +25,16 @@ import type { StrikethroughCheckAttributeBlock } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
+  "id": a1b2c3d4-e5f6-7890-abcd-ef1234567890,
+  "type": null,
+  "tags": null,
+  "operator": greaterThan,
+  "attribute": $Session.Total,
+  "value": null,
+  "min": null,
+  "max": null,
+  "values": null,
+  "count": null,
   "onFailure": null,
 } satisfies StrikethroughCheckAttributeBlock
 

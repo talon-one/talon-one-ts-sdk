@@ -20,6 +20,8 @@ Name | Type
 `couponPattern` | string
 `isReservationMandatory` | boolean
 `implicitlyReserved` | boolean
+`supportRequestId` | number
+`supportRequestNote` | string
 
 ## Example
 
@@ -36,12 +38,14 @@ const example = {
   "limits": null,
   "numberOfCoupons": 1,
   "uniquePrefix": ,
-  "attributes": null,
+  "attributes": {venueId=12},
   "recipientIntegrationId": URNGV8294NV,
   "validCharacters": [A, B, G, Y],
   "couponPattern": SUMMER-#####,
   "isReservationMandatory": false,
   "implicitlyReserved": false,
+  "supportRequestId": 42,
+  "supportRequestNote": Approved as compensation for the delayed order.,
 } satisfies NewCoupons
 
 console.log(example)

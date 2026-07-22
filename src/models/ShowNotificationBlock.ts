@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PromotionBlock } from './PromotionBlock';
+import {
+    PromotionBlockFromJSON,
+    PromotionBlockFromJSONTyped,
+    PromotionBlockToJSON,
+    PromotionBlockToJSONTyped,
+} from './PromotionBlock';
+
 /**
  * 
  * @export
@@ -57,16 +65,16 @@ export interface ShowNotificationBlock {
     body?: string;
     /**
      * Blocks evaluated when this block fails or returns false.
-     * @type {Array<any>}
+     * @type {Array<PromotionBlock>}
      * @memberof ShowNotificationBlock
      */
-    onFailure?: Array<any>;
+    onFailure?: Array<PromotionBlock>;
     /**
      * Named error handlers evaluated when a specific error occurs.
-     * @type {{ [key: string]: Array<any>; }}
+     * @type {{ [key: string]: Array<PromotionBlock>; }}
      * @memberof ShowNotificationBlock
      */
-    onError?: { [key: string]: Array<any>; };
+    onError?: { [key: string]: Array<PromotionBlock>; };
 }
 
 /**
@@ -97,7 +105,7 @@ export function ShowNotificationBlockFromJSONTyped(json: any, ignoreDiscriminato
         'notificationType': json['notificationType'],
         'title': json['title'],
         'body': json['body'] == null ? undefined : json['body'],
-        'onFailure': json['onFailure'] == null ? undefined : json['onFailure'],
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
         'onError': json['onError'] == null ? undefined : json['onError'],
     };
 }
@@ -119,7 +127,7 @@ export function ShowNotificationBlockToJSONTyped(value?: ShowNotificationBlock |
         'notificationType': value['notificationType'],
         'title': value['title'],
         'body': value['body'],
-        'onFailure': value['onFailure'],
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
         'onError': value['onError'],
     };
 }

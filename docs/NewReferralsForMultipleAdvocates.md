@@ -27,7 +27,7 @@ const example = {
   "usageLimit": 1,
   "campaignId": 45,
   "advocateProfileIntegrationIds": [URNGV8294NV, DRPVV9476AF],
-  "attributes": null,
+  "attributes": {channel=web},
   "validCharacters": [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z],
   "referralPattern": REF-###-###,
 } satisfies NewReferralsForMultipleAdvocates

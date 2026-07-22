@@ -9,7 +9,7 @@ Name | Type
 `totalResultSize` | number
 `batchedAt` | Date
 `eventType` | [IntegrationHubEventType](IntegrationHubEventType.md)
-`data` | Array&lt;any&gt;
+`data` | [Array&lt;IntegrationHubPaginatedEventPayloadDataInner&gt;](IntegrationHubPaginatedEventPayloadDataInner.md)
 
 ## Example
 

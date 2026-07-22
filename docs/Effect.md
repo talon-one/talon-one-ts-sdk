@@ -22,7 +22,7 @@ Name | Type
 `selectedPriceType` | string
 `selectedPrice` | number
 `adjustmentReferenceId` | string
-`props` | any
+`props` | [EffectAllOfProps](EffectAllOfProps.md)
 
 ## Example
 

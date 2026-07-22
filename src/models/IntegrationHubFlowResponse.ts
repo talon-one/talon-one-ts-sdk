@@ -116,7 +116,7 @@ export function IntegrationHubFlowResponseFromJSONTyped(json: any, ignoreDiscrim
         'integrationName': json['integrationName'] == null ? undefined : json['integrationName'],
         'instanceName': json['instanceName'] == null ? undefined : json['instanceName'],
         'createdAt': (new Date(json['createdAt'])),
-        'disabledUntil': json['disabledUntil'] == null ? undefined : (new Date(json['disabledUntil'])),
+        'disabledUntil': json['disabledUntil'] === undefined ? undefined : json['disabledUntil'] === null ? null : (new Date(json['disabledUntil'])),
         'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
         'loyaltyProgramId': json['loyaltyProgramId'] == null ? undefined : json['loyaltyProgramId'],
         'eventType': json['eventType'],

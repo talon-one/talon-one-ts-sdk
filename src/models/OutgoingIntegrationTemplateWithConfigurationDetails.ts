@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { OutgoingIntegrationConfigurationPolicy } from './OutgoingIntegrationConfigurationPolicy';
+import {
+    OutgoingIntegrationConfigurationPolicyFromJSON,
+    OutgoingIntegrationConfigurationPolicyFromJSONTyped,
+    OutgoingIntegrationConfigurationPolicyToJSON,
+    OutgoingIntegrationConfigurationPolicyToJSONTyped,
+} from './OutgoingIntegrationConfigurationPolicy';
+
 /**
  * 
  * @export
@@ -68,11 +76,11 @@ export interface OutgoingIntegrationTemplateWithConfigurationDetails {
      */
     headers: Array<string>;
     /**
-     * The outgoing integration policy specific to each integration type.
-     * @type {object}
+     * 
+     * @type {OutgoingIntegrationConfigurationPolicy}
      * @memberof OutgoingIntegrationTemplateWithConfigurationDetails
      */
-    policy: object;
+    policy: OutgoingIntegrationConfigurationPolicy;
 }
 
 
@@ -124,7 +132,7 @@ export function OutgoingIntegrationTemplateWithConfigurationDetailsFromJSONTyped
         'method': json['method'],
         'relativeUrl': json['relativeUrl'],
         'headers': json['headers'],
-        'policy': json['policy'],
+        'policy': OutgoingIntegrationConfigurationPolicyFromJSON(json['policy']),
     };
 }
 
@@ -147,7 +155,7 @@ export function OutgoingIntegrationTemplateWithConfigurationDetailsToJSONTyped(v
         'method': value['method'],
         'relativeUrl': value['relativeUrl'],
         'headers': value['headers'],
-        'policy': value['policy'],
+        'policy': OutgoingIntegrationConfigurationPolicyToJSON(value['policy']),
     };
 }
 

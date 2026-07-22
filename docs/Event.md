@@ -32,7 +32,7 @@ const example = {
   "profileId": URNGV8294NV,
   "storeIntegrationId": STORE-001,
   "type": pageViewed,
-  "attributes": null,
+  "attributes": {myAttribute=myValue},
   "integrationId": 175KJPS947296,
   "sessionId": 175KJPS947296,
   "effects": null,

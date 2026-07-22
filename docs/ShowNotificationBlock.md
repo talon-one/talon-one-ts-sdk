@@ -12,8 +12,8 @@ Name | Type
 `notificationType` | string
 `title` | string
 `body` | string
-`onFailure` | Array&lt;any&gt;
-`onError` | { [key: string]: Array&lt;any&gt;; }
+`onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
+`onError` | { [key: string]: Array&lt;PromotionBlock&gt;; }
 
 ## Example
 

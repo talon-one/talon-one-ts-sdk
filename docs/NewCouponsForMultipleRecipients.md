@@ -28,7 +28,7 @@ const example = {
   "reservationLimit": 45,
   "startDate": 2020-01-24T14:15:22Z,
   "expiryDate": 2023-08-24T14:15:22Z,
-  "attributes": null,
+  "attributes": {venueId=12},
   "recipientsIntegrationIds": [URNGV8294NV, BZGGC2454PA],
   "validCharacters": [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z],
   "couponPattern": SUMMER-#####,

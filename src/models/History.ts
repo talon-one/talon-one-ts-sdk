@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { LabelTarget } from './LabelTarget';
+import {
+    LabelTargetFromJSON,
+    LabelTargetFromJSONTyped,
+    LabelTargetToJSON,
+    LabelTargetToJSONTyped,
+} from './LabelTarget';
 import type { BestPriorPriceMetadata } from './BestPriorPriceMetadata';
 import {
     BestPriorPriceMetadataFromJSON,
@@ -68,10 +75,10 @@ export interface History {
     metadata: BestPriorPriceMetadata;
     /**
      * 
-     * @type {object}
+     * @type {LabelTarget}
      * @memberof History
      */
-    target: object;
+    target: LabelTarget;
 }
 
 /**
@@ -104,7 +111,7 @@ export function HistoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): H
         'contextId': json['contextId'] == null ? undefined : json['contextId'],
         'price': json['price'],
         'metadata': BestPriorPriceMetadataFromJSON(json['metadata']),
-        'target': json['target'],
+        'target': LabelTargetFromJSON(json['target']),
     };
 }
 
@@ -125,7 +132,7 @@ export function HistoryToJSONTyped(value?: History | null, ignoreDiscriminator: 
         'contextId': value['contextId'],
         'price': value['price'],
         'metadata': BestPriorPriceMetadataToJSON(value['metadata']),
-        'target': value['target'],
+        'target': LabelTargetToJSON(value['target']),
     };
 }
 

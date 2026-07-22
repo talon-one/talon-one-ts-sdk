@@ -12,13 +12,13 @@ Name | Type
 `ruleIndex` | number
 `ruleName` | string
 `type` | string
-`props` | object
+`props` | [StrikethroughEffectProps](StrikethroughEffectProps.md)
 `startTime` | Date
 `endTime` | Date
 `selectedPriceType` | string
 `selectedPrice` | number
 `adjustmentReferenceId` | string
-`targets` | Array&lt;object&gt;
+`targets` | [Array&lt;LabelTarget&gt;](LabelTarget.md)
 
 ## Example
 

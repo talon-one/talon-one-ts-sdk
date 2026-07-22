@@ -109,6 +109,12 @@ export interface SupportRequest {
      * @memberof SupportRequest
      */
     processedByUser?: string;
+    /**
+     * Coupon code associated with the approved support request.
+     * @type {string}
+     * @memberof SupportRequest
+     */
+    couponCode?: string;
 }
 
 
@@ -129,7 +135,8 @@ export type SupportRequestRequestTypeEnum = typeof SupportRequestRequestTypeEnum
 export const SupportRequestRequestStatusEnum = {
     PendingApproval: 'pending_approval',
     Approved: 'approved',
-    Rejected: 'rejected'
+    Rejected: 'rejected',
+    Expired: 'expired'
 } as const;
 export type SupportRequestRequestStatusEnum = typeof SupportRequestRequestStatusEnum[keyof typeof SupportRequestRequestStatusEnum];
 
@@ -175,6 +182,7 @@ export function SupportRequestFromJSONTyped(json: any, ignoreDiscriminator: bool
         'processedAt': json['processedAt'] == null ? undefined : (new Date(json['processedAt'])),
         'processingNote': json['processingNote'] == null ? undefined : json['processingNote'],
         'processedByUser': json['processedByUser'] == null ? undefined : json['processedByUser'],
+        'couponCode': json['couponCode'] == null ? undefined : json['couponCode'],
     };
 }
 
@@ -204,6 +212,7 @@ export function SupportRequestToJSONTyped(value?: SupportRequest | null, ignoreD
         'processedAt': value['processedAt'] == null ? value['processedAt'] : value['processedAt'].toISOString(),
         'processingNote': value['processingNote'],
         'processedByUser': value['processedByUser'],
+        'couponCode': value['couponCode'],
     };
 }
 

@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { StrikethroughBlock } from './StrikethroughBlock';
+import {
+    StrikethroughBlockFromJSON,
+    StrikethroughBlockFromJSONTyped,
+    StrikethroughBlockToJSON,
+    StrikethroughBlockToJSONTyped,
+} from './StrikethroughBlock';
+
 /**
  * 
  * @export
@@ -45,22 +53,22 @@ export interface StrikethroughGroupBlock {
     operator: StrikethroughGroupBlockOperatorEnum;
     /**
      * Child blocks evaluated according to the operator.
-     * @type {Array<any>}
+     * @type {Array<StrikethroughBlock>}
      * @memberof StrikethroughGroupBlock
      */
-    blocks: Array<any>;
+    blocks: Array<StrikethroughBlock>;
     /**
      * Strikethrough blocks evaluated when this block fails or returns false.
-     * @type {Array<any>}
+     * @type {Array<StrikethroughBlock>}
      * @memberof StrikethroughGroupBlock
      */
-    onFailure?: Array<any>;
+    onFailure?: Array<StrikethroughBlock>;
     /**
      * Named error handlers evaluated when a specific error occurs.
-     * @type {{ [key: string]: Array<any>; }}
+     * @type {{ [key: string]: Array<StrikethroughBlock>; }}
      * @memberof StrikethroughGroupBlock
      */
-    onError?: { [key: string]: Array<any>; };
+    onError?: { [key: string]: Array<StrikethroughBlock>; };
 }
 
 
@@ -101,8 +109,8 @@ export function StrikethroughGroupBlockFromJSONTyped(json: any, ignoreDiscrimina
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
-        'blocks': json['blocks'],
-        'onFailure': json['onFailure'] == null ? undefined : json['onFailure'],
+        'blocks': ((json['blocks'] as Array<any>).map(StrikethroughBlockFromJSON)),
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(StrikethroughBlockFromJSON)),
         'onError': json['onError'] == null ? undefined : json['onError'],
     };
 }
@@ -122,8 +130,8 @@ export function StrikethroughGroupBlockToJSONTyped(value?: StrikethroughGroupBlo
         'type': value['type'],
         'tags': value['tags'],
         'operator': value['operator'],
-        'blocks': value['blocks'],
-        'onFailure': value['onFailure'],
+        'blocks': ((value['blocks'] as Array<any>).map(StrikethroughBlockToJSON)),
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(StrikethroughBlockToJSON)),
         'onError': value['onError'],
     };
 }

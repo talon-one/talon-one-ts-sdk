@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { IntegrationHubPaginatedEventPayloadDataInner } from './IntegrationHubPaginatedEventPayloadDataInner';
+import {
+    IntegrationHubPaginatedEventPayloadDataInnerFromJSON,
+    IntegrationHubPaginatedEventPayloadDataInnerFromJSONTyped,
+    IntegrationHubPaginatedEventPayloadDataInnerToJSON,
+    IntegrationHubPaginatedEventPayloadDataInnerToJSONTyped,
+} from './IntegrationHubPaginatedEventPayloadDataInner';
 import type { IntegrationHubEventType } from './IntegrationHubEventType';
 import {
     IntegrationHubEventTypeFromJSON,
@@ -47,10 +54,10 @@ export interface IntegrationHubPaginatedEventPayload {
     eventType: IntegrationHubEventType;
     /**
      * 
-     * @type {Array<any>}
+     * @type {Array<IntegrationHubPaginatedEventPayloadDataInner>}
      * @memberof IntegrationHubPaginatedEventPayload
      */
-    data: Array<any>;
+    data: Array<IntegrationHubPaginatedEventPayloadDataInner>;
 }
 
 
@@ -79,7 +86,7 @@ export function IntegrationHubPaginatedEventPayloadFromJSONTyped(json: any, igno
         'totalResultSize': json['TotalResultSize'],
         'batchedAt': json['BatchedAt'] == null ? undefined : (new Date(json['BatchedAt'])),
         'eventType': IntegrationHubEventTypeFromJSON(json['EventType']),
-        'data': json['Data'],
+        'data': ((json['Data'] as Array<any>).map(IntegrationHubPaginatedEventPayloadDataInnerFromJSON)),
     };
 }
 
@@ -97,7 +104,7 @@ export function IntegrationHubPaginatedEventPayloadToJSONTyped(value?: Integrati
         'TotalResultSize': value['totalResultSize'],
         'BatchedAt': value['batchedAt'] == null ? value['batchedAt'] : value['batchedAt'].toISOString(),
         'EventType': IntegrationHubEventTypeToJSON(value['eventType']),
-        'Data': value['data'],
+        'Data': ((value['data'] as Array<any>).map(IntegrationHubPaginatedEventPayloadDataInnerToJSON)),
     };
 }
 

@@ -7,8 +7,8 @@ Definition of all the properties that are needed for a single catalog sync actio
 
 Name | Type
 ------------ | -------------
-`type` | string
-`payload` | object
+`type` | any
+`payload` | [AddPriceAdjustmentCatalogAction](AddPriceAdjustmentCatalogAction.md)
 
 ## Example
 
@@ -17,7 +17,7 @@ import type { CatalogAction } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "type": ADD,
+  "type": null,
   "payload": null,
 } satisfies CatalogAction
 

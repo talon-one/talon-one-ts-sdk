@@ -11,9 +11,9 @@ Name | Type
 `changePassword` | [ScimServiceProviderConfigResponseChangePassword](ScimServiceProviderConfigResponseChangePassword.md)
 `documentationUri` | string
 `filter` | [ScimServiceProviderConfigResponseFilter](ScimServiceProviderConfigResponseFilter.md)
-`patch` | [ScimServiceProviderConfigResponseChangePassword](ScimServiceProviderConfigResponseChangePassword.md)
+`patch` | [ScimServiceProviderConfigResponsePatch](ScimServiceProviderConfigResponsePatch.md)
 `schemas` | Array&lt;string&gt;
-`sort` | [ScimServiceProviderConfigResponseChangePassword](ScimServiceProviderConfigResponseChangePassword.md)
+`sort` | [ScimServiceProviderConfigResponseSort](ScimServiceProviderConfigResponseSort.md)
 
 ## Example
 

@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PromotionBlock } from './PromotionBlock';
+import {
+    PromotionBlockFromJSON,
+    PromotionBlockFromJSONTyped,
+    PromotionBlockToJSON,
+    PromotionBlockToJSONTyped,
+} from './PromotionBlock';
 import type { AwardGiveawayBlock1GiveawayPool } from './AwardGiveawayBlock1GiveawayPool';
 import {
     AwardGiveawayBlock1GiveawayPoolFromJSON,
@@ -59,16 +66,16 @@ export interface AwardGiveawayBlock {
     profile: AwardGiveawayBlockProfileEnum;
     /**
      * Blocks evaluated when this block fails or returns false.
-     * @type {Array<any>}
+     * @type {Array<PromotionBlock>}
      * @memberof AwardGiveawayBlock
      */
-    onFailure?: Array<any>;
+    onFailure?: Array<PromotionBlock>;
     /**
      * Named error handlers evaluated when a specific error occurs.
-     * @type {{ [key: string]: Array<any>; }}
+     * @type {{ [key: string]: Array<PromotionBlock>; }}
      * @memberof AwardGiveawayBlock
      */
-    onError?: { [key: string]: Array<any>; };
+    onError?: { [key: string]: Array<PromotionBlock>; };
 }
 
 
@@ -109,7 +116,7 @@ export function AwardGiveawayBlockFromJSONTyped(json: any, ignoreDiscriminator: 
         'tags': json['tags'] == null ? undefined : json['tags'],
         'giveawayPool': AwardGiveawayBlock1GiveawayPoolFromJSON(json['giveawayPool']),
         'profile': json['profile'],
-        'onFailure': json['onFailure'] == null ? undefined : json['onFailure'],
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
         'onError': json['onError'] == null ? undefined : json['onError'],
     };
 }
@@ -130,7 +137,7 @@ export function AwardGiveawayBlockToJSONTyped(value?: AwardGiveawayBlock | null,
         'tags': value['tags'],
         'giveawayPool': AwardGiveawayBlock1GiveawayPoolToJSON(value['giveawayPool']),
         'profile': value['profile'],
-        'onFailure': value['onFailure'],
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
         'onError': value['onError'],
     };
 }

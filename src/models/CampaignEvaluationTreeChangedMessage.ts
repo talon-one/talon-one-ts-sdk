@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ApplicationNotification } from './ApplicationNotification';
+import type { CampaignEvaluationTreeChangedNotification } from './CampaignEvaluationTreeChangedNotification';
 import {
-    ApplicationNotificationFromJSON,
-    ApplicationNotificationFromJSONTyped,
-    ApplicationNotificationToJSON,
-    ApplicationNotificationToJSONTyped,
-} from './ApplicationNotification';
+    CampaignEvaluationTreeChangedNotificationFromJSON,
+    CampaignEvaluationTreeChangedNotificationFromJSONTyped,
+    CampaignEvaluationTreeChangedNotificationToJSON,
+    CampaignEvaluationTreeChangedNotificationToJSONTyped,
+} from './CampaignEvaluationTreeChangedNotification';
 
 /**
  * 
@@ -41,10 +41,10 @@ export interface CampaignEvaluationTreeChangedMessage {
     totalResultSize: number;
     /**
      * The array of changes.
-     * @type {Array<ApplicationNotification>}
+     * @type {Array<CampaignEvaluationTreeChangedNotification>}
      * @memberof CampaignEvaluationTreeChangedMessage
      */
-    data?: Array<ApplicationNotification>;
+    data?: Array<CampaignEvaluationTreeChangedNotification>;
 }
 
 
@@ -81,7 +81,7 @@ export function CampaignEvaluationTreeChangedMessageFromJSONTyped(json: any, ign
         
         'notificationType': json['NotificationType'],
         'totalResultSize': json['TotalResultSize'],
-        'data': json['Data'] == null ? undefined : ((json['Data'] as Array<any>).map(ApplicationNotificationFromJSON)),
+        'data': json['Data'] == null ? undefined : ((json['Data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationFromJSON)),
     };
 }
 
@@ -98,7 +98,7 @@ export function CampaignEvaluationTreeChangedMessageToJSONTyped(value?: Campaign
         
         'NotificationType': value['notificationType'],
         'TotalResultSize': value['totalResultSize'],
-        'Data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(ApplicationNotificationToJSON)),
+        'Data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationToJSON)),
     };
 }
 

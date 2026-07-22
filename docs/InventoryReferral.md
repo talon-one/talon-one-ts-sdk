@@ -36,7 +36,7 @@ const example = {
   "campaignId": 78,
   "advocateProfileIntegrationId": URNGV8294NV,
   "friendProfileIntegrationId": BZGGC2454PA,
-  "attributes": null,
+  "attributes": {channel=web},
   "importId": 4,
   "code": 27G47Y54VH9L,
   "usageCounter": 1,

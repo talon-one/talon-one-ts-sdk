@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PromotionBlock } from './PromotionBlock';
+import {
+    PromotionBlockFromJSON,
+    PromotionBlockFromJSONTyped,
+    PromotionBlockToJSON,
+    PromotionBlockToJSONTyped,
+} from './PromotionBlock';
 import type { CheckAudienceBlock1Audience } from './CheckAudienceBlock1Audience';
 import {
     CheckAudienceBlock1AudienceFromJSON,
@@ -65,10 +72,10 @@ export interface CheckAudienceBlock {
     audience: CheckAudienceBlock1Audience;
     /**
      * Promotion blocks evaluated when this block fails or returns false.
-     * @type {Array<any>}
+     * @type {Array<PromotionBlock>}
      * @memberof CheckAudienceBlock
      */
-    onFailure?: Array<any>;
+    onFailure?: Array<PromotionBlock>;
 }
 
 
@@ -122,7 +129,7 @@ export function CheckAudienceBlockFromJSONTyped(json: any, ignoreDiscriminator: 
         'operator': json['operator'],
         'profile': json['profile'],
         'audience': CheckAudienceBlock1AudienceFromJSON(json['audience']),
-        'onFailure': json['onFailure'] == null ? undefined : json['onFailure'],
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
     };
 }
 
@@ -143,7 +150,7 @@ export function CheckAudienceBlockToJSONTyped(value?: CheckAudienceBlock | null,
         'operator': value['operator'],
         'profile': value['profile'],
         'audience': CheckAudienceBlock1AudienceToJSON(value['audience']),
-        'onFailure': value['onFailure'],
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
     };
 }
 

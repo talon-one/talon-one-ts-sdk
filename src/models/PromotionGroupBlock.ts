@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PromotionBlock } from './PromotionBlock';
+import {
+    PromotionBlockFromJSON,
+    PromotionBlockFromJSONTyped,
+    PromotionBlockToJSON,
+    PromotionBlockToJSONTyped,
+} from './PromotionBlock';
+
 /**
  * 
  * @export
@@ -45,22 +53,22 @@ export interface PromotionGroupBlock {
     operator: PromotionGroupBlockOperatorEnum;
     /**
      * Child blocks evaluated according to the operator.
-     * @type {Array<any>}
+     * @type {Array<PromotionBlock>}
      * @memberof PromotionGroupBlock
      */
-    blocks: Array<any>;
+    blocks: Array<PromotionBlock>;
     /**
      * Promotion blocks evaluated when this block fails or returns false.
-     * @type {Array<any>}
+     * @type {Array<PromotionBlock>}
      * @memberof PromotionGroupBlock
      */
-    onFailure?: Array<any>;
+    onFailure?: Array<PromotionBlock>;
     /**
      * Named error handlers evaluated when a specific error occurs.
-     * @type {{ [key: string]: Array<any>; }}
+     * @type {{ [key: string]: Array<PromotionBlock>; }}
      * @memberof PromotionGroupBlock
      */
-    onError?: { [key: string]: Array<any>; };
+    onError?: { [key: string]: Array<PromotionBlock>; };
 }
 
 
@@ -101,8 +109,8 @@ export function PromotionGroupBlockFromJSONTyped(json: any, ignoreDiscriminator:
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
-        'blocks': json['blocks'],
-        'onFailure': json['onFailure'] == null ? undefined : json['onFailure'],
+        'blocks': ((json['blocks'] as Array<any>).map(PromotionBlockFromJSON)),
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
         'onError': json['onError'] == null ? undefined : json['onError'],
     };
 }
@@ -122,8 +130,8 @@ export function PromotionGroupBlockToJSONTyped(value?: PromotionGroupBlock | nul
         'type': value['type'],
         'tags': value['tags'],
         'operator': value['operator'],
-        'blocks': value['blocks'],
-        'onFailure': value['onFailure'],
+        'blocks': ((value['blocks'] as Array<any>).map(PromotionBlockToJSON)),
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
         'onError': value['onError'],
     };
 }

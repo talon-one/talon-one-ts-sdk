@@ -86,7 +86,7 @@ export interface NewCoupons {
      */
     uniquePrefix?: string;
     /**
-     * Arbitrary properties associated with this campaign.
+     * Arbitrary properties associated with this item.
      * @type {object}
      * @memberof NewCoupons
      */
@@ -125,6 +125,18 @@ export interface NewCoupons {
      * @memberof NewCoupons
      */
     implicitlyReserved?: boolean;
+    /**
+     * The identifier of the support request to link to the coupon creation. The request must exist and not yet be processed.
+     * @type {number}
+     * @memberof NewCoupons
+     */
+    supportRequestId?: number;
+    /**
+     * A note recorded when the linked support request is approved or rejected. Applied when `supportRequestId` is provided.
+     * @type {string}
+     * @memberof NewCoupons
+     */
+    supportRequestNote?: string;
 }
 
 /**
@@ -160,6 +172,8 @@ export function NewCouponsFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'couponPattern': json['couponPattern'] == null ? undefined : json['couponPattern'],
         'isReservationMandatory': json['isReservationMandatory'] == null ? undefined : json['isReservationMandatory'],
         'implicitlyReserved': json['implicitlyReserved'] == null ? undefined : json['implicitlyReserved'],
+        'supportRequestId': json['supportRequestId'] == null ? undefined : json['supportRequestId'],
+        'supportRequestNote': json['supportRequestNote'] == null ? undefined : json['supportRequestNote'],
     };
 }
 
@@ -188,6 +202,8 @@ export function NewCouponsToJSONTyped(value?: NewCoupons | null, ignoreDiscrimin
         'couponPattern': value['couponPattern'],
         'isReservationMandatory': value['isReservationMandatory'],
         'implicitlyReserved': value['implicitlyReserved'],
+        'supportRequestId': value['supportRequestId'],
+        'supportRequestNote': value['supportRequestNote'],
     };
 }
 

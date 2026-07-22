@@ -53,7 +53,7 @@ export interface NewCouponsForMultipleRecipients {
      */
     expiryDate?: Date;
     /**
-     * Arbitrary properties associated with this campaign.
+     * Arbitrary properties associated with this item.
      * @type {object}
      * @memberof NewCouponsForMultipleRecipients
      */

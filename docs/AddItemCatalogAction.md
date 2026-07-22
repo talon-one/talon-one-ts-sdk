@@ -22,7 +22,7 @@ import type { AddItemCatalogAction } from 'talon_one_sdk'
 const example = {
   "sku": SKU1241028,
   "price": 99.99,
-  "attributes": {"origin":"germany","color":"blue"},
+  "attributes": {origin=germany, color=blue},
   "product": null,
   "replaceIfExists": false,
 } satisfies AddItemCatalogAction

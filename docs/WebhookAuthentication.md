@@ -14,7 +14,7 @@ Name | Type
 `webhooks` | [Array&lt;WebhookAuthenticationWebhookRef&gt;](WebhookAuthenticationWebhookRef.md)
 `name` | string
 `type` | string
-`data` | any
+`data` | [WebhookAuthenticationAllOfData](WebhookAuthenticationAllOfData.md)
 
 ## Example
 

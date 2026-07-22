@@ -14,7 +14,7 @@ Name | Type
 `method` | string
 `relativeUrl` | string
 `headers` | Array&lt;string&gt;
-`policy` | object
+`policy` | [OutgoingIntegrationConfigurationPolicy](OutgoingIntegrationConfigurationPolicy.md)
 
 ## Example
 

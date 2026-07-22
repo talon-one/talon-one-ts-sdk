@@ -22,6 +22,7 @@ Name | Type
 `processedAt` | Date
 `processingNote` | string
 `processedByUser` | string
+`couponCode` | string
 
 ## Example
 
@@ -45,6 +46,7 @@ const example = {
   "processedAt": 2025-07-20T22:10:00Z,
   "processingNote": Rejected as the customer was awarded points already.,
   "processedByUser": admin.name@company.com,
+  "couponCode": SUMMER-2025-XYZ,
 } satisfies SupportRequest
 
 console.log(example)

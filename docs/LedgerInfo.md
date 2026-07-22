@@ -33,7 +33,7 @@ const example = {
   "tentativeCurrentBalance": 100,
   "tentativePendingBalance": 20,
   "tentativeNegativeBalance": 100,
-  "currentTier": null,
+  "currentTier": bronze,
   "pointsToNextTier": 20,
   "nextTierName": Silver,
 } satisfies LedgerInfo

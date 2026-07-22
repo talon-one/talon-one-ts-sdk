@@ -9,7 +9,7 @@ Name | Type
 `id` | number
 `accountId` | number
 `typeId` | number
-`policy` | object
+`policy` | [OutgoingIntegrationConfigurationPolicy](OutgoingIntegrationConfigurationPolicy.md)
 
 ## Example
 

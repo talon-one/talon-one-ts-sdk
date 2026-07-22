@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { BaseNotificationPolicy } from './BaseNotificationPolicy';
+import {
+    BaseNotificationPolicyFromJSON,
+    BaseNotificationPolicyFromJSONTyped,
+    BaseNotificationPolicyToJSON,
+    BaseNotificationPolicyToJSONTyped,
+} from './BaseNotificationPolicy';
+
 /**
  * 
  * @export
@@ -20,11 +28,11 @@ import { mapValues } from '../runtime';
  */
 export interface BaseNotificationEntity {
     /**
-     * Indicates which notification properties to apply.
-     * @type {object}
+     * 
+     * @type {BaseNotificationPolicy}
      * @memberof BaseNotificationEntity
      */
-    policy: object;
+    policy: BaseNotificationPolicy;
     /**
      * Indicates whether the notification is activated.
      * @type {boolean}
@@ -52,7 +60,7 @@ export function BaseNotificationEntityFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'policy': json['policy'],
+        'policy': BaseNotificationPolicyFromJSON(json['policy']),
         'enabled': json['enabled'] == null ? undefined : json['enabled'],
     };
 }
@@ -68,7 +76,7 @@ export function BaseNotificationEntityToJSONTyped(value?: BaseNotificationEntity
 
     return {
         
-        'policy': value['policy'],
+        'policy': BaseNotificationPolicyToJSON(value['policy']),
         'enabled': value['enabled'],
     };
 }

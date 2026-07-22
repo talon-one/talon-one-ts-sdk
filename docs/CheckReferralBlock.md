@@ -10,7 +10,7 @@ Name | Type
 `type` | string
 `tags` | Array&lt;string&gt;
 `redeem` | boolean
-`onFailure` | Array&lt;any&gt;
+`onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
 
 ## Example
 
