@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { OutgoingIntegrationConfigurationPolicy } from './OutgoingIntegrationConfigurationPolicy';
+import {
+    OutgoingIntegrationConfigurationPolicyFromJSON,
+    OutgoingIntegrationConfigurationPolicyFromJSONTyped,
+    OutgoingIntegrationConfigurationPolicyToJSON,
+    OutgoingIntegrationConfigurationPolicyToJSONTyped,
+} from './OutgoingIntegrationConfigurationPolicy';
+
 /**
  * 
  * @export
@@ -38,11 +46,11 @@ export interface OutgoingIntegrationConfiguration {
      */
     typeId: number;
     /**
-     * The outgoing integration policy specific to each integration type.
-     * @type {object}
+     * 
+     * @type {OutgoingIntegrationConfigurationPolicy}
      * @memberof OutgoingIntegrationConfiguration
      */
-    policy: object;
+    policy: OutgoingIntegrationConfigurationPolicy;
 }
 
 /**
@@ -70,7 +78,7 @@ export function OutgoingIntegrationConfigurationFromJSONTyped(json: any, ignoreD
         'id': json['id'],
         'accountId': json['accountId'],
         'typeId': json['typeId'],
-        'policy': json['policy'],
+        'policy': OutgoingIntegrationConfigurationPolicyFromJSON(json['policy']),
     };
 }
 
@@ -88,7 +96,7 @@ export function OutgoingIntegrationConfigurationToJSONTyped(value?: OutgoingInte
         'id': value['id'],
         'accountId': value['accountId'],
         'typeId': value['typeId'],
-        'policy': value['policy'],
+        'policy': OutgoingIntegrationConfigurationPolicyToJSON(value['policy']),
     };
 }
 

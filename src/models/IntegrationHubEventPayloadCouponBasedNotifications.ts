@@ -124,7 +124,7 @@ export interface IntegrationHubEventPayloadCouponBasedNotifications {
      */
     batchId?: string;
     /**
-     * Arbitrary properties associated with this campaign.
+     * 
      * @type {object}
      * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */

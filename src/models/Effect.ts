@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { EffectAllOfProps } from './EffectAllOfProps';
+import {
+    EffectAllOfPropsFromJSON,
+    EffectAllOfPropsFromJSONTyped,
+    EffectAllOfPropsToJSON,
+    EffectAllOfPropsToJSONTyped,
+} from './EffectAllOfProps';
+
 /**
  * 
  * @export
@@ -117,10 +125,10 @@ export interface Effect {
     adjustmentReferenceId?: string;
     /**
      * 
-     * @type {any}
+     * @type {EffectAllOfProps}
      * @memberof Effect
      */
-    props: any | null;
+    props: EffectAllOfProps;
 }
 
 /**
@@ -163,7 +171,7 @@ export function EffectFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ef
         'selectedPriceType': json['selectedPriceType'] == null ? undefined : json['selectedPriceType'],
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
-        'props': json['props'],
+        'props': EffectAllOfPropsFromJSON(json['props']),
     };
 }
 
@@ -194,7 +202,7 @@ export function EffectToJSONTyped(value?: Effect | null, ignoreDiscriminator: bo
         'selectedPriceType': value['selectedPriceType'],
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
-        'props': value['props'],
+        'props': EffectAllOfPropsToJSON(value['props']),
     };
 }
 

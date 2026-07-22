@@ -13,28 +13,122 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CheckAttributeBlock } from './CheckAttributeBlock';
+import type { PromotionBlock } from './PromotionBlock';
 import {
-    CheckAttributeBlockFromJSON,
-    CheckAttributeBlockFromJSONTyped,
-    CheckAttributeBlockToJSON,
-    CheckAttributeBlockToJSONTyped,
-} from './CheckAttributeBlock';
+    PromotionBlockFromJSON,
+    PromotionBlockFromJSONTyped,
+    PromotionBlockToJSON,
+    PromotionBlockToJSONTyped,
+} from './PromotionBlock';
 
 /**
  * 
  * @export
  * @interface PromotionCheckAttributeBlock
  */
-export interface PromotionCheckAttributeBlock extends CheckAttributeBlock {
+export interface PromotionCheckAttributeBlock {
     /**
-     * Promotion blocks evaluated when this block fails or returns false.
-     * @type {Array<any>}
+     * Unique identifier for this block.
+     * @type {string}
      * @memberof PromotionCheckAttributeBlock
      */
-    onFailure?: Array<any>;
+    id: string;
+    /**
+     * Identifies the block variant and determines which additional properties are present in it.
+     * @type {string}
+     * @memberof PromotionCheckAttributeBlock
+     */
+    type: string;
+    /**
+     * Semantic labels attached to this block.
+     * @type {Array<string>}
+     * @memberof PromotionCheckAttributeBlock
+     */
+    tags?: Array<string>;
+    /**
+     * The comparison operator applied to the attribute.
+     * @type {PromotionCheckAttributeBlockOperatorEnum}
+     * @memberof PromotionCheckAttributeBlock
+     */
+    operator: PromotionCheckAttributeBlockOperatorEnum;
+    /**
+     * The attribute path identifier (e.g. "$Session.Total").
+     * @type {string}
+     * @memberof PromotionCheckAttributeBlock
+     */
+    attribute: string;
+    /**
+     * 
+     * @type {any}
+     * @memberof PromotionCheckAttributeBlock
+     */
+    value?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof PromotionCheckAttributeBlock
+     */
+    min?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof PromotionCheckAttributeBlock
+     */
+    max?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof PromotionCheckAttributeBlock
+     */
+    values?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof PromotionCheckAttributeBlock
+     */
+    count?: any | null;
+    /**
+     * Promotion blocks evaluated when this block fails or returns false.
+     * @type {Array<PromotionBlock>}
+     * @memberof PromotionCheckAttributeBlock
+     */
+    onFailure?: Array<PromotionBlock>;
 }
 
+
+/**
+ * @export
+ */
+export const PromotionCheckAttributeBlockOperatorEnum = {
+    Equals: 'equals',
+    NotEquals: 'not(equals)',
+    LessThan: 'lessThan',
+    LessThanOrEqual: 'lessThanOrEqual',
+    GreaterThan: 'greaterThan',
+    GreaterThanOrEqual: 'greaterThanOrEqual',
+    Between: 'between',
+    Contains: 'contains',
+    NotContains: 'not(contains)',
+    MatchesRegexp: 'matchesRegexp',
+    StartsWith: 'startsWith',
+    EndsWith: 'endsWith',
+    OneOf: 'oneOf',
+    NotOneOf: 'not(oneOf)',
+    InCollection: 'inCollection',
+    NotInCollection: 'not(inCollection)',
+    Empty: 'empty',
+    NotEmpty: 'not(empty)',
+    Exists: 'exists',
+    NotExists: 'not(exists)',
+    IsTrue: 'isTrue',
+    IsFalse: 'isFalse',
+    ContainsAtLeast: 'containsAtLeast',
+    ContainsExactly: 'containsExactly',
+    ContainsOneOf: 'containsOneOf',
+    ContainsNoneOf: 'containsNoneOf',
+    ContainsAllOf: 'containsAllOf'
+} as const;
+export type PromotionCheckAttributeBlockOperatorEnum = typeof PromotionCheckAttributeBlockOperatorEnum[keyof typeof PromotionCheckAttributeBlockOperatorEnum];
 
 
 /**
@@ -42,6 +136,10 @@ export interface PromotionCheckAttributeBlock extends CheckAttributeBlock {
  */
 export function instanceOfPromotionCheckAttributeBlock(value: object): value is PromotionCheckAttributeBlock {
     const _v = value as Record<PropertyKey, unknown>;
+    if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (!('operator' in _v) || _v['operator'] === undefined) return false;
+    if (!('attribute' in _v) || _v['attribute'] === undefined) return false;
     return true;
 }
 
@@ -54,8 +152,18 @@ export function PromotionCheckAttributeBlockFromJSONTyped(json: any, ignoreDiscr
         return json;
     }
     return {
-        ...CheckAttributeBlockFromJSONTyped(json, true),
-        'onFailure': json['onFailure'] == null ? undefined : json['onFailure'],
+        
+        'id': json['id'],
+        'type': json['type'],
+        'tags': json['tags'] == null ? undefined : json['tags'],
+        'operator': json['operator'],
+        'attribute': json['attribute'],
+        'value': json['value'] === undefined ? undefined : json['value'] === null ? null : json['value'],
+        'min': json['min'] === undefined ? undefined : json['min'] === null ? null : json['min'],
+        'max': json['max'] === undefined ? undefined : json['max'] === null ? null : json['max'],
+        'values': json['values'] === undefined ? undefined : json['values'] === null ? null : json['values'],
+        'count': json['count'] === undefined ? undefined : json['count'] === null ? null : json['count'],
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
     };
 }
 
@@ -69,8 +177,18 @@ export function PromotionCheckAttributeBlockToJSONTyped(value?: PromotionCheckAt
     }
 
     return {
-        ...CheckAttributeBlockToJSONTyped(value, true),
-        'onFailure': value['onFailure'],
+        
+        'id': value['id'],
+        'type': value['type'],
+        'tags': value['tags'],
+        'operator': value['operator'],
+        'attribute': value['attribute'],
+        'value': value['value'],
+        'min': value['min'],
+        'max': value['max'],
+        'values': value['values'],
+        'count': value['count'],
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
     };
 }
 

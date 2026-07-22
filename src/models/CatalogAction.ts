@@ -12,51 +12,55 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import type { CatalogActionOneOf } from './CatalogActionOneOf';
+import {
+    instanceOfCatalogActionOneOf,
+    CatalogActionOneOfFromJSON,
+    CatalogActionOneOfFromJSONTyped,
+    CatalogActionOneOfToJSON,
+} from './CatalogActionOneOf';
+import type { CatalogActionOneOf1 } from './CatalogActionOneOf1';
+import {
+    instanceOfCatalogActionOneOf1,
+    CatalogActionOneOf1FromJSON,
+    CatalogActionOneOf1FromJSONTyped,
+    CatalogActionOneOf1ToJSON,
+} from './CatalogActionOneOf1';
+import type { CatalogActionOneOf2 } from './CatalogActionOneOf2';
+import {
+    instanceOfCatalogActionOneOf2,
+    CatalogActionOneOf2FromJSON,
+    CatalogActionOneOf2FromJSONTyped,
+    CatalogActionOneOf2ToJSON,
+} from './CatalogActionOneOf2';
+import type { CatalogActionOneOf3 } from './CatalogActionOneOf3';
+import {
+    instanceOfCatalogActionOneOf3,
+    CatalogActionOneOf3FromJSON,
+    CatalogActionOneOf3FromJSONTyped,
+    CatalogActionOneOf3ToJSON,
+} from './CatalogActionOneOf3';
+import type { CatalogActionOneOf4 } from './CatalogActionOneOf4';
+import {
+    instanceOfCatalogActionOneOf4,
+    CatalogActionOneOf4FromJSON,
+    CatalogActionOneOf4FromJSONTyped,
+    CatalogActionOneOf4ToJSON,
+} from './CatalogActionOneOf4';
+import type { CatalogActionOneOf5 } from './CatalogActionOneOf5';
+import {
+    instanceOfCatalogActionOneOf5,
+    CatalogActionOneOf5FromJSON,
+    CatalogActionOneOf5FromJSONTyped,
+    CatalogActionOneOf5ToJSON,
+} from './CatalogActionOneOf5';
+
 /**
+ * @type CatalogAction
  * Definition of all the properties that are needed for a single catalog sync action.
  * @export
- * @interface CatalogAction
  */
-export interface CatalogAction {
-    /**
-     * The type of sync action.
-     * @type {CatalogActionTypeEnum}
-     * @memberof CatalogAction
-     */
-    type: CatalogActionTypeEnum;
-    /**
-     * 
-     * @type {object}
-     * @memberof CatalogAction
-     */
-    payload: object;
-}
-
-
-/**
- * @export
- */
-export const CatalogActionTypeEnum = {
-    Add: 'ADD',
-    Patch: 'PATCH',
-    PatchMany: 'PATCH_MANY',
-    Remove: 'REMOVE',
-    RemoveMany: 'REMOVE_MANY',
-    AddPriceAdjustment: 'ADD_PRICE_ADJUSTMENT'
-} as const;
-export type CatalogActionTypeEnum = typeof CatalogActionTypeEnum[keyof typeof CatalogActionTypeEnum];
-
-
-/**
- * Check if a given object implements the CatalogAction interface.
- */
-export function instanceOfCatalogAction(value: object): value is CatalogAction {
-    const _v = value as Record<PropertyKey, unknown>;
-    if (!('type' in _v) || _v['type'] === undefined) return false;
-    if (!('payload' in _v) || _v['payload'] === undefined) return false;
-    return true;
-}
+export type CatalogAction = CatalogActionOneOf | CatalogActionOneOf1 | CatalogActionOneOf2 | CatalogActionOneOf3 | CatalogActionOneOf4 | CatalogActionOneOf5;
 
 export function CatalogActionFromJSON(json: any): CatalogAction {
     return CatalogActionFromJSONTyped(json, false);
@@ -66,14 +70,31 @@ export function CatalogActionFromJSONTyped(json: any, ignoreDiscriminator: boole
     if (json == null) {
         return json;
     }
-    return {
-        
-        'type': json['type'],
-        'payload': json['payload'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfCatalogActionOneOf(json)) {
+        return CatalogActionOneOfFromJSONTyped(json, true);
+    }
+    if (instanceOfCatalogActionOneOf1(json)) {
+        return CatalogActionOneOf1FromJSONTyped(json, true);
+    }
+    if (instanceOfCatalogActionOneOf2(json)) {
+        return CatalogActionOneOf2FromJSONTyped(json, true);
+    }
+    if (instanceOfCatalogActionOneOf3(json)) {
+        return CatalogActionOneOf3FromJSONTyped(json, true);
+    }
+    if (instanceOfCatalogActionOneOf4(json)) {
+        return CatalogActionOneOf4FromJSONTyped(json, true);
+    }
+    if (instanceOfCatalogActionOneOf5(json)) {
+        return CatalogActionOneOf5FromJSONTyped(json, true);
+    }
+    return {} as any;
 }
 
-export function CatalogActionToJSON(json: any): CatalogAction {
+export function CatalogActionToJSON(json: any): any {
     return CatalogActionToJSONTyped(json, false);
 }
 
@@ -81,11 +102,27 @@ export function CatalogActionToJSONTyped(value?: CatalogAction | null, ignoreDis
     if (value == null) {
         return value;
     }
-
-    return {
-        
-        'type': value['type'],
-        'payload': value['payload'],
-    };
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfCatalogActionOneOf(value)) {
+        return CatalogActionOneOfToJSON(value as CatalogActionOneOf);
+    }
+    if (instanceOfCatalogActionOneOf1(value)) {
+        return CatalogActionOneOf1ToJSON(value as CatalogActionOneOf1);
+    }
+    if (instanceOfCatalogActionOneOf2(value)) {
+        return CatalogActionOneOf2ToJSON(value as CatalogActionOneOf2);
+    }
+    if (instanceOfCatalogActionOneOf3(value)) {
+        return CatalogActionOneOf3ToJSON(value as CatalogActionOneOf3);
+    }
+    if (instanceOfCatalogActionOneOf4(value)) {
+        return CatalogActionOneOf4ToJSON(value as CatalogActionOneOf4);
+    }
+    if (instanceOfCatalogActionOneOf5(value)) {
+        return CatalogActionOneOf5ToJSON(value as CatalogActionOneOf5);
+    }
+    return {};
 }
 

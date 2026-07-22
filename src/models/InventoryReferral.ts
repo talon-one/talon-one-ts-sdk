@@ -69,7 +69,7 @@ export interface InventoryReferral {
      */
     friendProfileIntegrationId?: string;
     /**
-     * Arbitrary properties associated with this campaign.
+     * Arbitrary properties associated with this item.
      * @type {object}
      * @memberof InventoryReferral
      */

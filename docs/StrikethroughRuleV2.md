@@ -10,7 +10,7 @@ Name | Type
 `parentId` | string
 `title` | string
 `description` | string
-`blocks` | Array&lt;any&gt;
+`blocks` | [Array&lt;StrikethroughBlock&gt;](StrikethroughBlock.md)
 
 ## Example
 

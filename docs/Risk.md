@@ -21,6 +21,10 @@ Name | Type
 `reportedDate` | Date
 `affectedEntityCount` | number
 `description` | string
+`discardReason` | string
+`statusComment` | string
+`statusChangedBy` | number
+`statusChangedAt` | Date
 `modified` | Date
 
 ## Example
@@ -44,6 +48,10 @@ const example = {
   "reportedDate": 2026-06-05T06:26:13.698884Z,
   "affectedEntityCount": 4437,
   "description": Unusual discount usage detected for 4437 customer profiles.,
+  "discardReason": expected_behavior,
+  "statusComment": Investigated with the customer and fixed the loyalty rule.,
+  "statusChangedBy": 42,
+  "statusChangedAt": 2026-06-06T09:12:45.000000Z,
   "modified": 2026-06-05T06:26:13.698884Z,
 } satisfies Risk
 

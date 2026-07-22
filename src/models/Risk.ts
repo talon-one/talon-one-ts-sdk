@@ -109,6 +109,32 @@ export interface Risk {
      */
     description?: string;
     /**
+     * The reason this risk was discarded. Only present on discarded risks.
+     * @type {RiskDiscardReasonEnum}
+     * @memberof Risk
+     */
+    discardReason?: RiskDiscardReasonEnum;
+    /**
+     * The free-text details of the latest reclassification action: the description
+     * for resolving confirmed risks, or the details for discarding risks.
+     * 
+     * @type {string}
+     * @memberof Risk
+     */
+    statusComment?: string;
+    /**
+     * The ID of the user who performed the latest reclassification action.
+     * @type {number}
+     * @memberof Risk
+     */
+    statusChangedBy?: number;
+    /**
+     * The time of the latest reclassification action.
+     * @type {Date}
+     * @memberof Risk
+     */
+    statusChangedAt?: Date;
+    /**
      * Timestamp of the most recent update.
      * @type {Date}
      * @memberof Risk
@@ -167,6 +193,15 @@ export const RiskTimeFrameEnum = {
 } as const;
 export type RiskTimeFrameEnum = typeof RiskTimeFrameEnum[keyof typeof RiskTimeFrameEnum];
 
+/**
+ * @export
+ */
+export const RiskDiscardReasonEnum = {
+    ExpectedBehavior: 'expected_behavior',
+    Other: 'other'
+} as const;
+export type RiskDiscardReasonEnum = typeof RiskDiscardReasonEnum[keyof typeof RiskDiscardReasonEnum];
+
 
 /**
  * Check if a given object implements the Risk interface.
@@ -213,6 +248,10 @@ export function RiskFromJSONTyped(json: any, ignoreDiscriminator: boolean): Risk
         'reportedDate': (new Date(json['reportedDate'])),
         'affectedEntityCount': json['affectedEntityCount'],
         'description': json['description'] == null ? undefined : json['description'],
+        'discardReason': json['discardReason'] == null ? undefined : json['discardReason'],
+        'statusComment': json['statusComment'] == null ? undefined : json['statusComment'],
+        'statusChangedBy': json['statusChangedBy'] == null ? undefined : json['statusChangedBy'],
+        'statusChangedAt': json['statusChangedAt'] == null ? undefined : (new Date(json['statusChangedAt'])),
         'modified': (new Date(json['modified'])),
     };
 }
@@ -242,6 +281,10 @@ export function RiskToJSONTyped(value?: Risk | null, ignoreDiscriminator: boolea
         'reportedDate': value['reportedDate'].toISOString(),
         'affectedEntityCount': value['affectedEntityCount'],
         'description': value['description'],
+        'discardReason': value['discardReason'],
+        'statusComment': value['statusComment'],
+        'statusChangedBy': value['statusChangedBy'],
+        'statusChangedAt': value['statusChangedAt'] == null ? value['statusChangedAt'] : value['statusChangedAt'].toISOString(),
         'modified': value['modified'].toISOString(),
     };
 }

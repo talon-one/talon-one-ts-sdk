@@ -84,7 +84,7 @@ export function NewPriceAdjustmentFromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'priceType': json['priceType'],
-        'price': json['price'] == null ? undefined : json['price'],
+        'price': json['price'] === undefined ? undefined : json['price'] === null ? null : json['price'],
         'referenceId': json['referenceId'],
         'calculatedAt': json['calculatedAt'] == null ? undefined : (new Date(json['calculatedAt'])),
         'effectiveFrom': json['effectiveFrom'] == null ? undefined : (new Date(json['effectiveFrom'])),

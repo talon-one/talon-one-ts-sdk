@@ -51,7 +51,7 @@ export interface NewReferralsForMultipleAdvocates {
      */
     advocateProfileIntegrationIds: Array<string>;
     /**
-     * Arbitrary properties associated with this campaign.
+     * Arbitrary properties associated with this referral code.
      * @type {object}
      * @memberof NewReferralsForMultipleAdvocates
      */

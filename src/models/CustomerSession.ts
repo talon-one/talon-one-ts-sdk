@@ -103,7 +103,8 @@ export interface CustomerSession {
      */
     total?: number;
     /**
-     * Arbitrary properties associated with this campaign.
+     * A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings.
+     * 
      * @type {object}
      * @memberof CustomerSession
      */

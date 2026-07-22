@@ -44,7 +44,7 @@ const example = {
   "subledgers": null,
   "modified": 2021-09-12T10:12:42Z,
   "oldCardIdentifier": summer-loyalty-card-0543,
-  "newCardIdentifier": summer-loyalty-card-0543,
+  "newCardIdentifier": autumn-loyalty-card-5822,
   "batchId": wdefpov,
 } satisfies LoyaltyCard
 

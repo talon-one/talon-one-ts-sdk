@@ -41,7 +41,7 @@ export interface NewEvent {
      */
     type: string;
     /**
-     * Arbitrary properties associated with this campaign.
+     * Arbitrary additional JSON data associated with the event.
      * @type {object}
      * @memberof NewEvent
      */

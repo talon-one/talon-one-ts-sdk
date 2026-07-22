@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ApplicationNotification } from './ApplicationNotification';
+import type { CampaignEvaluationTreeChangedNotification } from './CampaignEvaluationTreeChangedNotification';
 import {
-    ApplicationNotificationFromJSON,
-    ApplicationNotificationFromJSONTyped,
-    ApplicationNotificationToJSON,
-    ApplicationNotificationToJSONTyped,
-} from './ApplicationNotification';
+    CampaignEvaluationTreeChangedNotificationFromJSON,
+    CampaignEvaluationTreeChangedNotificationFromJSONTyped,
+    CampaignEvaluationTreeChangedNotificationToJSON,
+    CampaignEvaluationTreeChangedNotificationToJSONTyped,
+} from './CampaignEvaluationTreeChangedNotification';
 
 /**
  * 
@@ -35,10 +35,10 @@ export interface BulkApplicationNotification {
     totalResultSize: number;
     /**
      * 
-     * @type {Array<ApplicationNotification>}
+     * @type {Array<CampaignEvaluationTreeChangedNotification>}
      * @memberof BulkApplicationNotification
      */
-    data: Array<ApplicationNotification>;
+    data: Array<CampaignEvaluationTreeChangedNotification>;
 }
 
 /**
@@ -62,7 +62,7 @@ export function BulkApplicationNotificationFromJSONTyped(json: any, ignoreDiscri
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(ApplicationNotificationFromJSON)),
+        'data': ((json['data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function BulkApplicationNotificationToJSONTyped(value?: BulkApplicationNo
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(ApplicationNotificationToJSON)),
+        'data': ((value['data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationToJSON)),
     };
 }
 

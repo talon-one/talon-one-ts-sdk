@@ -21,7 +21,7 @@ const example = {
   "profileId": URNGV8294NV,
   "storeIntegrationId": STORE-001,
   "type": pageViewed,
-  "attributes": null,
+  "attributes": {myAttribute=myValue},
 } satisfies IntegrationEvent
 
 console.log(example)

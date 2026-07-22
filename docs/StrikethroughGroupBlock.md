@@ -10,9 +10,9 @@ Name | Type
 `type` | string
 `tags` | Array&lt;string&gt;
 `operator` | string
-`blocks` | Array&lt;any&gt;
-`onFailure` | Array&lt;any&gt;
-`onError` | { [key: string]: Array&lt;any&gt;; }
+`blocks` | [Array&lt;StrikethroughBlock&gt;](StrikethroughBlock.md)
+`onFailure` | [Array&lt;StrikethroughBlock&gt;](StrikethroughBlock.md)
+`onError` | { [key: string]: Array&lt;StrikethroughBlock&gt;; }
 
 ## Example
 

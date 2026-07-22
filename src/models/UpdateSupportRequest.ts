@@ -39,7 +39,8 @@ export interface UpdateSupportRequest {
  */
 export const UpdateSupportRequestRequestStatusEnum = {
     Approved: 'approved',
-    Rejected: 'rejected'
+    Rejected: 'rejected',
+    Expired: 'expired'
 } as const;
 export type UpdateSupportRequestRequestStatusEnum = typeof UpdateSupportRequestRequestStatusEnum[keyof typeof UpdateSupportRequestRequestStatusEnum];
 

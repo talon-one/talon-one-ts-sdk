@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { LabelTarget } from './LabelTarget';
+import {
+    LabelTargetFromJSON,
+    LabelTargetFromJSONTyped,
+    LabelTargetToJSON,
+    LabelTargetToJSONTyped,
+} from './LabelTarget';
 import type { BestPriorPriceMetadata } from './BestPriorPriceMetadata';
 import {
     BestPriorPriceMetadataFromJSON,
@@ -74,10 +81,10 @@ export interface BestPriorPrice {
     metadata: BestPriorPriceMetadata;
     /**
      * 
-     * @type {object}
+     * @type {LabelTarget}
      * @memberof BestPriorPrice
      */
-    target: object;
+    target: LabelTarget;
 }
 
 /**
@@ -112,7 +119,7 @@ export function BestPriorPriceFromJSONTyped(json: any, ignoreDiscriminator: bool
         'contextId': json['contextId'] == null ? undefined : json['contextId'],
         'price': json['price'],
         'metadata': BestPriorPriceMetadataFromJSON(json['metadata']),
-        'target': json['target'],
+        'target': LabelTargetFromJSON(json['target']),
     };
 }
 
@@ -134,7 +141,7 @@ export function BestPriorPriceToJSONTyped(value?: BestPriorPrice | null, ignoreD
         'contextId': value['contextId'],
         'price': value['price'],
         'metadata': BestPriorPriceMetadataToJSON(value['metadata']),
-        'target': value['target'],
+        'target': LabelTargetToJSON(value['target']),
     };
 }
 

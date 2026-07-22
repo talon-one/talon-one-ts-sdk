@@ -11,8 +11,8 @@ Name | Type
 `tags` | Array&lt;string&gt;
 `giveawayPool` | [AwardGiveawayBlock1GiveawayPool](AwardGiveawayBlock1GiveawayPool.md)
 `profile` | string
-`onFailure` | Array&lt;any&gt;
-`onError` | { [key: string]: Array&lt;any&gt;; }
+`onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
+`onError` | { [key: string]: Array&lt;PromotionBlock&gt;; }
 
 ## Example
 

@@ -149,11 +149,11 @@ export function NewRevisionVersionFromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'name': json['name'] == null ? undefined : json['name'],
-        'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
-        'endTime': json['endTime'] == null ? undefined : (new Date(json['endTime'])),
+        'startTime': json['startTime'] === undefined ? undefined : json['startTime'] === null ? null : (new Date(json['startTime'])),
+        'endTime': json['endTime'] === undefined ? undefined : json['endTime'] === null ? null : (new Date(json['endTime'])),
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
-        'description': json['description'] == null ? undefined : json['description'],
-        'activeRulesetId': json['activeRulesetId'] == null ? undefined : json['activeRulesetId'],
+        'description': json['description'] === undefined ? undefined : json['description'] === null ? null : json['description'],
+        'activeRulesetId': json['activeRulesetId'] === undefined ? undefined : json['activeRulesetId'] === null ? null : json['activeRulesetId'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'couponSettings': json['couponSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['couponSettings']),
         'referralSettings': json['referralSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['referralSettings']),

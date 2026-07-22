@@ -126,7 +126,7 @@ export interface ApplicationSession {
      */
     total: number;
     /**
-     * Arbitrary properties associated with this campaign.
+     * Arbitrary properties associated with this item.
      * @type {object}
      * @memberof ApplicationSession
      */

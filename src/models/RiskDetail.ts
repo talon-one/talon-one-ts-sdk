@@ -117,6 +117,32 @@ export interface RiskDetail {
      */
     description?: string;
     /**
+     * The reason this risk was discarded. Only present on discarded risks.
+     * @type {RiskDetailDiscardReasonEnum}
+     * @memberof RiskDetail
+     */
+    discardReason?: RiskDetailDiscardReasonEnum;
+    /**
+     * The free-text details of the latest reclassification action: the description
+     * for resolving confirmed risks, or the details for discarding risks.
+     * 
+     * @type {string}
+     * @memberof RiskDetail
+     */
+    statusComment?: string;
+    /**
+     * The ID of the user who performed the latest reclassification action.
+     * @type {number}
+     * @memberof RiskDetail
+     */
+    statusChangedBy?: number;
+    /**
+     * The time of the latest reclassification action.
+     * @type {Date}
+     * @memberof RiskDetail
+     */
+    statusChangedAt?: Date;
+    /**
      * Timestamp of the most recent update.
      * @type {Date}
      * @memberof RiskDetail
@@ -181,6 +207,15 @@ export const RiskDetailTimeFrameEnum = {
 } as const;
 export type RiskDetailTimeFrameEnum = typeof RiskDetailTimeFrameEnum[keyof typeof RiskDetailTimeFrameEnum];
 
+/**
+ * @export
+ */
+export const RiskDetailDiscardReasonEnum = {
+    ExpectedBehavior: 'expected_behavior',
+    Other: 'other'
+} as const;
+export type RiskDetailDiscardReasonEnum = typeof RiskDetailDiscardReasonEnum[keyof typeof RiskDetailDiscardReasonEnum];
+
 
 /**
  * Check if a given object implements the RiskDetail interface.
@@ -228,6 +263,10 @@ export function RiskDetailFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'reportedDate': (new Date(json['reportedDate'])),
         'affectedEntityCount': json['affectedEntityCount'],
         'description': json['description'] == null ? undefined : json['description'],
+        'discardReason': json['discardReason'] == null ? undefined : json['discardReason'],
+        'statusComment': json['statusComment'] == null ? undefined : json['statusComment'],
+        'statusChangedBy': json['statusChangedBy'] == null ? undefined : json['statusChangedBy'],
+        'statusChangedAt': json['statusChangedAt'] == null ? undefined : (new Date(json['statusChangedAt'])),
         'modified': (new Date(json['modified'])),
         'affectedEntities': ((json['affectedEntities'] as Array<any>).map(RiskAffectedEntityItemFromJSON)),
     };
@@ -258,6 +297,10 @@ export function RiskDetailToJSONTyped(value?: RiskDetail | null, ignoreDiscrimin
         'reportedDate': value['reportedDate'].toISOString(),
         'affectedEntityCount': value['affectedEntityCount'],
         'description': value['description'],
+        'discardReason': value['discardReason'],
+        'statusComment': value['statusComment'],
+        'statusChangedBy': value['statusChangedBy'],
+        'statusChangedAt': value['statusChangedAt'] == null ? value['statusChangedAt'] : value['statusChangedAt'].toISOString(),
         'modified': value['modified'].toISOString(),
         'affectedEntities': ((value['affectedEntities'] as Array<any>).map(RiskAffectedEntityItemToJSON)),
     };

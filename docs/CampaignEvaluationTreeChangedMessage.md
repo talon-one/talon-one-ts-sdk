@@ -8,7 +8,7 @@ Name | Type
 ------------ | -------------
 `notificationType` | string
 `totalResultSize` | number
-`data` | [Array&lt;ApplicationNotification&gt;](ApplicationNotification.md)
+`data` | [Array&lt;CampaignEvaluationTreeChangedNotification&gt;](CampaignEvaluationTreeChangedNotification.md)
 
 ## Example
 

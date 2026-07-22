@@ -12,7 +12,7 @@ Name | Type
 `operator` | string
 `profile` | string
 `audience` | [CheckAudienceBlock1Audience](CheckAudienceBlock1Audience.md)
-`onFailure` | Array&lt;any&gt;
+`onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
 
 ## Example
 

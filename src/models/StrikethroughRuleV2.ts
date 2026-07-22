@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { StrikethroughBlock } from './StrikethroughBlock';
+import {
+    StrikethroughBlockFromJSON,
+    StrikethroughBlockFromJSONTyped,
+    StrikethroughBlockToJSON,
+    StrikethroughBlockToJSONTyped,
+} from './StrikethroughBlock';
+
 /**
  * 
  * @export
@@ -45,10 +53,10 @@ export interface StrikethroughRuleV2 {
     description?: string;
     /**
      * The condition and effect blocks that make up this strikethrough rule.
-     * @type {Array<any>}
+     * @type {Array<StrikethroughBlock>}
      * @memberof StrikethroughRuleV2
      */
-    blocks: Array<any>;
+    blocks: Array<StrikethroughBlock>;
 }
 
 /**
@@ -75,7 +83,7 @@ export function StrikethroughRuleV2FromJSONTyped(json: any, ignoreDiscriminator:
         'parentId': json['parentId'] == null ? undefined : json['parentId'],
         'title': json['title'],
         'description': json['description'] == null ? undefined : json['description'],
-        'blocks': json['blocks'],
+        'blocks': ((json['blocks'] as Array<any>).map(StrikethroughBlockFromJSON)),
     };
 }
 
@@ -94,7 +102,7 @@ export function StrikethroughRuleV2ToJSONTyped(value?: StrikethroughRuleV2 | nul
         'parentId': value['parentId'],
         'title': value['title'],
         'description': value['description'],
-        'blocks': value['blocks'],
+        'blocks': ((value['blocks'] as Array<any>).map(StrikethroughBlockToJSON)),
     };
 }
 

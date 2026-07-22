@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PromotionBlock } from './PromotionBlock';
+import {
+    PromotionBlockFromJSON,
+    PromotionBlockFromJSONTyped,
+    PromotionBlockToJSON,
+    PromotionBlockToJSONTyped,
+} from './PromotionBlock';
+
 /**
  * 
  * @export
@@ -63,16 +71,16 @@ export interface AwardItemBlock {
     partial?: boolean;
     /**
      * Blocks evaluated when this block fails or returns false.
-     * @type {Array<any>}
+     * @type {Array<PromotionBlock>}
      * @memberof AwardItemBlock
      */
-    onFailure?: Array<any>;
+    onFailure?: Array<PromotionBlock>;
     /**
      * Named error handlers evaluated when a specific error occurs.
-     * @type {{ [key: string]: Array<any>; }}
+     * @type {{ [key: string]: Array<PromotionBlock>; }}
      * @memberof AwardItemBlock
      */
-    onError?: { [key: string]: Array<any>; };
+    onError?: { [key: string]: Array<PromotionBlock>; };
 }
 
 /**
@@ -105,7 +113,7 @@ export function AwardItemBlockFromJSONTyped(json: any, ignoreDiscriminator: bool
         'name': json['name'],
         'quantity': json['quantity'],
         'partial': json['partial'] == null ? undefined : json['partial'],
-        'onFailure': json['onFailure'] == null ? undefined : json['onFailure'],
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
         'onError': json['onError'] == null ? undefined : json['onError'],
     };
 }
@@ -128,7 +136,7 @@ export function AwardItemBlockToJSONTyped(value?: AwardItemBlock | null, ignoreD
         'name': value['name'],
         'quantity': value['quantity'],
         'partial': value['partial'],
-        'onFailure': value['onFailure'],
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
         'onError': value['onError'],
     };
 }

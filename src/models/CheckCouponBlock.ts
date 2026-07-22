@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PromotionBlock } from './PromotionBlock';
+import {
+    PromotionBlockFromJSON,
+    PromotionBlockFromJSONTyped,
+    PromotionBlockToJSON,
+    PromotionBlockToJSONTyped,
+} from './PromotionBlock';
+
 /**
  * 
  * @export
@@ -45,10 +53,10 @@ export interface CheckCouponBlock {
     redeem: boolean;
     /**
      * Promotion blocks evaluated when this block fails or returns false.
-     * @type {Array<any>}
+     * @type {Array<PromotionBlock>}
      * @memberof CheckCouponBlock
      */
-    onFailure?: Array<any>;
+    onFailure?: Array<PromotionBlock>;
 }
 
 /**
@@ -76,7 +84,7 @@ export function CheckCouponBlockFromJSONTyped(json: any, ignoreDiscriminator: bo
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'redeem': json['redeem'],
-        'onFailure': json['onFailure'] == null ? undefined : json['onFailure'],
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
     };
 }
 
@@ -95,7 +103,7 @@ export function CheckCouponBlockToJSONTyped(value?: CheckCouponBlock | null, ign
         'type': value['type'],
         'tags': value['tags'],
         'redeem': value['redeem'],
-        'onFailure': value['onFailure'],
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
     };
 }
 

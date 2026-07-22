@@ -7,6 +7,15 @@
 Name | Type
 ------------ | -------------
 `type` | string
+`name` | string
+`operator` | string
+`elements` | [Array&lt;CampaignSetNode&gt;](CampaignSetNode.md)
+`groupId` | number
+`locked` | boolean
+`description` | string
+`evaluationMode` | string
+`evaluationScope` | string
+`campaignId` | number
 
 ## Example
 
@@ -16,6 +25,15 @@ import type { CampaignSetNode } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "type": type,
+  "name": name,
+  "operator": ALL,
+  "elements": null,
+  "groupId": null,
+  "locked": null,
+  "description": null,
+  "evaluationMode": null,
+  "evaluationScope": null,
+  "campaignId": null,
 } satisfies CampaignSetNode
 
 console.log(example)

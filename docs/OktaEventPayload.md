@@ -16,7 +16,7 @@ import type { OktaEventPayload } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "data": null,
+  "data": {"data":{"events":[{"eventType":"application.user_membership.add","target":[{"type":"AppUser","alternateId":"john.doe@example.com","displayName":"John Doe"}]}]}},
 } satisfies OktaEventPayload
 
 console.log(example)

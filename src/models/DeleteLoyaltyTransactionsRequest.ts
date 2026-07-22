@@ -70,7 +70,7 @@ export function DeleteLoyaltyTransactionsRequestFromJSONTyped(json: any, ignoreD
     return {
         
         'scope': json['scope'],
-        'subledgerIds': json['subledgerIds'] == null ? undefined : json['subledgerIds'],
+        'subledgerIds': json['subledgerIds'] === undefined ? undefined : json['subledgerIds'] === null ? null : json['subledgerIds'],
     };
 }
 

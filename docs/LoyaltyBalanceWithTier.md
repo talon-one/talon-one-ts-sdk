@@ -28,7 +28,7 @@ const example = {
   "spentPoints": 150,
   "expiredPoints": 286,
   "negativePoints": 286,
-  "currentTier": null,
+  "currentTier": bronze,
   "projectedTier": null,
   "pointsToNextTier": 20,
   "nextTierName": Silver,

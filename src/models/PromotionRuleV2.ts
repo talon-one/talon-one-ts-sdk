@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PromotionBlock } from './PromotionBlock';
+import {
+    PromotionBlockFromJSON,
+    PromotionBlockFromJSONTyped,
+    PromotionBlockToJSON,
+    PromotionBlockToJSONTyped,
+} from './PromotionBlock';
+
 /**
  * 
  * @export
@@ -45,10 +53,10 @@ export interface PromotionRuleV2 {
     description?: string;
     /**
      * The condition and effect blocks that make up this promotion rule.
-     * @type {Array<any>}
+     * @type {Array<PromotionBlock>}
      * @memberof PromotionRuleV2
      */
-    blocks: Array<any>;
+    blocks: Array<PromotionBlock>;
 }
 
 /**
@@ -75,7 +83,7 @@ export function PromotionRuleV2FromJSONTyped(json: any, ignoreDiscriminator: boo
         'parentId': json['parentId'] == null ? undefined : json['parentId'],
         'title': json['title'],
         'description': json['description'] == null ? undefined : json['description'],
-        'blocks': json['blocks'],
+        'blocks': ((json['blocks'] as Array<any>).map(PromotionBlockFromJSON)),
     };
 }
 
@@ -94,7 +102,7 @@ export function PromotionRuleV2ToJSONTyped(value?: PromotionRuleV2 | null, ignor
         'parentId': value['parentId'],
         'title': value['title'],
         'description': value['description'],
-        'blocks': value['blocks'],
+        'blocks': ((value['blocks'] as Array<any>).map(PromotionBlockToJSON)),
     };
 }
 

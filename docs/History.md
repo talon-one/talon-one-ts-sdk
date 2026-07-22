@@ -12,7 +12,7 @@ Name | Type
 `contextId` | string
 `price` | number
 `metadata` | [BestPriorPriceMetadata](BestPriorPriceMetadata.md)
-`target` | object
+`target` | [LabelTarget](LabelTarget.md)
 
 ## Example
 

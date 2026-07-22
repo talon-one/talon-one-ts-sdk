@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { BaseNotificationPolicy } from './BaseNotificationPolicy';
+import {
+    BaseNotificationPolicyFromJSON,
+    BaseNotificationPolicyFromJSONTyped,
+    BaseNotificationPolicyToJSON,
+    BaseNotificationPolicyToJSONTyped,
+} from './BaseNotificationPolicy';
 import type { NewNotificationWebhook } from './NewNotificationWebhook';
 import {
     NewNotificationWebhookFromJSON,
@@ -28,11 +35,11 @@ import {
  */
 export interface NewBaseNotification {
     /**
-     * Indicates which notification properties to apply.
-     * @type {object}
+     * 
+     * @type {BaseNotificationPolicy}
      * @memberof NewBaseNotification
      */
-    policy: object;
+    policy: BaseNotificationPolicy;
     /**
      * Indicates whether the notification is activated.
      * @type {boolean}
@@ -67,7 +74,7 @@ export function NewBaseNotificationFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'policy': json['policy'],
+        'policy': BaseNotificationPolicyFromJSON(json['policy']),
         'enabled': json['enabled'] == null ? undefined : json['enabled'],
         'webhook': NewNotificationWebhookFromJSON(json['webhook']),
     };
@@ -84,7 +91,7 @@ export function NewBaseNotificationToJSONTyped(value?: NewBaseNotification | nul
 
     return {
         
-        'policy': value['policy'],
+        'policy': BaseNotificationPolicyToJSON(value['policy']),
         'enabled': value['enabled'],
         'webhook': NewNotificationWebhookToJSON(value['webhook']),
     };

@@ -56,7 +56,7 @@ export interface Giveaway {
      */
     endDate?: Date;
     /**
-     * Arbitrary properties associated with this campaign.
+     * Arbitrary properties associated with this giveaway.
      * @type {object}
      * @memberof Giveaway
      */
