@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { selectOneOfBestMatch } from '../runtime';
 import type { AcceptCouponEffectProps } from './AcceptCouponEffectProps';
 import {
     instanceOfAcceptCouponEffectProps,
@@ -236,6 +237,13 @@ import {
     ShowNotificationEffectPropsFromJSONTyped,
     ShowNotificationEffectPropsToJSON,
 } from './ShowNotificationEffectProps';
+import type { StartAchievementProgressEffectProps } from './StartAchievementProgressEffectProps';
+import {
+    instanceOfStartAchievementProgressEffectProps,
+    StartAchievementProgressEffectPropsFromJSON,
+    StartAchievementProgressEffectPropsFromJSONTyped,
+    StartAchievementProgressEffectPropsToJSON,
+} from './StartAchievementProgressEffectProps';
 import type { TriggerWebhookEffectProps } from './TriggerWebhookEffectProps';
 import {
     instanceOfTriggerWebhookEffectProps,
@@ -263,7 +271,13 @@ import {
  * The properties of the effect. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
  * @export
  */
-export type EffectProps = AcceptCouponEffectProps | AcceptReferralEffectProps | AddFreeItemEffectProps | AddLoyaltyPointsEffectProps | AddToAudienceEffectProps | AwardGiveawayEffectProps | ChangeLoyaltyTierLevelEffectProps | CouponCreatedEffectProps | CustomEffectProps | DeductLoyaltyPointsEffectProps | ErrorEffectProps | ExtendLoyaltyPointsExpiryDateEffectProps | IncreaseAchievementProgressEffectProps | RedeemReferralEffectProps | ReferralCreatedEffectProps | RejectCouponEffectProps | RejectReferralEffectProps | RemoveFromAudienceEffectProps | ReserveCouponEffectProps | RollbackAddedLoyaltyPointsEffectProps | RollbackCouponEffectProps | RollbackDeductedLoyaltyPointsEffectProps | RollbackDiscountEffectProps | RollbackIncreasedAchievementProgressEffectProps | RollbackReferralEffectProps | SetDiscountEffectProps | SetDiscountPerAdditionalCostEffectProps | SetDiscountPerAdditionalCostPerItemEffectProps | SetDiscountPerItemEffectProps | SetLoyaltyPointsExpiryDateEffectProps | ShowBundleMetadataEffectProps | ShowNotificationEffectProps | TriggerWebhookEffectProps | UpdateAttributeEffectProps | WillAwardGiveawayEffectProps;
+export type EffectProps = AcceptCouponEffectProps | AcceptReferralEffectProps | AddFreeItemEffectProps | AddLoyaltyPointsEffectProps | AddToAudienceEffectProps | AwardGiveawayEffectProps | ChangeLoyaltyTierLevelEffectProps | CouponCreatedEffectProps | CustomEffectProps | DeductLoyaltyPointsEffectProps | ErrorEffectProps | ExtendLoyaltyPointsExpiryDateEffectProps | IncreaseAchievementProgressEffectProps | RedeemReferralEffectProps | ReferralCreatedEffectProps | RejectCouponEffectProps | RejectReferralEffectProps | RemoveFromAudienceEffectProps | ReserveCouponEffectProps | RollbackAddedLoyaltyPointsEffectProps | RollbackCouponEffectProps | RollbackDeductedLoyaltyPointsEffectProps | RollbackDiscountEffectProps | RollbackIncreasedAchievementProgressEffectProps | RollbackReferralEffectProps | SetDiscountEffectProps | SetDiscountPerAdditionalCostEffectProps | SetDiscountPerAdditionalCostPerItemEffectProps | SetDiscountPerItemEffectProps | SetLoyaltyPointsExpiryDateEffectProps | ShowBundleMetadataEffectProps | ShowNotificationEffectProps | StartAchievementProgressEffectProps | TriggerWebhookEffectProps | UpdateAttributeEffectProps | WillAwardGiveawayEffectProps;
+/**
+ * Check if a given object implements the EffectProps interface.
+ */
+export function instanceOfEffectProps(value: any): value is EffectProps {
+    return typeof value === 'object' && value !== null && (instanceOfAcceptCouponEffectProps(value) || instanceOfAcceptReferralEffectProps(value) || instanceOfAddFreeItemEffectProps(value) || instanceOfAddLoyaltyPointsEffectProps(value) || instanceOfAddToAudienceEffectProps(value) || instanceOfAwardGiveawayEffectProps(value) || instanceOfChangeLoyaltyTierLevelEffectProps(value) || instanceOfCouponCreatedEffectProps(value) || instanceOfCustomEffectProps(value) || instanceOfDeductLoyaltyPointsEffectProps(value) || instanceOfErrorEffectProps(value) || instanceOfExtendLoyaltyPointsExpiryDateEffectProps(value) || instanceOfIncreaseAchievementProgressEffectProps(value) || instanceOfRedeemReferralEffectProps(value) || instanceOfReferralCreatedEffectProps(value) || instanceOfRejectCouponEffectProps(value) || instanceOfRejectReferralEffectProps(value) || instanceOfRemoveFromAudienceEffectProps(value) || instanceOfReserveCouponEffectProps(value) || instanceOfRollbackAddedLoyaltyPointsEffectProps(value) || instanceOfRollbackCouponEffectProps(value) || instanceOfRollbackDeductedLoyaltyPointsEffectProps(value) || instanceOfRollbackDiscountEffectProps(value) || instanceOfRollbackIncreasedAchievementProgressEffectProps(value) || instanceOfRollbackReferralEffectProps(value) || instanceOfSetDiscountEffectProps(value) || instanceOfSetDiscountPerAdditionalCostEffectProps(value) || instanceOfSetDiscountPerAdditionalCostPerItemEffectProps(value) || instanceOfSetDiscountPerItemEffectProps(value) || instanceOfSetLoyaltyPointsExpiryDateEffectProps(value) || instanceOfShowBundleMetadataEffectProps(value) || instanceOfShowNotificationEffectProps(value) || instanceOfStartAchievementProgressEffectProps(value) || instanceOfTriggerWebhookEffectProps(value) || instanceOfUpdateAttributeEffectProps(value) || instanceOfWillAwardGiveawayEffectProps(value));
+}
 
 export function EffectPropsFromJSON(json: any): EffectProps {
     return EffectPropsFromJSONTyped(json, false);
@@ -276,110 +290,46 @@ export function EffectPropsFromJSONTyped(json: any, ignoreDiscriminator: boolean
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfAcceptCouponEffectProps(json)) {
-        return AcceptCouponEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfAcceptReferralEffectProps(json)) {
-        return AcceptReferralEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfAddFreeItemEffectProps(json)) {
-        return AddFreeItemEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfAddLoyaltyPointsEffectProps(json)) {
-        return AddLoyaltyPointsEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfAddToAudienceEffectProps(json)) {
-        return AddToAudienceEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfAwardGiveawayEffectProps(json)) {
-        return AwardGiveawayEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfChangeLoyaltyTierLevelEffectProps(json)) {
-        return ChangeLoyaltyTierLevelEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfCouponCreatedEffectProps(json)) {
-        return CouponCreatedEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfCustomEffectProps(json)) {
-        return CustomEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfDeductLoyaltyPointsEffectProps(json)) {
-        return DeductLoyaltyPointsEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfErrorEffectProps(json)) {
-        return ErrorEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfExtendLoyaltyPointsExpiryDateEffectProps(json)) {
-        return ExtendLoyaltyPointsExpiryDateEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfIncreaseAchievementProgressEffectProps(json)) {
-        return IncreaseAchievementProgressEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfRedeemReferralEffectProps(json)) {
-        return RedeemReferralEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfReferralCreatedEffectProps(json)) {
-        return ReferralCreatedEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfRejectCouponEffectProps(json)) {
-        return RejectCouponEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfRejectReferralEffectProps(json)) {
-        return RejectReferralEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfRemoveFromAudienceEffectProps(json)) {
-        return RemoveFromAudienceEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfReserveCouponEffectProps(json)) {
-        return ReserveCouponEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfRollbackAddedLoyaltyPointsEffectProps(json)) {
-        return RollbackAddedLoyaltyPointsEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfRollbackCouponEffectProps(json)) {
-        return RollbackCouponEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfRollbackDeductedLoyaltyPointsEffectProps(json)) {
-        return RollbackDeductedLoyaltyPointsEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfRollbackDiscountEffectProps(json)) {
-        return RollbackDiscountEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfRollbackIncreasedAchievementProgressEffectProps(json)) {
-        return RollbackIncreasedAchievementProgressEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfRollbackReferralEffectProps(json)) {
-        return RollbackReferralEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfSetDiscountEffectProps(json)) {
-        return SetDiscountEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfSetDiscountPerAdditionalCostEffectProps(json)) {
-        return SetDiscountPerAdditionalCostEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfSetDiscountPerAdditionalCostPerItemEffectProps(json)) {
-        return SetDiscountPerAdditionalCostPerItemEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfSetDiscountPerItemEffectProps(json)) {
-        return SetDiscountPerItemEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfSetLoyaltyPointsExpiryDateEffectProps(json)) {
-        return SetLoyaltyPointsExpiryDateEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfShowBundleMetadataEffectProps(json)) {
-        return ShowBundleMetadataEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfShowNotificationEffectProps(json)) {
-        return ShowNotificationEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfTriggerWebhookEffectProps(json)) {
-        return TriggerWebhookEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfUpdateAttributeEffectProps(json)) {
-        return UpdateAttributeEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfWillAwardGiveawayEffectProps(json)) {
-        return WillAwardGiveawayEffectPropsFromJSONTyped(json, true);
+    const matchedVariant = selectOneOfBestMatch(json, [
+        [instanceOfAcceptCouponEffectProps, AcceptCouponEffectPropsFromJSONTyped],
+        [instanceOfAcceptReferralEffectProps, AcceptReferralEffectPropsFromJSONTyped],
+        [instanceOfAddFreeItemEffectProps, AddFreeItemEffectPropsFromJSONTyped],
+        [instanceOfAddLoyaltyPointsEffectProps, AddLoyaltyPointsEffectPropsFromJSONTyped],
+        [instanceOfAddToAudienceEffectProps, AddToAudienceEffectPropsFromJSONTyped],
+        [instanceOfAwardGiveawayEffectProps, AwardGiveawayEffectPropsFromJSONTyped],
+        [instanceOfChangeLoyaltyTierLevelEffectProps, ChangeLoyaltyTierLevelEffectPropsFromJSONTyped],
+        [instanceOfCouponCreatedEffectProps, CouponCreatedEffectPropsFromJSONTyped],
+        [instanceOfCustomEffectProps, CustomEffectPropsFromJSONTyped],
+        [instanceOfDeductLoyaltyPointsEffectProps, DeductLoyaltyPointsEffectPropsFromJSONTyped],
+        [instanceOfErrorEffectProps, ErrorEffectPropsFromJSONTyped],
+        [instanceOfExtendLoyaltyPointsExpiryDateEffectProps, ExtendLoyaltyPointsExpiryDateEffectPropsFromJSONTyped],
+        [instanceOfIncreaseAchievementProgressEffectProps, IncreaseAchievementProgressEffectPropsFromJSONTyped],
+        [instanceOfRedeemReferralEffectProps, RedeemReferralEffectPropsFromJSONTyped],
+        [instanceOfReferralCreatedEffectProps, ReferralCreatedEffectPropsFromJSONTyped],
+        [instanceOfRejectCouponEffectProps, RejectCouponEffectPropsFromJSONTyped],
+        [instanceOfRejectReferralEffectProps, RejectReferralEffectPropsFromJSONTyped],
+        [instanceOfRemoveFromAudienceEffectProps, RemoveFromAudienceEffectPropsFromJSONTyped],
+        [instanceOfReserveCouponEffectProps, ReserveCouponEffectPropsFromJSONTyped],
+        [instanceOfRollbackAddedLoyaltyPointsEffectProps, RollbackAddedLoyaltyPointsEffectPropsFromJSONTyped],
+        [instanceOfRollbackCouponEffectProps, RollbackCouponEffectPropsFromJSONTyped],
+        [instanceOfRollbackDeductedLoyaltyPointsEffectProps, RollbackDeductedLoyaltyPointsEffectPropsFromJSONTyped],
+        [instanceOfRollbackDiscountEffectProps, RollbackDiscountEffectPropsFromJSONTyped],
+        [instanceOfRollbackIncreasedAchievementProgressEffectProps, RollbackIncreasedAchievementProgressEffectPropsFromJSONTyped],
+        [instanceOfRollbackReferralEffectProps, RollbackReferralEffectPropsFromJSONTyped],
+        [instanceOfSetDiscountEffectProps, SetDiscountEffectPropsFromJSONTyped],
+        [instanceOfSetDiscountPerAdditionalCostEffectProps, SetDiscountPerAdditionalCostEffectPropsFromJSONTyped],
+        [instanceOfSetDiscountPerAdditionalCostPerItemEffectProps, SetDiscountPerAdditionalCostPerItemEffectPropsFromJSONTyped],
+        [instanceOfSetDiscountPerItemEffectProps, SetDiscountPerItemEffectPropsFromJSONTyped],
+        [instanceOfSetLoyaltyPointsExpiryDateEffectProps, SetLoyaltyPointsExpiryDateEffectPropsFromJSONTyped],
+        [instanceOfShowBundleMetadataEffectProps, ShowBundleMetadataEffectPropsFromJSONTyped],
+        [instanceOfShowNotificationEffectProps, ShowNotificationEffectPropsFromJSONTyped],
+        [instanceOfStartAchievementProgressEffectProps, StartAchievementProgressEffectPropsFromJSONTyped],
+        [instanceOfTriggerWebhookEffectProps, TriggerWebhookEffectPropsFromJSONTyped],
+        [instanceOfUpdateAttributeEffectProps, UpdateAttributeEffectPropsFromJSONTyped],
+        [instanceOfWillAwardGiveawayEffectProps, WillAwardGiveawayEffectPropsFromJSONTyped],
+    ], true);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {} as any;
 }
@@ -395,110 +345,46 @@ export function EffectPropsToJSONTyped(value?: EffectProps | null, ignoreDiscrim
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfAcceptCouponEffectProps(value)) {
-        return AcceptCouponEffectPropsToJSON(value as AcceptCouponEffectProps);
-    }
-    if (instanceOfAcceptReferralEffectProps(value)) {
-        return AcceptReferralEffectPropsToJSON(value as AcceptReferralEffectProps);
-    }
-    if (instanceOfAddFreeItemEffectProps(value)) {
-        return AddFreeItemEffectPropsToJSON(value as AddFreeItemEffectProps);
-    }
-    if (instanceOfAddLoyaltyPointsEffectProps(value)) {
-        return AddLoyaltyPointsEffectPropsToJSON(value as AddLoyaltyPointsEffectProps);
-    }
-    if (instanceOfAddToAudienceEffectProps(value)) {
-        return AddToAudienceEffectPropsToJSON(value as AddToAudienceEffectProps);
-    }
-    if (instanceOfAwardGiveawayEffectProps(value)) {
-        return AwardGiveawayEffectPropsToJSON(value as AwardGiveawayEffectProps);
-    }
-    if (instanceOfChangeLoyaltyTierLevelEffectProps(value)) {
-        return ChangeLoyaltyTierLevelEffectPropsToJSON(value as ChangeLoyaltyTierLevelEffectProps);
-    }
-    if (instanceOfCouponCreatedEffectProps(value)) {
-        return CouponCreatedEffectPropsToJSON(value as CouponCreatedEffectProps);
-    }
-    if (instanceOfCustomEffectProps(value)) {
-        return CustomEffectPropsToJSON(value as CustomEffectProps);
-    }
-    if (instanceOfDeductLoyaltyPointsEffectProps(value)) {
-        return DeductLoyaltyPointsEffectPropsToJSON(value as DeductLoyaltyPointsEffectProps);
-    }
-    if (instanceOfErrorEffectProps(value)) {
-        return ErrorEffectPropsToJSON(value as ErrorEffectProps);
-    }
-    if (instanceOfExtendLoyaltyPointsExpiryDateEffectProps(value)) {
-        return ExtendLoyaltyPointsExpiryDateEffectPropsToJSON(value as ExtendLoyaltyPointsExpiryDateEffectProps);
-    }
-    if (instanceOfIncreaseAchievementProgressEffectProps(value)) {
-        return IncreaseAchievementProgressEffectPropsToJSON(value as IncreaseAchievementProgressEffectProps);
-    }
-    if (instanceOfRedeemReferralEffectProps(value)) {
-        return RedeemReferralEffectPropsToJSON(value as RedeemReferralEffectProps);
-    }
-    if (instanceOfReferralCreatedEffectProps(value)) {
-        return ReferralCreatedEffectPropsToJSON(value as ReferralCreatedEffectProps);
-    }
-    if (instanceOfRejectCouponEffectProps(value)) {
-        return RejectCouponEffectPropsToJSON(value as RejectCouponEffectProps);
-    }
-    if (instanceOfRejectReferralEffectProps(value)) {
-        return RejectReferralEffectPropsToJSON(value as RejectReferralEffectProps);
-    }
-    if (instanceOfRemoveFromAudienceEffectProps(value)) {
-        return RemoveFromAudienceEffectPropsToJSON(value as RemoveFromAudienceEffectProps);
-    }
-    if (instanceOfReserveCouponEffectProps(value)) {
-        return ReserveCouponEffectPropsToJSON(value as ReserveCouponEffectProps);
-    }
-    if (instanceOfRollbackAddedLoyaltyPointsEffectProps(value)) {
-        return RollbackAddedLoyaltyPointsEffectPropsToJSON(value as RollbackAddedLoyaltyPointsEffectProps);
-    }
-    if (instanceOfRollbackCouponEffectProps(value)) {
-        return RollbackCouponEffectPropsToJSON(value as RollbackCouponEffectProps);
-    }
-    if (instanceOfRollbackDeductedLoyaltyPointsEffectProps(value)) {
-        return RollbackDeductedLoyaltyPointsEffectPropsToJSON(value as RollbackDeductedLoyaltyPointsEffectProps);
-    }
-    if (instanceOfRollbackDiscountEffectProps(value)) {
-        return RollbackDiscountEffectPropsToJSON(value as RollbackDiscountEffectProps);
-    }
-    if (instanceOfRollbackIncreasedAchievementProgressEffectProps(value)) {
-        return RollbackIncreasedAchievementProgressEffectPropsToJSON(value as RollbackIncreasedAchievementProgressEffectProps);
-    }
-    if (instanceOfRollbackReferralEffectProps(value)) {
-        return RollbackReferralEffectPropsToJSON(value as RollbackReferralEffectProps);
-    }
-    if (instanceOfSetDiscountEffectProps(value)) {
-        return SetDiscountEffectPropsToJSON(value as SetDiscountEffectProps);
-    }
-    if (instanceOfSetDiscountPerAdditionalCostEffectProps(value)) {
-        return SetDiscountPerAdditionalCostEffectPropsToJSON(value as SetDiscountPerAdditionalCostEffectProps);
-    }
-    if (instanceOfSetDiscountPerAdditionalCostPerItemEffectProps(value)) {
-        return SetDiscountPerAdditionalCostPerItemEffectPropsToJSON(value as SetDiscountPerAdditionalCostPerItemEffectProps);
-    }
-    if (instanceOfSetDiscountPerItemEffectProps(value)) {
-        return SetDiscountPerItemEffectPropsToJSON(value as SetDiscountPerItemEffectProps);
-    }
-    if (instanceOfSetLoyaltyPointsExpiryDateEffectProps(value)) {
-        return SetLoyaltyPointsExpiryDateEffectPropsToJSON(value as SetLoyaltyPointsExpiryDateEffectProps);
-    }
-    if (instanceOfShowBundleMetadataEffectProps(value)) {
-        return ShowBundleMetadataEffectPropsToJSON(value as ShowBundleMetadataEffectProps);
-    }
-    if (instanceOfShowNotificationEffectProps(value)) {
-        return ShowNotificationEffectPropsToJSON(value as ShowNotificationEffectProps);
-    }
-    if (instanceOfTriggerWebhookEffectProps(value)) {
-        return TriggerWebhookEffectPropsToJSON(value as TriggerWebhookEffectProps);
-    }
-    if (instanceOfUpdateAttributeEffectProps(value)) {
-        return UpdateAttributeEffectPropsToJSON(value as UpdateAttributeEffectProps);
-    }
-    if (instanceOfWillAwardGiveawayEffectProps(value)) {
-        return WillAwardGiveawayEffectPropsToJSON(value as WillAwardGiveawayEffectProps);
+    const matchedVariant = selectOneOfBestMatch(value, [
+        [instanceOfAcceptCouponEffectProps, AcceptCouponEffectPropsToJSON],
+        [instanceOfAcceptReferralEffectProps, AcceptReferralEffectPropsToJSON],
+        [instanceOfAddFreeItemEffectProps, AddFreeItemEffectPropsToJSON],
+        [instanceOfAddLoyaltyPointsEffectProps, AddLoyaltyPointsEffectPropsToJSON],
+        [instanceOfAddToAudienceEffectProps, AddToAudienceEffectPropsToJSON],
+        [instanceOfAwardGiveawayEffectProps, AwardGiveawayEffectPropsToJSON],
+        [instanceOfChangeLoyaltyTierLevelEffectProps, ChangeLoyaltyTierLevelEffectPropsToJSON],
+        [instanceOfCouponCreatedEffectProps, CouponCreatedEffectPropsToJSON],
+        [instanceOfCustomEffectProps, CustomEffectPropsToJSON],
+        [instanceOfDeductLoyaltyPointsEffectProps, DeductLoyaltyPointsEffectPropsToJSON],
+        [instanceOfErrorEffectProps, ErrorEffectPropsToJSON],
+        [instanceOfExtendLoyaltyPointsExpiryDateEffectProps, ExtendLoyaltyPointsExpiryDateEffectPropsToJSON],
+        [instanceOfIncreaseAchievementProgressEffectProps, IncreaseAchievementProgressEffectPropsToJSON],
+        [instanceOfRedeemReferralEffectProps, RedeemReferralEffectPropsToJSON],
+        [instanceOfReferralCreatedEffectProps, ReferralCreatedEffectPropsToJSON],
+        [instanceOfRejectCouponEffectProps, RejectCouponEffectPropsToJSON],
+        [instanceOfRejectReferralEffectProps, RejectReferralEffectPropsToJSON],
+        [instanceOfRemoveFromAudienceEffectProps, RemoveFromAudienceEffectPropsToJSON],
+        [instanceOfReserveCouponEffectProps, ReserveCouponEffectPropsToJSON],
+        [instanceOfRollbackAddedLoyaltyPointsEffectProps, RollbackAddedLoyaltyPointsEffectPropsToJSON],
+        [instanceOfRollbackCouponEffectProps, RollbackCouponEffectPropsToJSON],
+        [instanceOfRollbackDeductedLoyaltyPointsEffectProps, RollbackDeductedLoyaltyPointsEffectPropsToJSON],
+        [instanceOfRollbackDiscountEffectProps, RollbackDiscountEffectPropsToJSON],
+        [instanceOfRollbackIncreasedAchievementProgressEffectProps, RollbackIncreasedAchievementProgressEffectPropsToJSON],
+        [instanceOfRollbackReferralEffectProps, RollbackReferralEffectPropsToJSON],
+        [instanceOfSetDiscountEffectProps, SetDiscountEffectPropsToJSON],
+        [instanceOfSetDiscountPerAdditionalCostEffectProps, SetDiscountPerAdditionalCostEffectPropsToJSON],
+        [instanceOfSetDiscountPerAdditionalCostPerItemEffectProps, SetDiscountPerAdditionalCostPerItemEffectPropsToJSON],
+        [instanceOfSetDiscountPerItemEffectProps, SetDiscountPerItemEffectPropsToJSON],
+        [instanceOfSetLoyaltyPointsExpiryDateEffectProps, SetLoyaltyPointsExpiryDateEffectPropsToJSON],
+        [instanceOfShowBundleMetadataEffectProps, ShowBundleMetadataEffectPropsToJSON],
+        [instanceOfShowNotificationEffectProps, ShowNotificationEffectPropsToJSON],
+        [instanceOfStartAchievementProgressEffectProps, StartAchievementProgressEffectPropsToJSON],
+        [instanceOfTriggerWebhookEffectProps, TriggerWebhookEffectPropsToJSON],
+        [instanceOfUpdateAttributeEffectProps, UpdateAttributeEffectPropsToJSON],
+        [instanceOfWillAwardGiveawayEffectProps, WillAwardGiveawayEffectPropsToJSON],
+    ]);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {};
 }

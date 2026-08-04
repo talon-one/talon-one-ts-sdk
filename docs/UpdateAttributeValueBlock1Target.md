@@ -8,6 +8,7 @@ The entity or item scope that this effect operates on.
 Name | Type
 ------------ | -------------
 `type` | string
+`name` | string
 
 ## Example
 
@@ -17,6 +18,7 @@ import type { UpdateAttributeValueBlock1Target } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "type": profile,
+  "name": Filter items by product,
 } satisfies UpdateAttributeValueBlock1Target
 
 console.log(example)

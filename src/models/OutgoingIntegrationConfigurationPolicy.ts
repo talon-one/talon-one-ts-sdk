@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { selectOneOfBestMatch } from '../runtime';
 import type { OutgoingIntegrationBrazePolicy } from './OutgoingIntegrationBrazePolicy';
 import {
     instanceOfOutgoingIntegrationBrazePolicy,
@@ -47,6 +48,12 @@ import {
  * @export
  */
 export type OutgoingIntegrationConfigurationPolicy = OutgoingIntegrationBrazePolicy | OutgoingIntegrationCleverTapPolicy | OutgoingIntegrationIterablePolicy | OutgoingIntegrationMoEngagePolicy;
+/**
+ * Check if a given object implements the OutgoingIntegrationConfigurationPolicy interface.
+ */
+export function instanceOfOutgoingIntegrationConfigurationPolicy(value: any): value is OutgoingIntegrationConfigurationPolicy {
+    return typeof value === 'object' && value !== null && (instanceOfOutgoingIntegrationBrazePolicy(value) || instanceOfOutgoingIntegrationCleverTapPolicy(value) || instanceOfOutgoingIntegrationIterablePolicy(value) || instanceOfOutgoingIntegrationMoEngagePolicy(value));
+}
 
 export function OutgoingIntegrationConfigurationPolicyFromJSON(json: any): OutgoingIntegrationConfigurationPolicy {
     return OutgoingIntegrationConfigurationPolicyFromJSONTyped(json, false);
@@ -59,17 +66,14 @@ export function OutgoingIntegrationConfigurationPolicyFromJSONTyped(json: any, i
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfOutgoingIntegrationBrazePolicy(json)) {
-        return OutgoingIntegrationBrazePolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfOutgoingIntegrationCleverTapPolicy(json)) {
-        return OutgoingIntegrationCleverTapPolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfOutgoingIntegrationIterablePolicy(json)) {
-        return OutgoingIntegrationIterablePolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfOutgoingIntegrationMoEngagePolicy(json)) {
-        return OutgoingIntegrationMoEngagePolicyFromJSONTyped(json, true);
+    const matchedVariant = selectOneOfBestMatch(json, [
+        [instanceOfOutgoingIntegrationBrazePolicy, OutgoingIntegrationBrazePolicyFromJSONTyped],
+        [instanceOfOutgoingIntegrationCleverTapPolicy, OutgoingIntegrationCleverTapPolicyFromJSONTyped],
+        [instanceOfOutgoingIntegrationIterablePolicy, OutgoingIntegrationIterablePolicyFromJSONTyped],
+        [instanceOfOutgoingIntegrationMoEngagePolicy, OutgoingIntegrationMoEngagePolicyFromJSONTyped],
+    ], true);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {} as any;
 }
@@ -85,17 +89,14 @@ export function OutgoingIntegrationConfigurationPolicyToJSONTyped(value?: Outgoi
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfOutgoingIntegrationBrazePolicy(value)) {
-        return OutgoingIntegrationBrazePolicyToJSON(value as OutgoingIntegrationBrazePolicy);
-    }
-    if (instanceOfOutgoingIntegrationCleverTapPolicy(value)) {
-        return OutgoingIntegrationCleverTapPolicyToJSON(value as OutgoingIntegrationCleverTapPolicy);
-    }
-    if (instanceOfOutgoingIntegrationIterablePolicy(value)) {
-        return OutgoingIntegrationIterablePolicyToJSON(value as OutgoingIntegrationIterablePolicy);
-    }
-    if (instanceOfOutgoingIntegrationMoEngagePolicy(value)) {
-        return OutgoingIntegrationMoEngagePolicyToJSON(value as OutgoingIntegrationMoEngagePolicy);
+    const matchedVariant = selectOneOfBestMatch(value, [
+        [instanceOfOutgoingIntegrationBrazePolicy, OutgoingIntegrationBrazePolicyToJSON],
+        [instanceOfOutgoingIntegrationCleverTapPolicy, OutgoingIntegrationCleverTapPolicyToJSON],
+        [instanceOfOutgoingIntegrationIterablePolicy, OutgoingIntegrationIterablePolicyToJSON],
+        [instanceOfOutgoingIntegrationMoEngagePolicy, OutgoingIntegrationMoEngagePolicyToJSON],
+    ]);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {};
 }

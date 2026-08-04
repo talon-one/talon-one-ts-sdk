@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`eventId` | number
 `id` | number
 `created` | Date
 `campaignId` | number
@@ -35,6 +36,7 @@ import type { IntegrationHubEventPayloadCouponBasedNotifications } from 'talon_o
 
 // TODO: Update the object below with actual values
 const example = {
+  "eventId": 123,
   "id": null,
   "created": null,
   "campaignId": null,

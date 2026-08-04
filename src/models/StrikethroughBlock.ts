@@ -12,34 +12,32 @@
  * Do not edit the class manually.
  */
 
-import type { PassthroughBlock } from './PassthroughBlock';
-import {
-    instanceOfPassthroughBlock,
-    PassthroughBlockFromJSON,
-    PassthroughBlockFromJSONTyped,
-    PassthroughBlockToJSON,
-} from './PassthroughBlock';
-import type { StrikethroughCheckAttributeBlock } from './StrikethroughCheckAttributeBlock';
-import {
-    instanceOfStrikethroughCheckAttributeBlock,
-    StrikethroughCheckAttributeBlockFromJSON,
-    StrikethroughCheckAttributeBlockFromJSONTyped,
-    StrikethroughCheckAttributeBlockToJSON,
-} from './StrikethroughCheckAttributeBlock';
-import type { StrikethroughGroupBlock } from './StrikethroughGroupBlock';
-import {
-    instanceOfStrikethroughGroupBlock,
-    StrikethroughGroupBlockFromJSON,
-    StrikethroughGroupBlockFromJSONTyped,
-    StrikethroughGroupBlockToJSON,
-} from './StrikethroughGroupBlock';
+import { type AwardDiscountBlock, AwardDiscountBlockFromJSONTyped, AwardDiscountBlockToJSON } from './AwardDiscountBlock';
+import { type StrikethroughCheckAttributeBlock, StrikethroughCheckAttributeBlockFromJSONTyped, StrikethroughCheckAttributeBlockToJSON } from './StrikethroughCheckAttributeBlock';
+import { type StrikethroughGroupBlock, StrikethroughGroupBlockFromJSONTyped, StrikethroughGroupBlockToJSON } from './StrikethroughGroupBlock';
+import { type PassthroughBlock, PassthroughBlockFromJSONTyped, PassthroughBlockToJSON } from './PassthroughBlock';
 
 /**
  * @type StrikethroughBlock
  * A block valid in a strikethrough rule. The `type` field identifies the concrete block type.
  * @export
  */
-export type StrikethroughBlock = { type: 'checkAttribute' } & StrikethroughCheckAttributeBlock | { type: 'group' } & StrikethroughGroupBlock | { type: 'passthrough' } & PassthroughBlock;
+export type StrikethroughBlock = { type: 'awardDiscount' } & AwardDiscountBlock | { type: 'checkAttribute' } & StrikethroughCheckAttributeBlock | { type: 'group' } & StrikethroughGroupBlock | { type: 'passthrough' } & PassthroughBlock;
+/**
+ * Check if a given object implements the StrikethroughBlock interface.
+ */
+export function instanceOfStrikethroughBlock(value: any): value is StrikethroughBlock {
+    const _v = value as Record<PropertyKey, unknown>;
+    switch (_v['type']) {
+        case 'awardDiscount':
+        case 'checkAttribute':
+        case 'group':
+        case 'passthrough':
+            return true;
+        default:
+            return false;
+    }
+}
 
 export function StrikethroughBlockFromJSON(json: any): StrikethroughBlock {
     return StrikethroughBlockFromJSONTyped(json, false);
@@ -50,6 +48,8 @@ export function StrikethroughBlockFromJSONTyped(json: any, ignoreDiscriminator: 
         return json;
     }
     switch (json['type']) {
+        case 'awardDiscount':
+            return Object.assign({}, AwardDiscountBlockFromJSONTyped(json, true), { type: 'awardDiscount' } as const);
         case 'checkAttribute':
             return Object.assign({}, StrikethroughCheckAttributeBlockFromJSONTyped(json, true), { type: 'checkAttribute' } as const);
         case 'group':
@@ -70,6 +70,8 @@ export function StrikethroughBlockToJSONTyped(value?: StrikethroughBlock | null,
         return value;
     }
     switch (value['type']) {
+        case 'awardDiscount':
+            return Object.assign({}, AwardDiscountBlockToJSON(value), { 'type': 'awardDiscount' } as const);
         case 'checkAttribute':
             return Object.assign({}, StrikethroughCheckAttributeBlockToJSON(value), { 'type': 'checkAttribute' } as const);
         case 'group':
