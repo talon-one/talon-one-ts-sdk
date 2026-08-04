@@ -13,6 +13,8 @@ Name | Type
 `price` | number
 `metadata` | [BestPriorPriceMetadata](BestPriorPriceMetadata.md)
 `target` | [LabelTarget](LabelTarget.md)
+`excludedAt` | Date
+`exclusionReason` | string
 
 ## Example
 
@@ -28,6 +30,8 @@ const example = {
   "price": 99.99,
   "metadata": null,
   "target": null,
+  "excludedAt": 2025-11-10T23:00:00Z,
+  "exclusionReason": Incorrect contextID value,
 } satisfies History
 
 console.log(example)

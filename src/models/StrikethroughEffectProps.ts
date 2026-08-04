@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { selectOneOfBestMatch } from '../runtime';
 import type { StrikethroughCustomEffectPerItemProps } from './StrikethroughCustomEffectPerItemProps';
 import {
     instanceOfStrikethroughCustomEffectPerItemProps,
@@ -52,14 +53,13 @@ export function StrikethroughEffectPropsFromJSONTyped(json: any, ignoreDiscrimin
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfStrikethroughCustomEffectPerItemProps(json)) {
-        return StrikethroughCustomEffectPerItemPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfStrikethroughSetDiscountPerItemEffectProps(json)) {
-        return StrikethroughSetDiscountPerItemEffectPropsFromJSONTyped(json, true);
-    }
-    if (instanceOfStrikethroughSetDiscountPerItemMemberEffectProps(json)) {
-        return StrikethroughSetDiscountPerItemMemberEffectPropsFromJSONTyped(json, true);
+    const matchedVariant = selectOneOfBestMatch(json, [
+        [instanceOfStrikethroughCustomEffectPerItemProps, StrikethroughCustomEffectPerItemPropsFromJSONTyped],
+        [instanceOfStrikethroughSetDiscountPerItemEffectProps, StrikethroughSetDiscountPerItemEffectPropsFromJSONTyped],
+        [instanceOfStrikethroughSetDiscountPerItemMemberEffectProps, StrikethroughSetDiscountPerItemMemberEffectPropsFromJSONTyped],
+    ], true);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {} as any;
 }
@@ -75,14 +75,13 @@ export function StrikethroughEffectPropsToJSONTyped(value?: StrikethroughEffectP
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfStrikethroughCustomEffectPerItemProps(value)) {
-        return StrikethroughCustomEffectPerItemPropsToJSON(value as StrikethroughCustomEffectPerItemProps);
-    }
-    if (instanceOfStrikethroughSetDiscountPerItemEffectProps(value)) {
-        return StrikethroughSetDiscountPerItemEffectPropsToJSON(value as StrikethroughSetDiscountPerItemEffectProps);
-    }
-    if (instanceOfStrikethroughSetDiscountPerItemMemberEffectProps(value)) {
-        return StrikethroughSetDiscountPerItemMemberEffectPropsToJSON(value as StrikethroughSetDiscountPerItemMemberEffectProps);
+    const matchedVariant = selectOneOfBestMatch(value, [
+        [instanceOfStrikethroughCustomEffectPerItemProps, StrikethroughCustomEffectPerItemPropsToJSON],
+        [instanceOfStrikethroughSetDiscountPerItemEffectProps, StrikethroughSetDiscountPerItemEffectPropsToJSON],
+        [instanceOfStrikethroughSetDiscountPerItemMemberEffectProps, StrikethroughSetDiscountPerItemMemberEffectPropsToJSON],
+    ]);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {};
 }

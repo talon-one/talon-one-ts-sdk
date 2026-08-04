@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { selectOneOfBestMatch } from '../runtime';
 import type { AddedDeductedPointsBalancesNotificationPolicy } from './AddedDeductedPointsBalancesNotificationPolicy';
 import {
     instanceOfAddedDeductedPointsBalancesNotificationPolicy,
@@ -129,47 +130,24 @@ export function BaseNotificationPolicyFromJSONTyped(json: any, ignoreDiscriminat
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfAddedDeductedPointsBalancesNotificationPolicy(json)) {
-        return AddedDeductedPointsBalancesNotificationPolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfAddedDeductedPointsNotificationPolicy(json)) {
-        return AddedDeductedPointsNotificationPolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfCampaignNotificationPolicy(json)) {
-        return CampaignNotificationPolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfCardAddedDeductedPointsBalancesNotificationPolicy(json)) {
-        return CardAddedDeductedPointsBalancesNotificationPolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfCardAddedDeductedPointsNotificationPolicy(json)) {
-        return CardAddedDeductedPointsNotificationPolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfCardExpiringPointsNotificationPolicy(json)) {
-        return CardExpiringPointsNotificationPolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfCatalogsStrikethroughNotificationPolicy(json)) {
-        return CatalogsStrikethroughNotificationPolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfCouponsNotificationPolicy(json)) {
-        return CouponsNotificationPolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfExpiringCouponsNotificationPolicy(json)) {
-        return ExpiringCouponsNotificationPolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfExpiringPointsNotificationPolicy(json)) {
-        return ExpiringPointsNotificationPolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfPendingPointsNotificationPolicy(json)) {
-        return PendingPointsNotificationPolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfTierDowngradeNotificationPolicy(json)) {
-        return TierDowngradeNotificationPolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfTierUpgradeNotificationPolicy(json)) {
-        return TierUpgradeNotificationPolicyFromJSONTyped(json, true);
-    }
-    if (instanceOfTierWillDowngradeNotificationPolicy(json)) {
-        return TierWillDowngradeNotificationPolicyFromJSONTyped(json, true);
+    const matchedVariant = selectOneOfBestMatch(json, [
+        [instanceOfAddedDeductedPointsBalancesNotificationPolicy, AddedDeductedPointsBalancesNotificationPolicyFromJSONTyped],
+        [instanceOfAddedDeductedPointsNotificationPolicy, AddedDeductedPointsNotificationPolicyFromJSONTyped],
+        [instanceOfCampaignNotificationPolicy, CampaignNotificationPolicyFromJSONTyped],
+        [instanceOfCardAddedDeductedPointsBalancesNotificationPolicy, CardAddedDeductedPointsBalancesNotificationPolicyFromJSONTyped],
+        [instanceOfCardAddedDeductedPointsNotificationPolicy, CardAddedDeductedPointsNotificationPolicyFromJSONTyped],
+        [instanceOfCardExpiringPointsNotificationPolicy, CardExpiringPointsNotificationPolicyFromJSONTyped],
+        [instanceOfCatalogsStrikethroughNotificationPolicy, CatalogsStrikethroughNotificationPolicyFromJSONTyped],
+        [instanceOfCouponsNotificationPolicy, CouponsNotificationPolicyFromJSONTyped],
+        [instanceOfExpiringCouponsNotificationPolicy, ExpiringCouponsNotificationPolicyFromJSONTyped],
+        [instanceOfExpiringPointsNotificationPolicy, ExpiringPointsNotificationPolicyFromJSONTyped],
+        [instanceOfPendingPointsNotificationPolicy, PendingPointsNotificationPolicyFromJSONTyped],
+        [instanceOfTierDowngradeNotificationPolicy, TierDowngradeNotificationPolicyFromJSONTyped],
+        [instanceOfTierUpgradeNotificationPolicy, TierUpgradeNotificationPolicyFromJSONTyped],
+        [instanceOfTierWillDowngradeNotificationPolicy, TierWillDowngradeNotificationPolicyFromJSONTyped],
+    ], true);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {} as any;
 }
@@ -185,47 +163,24 @@ export function BaseNotificationPolicyToJSONTyped(value?: BaseNotificationPolicy
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfAddedDeductedPointsBalancesNotificationPolicy(value)) {
-        return AddedDeductedPointsBalancesNotificationPolicyToJSON(value as AddedDeductedPointsBalancesNotificationPolicy);
-    }
-    if (instanceOfAddedDeductedPointsNotificationPolicy(value)) {
-        return AddedDeductedPointsNotificationPolicyToJSON(value as AddedDeductedPointsNotificationPolicy);
-    }
-    if (instanceOfCampaignNotificationPolicy(value)) {
-        return CampaignNotificationPolicyToJSON(value as CampaignNotificationPolicy);
-    }
-    if (instanceOfCardAddedDeductedPointsBalancesNotificationPolicy(value)) {
-        return CardAddedDeductedPointsBalancesNotificationPolicyToJSON(value as CardAddedDeductedPointsBalancesNotificationPolicy);
-    }
-    if (instanceOfCardAddedDeductedPointsNotificationPolicy(value)) {
-        return CardAddedDeductedPointsNotificationPolicyToJSON(value as CardAddedDeductedPointsNotificationPolicy);
-    }
-    if (instanceOfCardExpiringPointsNotificationPolicy(value)) {
-        return CardExpiringPointsNotificationPolicyToJSON(value as CardExpiringPointsNotificationPolicy);
-    }
-    if (instanceOfCatalogsStrikethroughNotificationPolicy(value)) {
-        return CatalogsStrikethroughNotificationPolicyToJSON(value as CatalogsStrikethroughNotificationPolicy);
-    }
-    if (instanceOfCouponsNotificationPolicy(value)) {
-        return CouponsNotificationPolicyToJSON(value as CouponsNotificationPolicy);
-    }
-    if (instanceOfExpiringCouponsNotificationPolicy(value)) {
-        return ExpiringCouponsNotificationPolicyToJSON(value as ExpiringCouponsNotificationPolicy);
-    }
-    if (instanceOfExpiringPointsNotificationPolicy(value)) {
-        return ExpiringPointsNotificationPolicyToJSON(value as ExpiringPointsNotificationPolicy);
-    }
-    if (instanceOfPendingPointsNotificationPolicy(value)) {
-        return PendingPointsNotificationPolicyToJSON(value as PendingPointsNotificationPolicy);
-    }
-    if (instanceOfTierDowngradeNotificationPolicy(value)) {
-        return TierDowngradeNotificationPolicyToJSON(value as TierDowngradeNotificationPolicy);
-    }
-    if (instanceOfTierUpgradeNotificationPolicy(value)) {
-        return TierUpgradeNotificationPolicyToJSON(value as TierUpgradeNotificationPolicy);
-    }
-    if (instanceOfTierWillDowngradeNotificationPolicy(value)) {
-        return TierWillDowngradeNotificationPolicyToJSON(value as TierWillDowngradeNotificationPolicy);
+    const matchedVariant = selectOneOfBestMatch(value, [
+        [instanceOfAddedDeductedPointsBalancesNotificationPolicy, AddedDeductedPointsBalancesNotificationPolicyToJSON],
+        [instanceOfAddedDeductedPointsNotificationPolicy, AddedDeductedPointsNotificationPolicyToJSON],
+        [instanceOfCampaignNotificationPolicy, CampaignNotificationPolicyToJSON],
+        [instanceOfCardAddedDeductedPointsBalancesNotificationPolicy, CardAddedDeductedPointsBalancesNotificationPolicyToJSON],
+        [instanceOfCardAddedDeductedPointsNotificationPolicy, CardAddedDeductedPointsNotificationPolicyToJSON],
+        [instanceOfCardExpiringPointsNotificationPolicy, CardExpiringPointsNotificationPolicyToJSON],
+        [instanceOfCatalogsStrikethroughNotificationPolicy, CatalogsStrikethroughNotificationPolicyToJSON],
+        [instanceOfCouponsNotificationPolicy, CouponsNotificationPolicyToJSON],
+        [instanceOfExpiringCouponsNotificationPolicy, ExpiringCouponsNotificationPolicyToJSON],
+        [instanceOfExpiringPointsNotificationPolicy, ExpiringPointsNotificationPolicyToJSON],
+        [instanceOfPendingPointsNotificationPolicy, PendingPointsNotificationPolicyToJSON],
+        [instanceOfTierDowngradeNotificationPolicy, TierDowngradeNotificationPolicyToJSON],
+        [instanceOfTierUpgradeNotificationPolicy, TierUpgradeNotificationPolicyToJSON],
+        [instanceOfTierWillDowngradeNotificationPolicy, TierWillDowngradeNotificationPolicyToJSON],
+    ]);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {};
 }

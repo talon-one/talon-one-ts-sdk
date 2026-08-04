@@ -41,6 +41,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**deleteUserByEmail**](ManagementApi.md#deleteuserbyemailoperation) | **POST** /v1/users/delete | Delete user by email address |
 | [**destroySession**](ManagementApi.md#destroysession) | **DELETE** /v1/sessions | Destroy session |
 | [**disconnectCampaignStores**](ManagementApi.md#disconnectcampaignstores) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/stores | Disconnect stores |
+| [**excludePriceHistory**](ManagementApi.md#excludepricehistory) | **POST** /v1/applications/{applicationId}/price_history/exclusions | Exclude price records from price history |
 | [**exportAccountCollectionItems**](ManagementApi.md#exportaccountcollectionitems) | **GET** /v1/collections/{collectionId}/export | Export account-level collection\&#39;s items |
 | [**exportAchievements**](ManagementApi.md#exportachievements) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId}/export | Export achievement customer data |
 | [**exportApplicationCampaignAnalytics**](ManagementApi.md#exportapplicationcampaignanalytics) | **GET** /v1/applications/{applicationId}/campaign_analytics/export | Export Application analytics aggregated by campaign |
@@ -3012,6 +3013,80 @@ example().catch(console.error);
 | **400** | Bad request |  -  |
 | **401** | Unauthorized - Invalid API key |  -  |
 | **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## excludePriceHistory
+
+> excludePriceHistory(applicationId, excludePriceObservationsRequest)
+
+Exclude price records from price history
+
+Select a batch of historical price IDs to exclude from [best prior price calculation](https://docs.talon.one/integration-api#tag/Catalogs/operation/bestPriorPrice). All IDs in the batch must be valid &#x60;id&#x60; values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, must not already be excluded from best prior price calculation, and must not be associated with a scheduled strikethrough pricing notification. 
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { ExcludePriceHistoryRequest } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // number | The ID of the Application. It is displayed in your Talon.One deployment URL.
+    applicationId: 789,
+    // ExcludePriceObservationsRequest | body
+    excludePriceObservationsRequest: ...,
+  } satisfies ExcludePriceHistoryRequest;
+
+  try {
+    const data = await api.excludePriceHistory(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
+| **excludePriceObservationsRequest** | [ExcludePriceObservationsRequest](ExcludePriceObservationsRequest.md) | body | |
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ok |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { selectOneOfBestMatch } from '../runtime';
 import type { LabelTargetAudience } from './LabelTargetAudience';
 import {
     instanceOfLabelTargetAudience,
@@ -45,11 +46,12 @@ export function LabelTargetFromJSONTyped(json: any, ignoreDiscriminator: boolean
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfLabelTargetAudience(json)) {
-        return LabelTargetAudienceFromJSONTyped(json, true);
-    }
-    if (instanceOfLabelTargetNone(json)) {
-        return LabelTargetNoneFromJSONTyped(json, true);
+    const matchedVariant = selectOneOfBestMatch(json, [
+        [instanceOfLabelTargetAudience, LabelTargetAudienceFromJSONTyped],
+        [instanceOfLabelTargetNone, LabelTargetNoneFromJSONTyped],
+    ], true);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {} as any;
 }
@@ -65,11 +67,12 @@ export function LabelTargetToJSONTyped(value?: LabelTarget | null, ignoreDiscrim
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfLabelTargetAudience(value)) {
-        return LabelTargetAudienceToJSON(value as LabelTargetAudience);
-    }
-    if (instanceOfLabelTargetNone(value)) {
-        return LabelTargetNoneToJSON(value as LabelTargetNone);
+    const matchedVariant = selectOneOfBestMatch(value, [
+        [instanceOfLabelTargetAudience, LabelTargetAudienceToJSON],
+        [instanceOfLabelTargetNone, LabelTargetNoneToJSON],
+    ]);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {};
 }

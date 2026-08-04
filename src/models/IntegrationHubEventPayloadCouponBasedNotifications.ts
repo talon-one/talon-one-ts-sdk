@@ -28,6 +28,12 @@ import {
  */
 export interface IntegrationHubEventPayloadCouponBasedNotifications {
     /**
+     * The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.
+     * @type {number}
+     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
+     */
+    eventId: number;
+    /**
      * 
      * @type {number}
      * @memberof IntegrationHubEventPayloadCouponBasedNotifications
@@ -160,6 +166,7 @@ export interface IntegrationHubEventPayloadCouponBasedNotifications {
  */
 export function instanceOfIntegrationHubEventPayloadCouponBasedNotifications(value: object): value is IntegrationHubEventPayloadCouponBasedNotifications {
     const _v = value as Record<PropertyKey, unknown>;
+    if ((!('eventId' in _v) && !('EventId' in _v)) || (_v['eventId'] === undefined && _v['EventId'] === undefined)) return false;
     if ((!('id' in _v) && !('Id' in _v)) || (_v['id'] === undefined && _v['Id'] === undefined)) return false;
     if ((!('created' in _v) && !('Created' in _v)) || (_v['created'] === undefined && _v['Created'] === undefined)) return false;
     if ((!('campaignId' in _v) && !('CampaignId' in _v)) || (_v['campaignId'] === undefined && _v['CampaignId'] === undefined)) return false;
@@ -182,6 +189,7 @@ export function IntegrationHubEventPayloadCouponBasedNotificationsFromJSONTyped(
     }
     return {
         
+        'eventId': json['EventId'],
         'id': json['Id'],
         'created': (new Date(json['Created'])),
         'campaignId': json['CampaignId'],
@@ -217,6 +225,7 @@ export function IntegrationHubEventPayloadCouponBasedNotificationsToJSONTyped(va
 
     return {
         
+        'EventId': value['eventId'],
         'Id': value['id'],
         'Created': value['created'].toISOString(),
         'CampaignId': value['campaignId'],

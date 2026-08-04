@@ -20,6 +20,12 @@ import { mapValues } from '../runtime';
  */
 export interface IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification {
     /**
+     * The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.
+     * @type {number}
+     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
+     */
+    eventId: number;
+    /**
      * 
      * @type {string}
      * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
@@ -104,6 +110,7 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotific
  */
 export function instanceOfIntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification(value: object): value is IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification {
     const _v = value as Record<PropertyKey, unknown>;
+    if ((!('eventId' in _v) && !('EventId' in _v)) || (_v['eventId'] === undefined && _v['EventId'] === undefined)) return false;
     if ((!('profileIntegrationID' in _v) && !('ProfileIntegrationID' in _v)) || (_v['profileIntegrationID'] === undefined && _v['ProfileIntegrationID'] === undefined)) return false;
     if ((!('loyaltyProgramID' in _v) && !('LoyaltyProgramID' in _v)) || (_v['loyaltyProgramID'] === undefined && _v['LoyaltyProgramID'] === undefined)) return false;
     if ((!('loyaltyProgramName' in _v) && !('LoyaltyProgramName' in _v)) || (_v['loyaltyProgramName'] === undefined && _v['LoyaltyProgramName'] === undefined)) return false;
@@ -125,6 +132,7 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotifica
     }
     return {
         
+        'eventId': json['EventId'],
         'profileIntegrationID': json['ProfileIntegrationID'],
         'loyaltyProgramID': json['LoyaltyProgramID'],
         'loyaltyProgramName': json['LoyaltyProgramName'],
@@ -152,6 +160,7 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotifica
 
     return {
         
+        'EventId': value['eventId'],
         'ProfileIntegrationID': value['profileIntegrationID'],
         'LoyaltyProgramID': value['loyaltyProgramID'],
         'LoyaltyProgramName': value['loyaltyProgramName'],

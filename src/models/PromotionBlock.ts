@@ -12,6 +12,14 @@
  * Do not edit the class manually.
  */
 
+import { selectOneOfBestMatch } from '../runtime';
+import type { AwardDiscountBlock } from './AwardDiscountBlock';
+import {
+    instanceOfAwardDiscountBlock,
+    AwardDiscountBlockFromJSON,
+    AwardDiscountBlockFromJSONTyped,
+    AwardDiscountBlockToJSON,
+} from './AwardDiscountBlock';
 import type { AwardGiveawayBlock } from './AwardGiveawayBlock';
 import {
     instanceOfAwardGiveawayBlock,
@@ -26,6 +34,13 @@ import {
     AwardItemBlockFromJSONTyped,
     AwardItemBlockToJSON,
 } from './AwardItemBlock';
+import type { CheckAchievementBlock } from './CheckAchievementBlock';
+import {
+    instanceOfCheckAchievementBlock,
+    CheckAchievementBlockFromJSON,
+    CheckAchievementBlockFromJSONTyped,
+    CheckAchievementBlockToJSON,
+} from './CheckAchievementBlock';
 import type { CheckAudienceBlock } from './CheckAudienceBlock';
 import {
     instanceOfCheckAudienceBlock,
@@ -33,6 +48,13 @@ import {
     CheckAudienceBlockFromJSONTyped,
     CheckAudienceBlockToJSON,
 } from './CheckAudienceBlock';
+import type { CheckBudgetBlock } from './CheckBudgetBlock';
+import {
+    instanceOfCheckBudgetBlock,
+    CheckBudgetBlockFromJSON,
+    CheckBudgetBlockFromJSONTyped,
+    CheckBudgetBlockToJSON,
+} from './CheckBudgetBlock';
 import type { CheckCouponBlock } from './CheckCouponBlock';
 import {
     instanceOfCheckCouponBlock,
@@ -40,6 +62,13 @@ import {
     CheckCouponBlockFromJSONTyped,
     CheckCouponBlockToJSON,
 } from './CheckCouponBlock';
+import type { CheckEventBlock } from './CheckEventBlock';
+import {
+    instanceOfCheckEventBlock,
+    CheckEventBlockFromJSON,
+    CheckEventBlockFromJSONTyped,
+    CheckEventBlockToJSON,
+} from './CheckEventBlock';
 import type { CheckReferralBlock } from './CheckReferralBlock';
 import {
     instanceOfCheckReferralBlock,
@@ -47,6 +76,20 @@ import {
     CheckReferralBlockFromJSONTyped,
     CheckReferralBlockToJSON,
 } from './CheckReferralBlock';
+import type { CreateCouponBlock } from './CreateCouponBlock';
+import {
+    instanceOfCreateCouponBlock,
+    CreateCouponBlockFromJSON,
+    CreateCouponBlockFromJSONTyped,
+    CreateCouponBlockToJSON,
+} from './CreateCouponBlock';
+import type { CreateReferralBlock } from './CreateReferralBlock';
+import {
+    instanceOfCreateReferralBlock,
+    CreateReferralBlockFromJSON,
+    CreateReferralBlockFromJSONTyped,
+    CreateReferralBlockToJSON,
+} from './CreateReferralBlock';
 import type { PassthroughBlock } from './PassthroughBlock';
 import {
     instanceOfPassthroughBlock,
@@ -68,6 +111,13 @@ import {
     PromotionGroupBlockFromJSONTyped,
     PromotionGroupBlockToJSON,
 } from './PromotionGroupBlock';
+import type { ReserveCouponBlock } from './ReserveCouponBlock';
+import {
+    instanceOfReserveCouponBlock,
+    ReserveCouponBlockFromJSON,
+    ReserveCouponBlockFromJSONTyped,
+    ReserveCouponBlockToJSON,
+} from './ReserveCouponBlock';
 import type { ShowNotificationBlock } from './ShowNotificationBlock';
 import {
     instanceOfShowNotificationBlock,
@@ -75,6 +125,20 @@ import {
     ShowNotificationBlockFromJSONTyped,
     ShowNotificationBlockToJSON,
 } from './ShowNotificationBlock';
+import type { TriggerCustomEffectBlock } from './TriggerCustomEffectBlock';
+import {
+    instanceOfTriggerCustomEffectBlock,
+    TriggerCustomEffectBlockFromJSON,
+    TriggerCustomEffectBlockFromJSONTyped,
+    TriggerCustomEffectBlockToJSON,
+} from './TriggerCustomEffectBlock';
+import type { TriggerWebhookBlock } from './TriggerWebhookBlock';
+import {
+    instanceOfTriggerWebhookBlock,
+    TriggerWebhookBlockFromJSON,
+    TriggerWebhookBlockFromJSONTyped,
+    TriggerWebhookBlockToJSON,
+} from './TriggerWebhookBlock';
 import type { UpdateAchievementProgressBlock } from './UpdateAchievementProgressBlock';
 import {
     instanceOfUpdateAchievementProgressBlock,
@@ -102,7 +166,7 @@ import {
  * Describes a part of the logic of the rule.
  * @export
  */
-export type PromotionBlock = { type: 'awardGiveaway' } & AwardGiveawayBlock | { type: 'awardItem' } & AwardItemBlock | { type: 'checkAttribute' } & PromotionCheckAttributeBlock | { type: 'checkAudience' } & CheckAudienceBlock | { type: 'checkCoupon' } & CheckCouponBlock | { type: 'checkReferral' } & CheckReferralBlock | { type: 'group' } & PromotionGroupBlock | { type: 'passthrough' } & PassthroughBlock | { type: 'showNotification' } & ShowNotificationBlock | { type: 'updateAchievementProgress' } & UpdateAchievementProgressBlock | { type: 'updateAttributeValue' } & UpdateAttributeValueBlock | { type: 'updateAudienceMembership' } & UpdateAudienceMembershipBlock;
+export type PromotionBlock = { type: 'awardDiscount' } & AwardDiscountBlock | { type: 'awardGiveaway' } & AwardGiveawayBlock | { type: 'awardItem' } & AwardItemBlock | { type: 'checkAchievement' } & CheckAchievementBlock | { type: 'checkAttribute' } & PromotionCheckAttributeBlock | { type: 'checkAudience' } & CheckAudienceBlock | { type: 'checkBudget' } & CheckBudgetBlock | { type: 'checkCoupon' } & CheckCouponBlock | { type: 'checkEvent' } & CheckEventBlock | { type: 'checkReferral' } & CheckReferralBlock | { type: 'createCoupon' } & CreateCouponBlock | { type: 'createReferral' } & CreateReferralBlock | { type: 'group' } & PromotionGroupBlock | { type: 'passthrough' } & PassthroughBlock | { type: 'reserveCoupon' } & ReserveCouponBlock | { type: 'showNotification' } & ShowNotificationBlock | { type: 'triggerCustomEffect' } & TriggerCustomEffectBlock | { type: 'triggerWebhook' } & TriggerWebhookBlock | { type: 'updateAchievementProgress' } & UpdateAchievementProgressBlock | { type: 'updateAttributeValue' } & UpdateAttributeValueBlock | { type: 'updateAudienceMembership' } & UpdateAudienceMembershipBlock;
 
 export function PromotionBlockFromJSON(json: any): PromotionBlock {
     return PromotionBlockFromJSONTyped(json, false);
@@ -113,24 +177,42 @@ export function PromotionBlockFromJSONTyped(json: any, ignoreDiscriminator: bool
         return json;
     }
     switch (json['type']) {
+        case 'awardDiscount':
+            return Object.assign({}, AwardDiscountBlockFromJSONTyped(json, true), { type: 'awardDiscount' } as const);
         case 'awardGiveaway':
             return Object.assign({}, AwardGiveawayBlockFromJSONTyped(json, true), { type: 'awardGiveaway' } as const);
         case 'awardItem':
             return Object.assign({}, AwardItemBlockFromJSONTyped(json, true), { type: 'awardItem' } as const);
+        case 'checkAchievement':
+            return Object.assign({}, CheckAchievementBlockFromJSONTyped(json, true), { type: 'checkAchievement' } as const);
         case 'checkAttribute':
             return Object.assign({}, PromotionCheckAttributeBlockFromJSONTyped(json, true), { type: 'checkAttribute' } as const);
         case 'checkAudience':
             return Object.assign({}, CheckAudienceBlockFromJSONTyped(json, true), { type: 'checkAudience' } as const);
+        case 'checkBudget':
+            return Object.assign({}, CheckBudgetBlockFromJSONTyped(json, true), { type: 'checkBudget' } as const);
         case 'checkCoupon':
             return Object.assign({}, CheckCouponBlockFromJSONTyped(json, true), { type: 'checkCoupon' } as const);
+        case 'checkEvent':
+            return Object.assign({}, CheckEventBlockFromJSONTyped(json, true), { type: 'checkEvent' } as const);
         case 'checkReferral':
             return Object.assign({}, CheckReferralBlockFromJSONTyped(json, true), { type: 'checkReferral' } as const);
+        case 'createCoupon':
+            return Object.assign({}, CreateCouponBlockFromJSONTyped(json, true), { type: 'createCoupon' } as const);
+        case 'createReferral':
+            return Object.assign({}, CreateReferralBlockFromJSONTyped(json, true), { type: 'createReferral' } as const);
         case 'group':
             return Object.assign({}, PromotionGroupBlockFromJSONTyped(json, true), { type: 'group' } as const);
         case 'passthrough':
             return Object.assign({}, PassthroughBlockFromJSONTyped(json, true), { type: 'passthrough' } as const);
+        case 'reserveCoupon':
+            return Object.assign({}, ReserveCouponBlockFromJSONTyped(json, true), { type: 'reserveCoupon' } as const);
         case 'showNotification':
             return Object.assign({}, ShowNotificationBlockFromJSONTyped(json, true), { type: 'showNotification' } as const);
+        case 'triggerCustomEffect':
+            return Object.assign({}, TriggerCustomEffectBlockFromJSONTyped(json, true), { type: 'triggerCustomEffect' } as const);
+        case 'triggerWebhook':
+            return Object.assign({}, TriggerWebhookBlockFromJSONTyped(json, true), { type: 'triggerWebhook' } as const);
         case 'updateAchievementProgress':
             return Object.assign({}, UpdateAchievementProgressBlockFromJSONTyped(json, true), { type: 'updateAchievementProgress' } as const);
         case 'updateAttributeValue':
@@ -151,24 +233,42 @@ export function PromotionBlockToJSONTyped(value?: PromotionBlock | null, ignoreD
         return value;
     }
     switch (value['type']) {
+        case 'awardDiscount':
+            return Object.assign({}, AwardDiscountBlockToJSON(value), { 'type': 'awardDiscount' } as const);
         case 'awardGiveaway':
             return Object.assign({}, AwardGiveawayBlockToJSON(value), { 'type': 'awardGiveaway' } as const);
         case 'awardItem':
             return Object.assign({}, AwardItemBlockToJSON(value), { 'type': 'awardItem' } as const);
+        case 'checkAchievement':
+            return Object.assign({}, CheckAchievementBlockToJSON(value), { 'type': 'checkAchievement' } as const);
         case 'checkAttribute':
             return Object.assign({}, PromotionCheckAttributeBlockToJSON(value), { 'type': 'checkAttribute' } as const);
         case 'checkAudience':
             return Object.assign({}, CheckAudienceBlockToJSON(value), { 'type': 'checkAudience' } as const);
+        case 'checkBudget':
+            return Object.assign({}, CheckBudgetBlockToJSON(value), { 'type': 'checkBudget' } as const);
         case 'checkCoupon':
             return Object.assign({}, CheckCouponBlockToJSON(value), { 'type': 'checkCoupon' } as const);
+        case 'checkEvent':
+            return Object.assign({}, CheckEventBlockToJSON(value), { 'type': 'checkEvent' } as const);
         case 'checkReferral':
             return Object.assign({}, CheckReferralBlockToJSON(value), { 'type': 'checkReferral' } as const);
+        case 'createCoupon':
+            return Object.assign({}, CreateCouponBlockToJSON(value), { 'type': 'createCoupon' } as const);
+        case 'createReferral':
+            return Object.assign({}, CreateReferralBlockToJSON(value), { 'type': 'createReferral' } as const);
         case 'group':
             return Object.assign({}, PromotionGroupBlockToJSON(value), { 'type': 'group' } as const);
         case 'passthrough':
             return Object.assign({}, PassthroughBlockToJSON(value), { 'type': 'passthrough' } as const);
+        case 'reserveCoupon':
+            return Object.assign({}, ReserveCouponBlockToJSON(value), { 'type': 'reserveCoupon' } as const);
         case 'showNotification':
             return Object.assign({}, ShowNotificationBlockToJSON(value), { 'type': 'showNotification' } as const);
+        case 'triggerCustomEffect':
+            return Object.assign({}, TriggerCustomEffectBlockToJSON(value), { 'type': 'triggerCustomEffect' } as const);
+        case 'triggerWebhook':
+            return Object.assign({}, TriggerWebhookBlockToJSON(value), { 'type': 'triggerWebhook' } as const);
         case 'updateAchievementProgress':
             return Object.assign({}, UpdateAchievementProgressBlockToJSON(value), { 'type': 'updateAchievementProgress' } as const);
         case 'updateAttributeValue':

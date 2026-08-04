@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { selectOneOfBestMatch } from '../runtime';
 import type { IntegrationHubEventPayloadCouponBasedNotifications } from './IntegrationHubEventPayloadCouponBasedNotifications';
 import {
     instanceOfIntegrationHubEventPayloadCouponBasedNotifications,
