@@ -27,6 +27,13 @@ import {
     StrikethroughRuleV2ToJSON,
     StrikethroughRuleV2ToJSONTyped,
 } from './StrikethroughRuleV2';
+import type { Selector } from './Selector';
+import {
+    SelectorFromJSON,
+    SelectorFromJSONTyped,
+    SelectorToJSON,
+    SelectorToJSONTyped,
+} from './Selector';
 
 /**
  * Ruleset in the V2 JSON block format.
@@ -84,10 +91,10 @@ export interface RulesetV2 {
     strikethroughRules: Array<StrikethroughRuleV2>;
     /**
      * Variable bindings of type selector.
-     * @type {Array<{ [key: string]: any; }>}
+     * @type {Array<Selector>}
      * @memberof RulesetV2
      */
-    selectors?: Array<{ [key: string]: any; }>;
+    selectors?: Array<Selector>;
     /**
      * Variable bindings of type bundle.
      * @type {Array<{ [key: string]: any; }>}
@@ -133,7 +140,7 @@ export function RulesetV2FromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'activatedAt': json['activatedAt'] == null ? undefined : (new Date(json['activatedAt'])),
         'promotionRules': ((json['promotionRules'] as Array<any>).map(PromotionRuleV2FromJSON)),
         'strikethroughRules': ((json['strikethroughRules'] as Array<any>).map(StrikethroughRuleV2FromJSON)),
-        'selectors': json['selectors'] == null ? undefined : json['selectors'],
+        'selectors': json['selectors'] == null ? undefined : ((json['selectors'] as Array<any>).map(SelectorFromJSON)),
         'bundles': json['bundles'] == null ? undefined : json['bundles'],
         'parameters': json['parameters'] == null ? undefined : json['parameters'],
     };
@@ -158,7 +165,7 @@ export function RulesetV2ToJSONTyped(value?: RulesetV2 | null, ignoreDiscriminat
         'activatedAt': value['activatedAt'] == null ? value['activatedAt'] : value['activatedAt'].toISOString(),
         'promotionRules': ((value['promotionRules'] as Array<any>).map(PromotionRuleV2ToJSON)),
         'strikethroughRules': ((value['strikethroughRules'] as Array<any>).map(StrikethroughRuleV2ToJSON)),
-        'selectors': value['selectors'],
+        'selectors': value['selectors'] == null ? undefined : ((value['selectors'] as Array<any>).map(SelectorToJSON)),
         'bundles': value['bundles'],
         'parameters': value['parameters'],
     };

@@ -12,6 +12,14 @@
  * Do not edit the class manually.
  */
 
+import { selectOneOfBestMatch } from '../runtime';
+import type { AwardDiscountBlock } from './AwardDiscountBlock';
+import {
+    instanceOfAwardDiscountBlock,
+    AwardDiscountBlockFromJSON,
+    AwardDiscountBlockFromJSONTyped,
+    AwardDiscountBlockToJSON,
+} from './AwardDiscountBlock';
 import type { PassthroughBlock } from './PassthroughBlock';
 import {
     instanceOfPassthroughBlock,
@@ -39,7 +47,7 @@ import {
  * A block valid in a strikethrough rule. The `type` field identifies the concrete block type.
  * @export
  */
-export type StrikethroughBlock = { type: 'checkAttribute' } & StrikethroughCheckAttributeBlock | { type: 'group' } & StrikethroughGroupBlock | { type: 'passthrough' } & PassthroughBlock;
+export type StrikethroughBlock = { type: 'awardDiscount' } & AwardDiscountBlock | { type: 'checkAttribute' } & StrikethroughCheckAttributeBlock | { type: 'group' } & StrikethroughGroupBlock | { type: 'passthrough' } & PassthroughBlock;
 
 export function StrikethroughBlockFromJSON(json: any): StrikethroughBlock {
     return StrikethroughBlockFromJSONTyped(json, false);
@@ -50,6 +58,8 @@ export function StrikethroughBlockFromJSONTyped(json: any, ignoreDiscriminator: 
         return json;
     }
     switch (json['type']) {
+        case 'awardDiscount':
+            return Object.assign({}, AwardDiscountBlockFromJSONTyped(json, true), { type: 'awardDiscount' } as const);
         case 'checkAttribute':
             return Object.assign({}, StrikethroughCheckAttributeBlockFromJSONTyped(json, true), { type: 'checkAttribute' } as const);
         case 'group':
@@ -70,6 +80,8 @@ export function StrikethroughBlockToJSONTyped(value?: StrikethroughBlock | null,
         return value;
     }
     switch (value['type']) {
+        case 'awardDiscount':
+            return Object.assign({}, AwardDiscountBlockToJSON(value), { 'type': 'awardDiscount' } as const);
         case 'checkAttribute':
             return Object.assign({}, StrikethroughCheckAttributeBlockToJSON(value), { 'type': 'checkAttribute' } as const);
         case 'group':

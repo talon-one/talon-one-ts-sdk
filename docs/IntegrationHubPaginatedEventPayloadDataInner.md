@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`eventId` | number
 `profileIntegrationID` | string
 `loyaltyProgramID` | number
 `loyaltyProgramName` | string
@@ -49,6 +50,7 @@ import type { IntegrationHubPaginatedEventPayloadDataInner } from 'talon_one_sdk
 
 // TODO: Update the object below with actual values
 const example = {
+  "eventId": 123,
   "profileIntegrationID": null,
   "loyaltyProgramID": null,
   "loyaltyProgramName": null,

@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`eventId` | number
 `profileIntegrationID` | string
 `loyaltyProgramID` | number
 `loyaltyProgramName` | string
@@ -27,6 +28,7 @@ import type { IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotificati
 
 // TODO: Update the object below with actual values
 const example = {
+  "eventId": 123,
   "profileIntegrationID": null,
   "loyaltyProgramID": null,
   "loyaltyProgramName": null,

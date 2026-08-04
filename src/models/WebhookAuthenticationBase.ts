@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { selectOneOfBestMatch } from '../runtime';
 import type { WebhookAuthenticationBaseOneOf } from './WebhookAuthenticationBaseOneOf';
 import {
     instanceOfWebhookAuthenticationBaseOneOf,
@@ -45,11 +46,12 @@ export function WebhookAuthenticationBaseFromJSONTyped(json: any, ignoreDiscrimi
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfWebhookAuthenticationBaseOneOf(json)) {
-        return WebhookAuthenticationBaseOneOfFromJSONTyped(json, true);
-    }
-    if (instanceOfWebhookAuthenticationBaseOneOf1(json)) {
-        return WebhookAuthenticationBaseOneOf1FromJSONTyped(json, true);
+    const matchedVariant = selectOneOfBestMatch(json, [
+        [instanceOfWebhookAuthenticationBaseOneOf, WebhookAuthenticationBaseOneOfFromJSONTyped],
+        [instanceOfWebhookAuthenticationBaseOneOf1, WebhookAuthenticationBaseOneOf1FromJSONTyped],
+    ], true);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {} as any;
 }
@@ -65,11 +67,12 @@ export function WebhookAuthenticationBaseToJSONTyped(value?: WebhookAuthenticati
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfWebhookAuthenticationBaseOneOf(value)) {
-        return WebhookAuthenticationBaseOneOfToJSON(value as WebhookAuthenticationBaseOneOf);
-    }
-    if (instanceOfWebhookAuthenticationBaseOneOf1(value)) {
-        return WebhookAuthenticationBaseOneOf1ToJSON(value as WebhookAuthenticationBaseOneOf1);
+    const matchedVariant = selectOneOfBestMatch(value, [
+        [instanceOfWebhookAuthenticationBaseOneOf, WebhookAuthenticationBaseOneOfToJSON],
+        [instanceOfWebhookAuthenticationBaseOneOf1, WebhookAuthenticationBaseOneOf1ToJSON],
+    ]);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {};
 }

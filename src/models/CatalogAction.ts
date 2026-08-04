@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { selectOneOfBestMatch } from '../runtime';
 import type { CatalogActionOneOf } from './CatalogActionOneOf';
 import {
     instanceOfCatalogActionOneOf,
@@ -73,23 +74,16 @@ export function CatalogActionFromJSONTyped(json: any, ignoreDiscriminator: boole
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfCatalogActionOneOf(json)) {
-        return CatalogActionOneOfFromJSONTyped(json, true);
-    }
-    if (instanceOfCatalogActionOneOf1(json)) {
-        return CatalogActionOneOf1FromJSONTyped(json, true);
-    }
-    if (instanceOfCatalogActionOneOf2(json)) {
-        return CatalogActionOneOf2FromJSONTyped(json, true);
-    }
-    if (instanceOfCatalogActionOneOf3(json)) {
-        return CatalogActionOneOf3FromJSONTyped(json, true);
-    }
-    if (instanceOfCatalogActionOneOf4(json)) {
-        return CatalogActionOneOf4FromJSONTyped(json, true);
-    }
-    if (instanceOfCatalogActionOneOf5(json)) {
-        return CatalogActionOneOf5FromJSONTyped(json, true);
+    const matchedVariant = selectOneOfBestMatch(json, [
+        [instanceOfCatalogActionOneOf, CatalogActionOneOfFromJSONTyped],
+        [instanceOfCatalogActionOneOf1, CatalogActionOneOf1FromJSONTyped],
+        [instanceOfCatalogActionOneOf2, CatalogActionOneOf2FromJSONTyped],
+        [instanceOfCatalogActionOneOf3, CatalogActionOneOf3FromJSONTyped],
+        [instanceOfCatalogActionOneOf4, CatalogActionOneOf4FromJSONTyped],
+        [instanceOfCatalogActionOneOf5, CatalogActionOneOf5FromJSONTyped],
+    ], true);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {} as any;
 }
@@ -105,23 +99,16 @@ export function CatalogActionToJSONTyped(value?: CatalogAction | null, ignoreDis
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfCatalogActionOneOf(value)) {
-        return CatalogActionOneOfToJSON(value as CatalogActionOneOf);
-    }
-    if (instanceOfCatalogActionOneOf1(value)) {
-        return CatalogActionOneOf1ToJSON(value as CatalogActionOneOf1);
-    }
-    if (instanceOfCatalogActionOneOf2(value)) {
-        return CatalogActionOneOf2ToJSON(value as CatalogActionOneOf2);
-    }
-    if (instanceOfCatalogActionOneOf3(value)) {
-        return CatalogActionOneOf3ToJSON(value as CatalogActionOneOf3);
-    }
-    if (instanceOfCatalogActionOneOf4(value)) {
-        return CatalogActionOneOf4ToJSON(value as CatalogActionOneOf4);
-    }
-    if (instanceOfCatalogActionOneOf5(value)) {
-        return CatalogActionOneOf5ToJSON(value as CatalogActionOneOf5);
+    const matchedVariant = selectOneOfBestMatch(value, [
+        [instanceOfCatalogActionOneOf, CatalogActionOneOfToJSON],
+        [instanceOfCatalogActionOneOf1, CatalogActionOneOf1ToJSON],
+        [instanceOfCatalogActionOneOf2, CatalogActionOneOf2ToJSON],
+        [instanceOfCatalogActionOneOf3, CatalogActionOneOf3ToJSON],
+        [instanceOfCatalogActionOneOf4, CatalogActionOneOf4ToJSON],
+        [instanceOfCatalogActionOneOf5, CatalogActionOneOf5ToJSON],
+    ]);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {};
 }

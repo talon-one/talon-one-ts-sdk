@@ -367,6 +367,58 @@ export function mapValues(data: any, fn: (item: any) => any) {
     return result;
 }
 
+type OneOfGuard = (value: object) => boolean;
+type OneOfMapper = (value: any, ignoreDiscriminator: boolean) => any;
+
+/**
+ * Picks the best fitting variant of a `oneOf` union that has no discriminator.
+ *
+ * The generated `instanceOf*` guards only check that the required properties are
+ * present, so several variants can match the same payload and the first match is
+ * not necessarily the correct one. Every matching variant is therefore applied and
+ * the one that resolves the most properties wins.
+ *
+ * With `preserveUnmatchedKeys` (deserialization only), keys the winning variant
+ * does not know about are copied over verbatim, so an ambiguous match can never
+ * silently drop data. It is not used for serialization, where the mapped keys are
+ * wire names and copying model property names would emit unknown fields.
+ *
+ * Returns `undefined` when no variant matches.
+ */
+export function selectOneOfBestMatch(
+    value: any,
+    candidates: Array<[OneOfGuard, OneOfMapper]>,
+    preserveUnmatchedKeys: boolean = false,
+): any {
+    let best: any = undefined;
+    let bestScore = -1;
+
+    for (const [isInstance, map] of candidates) {
+        if (!isInstance(value)) {
+            continue;
+        }
+        const mapped = map(value, true);
+        if (mapped == null || typeof mapped !== 'object') {
+            continue;
+        }
+        const score = Object.keys(mapped).filter(key => mapped[key] !== undefined).length;
+        if (score > bestScore) {
+            best = mapped;
+            bestScore = score;
+        }
+    }
+
+    if (best !== undefined && preserveUnmatchedKeys) {
+        for (const key of Object.keys(value)) {
+            if (best[key] === undefined && value[key] != null) {
+                best[key] = value[key];
+            }
+        }
+    }
+
+    return best;
+}
+
 // Pass-through serializer for `any`-typed properties in form data. See #1877.
 export function anyToJSON(value: any): any {
     return value;

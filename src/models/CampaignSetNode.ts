@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { selectOneOfBestMatch } from '../runtime';
 import type { CampaignSetBranchNode } from './CampaignSetBranchNode';
 import {
     instanceOfCampaignSetBranchNode,
@@ -45,11 +46,12 @@ export function CampaignSetNodeFromJSONTyped(json: any, ignoreDiscriminator: boo
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfCampaignSetBranchNode(json)) {
-        return CampaignSetBranchNodeFromJSONTyped(json, true);
-    }
-    if (instanceOfCampaignSetLeafNode(json)) {
-        return CampaignSetLeafNodeFromJSONTyped(json, true);
+    const matchedVariant = selectOneOfBestMatch(json, [
+        [instanceOfCampaignSetBranchNode, CampaignSetBranchNodeFromJSONTyped],
+        [instanceOfCampaignSetLeafNode, CampaignSetLeafNodeFromJSONTyped],
+    ], true);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {} as any;
 }
@@ -65,11 +67,12 @@ export function CampaignSetNodeToJSONTyped(value?: CampaignSetNode | null, ignor
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfCampaignSetBranchNode(value)) {
-        return CampaignSetBranchNodeToJSON(value as CampaignSetBranchNode);
-    }
-    if (instanceOfCampaignSetLeafNode(value)) {
-        return CampaignSetLeafNodeToJSON(value as CampaignSetLeafNode);
+    const matchedVariant = selectOneOfBestMatch(value, [
+        [instanceOfCampaignSetBranchNode, CampaignSetBranchNodeToJSON],
+        [instanceOfCampaignSetLeafNode, CampaignSetLeafNodeToJSON],
+    ]);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {};
 }

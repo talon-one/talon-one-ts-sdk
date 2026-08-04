@@ -15,7 +15,7 @@ Name | Type
 `activatedAt` | Date
 `promotionRules` | [Array&lt;PromotionRuleV2&gt;](PromotionRuleV2.md)
 `strikethroughRules` | [Array&lt;StrikethroughRuleV2&gt;](StrikethroughRuleV2.md)
-`selectors` | Array&lt;{ [key: string]: any; }&gt;
+`selectors` | [Array&lt;Selector&gt;](Selector.md)
 `bundles` | Array&lt;{ [key: string]: any; }&gt;
 `parameters` | Array&lt;{ [key: string]: any; }&gt;
 

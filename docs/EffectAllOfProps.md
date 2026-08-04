@@ -76,6 +76,7 @@ Name | Type
 `extensionDuration` | string
 `affectedTransactions` | [Array&lt;LoyaltyLedgerEntryExpiryDateChange&gt;](LoyaltyLedgerEntryExpiryDateChange.md)
 `newExpiryDate` | Date
+`endDate` | Date
 
 ## Example
 
@@ -111,7 +112,7 @@ const example = {
   "programId": null,
   "subLedgerId": null,
   "recipientIntegrationId": URNGV8294NV,
-  "startDate": null,
+  "startDate": 2026-04-16T15:25:37Z,
   "expiryDate": null,
   "transactionUUID": null,
   "cartItemPosition": 1,
@@ -145,15 +146,16 @@ const example = {
   "audienceName": My audience,
   "achievementId": 10,
   "achievementName": FreeCoffee10Orders,
-  "progressTrackerId": null,
+  "progressTrackerId": 42,
   "delta": null,
-  "target": null,
+  "target": 10,
   "isJustCompleted": null,
   "decreaseProgressBy": null,
   "currentProgress": null,
   "extensionDuration": 12h,
   "affectedTransactions": null,
   "newExpiryDate": 2024-07-24T14:15:22Z,
+  "endDate": 2026-04-30T11:24:59Z,
 } satisfies EffectAllOfProps
 
 console.log(example)
