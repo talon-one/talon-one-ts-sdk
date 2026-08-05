@@ -49,7 +49,25 @@ export interface AchievementReference {
      * @memberof AchievementReference
      */
     campaignName: string;
+    /**
+     * The state of the campaign that references this achievement.
+     * @type {AchievementReferenceCampaignStateEnum}
+     * @memberof AchievementReference
+     */
+    campaignState: AchievementReferenceCampaignStateEnum;
 }
+
+
+/**
+ * @export
+ */
+export const AchievementReferenceCampaignStateEnum = {
+    Enabled: 'enabled',
+    Disabled: 'disabled',
+    Archived: 'archived'
+} as const;
+export type AchievementReferenceCampaignStateEnum = typeof AchievementReferenceCampaignStateEnum[keyof typeof AchievementReferenceCampaignStateEnum];
+
 
 /**
  * Check if a given object implements the AchievementReference interface.
@@ -61,6 +79,7 @@ export function instanceOfAchievementReference(value: object): value is Achievem
     if (!('applicationName' in _v) || _v['applicationName'] === undefined) return false;
     if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
     if (!('campaignName' in _v) || _v['campaignName'] === undefined) return false;
+    if (!('campaignState' in _v) || _v['campaignState'] === undefined) return false;
     return true;
 }
 
@@ -79,6 +98,7 @@ export function AchievementReferenceFromJSONTyped(json: any, ignoreDiscriminator
         'applicationName': json['applicationName'],
         'campaignId': json['campaignId'],
         'campaignName': json['campaignName'],
+        'campaignState': json['campaignState'],
     };
 }
 
@@ -98,6 +118,7 @@ export function AchievementReferenceToJSONTyped(value?: AchievementReference | n
         'applicationName': value['applicationName'],
         'campaignId': value['campaignId'],
         'campaignName': value['campaignName'],
+        'campaignState': value['campaignState'],
     };
 }
 

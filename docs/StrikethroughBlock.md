@@ -14,11 +14,19 @@ Name | Type
 `blocks` | [Array&lt;StrikethroughBlock&gt;](StrikethroughBlock.md)
 `onFailure` | [Array&lt;StrikethroughBlock&gt;](StrikethroughBlock.md)
 `onError` | { [key: string]: Array&lt;StrikethroughBlock&gt;; }
-`expression` | Array&lt;any&gt;
-`attribute` | string
+`name` | string
 `value` | any
+`partial` | boolean
+`target` | [AwardDiscountTarget](AwardDiscountTarget.md)
+`expression` | Array&lt;any&gt;
+`attribute` | any
 `min` | any
 `max` | any
+`start` | any
+`end` | any
+`startInclusive` | boolean
+`endInclusive` | boolean
+`timezoneInsensitive` | boolean
 `values` | any
 `count` | any
 
@@ -36,11 +44,19 @@ const example = {
   "blocks": null,
   "onFailure": null,
   "onError": null,
-  "expression": null,
-  "attribute": $Session.Total,
+  "name": 10% Off,
   "value": null,
+  "partial": false,
+  "target": null,
+  "expression": null,
+  "attribute": null,
   "min": null,
   "max": null,
+  "start": null,
+  "end": null,
+  "startInclusive": true,
+  "endInclusive": true,
+  "timezoneInsensitive": false,
   "values": null,
   "count": null,
 } satisfies StrikethroughBlock

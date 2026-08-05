@@ -12,34 +12,10 @@
  * Do not edit the class manually.
  */
 
-import type { IntegrationHubEventPayloadCouponBasedNotifications } from './IntegrationHubEventPayloadCouponBasedNotifications';
-import {
-    instanceOfIntegrationHubEventPayloadCouponBasedNotifications,
-    IntegrationHubEventPayloadCouponBasedNotificationsFromJSON,
-    IntegrationHubEventPayloadCouponBasedNotificationsFromJSONTyped,
-    IntegrationHubEventPayloadCouponBasedNotificationsToJSON,
-} from './IntegrationHubEventPayloadCouponBasedNotifications';
-import type { IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification } from './IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification';
-import {
-    instanceOfIntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification,
-    IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationFromJSON,
-    IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationFromJSONTyped,
-    IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationToJSON,
-} from './IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification';
-import type { IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification } from './IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification';
-import {
-    instanceOfIntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification,
-    IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationFromJSON,
-    IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationFromJSONTyped,
-    IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationToJSON,
-} from './IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification';
-import type { IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification } from './IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification';
-import {
-    instanceOfIntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification,
-    IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotificationFromJSON,
-    IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotificationFromJSONTyped,
-    IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotificationToJSON,
-} from './IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification';
+import { type IntegrationHubEventPayloadCouponBasedNotifications, IntegrationHubEventPayloadCouponBasedNotificationsFromJSONTyped, IntegrationHubEventPayloadCouponBasedNotificationsToJSON } from './IntegrationHubEventPayloadCouponBasedNotifications';
+import { type IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification, IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationFromJSONTyped, IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationToJSON } from './IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification';
+import { type IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification, IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationFromJSONTyped, IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationToJSON } from './IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification';
+import { type IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification, IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotificationFromJSONTyped, IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotificationToJSON } from './IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification';
 
 /**
  * @type IntegrationHubPaginatedEventPayloadDataInner
@@ -47,6 +23,23 @@ import {
  * @export
  */
 export type IntegrationHubPaginatedEventPayloadDataInner = { eventType: 'CouponCreated' } & IntegrationHubEventPayloadCouponBasedNotifications | { eventType: 'CouponDeleted' } & IntegrationHubEventPayloadCouponBasedNotifications | { eventType: 'CouponUpdated' } & IntegrationHubEventPayloadCouponBasedNotifications | { eventType: 'LoyaltyPointsChanged' } & IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification | { eventType: 'LoyaltyTierDowngrade' } & IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification | { eventType: 'LoyaltyTierUpgrade' } & IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification;
+/**
+ * Check if a given object implements the IntegrationHubPaginatedEventPayloadDataInner interface.
+ */
+export function instanceOfIntegrationHubPaginatedEventPayloadDataInner(value: any): value is IntegrationHubPaginatedEventPayloadDataInner {
+    const _v = value as Record<PropertyKey, unknown>;
+    switch (_v['EventType']) {
+        case 'CouponCreated':
+        case 'CouponDeleted':
+        case 'CouponUpdated':
+        case 'LoyaltyPointsChanged':
+        case 'LoyaltyTierDowngrade':
+        case 'LoyaltyTierUpgrade':
+            return true;
+        default:
+            return false;
+    }
+}
 
 export function IntegrationHubPaginatedEventPayloadDataInnerFromJSON(json: any): IntegrationHubPaginatedEventPayloadDataInner {
     return IntegrationHubPaginatedEventPayloadDataInnerFromJSONTyped(json, false);

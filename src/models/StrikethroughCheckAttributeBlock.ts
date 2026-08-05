@@ -52,11 +52,11 @@ export interface StrikethroughCheckAttributeBlock {
      */
     operator: StrikethroughCheckAttributeBlockOperatorEnum;
     /**
-     * The attribute path identifier (e.g. "$Session.Total").
-     * @type {string}
+     * 
+     * @type {any}
      * @memberof StrikethroughCheckAttributeBlock
      */
-    attribute: string;
+    attribute: any | null;
     /**
      * 
      * @type {any}
@@ -75,6 +75,36 @@ export interface StrikethroughCheckAttributeBlock {
      * @memberof StrikethroughCheckAttributeBlock
      */
     max?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof StrikethroughCheckAttributeBlock
+     */
+    start?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof StrikethroughCheckAttributeBlock
+     */
+    end?: any | null;
+    /**
+     * When `true`, the `start` value is included in the range for the `within` operator.
+     * @type {boolean}
+     * @memberof StrikethroughCheckAttributeBlock
+     */
+    startInclusive?: boolean;
+    /**
+     * When `true`, the `end` value is included in the range for the `within` operator.
+     * @type {boolean}
+     * @memberof StrikethroughCheckAttributeBlock
+     */
+    endInclusive?: boolean;
+    /**
+     * Indicates whether the `within` operator ignores time zones and compares the wall-clock time only. When `false`, time zones are taken into account.
+     * @type {boolean}
+     * @memberof StrikethroughCheckAttributeBlock
+     */
+    timezoneInsensitive?: boolean;
     /**
      * 
      * @type {any}
@@ -126,7 +156,11 @@ export const StrikethroughCheckAttributeBlockOperatorEnum = {
     ContainsExactly: 'containsExactly',
     ContainsOneOf: 'containsOneOf',
     ContainsNoneOf: 'containsNoneOf',
-    ContainsAllOf: 'containsAllOf'
+    ContainsAllOf: 'containsAllOf',
+    After: 'after',
+    Before: 'before',
+    Within: 'within',
+    NotWithin: 'not(within)'
 } as const;
 export type StrikethroughCheckAttributeBlockOperatorEnum = typeof StrikethroughCheckAttributeBlockOperatorEnum[keyof typeof StrikethroughCheckAttributeBlockOperatorEnum];
 
@@ -161,6 +195,11 @@ export function StrikethroughCheckAttributeBlockFromJSONTyped(json: any, ignoreD
         'value': json['value'] === undefined ? undefined : json['value'] === null ? null : json['value'],
         'min': json['min'] === undefined ? undefined : json['min'] === null ? null : json['min'],
         'max': json['max'] === undefined ? undefined : json['max'] === null ? null : json['max'],
+        'start': json['start'] === undefined ? undefined : json['start'] === null ? null : json['start'],
+        'end': json['end'] === undefined ? undefined : json['end'] === null ? null : json['end'],
+        'startInclusive': json['startInclusive'] == null ? undefined : json['startInclusive'],
+        'endInclusive': json['endInclusive'] == null ? undefined : json['endInclusive'],
+        'timezoneInsensitive': json['timezoneInsensitive'] == null ? undefined : json['timezoneInsensitive'],
         'values': json['values'] === undefined ? undefined : json['values'] === null ? null : json['values'],
         'count': json['count'] === undefined ? undefined : json['count'] === null ? null : json['count'],
         'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(StrikethroughBlockFromJSON)),
@@ -186,6 +225,11 @@ export function StrikethroughCheckAttributeBlockToJSONTyped(value?: Strikethroug
         'value': value['value'],
         'min': value['min'],
         'max': value['max'],
+        'start': value['start'],
+        'end': value['end'],
+        'startInclusive': value['startInclusive'],
+        'endInclusive': value['endInclusive'],
+        'timezoneInsensitive': value['timezoneInsensitive'],
         'values': value['values'],
         'count': value['count'],
         'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(StrikethroughBlockToJSON)),

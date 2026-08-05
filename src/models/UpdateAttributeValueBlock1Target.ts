@@ -25,6 +25,12 @@ export interface UpdateAttributeValueBlock1Target {
      * @memberof UpdateAttributeValueBlock1Target
      */
     type: UpdateAttributeValueBlock1TargetTypeEnum;
+    /**
+     * Identifies the name of the target when its type is set to `selector` or `globalFilter`.
+     * @type {string}
+     * @memberof UpdateAttributeValueBlock1Target
+     */
+    name?: string;
 }
 
 
@@ -64,6 +70,7 @@ export function UpdateAttributeValueBlock1TargetFromJSONTyped(json: any, ignoreD
     return {
         
         'type': json['type'],
+        'name': json['name'] == null ? undefined : json['name'],
     };
 }
 
@@ -79,6 +86,7 @@ export function UpdateAttributeValueBlock1TargetToJSONTyped(value?: UpdateAttrib
     return {
         
         'type': value['type'],
+        'name': value['name'],
     };
 }
 
