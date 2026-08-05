@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { selectOneOfBestMatch } from '../runtime';
 import type { WebhookAuthenticationDataBasic } from './WebhookAuthenticationDataBasic';
 import {
     instanceOfWebhookAuthenticationDataBasic,
@@ -33,6 +34,12 @@ import {
  * @export
  */
 export type WebhookAuthenticationAllOfData = WebhookAuthenticationDataBasic | WebhookAuthenticationDataCustom;
+/**
+ * Check if a given object implements the WebhookAuthenticationAllOfData interface.
+ */
+export function instanceOfWebhookAuthenticationAllOfData(value: any): value is WebhookAuthenticationAllOfData {
+    return typeof value === 'object' && value !== null && (instanceOfWebhookAuthenticationDataBasic(value) || instanceOfWebhookAuthenticationDataCustom(value));
+}
 
 export function WebhookAuthenticationAllOfDataFromJSON(json: any): WebhookAuthenticationAllOfData {
     return WebhookAuthenticationAllOfDataFromJSONTyped(json, false);
@@ -45,11 +52,12 @@ export function WebhookAuthenticationAllOfDataFromJSONTyped(json: any, ignoreDis
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfWebhookAuthenticationDataBasic(json)) {
-        return WebhookAuthenticationDataBasicFromJSONTyped(json, true);
-    }
-    if (instanceOfWebhookAuthenticationDataCustom(json)) {
-        return WebhookAuthenticationDataCustomFromJSONTyped(json, true);
+    const matchedVariant = selectOneOfBestMatch(json, [
+        [instanceOfWebhookAuthenticationDataBasic, WebhookAuthenticationDataBasicFromJSONTyped],
+        [instanceOfWebhookAuthenticationDataCustom, WebhookAuthenticationDataCustomFromJSONTyped],
+    ], true);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {} as any;
 }
@@ -65,11 +73,12 @@ export function WebhookAuthenticationAllOfDataToJSONTyped(value?: WebhookAuthent
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfWebhookAuthenticationDataBasic(value)) {
-        return WebhookAuthenticationDataBasicToJSON(value as WebhookAuthenticationDataBasic);
-    }
-    if (instanceOfWebhookAuthenticationDataCustom(value)) {
-        return WebhookAuthenticationDataCustomToJSON(value as WebhookAuthenticationDataCustom);
+    const matchedVariant = selectOneOfBestMatch(value, [
+        [instanceOfWebhookAuthenticationDataBasic, WebhookAuthenticationDataBasicToJSON],
+        [instanceOfWebhookAuthenticationDataCustom, WebhookAuthenticationDataCustomToJSON],
+    ]);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {};
 }

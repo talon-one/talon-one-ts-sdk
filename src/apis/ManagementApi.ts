@@ -179,6 +179,11 @@ import {
     ErrorResponseWithStatusToJSON,
 } from '../models/ErrorResponseWithStatus';
 import {
+    type ExcludePriceObservationsRequest,
+    ExcludePriceObservationsRequestFromJSON,
+    ExcludePriceObservationsRequestToJSON,
+} from '../models/ExcludePriceObservationsRequest';
+import {
     type Experiment,
     ExperimentFromJSON,
     ExperimentToJSON,
@@ -897,6 +902,11 @@ export interface DeleteUserByEmailOperationRequest {
 export interface DisconnectCampaignStoresRequest {
     applicationId: number;
     campaignId: number;
+}
+
+export interface ExcludePriceHistoryRequest {
+    applicationId: number;
+    excludePriceObservationsRequest: ExcludePriceObservationsRequest;
 }
 
 export interface ExportAccountCollectionItemsRequest {
@@ -4238,6 +4248,66 @@ export class ManagementApi extends runtime.BaseAPI {
      */
     async disconnectCampaignStores(requestParameters: DisconnectCampaignStoresRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.disconnectCampaignStoresRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for excludePriceHistory without sending the request
+     */
+    async excludePriceHistoryRequestOpts(requestParameters: ExcludePriceHistoryRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['applicationId'] == null) {
+            throw new runtime.RequiredError(
+                'applicationId',
+                'Required parameter "applicationId" was null or undefined when calling excludePriceHistory().'
+            );
+        }
+
+        if (requestParameters['excludePriceObservationsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'excludePriceObservationsRequest',
+                'Required parameter "excludePriceObservationsRequest" was null or undefined when calling excludePriceHistory().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/applications/{applicationId}/price_history/exclusions`;
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ExcludePriceObservationsRequestToJSON(requestParameters['excludePriceObservationsRequest']),
+        };
+    }
+
+    /**
+     * Select a batch of historical price IDs to exclude from [best prior price calculation](https://docs.talon.one/integration-api#tag/Catalogs/operation/bestPriorPrice). All IDs in the batch must be valid `id` values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, must not already be excluded from best prior price calculation, and must not be associated with a scheduled strikethrough pricing notification. 
+     * Exclude price records from price history
+     */
+    async excludePriceHistoryRaw(requestParameters: ExcludePriceHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.excludePriceHistoryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Select a batch of historical price IDs to exclude from [best prior price calculation](https://docs.talon.one/integration-api#tag/Catalogs/operation/bestPriorPrice). All IDs in the batch must be valid `id` values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, must not already be excluded from best prior price calculation, and must not be associated with a scheduled strikethrough pricing notification. 
+     * Exclude price records from price history
+     */
+    async excludePriceHistory(requestParameters: ExcludePriceHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.excludePriceHistoryRaw(requestParameters, initOverrides);
     }
 
     /**

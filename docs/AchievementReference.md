@@ -11,6 +11,7 @@ Name | Type
 `applicationName` | string
 `campaignId` | number
 `campaignName` | string
+`campaignState` | string
 
 ## Example
 
@@ -24,6 +25,7 @@ const example = {
   "applicationName": North America Storefront,
   "campaignId": 4501,
   "campaignName": Summer promotions,
+  "campaignState": enabled,
 } satisfies AchievementReference
 
 console.log(example)

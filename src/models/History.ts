@@ -79,6 +79,18 @@ export interface History {
      * @memberof History
      */
     target: LabelTarget;
+    /**
+     * The date and time when the historical price ID was excluded.
+     * @type {Date}
+     * @memberof History
+     */
+    excludedAt?: Date;
+    /**
+     * The reason for excluding this historical price ID.
+     * @type {string}
+     * @memberof History
+     */
+    exclusionReason?: string;
 }
 
 /**
@@ -112,6 +124,8 @@ export function HistoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): H
         'price': json['price'],
         'metadata': BestPriorPriceMetadataFromJSON(json['metadata']),
         'target': LabelTargetFromJSON(json['target']),
+        'excludedAt': json['excludedAt'] == null ? undefined : (new Date(json['excludedAt'])),
+        'exclusionReason': json['exclusionReason'] == null ? undefined : json['exclusionReason'],
     };
 }
 
@@ -133,6 +147,8 @@ export function HistoryToJSONTyped(value?: History | null, ignoreDiscriminator: 
         'price': value['price'],
         'metadata': BestPriorPriceMetadataToJSON(value['metadata']),
         'target': LabelTargetToJSON(value['target']),
+        'excludedAt': value['excludedAt'] == null ? value['excludedAt'] : value['excludedAt'].toISOString(),
+        'exclusionReason': value['exclusionReason'],
     };
 }
 

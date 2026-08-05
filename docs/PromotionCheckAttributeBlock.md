@@ -10,10 +10,15 @@ Name | Type
 `type` | string
 `tags` | Array&lt;string&gt;
 `operator` | string
-`attribute` | string
+`attribute` | any
 `value` | any
 `min` | any
 `max` | any
+`start` | any
+`end` | any
+`startInclusive` | boolean
+`endInclusive` | boolean
+`timezoneInsensitive` | boolean
 `values` | any
 `count` | any
 `onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
@@ -29,10 +34,15 @@ const example = {
   "type": null,
   "tags": null,
   "operator": greaterThan,
-  "attribute": $Session.Total,
+  "attribute": null,
   "value": null,
   "min": null,
   "max": null,
+  "start": null,
+  "end": null,
+  "startInclusive": true,
+  "endInclusive": true,
+  "timezoneInsensitive": false,
   "values": null,
   "count": null,
   "onFailure": null,

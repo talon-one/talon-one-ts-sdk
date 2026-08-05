@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { selectOneOfBestMatch } from '../runtime';
 import type { LabelTargetAudience } from './LabelTargetAudience';
 import {
     instanceOfLabelTargetAudience,
@@ -33,6 +34,12 @@ import {
  * @export
  */
 export type LabelTarget = LabelTargetAudience | LabelTargetNone;
+/**
+ * Check if a given object implements the LabelTarget interface.
+ */
+export function instanceOfLabelTarget(value: any): value is LabelTarget {
+    return typeof value === 'object' && value !== null && (instanceOfLabelTargetAudience(value) || instanceOfLabelTargetNone(value));
+}
 
 export function LabelTargetFromJSON(json: any): LabelTarget {
     return LabelTargetFromJSONTyped(json, false);
@@ -45,11 +52,12 @@ export function LabelTargetFromJSONTyped(json: any, ignoreDiscriminator: boolean
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfLabelTargetAudience(json)) {
-        return LabelTargetAudienceFromJSONTyped(json, true);
-    }
-    if (instanceOfLabelTargetNone(json)) {
-        return LabelTargetNoneFromJSONTyped(json, true);
+    const matchedVariant = selectOneOfBestMatch(json, [
+        [instanceOfLabelTargetAudience, LabelTargetAudienceFromJSONTyped],
+        [instanceOfLabelTargetNone, LabelTargetNoneFromJSONTyped],
+    ], true);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {} as any;
 }
@@ -65,11 +73,12 @@ export function LabelTargetToJSONTyped(value?: LabelTarget | null, ignoreDiscrim
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfLabelTargetAudience(value)) {
-        return LabelTargetAudienceToJSON(value as LabelTargetAudience);
-    }
-    if (instanceOfLabelTargetNone(value)) {
-        return LabelTargetNoneToJSON(value as LabelTargetNone);
+    const matchedVariant = selectOneOfBestMatch(value, [
+        [instanceOfLabelTargetAudience, LabelTargetAudienceToJSON],
+        [instanceOfLabelTargetNone, LabelTargetNoneToJSON],
+    ]);
+    if (matchedVariant !== undefined) {
+        return matchedVariant;
     }
     return {};
 }
