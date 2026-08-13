@@ -15,6 +15,7 @@ Name | Type
 `type` | string
 `attributes` | object
 `integrationId` | string
+`referralCode` | string
 `effects` | Array&lt;object&gt;
 
 ## Example
@@ -33,6 +34,7 @@ const example = {
   "type": pageViewed,
   "attributes": {myAttribute=myValue},
   "integrationId": 175KJPS947296,
+  "referralCode": NT2K54D9,
   "effects": null,
 } satisfies EventV3
 

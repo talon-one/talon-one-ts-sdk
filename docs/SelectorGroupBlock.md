@@ -20,7 +20,7 @@ import type { SelectorGroupBlock } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "id": a1b2c3d4-e5f6-7890-abcd-ef1234567890,
-  "type": null,
+  "type": group,
   "tags": null,
   "operator": all,
   "blocks": null,

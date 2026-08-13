@@ -32,6 +32,12 @@ export interface ApplicationReferee {
      */
     sessionId: string;
     /**
+     * The unique ID of the advanced event in which the customer redeemed the referral. Omitted when the referral was redeemed through a customer session rather than an advanced event.
+     * @type {string}
+     * @memberof ApplicationReferee
+     */
+    advancedEventIntegrationId?: string;
+    /**
      * Integration ID of the Advocate's Profile.
      * @type {string}
      * @memberof ApplicationReferee
@@ -83,6 +89,7 @@ export function ApplicationRefereeFromJSONTyped(json: any, ignoreDiscriminator: 
         
         'applicationId': json['applicationId'],
         'sessionId': json['sessionId'],
+        'advancedEventIntegrationId': json['advancedEventIntegrationId'] == null ? undefined : json['advancedEventIntegrationId'],
         'advocateIntegrationId': json['advocateIntegrationId'],
         'friendIntegrationId': json['friendIntegrationId'],
         'code': json['code'],
@@ -103,6 +110,7 @@ export function ApplicationRefereeToJSONTyped(value?: ApplicationReferee | null,
         
         'applicationId': value['applicationId'],
         'sessionId': value['sessionId'],
+        'advancedEventIntegrationId': value['advancedEventIntegrationId'],
         'advocateIntegrationId': value['advocateIntegrationId'],
         'friendIntegrationId': value['friendIntegrationId'],
         'code': value['code'],

@@ -27,25 +27,25 @@ export interface CreateAchievementV2 {
      * @type {string}
      * @memberof CreateAchievementV2
      */
-    name: string;
+    name?: string;
     /**
      * The display name for the achievement in the Campaign Manager.
      * @type {string}
      * @memberof CreateAchievementV2
      */
-    title: string;
+    title?: string;
     /**
      * A description of the achievement.
      * @type {string}
      * @memberof CreateAchievementV2
      */
-    description: string;
+    description?: string;
     /**
      * The required number of actions or the transactional milestone to complete the achievement.
      * @type {number}
      * @memberof CreateAchievementV2
      */
-    target: number;
+    target?: number;
     /**
      * The relative duration after which the achievement ends and resets for a particular customer profile.
      * 
@@ -166,10 +166,6 @@ export type CreateAchievementV2ActivationPolicyEnum = typeof CreateAchievementV2
  */
 export function instanceOfCreateAchievementV2(value: object): value is CreateAchievementV2 {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('name' in _v) || _v['name'] === undefined) return false;
-    if (!('title' in _v) || _v['title'] === undefined) return false;
-    if (!('description' in _v) || _v['description'] === undefined) return false;
-    if (!('target' in _v) || _v['target'] === undefined) return false;
     if (!('sandbox' in _v) || _v['sandbox'] === undefined) return false;
     if (!('timezone' in _v) || _v['timezone'] === undefined) return false;
     return true;
@@ -185,10 +181,10 @@ export function CreateAchievementV2FromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'name': json['name'],
-        'title': json['title'],
-        'description': json['description'],
-        'target': json['target'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'title': json['title'] == null ? undefined : json['title'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'target': json['target'] == null ? undefined : json['target'],
         'period': json['period'] == null ? undefined : json['period'],
         'recurrencePolicy': json['recurrencePolicy'] == null ? undefined : json['recurrencePolicy'],
         'activationPolicy': json['activationPolicy'] == null ? undefined : json['activationPolicy'],

@@ -13,6 +13,7 @@ Name | Type
 `attributes` | object
 `integrationId` | string
 `connectedSessionId` | string
+`referralCode` | string
 
 ## Example
 
@@ -28,6 +29,7 @@ const example = {
   "attributes": {myAttribute=myValue},
   "integrationId": 175KJPS947296,
   "connectedSessionId": 175KJPS947296,
+  "referralCode": NT2K54D9,
 } satisfies EventV3RequestEntity
 
 console.log(example)
