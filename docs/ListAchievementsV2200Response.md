@@ -1,28 +1,24 @@
 
-# MCPOAuthClient
+# ListAchievementsV2200Response
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`clientId` | string
-`clientName` | string
-`redirectUris` | Array&lt;string&gt;
-`createdAt` | Date
+`hasMore` | boolean
+`data` | [Array&lt;AchievementV2&gt;](AchievementV2.md)
 
 ## Example
 
 ```typescript
-import type { MCPOAuthClient } from 'talon_one_sdk'
+import type { ListAchievementsV2200Response } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "clientId": a3f8c1e2b4d56789,
-  "clientName": My MCP Integration,
-  "redirectUris": [https://example.com/callback, http://localhost:3000/callback],
-  "createdAt": 2026-06-12T10:00:00Z,
-} satisfies MCPOAuthClient
+  "hasMore": null,
+  "data": null,
+} satisfies ListAchievementsV2200Response
 
 console.log(example)
 
@@ -31,7 +27,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as MCPOAuthClient
+const exampleParsed = JSON.parse(exampleJSON) as ListAchievementsV2200Response
 console.log(exampleParsed)
 ```
 

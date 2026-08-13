@@ -41,6 +41,13 @@ import {
     GiveawayToJSON,
     GiveawayToJSONTyped,
 } from './Giveaway';
+import type { InventoryReferral } from './InventoryReferral';
+import {
+    InventoryReferralFromJSON,
+    InventoryReferralFromJSONTyped,
+    InventoryReferralToJSON,
+    InventoryReferralToJSONTyped,
+} from './InventoryReferral';
 import type { Referral } from './Referral';
 import {
     ReferralFromJSON,
@@ -171,6 +178,12 @@ export interface IntegrationEventV3Response {
      * @memberof IntegrationEventV3Response
      */
     advancedEvent?: EventV3;
+    /**
+     * The referral that was processed.
+     * @type {InventoryReferral}
+     * @memberof IntegrationEventV3Response
+     */
+    referral?: InventoryReferral;
 }
 
 /**
@@ -205,6 +218,7 @@ export function IntegrationEventV3ResponseFromJSONTyped(json: any, ignoreDiscrim
         'awardedGiveaways': json['awardedGiveaways'] == null ? undefined : ((json['awardedGiveaways'] as Array<any>).map(GiveawayFromJSON)),
         'achievements': json['achievements'] == null ? undefined : ((json['achievements'] as Array<any>).map(CustomerAchievementFromJSON)),
         'advancedEvent': json['advancedEvent'] == null ? undefined : EventV3FromJSON(json['advancedEvent']),
+        'referral': json['referral'] == null ? undefined : InventoryReferralFromJSON(json['referral']),
     };
 }
 
@@ -230,6 +244,7 @@ export function IntegrationEventV3ResponseToJSONTyped(value?: IntegrationEventV3
         'awardedGiveaways': value['awardedGiveaways'] == null ? undefined : ((value['awardedGiveaways'] as Array<any>).map(GiveawayToJSON)),
         'achievements': value['achievements'] == null ? undefined : ((value['achievements'] as Array<any>).map(CustomerAchievementToJSON)),
         'advancedEvent': EventV3ToJSON(value['advancedEvent']),
+        'referral': InventoryReferralToJSON(value['referral']),
     };
 }
 

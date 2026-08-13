@@ -69,6 +69,13 @@ export interface IntegrationEventV3Request {
      */
     connectedSessionId?: string;
     /**
+     * The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the "Referral code is valid" condition in the Rule Builder to validate and redeem the code, or "Referral code is valid (without redemption)" to validate without redeeming.
+     * 
+     * @type {string}
+     * @memberof IntegrationEventV3Request
+     */
+    referralCode?: string;
+    /**
      * Identifiers of the loyalty cards used during this event.
      * @type {Array<string>}
      * @memberof IntegrationEventV3Request
@@ -88,12 +95,13 @@ export interface IntegrationEventV3Request {
  * @export
  */
 export const IntegrationEventV3RequestResponseContentEnum = {
-    CustomerProfile: 'customerProfile',
-    TriggeredCampaigns: 'triggeredCampaigns',
-    Loyalty: 'loyalty',
     AdvancedEvent: 'advancedEvent',
     AwardedGiveaways: 'awardedGiveaways',
-    RuleFailureReasons: 'ruleFailureReasons'
+    CustomerProfile: 'customerProfile',
+    Loyalty: 'loyalty',
+    Referral: 'referral',
+    RuleFailureReasons: 'ruleFailureReasons',
+    TriggeredCampaigns: 'triggeredCampaigns'
 } as const;
 export type IntegrationEventV3RequestResponseContentEnum = typeof IntegrationEventV3RequestResponseContentEnum[keyof typeof IntegrationEventV3RequestResponseContentEnum];
 
@@ -126,6 +134,7 @@ export function IntegrationEventV3RequestFromJSONTyped(json: any, ignoreDiscrimi
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'integrationId': json['integrationId'],
         'connectedSessionId': json['connectedSessionId'] == null ? undefined : json['connectedSessionId'],
+        'referralCode': json['referralCode'] == null ? undefined : json['referralCode'],
         'loyaltyCards': json['loyaltyCards'] == null ? undefined : json['loyaltyCards'],
         'responseContent': json['responseContent'] == null ? undefined : json['responseContent'],
     };
@@ -149,6 +158,7 @@ export function IntegrationEventV3RequestToJSONTyped(value?: IntegrationEventV3R
         'attributes': value['attributes'],
         'integrationId': value['integrationId'],
         'connectedSessionId': value['connectedSessionId'],
+        'referralCode': value['referralCode'],
         'loyaltyCards': value['loyaltyCards'],
         'responseContent': value['responseContent'],
     };

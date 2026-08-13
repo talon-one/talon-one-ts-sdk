@@ -68,6 +68,13 @@ export interface EventV3RequestEntity {
      * @memberof EventV3RequestEntity
      */
     connectedSessionId?: string;
+    /**
+     * The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the "Referral code is valid" condition in the Rule Builder to validate and redeem the code, or "Referral code is valid (without redemption)" to validate without redeeming.
+     * 
+     * @type {string}
+     * @memberof EventV3RequestEntity
+     */
+    referralCode?: string;
 }
 
 /**
@@ -98,6 +105,7 @@ export function EventV3RequestEntityFromJSONTyped(json: any, ignoreDiscriminator
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'integrationId': json['integrationId'],
         'connectedSessionId': json['connectedSessionId'] == null ? undefined : json['connectedSessionId'],
+        'referralCode': json['referralCode'] == null ? undefined : json['referralCode'],
     };
 }
 
@@ -119,6 +127,7 @@ export function EventV3RequestEntityToJSONTyped(value?: EventV3RequestEntity | n
         'attributes': value['attributes'],
         'integrationId': value['integrationId'],
         'connectedSessionId': value['connectedSessionId'],
+        'referralCode': value['referralCode'],
     };
 }
 

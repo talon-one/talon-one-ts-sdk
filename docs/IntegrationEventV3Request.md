@@ -13,6 +13,7 @@ Name | Type
 `attributes` | object
 `integrationId` | string
 `connectedSessionId` | string
+`referralCode` | string
 `loyaltyCards` | Array&lt;string&gt;
 `responseContent` | Array&lt;string&gt;
 
@@ -30,6 +31,7 @@ const example = {
   "attributes": {myAttribute=myValue},
   "integrationId": 175KJPS947296,
   "connectedSessionId": 175KJPS947296,
+  "referralCode": NT2K54D9,
   "loyaltyCards": [loyalty-card-1],
   "responseContent": [triggeredCampaigns, customerProfile],
 } satisfies IntegrationEventV3Request

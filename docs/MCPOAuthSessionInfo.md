@@ -1,34 +1,26 @@
 
-# ApplicationReferee
+# MCPOAuthSessionInfo
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`applicationId` | number
 `sessionId` | string
-`advancedEventIntegrationId` | string
-`advocateIntegrationId` | string
-`friendIntegrationId` | string
-`code` | string
-`created` | Date
+`expiresAt` | Date
+`client` | [MCPOAuthClient](MCPOAuthClient.md)
 
 ## Example
 
 ```typescript
-import type { ApplicationReferee } from 'talon_one_sdk'
+import type { MCPOAuthSessionInfo } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "applicationId": 322,
-  "sessionId": null,
-  "advancedEventIntegrationId": advanced_event_1234,
-  "advocateIntegrationId": null,
-  "friendIntegrationId": null,
-  "code": null,
-  "created": null,
-} satisfies ApplicationReferee
+  "sessionId": a3f8c1e2b4d567890123456789abcdef,
+  "expiresAt": 2016-03-28T08:34:32.000Z,
+  "client": null,
+} satisfies MCPOAuthSessionInfo
 
 console.log(example)
 
@@ -37,7 +29,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ApplicationReferee
+const exampleParsed = JSON.parse(exampleJSON) as MCPOAuthSessionInfo
 console.log(exampleParsed)
 ```
 

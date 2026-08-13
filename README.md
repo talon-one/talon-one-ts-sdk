@@ -242,6 +242,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**copyCampaignToApplications**](docs/ManagementApi.md#copycampaigntoapplications) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/copy | Copy the campaign into the specified Application
 *ManagementApi* | [**createAccountCollection**](docs/ManagementApi.md#createaccountcollection) | **POST** /v1/collections | Create account-level collection
 *ManagementApi* | [**createAchievement**](docs/ManagementApi.md#createachievement) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements | Create achievement
+*ManagementApi* | [**createAchievementV2**](docs/ManagementApi.md#createachievementv2) | **POST** /v2/achievements | Create achievement
 *ManagementApi* | [**createAdditionalCost**](docs/ManagementApi.md#createadditionalcost) | **POST** /v1/additional_costs | Create additional cost
 *ManagementApi* | [**createAttribute**](docs/ManagementApi.md#createattribute) | **POST** /v1/attributes | Create custom attribute
 *ManagementApi* | [**createBatchLoyaltyCards**](docs/ManagementApi.md#createbatchloyaltycards) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/cards/batch | Create loyalty cards
@@ -261,6 +262,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**deductLoyaltyCardPoints**](docs/ManagementApi.md#deductloyaltycardpoints) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/deduct_points | Deduct points from card
 *ManagementApi* | [**deleteAccountCollection**](docs/ManagementApi.md#deleteaccountcollection) | **DELETE** /v1/collections/{collectionId} | Delete account-level collection
 *ManagementApi* | [**deleteAchievement**](docs/ManagementApi.md#deleteachievement) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId} | Delete achievement
+*ManagementApi* | [**deleteAchievementV2**](docs/ManagementApi.md#deleteachievementv2) | **DELETE** /v2/achievements/{achievementId} | Delete achievement
 *ManagementApi* | [**deleteCampaign**](docs/ManagementApi.md#deletecampaign) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId} | Delete campaign
 *ManagementApi* | [**deleteCampaignStoreBudgets**](docs/ManagementApi.md#deletecampaignstorebudgets) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | Delete campaign store budgets
 *ManagementApi* | [**deleteCollection**](docs/ManagementApi.md#deletecollection) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Delete campaign-level collection
@@ -275,6 +277,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**disconnectCampaignStores**](docs/ManagementApi.md#disconnectcampaignstores) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/stores | Disconnect stores
 *ManagementApi* | [**excludePriceHistory**](docs/ManagementApi.md#excludepricehistory) | **POST** /v1/applications/{applicationId}/price_history/exclusions | Exclude price records from price history
 *ManagementApi* | [**exportAccountCollectionItems**](docs/ManagementApi.md#exportaccountcollectionitems) | **GET** /v1/collections/{collectionId}/export | Export account-level collection\&#39;s items
+*ManagementApi* | [**exportAchievementV2**](docs/ManagementApi.md#exportachievementv2) | **GET** /v2/achievements/{achievementId}/export | Export achievement customer data
 *ManagementApi* | [**exportAchievements**](docs/ManagementApi.md#exportachievements) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId}/export | Export achievement customer data
 *ManagementApi* | [**exportApplicationCampaignAnalytics**](docs/ManagementApi.md#exportapplicationcampaignanalytics) | **GET** /v1/applications/{applicationId}/campaign_analytics/export | Export Application analytics aggregated by campaign
 *ManagementApi* | [**exportAudiencesMemberships**](docs/ManagementApi.md#exportaudiencesmemberships) | **GET** /v1/audiences/{audienceId}/memberships/export | Export audience members
@@ -301,6 +304,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**getAccountAnalytics**](docs/ManagementApi.md#getaccountanalytics) | **GET** /v1/accounts/{accountId}/analytics | Get account analytics
 *ManagementApi* | [**getAccountCollection**](docs/ManagementApi.md#getaccountcollection) | **GET** /v1/collections/{collectionId} | Get account-level collection
 *ManagementApi* | [**getAchievement**](docs/ManagementApi.md#getachievement) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId} | Get achievement
+*ManagementApi* | [**getAchievementV2**](docs/ManagementApi.md#getachievementv2) | **GET** /v2/achievements/{achievementId} | Get achievement
 *ManagementApi* | [**getAdditionalCost**](docs/ManagementApi.md#getadditionalcost) | **GET** /v1/additional_costs/{additionalCostId} | Get additional cost
 *ManagementApi* | [**getAdditionalCosts**](docs/ManagementApi.md#getadditionalcosts) | **GET** /v1/additional_costs | List additional costs
 *ManagementApi* | [**getApplication**](docs/ManagementApi.md#getapplication) | **GET** /v1/applications/{applicationId} | Get Application
@@ -380,6 +384,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**inviteUserExternal**](docs/ManagementApi.md#inviteuserexternal) | **POST** /v1/users/invite | Invite user from identity provider
 *ManagementApi* | [**listAccountCollections**](docs/ManagementApi.md#listaccountcollections) | **GET** /v1/collections | List collections in account
 *ManagementApi* | [**listAchievements**](docs/ManagementApi.md#listachievements) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements | List achievements
+*ManagementApi* | [**listAchievementsV2**](docs/ManagementApi.md#listachievementsv2) | **GET** /v2/achievements | List achievements
 *ManagementApi* | [**listAllRolesV2**](docs/ManagementApi.md#listallrolesv2) | **GET** /v2/roles | List roles
 *ManagementApi* | [**listApplicationCartItemFilters**](docs/ManagementApi.md#listapplicationcartitemfilters) | **GET** /v1/applications/{applicationId}/cart_item_filters | List Application cart item filters
 *ManagementApi* | [**listCampaignStoreBudgetLimits**](docs/ManagementApi.md#listcampaignstorebudgetlimits) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | List campaign store budget limits
@@ -413,6 +418,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**transferLoyaltyCard**](docs/ManagementApi.md#transferloyaltycard) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transfer | Transfer card data
 *ManagementApi* | [**updateAccountCollection**](docs/ManagementApi.md#updateaccountcollection) | **PUT** /v1/collections/{collectionId} | Update account-level collection
 *ManagementApi* | [**updateAchievement**](docs/ManagementApi.md#updateachievement) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId} | Update achievement
+*ManagementApi* | [**updateAchievementV2**](docs/ManagementApi.md#updateachievementv2) | **PUT** /v2/achievements/{achievementId} | Update achievement
 *ManagementApi* | [**updateAdditionalCost**](docs/ManagementApi.md#updateadditionalcost) | **PUT** /v1/additional_costs/{additionalCostId} | Update additional cost
 *ManagementApi* | [**updateAttribute**](docs/ManagementApi.md#updateattribute) | **PUT** /v1/attributes/{attributeId} | Update custom attribute
 *ManagementApi* | [**updateCampaign**](docs/ManagementApi.md#updatecampaign) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId} | Update campaign
@@ -717,6 +723,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [EventV3](docs/EventV3.md)
 - [EventV3Connections](docs/EventV3Connections.md)
 - [EventV3Entity](docs/EventV3Entity.md)
+- [EventV3ReferralEntity](docs/EventV3ReferralEntity.md)
 - [EventV3RequestEntity](docs/EventV3RequestEntity.md)
 - [ExcludePriceObservationsRequest](docs/ExcludePriceObservationsRequest.md)
 - [Experiment](docs/Experiment.md)
@@ -878,6 +885,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [LimitCounter](docs/LimitCounter.md)
 - [ListAccountCollections200Response](docs/ListAccountCollections200Response.md)
 - [ListAchievements200Response](docs/ListAchievements200Response.md)
+- [ListAchievementsV2200Response](docs/ListAchievementsV2200Response.md)
 - [ListAllRolesV2200Response](docs/ListAllRolesV2200Response.md)
 - [ListApplicationCartItemFilters200Response](docs/ListApplicationCartItemFilters200Response.md)
 - [ListCampaignStoreBudgetLimits200Response](docs/ListCampaignStoreBudgetLimits200Response.md)
@@ -921,6 +929,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [MCPOAuthCompleteResult](docs/MCPOAuthCompleteResult.md)
 - [MCPOAuthProtectedResource](docs/MCPOAuthProtectedResource.md)
 - [MCPOAuthServerMetadata](docs/MCPOAuthServerMetadata.md)
+- [MCPOAuthSessionInfo](docs/MCPOAuthSessionInfo.md)
 - [MCPOAuthToken](docs/MCPOAuthToken.md)
 - [MCPOAuthTokenError](docs/MCPOAuthTokenError.md)
 - [MCPOAuthTokenRequest](docs/MCPOAuthTokenRequest.md)

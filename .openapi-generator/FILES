@@ -298,6 +298,7 @@ docs/EventV2.md
 docs/EventV3.md
 docs/EventV3Connections.md
 docs/EventV3Entity.md
+docs/EventV3ReferralEntity.md
 docs/EventV3RequestEntity.md
 docs/ExcludePriceObservationsRequest.md
 docs/Experiment.md
@@ -460,6 +461,7 @@ docs/LimitConfig.md
 docs/LimitCounter.md
 docs/ListAccountCollections200Response.md
 docs/ListAchievements200Response.md
+docs/ListAchievementsV2200Response.md
 docs/ListAllRolesV2200Response.md
 docs/ListApplicationCartItemFilters200Response.md
 docs/ListCampaignStoreBudgetLimits200Response.md
@@ -503,6 +505,7 @@ docs/MCPOAuthClient.md
 docs/MCPOAuthCompleteResult.md
 docs/MCPOAuthProtectedResource.md
 docs/MCPOAuthServerMetadata.md
+docs/MCPOAuthSessionInfo.md
 docs/MCPOAuthToken.md
 docs/MCPOAuthTokenError.md
 docs/MCPOAuthTokenRequest.md
@@ -1150,6 +1153,7 @@ src/models/EventV2.ts
 src/models/EventV3.ts
 src/models/EventV3Connections.ts
 src/models/EventV3Entity.ts
+src/models/EventV3ReferralEntity.ts
 src/models/EventV3RequestEntity.ts
 src/models/ExcludePriceObservationsRequest.ts
 src/models/Experiment.ts
@@ -1311,6 +1315,7 @@ src/models/LimitConfig.ts
 src/models/LimitCounter.ts
 src/models/ListAccountCollections200Response.ts
 src/models/ListAchievements200Response.ts
+src/models/ListAchievementsV2200Response.ts
 src/models/ListAllRolesV2200Response.ts
 src/models/ListApplicationCartItemFilters200Response.ts
 src/models/ListCampaignStoreBudgetLimits200Response.ts
@@ -1354,6 +1359,7 @@ src/models/MCPOAuthClient.ts
 src/models/MCPOAuthCompleteResult.ts
 src/models/MCPOAuthProtectedResource.ts
 src/models/MCPOAuthServerMetadata.ts
+src/models/MCPOAuthSessionInfo.ts
 src/models/MCPOAuthToken.ts
 src/models/MCPOAuthTokenError.ts
 src/models/MCPOAuthTokenRequest.ts

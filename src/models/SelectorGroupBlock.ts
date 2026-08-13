@@ -34,11 +34,11 @@ export interface SelectorGroupBlock {
      */
     id: string;
     /**
-     * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
+     * A block discriminator of type `group`.
+     * @type {SelectorGroupBlockTypeEnum}
      * @memberof SelectorGroupBlock
      */
-    type: string;
+    type: SelectorGroupBlockTypeEnum;
     /**
      * Semantic labels attached to this block.
      * @type {Array<string>}
@@ -63,6 +63,14 @@ export interface SelectorGroupBlock {
 /**
  * @export
  */
+export const SelectorGroupBlockTypeEnum = {
+    Group: 'group'
+} as const;
+export type SelectorGroupBlockTypeEnum = typeof SelectorGroupBlockTypeEnum[keyof typeof SelectorGroupBlockTypeEnum];
+
+/**
+ * @export
+ */
 export const SelectorGroupBlockOperatorEnum = {
     All: 'all',
     AtLeastOne: 'atLeastOne',
@@ -78,6 +86,8 @@ export function instanceOfSelectorGroupBlock(value: object): value is SelectorGr
     const _v = value as Record<PropertyKey, unknown>;
     if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'group') return false;
+    
     if (!('operator' in _v) || _v['operator'] === undefined) return false;
     if (!('blocks' in _v) || _v['blocks'] === undefined) return false;
     return true;

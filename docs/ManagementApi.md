@@ -10,6 +10,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**copyCampaignToApplications**](ManagementApi.md#copycampaigntoapplications) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/copy | Copy the campaign into the specified Application |
 | [**createAccountCollection**](ManagementApi.md#createaccountcollection) | **POST** /v1/collections | Create account-level collection |
 | [**createAchievement**](ManagementApi.md#createachievement) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements | Create achievement |
+| [**createAchievementV2**](ManagementApi.md#createachievementv2) | **POST** /v2/achievements | Create achievement |
 | [**createAdditionalCost**](ManagementApi.md#createadditionalcost) | **POST** /v1/additional_costs | Create additional cost |
 | [**createAttribute**](ManagementApi.md#createattribute) | **POST** /v1/attributes | Create custom attribute |
 | [**createBatchLoyaltyCards**](ManagementApi.md#createbatchloyaltycards) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/cards/batch | Create loyalty cards |
@@ -29,6 +30,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**deductLoyaltyCardPoints**](ManagementApi.md#deductloyaltycardpoints) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/deduct_points | Deduct points from card |
 | [**deleteAccountCollection**](ManagementApi.md#deleteaccountcollection) | **DELETE** /v1/collections/{collectionId} | Delete account-level collection |
 | [**deleteAchievement**](ManagementApi.md#deleteachievement) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId} | Delete achievement |
+| [**deleteAchievementV2**](ManagementApi.md#deleteachievementv2) | **DELETE** /v2/achievements/{achievementId} | Delete achievement |
 | [**deleteCampaign**](ManagementApi.md#deletecampaign) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId} | Delete campaign |
 | [**deleteCampaignStoreBudgets**](ManagementApi.md#deletecampaignstorebudgets) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | Delete campaign store budgets |
 | [**deleteCollection**](ManagementApi.md#deletecollection) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Delete campaign-level collection |
@@ -43,6 +45,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**disconnectCampaignStores**](ManagementApi.md#disconnectcampaignstores) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/stores | Disconnect stores |
 | [**excludePriceHistory**](ManagementApi.md#excludepricehistory) | **POST** /v1/applications/{applicationId}/price_history/exclusions | Exclude price records from price history |
 | [**exportAccountCollectionItems**](ManagementApi.md#exportaccountcollectionitems) | **GET** /v1/collections/{collectionId}/export | Export account-level collection\&#39;s items |
+| [**exportAchievementV2**](ManagementApi.md#exportachievementv2) | **GET** /v2/achievements/{achievementId}/export | Export achievement customer data |
 | [**exportAchievements**](ManagementApi.md#exportachievements) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId}/export | Export achievement customer data |
 | [**exportApplicationCampaignAnalytics**](ManagementApi.md#exportapplicationcampaignanalytics) | **GET** /v1/applications/{applicationId}/campaign_analytics/export | Export Application analytics aggregated by campaign |
 | [**exportAudiencesMemberships**](ManagementApi.md#exportaudiencesmemberships) | **GET** /v1/audiences/{audienceId}/memberships/export | Export audience members |
@@ -69,6 +72,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**getAccountAnalytics**](ManagementApi.md#getaccountanalytics) | **GET** /v1/accounts/{accountId}/analytics | Get account analytics |
 | [**getAccountCollection**](ManagementApi.md#getaccountcollection) | **GET** /v1/collections/{collectionId} | Get account-level collection |
 | [**getAchievement**](ManagementApi.md#getachievement) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId} | Get achievement |
+| [**getAchievementV2**](ManagementApi.md#getachievementv2) | **GET** /v2/achievements/{achievementId} | Get achievement |
 | [**getAdditionalCost**](ManagementApi.md#getadditionalcost) | **GET** /v1/additional_costs/{additionalCostId} | Get additional cost |
 | [**getAdditionalCosts**](ManagementApi.md#getadditionalcosts) | **GET** /v1/additional_costs | List additional costs |
 | [**getApplication**](ManagementApi.md#getapplication) | **GET** /v1/applications/{applicationId} | Get Application |
@@ -148,6 +152,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**inviteUserExternal**](ManagementApi.md#inviteuserexternal) | **POST** /v1/users/invite | Invite user from identity provider |
 | [**listAccountCollections**](ManagementApi.md#listaccountcollections) | **GET** /v1/collections | List collections in account |
 | [**listAchievements**](ManagementApi.md#listachievements) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements | List achievements |
+| [**listAchievementsV2**](ManagementApi.md#listachievementsv2) | **GET** /v2/achievements | List achievements |
 | [**listAllRolesV2**](ManagementApi.md#listallrolesv2) | **GET** /v2/roles | List roles |
 | [**listApplicationCartItemFilters**](ManagementApi.md#listapplicationcartitemfilters) | **GET** /v1/applications/{applicationId}/cart_item_filters | List Application cart item filters |
 | [**listCampaignStoreBudgetLimits**](ManagementApi.md#listcampaignstorebudgetlimits) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | List campaign store budget limits |
@@ -181,6 +186,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**transferLoyaltyCard**](ManagementApi.md#transferloyaltycard) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transfer | Transfer card data |
 | [**updateAccountCollection**](ManagementApi.md#updateaccountcollection) | **PUT** /v1/collections/{collectionId} | Update account-level collection |
 | [**updateAchievement**](ManagementApi.md#updateachievement) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId} | Update achievement |
+| [**updateAchievementV2**](ManagementApi.md#updateachievementv2) | **PUT** /v2/achievements/{achievementId} | Update achievement |
 | [**updateAdditionalCost**](ManagementApi.md#updateadditionalcost) | **PUT** /v1/additional_costs/{additionalCostId} | Update additional cost |
 | [**updateAttribute**](ManagementApi.md#updateattribute) | **PUT** /v1/attributes/{attributeId} | Update custom attribute |
 | [**updateCampaign**](ManagementApi.md#updatecampaign) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId} | Update campaign |
@@ -653,6 +659,80 @@ example().catch(console.error);
 | **400** | Bad request |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | Conflict. An achievement with this name or title already exists. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## createAchievementV2
+
+> AchievementV2 createAchievementV2(createAchievementV2)
+
+Create achievement
+
+Create a new account-level achievement.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { CreateAchievementV2Request } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // CreateAchievementV2 | body
+    createAchievementV2: ...,
+  } satisfies CreateAchievementV2Request;
+
+  try {
+    const data = await api.createAchievementV2(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createAchievementV2** | [CreateAchievementV2](CreateAchievementV2.md) | body | |
+
+### Return type
+
+[**AchievementV2**](AchievementV2.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Created |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **409** | Conflict. An achievement with this name already exists. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -2084,6 +2164,79 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## deleteAchievementV2
+
+> deleteAchievementV2(achievementId)
+
+Delete achievement
+
+Delete a specific achievement.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { DeleteAchievementV2Request } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // number | The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievementsV2) endpoint.
+    achievementId: 789,
+  } satisfies DeleteAchievementV2Request;
+
+  try {
+    const data = await api.deleteAchievementV2(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **achievementId** | `number` | The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievementsV2) endpoint. | [Defaults to `undefined`] |
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | No Content |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## deleteCampaign
 
 > deleteCampaign(applicationId, campaignId)
@@ -3159,6 +3312,80 @@ example().catch(console.error);
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **401** | Unauthorized - Invalid API key |  -  |
+| **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## exportAchievementV2
+
+> string exportAchievementV2(achievementId)
+
+Export achievement customer data
+
+Download a CSV file containing a list of all the customers who have participated in and are currently participating in the given achievement.  The CSV file contains the following columns: - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile participating in the achievement. - &#x60;title&#x60;: The display name of the achievement in the Campaign Manager. - &#x60;target&#x60;: The required number of actions or the transactional milestone to complete the achievement. - &#x60;progress&#x60;: The current progress of the customer in the achievement. - &#x60;status&#x60;: The status of the achievement. Can be one of: [\&#39;inprogress\&#39;, \&#39;completed\&#39;, \&#39;expired\&#39;]. - &#x60;startDate&#x60;: The date on which the customer profile started the achievement in RFC3339. - &#x60;endDate&#x60;: The date on which the achievement ends and resets for the customer profile in RFC3339. - &#x60;completionDate&#x60;: The date on which the customer profile completed the achievement in RFC3339. 
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { ExportAchievementV2Request } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // number | The ID of the achievement. You can get this ID with the [List achievements](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievementsV2) endpoint.
+    achievementId: 789,
+  } satisfies ExportAchievementV2Request;
+
+  try {
+    const data = await api.exportAchievementV2(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **achievementId** | `number` | The ID of the achievement. You can get this ID with the [List achievements](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievementsV2) endpoint. | [Defaults to `undefined`] |
+
+### Return type
+
+**string**
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/csv`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
 | **404** | Not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
@@ -5268,6 +5495,79 @@ example().catch(console.error);
 ### Return type
 
 [**Achievement**](Achievement.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## getAchievementV2
+
+> AchievementV2 getAchievementV2(achievementId)
+
+Get achievement
+
+Retrieve the details of a specific achievement.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { GetAchievementV2Request } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // number | The ID of the achievement.  You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievementsV2) endpoint. 
+    achievementId: 789,
+  } satisfies GetAchievementV2Request;
+
+  try {
+    const data = await api.getAchievementV2(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **achievementId** | `number` | The ID of the achievement.  You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievementsV2) endpoint.  | [Defaults to `undefined`] |
+
+### Return type
+
+[**AchievementV2**](AchievementV2.md)
 
 ### Authorization
 
@@ -11804,6 +12104,91 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## listAchievementsV2
+
+> ListAchievementsV2200Response listAchievementsV2(pageSize, skip, sort, title, applicationId)
+
+List achievements
+
+List all achievements. 
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { ListAchievementsV2Request } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // number | The number of items in the response. (optional)
+    pageSize: 789,
+    // number | The number of items to skip when paging through large result sets. (optional)
+    skip: 789,
+    // string | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)
+    sort: sort_example,
+    // string | Filter by the display name of the achievement. (optional)
+    title: title_example,
+    // number | Filter by the ID of an Application connected to the achievement. (optional)
+    applicationId: 789,
+  } satisfies ListAchievementsV2Request;
+
+  try {
+    const data = await api.listAchievementsV2(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `50`] |
+| **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
+| **sort** | `string` | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [Optional] [Defaults to `undefined`] |
+| **title** | `string` | Filter by the display name of the achievement. | [Optional] [Defaults to `undefined`] |
+| **applicationId** | `number` | Filter by the ID of an Application connected to the achievement. | [Optional] [Defaults to `undefined`] |
+
+### Return type
+
+[**ListAchievementsV2200Response**](ListAchievementsV2200Response.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## listAllRolesV2
 
 > ListAllRolesV2200Response listAllRolesV2()
@@ -14314,6 +14699,83 @@ example().catch(console.error);
 ### Return type
 
 [**Achievement**](Achievement.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## updateAchievementV2
+
+> AchievementV2 updateAchievementV2(achievementId, updateAchievementV2)
+
+Update achievement
+
+Update the details of a specific achievement.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { UpdateAchievementV2Request } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // number | The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievementsV2) endpoint.
+    achievementId: 789,
+    // UpdateAchievementV2 | body
+    updateAchievementV2: ...,
+  } satisfies UpdateAchievementV2Request;
+
+  try {
+    const data = await api.updateAchievementV2(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **achievementId** | `number` | The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievementsV2) endpoint. | [Defaults to `undefined`] |
+| **updateAchievementV2** | [UpdateAchievementV2](UpdateAchievementV2.md) | body | |
+
+### Return type
+
+[**AchievementV2**](AchievementV2.md)
 
 ### Authorization
 

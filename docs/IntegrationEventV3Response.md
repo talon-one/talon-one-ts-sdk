@@ -17,6 +17,7 @@ Name | Type
 `awardedGiveaways` | [Array&lt;Giveaway&gt;](Giveaway.md)
 `achievements` | [Array&lt;CustomerAchievement&gt;](CustomerAchievement.md)
 `advancedEvent` | [EventV3](EventV3.md)
+`referral` | [InventoryReferral](InventoryReferral.md)
 
 ## Example
 
@@ -36,6 +37,7 @@ const example = {
   "awardedGiveaways": null,
   "achievements": null,
   "advancedEvent": null,
+  "referral": null,
 } satisfies IntegrationEventV3Response
 
 console.log(example)

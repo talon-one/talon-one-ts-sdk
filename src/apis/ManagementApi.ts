@@ -34,6 +34,11 @@ import {
     AchievementToJSON,
 } from '../models/Achievement';
 import {
+    type AchievementV2,
+    AchievementV2FromJSON,
+    AchievementV2ToJSON,
+} from '../models/AchievementV2';
+import {
     type ActivateUserRequest,
     ActivateUserRequestFromJSON,
     ActivateUserRequestToJSON,
@@ -118,6 +123,11 @@ import {
     CreateAchievementFromJSON,
     CreateAchievementToJSON,
 } from '../models/CreateAchievement';
+import {
+    type CreateAchievementV2,
+    CreateAchievementV2FromJSON,
+    CreateAchievementV2ToJSON,
+} from '../models/CreateAchievementV2';
 import {
     type CreateCoupons200Response,
     CreateCoupons200ResponseFromJSON,
@@ -394,6 +404,11 @@ import {
     ListAchievements200ResponseToJSON,
 } from '../models/ListAchievements200Response';
 import {
+    type ListAchievementsV2200Response,
+    ListAchievementsV2200ResponseFromJSON,
+    ListAchievementsV2200ResponseToJSON,
+} from '../models/ListAchievementsV2200Response';
+import {
     type ListAllRolesV2200Response,
     ListAllRolesV2200ResponseFromJSON,
     ListAllRolesV2200ResponseToJSON,
@@ -654,6 +669,11 @@ import {
     UpdateAchievementToJSON,
 } from '../models/UpdateAchievement';
 import {
+    type UpdateAchievementV2,
+    UpdateAchievementV2FromJSON,
+    UpdateAchievementV2ToJSON,
+} from '../models/UpdateAchievementV2';
+import {
     type UpdateCampaign,
     UpdateCampaignFromJSON,
     UpdateCampaignToJSON,
@@ -734,6 +754,10 @@ export interface CreateAchievementRequest {
     applicationId: number;
     campaignId: number;
     createAchievement: CreateAchievement;
+}
+
+export interface CreateAchievementV2Request {
+    createAchievementV2: CreateAchievementV2;
 }
 
 export interface CreateAdditionalCostRequest {
@@ -833,6 +857,10 @@ export interface DeleteAchievementRequest {
     achievementId: number;
 }
 
+export interface DeleteAchievementV2Request {
+    achievementId: number;
+}
+
 export interface DeleteCampaignRequest {
     applicationId: number;
     campaignId: number;
@@ -911,6 +939,10 @@ export interface ExcludePriceHistoryRequest {
 
 export interface ExportAccountCollectionItemsRequest {
     collectionId: number;
+}
+
+export interface ExportAchievementV2Request {
+    achievementId: number;
 }
 
 export interface ExportAchievementsRequest {
@@ -1096,6 +1128,10 @@ export interface GetAccountCollectionRequest {
 export interface GetAchievementRequest {
     applicationId: number;
     campaignId: number;
+    achievementId: number;
+}
+
+export interface GetAchievementV2Request {
     achievementId: number;
 }
 
@@ -1700,6 +1736,14 @@ export interface ListAchievementsRequest {
     title?: string;
 }
 
+export interface ListAchievementsV2Request {
+    pageSize?: number;
+    skip?: number;
+    sort?: string;
+    title?: string;
+    applicationId?: number;
+}
+
 export interface ListApplicationCartItemFiltersRequest {
     applicationId: number;
     pageSize?: number;
@@ -1877,6 +1921,11 @@ export interface UpdateAchievementRequest {
     campaignId: number;
     achievementId: number;
     updateAchievement: UpdateAchievement;
+}
+
+export interface UpdateAchievementV2Request {
+    achievementId: number;
+    updateAchievementV2: UpdateAchievementV2;
 }
 
 export interface UpdateAdditionalCostRequest {
@@ -2261,6 +2310,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
     /**
      * Creates request options for createAchievement without sending the request
+     * @deprecated
      */
     async createAchievementRequestOpts(requestParameters: CreateAchievementRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
@@ -2311,6 +2361,7 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Create a new achievement in a specific campaign.
      * Create achievement
+     * @deprecated
      */
     async createAchievementRaw(requestParameters: CreateAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Achievement>> {
         const requestOptions = await this.createAchievementRequestOpts(requestParameters);
@@ -2322,9 +2373,63 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Create a new achievement in a specific campaign.
      * Create achievement
+     * @deprecated
      */
     async createAchievement(requestParameters: CreateAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Achievement> {
         const response = await this.createAchievementRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for createAchievementV2 without sending the request
+     */
+    async createAchievementV2RequestOpts(requestParameters: CreateAchievementV2Request): Promise<runtime.RequestOpts> {
+        if (requestParameters['createAchievementV2'] == null) {
+            throw new runtime.RequiredError(
+                'createAchievementV2',
+                'Required parameter "createAchievementV2" was null or undefined when calling createAchievementV2().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v2/achievements`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateAchievementV2ToJSON(requestParameters['createAchievementV2']),
+        };
+    }
+
+    /**
+     * Create a new account-level achievement.
+     * Create achievement
+     */
+    async createAchievementV2Raw(requestParameters: CreateAchievementV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AchievementV2>> {
+        const requestOptions = await this.createAchievementV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AchievementV2FromJSON(jsonValue));
+    }
+
+    /**
+     * Create a new account-level achievement.
+     * Create achievement
+     */
+    async createAchievementV2(requestParameters: CreateAchievementV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AchievementV2> {
+        const response = await this.createAchievementV2Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3436,6 +3541,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
     /**
      * Creates request options for deleteAchievement without sending the request
+     * @deprecated
      */
     async deleteAchievementRequestOpts(requestParameters: DeleteAchievementRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
@@ -3484,6 +3590,7 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Delete the specified achievement.
      * Delete achievement
+     * @deprecated
      */
     async deleteAchievementRaw(requestParameters: DeleteAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const requestOptions = await this.deleteAchievementRequestOpts(requestParameters);
@@ -3495,9 +3602,60 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Delete the specified achievement.
      * Delete achievement
+     * @deprecated
      */
     async deleteAchievement(requestParameters: DeleteAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAchievementRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for deleteAchievementV2 without sending the request
+     */
+    async deleteAchievementV2RequestOpts(requestParameters: DeleteAchievementV2Request): Promise<runtime.RequestOpts> {
+        if (requestParameters['achievementId'] == null) {
+            throw new runtime.RequiredError(
+                'achievementId',
+                'Required parameter "achievementId" was null or undefined when calling deleteAchievementV2().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v2/achievements/{achievementId}`;
+        urlPath = urlPath.replace('{achievementId}', encodeURIComponent(String(requestParameters['achievementId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Delete a specific achievement.
+     * Delete achievement
+     */
+    async deleteAchievementV2Raw(requestParameters: DeleteAchievementV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteAchievementV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a specific achievement.
+     * Delete achievement
+     */
+    async deleteAchievementV2(requestParameters: DeleteAchievementV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteAchievementV2Raw(requestParameters, initOverrides);
     }
 
     /**
@@ -4366,7 +4524,63 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for exportAchievementV2 without sending the request
+     */
+    async exportAchievementV2RequestOpts(requestParameters: ExportAchievementV2Request): Promise<runtime.RequestOpts> {
+        if (requestParameters['achievementId'] == null) {
+            throw new runtime.RequiredError(
+                'achievementId',
+                'Required parameter "achievementId" was null or undefined when calling exportAchievementV2().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v2/achievements/{achievementId}/export`;
+        urlPath = urlPath.replace('{achievementId}', encodeURIComponent(String(requestParameters['achievementId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Download a CSV file containing a list of all the customers who have participated in and are currently participating in the given achievement.  The CSV file contains the following columns: - `profileIntegrationID`: The integration ID of the customer profile participating in the achievement. - `title`: The display name of the achievement in the Campaign Manager. - `target`: The required number of actions or the transactional milestone to complete the achievement. - `progress`: The current progress of the customer in the achievement. - `status`: The status of the achievement. Can be one of: [\'inprogress\', \'completed\', \'expired\']. - `startDate`: The date on which the customer profile started the achievement in RFC3339. - `endDate`: The date on which the achievement ends and resets for the customer profile in RFC3339. - `completionDate`: The date on which the customer profile completed the achievement in RFC3339. 
+     * Export achievement customer data
+     */
+    async exportAchievementV2Raw(requestParameters: ExportAchievementV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.exportAchievementV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * Download a CSV file containing a list of all the customers who have participated in and are currently participating in the given achievement.  The CSV file contains the following columns: - `profileIntegrationID`: The integration ID of the customer profile participating in the achievement. - `title`: The display name of the achievement in the Campaign Manager. - `target`: The required number of actions or the transactional milestone to complete the achievement. - `progress`: The current progress of the customer in the achievement. - `status`: The status of the achievement. Can be one of: [\'inprogress\', \'completed\', \'expired\']. - `startDate`: The date on which the customer profile started the achievement in RFC3339. - `endDate`: The date on which the achievement ends and resets for the customer profile in RFC3339. - `completionDate`: The date on which the customer profile completed the achievement in RFC3339. 
+     * Export achievement customer data
+     */
+    async exportAchievementV2(requestParameters: ExportAchievementV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.exportAchievementV2Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for exportAchievements without sending the request
+     * @deprecated
      */
     async exportAchievementsRequestOpts(requestParameters: ExportAchievementsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
@@ -4415,6 +4629,7 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Download a CSV file containing a list of all the customers who have participated in and are currently participating in the given achievement.  The CSV file contains the following columns: - `profileIntegrationID`: The integration ID of the customer profile participating in the achievement. - `title`: The display name of the achievement in the Campaign Manager. - `target`: The required number of actions or the transactional milestone to complete the achievement. - `progress`: The current progress of the customer in the achievement. - `status`: The status of the achievement. Can be one of: [\'inprogress\', \'completed\', \'expired\']. - `startDate`: The date on which the customer profile started the achievement in RFC3339. - `endDate`: The date on which the achievement ends and resets for the customer profile in RFC3339. - `completionDate`: The date on which the customer profile completed the achievement in RFC3339. 
      * Export achievement customer data
+     * @deprecated
      */
     async exportAchievementsRaw(requestParameters: ExportAchievementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         const requestOptions = await this.exportAchievementsRequestOpts(requestParameters);
@@ -4430,6 +4645,7 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Download a CSV file containing a list of all the customers who have participated in and are currently participating in the given achievement.  The CSV file contains the following columns: - `profileIntegrationID`: The integration ID of the customer profile participating in the achievement. - `title`: The display name of the achievement in the Campaign Manager. - `target`: The required number of actions or the transactional milestone to complete the achievement. - `progress`: The current progress of the customer in the achievement. - `status`: The status of the achievement. Can be one of: [\'inprogress\', \'completed\', \'expired\']. - `startDate`: The date on which the customer profile started the achievement in RFC3339. - `endDate`: The date on which the achievement ends and resets for the customer profile in RFC3339. - `completionDate`: The date on which the customer profile completed the achievement in RFC3339. 
      * Export achievement customer data
+     * @deprecated
      */
     async exportAchievements(requestParameters: ExportAchievementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.exportAchievementsRaw(requestParameters, initOverrides);
@@ -6144,6 +6360,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
     /**
      * Creates request options for getAchievement without sending the request
+     * @deprecated
      */
     async getAchievementRequestOpts(requestParameters: GetAchievementRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
@@ -6192,6 +6409,7 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Get the details of a specific achievement.
      * Get achievement
+     * @deprecated
      */
     async getAchievementRaw(requestParameters: GetAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Achievement>> {
         const requestOptions = await this.getAchievementRequestOpts(requestParameters);
@@ -6203,9 +6421,61 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Get the details of a specific achievement.
      * Get achievement
+     * @deprecated
      */
     async getAchievement(requestParameters: GetAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Achievement> {
         const response = await this.getAchievementRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getAchievementV2 without sending the request
+     */
+    async getAchievementV2RequestOpts(requestParameters: GetAchievementV2Request): Promise<runtime.RequestOpts> {
+        if (requestParameters['achievementId'] == null) {
+            throw new runtime.RequiredError(
+                'achievementId',
+                'Required parameter "achievementId" was null or undefined when calling getAchievementV2().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v2/achievements/{achievementId}`;
+        urlPath = urlPath.replace('{achievementId}', encodeURIComponent(String(requestParameters['achievementId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Retrieve the details of a specific achievement.
+     * Get achievement
+     */
+    async getAchievementV2Raw(requestParameters: GetAchievementV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AchievementV2>> {
+        const requestOptions = await this.getAchievementV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AchievementV2FromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve the details of a specific achievement.
+     * Get achievement
+     */
+    async getAchievementV2(requestParameters: GetAchievementV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AchievementV2> {
+        const response = await this.getAchievementV2Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -11707,6 +11977,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
     /**
      * Creates request options for listAchievements without sending the request
+     * @deprecated
      */
     async listAchievementsRequestOpts(requestParameters: ListAchievementsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
@@ -11759,6 +12030,7 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * List all the achievements for a specific campaign.
      * List achievements
+     * @deprecated
      */
     async listAchievementsRaw(requestParameters: ListAchievementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAchievements200Response>> {
         const requestOptions = await this.listAchievementsRequestOpts(requestParameters);
@@ -11770,9 +12042,73 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * List all the achievements for a specific campaign.
      * List achievements
+     * @deprecated
      */
     async listAchievements(requestParameters: ListAchievementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListAchievements200Response> {
         const response = await this.listAchievementsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listAchievementsV2 without sending the request
+     */
+    async listAchievementsV2RequestOpts(requestParameters: ListAchievementsV2Request): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['sort'] != null) {
+            queryParameters['sort'] = requestParameters['sort'];
+        }
+
+        if (requestParameters['title'] != null) {
+            queryParameters['title'] = requestParameters['title'];
+        }
+
+        if (requestParameters['applicationId'] != null) {
+            queryParameters['applicationId'] = requestParameters['applicationId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v2/achievements`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * List all achievements. 
+     * List achievements
+     */
+    async listAchievementsV2Raw(requestParameters: ListAchievementsV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAchievementsV2200Response>> {
+        const requestOptions = await this.listAchievementsV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListAchievementsV2200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List all achievements. 
+     * List achievements
+     */
+    async listAchievementsV2(requestParameters: ListAchievementsV2Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListAchievementsV2200Response> {
+        const response = await this.listAchievementsV2Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -13727,6 +14063,7 @@ export class ManagementApi extends runtime.BaseAPI {
 
     /**
      * Creates request options for updateAchievement without sending the request
+     * @deprecated
      */
     async updateAchievementRequestOpts(requestParameters: UpdateAchievementRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['applicationId'] == null) {
@@ -13785,6 +14122,7 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Update the details of a specific achievement.
      * Update achievement
+     * @deprecated
      */
     async updateAchievementRaw(requestParameters: UpdateAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Achievement>> {
         const requestOptions = await this.updateAchievementRequestOpts(requestParameters);
@@ -13796,9 +14134,71 @@ export class ManagementApi extends runtime.BaseAPI {
     /**
      * Update the details of a specific achievement.
      * Update achievement
+     * @deprecated
      */
     async updateAchievement(requestParameters: UpdateAchievementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Achievement> {
         const response = await this.updateAchievementRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for updateAchievementV2 without sending the request
+     */
+    async updateAchievementV2RequestOpts(requestParameters: UpdateAchievementV2Request): Promise<runtime.RequestOpts> {
+        if (requestParameters['achievementId'] == null) {
+            throw new runtime.RequiredError(
+                'achievementId',
+                'Required parameter "achievementId" was null or undefined when calling updateAchievementV2().'
+            );
+        }
+
+        if (requestParameters['updateAchievementV2'] == null) {
+            throw new runtime.RequiredError(
+                'updateAchievementV2',
+                'Required parameter "updateAchievementV2" was null or undefined when calling updateAchievementV2().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v2/achievements/{achievementId}`;
+        urlPath = urlPath.replace('{achievementId}', encodeURIComponent(String(requestParameters['achievementId'])));
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateAchievementV2ToJSON(requestParameters['updateAchievementV2']),
+        };
+    }
+
+    /**
+     * Update the details of a specific achievement.
+     * Update achievement
+     */
+    async updateAchievementV2Raw(requestParameters: UpdateAchievementV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AchievementV2>> {
+        const requestOptions = await this.updateAchievementV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AchievementV2FromJSON(jsonValue));
+    }
+
+    /**
+     * Update the details of a specific achievement.
+     * Update achievement
+     */
+    async updateAchievementV2(requestParameters: UpdateAchievementV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AchievementV2> {
+        const response = await this.updateAchievementV2Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
