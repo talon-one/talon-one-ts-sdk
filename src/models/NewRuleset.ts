@@ -86,9 +86,9 @@ export function NewRulesetFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'rules': ((json['rules'] as Array<any>).map(RuleFromJSON)),
+        'rules': (json['rules'] == null ? undefined as any : (json['rules'] as Array<any>).map(RuleFromJSON)),
         'strikethroughRules': json['strikethroughRules'] == null ? undefined : ((json['strikethroughRules'] as Array<any>).map(RuleFromJSON)),
-        'bindings': ((json['bindings'] as Array<any>).map(BindingFromJSON)),
+        'bindings': (json['bindings'] == null ? undefined as any : (json['bindings'] as Array<any>).map(BindingFromJSON)),
         'rbVersion': json['rbVersion'] == null ? undefined : json['rbVersion'],
         'activate': json['activate'] == null ? undefined : json['activate'],
     };
@@ -105,9 +105,9 @@ export function NewRulesetToJSONTyped(value?: NewRuleset | null, ignoreDiscrimin
 
     return {
         
-        'rules': ((value['rules'] as Array<any>).map(RuleToJSON)),
+        'rules': (value['rules'] == null ? undefined : (value['rules'] as Array<any>).map(RuleToJSON)),
         'strikethroughRules': value['strikethroughRules'] == null ? undefined : ((value['strikethroughRules'] as Array<any>).map(RuleToJSON)),
-        'bindings': ((value['bindings'] as Array<any>).map(BindingToJSON)),
+        'bindings': (value['bindings'] == null ? undefined : (value['bindings'] as Array<any>).map(BindingToJSON)),
         'rbVersion': value['rbVersion'],
         'activate': value['activate'],
     };

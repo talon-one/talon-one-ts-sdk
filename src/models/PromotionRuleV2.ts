@@ -83,7 +83,7 @@ export function PromotionRuleV2FromJSONTyped(json: any, ignoreDiscriminator: boo
         'parentId': json['parentId'] == null ? undefined : json['parentId'],
         'title': json['title'],
         'description': json['description'] == null ? undefined : json['description'],
-        'blocks': ((json['blocks'] as Array<any>).map(PromotionBlockFromJSON)),
+        'blocks': (json['blocks'] == null ? undefined as any : (json['blocks'] as Array<any>).map(PromotionBlockFromJSON)),
     };
 }
 
@@ -102,7 +102,7 @@ export function PromotionRuleV2ToJSONTyped(value?: PromotionRuleV2 | null, ignor
         'parentId': value['parentId'],
         'title': value['title'],
         'description': value['description'],
-        'blocks': ((value['blocks'] as Array<any>).map(PromotionBlockToJSON)),
+        'blocks': (value['blocks'] == null ? undefined : (value['blocks'] as Array<any>).map(PromotionBlockToJSON)),
     };
 }
 

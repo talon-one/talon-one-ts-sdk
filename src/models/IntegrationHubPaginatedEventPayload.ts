@@ -86,7 +86,7 @@ export function IntegrationHubPaginatedEventPayloadFromJSONTyped(json: any, igno
         'totalResultSize': json['TotalResultSize'],
         'batchedAt': json['BatchedAt'] == null ? undefined : (new Date(json['BatchedAt'])),
         'eventType': IntegrationHubEventTypeFromJSON(json['EventType']),
-        'data': ((json['Data'] as Array<any>).map(IntegrationHubPaginatedEventPayloadDataInnerFromJSON)),
+        'data': (json['Data'] == null ? undefined as any : (json['Data'] as Array<any>).map(IntegrationHubPaginatedEventPayloadDataInnerFromJSON)),
     };
 }
 
@@ -104,7 +104,7 @@ export function IntegrationHubPaginatedEventPayloadToJSONTyped(value?: Integrati
         'TotalResultSize': value['totalResultSize'],
         'BatchedAt': value['batchedAt'] == null ? value['batchedAt'] : value['batchedAt'].toISOString(),
         'EventType': IntegrationHubEventTypeToJSON(value['eventType']),
-        'Data': ((value['data'] as Array<any>).map(IntegrationHubPaginatedEventPayloadDataInnerToJSON)),
+        'Data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(IntegrationHubPaginatedEventPayloadDataInnerToJSON)),
     };
 }
 

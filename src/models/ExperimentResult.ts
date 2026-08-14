@@ -75,7 +75,7 @@ export function ExperimentResultFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'variants': ((json['variants'] as Array<any>).map(ExperimentVariantResultFromJSON)),
+        'variants': (json['variants'] == null ? undefined as any : (json['variants'] as Array<any>).map(ExperimentVariantResultFromJSON)),
         'confidence': ExperimentVariantResultConfidenceFromJSON(json['confidence']),
         'experimentId': json['experimentId'],
     };
@@ -92,7 +92,7 @@ export function ExperimentResultToJSONTyped(value?: ExperimentResult | null, ign
 
     return {
         
-        'variants': ((value['variants'] as Array<any>).map(ExperimentVariantResultToJSON)),
+        'variants': (value['variants'] == null ? undefined : (value['variants'] as Array<any>).map(ExperimentVariantResultToJSON)),
         'confidence': ExperimentVariantResultConfidenceToJSON(value['confidence']),
         'experimentId': value['experimentId'],
     };

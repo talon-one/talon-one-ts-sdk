@@ -93,7 +93,7 @@ export function MultipleAudiencesItemFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'name': json['name'],
         'subscribedApplicationsIds': json['subscribedApplicationsIds'] == null ? undefined : new Set(json['subscribedApplicationsIds']),
         'integrationId': json['integrationId'] == null ? undefined : json['integrationId'],
@@ -113,7 +113,7 @@ export function MultipleAudiencesItemToJSONTyped(value?: MultipleAudiencesItem |
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'name': value['name'],
         'subscribedApplicationsIds': value['subscribedApplicationsIds'] == null ? undefined : Array.from(value['subscribedApplicationsIds'] as Set<any>),
         'integrationId': value['integrationId'],

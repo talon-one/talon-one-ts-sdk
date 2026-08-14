@@ -109,7 +109,7 @@ export function PromotionGroupBlockFromJSONTyped(json: any, ignoreDiscriminator:
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
-        'blocks': ((json['blocks'] as Array<any>).map(PromotionBlockFromJSON)),
+        'blocks': (json['blocks'] == null ? undefined as any : (json['blocks'] as Array<any>).map(PromotionBlockFromJSON)),
         'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
         'onError': json['onError'] == null ? undefined : json['onError'],
     };
@@ -130,7 +130,7 @@ export function PromotionGroupBlockToJSONTyped(value?: PromotionGroupBlock | nul
         'type': value['type'],
         'tags': value['tags'],
         'operator': value['operator'],
-        'blocks': ((value['blocks'] as Array<any>).map(PromotionBlockToJSON)),
+        'blocks': (value['blocks'] == null ? undefined : (value['blocks'] as Array<any>).map(PromotionBlockToJSON)),
         'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
         'onError': value['onError'],
     };

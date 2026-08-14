@@ -170,8 +170,8 @@ export function AccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): A
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
-        'modified': (new Date(json['modified'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
         'companyName': json['companyName'],
         'domainName': json['domainName'],
         'state': json['state'],
@@ -202,8 +202,8 @@ export function AccountToJSONTyped(value?: Account | null, ignoreDiscriminator: 
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
-        'modified': value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
         'companyName': value['companyName'],
         'domainName': value['domainName'],
         'state': value['state'],

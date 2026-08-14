@@ -110,7 +110,7 @@ export function GiveawayFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'code': json['code'],
         'poolId': json['poolId'],
         'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
@@ -135,7 +135,7 @@ export function GiveawayToJSONTyped(value?: Giveaway | null, ignoreDiscriminator
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'code': value['code'],
         'poolId': value['poolId'],
         'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),

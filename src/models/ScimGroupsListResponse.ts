@@ -67,7 +67,7 @@ export function ScimGroupsListResponseFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'resources': ((json['Resources'] as Array<any>).map(ScimGroupFromJSON)),
+        'resources': (json['Resources'] == null ? undefined as any : (json['Resources'] as Array<any>).map(ScimGroupFromJSON)),
         'schemas': json['schemas'] == null ? undefined : json['schemas'],
         'totalResults': json['totalResults'] == null ? undefined : json['totalResults'],
     };
@@ -84,7 +84,7 @@ export function ScimGroupsListResponseToJSONTyped(value?: ScimGroupsListResponse
 
     return {
         
-        'Resources': ((value['resources'] as Array<any>).map(ScimGroupToJSON)),
+        'Resources': (value['resources'] == null ? undefined : (value['resources'] as Array<any>).map(ScimGroupToJSON)),
         'schemas': value['schemas'],
         'totalResults': value['totalResults'],
     };

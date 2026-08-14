@@ -62,7 +62,7 @@ export function GetCustomerProfileAchievementProgress200ResponseFromJSONTyped(js
     return {
         
         'hasMore': json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(AchievementProgressWithDefinitionFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(AchievementProgressWithDefinitionFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetCustomerProfileAchievementProgress200ResponseToJSONTyped(valu
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(AchievementProgressWithDefinitionToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(AchievementProgressWithDefinitionToJSON)),
     };
 }
 

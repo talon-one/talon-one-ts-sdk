@@ -183,7 +183,7 @@ export function RewardFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'accountId': json['accountId'],
         'name': json['name'],
         'apiName': json['apiName'],
@@ -211,7 +211,7 @@ export function RewardToJSONTyped(value?: Reward | null, ignoreDiscriminator: bo
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'accountId': value['accountId'],
         'name': value['name'],
         'apiName': value['apiName'],

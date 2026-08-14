@@ -145,7 +145,7 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotifica
         'nextTier': json['NextTier'] == null ? undefined : json['NextTier'],
         'tierExpirationDate': json['TierExpirationDate'] == null ? undefined : (new Date(json['TierExpirationDate'])),
         'timestampOfTierChange': json['TimestampOfTierChange'] == null ? undefined : (new Date(json['TimestampOfTierChange'])),
-        'publishedAt': (new Date(json['PublishedAt'])),
+        'publishedAt': (json['PublishedAt'] == null ? undefined as any : new Date(json['PublishedAt'])),
     };
 }
 
@@ -173,7 +173,7 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotifica
         'NextTier': value['nextTier'],
         'TierExpirationDate': value['tierExpirationDate'] == null ? value['tierExpirationDate'] : value['tierExpirationDate'].toISOString(),
         'TimestampOfTierChange': value['timestampOfTierChange'] == null ? value['timestampOfTierChange'] : value['timestampOfTierChange'].toISOString(),
-        'PublishedAt': value['publishedAt'].toISOString(),
+        'PublishedAt': value['publishedAt'] == null ? undefined : value['publishedAt'].toISOString(),
     };
 }
 

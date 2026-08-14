@@ -157,8 +157,8 @@ export function ApplicationCampaignAnalyticsFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'startTime': (new Date(json['startTime'])),
-        'endTime': (new Date(json['endTime'])),
+        'startTime': (json['startTime'] == null ? undefined as any : new Date(json['startTime'])),
+        'endTime': (json['endTime'] == null ? undefined as any : new Date(json['endTime'])),
         'campaignId': json['campaignId'],
         'campaignName': json['campaignName'],
         'campaignTags': json['campaignTags'],
@@ -183,8 +183,8 @@ export function ApplicationCampaignAnalyticsToJSONTyped(value?: ApplicationCampa
 
     return {
         
-        'startTime': value['startTime'].toISOString(),
-        'endTime': value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? undefined : value['startTime'].toISOString(),
+        'endTime': value['endTime'] == null ? undefined : value['endTime'].toISOString(),
         'campaignId': value['campaignId'],
         'campaignName': value['campaignName'],
         'campaignTags': value['campaignTags'],

@@ -81,7 +81,7 @@ export function ExpiringCardPointsNotificationFromJSONTyped(json: any, ignoreDis
     return {
         
         'totalResultSize': json['TotalResultSize'],
-        'data': ((json['Data'] as Array<any>).map(ExpiringCardPointsDataFromJSON)),
+        'data': (json['Data'] == null ? undefined as any : (json['Data'] as Array<any>).map(ExpiringCardPointsDataFromJSON)),
         'notificationType': json['NotificationType'],
     };
 }
@@ -98,7 +98,7 @@ export function ExpiringCardPointsNotificationToJSONTyped(value?: ExpiringCardPo
     return {
         
         'TotalResultSize': value['totalResultSize'],
-        'Data': ((value['data'] as Array<any>).map(ExpiringCardPointsDataToJSON)),
+        'Data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ExpiringCardPointsDataToJSON)),
         'NotificationType': value['notificationType'],
     };
 }

@@ -183,8 +183,8 @@ export function CampaignEligibilityFromJSONTyped(json: any, ignoreDiscriminator:
         'state': json['state'],
         'tags': json['tags'],
         'features': json['features'],
-        'eligibility': ((json['eligibility'] as Array<any>).map(CampaignEligibilityDetailsFromJSON)),
-        'rules': ((json['rules'] as Array<any>).map(RuleMetadataEligibilityFromJSON)),
+        'eligibility': (json['eligibility'] == null ? undefined as any : (json['eligibility'] as Array<any>).map(CampaignEligibilityDetailsFromJSON)),
+        'rules': (json['rules'] == null ? undefined as any : (json['rules'] as Array<any>).map(RuleMetadataEligibilityFromJSON)),
         'experiment': json['experiment'] == null ? undefined : CampaignEligibilityExperimentFromJSON(json['experiment']),
     };
 }
@@ -210,8 +210,8 @@ export function CampaignEligibilityToJSONTyped(value?: CampaignEligibility | nul
         'state': value['state'],
         'tags': value['tags'],
         'features': value['features'],
-        'eligibility': ((value['eligibility'] as Array<any>).map(CampaignEligibilityDetailsToJSON)),
-        'rules': ((value['rules'] as Array<any>).map(RuleMetadataEligibilityToJSON)),
+        'eligibility': (value['eligibility'] == null ? undefined : (value['eligibility'] as Array<any>).map(CampaignEligibilityDetailsToJSON)),
+        'rules': (value['rules'] == null ? undefined : (value['rules'] as Array<any>).map(RuleMetadataEligibilityToJSON)),
         'experiment': CampaignEligibilityExperimentToJSON(value['experiment']),
     };
 }

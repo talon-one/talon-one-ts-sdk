@@ -1,24 +1,25 @@
 
-# CatalogActionOneOf
+# CatalogActionAddPriceAdjustment
 
+Adds price adjustments to an item of the catalog.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`type` | any
-`payload` | [AddItemCatalogAction](AddItemCatalogAction.md)
+`type` | string
+`payload` | [AddPriceAdjustmentCatalogAction](AddPriceAdjustmentCatalogAction.md)
 
 ## Example
 
 ```typescript
-import type { CatalogActionOneOf } from 'talon_one_sdk'
+import type { CatalogActionAddPriceAdjustment } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
   "type": null,
   "payload": null,
-} satisfies CatalogActionOneOf
+} satisfies CatalogActionAddPriceAdjustment
 
 console.log(example)
 
@@ -27,7 +28,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as CatalogActionOneOf
+const exampleParsed = JSON.parse(exampleJSON) as CatalogActionAddPriceAdjustment
 console.log(exampleParsed)
 ```
 

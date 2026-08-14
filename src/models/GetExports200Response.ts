@@ -62,7 +62,7 @@ export function GetExports200ResponseFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(ExportFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(ExportFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetExports200ResponseToJSONTyped(value?: GetExports200Response |
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(ExportToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ExportToJSON)),
     };
 }
 

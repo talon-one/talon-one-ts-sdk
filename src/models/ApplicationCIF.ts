@@ -98,7 +98,7 @@ export function ApplicationCIFFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
         'activeExpressionId': json['activeExpressionId'] == null ? undefined : json['activeExpressionId'],
@@ -121,7 +121,7 @@ export function ApplicationCIFToJSONTyped(value?: ApplicationCIF | null, ignoreD
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'name': value['name'],
         'description': value['description'],
         'activeExpressionId': value['activeExpressionId'],

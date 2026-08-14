@@ -100,7 +100,7 @@ export function TierDowngradeDataFromJSONTyped(json: any, ignoreDiscriminator: b
         'currentPoints': json['CurrentPoints'],
         'oldTier': json['OldTier'],
         'tierExpirationDate': json['TierExpirationDate'] == null ? undefined : (new Date(json['TierExpirationDate'])),
-        'timestampOfTierChange': (new Date(json['TimestampOfTierChange'])),
+        'timestampOfTierChange': (json['TimestampOfTierChange'] == null ? undefined as any : new Date(json['TimestampOfTierChange'])),
     };
 }
 
@@ -122,7 +122,7 @@ export function TierDowngradeDataToJSONTyped(value?: TierDowngradeData | null, i
         'CurrentPoints': value['currentPoints'],
         'OldTier': value['oldTier'],
         'TierExpirationDate': value['tierExpirationDate'] == null ? value['tierExpirationDate'] : value['tierExpirationDate'].toISOString(),
-        'TimestampOfTierChange': value['timestampOfTierChange'].toISOString(),
+        'TimestampOfTierChange': value['timestampOfTierChange'] == null ? undefined : value['timestampOfTierChange'].toISOString(),
     };
 }
 

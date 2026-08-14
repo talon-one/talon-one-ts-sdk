@@ -61,7 +61,7 @@ export function GetApplicationSessions200ResponseFromJSONTyped(json: any, ignore
     return {
         
         'hasMore': json['hasMore'] == null ? undefined : json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(ApplicationSessionFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(ApplicationSessionFromJSON)),
     };
 }
 
@@ -77,7 +77,7 @@ export function GetApplicationSessions200ResponseToJSONTyped(value?: GetApplicat
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(ApplicationSessionToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ApplicationSessionToJSON)),
     };
 }
 

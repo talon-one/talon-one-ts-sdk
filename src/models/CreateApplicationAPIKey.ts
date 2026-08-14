@@ -107,7 +107,7 @@ export function CreateApplicationAPIKeyFromJSONTyped(json: any, ignoreDiscrimina
     return {
         
         'title': json['title'],
-        'expires': (new Date(json['expires'])),
+        'expires': (json['expires'] == null ? undefined as any : new Date(json['expires'])),
         'platform': json['platform'] == null ? undefined : json['platform'],
         'type': json['type'] == null ? undefined : json['type'],
         'timeOffset': json['timeOffset'] == null ? undefined : json['timeOffset'],
@@ -126,7 +126,7 @@ export function CreateApplicationAPIKeyToJSONTyped(value?: CreateApplicationAPIK
     return {
         
         'title': value['title'],
-        'expires': value['expires'].toISOString(),
+        'expires': value['expires'] == null ? undefined : value['expires'].toISOString(),
         'platform': value['platform'],
         'type': value['type'],
         'timeOffset': value['timeOffset'],

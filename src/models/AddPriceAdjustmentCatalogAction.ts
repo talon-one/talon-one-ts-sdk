@@ -66,7 +66,7 @@ export function AddPriceAdjustmentCatalogActionFromJSONTyped(json: any, ignoreDi
     return {
         
         'sku': json['sku'],
-        'adjustments': ((json['adjustments'] as Array<any>).map(NewPriceAdjustmentFromJSON)),
+        'adjustments': (json['adjustments'] == null ? undefined as any : (json['adjustments'] as Array<any>).map(NewPriceAdjustmentFromJSON)),
     };
 }
 
@@ -82,7 +82,7 @@ export function AddPriceAdjustmentCatalogActionToJSONTyped(value?: AddPriceAdjus
     return {
         
         'sku': value['sku'],
-        'adjustments': ((value['adjustments'] as Array<any>).map(NewPriceAdjustmentToJSON)),
+        'adjustments': (value['adjustments'] == null ? undefined : (value['adjustments'] as Array<any>).map(NewPriceAdjustmentToJSON)),
     };
 }
 

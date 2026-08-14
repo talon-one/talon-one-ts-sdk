@@ -114,7 +114,7 @@ export function BestPriorPriceFromJSONTyped(json: any, ignoreDiscriminator: bool
         
         'id': json['id'],
         'sku': json['sku'],
-        'observedAt': (new Date(json['observedAt'])),
+        'observedAt': (json['observedAt'] == null ? undefined as any : new Date(json['observedAt'])),
         'contextIds': json['contextIds'],
         'contextId': json['contextId'] == null ? undefined : json['contextId'],
         'price': json['price'],
@@ -136,7 +136,7 @@ export function BestPriorPriceToJSONTyped(value?: BestPriorPrice | null, ignoreD
         
         'id': value['id'],
         'sku': value['sku'],
-        'observedAt': value['observedAt'].toISOString(),
+        'observedAt': value['observedAt'] == null ? undefined : value['observedAt'].toISOString(),
         'contextIds': value['contextIds'],
         'contextId': value['contextId'],
         'price': value['price'],

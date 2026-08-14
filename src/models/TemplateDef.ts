@@ -122,14 +122,14 @@ export function TemplateDefFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'applicationId': json['applicationId'],
         'title': json['title'],
         'description': json['description'] == null ? undefined : json['description'],
         'help': json['help'] == null ? undefined : json['help'],
         'category': json['category'],
         'expr': json['expr'],
-        'args': ((json['args'] as Array<any>).map(TemplateArgDefFromJSON)),
+        'args': (json['args'] == null ? undefined as any : (json['args'] as Array<any>).map(TemplateArgDefFromJSON)),
         'expose': json['expose'] == null ? undefined : json['expose'],
         'name': json['name'],
     };
@@ -147,14 +147,14 @@ export function TemplateDefToJSONTyped(value?: TemplateDef | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'applicationId': value['applicationId'],
         'title': value['title'],
         'description': value['description'],
         'help': value['help'],
         'category': value['category'],
         'expr': value['expr'],
-        'args': ((value['args'] as Array<any>).map(TemplateArgDefToJSON)),
+        'args': (value['args'] == null ? undefined : (value['args'] as Array<any>).map(TemplateArgDefToJSON)),
         'expose': value['expose'],
         'name': value['name'],
     };

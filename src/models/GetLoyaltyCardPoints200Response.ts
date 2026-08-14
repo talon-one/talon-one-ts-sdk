@@ -62,7 +62,7 @@ export function GetLoyaltyCardPoints200ResponseFromJSONTyped(json: any, ignoreDi
     return {
         
         'hasMore': json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(CardLedgerPointsEntryIntegrationAPIFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CardLedgerPointsEntryIntegrationAPIFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetLoyaltyCardPoints200ResponseToJSONTyped(value?: GetLoyaltyCar
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(CardLedgerPointsEntryIntegrationAPIToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CardLedgerPointsEntryIntegrationAPIToJSON)),
     };
 }
 

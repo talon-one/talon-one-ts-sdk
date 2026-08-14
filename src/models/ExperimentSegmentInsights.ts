@@ -79,7 +79,7 @@ export function ExperimentSegmentInsightsFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'metrics': ((json['metrics'] as Array<any>).map(ExperimentSegmentInsightMetricFromJSON)),
+        'metrics': (json['metrics'] == null ? undefined as any : (json['metrics'] as Array<any>).map(ExperimentSegmentInsightMetricFromJSON)),
         'totalSegmentsTested': json['totalSegmentsTested'],
         'dimensionsTested': json['dimensionsTested'],
         'reason': json['reason'],
@@ -97,7 +97,7 @@ export function ExperimentSegmentInsightsToJSONTyped(value?: ExperimentSegmentIn
 
     return {
         
-        'metrics': ((value['metrics'] as Array<any>).map(ExperimentSegmentInsightMetricToJSON)),
+        'metrics': (value['metrics'] == null ? undefined : (value['metrics'] as Array<any>).map(ExperimentSegmentInsightMetricToJSON)),
         'totalSegmentsTested': value['totalSegmentsTested'],
         'dimensionsTested': value['dimensionsTested'],
         'reason': value['reason'],

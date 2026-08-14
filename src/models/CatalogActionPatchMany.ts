@@ -22,40 +22,52 @@ import {
 } from './PatchManyItemsCatalogAction';
 
 /**
- * 
+ * Updates the items of the catalog that match the given filters.
  * @export
- * @interface CatalogActionOneOf2
+ * @interface CatalogActionPatchMany
  */
-export interface CatalogActionOneOf2 {
+export interface CatalogActionPatchMany {
     /**
-     * 
-     * @type {any}
-     * @memberof CatalogActionOneOf2
+     * A catalog sync action discriminator of type `PATCH_MANY`.
+     * @type {CatalogActionPatchManyTypeEnum}
+     * @memberof CatalogActionPatchMany
      */
-    type: any | null;
+    type: CatalogActionPatchManyTypeEnum;
     /**
-     * 
+     * The payload of sync action.
      * @type {PatchManyItemsCatalogAction}
-     * @memberof CatalogActionOneOf2
+     * @memberof CatalogActionPatchMany
      */
     payload: PatchManyItemsCatalogAction;
 }
 
+
 /**
- * Check if a given object implements the CatalogActionOneOf2 interface.
+ * @export
  */
-export function instanceOfCatalogActionOneOf2(value: object): value is CatalogActionOneOf2 {
+export const CatalogActionPatchManyTypeEnum = {
+    PatchMany: 'PATCH_MANY'
+} as const;
+export type CatalogActionPatchManyTypeEnum = typeof CatalogActionPatchManyTypeEnum[keyof typeof CatalogActionPatchManyTypeEnum];
+
+
+/**
+ * Check if a given object implements the CatalogActionPatchMany interface.
+ */
+export function instanceOfCatalogActionPatchMany(value: object): value is CatalogActionPatchMany {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'PATCH_MANY') return false;
+    
     if (!('payload' in _v) || _v['payload'] === undefined) return false;
     return true;
 }
 
-export function CatalogActionOneOf2FromJSON(json: any): CatalogActionOneOf2 {
-    return CatalogActionOneOf2FromJSONTyped(json, false);
+export function CatalogActionPatchManyFromJSON(json: any): CatalogActionPatchMany {
+    return CatalogActionPatchManyFromJSONTyped(json, false);
 }
 
-export function CatalogActionOneOf2FromJSONTyped(json: any, ignoreDiscriminator: boolean): CatalogActionOneOf2 {
+export function CatalogActionPatchManyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CatalogActionPatchMany {
     if (json == null) {
         return json;
     }
@@ -66,11 +78,11 @@ export function CatalogActionOneOf2FromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function CatalogActionOneOf2ToJSON(json: any): CatalogActionOneOf2 {
-    return CatalogActionOneOf2ToJSONTyped(json, false);
+export function CatalogActionPatchManyToJSON(json: any): CatalogActionPatchMany {
+    return CatalogActionPatchManyToJSONTyped(json, false);
 }
 
-export function CatalogActionOneOf2ToJSONTyped(value?: CatalogActionOneOf2 | null, ignoreDiscriminator: boolean = false): any {
+export function CatalogActionPatchManyToJSONTyped(value?: CatalogActionPatchMany | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

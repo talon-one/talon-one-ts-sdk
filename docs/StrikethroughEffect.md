@@ -12,7 +12,7 @@ Name | Type
 `ruleIndex` | number
 `ruleName` | string
 `type` | string
-`props` | [StrikethroughEffectProps](StrikethroughEffectProps.md)
+`props` | object
 `startTime` | Date
 `endTime` | Date
 `selectedPriceType` | string

@@ -253,7 +253,7 @@ export function AchievementV2FromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'name': json['name'] == null ? undefined : json['name'],
         'title': json['title'] == null ? undefined : json['title'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -287,7 +287,7 @@ export function AchievementV2ToJSONTyped(value?: AchievementV2 | null, ignoreDis
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'name': value['name'],
         'title': value['title'],
         'description': value['description'],

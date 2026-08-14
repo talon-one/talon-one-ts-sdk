@@ -191,7 +191,7 @@ export function IntegrationHubEventPayloadCouponBasedNotificationsFromJSONTyped(
         
         'eventId': json['EventId'],
         'id': json['Id'],
-        'created': (new Date(json['Created'])),
+        'created': (json['Created'] == null ? undefined as any : new Date(json['Created'])),
         'campaignId': json['CampaignId'],
         'value': json['Value'],
         'usageLimit': json['UsageLimit'],
@@ -208,7 +208,7 @@ export function IntegrationHubEventPayloadCouponBasedNotificationsFromJSONTyped(
         'batchId': json['BatchId'] == null ? undefined : json['BatchId'],
         'attributes': json['Attributes'] == null ? undefined : json['Attributes'],
         'limits': json['Limits'] == null ? undefined : ((json['Limits'] as Array<any>).map(IntegrationHubEventPayloadCouponBasedNotificationsLimitsFromJSON)),
-        'publishedAt': (new Date(json['PublishedAt'])),
+        'publishedAt': (json['PublishedAt'] == null ? undefined as any : new Date(json['PublishedAt'])),
         'sourceOfEvent': json['SourceOfEvent'],
         'employeeName': json['EmployeeName'],
     };
@@ -227,7 +227,7 @@ export function IntegrationHubEventPayloadCouponBasedNotificationsToJSONTyped(va
         
         'EventId': value['eventId'],
         'Id': value['id'],
-        'Created': value['created'].toISOString(),
+        'Created': value['created'] == null ? undefined : value['created'].toISOString(),
         'CampaignId': value['campaignId'],
         'Value': value['value'],
         'UsageLimit': value['usageLimit'],
@@ -244,7 +244,7 @@ export function IntegrationHubEventPayloadCouponBasedNotificationsToJSONTyped(va
         'BatchId': value['batchId'],
         'Attributes': value['attributes'],
         'Limits': value['limits'] == null ? undefined : ((value['limits'] as Array<any>).map(IntegrationHubEventPayloadCouponBasedNotificationsLimitsToJSON)),
-        'PublishedAt': value['publishedAt'].toISOString(),
+        'PublishedAt': value['publishedAt'] == null ? undefined : value['publishedAt'].toISOString(),
         'SourceOfEvent': value['sourceOfEvent'],
         'EmployeeName': value['employeeName'],
     };

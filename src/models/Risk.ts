@@ -235,9 +235,9 @@ export function RiskFromJSONTyped(json: any, ignoreDiscriminator: boolean): Risk
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'notificationId': json['notificationId'],
-        'featureDate': (new Date(json['featureDate'])),
+        'featureDate': (json['featureDate'] == null ? undefined as any : new Date(json['featureDate'])),
         'groupKey': json['groupKey'],
         'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
         'status': json['status'],
@@ -245,14 +245,14 @@ export function RiskFromJSONTyped(json: any, ignoreDiscriminator: boolean): Risk
         'entity': json['entity'],
         'activity': json['activity'],
         'timeFrame': json['timeFrame'],
-        'reportedDate': (new Date(json['reportedDate'])),
+        'reportedDate': (json['reportedDate'] == null ? undefined as any : new Date(json['reportedDate'])),
         'affectedEntityCount': json['affectedEntityCount'],
         'description': json['description'] == null ? undefined : json['description'],
         'discardReason': json['discardReason'] == null ? undefined : json['discardReason'],
         'statusComment': json['statusComment'] == null ? undefined : json['statusComment'],
         'statusChangedBy': json['statusChangedBy'] == null ? undefined : json['statusChangedBy'],
         'statusChangedAt': json['statusChangedAt'] == null ? undefined : (new Date(json['statusChangedAt'])),
-        'modified': (new Date(json['modified'])),
+        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
     };
 }
 
@@ -268,9 +268,9 @@ export function RiskToJSONTyped(value?: Risk | null, ignoreDiscriminator: boolea
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'notificationId': value['notificationId'],
-        'featureDate': value['featureDate'].toISOString().substring(0,10),
+        'featureDate': value['featureDate'] == null ? undefined : value['featureDate'].toISOString().substring(0,10),
         'groupKey': value['groupKey'],
         'applicationId': value['applicationId'],
         'status': value['status'],
@@ -278,14 +278,14 @@ export function RiskToJSONTyped(value?: Risk | null, ignoreDiscriminator: boolea
         'entity': value['entity'],
         'activity': value['activity'],
         'timeFrame': value['timeFrame'],
-        'reportedDate': value['reportedDate'].toISOString(),
+        'reportedDate': value['reportedDate'] == null ? undefined : value['reportedDate'].toISOString(),
         'affectedEntityCount': value['affectedEntityCount'],
         'description': value['description'],
         'discardReason': value['discardReason'],
         'statusComment': value['statusComment'],
         'statusChangedBy': value['statusChangedBy'],
         'statusChangedAt': value['statusChangedAt'] == null ? value['statusChangedAt'] : value['statusChangedAt'].toISOString(),
-        'modified': value['modified'].toISOString(),
+        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
     };
 }
 

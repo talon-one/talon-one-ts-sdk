@@ -62,7 +62,7 @@ export function GetCustomerProfiles200ResponseFromJSONTyped(json: any, ignoreDis
     return {
         
         'hasMore': json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(CustomerProfileFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CustomerProfileFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetCustomerProfiles200ResponseToJSONTyped(value?: GetCustomerPro
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(CustomerProfileToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CustomerProfileToJSON)),
     };
 }
 

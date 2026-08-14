@@ -62,7 +62,7 @@ export function GetReservedCustomers200ResponseFromJSONTyped(json: any, ignoreDi
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(CustomerProfileFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CustomerProfileFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetReservedCustomers200ResponseToJSONTyped(value?: GetReservedCu
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(CustomerProfileToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CustomerProfileToJSON)),
     };
 }
 

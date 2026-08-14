@@ -1,24 +1,25 @@
 
-# CatalogActionOneOf3
+# CatalogActionRemove
 
+Removes an item from the catalog.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`type` | any
+`type` | string
 `payload` | [RemoveItemCatalogAction](RemoveItemCatalogAction.md)
 
 ## Example
 
 ```typescript
-import type { CatalogActionOneOf3 } from 'talon_one_sdk'
+import type { CatalogActionRemove } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
   "type": null,
   "payload": null,
-} satisfies CatalogActionOneOf3
+} satisfies CatalogActionRemove
 
 console.log(example)
 
@@ -27,7 +28,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as CatalogActionOneOf3
+const exampleParsed = JSON.parse(exampleJSON) as CatalogActionRemove
 console.log(exampleParsed)
 ```
 

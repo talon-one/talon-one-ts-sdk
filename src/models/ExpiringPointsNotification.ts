@@ -81,7 +81,7 @@ export function ExpiringPointsNotificationFromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'totalResultSize': json['TotalResultSize'],
-        'data': ((json['Data'] as Array<any>).map(ExpiringPointsDataFromJSON)),
+        'data': (json['Data'] == null ? undefined as any : (json['Data'] as Array<any>).map(ExpiringPointsDataFromJSON)),
         'notificationType': json['NotificationType'],
     };
 }
@@ -98,7 +98,7 @@ export function ExpiringPointsNotificationToJSONTyped(value?: ExpiringPointsNoti
     return {
         
         'TotalResultSize': value['totalResultSize'],
-        'Data': ((value['data'] as Array<any>).map(ExpiringPointsDataToJSON)),
+        'Data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ExpiringPointsDataToJSON)),
         'NotificationType': value['notificationType'],
     };
 }

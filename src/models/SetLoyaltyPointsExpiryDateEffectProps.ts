@@ -77,7 +77,7 @@ export function SetLoyaltyPointsExpiryDateEffectPropsFromJSONTyped(json: any, ig
         
         'programId': json['programId'],
         'subLedgerId': json['subLedgerId'],
-        'newExpiryDate': (new Date(json['newExpiryDate'])),
+        'newExpiryDate': (json['newExpiryDate'] == null ? undefined as any : new Date(json['newExpiryDate'])),
         'affectedTransactions': json['affectedTransactions'] == null ? undefined : ((json['affectedTransactions'] as Array<any>).map(LoyaltyLedgerEntryExpiryDateChangeFromJSON)),
     };
 }
@@ -95,7 +95,7 @@ export function SetLoyaltyPointsExpiryDateEffectPropsToJSONTyped(value?: SetLoya
         
         'programId': value['programId'],
         'subLedgerId': value['subLedgerId'],
-        'newExpiryDate': value['newExpiryDate'].toISOString(),
+        'newExpiryDate': value['newExpiryDate'] == null ? undefined : value['newExpiryDate'].toISOString(),
         'affectedTransactions': value['affectedTransactions'] == null ? undefined : ((value['affectedTransactions'] as Array<any>).map(LoyaltyLedgerEntryExpiryDateChangeToJSON)),
     };
 }

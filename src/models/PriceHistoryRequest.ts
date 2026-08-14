@@ -61,8 +61,8 @@ export function PriceHistoryRequestFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'sku': json['sku'],
-        'startDate': (new Date(json['startDate'])),
-        'endDate': (new Date(json['endDate'])),
+        'startDate': (json['startDate'] == null ? undefined as any : new Date(json['startDate'])),
+        'endDate': (json['endDate'] == null ? undefined as any : new Date(json['endDate'])),
     };
 }
 
@@ -78,8 +78,8 @@ export function PriceHistoryRequestToJSONTyped(value?: PriceHistoryRequest | nul
     return {
         
         'sku': value['sku'],
-        'startDate': value['startDate'].toISOString(),
-        'endDate': value['endDate'].toISOString(),
+        'startDate': value['startDate'] == null ? undefined : value['startDate'].toISOString(),
+        'endDate': value['endDate'] == null ? undefined : value['endDate'].toISOString(),
     };
 }
 

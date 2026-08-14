@@ -90,7 +90,7 @@ export function ExpiringCardPointsDataFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'expiryDate': (new Date(json['ExpiryDate'])),
+        'expiryDate': (json['ExpiryDate'] == null ? undefined as any : new Date(json['ExpiryDate'])),
         'loyaltyProgramID': json['LoyaltyProgramID'],
         'amountOfExpiringPoints': json['AmountOfExpiringPoints'],
         'subledgerID': json['SubledgerID'],
@@ -111,7 +111,7 @@ export function ExpiringCardPointsDataToJSONTyped(value?: ExpiringCardPointsData
 
     return {
         
-        'ExpiryDate': value['expiryDate'].toISOString().substring(0,10),
+        'ExpiryDate': value['expiryDate'] == null ? undefined : value['expiryDate'].toISOString().substring(0,10),
         'LoyaltyProgramID': value['loyaltyProgramID'],
         'AmountOfExpiringPoints': value['amountOfExpiringPoints'],
         'SubledgerID': value['subledgerID'],

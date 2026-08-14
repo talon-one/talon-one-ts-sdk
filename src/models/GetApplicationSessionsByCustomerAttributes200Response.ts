@@ -68,7 +68,7 @@ export function GetApplicationSessionsByCustomerAttributes200ResponseFromJSONTyp
         
         'hasMore': json['hasMore'] == null ? undefined : json['hasMore'],
         'totalResultSize': json['totalResultSize'] == null ? undefined : json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(ApplicationSessionFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(ApplicationSessionFromJSON)),
     };
 }
 
@@ -85,7 +85,7 @@ export function GetApplicationSessionsByCustomerAttributes200ResponseToJSONTyped
         
         'hasMore': value['hasMore'],
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(ApplicationSessionToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ApplicationSessionToJSON)),
     };
 }
 

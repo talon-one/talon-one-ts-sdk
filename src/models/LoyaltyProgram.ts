@@ -315,7 +315,7 @@ export function LoyaltyProgramFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'title': json['title'] == null ? undefined : json['title'],
         'description': json['description'] == null ? undefined : json['description'],
         'subscribedApplications': json['subscribedApplications'] == null ? undefined : json['subscribedApplications'],
@@ -355,7 +355,7 @@ export function LoyaltyProgramToJSONTyped(value?: LoyaltyProgram | null, ignoreD
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'title': value['title'],
         'description': value['description'],
         'subscribedApplications': value['subscribedApplications'],

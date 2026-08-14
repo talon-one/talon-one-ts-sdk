@@ -74,7 +74,7 @@ export function ExpiringPointsNotificationPolicyFromJSONTyped(json: any, ignoreD
     return {
         
         'name': json['name'],
-        'triggers': ((json['triggers'] as Array<any>).map(ExpiringPointsNotificationTriggerFromJSON)),
+        'triggers': (json['triggers'] == null ? undefined as any : (json['triggers'] as Array<any>).map(ExpiringPointsNotificationTriggerFromJSON)),
         'batchingEnabled': json['batchingEnabled'] == null ? undefined : json['batchingEnabled'],
         'batchSize': json['batchSize'] == null ? undefined : json['batchSize'],
     };
@@ -92,7 +92,7 @@ export function ExpiringPointsNotificationPolicyToJSONTyped(value?: ExpiringPoin
     return {
         
         'name': value['name'],
-        'triggers': ((value['triggers'] as Array<any>).map(ExpiringPointsNotificationTriggerToJSON)),
+        'triggers': (value['triggers'] == null ? undefined : (value['triggers'] as Array<any>).map(ExpiringPointsNotificationTriggerToJSON)),
         'batchingEnabled': value['batchingEnabled'],
         'batchSize': value['batchSize'],
     };

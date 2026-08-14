@@ -214,7 +214,7 @@ export function CampaignAnalyticsFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'date': (new Date(json['date'])),
+        'date': (json['date'] == null ? undefined as any : new Date(json['date'])),
         'campaignRevenue': json['campaignRevenue'],
         'totalCampaignRevenue': json['totalCampaignRevenue'],
         'campaignRefund': json['campaignRefund'],
@@ -253,7 +253,7 @@ export function CampaignAnalyticsToJSONTyped(value?: CampaignAnalytics | null, i
 
     return {
         
-        'date': value['date'].toISOString(),
+        'date': value['date'] == null ? undefined : value['date'].toISOString(),
         'campaignRevenue': value['campaignRevenue'],
         'totalCampaignRevenue': value['totalCampaignRevenue'],
         'campaignRefund': value['campaignRefund'],

@@ -157,7 +157,7 @@ export function LoyaltyLedgerEntryFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'programID': json['programID'],
         'customerProfileID': json['customerProfileID'] == null ? undefined : json['customerProfileID'],
         'cardID': json['cardID'] == null ? undefined : json['cardID'],
@@ -187,7 +187,7 @@ export function LoyaltyLedgerEntryToJSONTyped(value?: LoyaltyLedgerEntry | null,
 
     return {
         
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'programID': value['programID'],
         'customerProfileID': value['customerProfileID'],
         'cardID': value['cardID'],

@@ -75,7 +75,7 @@ export function EventTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'title': json['title'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -94,7 +94,7 @@ export function EventTypeToJSONTyped(value?: EventType | null, ignoreDiscriminat
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'title': value['title'],
         'name': value['name'],
         'description': value['description'],

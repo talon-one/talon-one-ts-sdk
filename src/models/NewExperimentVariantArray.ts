@@ -54,7 +54,7 @@ export function NewExperimentVariantArrayFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'variants': ((json['variants'] as Array<any>).map(NewExperimentVariantFromJSON)),
+        'variants': (json['variants'] == null ? undefined as any : (json['variants'] as Array<any>).map(NewExperimentVariantFromJSON)),
     };
 }
 
@@ -69,7 +69,7 @@ export function NewExperimentVariantArrayToJSONTyped(value?: NewExperimentVarian
 
     return {
         
-        'variants': ((value['variants'] as Array<any>).map(NewExperimentVariantToJSON)),
+        'variants': (value['variants'] == null ? undefined : (value['variants'] as Array<any>).map(NewExperimentVariantToJSON)),
     };
 }
 

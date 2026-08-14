@@ -131,7 +131,7 @@ export function SamlConnectionFromJSONTyped(json: any, ignoreDiscriminator: bool
         'metadataURL': json['metadataURL'] == null ? undefined : json['metadataURL'],
         'audienceURI': json['audienceURI'],
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'assertionConsumerServiceURL': json['assertionConsumerServiceURL'],
         'certificateExpiry': json['certificateExpiry'] == null ? undefined : (new Date(json['certificateExpiry'])),
     };
@@ -157,7 +157,7 @@ export function SamlConnectionToJSONTyped(value?: SamlConnection | null, ignoreD
         'metadataURL': value['metadataURL'],
         'audienceURI': value['audienceURI'],
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'assertionConsumerServiceURL': value['assertionConsumerServiceURL'],
         'certificateExpiry': value['certificateExpiry'] == null ? value['certificateExpiry'] : value['certificateExpiry'].toISOString(),
     };

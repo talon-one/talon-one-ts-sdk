@@ -61,7 +61,7 @@ export function ListAchievements200ResponseFromJSONTyped(json: any, ignoreDiscri
     return {
         
         'hasMore': json['hasMore'] == null ? undefined : json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(AchievementFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(AchievementFromJSON)),
     };
 }
 
@@ -77,7 +77,7 @@ export function ListAchievements200ResponseToJSONTyped(value?: ListAchievements2
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(AchievementToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(AchievementToJSON)),
     };
 }
 

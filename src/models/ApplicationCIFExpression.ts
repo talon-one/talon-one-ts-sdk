@@ -79,7 +79,7 @@ export function ApplicationCIFExpressionFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'cartItemFilterId': json['cartItemFilterId'] == null ? undefined : json['cartItemFilterId'],
         'createdBy': json['createdBy'] == null ? undefined : json['createdBy'],
         'expression': json['expression'] == null ? undefined : json['expression'],
@@ -99,7 +99,7 @@ export function ApplicationCIFExpressionToJSONTyped(value?: ApplicationCIFExpres
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'cartItemFilterId': value['cartItemFilterId'],
         'createdBy': value['createdBy'],
         'expression': value['expression'],

@@ -60,7 +60,7 @@ export function CatalogSyncRequestFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'actions': ((json['actions'] as Array<any>).map(CatalogActionFromJSON)),
+        'actions': (json['actions'] == null ? undefined as any : (json['actions'] as Array<any>).map(CatalogActionFromJSON)),
         'version': json['version'] == null ? undefined : json['version'],
     };
 }
@@ -76,7 +76,7 @@ export function CatalogSyncRequestToJSONTyped(value?: CatalogSyncRequest | null,
 
     return {
         
-        'actions': ((value['actions'] as Array<any>).map(CatalogActionToJSON)),
+        'actions': (value['actions'] == null ? undefined : (value['actions'] as Array<any>).map(CatalogActionToJSON)),
         'version': value['version'],
     };
 }

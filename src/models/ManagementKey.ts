@@ -117,13 +117,13 @@ export function ManagementKeyFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'name': json['name'],
-        'expiryDate': (new Date(json['expiryDate'])),
-        'endpoints': ((json['endpoints'] as Array<any>).map(EndpointFromJSON)),
+        'expiryDate': (json['expiryDate'] == null ? undefined as any : new Date(json['expiryDate'])),
+        'endpoints': (json['endpoints'] == null ? undefined as any : (json['endpoints'] as Array<any>).map(EndpointFromJSON)),
         'allowedApplicationIds': json['allowedApplicationIds'] == null ? undefined : json['allowedApplicationIds'],
         'id': json['id'],
         'createdBy': json['createdBy'],
         'accountID': json['accountID'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'disabled': json['disabled'] == null ? undefined : json['disabled'],
         'lastUsed': json['lastUsed'] == null ? undefined : (new Date(json['lastUsed'])),
     };
@@ -141,13 +141,13 @@ export function ManagementKeyToJSONTyped(value?: ManagementKey | null, ignoreDis
     return {
         
         'name': value['name'],
-        'expiryDate': value['expiryDate'].toISOString(),
-        'endpoints': ((value['endpoints'] as Array<any>).map(EndpointToJSON)),
+        'expiryDate': value['expiryDate'] == null ? undefined : value['expiryDate'].toISOString(),
+        'endpoints': (value['endpoints'] == null ? undefined : (value['endpoints'] as Array<any>).map(EndpointToJSON)),
         'allowedApplicationIds': value['allowedApplicationIds'],
         'id': value['id'],
         'createdBy': value['createdBy'],
         'accountID': value['accountID'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'disabled': value['disabled'],
         'lastUsed': value['lastUsed'] == null ? value['lastUsed'] : value['lastUsed'].toISOString(),
     };

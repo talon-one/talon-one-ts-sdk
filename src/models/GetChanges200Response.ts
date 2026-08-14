@@ -68,7 +68,7 @@ export function GetChanges200ResponseFromJSONTyped(json: any, ignoreDiscriminato
         
         'totalResultSize': json['totalResultSize'] == null ? undefined : json['totalResultSize'],
         'hasMore': json['hasMore'] == null ? undefined : json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(ChangeFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(ChangeFromJSON)),
     };
 }
 
@@ -85,7 +85,7 @@ export function GetChanges200ResponseToJSONTyped(value?: GetChanges200Response |
         
         'totalResultSize': value['totalResultSize'],
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(ChangeToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ChangeToJSON)),
     };
 }
 

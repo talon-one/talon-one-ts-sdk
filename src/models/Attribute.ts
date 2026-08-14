@@ -202,7 +202,7 @@ export function AttributeFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'accountId': json['accountId'],
         'entity': json['entity'],
         'eventType': json['eventType'] == null ? undefined : json['eventType'],
@@ -233,7 +233,7 @@ export function AttributeToJSONTyped(value?: Attribute | null, ignoreDiscriminat
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'accountId': value['accountId'],
         'entity': value['entity'],
         'eventType': value['eventType'],

@@ -62,7 +62,7 @@ export function GetUsers200ResponseFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(UserFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(UserFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetUsers200ResponseToJSONTyped(value?: GetUsers200Response | nul
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(UserToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(UserToJSON)),
     };
 }
 

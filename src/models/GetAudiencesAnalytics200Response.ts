@@ -61,7 +61,7 @@ export function GetAudiencesAnalytics200ResponseFromJSONTyped(json: any, ignoreD
     return {
         
         'hasMore': json['hasMore'] == null ? undefined : json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(AudienceAnalyticsFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(AudienceAnalyticsFromJSON)),
     };
 }
 
@@ -77,7 +77,7 @@ export function GetAudiencesAnalytics200ResponseToJSONTyped(value?: GetAudiences
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(AudienceAnalyticsToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(AudienceAnalyticsToJSON)),
     };
 }
 

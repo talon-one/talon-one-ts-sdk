@@ -62,7 +62,7 @@ export function GetLoyaltyPrograms200ResponseFromJSONTyped(json: any, ignoreDisc
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(LoyaltyProgramFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(LoyaltyProgramFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetLoyaltyPrograms200ResponseToJSONTyped(value?: GetLoyaltyProgr
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(LoyaltyProgramToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(LoyaltyProgramToJSON)),
     };
 }
 

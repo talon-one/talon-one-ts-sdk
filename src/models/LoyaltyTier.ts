@@ -87,7 +87,7 @@ export function LoyaltyTierFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'programID': json['programID'],
         'programName': json['programName'] == null ? undefined : json['programName'],
         'programTitle': json['programTitle'] == null ? undefined : json['programTitle'],
@@ -108,7 +108,7 @@ export function LoyaltyTierToJSONTyped(value?: LoyaltyTier | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'programID': value['programID'],
         'programName': value['programName'],
         'programTitle': value['programTitle'],

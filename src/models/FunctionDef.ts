@@ -84,7 +84,7 @@ export function FunctionDefFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'type': json['type'],
         'description': json['description'] == null ? undefined : json['description'],
         'help': json['help'] == null ? undefined : json['help'],
-        'args': ((json['args'] as Array<any>).map(FuncArgDefFromJSON)),
+        'args': (json['args'] == null ? undefined as any : (json['args'] as Array<any>).map(FuncArgDefFromJSON)),
     };
 }
 
@@ -103,7 +103,7 @@ export function FunctionDefToJSONTyped(value?: FunctionDef | null, ignoreDiscrim
         'type': value['type'],
         'description': value['description'],
         'help': value['help'],
-        'args': ((value['args'] as Array<any>).map(FuncArgDefToJSON)),
+        'args': (value['args'] == null ? undefined : (value['args'] as Array<any>).map(FuncArgDefToJSON)),
     };
 }
 

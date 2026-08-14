@@ -22,40 +22,52 @@ import {
 } from './RemoveItemCatalogAction';
 
 /**
- * 
+ * Removes an item from the catalog.
  * @export
- * @interface CatalogActionOneOf3
+ * @interface CatalogActionRemove
  */
-export interface CatalogActionOneOf3 {
+export interface CatalogActionRemove {
     /**
-     * 
-     * @type {any}
-     * @memberof CatalogActionOneOf3
+     * A catalog sync action discriminator of type `REMOVE`.
+     * @type {CatalogActionRemoveTypeEnum}
+     * @memberof CatalogActionRemove
      */
-    type: any | null;
+    type: CatalogActionRemoveTypeEnum;
     /**
-     * 
+     * The payload of sync action.
      * @type {RemoveItemCatalogAction}
-     * @memberof CatalogActionOneOf3
+     * @memberof CatalogActionRemove
      */
     payload: RemoveItemCatalogAction;
 }
 
+
 /**
- * Check if a given object implements the CatalogActionOneOf3 interface.
+ * @export
  */
-export function instanceOfCatalogActionOneOf3(value: object): value is CatalogActionOneOf3 {
+export const CatalogActionRemoveTypeEnum = {
+    Remove: 'REMOVE'
+} as const;
+export type CatalogActionRemoveTypeEnum = typeof CatalogActionRemoveTypeEnum[keyof typeof CatalogActionRemoveTypeEnum];
+
+
+/**
+ * Check if a given object implements the CatalogActionRemove interface.
+ */
+export function instanceOfCatalogActionRemove(value: object): value is CatalogActionRemove {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'REMOVE') return false;
+    
     if (!('payload' in _v) || _v['payload'] === undefined) return false;
     return true;
 }
 
-export function CatalogActionOneOf3FromJSON(json: any): CatalogActionOneOf3 {
-    return CatalogActionOneOf3FromJSONTyped(json, false);
+export function CatalogActionRemoveFromJSON(json: any): CatalogActionRemove {
+    return CatalogActionRemoveFromJSONTyped(json, false);
 }
 
-export function CatalogActionOneOf3FromJSONTyped(json: any, ignoreDiscriminator: boolean): CatalogActionOneOf3 {
+export function CatalogActionRemoveFromJSONTyped(json: any, ignoreDiscriminator: boolean): CatalogActionRemove {
     if (json == null) {
         return json;
     }
@@ -66,11 +78,11 @@ export function CatalogActionOneOf3FromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function CatalogActionOneOf3ToJSON(json: any): CatalogActionOneOf3 {
-    return CatalogActionOneOf3ToJSONTyped(json, false);
+export function CatalogActionRemoveToJSON(json: any): CatalogActionRemove {
+    return CatalogActionRemoveToJSONTyped(json, false);
 }
 
-export function CatalogActionOneOf3ToJSONTyped(value?: CatalogActionOneOf3 | null, ignoreDiscriminator: boolean = false): any {
+export function CatalogActionRemoveToJSONTyped(value?: CatalogActionRemove | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

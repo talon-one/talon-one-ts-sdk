@@ -181,9 +181,9 @@ export function CustomerProfileIntegrationResponseV2FromJSONTyped(json: any, ign
         'ruleFailureReasons': json['ruleFailureReasons'] == null ? undefined : ((json['ruleFailureReasons'] as Array<any>).map(RuleFailureReasonFromJSON)),
         'campaignEligibility': json['campaignEligibility'] == null ? undefined : ((json['campaignEligibility'] as Array<any>).map(CampaignEligibilityFromJSON)),
         'awardedGiveaways': json['awardedGiveaways'] == null ? undefined : ((json['awardedGiveaways'] as Array<any>).map(GiveawayFromJSON)),
-        'effects': ((json['effects'] as Array<any>).map(EffectFromJSON)),
-        'createdCoupons': ((json['createdCoupons'] as Array<any>).map(CouponFromJSON)),
-        'createdReferrals': ((json['createdReferrals'] as Array<any>).map(ReferralFromJSON)),
+        'effects': (json['effects'] == null ? undefined as any : (json['effects'] as Array<any>).map(EffectFromJSON)),
+        'createdCoupons': (json['createdCoupons'] == null ? undefined as any : (json['createdCoupons'] as Array<any>).map(CouponFromJSON)),
+        'createdReferrals': (json['createdReferrals'] == null ? undefined as any : (json['createdReferrals'] as Array<any>).map(ReferralFromJSON)),
     };
 }
 
@@ -205,9 +205,9 @@ export function CustomerProfileIntegrationResponseV2ToJSONTyped(value?: Customer
         'ruleFailureReasons': value['ruleFailureReasons'] == null ? undefined : ((value['ruleFailureReasons'] as Array<any>).map(RuleFailureReasonToJSON)),
         'campaignEligibility': value['campaignEligibility'] == null ? undefined : ((value['campaignEligibility'] as Array<any>).map(CampaignEligibilityToJSON)),
         'awardedGiveaways': value['awardedGiveaways'] == null ? undefined : ((value['awardedGiveaways'] as Array<any>).map(GiveawayToJSON)),
-        'effects': ((value['effects'] as Array<any>).map(EffectToJSON)),
-        'createdCoupons': ((value['createdCoupons'] as Array<any>).map(CouponToJSON)),
-        'createdReferrals': ((value['createdReferrals'] as Array<any>).map(ReferralToJSON)),
+        'effects': (value['effects'] == null ? undefined : (value['effects'] as Array<any>).map(EffectToJSON)),
+        'createdCoupons': (value['createdCoupons'] == null ? undefined : (value['createdCoupons'] as Array<any>).map(CouponToJSON)),
+        'createdReferrals': (value['createdReferrals'] == null ? undefined : (value['createdReferrals'] as Array<any>).map(ReferralToJSON)),
     };
 }
 
