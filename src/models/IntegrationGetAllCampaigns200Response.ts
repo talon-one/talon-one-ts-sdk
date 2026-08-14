@@ -62,7 +62,7 @@ export function IntegrationGetAllCampaigns200ResponseFromJSONTyped(json: any, ig
     return {
         
         'hasMore': json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(IntegrationCampaignFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(IntegrationCampaignFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function IntegrationGetAllCampaigns200ResponseToJSONTyped(value?: Integra
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(IntegrationCampaignToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(IntegrationCampaignToJSON)),
     };
 }
 

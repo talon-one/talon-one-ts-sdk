@@ -54,7 +54,7 @@ export function NewReturnFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
-        'returnedCartItems': ((json['returnedCartItems'] as Array<any>).map(ReturnedCartItemFromJSON)),
+        'returnedCartItems': (json['returnedCartItems'] == null ? undefined as any : (json['returnedCartItems'] as Array<any>).map(ReturnedCartItemFromJSON)),
     };
 }
 
@@ -69,7 +69,7 @@ export function NewReturnToJSONTyped(value?: NewReturn | null, ignoreDiscriminat
 
     return {
         
-        'returnedCartItems': ((value['returnedCartItems'] as Array<any>).map(ReturnedCartItemToJSON)),
+        'returnedCartItems': (value['returnedCartItems'] == null ? undefined : (value['returnedCartItems'] as Array<any>).map(ReturnedCartItemToJSON)),
     };
 }
 

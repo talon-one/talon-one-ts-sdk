@@ -62,7 +62,7 @@ export function AccountDashboardStatisticDiscountFromJSONTyped(json: any, ignore
         
         'total': json['total'],
         'average': json['average'],
-        'datetime': (new Date(json['datetime'])),
+        'datetime': (json['datetime'] == null ? undefined as any : new Date(json['datetime'])),
     };
 }
 
@@ -79,7 +79,7 @@ export function AccountDashboardStatisticDiscountToJSONTyped(value?: AccountDash
         
         'total': value['total'],
         'average': value['average'],
-        'datetime': value['datetime'].toISOString(),
+        'datetime': value['datetime'] == null ? undefined : value['datetime'].toISOString(),
     };
 }
 

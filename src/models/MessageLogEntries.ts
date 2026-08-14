@@ -64,7 +64,7 @@ export function MessageLogEntriesFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'nextCursor': json['nextCursor'] == null ? undefined : json['nextCursor'],
-        'data': ((json['data'] as Array<any>).map(MessageLogEntryFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(MessageLogEntryFromJSON)),
     };
 }
 
@@ -80,7 +80,7 @@ export function MessageLogEntriesToJSONTyped(value?: MessageLogEntries | null, i
     return {
         
         'nextCursor': value['nextCursor'],
-        'data': ((value['data'] as Array<any>).map(MessageLogEntryToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(MessageLogEntryToJSON)),
     };
 }
 

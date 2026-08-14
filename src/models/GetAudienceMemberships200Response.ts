@@ -61,7 +61,7 @@ export function GetAudienceMemberships200ResponseFromJSONTyped(json: any, ignore
     return {
         
         'hasMore': json['hasMore'] == null ? undefined : json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(CustomerProfileFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CustomerProfileFromJSON)),
     };
 }
 
@@ -77,7 +77,7 @@ export function GetAudienceMemberships200ResponseToJSONTyped(value?: GetAudience
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(CustomerProfileToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CustomerProfileToJSON)),
     };
 }
 

@@ -61,7 +61,7 @@ export function ExperimentConfidenceTimelineDataPointFromJSONTyped(json: any, ig
     }
     return {
         
-        'date': (new Date(json['date'])),
+        'date': (json['date'] == null ? undefined as any : new Date(json['date'])),
         'confidence': ExperimentVariantResultConfidenceFromJSON(json['confidence']),
     };
 }
@@ -77,7 +77,7 @@ export function ExperimentConfidenceTimelineDataPointToJSONTyped(value?: Experim
 
     return {
         
-        'date': value['date'].toISOString(),
+        'date': value['date'] == null ? undefined : value['date'].toISOString(),
         'confidence': ExperimentVariantResultConfidenceToJSON(value['confidence']),
     };
 }

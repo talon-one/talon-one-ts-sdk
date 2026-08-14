@@ -61,7 +61,7 @@ export function LoyaltyLedgerEntryExpiryDateChangeFromJSONTyped(json: any, ignor
         
         'transactionUUID': json['transactionUUID'],
         'previousExpiryDate': json['previousExpiryDate'] == null ? undefined : (new Date(json['previousExpiryDate'])),
-        'newExpiryDate': (new Date(json['newExpiryDate'])),
+        'newExpiryDate': (json['newExpiryDate'] == null ? undefined as any : new Date(json['newExpiryDate'])),
     };
 }
 
@@ -78,7 +78,7 @@ export function LoyaltyLedgerEntryExpiryDateChangeToJSONTyped(value?: LoyaltyLed
         
         'transactionUUID': value['transactionUUID'],
         'previousExpiryDate': value['previousExpiryDate'] == null ? value['previousExpiryDate'] : value['previousExpiryDate'].toISOString(),
-        'newExpiryDate': value['newExpiryDate'].toISOString(),
+        'newExpiryDate': value['newExpiryDate'] == null ? undefined : value['newExpiryDate'].toISOString(),
     };
 }
 

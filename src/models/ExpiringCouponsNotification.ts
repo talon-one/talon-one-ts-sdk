@@ -81,7 +81,7 @@ export function ExpiringCouponsNotificationFromJSONTyped(json: any, ignoreDiscri
     return {
         
         'totalResultSize': json['TotalResultSize'],
-        'data': ((json['Data'] as Array<any>).map(ExpiringCouponsDataFromJSON)),
+        'data': (json['Data'] == null ? undefined as any : (json['Data'] as Array<any>).map(ExpiringCouponsDataFromJSON)),
         'notificationType': json['NotificationType'],
     };
 }
@@ -98,7 +98,7 @@ export function ExpiringCouponsNotificationToJSONTyped(value?: ExpiringCouponsNo
     return {
         
         'TotalResultSize': value['totalResultSize'],
-        'Data': ((value['data'] as Array<any>).map(ExpiringCouponsDataToJSON)),
+        'Data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ExpiringCouponsDataToJSON)),
         'NotificationType': value['notificationType'],
     };
 }

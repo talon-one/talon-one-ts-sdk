@@ -151,7 +151,7 @@ export function AddedDeductedPointsBalancesNotificationFromJSONTyped(json: any, 
         'subledgerID': json['SubledgerID'],
         'typeOfChange': json['TypeOfChange'],
         'userID': json['UserID'],
-        'actions': ((json['Actions'] as Array<any>).map(AddedDeductedPointsBalancesActionFromJSON)),
+        'actions': (json['Actions'] == null ? undefined as any : (json['Actions'] as Array<any>).map(AddedDeductedPointsBalancesActionFromJSON)),
         'currentPoints': json['CurrentPoints'],
     };
 }
@@ -175,7 +175,7 @@ export function AddedDeductedPointsBalancesNotificationToJSONTyped(value?: Added
         'SubledgerID': value['subledgerID'],
         'TypeOfChange': value['typeOfChange'],
         'UserID': value['userID'],
-        'Actions': ((value['actions'] as Array<any>).map(AddedDeductedPointsBalancesActionToJSON)),
+        'Actions': (value['actions'] == null ? undefined : (value['actions'] as Array<any>).map(AddedDeductedPointsBalancesActionToJSON)),
         'CurrentPoints': value['currentPoints'],
     };
 }

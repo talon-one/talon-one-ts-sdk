@@ -119,7 +119,7 @@ export function AudienceFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         
         'accountId': json['accountId'],
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'name': json['name'],
         'sandbox': json['sandbox'] == null ? undefined : json['sandbox'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -144,7 +144,7 @@ export function AudienceToJSONTyped(value?: Audience | null, ignoreDiscriminator
         
         'accountId': value['accountId'],
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'name': value['name'],
         'sandbox': value['sandbox'],
         'description': value['description'],

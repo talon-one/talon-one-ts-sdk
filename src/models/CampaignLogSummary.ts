@@ -88,7 +88,7 @@ export function CampaignLogSummaryFromJSONTyped(json: any, ignoreDiscriminator: 
         
         'name': json['name'],
         'email': json['email'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'action': json['action'],
         'summary': json['summary'],
     };
@@ -107,7 +107,7 @@ export function CampaignLogSummaryToJSONTyped(value?: CampaignLogSummary | null,
         
         'name': value['name'],
         'email': value['email'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'action': value['action'],
         'summary': value['summary'],
     };

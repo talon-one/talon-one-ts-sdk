@@ -54,7 +54,7 @@ export function OktaEventPayloadDataFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'events': ((json['events'] as Array<any>).map(OktaEventFromJSON)),
+        'events': (json['events'] == null ? undefined as any : (json['events'] as Array<any>).map(OktaEventFromJSON)),
     };
 }
 
@@ -69,7 +69,7 @@ export function OktaEventPayloadDataToJSONTyped(value?: OktaEventPayloadData | n
 
     return {
         
-        'events': ((value['events'] as Array<any>).map(OktaEventToJSON)),
+        'events': (value['events'] == null ? undefined : (value['events'] as Array<any>).map(OktaEventToJSON)),
     };
 }
 

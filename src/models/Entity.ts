@@ -54,7 +54,7 @@ export function EntityFromJSONTyped(json: any, ignoreDiscriminator: boolean): En
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
     };
 }
 
@@ -70,7 +70,7 @@ export function EntityToJSONTyped(value?: Entity | null, ignoreDiscriminator: bo
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
     };
 }
 

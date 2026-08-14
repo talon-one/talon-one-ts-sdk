@@ -70,7 +70,7 @@ export function MCPOAuthClientFromJSONTyped(json: any, ignoreDiscriminator: bool
         'clientId': json['client_id'],
         'clientName': json['client_name'],
         'redirectUris': json['redirect_uris'],
-        'createdAt': (new Date(json['created_at'])),
+        'createdAt': (json['created_at'] == null ? undefined as any : new Date(json['created_at'])),
     };
 }
 
@@ -88,7 +88,7 @@ export function MCPOAuthClientToJSONTyped(value?: MCPOAuthClient | null, ignoreD
         'client_id': value['clientId'],
         'client_name': value['clientName'],
         'redirect_uris': value['redirectUris'],
-        'created_at': value['createdAt'].toISOString(),
+        'created_at': value['createdAt'] == null ? undefined : value['createdAt'].toISOString(),
     };
 }
 

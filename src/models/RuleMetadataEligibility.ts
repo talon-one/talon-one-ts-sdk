@@ -87,7 +87,7 @@ export function RuleMetadataEligibilityFromJSONTyped(json: any, ignoreDiscrimina
         'displayName': json['displayName'] == null ? undefined : json['displayName'],
         'displayDescription': json['displayDescription'] == null ? undefined : json['displayDescription'],
         'relatedData': json['relatedData'] == null ? undefined : json['relatedData'],
-        'eligibility': ((json['eligibility'] as Array<any>).map(RuleEligibilityFromJSON)),
+        'eligibility': (json['eligibility'] == null ? undefined as any : (json['eligibility'] as Array<any>).map(RuleEligibilityFromJSON)),
     };
 }
 
@@ -106,7 +106,7 @@ export function RuleMetadataEligibilityToJSONTyped(value?: RuleMetadataEligibili
         'displayName': value['displayName'],
         'displayDescription': value['displayDescription'],
         'relatedData': value['relatedData'],
-        'eligibility': ((value['eligibility'] as Array<any>).map(RuleEligibilityToJSON)),
+        'eligibility': (value['eligibility'] == null ? undefined : (value['eligibility'] as Array<any>).map(RuleEligibilityToJSON)),
     };
 }
 

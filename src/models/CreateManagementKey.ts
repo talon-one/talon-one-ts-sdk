@@ -77,8 +77,8 @@ export function CreateManagementKeyFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'name': json['name'],
-        'expiryDate': (new Date(json['expiryDate'])),
-        'endpoints': ((json['endpoints'] as Array<any>).map(EndpointFromJSON)),
+        'expiryDate': (json['expiryDate'] == null ? undefined as any : new Date(json['expiryDate'])),
+        'endpoints': (json['endpoints'] == null ? undefined as any : (json['endpoints'] as Array<any>).map(EndpointFromJSON)),
         'allowedApplicationIds': json['allowedApplicationIds'] == null ? undefined : json['allowedApplicationIds'],
     };
 }
@@ -95,8 +95,8 @@ export function CreateManagementKeyToJSONTyped(value?: CreateManagementKey | nul
     return {
         
         'name': value['name'],
-        'expiryDate': value['expiryDate'].toISOString(),
-        'endpoints': ((value['endpoints'] as Array<any>).map(EndpointToJSON)),
+        'expiryDate': value['expiryDate'] == null ? undefined : value['expiryDate'].toISOString(),
+        'endpoints': (value['endpoints'] == null ? undefined : (value['endpoints'] as Array<any>).map(EndpointToJSON)),
         'allowedApplicationIds': value['allowedApplicationIds'],
     };
 }

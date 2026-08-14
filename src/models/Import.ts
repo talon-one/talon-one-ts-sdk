@@ -83,7 +83,7 @@ export function ImportFromJSONTyped(json: any, ignoreDiscriminator: boolean): Im
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'accountId': json['accountId'],
         'userId': json['userId'],
         'entity': json['entity'],
@@ -103,7 +103,7 @@ export function ImportToJSONTyped(value?: Import | null, ignoreDiscriminator: bo
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'accountId': value['accountId'],
         'userId': value['userId'],
         'entity': value['entity'],

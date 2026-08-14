@@ -133,13 +133,13 @@ export function RulesetV2FromJSONTyped(json: any, ignoreDiscriminator: boolean):
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'userId': json['userId'],
         'campaignId': json['campaignId'] == null ? undefined : json['campaignId'],
         'templateId': json['templateId'] == null ? undefined : json['templateId'],
         'activatedAt': json['activatedAt'] == null ? undefined : (new Date(json['activatedAt'])),
-        'promotionRules': ((json['promotionRules'] as Array<any>).map(PromotionRuleV2FromJSON)),
-        'strikethroughRules': ((json['strikethroughRules'] as Array<any>).map(StrikethroughRuleV2FromJSON)),
+        'promotionRules': (json['promotionRules'] == null ? undefined as any : (json['promotionRules'] as Array<any>).map(PromotionRuleV2FromJSON)),
+        'strikethroughRules': (json['strikethroughRules'] == null ? undefined as any : (json['strikethroughRules'] as Array<any>).map(StrikethroughRuleV2FromJSON)),
         'selectors': json['selectors'] == null ? undefined : ((json['selectors'] as Array<any>).map(SelectorFromJSON)),
         'bundles': json['bundles'] == null ? undefined : json['bundles'],
         'parameters': json['parameters'] == null ? undefined : json['parameters'],
@@ -158,13 +158,13 @@ export function RulesetV2ToJSONTyped(value?: RulesetV2 | null, ignoreDiscriminat
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'userId': value['userId'],
         'campaignId': value['campaignId'],
         'templateId': value['templateId'],
         'activatedAt': value['activatedAt'] == null ? value['activatedAt'] : value['activatedAt'].toISOString(),
-        'promotionRules': ((value['promotionRules'] as Array<any>).map(PromotionRuleV2ToJSON)),
-        'strikethroughRules': ((value['strikethroughRules'] as Array<any>).map(StrikethroughRuleV2ToJSON)),
+        'promotionRules': (value['promotionRules'] == null ? undefined : (value['promotionRules'] as Array<any>).map(PromotionRuleV2ToJSON)),
+        'strikethroughRules': (value['strikethroughRules'] == null ? undefined : (value['strikethroughRules'] as Array<any>).map(StrikethroughRuleV2ToJSON)),
         'selectors': value['selectors'] == null ? undefined : ((value['selectors'] as Array<any>).map(SelectorToJSON)),
         'bundles': value['bundles'],
         'parameters': value['parameters'],

@@ -62,7 +62,7 @@ export function GetCollectionItems200ResponseFromJSONTyped(json: any, ignoreDisc
     return {
         
         'hasMore': json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(CollectionItemFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CollectionItemFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetCollectionItems200ResponseToJSONTyped(value?: GetCollectionIt
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(CollectionItemToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CollectionItemToJSON)),
     };
 }
 

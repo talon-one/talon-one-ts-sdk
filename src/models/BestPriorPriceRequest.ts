@@ -98,7 +98,7 @@ export function BestPriorPriceRequestFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'skus': json['skus'],
-        'timeframeEndDate': (new Date(json['timeframeEndDate'])),
+        'timeframeEndDate': (json['timeframeEndDate'] == null ? undefined as any : new Date(json['timeframeEndDate'])),
         'timeframe': json['timeframe'],
         'timeframeEndDateType': json['timeframeEndDateType'],
         'target': json['target'] == null ? undefined : BestPriorTargetFromJSON(json['target']),
@@ -117,7 +117,7 @@ export function BestPriorPriceRequestToJSONTyped(value?: BestPriorPriceRequest |
     return {
         
         'skus': value['skus'],
-        'timeframeEndDate': value['timeframeEndDate'].toISOString(),
+        'timeframeEndDate': value['timeframeEndDate'] == null ? undefined : value['timeframeEndDate'].toISOString(),
         'timeframe': value['timeframe'],
         'timeframeEndDateType': value['timeframeEndDateType'],
         'target': BestPriorTargetToJSON(value['target']),

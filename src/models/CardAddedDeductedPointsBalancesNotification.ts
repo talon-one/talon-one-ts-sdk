@@ -167,7 +167,7 @@ export function CardAddedDeductedPointsBalancesNotificationFromJSONTyped(json: a
         'typeOfChange': json['TypeOfChange'],
         'userID': json['UserID'],
         'usersPerCardLimit': json['UsersPerCardLimit'],
-        'actions': ((json['Actions'] as Array<any>).map(AddedDeductedPointsBalancesActionFromJSON)),
+        'actions': (json['Actions'] == null ? undefined as any : (json['Actions'] as Array<any>).map(AddedDeductedPointsBalancesActionFromJSON)),
         'currentPoints': json['CurrentPoints'],
     };
 }
@@ -193,7 +193,7 @@ export function CardAddedDeductedPointsBalancesNotificationToJSONTyped(value?: C
         'TypeOfChange': value['typeOfChange'],
         'UserID': value['userID'],
         'UsersPerCardLimit': value['usersPerCardLimit'],
-        'Actions': ((value['actions'] as Array<any>).map(AddedDeductedPointsBalancesActionToJSON)),
+        'Actions': (value['actions'] == null ? undefined : (value['actions'] as Array<any>).map(AddedDeductedPointsBalancesActionToJSON)),
         'CurrentPoints': value['currentPoints'],
     };
 }

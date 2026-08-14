@@ -142,7 +142,7 @@ export function CustomerProfileFromJSONTyped(json: any, ignoreDiscriminator: boo
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'integrationId': json['integrationId'],
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'accountId': json['accountId'],
@@ -150,7 +150,7 @@ export function CustomerProfileFromJSONTyped(json: any, ignoreDiscriminator: boo
         'totalSales': json['totalSales'],
         'loyaltyMemberships': json['loyaltyMemberships'] == null ? undefined : ((json['loyaltyMemberships'] as Array<any>).map(LoyaltyMembershipFromJSON)),
         'audienceMemberships': json['audienceMemberships'] == null ? undefined : ((json['audienceMemberships'] as Array<any>).map(AudienceMembershipFromJSON)),
-        'lastActivity': (new Date(json['lastActivity'])),
+        'lastActivity': (json['lastActivity'] == null ? undefined as any : new Date(json['lastActivity'])),
         'sandbox': json['sandbox'] == null ? undefined : json['sandbox'],
     };
 }
@@ -167,7 +167,7 @@ export function CustomerProfileToJSONTyped(value?: CustomerProfile | null, ignor
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'integrationId': value['integrationId'],
         'attributes': value['attributes'],
         'accountId': value['accountId'],
@@ -175,7 +175,7 @@ export function CustomerProfileToJSONTyped(value?: CustomerProfile | null, ignor
         'totalSales': value['totalSales'],
         'loyaltyMemberships': value['loyaltyMemberships'] == null ? undefined : ((value['loyaltyMemberships'] as Array<any>).map(LoyaltyMembershipToJSON)),
         'audienceMemberships': value['audienceMemberships'] == null ? undefined : ((value['audienceMemberships'] as Array<any>).map(AudienceMembershipToJSON)),
-        'lastActivity': value['lastActivity'].toISOString(),
+        'lastActivity': value['lastActivity'] == null ? undefined : value['lastActivity'].toISOString(),
         'sandbox': value['sandbox'],
     };
 }

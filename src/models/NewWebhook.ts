@@ -145,7 +145,7 @@ export function NewWebhookFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'url': json['url'],
         'headers': json['headers'],
         'payload': json['payload'] == null ? undefined : json['payload'],
-        'params': ((json['params'] as Array<any>).map(TemplateArgDefFromJSON)),
+        'params': (json['params'] == null ? undefined as any : (json['params'] as Array<any>).map(TemplateArgDefFromJSON)),
         'enabled': json['enabled'],
         'authenticationId': json['authenticationId'] == null ? undefined : json['authenticationId'],
     };
@@ -170,7 +170,7 @@ export function NewWebhookToJSONTyped(value?: NewWebhook | null, ignoreDiscrimin
         'url': value['url'],
         'headers': value['headers'],
         'payload': value['payload'],
-        'params': ((value['params'] as Array<any>).map(TemplateArgDefToJSON)),
+        'params': (value['params'] == null ? undefined : (value['params'] as Array<any>).map(TemplateArgDefToJSON)),
         'enabled': value['enabled'],
         'authenticationId': value['authenticationId'],
     };

@@ -178,7 +178,7 @@ export function LedgerTransactionLogEntryIntegrationAPIFromJSONTyped(json: any, 
     return {
         
         'transactionUUID': json['transactionUUID'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'programId': json['programId'],
         'customerSessionId': json['customerSessionId'] == null ? undefined : json['customerSessionId'],
         'storeIntegrationId': json['storeIntegrationId'] == null ? undefined : json['storeIntegrationId'],
@@ -208,7 +208,7 @@ export function LedgerTransactionLogEntryIntegrationAPIToJSONTyped(value?: Ledge
     return {
         
         'transactionUUID': value['transactionUUID'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'programId': value['programId'],
         'customerSessionId': value['customerSessionId'],
         'storeIntegrationId': value['storeIntegrationId'],

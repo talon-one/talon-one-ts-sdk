@@ -74,7 +74,7 @@ export function ExpiringCouponsNotificationPolicyFromJSONTyped(json: any, ignore
     return {
         
         'name': json['name'],
-        'triggers': ((json['triggers'] as Array<any>).map(ExpiringCouponsNotificationTriggerFromJSON)),
+        'triggers': (json['triggers'] == null ? undefined as any : (json['triggers'] as Array<any>).map(ExpiringCouponsNotificationTriggerFromJSON)),
         'batchingEnabled': json['batchingEnabled'] == null ? undefined : json['batchingEnabled'],
         'batchSize': json['batchSize'] == null ? undefined : json['batchSize'],
     };
@@ -92,7 +92,7 @@ export function ExpiringCouponsNotificationPolicyToJSONTyped(value?: ExpiringCou
     return {
         
         'name': value['name'],
-        'triggers': ((value['triggers'] as Array<any>).map(ExpiringCouponsNotificationTriggerToJSON)),
+        'triggers': (value['triggers'] == null ? undefined : (value['triggers'] as Array<any>).map(ExpiringCouponsNotificationTriggerToJSON)),
         'batchingEnabled': value['batchingEnabled'],
         'batchSize': value['batchSize'],
     };

@@ -112,7 +112,7 @@ export function ExperimentSegmentInsightFromJSONTyped(json: any, ignoreDiscrimin
         'bucket': json['bucket'],
         'confidence': json['confidence'],
         'winnerVariantId': json['winnerVariantId'],
-        'variants': ((json['variants'] as Array<any>).map(ExperimentSegmentInsightVariantFromJSON)),
+        'variants': (json['variants'] == null ? undefined as any : (json['variants'] as Array<any>).map(ExperimentSegmentInsightVariantFromJSON)),
     };
 }
 
@@ -131,7 +131,7 @@ export function ExperimentSegmentInsightToJSONTyped(value?: ExperimentSegmentIns
         'bucket': value['bucket'],
         'confidence': value['confidence'],
         'winnerVariantId': value['winnerVariantId'],
-        'variants': ((value['variants'] as Array<any>).map(ExperimentSegmentInsightVariantToJSON)),
+        'variants': (value['variants'] == null ? undefined : (value['variants'] as Array<any>).map(ExperimentSegmentInsightVariantToJSON)),
     };
 }
 

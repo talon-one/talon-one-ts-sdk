@@ -253,8 +253,8 @@ export function ApplicationFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
-        'modified': (new Date(json['modified'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
         'accountId': json['accountId'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -274,7 +274,7 @@ export function ApplicationFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'defaultCartItemFilterId': json['defaultCartItemFilterId'] == null ? undefined : json['defaultCartItemFilterId'],
         'enableCampaignStateManagement': json['enableCampaignStateManagement'] == null ? undefined : json['enableCampaignStateManagement'],
         'bestPriorPriceSettings': json['bestPriorPriceSettings'] == null ? undefined : BestPriorPriceSettingsFromJSON(json['bestPriorPriceSettings']),
-        'loyaltyPrograms': ((json['loyaltyPrograms'] as Array<any>).map(LoyaltyProgramFromJSON)),
+        'loyaltyPrograms': (json['loyaltyPrograms'] == null ? undefined as any : (json['loyaltyPrograms'] as Array<any>).map(LoyaltyProgramFromJSON)),
     };
 }
 
@@ -290,8 +290,8 @@ export function ApplicationToJSONTyped(value?: Application | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
-        'modified': value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
         'accountId': value['accountId'],
         'name': value['name'],
         'description': value['description'],
@@ -311,7 +311,7 @@ export function ApplicationToJSONTyped(value?: Application | null, ignoreDiscrim
         'defaultCartItemFilterId': value['defaultCartItemFilterId'],
         'enableCampaignStateManagement': value['enableCampaignStateManagement'],
         'bestPriorPriceSettings': BestPriorPriceSettingsToJSON(value['bestPriorPriceSettings']),
-        'loyaltyPrograms': ((value['loyaltyPrograms'] as Array<any>).map(LoyaltyProgramToJSON)),
+        'loyaltyPrograms': (value['loyaltyPrograms'] == null ? undefined : (value['loyaltyPrograms'] as Array<any>).map(LoyaltyProgramToJSON)),
     };
 }
 

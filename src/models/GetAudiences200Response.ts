@@ -68,7 +68,7 @@ export function GetAudiences200ResponseFromJSONTyped(json: any, ignoreDiscrimina
         
         'hasMore': json['hasMore'] == null ? undefined : json['hasMore'],
         'totalResultSize': json['totalResultSize'] == null ? undefined : json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(AudienceFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(AudienceFromJSON)),
     };
 }
 
@@ -85,7 +85,7 @@ export function GetAudiences200ResponseToJSONTyped(value?: GetAudiences200Respon
         
         'hasMore': value['hasMore'],
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(AudienceToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(AudienceToJSON)),
     };
 }
 

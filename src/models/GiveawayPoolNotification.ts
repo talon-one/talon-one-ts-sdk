@@ -81,7 +81,7 @@ export function GiveawayPoolNotificationFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'totalResultSize': json['TotalResultSize'],
-        'data': ((json['Data'] as Array<any>).map(GiveawayPoolNotificationDataFromJSON)),
+        'data': (json['Data'] == null ? undefined as any : (json['Data'] as Array<any>).map(GiveawayPoolNotificationDataFromJSON)),
         'notificationType': json['NotificationType'],
     };
 }
@@ -98,7 +98,7 @@ export function GiveawayPoolNotificationToJSONTyped(value?: GiveawayPoolNotifica
     return {
         
         'TotalResultSize': value['totalResultSize'],
-        'Data': ((value['data'] as Array<any>).map(GiveawayPoolNotificationDataToJSON)),
+        'Data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(GiveawayPoolNotificationDataToJSON)),
         'NotificationType': value['notificationType'],
     };
 }

@@ -62,7 +62,7 @@ export function GetAttributes200ResponseFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(AttributeFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(AttributeFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetAttributes200ResponseToJSONTyped(value?: GetAttributes200Resp
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(AttributeToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(AttributeToJSON)),
     };
 }
 

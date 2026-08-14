@@ -62,7 +62,7 @@ export function GetLoyaltyProgramProfileTransactions200ResponseFromJSONTyped(jso
     return {
         
         'hasMore': json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(LedgerTransactionLogEntryIntegrationAPIFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(LedgerTransactionLogEntryIntegrationAPIFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetLoyaltyProgramProfileTransactions200ResponseToJSONTyped(value
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(LedgerTransactionLogEntryIntegrationAPIToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(LedgerTransactionLogEntryIntegrationAPIToJSON)),
     };
 }
 

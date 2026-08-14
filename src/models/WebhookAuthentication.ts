@@ -129,11 +129,11 @@ export function WebhookAuthenticationFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
-        'modified': (new Date(json['modified'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
         'createdBy': json['createdBy'],
         'modifiedBy': json['modifiedBy'],
-        'webhooks': ((json['webhooks'] as Array<any>).map(WebhookAuthenticationWebhookRefFromJSON)),
+        'webhooks': (json['webhooks'] == null ? undefined as any : (json['webhooks'] as Array<any>).map(WebhookAuthenticationWebhookRefFromJSON)),
         'name': json['name'],
         'type': json['type'],
         'data': WebhookAuthenticationAllOfDataFromJSON(json['data']),
@@ -152,11 +152,11 @@ export function WebhookAuthenticationToJSONTyped(value?: WebhookAuthentication |
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
-        'modified': value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
         'createdBy': value['createdBy'],
         'modifiedBy': value['modifiedBy'],
-        'webhooks': ((value['webhooks'] as Array<any>).map(WebhookAuthenticationWebhookRefToJSON)),
+        'webhooks': (value['webhooks'] == null ? undefined : (value['webhooks'] as Array<any>).map(WebhookAuthenticationWebhookRefToJSON)),
         'name': value['name'],
         'type': value['type'],
         'data': WebhookAuthenticationAllOfDataToJSON(value['data']),

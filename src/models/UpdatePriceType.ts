@@ -78,7 +78,7 @@ export function UpdatePriceTypeToJSONTyped(value?: UpdatePriceType | null, ignor
         
         'title': value['title'],
         'description': value['description'],
-        'targetedAudiencesIds': Array.from(value['targetedAudiencesIds'] as Set<any>),
+        'targetedAudiencesIds': value['targetedAudiencesIds'] == null ? undefined : Array.from(value['targetedAudiencesIds'] as Set<any>),
     };
 }
 

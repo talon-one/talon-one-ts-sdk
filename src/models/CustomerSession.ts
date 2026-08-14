@@ -174,7 +174,7 @@ export function CustomerSessionFromJSONTyped(json: any, ignoreDiscriminator: boo
     return {
         
         'integrationId': json['integrationId'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'applicationId': json['applicationId'],
         'profileId': json['profileId'] == null ? undefined : json['profileId'],
         'coupon': json['coupon'] == null ? undefined : json['coupon'],
@@ -187,7 +187,7 @@ export function CustomerSessionFromJSONTyped(json: any, ignoreDiscriminator: boo
         'firstSession': json['firstSession'],
         'updateCount': json['updateCount'],
         'discounts': json['discounts'],
-        'updated': (new Date(json['updated'])),
+        'updated': (json['updated'] == null ? undefined as any : new Date(json['updated'])),
     };
 }
 
@@ -203,7 +203,7 @@ export function CustomerSessionToJSONTyped(value?: CustomerSession | null, ignor
     return {
         
         'integrationId': value['integrationId'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'applicationId': value['applicationId'],
         'profileId': value['profileId'],
         'coupon': value['coupon'],
@@ -216,7 +216,7 @@ export function CustomerSessionToJSONTyped(value?: CustomerSession | null, ignor
         'firstSession': value['firstSession'],
         'updateCount': value['updateCount'],
         'discounts': value['discounts'],
-        'updated': value['updated'].toISOString(),
+        'updated': value['updated'] == null ? undefined : value['updated'].toISOString(),
     };
 }
 

@@ -62,7 +62,7 @@ export function GetEventTypes200ResponseFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(EventTypeFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(EventTypeFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetEventTypes200ResponseToJSONTyped(value?: GetEventTypes200Resp
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(EventTypeToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(EventTypeToJSON)),
     };
 }
 

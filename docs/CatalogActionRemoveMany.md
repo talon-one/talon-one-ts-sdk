@@ -1,24 +1,25 @@
 
-# CatalogActionOneOf4
+# CatalogActionRemoveMany
 
+Removes the items of the catalog that match the given filters.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`type` | any
+`type` | string
 `payload` | [RemoveManyItemsCatalogAction](RemoveManyItemsCatalogAction.md)
 
 ## Example
 
 ```typescript
-import type { CatalogActionOneOf4 } from 'talon_one_sdk'
+import type { CatalogActionRemoveMany } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
   "type": null,
   "payload": null,
-} satisfies CatalogActionOneOf4
+} satisfies CatalogActionRemoveMany
 
 console.log(example)
 
@@ -27,7 +28,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as CatalogActionOneOf4
+const exampleParsed = JSON.parse(exampleJSON) as CatalogActionRemoveMany
 console.log(exampleParsed)
 ```
 

@@ -1,24 +1,25 @@
 
-# CatalogActionOneOf5
+# CatalogActionPatch
 
+Updates an item in the catalog.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`type` | any
-`payload` | [AddPriceAdjustmentCatalogAction](AddPriceAdjustmentCatalogAction.md)
+`type` | string
+`payload` | [PatchItemCatalogAction](PatchItemCatalogAction.md)
 
 ## Example
 
 ```typescript
-import type { CatalogActionOneOf5 } from 'talon_one_sdk'
+import type { CatalogActionPatch } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
   "type": null,
   "payload": null,
-} satisfies CatalogActionOneOf5
+} satisfies CatalogActionPatch
 
 console.log(example)
 
@@ -27,7 +28,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as CatalogActionOneOf5
+const exampleParsed = JSON.parse(exampleJSON) as CatalogActionPatch
 console.log(exampleParsed)
 ```
 

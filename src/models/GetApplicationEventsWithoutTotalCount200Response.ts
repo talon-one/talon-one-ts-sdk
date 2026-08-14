@@ -62,7 +62,7 @@ export function GetApplicationEventsWithoutTotalCount200ResponseFromJSONTyped(js
     return {
         
         'hasMore': json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(ApplicationEventFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(ApplicationEventFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetApplicationEventsWithoutTotalCount200ResponseToJSONTyped(valu
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(ApplicationEventToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ApplicationEventToJSON)),
     };
 }
 

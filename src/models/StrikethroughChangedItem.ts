@@ -116,7 +116,7 @@ export function StrikethroughChangedItemFromJSONTyped(json: any, ignoreDiscrimin
         'version': json['version'],
         'price': json['price'],
         'prices': json['prices'] == null ? undefined : (mapValues(json['prices'], PriceDetailFromJSON)),
-        'evaluatedAt': (new Date(json['evaluatedAt'])),
+        'evaluatedAt': (json['evaluatedAt'] == null ? undefined as any : new Date(json['evaluatedAt'])),
         'effects': json['effects'] == null ? undefined : ((json['effects'] as Array<any>).map(StrikethroughEffectFromJSON)),
     };
 }
@@ -138,7 +138,7 @@ export function StrikethroughChangedItemToJSONTyped(value?: StrikethroughChanged
         'version': value['version'],
         'price': value['price'],
         'prices': value['prices'] == null ? undefined : (mapValues(value['prices'], PriceDetailToJSON)),
-        'evaluatedAt': value['evaluatedAt'].toISOString(),
+        'evaluatedAt': value['evaluatedAt'] == null ? undefined : value['evaluatedAt'].toISOString(),
         'effects': value['effects'] == null ? undefined : ((value['effects'] as Array<any>).map(StrikethroughEffectToJSON)),
     };
 }

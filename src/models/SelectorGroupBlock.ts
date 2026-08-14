@@ -107,7 +107,7 @@ export function SelectorGroupBlockFromJSONTyped(json: any, ignoreDiscriminator: 
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
-        'blocks': ((json['blocks'] as Array<any>).map(SelectorBlockFromJSON)),
+        'blocks': (json['blocks'] == null ? undefined as any : (json['blocks'] as Array<any>).map(SelectorBlockFromJSON)),
     };
 }
 
@@ -126,7 +126,7 @@ export function SelectorGroupBlockToJSONTyped(value?: SelectorGroupBlock | null,
         'type': value['type'],
         'tags': value['tags'],
         'operator': value['operator'],
-        'blocks': ((value['blocks'] as Array<any>).map(SelectorBlockToJSON)),
+        'blocks': (value['blocks'] == null ? undefined : (value['blocks'] as Array<any>).map(SelectorBlockToJSON)),
     };
 }
 

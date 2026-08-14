@@ -54,7 +54,7 @@ export function LoyaltyCardProfileRegistrationFromJSONTyped(json: any, ignoreDis
     return {
         
         'integrationId': json['integrationId'],
-        'timestamp': (new Date(json['timestamp'])),
+        'timestamp': (json['timestamp'] == null ? undefined as any : new Date(json['timestamp'])),
     };
 }
 
@@ -70,7 +70,7 @@ export function LoyaltyCardProfileRegistrationToJSONTyped(value?: LoyaltyCardPro
     return {
         
         'integrationId': value['integrationId'],
-        'timestamp': value['timestamp'].toISOString(),
+        'timestamp': value['timestamp'] == null ? undefined : value['timestamp'].toISOString(),
     };
 }
 

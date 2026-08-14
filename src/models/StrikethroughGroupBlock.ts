@@ -109,7 +109,7 @@ export function StrikethroughGroupBlockFromJSONTyped(json: any, ignoreDiscrimina
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
-        'blocks': ((json['blocks'] as Array<any>).map(StrikethroughBlockFromJSON)),
+        'blocks': (json['blocks'] == null ? undefined as any : (json['blocks'] as Array<any>).map(StrikethroughBlockFromJSON)),
         'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(StrikethroughBlockFromJSON)),
         'onError': json['onError'] == null ? undefined : json['onError'],
     };
@@ -130,7 +130,7 @@ export function StrikethroughGroupBlockToJSONTyped(value?: StrikethroughGroupBlo
         'type': value['type'],
         'tags': value['tags'],
         'operator': value['operator'],
-        'blocks': ((value['blocks'] as Array<any>).map(StrikethroughBlockToJSON)),
+        'blocks': (value['blocks'] == null ? undefined : (value['blocks'] as Array<any>).map(StrikethroughBlockToJSON)),
         'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(StrikethroughBlockToJSON)),
         'onError': value['onError'],
     };

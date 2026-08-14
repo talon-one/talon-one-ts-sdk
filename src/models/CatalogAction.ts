@@ -12,61 +12,35 @@
  * Do not edit the class manually.
  */
 
-import { selectOneOfBestMatch } from '../runtime';
-import type { CatalogActionOneOf } from './CatalogActionOneOf';
-import {
-    instanceOfCatalogActionOneOf,
-    CatalogActionOneOfFromJSON,
-    CatalogActionOneOfFromJSONTyped,
-    CatalogActionOneOfToJSON,
-} from './CatalogActionOneOf';
-import type { CatalogActionOneOf1 } from './CatalogActionOneOf1';
-import {
-    instanceOfCatalogActionOneOf1,
-    CatalogActionOneOf1FromJSON,
-    CatalogActionOneOf1FromJSONTyped,
-    CatalogActionOneOf1ToJSON,
-} from './CatalogActionOneOf1';
-import type { CatalogActionOneOf2 } from './CatalogActionOneOf2';
-import {
-    instanceOfCatalogActionOneOf2,
-    CatalogActionOneOf2FromJSON,
-    CatalogActionOneOf2FromJSONTyped,
-    CatalogActionOneOf2ToJSON,
-} from './CatalogActionOneOf2';
-import type { CatalogActionOneOf3 } from './CatalogActionOneOf3';
-import {
-    instanceOfCatalogActionOneOf3,
-    CatalogActionOneOf3FromJSON,
-    CatalogActionOneOf3FromJSONTyped,
-    CatalogActionOneOf3ToJSON,
-} from './CatalogActionOneOf3';
-import type { CatalogActionOneOf4 } from './CatalogActionOneOf4';
-import {
-    instanceOfCatalogActionOneOf4,
-    CatalogActionOneOf4FromJSON,
-    CatalogActionOneOf4FromJSONTyped,
-    CatalogActionOneOf4ToJSON,
-} from './CatalogActionOneOf4';
-import type { CatalogActionOneOf5 } from './CatalogActionOneOf5';
-import {
-    instanceOfCatalogActionOneOf5,
-    CatalogActionOneOf5FromJSON,
-    CatalogActionOneOf5FromJSONTyped,
-    CatalogActionOneOf5ToJSON,
-} from './CatalogActionOneOf5';
+import { type CatalogActionAdd, CatalogActionAddFromJSONTyped, CatalogActionAddToJSON } from './CatalogActionAdd';
+import { type CatalogActionAddPriceAdjustment, CatalogActionAddPriceAdjustmentFromJSONTyped, CatalogActionAddPriceAdjustmentToJSON } from './CatalogActionAddPriceAdjustment';
+import { type CatalogActionPatch, CatalogActionPatchFromJSONTyped, CatalogActionPatchToJSON } from './CatalogActionPatch';
+import { type CatalogActionPatchMany, CatalogActionPatchManyFromJSONTyped, CatalogActionPatchManyToJSON } from './CatalogActionPatchMany';
+import { type CatalogActionRemove, CatalogActionRemoveFromJSONTyped, CatalogActionRemoveToJSON } from './CatalogActionRemove';
+import { type CatalogActionRemoveMany, CatalogActionRemoveManyFromJSONTyped, CatalogActionRemoveManyToJSON } from './CatalogActionRemoveMany';
 
 /**
  * @type CatalogAction
- * Definition of all the properties that are needed for a single catalog sync action.
+ * Definition of all the properties that are needed for a single catalog sync action. The `type` field selects the concrete action variant.
  * @export
  */
-export type CatalogAction = CatalogActionOneOf | CatalogActionOneOf1 | CatalogActionOneOf2 | CatalogActionOneOf3 | CatalogActionOneOf4 | CatalogActionOneOf5;
+export type CatalogAction = { type: 'ADD' } & CatalogActionAdd | { type: 'ADD_PRICE_ADJUSTMENT' } & CatalogActionAddPriceAdjustment | { type: 'PATCH' } & CatalogActionPatch | { type: 'PATCH_MANY' } & CatalogActionPatchMany | { type: 'REMOVE' } & CatalogActionRemove | { type: 'REMOVE_MANY' } & CatalogActionRemoveMany;
 /**
  * Check if a given object implements the CatalogAction interface.
  */
 export function instanceOfCatalogAction(value: any): value is CatalogAction {
-    return typeof value === 'object' && value !== null && (instanceOfCatalogActionOneOf(value) || instanceOfCatalogActionOneOf1(value) || instanceOfCatalogActionOneOf2(value) || instanceOfCatalogActionOneOf3(value) || instanceOfCatalogActionOneOf4(value) || instanceOfCatalogActionOneOf5(value));
+    const _v = value as Record<PropertyKey, unknown>;
+    switch (_v['type']) {
+        case 'ADD':
+        case 'ADD_PRICE_ADJUSTMENT':
+        case 'PATCH':
+        case 'PATCH_MANY':
+        case 'REMOVE':
+        case 'REMOVE_MANY':
+            return true;
+        default:
+            return false;
+    }
 }
 
 export function CatalogActionFromJSON(json: any): CatalogAction {
@@ -77,21 +51,22 @@ export function CatalogActionFromJSONTyped(json: any, ignoreDiscriminator: boole
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
+    switch (json['type']) {
+        case 'ADD':
+            return Object.assign({}, CatalogActionAddFromJSONTyped(json, true), { type: 'ADD' } as const);
+        case 'ADD_PRICE_ADJUSTMENT':
+            return Object.assign({}, CatalogActionAddPriceAdjustmentFromJSONTyped(json, true), { type: 'ADD_PRICE_ADJUSTMENT' } as const);
+        case 'PATCH':
+            return Object.assign({}, CatalogActionPatchFromJSONTyped(json, true), { type: 'PATCH' } as const);
+        case 'PATCH_MANY':
+            return Object.assign({}, CatalogActionPatchManyFromJSONTyped(json, true), { type: 'PATCH_MANY' } as const);
+        case 'REMOVE':
+            return Object.assign({}, CatalogActionRemoveFromJSONTyped(json, true), { type: 'REMOVE' } as const);
+        case 'REMOVE_MANY':
+            return Object.assign({}, CatalogActionRemoveManyFromJSONTyped(json, true), { type: 'REMOVE_MANY' } as const);
+        default:
+            return json;
     }
-    const matchedVariant = selectOneOfBestMatch(json, [
-        [instanceOfCatalogActionOneOf, CatalogActionOneOfFromJSONTyped],
-        [instanceOfCatalogActionOneOf1, CatalogActionOneOf1FromJSONTyped],
-        [instanceOfCatalogActionOneOf2, CatalogActionOneOf2FromJSONTyped],
-        [instanceOfCatalogActionOneOf3, CatalogActionOneOf3FromJSONTyped],
-        [instanceOfCatalogActionOneOf4, CatalogActionOneOf4FromJSONTyped],
-        [instanceOfCatalogActionOneOf5, CatalogActionOneOf5FromJSONTyped],
-    ], true);
-    if (matchedVariant !== undefined) {
-        return matchedVariant;
-    }
-    return {} as any;
 }
 
 export function CatalogActionToJSON(json: any): any {
@@ -102,20 +77,21 @@ export function CatalogActionToJSONTyped(value?: CatalogAction | null, ignoreDis
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
+    switch (value['type']) {
+        case 'ADD':
+            return Object.assign({}, CatalogActionAddToJSON(value), { 'type': 'ADD' } as const);
+        case 'ADD_PRICE_ADJUSTMENT':
+            return Object.assign({}, CatalogActionAddPriceAdjustmentToJSON(value), { 'type': 'ADD_PRICE_ADJUSTMENT' } as const);
+        case 'PATCH':
+            return Object.assign({}, CatalogActionPatchToJSON(value), { 'type': 'PATCH' } as const);
+        case 'PATCH_MANY':
+            return Object.assign({}, CatalogActionPatchManyToJSON(value), { 'type': 'PATCH_MANY' } as const);
+        case 'REMOVE':
+            return Object.assign({}, CatalogActionRemoveToJSON(value), { 'type': 'REMOVE' } as const);
+        case 'REMOVE_MANY':
+            return Object.assign({}, CatalogActionRemoveManyToJSON(value), { 'type': 'REMOVE_MANY' } as const);
+        default:
+            return value;
     }
-    const matchedVariant = selectOneOfBestMatch(value, [
-        [instanceOfCatalogActionOneOf, CatalogActionOneOfToJSON],
-        [instanceOfCatalogActionOneOf1, CatalogActionOneOf1ToJSON],
-        [instanceOfCatalogActionOneOf2, CatalogActionOneOf2ToJSON],
-        [instanceOfCatalogActionOneOf3, CatalogActionOneOf3ToJSON],
-        [instanceOfCatalogActionOneOf4, CatalogActionOneOf4ToJSON],
-        [instanceOfCatalogActionOneOf5, CatalogActionOneOf5ToJSON],
-    ]);
-    if (matchedVariant !== undefined) {
-        return matchedVariant;
-    }
-    return {};
 }
 

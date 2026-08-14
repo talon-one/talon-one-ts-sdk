@@ -211,7 +211,7 @@ export function CouponCreationJobFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'campaignId': json['campaignId'],
         'applicationId': json['applicationId'],
         'accountId': json['accountId'],
@@ -248,7 +248,7 @@ export function CouponCreationJobToJSONTyped(value?: CouponCreationJob | null, i
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'campaignId': value['campaignId'],
         'applicationId': value['applicationId'],
         'accountId': value['accountId'],

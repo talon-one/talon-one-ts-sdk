@@ -118,7 +118,7 @@ export function HistoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): H
     return {
         
         'id': json['id'],
-        'observedAt': (new Date(json['observedAt'])),
+        'observedAt': (json['observedAt'] == null ? undefined as any : new Date(json['observedAt'])),
         'contextIds': json['contextIds'],
         'contextId': json['contextId'] == null ? undefined : json['contextId'],
         'price': json['price'],
@@ -141,7 +141,7 @@ export function HistoryToJSONTyped(value?: History | null, ignoreDiscriminator: 
     return {
         
         'id': value['id'],
-        'observedAt': value['observedAt'].toISOString(),
+        'observedAt': value['observedAt'] == null ? undefined : value['observedAt'].toISOString(),
         'contextIds': value['contextIds'],
         'contextId': value['contextId'],
         'price': value['price'],

@@ -62,7 +62,7 @@ export function GetReferralsWithoutTotalCount200ResponseFromJSONTyped(json: any,
     return {
         
         'hasMore': json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(ReferralFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(ReferralFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetReferralsWithoutTotalCount200ResponseToJSONTyped(value?: GetR
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(ReferralToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ReferralToJSON)),
     };
 }
 

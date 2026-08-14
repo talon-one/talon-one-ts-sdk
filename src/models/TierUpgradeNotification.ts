@@ -81,7 +81,7 @@ export function TierUpgradeNotificationFromJSONTyped(json: any, ignoreDiscrimina
     return {
         
         'totalResultSize': json['TotalResultSize'],
-        'data': ((json['Data'] as Array<any>).map(TierUpgradeDataFromJSON)),
+        'data': (json['Data'] == null ? undefined as any : (json['Data'] as Array<any>).map(TierUpgradeDataFromJSON)),
         'notificationType': json['NotificationType'],
     };
 }
@@ -98,7 +98,7 @@ export function TierUpgradeNotificationToJSONTyped(value?: TierUpgradeNotificati
     return {
         
         'TotalResultSize': value['totalResultSize'],
-        'Data': ((value['data'] as Array<any>).map(TierUpgradeDataToJSON)),
+        'Data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(TierUpgradeDataToJSON)),
         'NotificationType': value['notificationType'],
     };
 }

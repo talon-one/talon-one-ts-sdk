@@ -94,7 +94,7 @@ export function ExperimentVariantFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'name': json['name'],
         'experimentId': json['experimentId'] == null ? undefined : json['experimentId'],
         'ruleset': json['ruleset'] == null ? undefined : RulesetFromJSON(json['ruleset']),
@@ -115,7 +115,7 @@ export function ExperimentVariantToJSONTyped(value?: ExperimentVariant | null, i
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'name': value['name'],
         'experimentId': value['experimentId'],
         'ruleset': RulesetToJSON(value['ruleset']),

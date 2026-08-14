@@ -229,7 +229,7 @@ export function AchievementStatusEntryFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'name': json['name'],
         'title': json['title'],
         'description': json['description'],
@@ -259,7 +259,7 @@ export function AchievementStatusEntryToJSONTyped(value?: AchievementStatusEntry
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'name': value['name'],
         'title': value['title'],
         'description': value['description'],

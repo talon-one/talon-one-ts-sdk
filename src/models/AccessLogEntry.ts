@@ -92,7 +92,7 @@ export function AccessLogEntryFromJSONTyped(json: any, ignoreDiscriminator: bool
         'status': json['status'],
         'method': json['method'],
         'requestUri': json['requestUri'],
-        'time': (new Date(json['time'])),
+        'time': (json['time'] == null ? undefined as any : new Date(json['time'])),
         'requestPayload': json['requestPayload'],
         'responsePayload': json['responsePayload'],
     };
@@ -113,7 +113,7 @@ export function AccessLogEntryToJSONTyped(value?: AccessLogEntry | null, ignoreD
         'status': value['status'],
         'method': value['method'],
         'requestUri': value['requestUri'],
-        'time': value['time'].toISOString(),
+        'time': value['time'] == null ? undefined : value['time'].toISOString(),
         'requestPayload': value['requestPayload'],
         'responsePayload': value['responsePayload'],
     };

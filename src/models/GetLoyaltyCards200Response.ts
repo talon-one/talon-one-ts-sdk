@@ -62,7 +62,7 @@ export function GetLoyaltyCards200ResponseFromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'hasMore': json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(LoyaltyCardFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(LoyaltyCardFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetLoyaltyCards200ResponseToJSONTyped(value?: GetLoyaltyCards200
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(LoyaltyCardToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(LoyaltyCardToJSON)),
     };
 }
 

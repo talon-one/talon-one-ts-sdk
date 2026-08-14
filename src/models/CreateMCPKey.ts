@@ -54,7 +54,7 @@ export function CreateMCPKeyFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return {
         
         'name': json['name'],
-        'expiryDate': (new Date(json['expiryDate'])),
+        'expiryDate': (json['expiryDate'] == null ? undefined as any : new Date(json['expiryDate'])),
     };
 }
 
@@ -70,7 +70,7 @@ export function CreateMCPKeyToJSONTyped(value?: CreateMCPKey | null, ignoreDiscr
     return {
         
         'name': value['name'],
-        'expiryDate': value['expiryDate'].toISOString(),
+        'expiryDate': value['expiryDate'] == null ? undefined : value['expiryDate'].toISOString(),
     };
 }
 

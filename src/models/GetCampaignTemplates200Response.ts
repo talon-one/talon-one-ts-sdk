@@ -62,7 +62,7 @@ export function GetCampaignTemplates200ResponseFromJSONTyped(json: any, ignoreDi
     return {
         
         'hasMore': json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(CampaignTemplateFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CampaignTemplateFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetCampaignTemplates200ResponseToJSONTyped(value?: GetCampaignTe
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(CampaignTemplateToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CampaignTemplateToJSON)),
     };
 }
 

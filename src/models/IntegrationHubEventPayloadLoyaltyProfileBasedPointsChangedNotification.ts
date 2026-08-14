@@ -146,7 +146,7 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotifi
         'userID': json['UserID'] == null ? undefined : json['UserID'],
         'currentPoints': json['CurrentPoints'],
         'actions': json['Actions'] == null ? undefined : ((json['Actions'] as Array<any>).map(IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionFromJSON)),
-        'publishedAt': (new Date(json['PublishedAt'])),
+        'publishedAt': (json['PublishedAt'] == null ? undefined as any : new Date(json['PublishedAt'])),
     };
 }
 
@@ -173,7 +173,7 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotifi
         'UserID': value['userID'],
         'CurrentPoints': value['currentPoints'],
         'Actions': value['actions'] == null ? undefined : ((value['actions'] as Array<any>).map(IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionToJSON)),
-        'PublishedAt': value['publishedAt'].toISOString(),
+        'PublishedAt': value['publishedAt'] == null ? undefined : value['publishedAt'].toISOString(),
     };
 }
 

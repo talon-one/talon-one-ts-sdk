@@ -104,13 +104,13 @@ export function StoreFromJSONTyped(json: any, ignoreDiscriminator: boolean): Sto
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'name': json['name'],
         'description': json['description'],
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'integrationId': json['integrationId'],
         'applicationId': json['applicationId'],
-        'updated': (new Date(json['updated'])),
+        'updated': (json['updated'] == null ? undefined as any : new Date(json['updated'])),
         'linkedCampaignIds': json['linkedCampaignIds'] == null ? undefined : json['linkedCampaignIds'],
     };
 }
@@ -127,13 +127,13 @@ export function StoreToJSONTyped(value?: Store | null, ignoreDiscriminator: bool
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'name': value['name'],
         'description': value['description'],
         'attributes': value['attributes'],
         'integrationId': value['integrationId'],
         'applicationId': value['applicationId'],
-        'updated': value['updated'].toISOString(),
+        'updated': value['updated'] == null ? undefined : value['updated'].toISOString(),
         'linkedCampaignIds': value['linkedCampaignIds'],
     };
 }

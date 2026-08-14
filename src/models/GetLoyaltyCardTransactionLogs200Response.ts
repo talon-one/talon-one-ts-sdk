@@ -62,7 +62,7 @@ export function GetLoyaltyCardTransactionLogs200ResponseFromJSONTyped(json: any,
     return {
         
         'hasMore': json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(CardLedgerTransactionLogEntryFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CardLedgerTransactionLogEntryFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetLoyaltyCardTransactionLogs200ResponseToJSONTyped(value?: GetL
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(CardLedgerTransactionLogEntryToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CardLedgerTransactionLogEntryToJSON)),
     };
 }
 
