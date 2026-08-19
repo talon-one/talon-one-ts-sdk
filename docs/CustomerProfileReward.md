@@ -8,13 +8,14 @@ A reward instance held by a customer profile.
 Name | Type
 ------------ | -------------
 `id` | number
+`integrationId` | string
 `rewardId` | number
 `rewardName` | string
 `status` | string
 `unlockedAt` | Date
-`unlockedByIntegrationId` | string
+`unlockedByProfileIntegrationId` | string
 `usedAt` | Date
-`usedByIntegrationId` | string
+`usedByProfileIntegrationId` | string
 `loyaltyProgramId` | number
 `loyaltyCardIdentifier` | string
 
@@ -26,13 +27,14 @@ import type { CustomerProfileReward } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "id": 6,
+  "integrationId": reward-unlock-123,
   "rewardId": 12,
   "rewardName": Free coffee,
   "status": unlocked,
   "unlockedAt": 2026-07-01T09:00:00Z,
-  "unlockedByIntegrationId": customer2839,
+  "unlockedByProfileIntegrationId": customer2839,
   "usedAt": 2026-07-02T10:30:00Z,
-  "usedByIntegrationId": customer2840,
+  "usedByProfileIntegrationId": customer2840,
   "loyaltyProgramId": 9,
   "loyaltyCardIdentifier": summer-loyalty-card-0543,
 } satisfies CustomerProfileReward

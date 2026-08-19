@@ -101,11 +101,11 @@ export function NewMCPKeyFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     return {
         
         'name': json['name'],
-        'expiryDate': (new Date(json['expiryDate'])),
+        'expiryDate': (json['expiryDate'] == null ? undefined as any : new Date(json['expiryDate'])),
         'id': json['id'],
         'createdBy': json['createdBy'],
         'accountID': json['accountID'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'disabled': json['disabled'] == null ? undefined : json['disabled'],
         'lastUsed': json['lastUsed'] == null ? undefined : (new Date(json['lastUsed'])),
         'key': json['key'],
@@ -124,11 +124,11 @@ export function NewMCPKeyToJSONTyped(value?: NewMCPKey | null, ignoreDiscriminat
     return {
         
         'name': value['name'],
-        'expiryDate': value['expiryDate'].toISOString(),
+        'expiryDate': value['expiryDate'] == null ? undefined : value['expiryDate'].toISOString(),
         'id': value['id'],
         'createdBy': value['createdBy'],
         'accountID': value['accountID'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'disabled': value['disabled'],
         'lastUsed': value['lastUsed'] == null ? value['lastUsed'] : value['lastUsed'].toISOString(),
         'key': value['key'],

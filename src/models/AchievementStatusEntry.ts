@@ -155,11 +155,18 @@ export interface AchievementStatusEntry {
      */
     allowRollbackAfterCompletion?: boolean;
     /**
-     * The ID of the campaign the achievement belongs to.
+     * This property is **deprecated**. Use `campaignIds` instead. The first campaign ID in `campaignIds`. Only returned when `campaignIds` is not empty.
      * @type {number}
      * @memberof AchievementStatusEntry
+     * @deprecated
      */
     campaignId?: number;
+    /**
+     * The IDs of the campaigns that reference this achievement, in ascending order.
+     * @type {Array<number>}
+     * @memberof AchievementStatusEntry
+     */
+    campaignIds: Array<number>;
     /**
      * The status of the achievement.
      * @type {AchievementStatusEntryStatusEnum}
@@ -215,6 +222,7 @@ export function instanceOfAchievementStatusEntry(value: object): value is Achiev
     if (!('title' in _v) || _v['title'] === undefined) return false;
     if (!('description' in _v) || _v['description'] === undefined) return false;
     if (!('target' in _v) || _v['target'] === undefined) return false;
+    if (!('campaignIds' in _v) || _v['campaignIds'] === undefined) return false;
     return true;
 }
 
@@ -229,7 +237,7 @@ export function AchievementStatusEntryFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'name': json['name'],
         'title': json['title'],
         'description': json['description'],
@@ -242,6 +250,7 @@ export function AchievementStatusEntryFromJSONTyped(json: any, ignoreDiscriminat
         'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
         'allowRollbackAfterCompletion': json['allowRollbackAfterCompletion'] == null ? undefined : json['allowRollbackAfterCompletion'],
         'campaignId': json['campaignId'] == null ? undefined : json['campaignId'],
+        'campaignIds': json['campaignIds'],
         'status': json['status'] == null ? undefined : json['status'],
         'currentProgress': json['currentProgress'] == null ? undefined : AchievementProgressFromJSON(json['currentProgress']),
     };
@@ -259,7 +268,7 @@ export function AchievementStatusEntryToJSONTyped(value?: AchievementStatusEntry
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'name': value['name'],
         'title': value['title'],
         'description': value['description'],
@@ -272,6 +281,7 @@ export function AchievementStatusEntryToJSONTyped(value?: AchievementStatusEntry
         'endDate': value['endDate'] == null ? value['endDate'] : value['endDate'].toISOString(),
         'allowRollbackAfterCompletion': value['allowRollbackAfterCompletion'],
         'campaignId': value['campaignId'],
+        'campaignIds': value['campaignIds'],
         'status': value['status'],
         'currentProgress': AchievementProgressToJSON(value['currentProgress']),
     };

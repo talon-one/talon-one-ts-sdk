@@ -41,6 +41,7 @@ docs/AddFreeItemEffectProps.md
 docs/AddItemCatalogAction.md
 docs/AddLoyaltyPoints.md
 docs/AddLoyaltyPointsEffectProps.md
+docs/AddLoyaltyPointsSupport.md
 docs/AddPriceAdjustmentCatalogAction.md
 docs/AddToAudienceEffectProps.md
 docs/AddedDeductedPointsBalancesAction.md
@@ -71,6 +72,7 @@ docs/ApplicationCustomer.md
 docs/ApplicationCustomerEntity.md
 docs/ApplicationEntity.md
 docs/ApplicationEvent.md
+docs/ApplicationMembership.md
 docs/ApplicationReferee.md
 docs/ApplicationSession.md
 docs/ApplicationSessionEntity.md
@@ -123,6 +125,7 @@ docs/Binding.md
 docs/Blueprint.md
 docs/BulkApplicationNotification.md
 docs/BulkOperationOnCampaigns.md
+docs/Bundle.md
 docs/Campaign.md
 docs/CampaignActivationRequest.md
 docs/CampaignAnalytics.md
@@ -156,6 +159,7 @@ docs/CampaignNotificationBase.md
 docs/CampaignNotificationGeneric.md
 docs/CampaignNotificationItemBase.md
 docs/CampaignNotificationPolicy.md
+docs/CampaignReference.md
 docs/CampaignRulesetChangedNotification.md
 docs/CampaignRulesetChangedNotificationItem.md
 docs/CampaignSearch.md
@@ -185,13 +189,13 @@ docs/CartItem.md
 docs/CartItemFilterTemplate.md
 docs/Catalog.md
 docs/CatalogAction.md
+docs/CatalogActionAdd.md
+docs/CatalogActionAddPriceAdjustment.md
 docs/CatalogActionFilter.md
-docs/CatalogActionOneOf.md
-docs/CatalogActionOneOf1.md
-docs/CatalogActionOneOf2.md
-docs/CatalogActionOneOf3.md
-docs/CatalogActionOneOf4.md
-docs/CatalogActionOneOf5.md
+docs/CatalogActionPatch.md
+docs/CatalogActionPatchMany.md
+docs/CatalogActionRemove.md
+docs/CatalogActionRemoveMany.md
 docs/CatalogItem.md
 docs/CatalogRule.md
 docs/CatalogSyncRequest.md
@@ -210,7 +214,10 @@ docs/CheckCouponBlock.md
 docs/CheckEventBlock.md
 docs/CheckLoyaltyBalanceBlock.md
 docs/CheckLoyaltyBalanceBlock1Program.md
+docs/CheckLoyaltyCardBlock.md
 docs/CheckReferralBlock.md
+docs/CheckTierBlock.md
+docs/CheckTierBlock1Tier.md
 docs/CodeGeneratorSettings.md
 docs/Collection.md
 docs/CollectionItem.md
@@ -264,6 +271,7 @@ docs/CustomerProfileIntegrationResponseV2.md
 docs/CustomerProfileReward.md
 docs/CustomerProfileSearchQuery.md
 docs/CustomerProfileUpdateV2Response.md
+docs/CustomerReward.md
 docs/CustomerSession.md
 docs/CustomerSessionV2.md
 docs/DeactivateUserRequest.md
@@ -275,9 +283,7 @@ docs/DeleteUserByEmailRequest.md
 docs/DigitalPass.md
 docs/DiscardRisksRequest.md
 docs/Effect.md
-docs/EffectAllOfProps.md
 docs/EffectEntity.md
-docs/EffectProps.md
 docs/EmailEntity.md
 docs/EmbeddedAnalyticsConfiguration.md
 docs/EmbeddedAnalyticsConfigurationDashboards.md
@@ -446,6 +452,7 @@ docs/IntegrationResponse.md
 docs/IntegrationState.md
 docs/IntegrationStateV2.md
 docs/IntegrationStoreEntity.md
+docs/IntegrationUnlockRewardRequest.md
 docs/InventoryCoupon.md
 docs/InventoryReferral.md
 docs/ItemAttribute.md
@@ -645,6 +652,9 @@ docs/PromotionBlock.md
 docs/PromotionCheckAttributeBlock.md
 docs/PromotionGroupBlock.md
 docs/PromotionRuleV2.md
+docs/RedeemLoyaltyPointsBlock.md
+docs/RedeemLoyaltyPointsBlock1Program.md
+docs/RedeemLoyaltyPointsBlock1Value.md
 docs/RedeemReferralEffectProps.md
 docs/ReduceSelectorStep.md
 docs/Referral.md
@@ -670,6 +680,9 @@ docs/RevisionActivation.md
 docs/RevisionActivationRequest.md
 docs/RevisionVersion.md
 docs/Reward.md
+docs/RewardCatalogItem.md
+docs/RewardEligibility.md
+docs/RewardEligibilityFailureDetails.md
 docs/RewardPointsRequired.md
 docs/Risk.md
 docs/RiskAffectedEntityItem.md
@@ -693,6 +706,7 @@ docs/RollbackDeductedLoyaltyPointsEffectProps.md
 docs/RollbackDiscountEffectProps.md
 docs/RollbackIncreasedAchievementProgressEffectProps.md
 docs/RollbackReferralEffectProps.md
+docs/RollbackUseRewardEffectProps.md
 docs/Rule.md
 docs/RuleEligibility.md
 docs/RuleEligibilityFailureDetails.md
@@ -759,7 +773,6 @@ docs/StrikethroughCheckAttributeBlock.md
 docs/StrikethroughCustomEffectPerItemProps.md
 docs/StrikethroughDebugResponse.md
 docs/StrikethroughEffect.md
-docs/StrikethroughEffectProps.md
 docs/StrikethroughGroupBlock.md
 docs/StrikethroughLabelingNotification.md
 docs/StrikethroughRuleV2.md
@@ -768,6 +781,7 @@ docs/StrikethroughSetDiscountPerItemMemberEffectProps.md
 docs/StrikethroughTrigger.md
 docs/SummarizeCampaignStoreBudget200Response.md
 docs/SummaryCampaignStoreBudget.md
+docs/SupportCustomerProfile.md
 docs/SupportRequest.md
 docs/SupportRequestInput.md
 docs/TalangAttribute.md
@@ -775,6 +789,7 @@ docs/TalangAttributeVisibility.md
 docs/TemplateArgDef.md
 docs/TemplateDef.md
 docs/TemplateLimitConfig.md
+docs/TemplateParameter.md
 docs/Tier.md
 docs/TierDowngradeData.md
 docs/TierDowngradeNotification.md
@@ -796,6 +811,7 @@ docs/TriggerWebhookBlock1Webhook.md
 docs/TriggerWebhookEffectProps.md
 docs/TwoFAConfig.md
 docs/UnaryCheckAttributeBlock.md
+docs/UnlockRewardEffectProps.md
 docs/UpdateAccount.md
 docs/UpdateAchievement.md
 docs/UpdateAchievementProgressBlock.md
@@ -843,6 +859,7 @@ docs/UpdateRole.md
 docs/UpdateStore.md
 docs/UpdateSupportRequest.md
 docs/UpdateUser.md
+docs/UseRewardEffectProps.md
 docs/User.md
 docs/UserEntity.md
 docs/ValueMap.md
@@ -896,6 +913,7 @@ src/models/AddFreeItemEffectProps.ts
 src/models/AddItemCatalogAction.ts
 src/models/AddLoyaltyPoints.ts
 src/models/AddLoyaltyPointsEffectProps.ts
+src/models/AddLoyaltyPointsSupport.ts
 src/models/AddPriceAdjustmentCatalogAction.ts
 src/models/AddToAudienceEffectProps.ts
 src/models/AddedDeductedPointsBalancesAction.ts
@@ -926,6 +944,7 @@ src/models/ApplicationCustomer.ts
 src/models/ApplicationCustomerEntity.ts
 src/models/ApplicationEntity.ts
 src/models/ApplicationEvent.ts
+src/models/ApplicationMembership.ts
 src/models/ApplicationReferee.ts
 src/models/ApplicationSession.ts
 src/models/ApplicationSessionEntity.ts
@@ -978,6 +997,7 @@ src/models/Binding.ts
 src/models/Blueprint.ts
 src/models/BulkApplicationNotification.ts
 src/models/BulkOperationOnCampaigns.ts
+src/models/Bundle.ts
 src/models/Campaign.ts
 src/models/CampaignActivationRequest.ts
 src/models/CampaignAnalytics.ts
@@ -1011,6 +1031,7 @@ src/models/CampaignNotificationBase.ts
 src/models/CampaignNotificationGeneric.ts
 src/models/CampaignNotificationItemBase.ts
 src/models/CampaignNotificationPolicy.ts
+src/models/CampaignReference.ts
 src/models/CampaignRulesetChangedNotification.ts
 src/models/CampaignRulesetChangedNotificationItem.ts
 src/models/CampaignSearch.ts
@@ -1040,13 +1061,13 @@ src/models/CartItem.ts
 src/models/CartItemFilterTemplate.ts
 src/models/Catalog.ts
 src/models/CatalogAction.ts
+src/models/CatalogActionAdd.ts
+src/models/CatalogActionAddPriceAdjustment.ts
 src/models/CatalogActionFilter.ts
-src/models/CatalogActionOneOf.ts
-src/models/CatalogActionOneOf1.ts
-src/models/CatalogActionOneOf2.ts
-src/models/CatalogActionOneOf3.ts
-src/models/CatalogActionOneOf4.ts
-src/models/CatalogActionOneOf5.ts
+src/models/CatalogActionPatch.ts
+src/models/CatalogActionPatchMany.ts
+src/models/CatalogActionRemove.ts
+src/models/CatalogActionRemoveMany.ts
 src/models/CatalogItem.ts
 src/models/CatalogRule.ts
 src/models/CatalogSyncRequest.ts
@@ -1065,7 +1086,10 @@ src/models/CheckCouponBlock.ts
 src/models/CheckEventBlock.ts
 src/models/CheckLoyaltyBalanceBlock.ts
 src/models/CheckLoyaltyBalanceBlock1Program.ts
+src/models/CheckLoyaltyCardBlock.ts
 src/models/CheckReferralBlock.ts
+src/models/CheckTierBlock.ts
+src/models/CheckTierBlock1Tier.ts
 src/models/CodeGeneratorSettings.ts
 src/models/Collection.ts
 src/models/CollectionItem.ts
@@ -1119,6 +1143,7 @@ src/models/CustomerProfileIntegrationResponseV2.ts
 src/models/CustomerProfileReward.ts
 src/models/CustomerProfileSearchQuery.ts
 src/models/CustomerProfileUpdateV2Response.ts
+src/models/CustomerReward.ts
 src/models/CustomerSession.ts
 src/models/CustomerSessionV2.ts
 src/models/DeactivateUserRequest.ts
@@ -1130,9 +1155,7 @@ src/models/DeleteUserByEmailRequest.ts
 src/models/DigitalPass.ts
 src/models/DiscardRisksRequest.ts
 src/models/Effect.ts
-src/models/EffectAllOfProps.ts
 src/models/EffectEntity.ts
-src/models/EffectProps.ts
 src/models/EmailEntity.ts
 src/models/EmbeddedAnalyticsConfiguration.ts
 src/models/EmbeddedAnalyticsConfigurationDashboards.ts
@@ -1300,6 +1323,7 @@ src/models/IntegrationResponse.ts
 src/models/IntegrationState.ts
 src/models/IntegrationStateV2.ts
 src/models/IntegrationStoreEntity.ts
+src/models/IntegrationUnlockRewardRequest.ts
 src/models/InventoryCoupon.ts
 src/models/InventoryReferral.ts
 src/models/ItemAttribute.ts
@@ -1498,6 +1522,9 @@ src/models/PromotionBlock.ts
 src/models/PromotionCheckAttributeBlock.ts
 src/models/PromotionGroupBlock.ts
 src/models/PromotionRuleV2.ts
+src/models/RedeemLoyaltyPointsBlock.ts
+src/models/RedeemLoyaltyPointsBlock1Program.ts
+src/models/RedeemLoyaltyPointsBlock1Value.ts
 src/models/RedeemReferralEffectProps.ts
 src/models/ReduceSelectorStep.ts
 src/models/Referral.ts
@@ -1523,6 +1550,9 @@ src/models/RevisionActivation.ts
 src/models/RevisionActivationRequest.ts
 src/models/RevisionVersion.ts
 src/models/Reward.ts
+src/models/RewardCatalogItem.ts
+src/models/RewardEligibility.ts
+src/models/RewardEligibilityFailureDetails.ts
 src/models/RewardPointsRequired.ts
 src/models/Risk.ts
 src/models/RiskAffectedEntityItem.ts
@@ -1546,6 +1576,7 @@ src/models/RollbackDeductedLoyaltyPointsEffectProps.ts
 src/models/RollbackDiscountEffectProps.ts
 src/models/RollbackIncreasedAchievementProgressEffectProps.ts
 src/models/RollbackReferralEffectProps.ts
+src/models/RollbackUseRewardEffectProps.ts
 src/models/Rule.ts
 src/models/RuleEligibility.ts
 src/models/RuleEligibilityFailureDetails.ts
@@ -1612,7 +1643,6 @@ src/models/StrikethroughCheckAttributeBlock.ts
 src/models/StrikethroughCustomEffectPerItemProps.ts
 src/models/StrikethroughDebugResponse.ts
 src/models/StrikethroughEffect.ts
-src/models/StrikethroughEffectProps.ts
 src/models/StrikethroughGroupBlock.ts
 src/models/StrikethroughLabelingNotification.ts
 src/models/StrikethroughRuleV2.ts
@@ -1621,6 +1651,7 @@ src/models/StrikethroughSetDiscountPerItemMemberEffectProps.ts
 src/models/StrikethroughTrigger.ts
 src/models/SummarizeCampaignStoreBudget200Response.ts
 src/models/SummaryCampaignStoreBudget.ts
+src/models/SupportCustomerProfile.ts
 src/models/SupportRequest.ts
 src/models/SupportRequestInput.ts
 src/models/TalangAttribute.ts
@@ -1628,6 +1659,7 @@ src/models/TalangAttributeVisibility.ts
 src/models/TemplateArgDef.ts
 src/models/TemplateDef.ts
 src/models/TemplateLimitConfig.ts
+src/models/TemplateParameter.ts
 src/models/Tier.ts
 src/models/TierDowngradeData.ts
 src/models/TierDowngradeNotification.ts
@@ -1649,6 +1681,7 @@ src/models/TriggerWebhookBlock1Webhook.ts
 src/models/TriggerWebhookEffectProps.ts
 src/models/TwoFAConfig.ts
 src/models/UnaryCheckAttributeBlock.ts
+src/models/UnlockRewardEffectProps.ts
 src/models/UpdateAccount.ts
 src/models/UpdateAchievement.ts
 src/models/UpdateAchievementProgressBlock.ts
@@ -1696,6 +1729,7 @@ src/models/UpdateRole.ts
 src/models/UpdateStore.ts
 src/models/UpdateSupportRequest.ts
 src/models/UpdateUser.ts
+src/models/UseRewardEffectProps.ts
 src/models/User.ts
 src/models/UserEntity.ts
 src/models/ValueMap.ts

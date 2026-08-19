@@ -106,7 +106,7 @@ export function PicklistFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'type': json['type'],
         'values': json['values'],
         'modifiedBy': json['modifiedBy'] == null ? undefined : json['modifiedBy'],
@@ -128,7 +128,7 @@ export function PicklistToJSONTyped(value?: Picklist | null, ignoreDiscriminator
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'type': value['type'],
         'values': value['values'],
         'modifiedBy': value['modifiedBy'],

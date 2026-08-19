@@ -130,7 +130,7 @@ export function CustomerActivityReportFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'integrationId': json['integrationId'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'name': json['name'],
         'customerId': json['customerId'],
         'lastActivity': json['lastActivity'] == null ? undefined : (new Date(json['lastActivity'])),
@@ -157,7 +157,7 @@ export function CustomerActivityReportToJSONTyped(value?: CustomerActivityReport
     return {
         
         'integrationId': value['integrationId'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'name': value['name'],
         'customerId': value['customerId'],
         'lastActivity': value['lastActivity'] == null ? value['lastActivity'] : value['lastActivity'].toISOString(),

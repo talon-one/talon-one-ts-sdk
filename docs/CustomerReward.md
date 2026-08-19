@@ -1,24 +1,31 @@
 
-# CatalogActionOneOf5
+# CustomerReward
 
+A reward unlocked by a customer profile.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`type` | any
-`payload` | [AddPriceAdjustmentCatalogAction](AddPriceAdjustmentCatalogAction.md)
+`applicationId` | number
+`profileIntegrationId` | string
+`integrationId` | string
+`unlockedAt` | Date
+`usedAt` | Date
 
 ## Example
 
 ```typescript
-import type { CatalogActionOneOf5 } from 'talon_one_sdk'
+import type { CustomerReward } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "type": null,
-  "payload": null,
-} satisfies CatalogActionOneOf5
+  "applicationId": 3,
+  "profileIntegrationId": customer1,
+  "integrationId": reward-unlock-123,
+  "unlockedAt": 2024-01-01T00:00:00Z,
+  "usedAt": 2024-01-02T00:00:00Z,
+} satisfies CustomerReward
 
 console.log(example)
 
@@ -27,7 +34,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as CatalogActionOneOf5
+const exampleParsed = JSON.parse(exampleJSON) as CustomerReward
 console.log(exampleParsed)
 ```
 

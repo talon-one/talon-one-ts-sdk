@@ -106,7 +106,7 @@ export function GiveawaysPoolFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'accountId': json['accountId'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -130,7 +130,7 @@ export function GiveawaysPoolToJSONTyped(value?: GiveawaysPool | null, ignoreDis
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'accountId': value['accountId'],
         'name': value['name'],
         'description': value['description'],

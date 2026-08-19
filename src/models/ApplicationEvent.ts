@@ -134,7 +134,7 @@ export function ApplicationEventFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'applicationId': json['applicationId'],
         'profileId': json['profileId'] == null ? undefined : json['profileId'],
         'storeId': json['storeId'] == null ? undefined : json['storeId'],
@@ -143,7 +143,7 @@ export function ApplicationEventFromJSONTyped(json: any, ignoreDiscriminator: bo
         'sessionId': json['sessionId'] == null ? undefined : json['sessionId'],
         'type': json['type'],
         'attributes': json['attributes'],
-        'effects': ((json['effects'] as Array<any>).map(EffectFromJSON)),
+        'effects': (json['effects'] == null ? undefined as any : (json['effects'] as Array<any>).map(EffectFromJSON)),
         'ruleFailureReasons': json['ruleFailureReasons'] == null ? undefined : ((json['ruleFailureReasons'] as Array<any>).map(RuleFailureReasonFromJSON)),
     };
 }
@@ -160,7 +160,7 @@ export function ApplicationEventToJSONTyped(value?: ApplicationEvent | null, ign
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'applicationId': value['applicationId'],
         'profileId': value['profileId'],
         'storeId': value['storeId'],
@@ -169,7 +169,7 @@ export function ApplicationEventToJSONTyped(value?: ApplicationEvent | null, ign
         'sessionId': value['sessionId'],
         'type': value['type'],
         'attributes': value['attributes'],
-        'effects': ((value['effects'] as Array<any>).map(EffectToJSON)),
+        'effects': (value['effects'] == null ? undefined : (value['effects'] as Array<any>).map(EffectToJSON)),
         'ruleFailureReasons': value['ruleFailureReasons'] == null ? undefined : ((value['ruleFailureReasons'] as Array<any>).map(RuleFailureReasonToJSON)),
     };
 }

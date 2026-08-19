@@ -68,7 +68,7 @@ export function ListStores200ResponseFromJSONTyped(json: any, ignoreDiscriminato
         
         'hasMore': json['hasMore'] == null ? undefined : json['hasMore'],
         'totalResultSize': json['totalResultSize'] == null ? undefined : json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(StoreFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(StoreFromJSON)),
     };
 }
 
@@ -85,7 +85,7 @@ export function ListStores200ResponseToJSONTyped(value?: ListStores200Response |
         
         'hasMore': value['hasMore'],
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(StoreToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(StoreToJSON)),
     };
 }
 

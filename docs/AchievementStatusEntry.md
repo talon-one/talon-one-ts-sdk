@@ -20,6 +20,7 @@ Name | Type
 `endDate` | Date
 `allowRollbackAfterCompletion` | boolean
 `campaignId` | number
+`campaignIds` | Array&lt;number&gt;
 `status` | string
 `currentProgress` | [AchievementProgress](AchievementProgress.md)
 
@@ -44,6 +45,7 @@ const example = {
   "endDate": 2024-02-15T15:04:05Z07:00,
   "allowRollbackAfterCompletion": false,
   "campaignId": 1,
+  "campaignIds": [1, 14, 27],
   "status": active,
   "currentProgress": null,
 } satisfies AchievementStatusEntry

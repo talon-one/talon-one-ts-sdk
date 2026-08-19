@@ -76,7 +76,7 @@ export function StrikethroughTriggerFromJSONTyped(json: any, ignoreDiscriminator
         
         'id': json['id'],
         'type': json['type'],
-        'triggeredAt': (new Date(json['triggeredAt'])),
+        'triggeredAt': (json['triggeredAt'] == null ? undefined as any : new Date(json['triggeredAt'])),
         'totalAffectedItems': json['totalAffectedItems'],
         'payload': json['payload'],
     };
@@ -95,7 +95,7 @@ export function StrikethroughTriggerToJSONTyped(value?: StrikethroughTrigger | n
         
         'id': value['id'],
         'type': value['type'],
-        'triggeredAt': value['triggeredAt'].toISOString(),
+        'triggeredAt': value['triggeredAt'] == null ? undefined : value['triggeredAt'].toISOString(),
         'totalAffectedItems': value['totalAffectedItems'],
         'payload': value['payload'],
     };

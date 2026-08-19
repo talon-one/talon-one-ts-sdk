@@ -74,7 +74,7 @@ export function ApplicationApiHealthFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'summary': json['summary'],
-        'lastUsed': (new Date(json['lastUsed'])),
+        'lastUsed': (json['lastUsed'] == null ? undefined as any : new Date(json['lastUsed'])),
     };
 }
 
@@ -90,7 +90,7 @@ export function ApplicationApiHealthToJSONTyped(value?: ApplicationApiHealth | n
     return {
         
         'summary': value['summary'],
-        'lastUsed': value['lastUsed'].toISOString(),
+        'lastUsed': value['lastUsed'] == null ? undefined : value['lastUsed'].toISOString(),
     };
 }
 

@@ -53,7 +53,7 @@ export function MessageLogRequestFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'createdAt': (new Date(json['createdAt'])),
+        'createdAt': (json['createdAt'] == null ? undefined as any : new Date(json['createdAt'])),
         'request': json['request'],
     };
 }
@@ -69,7 +69,7 @@ export function MessageLogRequestToJSONTyped(value?: MessageLogRequest | null, i
 
     return {
         
-        'createdAt': value['createdAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? undefined : value['createdAt'].toISOString(),
         'request': value['request'],
     };
 }

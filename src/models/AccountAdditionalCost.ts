@@ -110,7 +110,7 @@ export function AccountAdditionalCostFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'accountId': json['accountId'],
         'name': json['name'],
         'title': json['title'],
@@ -132,7 +132,7 @@ export function AccountAdditionalCostToJSONTyped(value?: AccountAdditionalCost |
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'accountId': value['accountId'],
         'name': value['name'],
         'title': value['title'],

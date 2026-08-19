@@ -62,7 +62,7 @@ export function SessionFromJSONTyped(json: any, ignoreDiscriminator: boolean): S
         
         'userId': json['userId'],
         'token': json['token'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
     };
 }
 
@@ -79,7 +79,7 @@ export function SessionToJSONTyped(value?: Session | null, ignoreDiscriminator: 
         
         'userId': value['userId'],
         'token': value['token'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
     };
 }
 

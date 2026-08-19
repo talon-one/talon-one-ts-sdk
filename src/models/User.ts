@@ -166,8 +166,8 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
-        'modified': (new Date(json['modified'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
         'email': json['email'],
         'accountId': json['accountId'],
         'name': json['name'],
@@ -197,8 +197,8 @@ export function UserToJSONTyped(value?: User | null, ignoreDiscriminator: boolea
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
-        'modified': value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
         'email': value['email'],
         'accountId': value['accountId'],
         'name': value['name'],

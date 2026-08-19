@@ -54,7 +54,7 @@ export function GenerateCouponRejections200ResponseFromJSONTyped(json: any, igno
     }
     return {
         
-        'data': ((json['data'] as Array<any>).map(CouponFailureSummaryFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CouponFailureSummaryFromJSON)),
     };
 }
 
@@ -69,7 +69,7 @@ export function GenerateCouponRejections200ResponseToJSONTyped(value?: GenerateC
 
     return {
         
-        'data': ((value['data'] as Array<any>).map(CouponFailureSummaryToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CouponFailureSummaryToJSON)),
     };
 }
 

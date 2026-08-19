@@ -61,7 +61,8 @@ export const IntegrationRequestResponseContentEnum = {
     RuleFailureReasons: 'ruleFailureReasons',
     PreviousReturns: 'previousReturns',
     CampaignEligibility: 'campaignEligibility',
-    Achievements: 'achievements'
+    Achievements: 'achievements',
+    UnlockedRewards: 'unlockedRewards'
 } as const;
 export type IntegrationRequestResponseContentEnum = typeof IntegrationRequestResponseContentEnum[keyof typeof IntegrationRequestResponseContentEnum];
 

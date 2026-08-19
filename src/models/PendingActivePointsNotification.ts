@@ -81,7 +81,7 @@ export function PendingActivePointsNotificationFromJSONTyped(json: any, ignoreDi
     return {
         
         'totalResultSize': json['TotalResultSize'],
-        'data': ((json['Data'] as Array<any>).map(PendingActivePointsDataFromJSON)),
+        'data': (json['Data'] == null ? undefined as any : (json['Data'] as Array<any>).map(PendingActivePointsDataFromJSON)),
         'notificationType': json['NotificationType'],
     };
 }
@@ -98,7 +98,7 @@ export function PendingActivePointsNotificationToJSONTyped(value?: PendingActive
     return {
         
         'TotalResultSize': value['totalResultSize'],
-        'Data': ((value['data'] as Array<any>).map(PendingActivePointsDataToJSON)),
+        'Data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(PendingActivePointsDataToJSON)),
         'NotificationType': value['notificationType'],
     };
 }

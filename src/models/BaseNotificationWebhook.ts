@@ -81,8 +81,8 @@ export function BaseNotificationWebhookFromJSONTyped(json: any, ignoreDiscrimina
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
-        'modified': (new Date(json['modified'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
         'url': json['url'],
         'headers': json['headers'],
         'enabled': json['enabled'] == null ? undefined : json['enabled'],
@@ -101,8 +101,8 @@ export function BaseNotificationWebhookToJSONTyped(value?: BaseNotificationWebho
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
-        'modified': value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
         'url': value['url'],
         'headers': value['headers'],
         'enabled': value['enabled'],

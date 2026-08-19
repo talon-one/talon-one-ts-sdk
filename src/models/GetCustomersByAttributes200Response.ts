@@ -68,7 +68,7 @@ export function GetCustomersByAttributes200ResponseFromJSONTyped(json: any, igno
         
         'hasMore': json['hasMore'] == null ? undefined : json['hasMore'],
         'totalResultSize': json['totalResultSize'] == null ? undefined : json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(CustomerProfileFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CustomerProfileFromJSON)),
     };
 }
 
@@ -85,7 +85,7 @@ export function GetCustomersByAttributes200ResponseToJSONTyped(value?: GetCustom
         
         'hasMore': value['hasMore'],
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(CustomerProfileToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CustomerProfileToJSON)),
     };
 }
 

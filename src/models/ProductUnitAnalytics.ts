@@ -68,7 +68,7 @@ export function ProductUnitAnalyticsFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'data': ((json['data'] as Array<any>).map(ProductUnitAnalyticsDataPointFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(ProductUnitAnalyticsDataPointFromJSON)),
         'totals': ProductUnitAnalyticsTotalsFromJSON(json['totals']),
     };
 }
@@ -84,7 +84,7 @@ export function ProductUnitAnalyticsToJSONTyped(value?: ProductUnitAnalytics | n
 
     return {
         
-        'data': ((value['data'] as Array<any>).map(ProductUnitAnalyticsDataPointToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ProductUnitAnalyticsDataPointToJSON)),
         'totals': ProductUnitAnalyticsTotalsToJSON(value['totals']),
     };
 }

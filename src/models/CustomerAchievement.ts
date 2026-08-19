@@ -20,6 +20,13 @@ import {
     AchievementProgressToJSON,
     AchievementProgressToJSONTyped,
 } from './AchievementProgress';
+import type { CampaignReference } from './CampaignReference';
+import {
+    CampaignReferenceFromJSON,
+    CampaignReferenceFromJSONTyped,
+    CampaignReferenceToJSON,
+    CampaignReferenceToJSONTyped,
+} from './CampaignReference';
 
 /**
  * A customer's progress in an achievement, together with the achievement definition.
@@ -102,6 +109,25 @@ export interface CustomerAchievement {
      */
     allowRollbackAfterCompletion: boolean;
     /**
+     * This property is **deprecated**. Use `campaignIds` (Integration API) or `referencedByCampaigns` (Management API) instead. The first campaign ID in `campaignIds`. Only returned when `campaignIds` is not empty.
+     * @type {number}
+     * @memberof CustomerAchievement
+     * @deprecated
+     */
+    campaignId?: number;
+    /**
+     * The IDs of the campaigns that reference this achievement, in ascending order.
+     * @type {Array<number>}
+     * @memberof CustomerAchievement
+     */
+    campaignIds: Array<number>;
+    /**
+     * The campaigns that reference this achievement. They are sorted in ascending order by their `id`.
+     * @type {Array<CampaignReference>}
+     * @memberof CustomerAchievement
+     */
+    referencedByCampaigns: Array<CampaignReference>;
+    /**
      * 
      * @type {AchievementProgress}
      * @memberof CustomerAchievement
@@ -143,6 +169,8 @@ export function instanceOfCustomerAchievement(value: object): value is CustomerA
     if (!('recurrencePolicy' in _v) || _v['recurrencePolicy'] === undefined) return false;
     if (!('activationPolicy' in _v) || _v['activationPolicy'] === undefined) return false;
     if (!('allowRollbackAfterCompletion' in _v) || _v['allowRollbackAfterCompletion'] === undefined) return false;
+    if (!('campaignIds' in _v) || _v['campaignIds'] === undefined) return false;
+    if (!('referencedByCampaigns' in _v) || _v['referencedByCampaigns'] === undefined) return false;
     return true;
 }
 
@@ -166,6 +194,9 @@ export function CustomerAchievementFromJSONTyped(json: any, ignoreDiscriminator:
         'fixedStartDate': json['fixedStartDate'] == null ? undefined : (new Date(json['fixedStartDate'])),
         'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
         'allowRollbackAfterCompletion': json['allowRollbackAfterCompletion'],
+        'campaignId': json['campaignId'] == null ? undefined : json['campaignId'],
+        'campaignIds': json['campaignIds'],
+        'referencedByCampaigns': (json['referencedByCampaigns'] == null ? undefined as any : (json['referencedByCampaigns'] as Array<any>).map(CampaignReferenceFromJSON)),
         'currentProgress': json['currentProgress'] == null ? undefined : AchievementProgressFromJSON(json['currentProgress']),
     };
 }
@@ -191,6 +222,9 @@ export function CustomerAchievementToJSONTyped(value?: CustomerAchievement | nul
         'fixedStartDate': value['fixedStartDate'] == null ? value['fixedStartDate'] : value['fixedStartDate'].toISOString(),
         'endDate': value['endDate'] == null ? value['endDate'] : value['endDate'].toISOString(),
         'allowRollbackAfterCompletion': value['allowRollbackAfterCompletion'],
+        'campaignId': value['campaignId'],
+        'campaignIds': value['campaignIds'],
+        'referencedByCampaigns': (value['referencedByCampaigns'] == null ? undefined : (value['referencedByCampaigns'] as Array<any>).map(CampaignReferenceToJSON)),
         'currentProgress': AchievementProgressToJSON(value['currentProgress']),
     };
 }

@@ -93,7 +93,7 @@ export function ApplicationRefereeFromJSONTyped(json: any, ignoreDiscriminator: 
         'advocateIntegrationId': json['advocateIntegrationId'],
         'friendIntegrationId': json['friendIntegrationId'],
         'code': json['code'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
     };
 }
 
@@ -114,7 +114,7 @@ export function ApplicationRefereeToJSONTyped(value?: ApplicationReferee | null,
         'advocateIntegrationId': value['advocateIntegrationId'],
         'friendIntegrationId': value['friendIntegrationId'],
         'code': value['code'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
     };
 }
 

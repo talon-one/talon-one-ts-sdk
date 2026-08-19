@@ -81,7 +81,7 @@ export function TierDowngradeNotificationFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'totalResultSize': json['TotalResultSize'],
-        'data': ((json['Data'] as Array<any>).map(TierDowngradeDataFromJSON)),
+        'data': (json['Data'] == null ? undefined as any : (json['Data'] as Array<any>).map(TierDowngradeDataFromJSON)),
         'notificationType': json['NotificationType'],
     };
 }
@@ -98,7 +98,7 @@ export function TierDowngradeNotificationToJSONTyped(value?: TierDowngradeNotifi
     return {
         
         'TotalResultSize': value['totalResultSize'],
-        'Data': ((value['data'] as Array<any>).map(TierDowngradeDataToJSON)),
+        'Data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(TierDowngradeDataToJSON)),
         'NotificationType': value['notificationType'],
     };
 }

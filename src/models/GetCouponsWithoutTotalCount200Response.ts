@@ -62,7 +62,7 @@ export function GetCouponsWithoutTotalCount200ResponseFromJSONTyped(json: any, i
     return {
         
         'hasMore': json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(CouponFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CouponFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetCouponsWithoutTotalCount200ResponseToJSONTyped(value?: GetCou
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(CouponToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CouponToJSON)),
     };
 }
 

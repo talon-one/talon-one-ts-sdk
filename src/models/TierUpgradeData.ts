@@ -114,8 +114,8 @@ export function TierUpgradeDataFromJSONTyped(json: any, ignoreDiscriminator: boo
         'oldTier': json['OldTier'] == null ? undefined : json['OldTier'],
         'pointsRequiredToTheNextTier': json['PointsRequiredToTheNextTier'] == null ? undefined : json['PointsRequiredToTheNextTier'],
         'nextTier': json['NextTier'] == null ? undefined : json['NextTier'],
-        'tierExpirationDate': (new Date(json['TierExpirationDate'])),
-        'timestampOfTierChange': (new Date(json['TimestampOfTierChange'])),
+        'tierExpirationDate': (json['TierExpirationDate'] == null ? undefined as any : new Date(json['TierExpirationDate'])),
+        'timestampOfTierChange': (json['TimestampOfTierChange'] == null ? undefined as any : new Date(json['TimestampOfTierChange'])),
     };
 }
 
@@ -138,8 +138,8 @@ export function TierUpgradeDataToJSONTyped(value?: TierUpgradeData | null, ignor
         'OldTier': value['oldTier'],
         'PointsRequiredToTheNextTier': value['pointsRequiredToTheNextTier'],
         'NextTier': value['nextTier'],
-        'TierExpirationDate': value['tierExpirationDate'].toISOString(),
-        'TimestampOfTierChange': value['timestampOfTierChange'].toISOString(),
+        'TierExpirationDate': value['tierExpirationDate'] == null ? undefined : value['tierExpirationDate'].toISOString(),
+        'TimestampOfTierChange': value['timestampOfTierChange'] == null ? undefined : value['timestampOfTierChange'].toISOString(),
     };
 }
 

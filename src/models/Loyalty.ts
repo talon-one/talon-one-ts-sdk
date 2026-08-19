@@ -68,7 +68,7 @@ export function LoyaltyFromJSONTyped(json: any, ignoreDiscriminator: boolean): L
     return {
         
         'cards': json['cards'] == null ? undefined : ((json['cards'] as Array<any>).map(LoyaltyCardFromJSON)),
-        'programs': (mapValues(json['programs'], LoyaltyProgramLedgersFromJSON)),
+        'programs': (json['programs'] == null ? undefined as any : mapValues(json['programs'], LoyaltyProgramLedgersFromJSON)),
     };
 }
 
@@ -84,7 +84,7 @@ export function LoyaltyToJSONTyped(value?: Loyalty | null, ignoreDiscriminator: 
     return {
         
         'cards': value['cards'] == null ? undefined : ((value['cards'] as Array<any>).map(LoyaltyCardToJSON)),
-        'programs': (mapValues(value['programs'], LoyaltyProgramLedgersToJSON)),
+        'programs': (value['programs'] == null ? undefined : mapValues(value['programs'], LoyaltyProgramLedgersToJSON)),
     };
 }
 

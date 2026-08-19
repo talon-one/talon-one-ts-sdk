@@ -195,7 +195,7 @@ export function CouponFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'campaignId': json['campaignId'],
         'value': json['value'] == null ? undefined : json['value'],
         'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
@@ -231,7 +231,7 @@ export function CouponToJSONTyped(value?: Coupon | null, ignoreDiscriminator: bo
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'campaignId': value['campaignId'],
         'value': value['value'],
         'usageLimit': value['usageLimit'],

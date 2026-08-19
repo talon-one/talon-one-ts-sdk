@@ -131,7 +131,7 @@ export function CardLedgerPointsEntryIntegrationAPIFromJSONTyped(json: any, igno
         
         'id': json['id'],
         'transactionUUID': json['transactionUUID'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'programId': json['programId'],
         'customerProfileID': json['customerProfileID'] == null ? undefined : json['customerProfileID'],
         'customerSessionId': json['customerSessionId'] == null ? undefined : json['customerSessionId'],
@@ -157,7 +157,7 @@ export function CardLedgerPointsEntryIntegrationAPIToJSONTyped(value?: CardLedge
         
         'id': value['id'],
         'transactionUUID': value['transactionUUID'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'programId': value['programId'],
         'customerProfileID': value['customerProfileID'],
         'customerSessionId': value['customerSessionId'],

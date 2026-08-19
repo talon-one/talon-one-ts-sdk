@@ -83,10 +83,10 @@ export function CampaignStoreBudgetFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'campaignId': json['campaignId'],
         'storeId': json['storeId'],
-        'limits': ((json['limits'] as Array<any>).map(CampaignStoreBudgetLimitConfigFromJSON)),
+        'limits': (json['limits'] == null ? undefined as any : (json['limits'] as Array<any>).map(CampaignStoreBudgetLimitConfigFromJSON)),
     };
 }
 
@@ -102,10 +102,10 @@ export function CampaignStoreBudgetToJSONTyped(value?: CampaignStoreBudget | nul
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'campaignId': value['campaignId'],
         'storeId': value['storeId'],
-        'limits': ((value['limits'] as Array<any>).map(CampaignStoreBudgetLimitConfigToJSON)),
+        'limits': (value['limits'] == null ? undefined : (value['limits'] as Array<any>).map(CampaignStoreBudgetLimitConfigToJSON)),
     };
 }
 

@@ -62,7 +62,7 @@ export function GetCustomerAchievements200ResponseFromJSONTyped(json: any, ignor
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(AchievementStatusEntryFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(AchievementStatusEntryFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetCustomerAchievements200ResponseToJSONTyped(value?: GetCustome
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(AchievementStatusEntryToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(AchievementStatusEntryToJSON)),
     };
 }
 

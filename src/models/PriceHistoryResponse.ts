@@ -62,7 +62,7 @@ export function PriceHistoryResponseFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'sku': json['sku'],
-        'history': ((json['history'] as Array<any>).map(HistoryFromJSON)),
+        'history': (json['history'] == null ? undefined as any : (json['history'] as Array<any>).map(HistoryFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function PriceHistoryResponseToJSONTyped(value?: PriceHistoryResponse | n
     return {
         
         'sku': value['sku'],
-        'history': ((value['history'] as Array<any>).map(HistoryToJSON)),
+        'history': (value['history'] == null ? undefined : (value['history'] as Array<any>).map(HistoryToJSON)),
     };
 }
 

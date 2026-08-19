@@ -82,7 +82,8 @@ export const IntegrationEventV2RequestResponseContentEnum = {
     AwardedGiveaways: 'awardedGiveaways',
     RuleFailureReasons: 'ruleFailureReasons',
     CampaignEligibility: 'campaignEligibility',
-    Achievements: 'achievements'
+    Achievements: 'achievements',
+    UnlockedRewards: 'unlockedRewards'
 } as const;
 export type IntegrationEventV2RequestResponseContentEnum = typeof IntegrationEventV2RequestResponseContentEnum[keyof typeof IntegrationEventV2RequestResponseContentEnum];
 

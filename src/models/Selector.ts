@@ -90,7 +90,7 @@ export function SelectorFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'name': json['name'],
         'type': json['type'],
         'source': json['source'],
-        'steps': ((json['steps'] as Array<any>).map(SelectorStepFromJSON)),
+        'steps': (json['steps'] == null ? undefined as any : (json['steps'] as Array<any>).map(SelectorStepFromJSON)),
     };
 }
 
@@ -108,7 +108,7 @@ export function SelectorToJSONTyped(value?: Selector | null, ignoreDiscriminator
         'name': value['name'],
         'type': value['type'],
         'source': value['source'],
-        'steps': ((value['steps'] as Array<any>).map(SelectorStepToJSON)),
+        'steps': (value['steps'] == null ? undefined : (value['steps'] as Array<any>).map(SelectorStepToJSON)),
     };
 }
 

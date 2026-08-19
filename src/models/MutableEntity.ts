@@ -46,7 +46,7 @@ export function MutableEntityFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'modified': (new Date(json['modified'])),
+        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
     };
 }
 
@@ -61,7 +61,7 @@ export function MutableEntityToJSONTyped(value?: MutableEntity | null, ignoreDis
 
     return {
         
-        'modified': value['modified'].toISOString(),
+        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
     };
 }
 

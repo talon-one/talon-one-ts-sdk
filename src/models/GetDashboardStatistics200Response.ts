@@ -62,7 +62,7 @@ export function GetDashboardStatistics200ResponseFromJSONTyped(json: any, ignore
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(LoyaltyDashboardDataFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(LoyaltyDashboardDataFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetDashboardStatistics200ResponseToJSONTyped(value?: GetDashboar
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(LoyaltyDashboardDataToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(LoyaltyDashboardDataToJSON)),
     };
 }
 

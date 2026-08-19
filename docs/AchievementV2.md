@@ -26,6 +26,8 @@ Name | Type
 `status` | string
 `sandbox` | boolean
 `timezone` | string
+`campaignId` | number
+`referencedByCampaigns` | [Array&lt;CampaignReference&gt;](CampaignReference.md)
 
 ## Example
 
@@ -54,6 +56,8 @@ const example = {
   "status": active,
   "sandbox": true,
   "timezone": Europe/Berlin,
+  "campaignId": 3,
+  "referencedByCampaigns": null,
 } satisfies AchievementV2
 
 console.log(example)

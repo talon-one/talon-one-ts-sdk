@@ -106,9 +106,9 @@ export function CampaignCollectionWithoutPayloadFromJSONTyped(json: any, ignoreD
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'accountId': json['accountId'],
-        'modified': (new Date(json['modified'])),
+        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
         'description': json['description'] == null ? undefined : json['description'],
         'name': json['name'],
         'modifiedBy': json['modifiedBy'] == null ? undefined : json['modifiedBy'],
@@ -130,9 +130,9 @@ export function CampaignCollectionWithoutPayloadToJSONTyped(value?: CampaignColl
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'accountId': value['accountId'],
-        'modified': value['modified'].toISOString(),
+        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
         'description': value['description'],
         'name': value['name'],
         'modifiedBy': value['modifiedBy'],

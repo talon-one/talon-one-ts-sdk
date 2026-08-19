@@ -126,11 +126,11 @@ export function RulesetFromJSONTyped(json: any, ignoreDiscriminator: boolean): R
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'userId': json['userId'],
-        'rules': ((json['rules'] as Array<any>).map(RuleFromJSON)),
+        'rules': (json['rules'] == null ? undefined as any : (json['rules'] as Array<any>).map(RuleFromJSON)),
         'strikethroughRules': json['strikethroughRules'] == null ? undefined : ((json['strikethroughRules'] as Array<any>).map(RuleFromJSON)),
-        'bindings': ((json['bindings'] as Array<any>).map(BindingFromJSON)),
+        'bindings': (json['bindings'] == null ? undefined as any : (json['bindings'] as Array<any>).map(BindingFromJSON)),
         'rbVersion': json['rbVersion'] == null ? undefined : json['rbVersion'],
         'activate': json['activate'] == null ? undefined : json['activate'],
         'campaignId': json['campaignId'] == null ? undefined : json['campaignId'],
@@ -151,11 +151,11 @@ export function RulesetToJSONTyped(value?: Ruleset | null, ignoreDiscriminator: 
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'userId': value['userId'],
-        'rules': ((value['rules'] as Array<any>).map(RuleToJSON)),
+        'rules': (value['rules'] == null ? undefined : (value['rules'] as Array<any>).map(RuleToJSON)),
         'strikethroughRules': value['strikethroughRules'] == null ? undefined : ((value['strikethroughRules'] as Array<any>).map(RuleToJSON)),
-        'bindings': ((value['bindings'] as Array<any>).map(BindingToJSON)),
+        'bindings': (value['bindings'] == null ? undefined : (value['bindings'] as Array<any>).map(BindingToJSON)),
         'rbVersion': value['rbVersion'],
         'activate': value['activate'],
         'campaignId': value['campaignId'],

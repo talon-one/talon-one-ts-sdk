@@ -62,7 +62,7 @@ export function ListAllRolesV2200ResponseFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(RoleV2FromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(RoleV2FromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function ListAllRolesV2200ResponseToJSONTyped(value?: ListAllRolesV2200Re
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(RoleV2ToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(RoleV2ToJSON)),
     };
 }
 

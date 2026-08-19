@@ -54,7 +54,7 @@ export function IntegrationEntityFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'integrationId': json['integrationId'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
     };
 }
 
@@ -70,7 +70,7 @@ export function IntegrationEntityToJSONTyped(value?: IntegrationEntity | null, i
     return {
         
         'integrationId': value['integrationId'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
     };
 }
 

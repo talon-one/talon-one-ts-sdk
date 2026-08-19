@@ -92,7 +92,7 @@ export function ChangeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ch
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'userId': json['userId'],
         'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
         'entity': json['entity'],
@@ -114,7 +114,7 @@ export function ChangeToJSONTyped(value?: Change | null, ignoreDiscriminator: bo
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'userId': value['userId'],
         'applicationId': value['applicationId'],
         'entity': value['entity'],

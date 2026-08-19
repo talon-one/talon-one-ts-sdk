@@ -99,6 +99,12 @@ export interface CustomerInventory {
      * @memberof CustomerInventory
      */
     achievements?: Array<AchievementProgressWithDefinition>;
+    /**
+     * The customer rewards that are `unlocked` and not yet `used`.
+     * @type {Array<any>}
+     * @memberof CustomerInventory
+     */
+    rewards?: Array<any>;
 }
 
 /**
@@ -125,6 +131,7 @@ export function CustomerInventoryFromJSONTyped(json: any, ignoreDiscriminator: b
         'coupons': json['coupons'] == null ? undefined : ((json['coupons'] as Array<any>).map(InventoryCouponFromJSON)),
         'giveaways': json['giveaways'] == null ? undefined : ((json['giveaways'] as Array<any>).map(GiveawayFromJSON)),
         'achievements': json['achievements'] == null ? undefined : ((json['achievements'] as Array<any>).map(AchievementProgressWithDefinitionFromJSON)),
+        'rewards': json['rewards'] == null ? undefined : json['rewards'],
     };
 }
 
@@ -145,6 +152,7 @@ export function CustomerInventoryToJSONTyped(value?: CustomerInventory | null, i
         'coupons': value['coupons'] == null ? undefined : ((value['coupons'] as Array<any>).map(InventoryCouponToJSON)),
         'giveaways': value['giveaways'] == null ? undefined : ((value['giveaways'] as Array<any>).map(GiveawayToJSON)),
         'achievements': value['achievements'] == null ? undefined : ((value['achievements'] as Array<any>).map(AchievementProgressWithDefinitionToJSON)),
+        'rewards': value['rewards'],
     };
 }
 

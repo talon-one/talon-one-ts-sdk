@@ -1,24 +1,27 @@
 
-# CatalogActionOneOf3
+# UseRewardEffectProps
 
+This effect is triggered when a rule that uses a customer\'s unlocked reward is validated during session evaluation.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`type` | any
-`payload` | [RemoveItemCatalogAction](RemoveItemCatalogAction.md)
+`integrationId` | string
+`rewardId` | number
+`applicationId` | number
 
 ## Example
 
 ```typescript
-import type { CatalogActionOneOf3 } from 'talon_one_sdk'
+import type { UseRewardEffectProps } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "type": null,
-  "payload": null,
-} satisfies CatalogActionOneOf3
+  "integrationId": 5c0b5e6d-3f8a-4c2b-9f1e-2a7d6b4c8e90,
+  "rewardId": 5,
+  "applicationId": 1,
+} satisfies UseRewardEffectProps
 
 console.log(example)
 
@@ -27,7 +30,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as CatalogActionOneOf3
+const exampleParsed = JSON.parse(exampleJSON) as UseRewardEffectProps
 console.log(exampleParsed)
 ```
 

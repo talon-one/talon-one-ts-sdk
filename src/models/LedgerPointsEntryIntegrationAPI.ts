@@ -125,7 +125,7 @@ export function LedgerPointsEntryIntegrationAPIFromJSONTyped(json: any, ignoreDi
         
         'id': json['id'],
         'transactionUUID': json['transactionUUID'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'programId': json['programId'],
         'customerSessionId': json['customerSessionId'] == null ? undefined : json['customerSessionId'],
         'name': json['name'],
@@ -150,7 +150,7 @@ export function LedgerPointsEntryIntegrationAPIToJSONTyped(value?: LedgerPointsE
         
         'id': value['id'],
         'transactionUUID': value['transactionUUID'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'programId': value['programId'],
         'customerSessionId': value['customerSessionId'],
         'name': value['name'],

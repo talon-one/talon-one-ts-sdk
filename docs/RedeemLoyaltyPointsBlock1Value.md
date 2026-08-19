@@ -1,24 +1,21 @@
 
-# CatalogActionOneOf
+# RedeemLoyaltyPointsBlock1Value
 
+Number of points to deduct. Either a numeric scalar or a `{{expression}}` string that resolves to a number at evaluation time.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`type` | any
-`payload` | [AddItemCatalogAction](AddItemCatalogAction.md)
 
 ## Example
 
 ```typescript
-import type { CatalogActionOneOf } from 'talon_one_sdk'
+import type { RedeemLoyaltyPointsBlock1Value } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "type": null,
-  "payload": null,
-} satisfies CatalogActionOneOf
+} satisfies RedeemLoyaltyPointsBlock1Value
 
 console.log(example)
 
@@ -27,7 +24,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as CatalogActionOneOf
+const exampleParsed = JSON.parse(exampleJSON) as RedeemLoyaltyPointsBlock1Value
 console.log(exampleParsed)
 ```
 

@@ -55,7 +55,7 @@ export function ReopenSessionResponseFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'effects': ((json['effects'] as Array<any>).map(EffectFromJSON)),
+        'effects': (json['effects'] == null ? undefined as any : (json['effects'] as Array<any>).map(EffectFromJSON)),
     };
 }
 
@@ -70,7 +70,7 @@ export function ReopenSessionResponseToJSONTyped(value?: ReopenSessionResponse |
 
     return {
         
-        'effects': ((value['effects'] as Array<any>).map(EffectToJSON)),
+        'effects': (value['effects'] == null ? undefined : (value['effects'] as Array<any>).map(EffectToJSON)),
     };
 }
 

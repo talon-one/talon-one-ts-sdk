@@ -55,7 +55,7 @@ export function ExperimentConfidenceTimelineFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'data': ((json['data'] as Array<any>).map(ExperimentConfidenceTimelineDataPointFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(ExperimentConfidenceTimelineDataPointFromJSON)),
     };
 }
 
@@ -70,7 +70,7 @@ export function ExperimentConfidenceTimelineToJSONTyped(value?: ExperimentConfid
 
     return {
         
-        'data': ((value['data'] as Array<any>).map(ExperimentConfidenceTimelineDataPointToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ExperimentConfidenceTimelineDataPointToJSON)),
     };
 }
 

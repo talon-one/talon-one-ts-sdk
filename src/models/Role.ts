@@ -102,8 +102,8 @@ export function RoleFromJSONTyped(json: any, ignoreDiscriminator: boolean): Role
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
-        'modified': (new Date(json['modified'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
         'accountId': json['accountId'],
         'campaignGroupID': json['campaignGroupID'] == null ? undefined : json['campaignGroupID'],
         'name': json['name'],
@@ -125,8 +125,8 @@ export function RoleToJSONTyped(value?: Role | null, ignoreDiscriminator: boolea
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
-        'modified': value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
         'accountId': value['accountId'],
         'campaignGroupID': value['campaignGroupID'],
         'name': value['name'],

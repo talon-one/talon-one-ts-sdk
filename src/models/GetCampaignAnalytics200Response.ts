@@ -62,7 +62,7 @@ export function GetCampaignAnalytics200ResponseFromJSONTyped(json: any, ignoreDi
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(CampaignAnalyticsFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CampaignAnalyticsFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetCampaignAnalytics200ResponseToJSONTyped(value?: GetCampaignAn
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(CampaignAnalyticsToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CampaignAnalyticsToJSON)),
     };
 }
 

@@ -75,7 +75,7 @@ export function ExperimentSegmentInsightMetricFromJSONTyped(json: any, ignoreDis
     return {
         
         'metric': json['metric'],
-        'segments': ((json['segments'] as Array<any>).map(ExperimentSegmentInsightFromJSON)),
+        'segments': (json['segments'] == null ? undefined as any : (json['segments'] as Array<any>).map(ExperimentSegmentInsightFromJSON)),
     };
 }
 
@@ -91,7 +91,7 @@ export function ExperimentSegmentInsightMetricToJSONTyped(value?: ExperimentSegm
     return {
         
         'metric': value['metric'],
-        'segments': ((value['segments'] as Array<any>).map(ExperimentSegmentInsightToJSON)),
+        'segments': (value['segments'] == null ? undefined : (value['segments'] as Array<any>).map(ExperimentSegmentInsightToJSON)),
     };
 }
 

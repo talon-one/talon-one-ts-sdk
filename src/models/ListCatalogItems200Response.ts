@@ -68,7 +68,7 @@ export function ListCatalogItems200ResponseFromJSONTyped(json: any, ignoreDiscri
         
         'hasMore': json['hasMore'] == null ? undefined : json['hasMore'],
         'totalResultSize': json['totalResultSize'] == null ? undefined : json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(CatalogItemFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CatalogItemFromJSON)),
     };
 }
 
@@ -85,7 +85,7 @@ export function ListCatalogItems200ResponseToJSONTyped(value?: ListCatalogItems2
         
         'hasMore': value['hasMore'],
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(CatalogItemToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CatalogItemToJSON)),
     };
 }
 

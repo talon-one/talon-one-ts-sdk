@@ -12,6 +12,7 @@ Name | Type
 `coupons` | [Array&lt;InventoryCoupon&gt;](InventoryCoupon.md)
 `giveaways` | [Array&lt;Giveaway&gt;](Giveaway.md)
 `achievements` | [Array&lt;AchievementProgressWithDefinition&gt;](AchievementProgressWithDefinition.md)
+`rewards` | Array&lt;any&gt;
 
 ## Example
 
@@ -26,6 +27,7 @@ const example = {
   "coupons": null,
   "giveaways": null,
   "achievements": null,
+  "rewards": null,
 } satisfies CustomerInventory
 
 console.log(example)

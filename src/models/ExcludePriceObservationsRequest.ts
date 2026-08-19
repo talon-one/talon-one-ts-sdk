@@ -71,7 +71,7 @@ export function ExcludePriceObservationsRequestToJSONTyped(value?: ExcludePriceO
 
     return {
         
-        'ids': Array.from(value['ids'] as Set<any>),
+        'ids': value['ids'] == null ? undefined : Array.from(value['ids'] as Set<any>),
         'reason': value['reason'],
     };
 }

@@ -168,7 +168,7 @@ export function IntegrationCampaignFromJSONTyped(json: any, ignoreDiscriminator:
         'state': json['state'],
         'tags': json['tags'],
         'features': json['features'],
-        'rules': ((json['rules'] as Array<any>).map(RuleMetadataFromJSON)),
+        'rules': (json['rules'] == null ? undefined as any : (json['rules'] as Array<any>).map(RuleMetadataFromJSON)),
         'linkedStoreIds': json['linkedStoreIds'] == null ? undefined : json['linkedStoreIds'],
         'linkedAudienceIds': json['linkedAudienceIds'] == null ? undefined : json['linkedAudienceIds'],
     };
@@ -195,7 +195,7 @@ export function IntegrationCampaignToJSONTyped(value?: IntegrationCampaign | nul
         'state': value['state'],
         'tags': value['tags'],
         'features': value['features'],
-        'rules': ((value['rules'] as Array<any>).map(RuleMetadataToJSON)),
+        'rules': (value['rules'] == null ? undefined : (value['rules'] as Array<any>).map(RuleMetadataToJSON)),
         'linkedStoreIds': value['linkedStoreIds'],
         'linkedAudienceIds': value['linkedAudienceIds'],
     };

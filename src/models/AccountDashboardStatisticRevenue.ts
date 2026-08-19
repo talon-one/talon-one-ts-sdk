@@ -62,7 +62,7 @@ export function AccountDashboardStatisticRevenueFromJSONTyped(json: any, ignoreD
         
         'total': json['total'],
         'influenced': json['influenced'],
-        'datetime': (new Date(json['datetime'])),
+        'datetime': (json['datetime'] == null ? undefined as any : new Date(json['datetime'])),
     };
 }
 
@@ -79,7 +79,7 @@ export function AccountDashboardStatisticRevenueToJSONTyped(value?: AccountDashb
         
         'total': value['total'],
         'influenced': value['influenced'],
-        'datetime': value['datetime'].toISOString(),
+        'datetime': value['datetime'] == null ? undefined : value['datetime'].toISOString(),
     };
 }
 

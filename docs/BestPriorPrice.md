@@ -10,7 +10,6 @@ Name | Type
 `sku` | string
 `observedAt` | Date
 `contextIds` | Array&lt;string&gt;
-`contextId` | string
 `price` | number
 `metadata` | [BestPriorPriceMetadata](BestPriorPriceMetadata.md)
 `target` | [LabelTarget](LabelTarget.md)
@@ -26,7 +25,6 @@ const example = {
   "sku": SKU7345278,
   "observedAt": 2025-11-10T23:00:00Z,
   "contextIds": [SpringSale, SummerSale2025],
-  "contextId": ,
   "price": 99.99,
   "metadata": null,
   "target": null,

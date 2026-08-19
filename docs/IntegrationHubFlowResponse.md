@@ -14,7 +14,6 @@ Name | Type
 `applicationId` | number
 `loyaltyProgramId` | number
 `eventType` | string
-`integrationHubFlowUrl` | string
 `config` | [IntegrationHubFlowConfigResponse](IntegrationHubFlowConfigResponse.md)
 
 ## Example
@@ -32,7 +31,6 @@ const example = {
   "applicationId": 54,
   "loyaltyProgramId": 12,
   "eventType": null,
-  "integrationHubFlowUrl": null,
   "config": null,
 } satisfies IntegrationHubFlowResponse
 

@@ -117,7 +117,7 @@ export function LoyaltyDashboardDataFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'date': (new Date(json['date'])),
+        'date': (json['date'] == null ? undefined as any : new Date(json['date'])),
         'totalActivePoints': json['totalActivePoints'],
         'totalPendingPoints': json['totalPendingPoints'],
         'totalSpentPoints': json['totalSpentPoints'],
@@ -141,7 +141,7 @@ export function LoyaltyDashboardDataToJSONTyped(value?: LoyaltyDashboardData | n
 
     return {
         
-        'date': value['date'].toISOString(),
+        'date': value['date'] == null ? undefined : value['date'].toISOString(),
         'totalActivePoints': value['totalActivePoints'],
         'totalPendingPoints': value['totalPendingPoints'],
         'totalSpentPoints': value['totalSpentPoints'],

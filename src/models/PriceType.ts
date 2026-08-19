@@ -101,12 +101,12 @@ export function PriceTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'accountId': json['accountId'] == null ? undefined : json['accountId'],
         'name': json['name'],
         'title': json['title'],
         'description': json['description'] == null ? undefined : json['description'],
-        'modified': (new Date(json['modified'])),
+        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
         'subscribedCatalogsIds': json['subscribedCatalogsIds'],
         'targetedAudiencesIds': json['targetedAudiencesIds'],
     };
@@ -124,12 +124,12 @@ export function PriceTypeToJSONTyped(value?: PriceType | null, ignoreDiscriminat
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'accountId': value['accountId'],
         'name': value['name'],
         'title': value['title'],
         'description': value['description'],
-        'modified': value['modified'].toISOString(),
+        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
         'subscribedCatalogsIds': value['subscribedCatalogsIds'],
         'targetedAudiencesIds': value['targetedAudiencesIds'],
     };
