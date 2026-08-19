@@ -20,6 +20,13 @@ import {
     TimePointToJSON,
     TimePointToJSONTyped,
 } from './TimePoint';
+import type { CampaignReference } from './CampaignReference';
+import {
+    CampaignReferenceFromJSON,
+    CampaignReferenceFromJSONTyped,
+    CampaignReferenceToJSON,
+    CampaignReferenceToJSONTyped,
+} from './CampaignReference';
 
 /**
  * 
@@ -196,6 +203,19 @@ export interface AchievementV2 {
      * @memberof AchievementV2
      */
     timezone: string;
+    /**
+     * This property is **deprecated**. Use `referencedByCampaigns` instead. The ID of the first campaign in `referencedByCampaigns`. Only returned when `referencedByCampaigns` is not empty.
+     * @type {number}
+     * @memberof AchievementV2
+     * @deprecated
+     */
+    campaignId?: number;
+    /**
+     * The campaigns that reference this achievement. They are sorted in ascending order by their id.
+     * @type {Array<CampaignReference>}
+     * @memberof AchievementV2
+     */
+    referencedByCampaigns: Array<CampaignReference>;
 }
 
 
@@ -239,6 +259,7 @@ export function instanceOfAchievementV2(value: object): value is AchievementV2 {
     if (!('userId' in _v) || _v['userId'] === undefined) return false;
     if (!('sandbox' in _v) || _v['sandbox'] === undefined) return false;
     if (!('timezone' in _v) || _v['timezone'] === undefined) return false;
+    if (!('referencedByCampaigns' in _v) || _v['referencedByCampaigns'] === undefined) return false;
     return true;
 }
 
@@ -253,7 +274,7 @@ export function AchievementV2FromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'name': json['name'] == null ? undefined : json['name'],
         'title': json['title'] == null ? undefined : json['title'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -272,6 +293,8 @@ export function AchievementV2FromJSONTyped(json: any, ignoreDiscriminator: boole
         'status': json['status'] == null ? undefined : json['status'],
         'sandbox': json['sandbox'],
         'timezone': json['timezone'],
+        'campaignId': json['campaignId'] == null ? undefined : json['campaignId'],
+        'referencedByCampaigns': (json['referencedByCampaigns'] == null ? undefined as any : (json['referencedByCampaigns'] as Array<any>).map(CampaignReferenceFromJSON)),
     };
 }
 
@@ -287,7 +310,7 @@ export function AchievementV2ToJSONTyped(value?: AchievementV2 | null, ignoreDis
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'name': value['name'],
         'title': value['title'],
         'description': value['description'],
@@ -306,6 +329,8 @@ export function AchievementV2ToJSONTyped(value?: AchievementV2 | null, ignoreDis
         'status': value['status'],
         'sandbox': value['sandbox'],
         'timezone': value['timezone'],
+        'campaignId': value['campaignId'],
+        'referencedByCampaigns': (value['referencedByCampaigns'] == null ? undefined : (value['referencedByCampaigns'] as Array<any>).map(CampaignReferenceToJSON)),
     };
 }
 

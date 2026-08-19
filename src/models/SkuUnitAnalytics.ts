@@ -68,7 +68,7 @@ export function SkuUnitAnalyticsFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'data': ((json['data'] as Array<any>).map(SkuUnitAnalyticsDataPointFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(SkuUnitAnalyticsDataPointFromJSON)),
         'totals': ProductUnitAnalyticsTotalsFromJSON(json['totals']),
     };
 }
@@ -84,7 +84,7 @@ export function SkuUnitAnalyticsToJSONTyped(value?: SkuUnitAnalytics | null, ign
 
     return {
         
-        'data': ((value['data'] as Array<any>).map(SkuUnitAnalyticsDataPointToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(SkuUnitAnalyticsDataPointToJSON)),
         'totals': ProductUnitAnalyticsTotalsToJSON(value['totals']),
     };
 }

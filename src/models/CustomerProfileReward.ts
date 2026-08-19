@@ -26,6 +26,12 @@ export interface CustomerProfileReward {
      */
     id: number;
     /**
+     * The integration ID of the reward.
+     * @type {string}
+     * @memberof CustomerProfileReward
+     */
+    integrationId: string;
+    /**
      * The ID of the reward this instance belongs to.
      * @type {number}
      * @memberof CustomerProfileReward
@@ -61,7 +67,7 @@ export interface CustomerProfileReward {
      * @type {string}
      * @memberof CustomerProfileReward
      */
-    unlockedByIntegrationId?: string;
+    unlockedByProfileIntegrationId?: string;
     /**
      * The date and time when the reward was used.
      * @type {Date}
@@ -79,7 +85,7 @@ export interface CustomerProfileReward {
      * @type {string}
      * @memberof CustomerProfileReward
      */
-    usedByIntegrationId?: string;
+    usedByProfileIntegrationId?: string;
     /**
      * The ID of the loyalty program that the loyalty card belongs to. Only returned for rewards unlocked with a loyalty card.
      * @type {number}
@@ -111,6 +117,7 @@ export type CustomerProfileRewardStatusEnum = typeof CustomerProfileRewardStatus
 export function instanceOfCustomerProfileReward(value: object): value is CustomerProfileReward {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('id' in _v) || _v['id'] === undefined) return false;
+    if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
     if (!('rewardId' in _v) || _v['rewardId'] === undefined) return false;
     if (!('rewardName' in _v) || _v['rewardName'] === undefined) return false;
     if (!('status' in _v) || _v['status'] === undefined) return false;
@@ -129,13 +136,14 @@ export function CustomerProfileRewardFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'id': json['id'],
+        'integrationId': json['integrationId'],
         'rewardId': json['rewardId'],
         'rewardName': json['rewardName'],
         'status': json['status'],
-        'unlockedAt': (new Date(json['unlockedAt'])),
-        'unlockedByIntegrationId': json['unlockedByIntegrationId'] == null ? undefined : json['unlockedByIntegrationId'],
+        'unlockedAt': (json['unlockedAt'] == null ? undefined as any : new Date(json['unlockedAt'])),
+        'unlockedByProfileIntegrationId': json['unlockedByProfileIntegrationId'] == null ? undefined : json['unlockedByProfileIntegrationId'],
         'usedAt': json['usedAt'] == null ? undefined : (new Date(json['usedAt'])),
-        'usedByIntegrationId': json['usedByIntegrationId'] == null ? undefined : json['usedByIntegrationId'],
+        'usedByProfileIntegrationId': json['usedByProfileIntegrationId'] == null ? undefined : json['usedByProfileIntegrationId'],
         'loyaltyProgramId': json['loyaltyProgramId'] == null ? undefined : json['loyaltyProgramId'],
         'loyaltyCardIdentifier': json['loyaltyCardIdentifier'] == null ? undefined : json['loyaltyCardIdentifier'],
     };
@@ -153,13 +161,14 @@ export function CustomerProfileRewardToJSONTyped(value?: CustomerProfileReward |
     return {
         
         'id': value['id'],
+        'integrationId': value['integrationId'],
         'rewardId': value['rewardId'],
         'rewardName': value['rewardName'],
         'status': value['status'],
-        'unlockedAt': value['unlockedAt'].toISOString(),
-        'unlockedByIntegrationId': value['unlockedByIntegrationId'],
+        'unlockedAt': value['unlockedAt'] == null ? undefined : value['unlockedAt'].toISOString(),
+        'unlockedByProfileIntegrationId': value['unlockedByProfileIntegrationId'],
         'usedAt': value['usedAt'] == null ? value['usedAt'] : value['usedAt'].toISOString(),
-        'usedByIntegrationId': value['usedByIntegrationId'],
+        'usedByProfileIntegrationId': value['usedByProfileIntegrationId'],
         'loyaltyProgramId': value['loyaltyProgramId'],
         'loyaltyCardIdentifier': value['loyaltyCardIdentifier'],
     };

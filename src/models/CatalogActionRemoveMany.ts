@@ -22,40 +22,52 @@ import {
 } from './RemoveManyItemsCatalogAction';
 
 /**
- * 
+ * Removes the items of the catalog that match the given filters.
  * @export
- * @interface CatalogActionOneOf4
+ * @interface CatalogActionRemoveMany
  */
-export interface CatalogActionOneOf4 {
+export interface CatalogActionRemoveMany {
     /**
-     * 
-     * @type {any}
-     * @memberof CatalogActionOneOf4
+     * A catalog sync action discriminator of type `REMOVE_MANY`.
+     * @type {CatalogActionRemoveManyTypeEnum}
+     * @memberof CatalogActionRemoveMany
      */
-    type: any | null;
+    type: CatalogActionRemoveManyTypeEnum;
     /**
-     * 
+     * The payload of sync action.
      * @type {RemoveManyItemsCatalogAction}
-     * @memberof CatalogActionOneOf4
+     * @memberof CatalogActionRemoveMany
      */
     payload: RemoveManyItemsCatalogAction;
 }
 
+
 /**
- * Check if a given object implements the CatalogActionOneOf4 interface.
+ * @export
  */
-export function instanceOfCatalogActionOneOf4(value: object): value is CatalogActionOneOf4 {
+export const CatalogActionRemoveManyTypeEnum = {
+    RemoveMany: 'REMOVE_MANY'
+} as const;
+export type CatalogActionRemoveManyTypeEnum = typeof CatalogActionRemoveManyTypeEnum[keyof typeof CatalogActionRemoveManyTypeEnum];
+
+
+/**
+ * Check if a given object implements the CatalogActionRemoveMany interface.
+ */
+export function instanceOfCatalogActionRemoveMany(value: object): value is CatalogActionRemoveMany {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'REMOVE_MANY') return false;
+    
     if (!('payload' in _v) || _v['payload'] === undefined) return false;
     return true;
 }
 
-export function CatalogActionOneOf4FromJSON(json: any): CatalogActionOneOf4 {
-    return CatalogActionOneOf4FromJSONTyped(json, false);
+export function CatalogActionRemoveManyFromJSON(json: any): CatalogActionRemoveMany {
+    return CatalogActionRemoveManyFromJSONTyped(json, false);
 }
 
-export function CatalogActionOneOf4FromJSONTyped(json: any, ignoreDiscriminator: boolean): CatalogActionOneOf4 {
+export function CatalogActionRemoveManyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CatalogActionRemoveMany {
     if (json == null) {
         return json;
     }
@@ -66,11 +78,11 @@ export function CatalogActionOneOf4FromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function CatalogActionOneOf4ToJSON(json: any): CatalogActionOneOf4 {
-    return CatalogActionOneOf4ToJSONTyped(json, false);
+export function CatalogActionRemoveManyToJSON(json: any): CatalogActionRemoveMany {
+    return CatalogActionRemoveManyToJSONTyped(json, false);
 }
 
-export function CatalogActionOneOf4ToJSONTyped(value?: CatalogActionOneOf4 | null, ignoreDiscriminator: boolean = false): any {
+export function CatalogActionRemoveManyToJSONTyped(value?: CatalogActionRemoveMany | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

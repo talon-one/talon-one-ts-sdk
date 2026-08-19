@@ -68,7 +68,7 @@ export function ListAccountCollections200ResponseFromJSONTyped(json: any, ignore
         
         'hasMore': json['hasMore'] == null ? undefined : json['hasMore'],
         'totalResultSize': json['totalResultSize'] == null ? undefined : json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(CollectionWithoutPayloadFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CollectionWithoutPayloadFromJSON)),
     };
 }
 
@@ -85,7 +85,7 @@ export function ListAccountCollections200ResponseToJSONTyped(value?: ListAccount
         
         'hasMore': value['hasMore'],
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(CollectionWithoutPayloadToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CollectionWithoutPayloadToJSON)),
     };
 }
 

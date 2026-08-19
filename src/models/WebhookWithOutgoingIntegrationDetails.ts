@@ -177,8 +177,8 @@ export function WebhookWithOutgoingIntegrationDetailsFromJSONTyped(json: any, ig
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
-        'modified': (new Date(json['modified'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
         'applicationIds': json['applicationIds'],
         'title': json['title'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -187,7 +187,7 @@ export function WebhookWithOutgoingIntegrationDetailsFromJSONTyped(json: any, ig
         'url': json['url'],
         'headers': json['headers'],
         'payload': json['payload'] == null ? undefined : json['payload'],
-        'params': ((json['params'] as Array<any>).map(TemplateArgDefFromJSON)),
+        'params': (json['params'] == null ? undefined as any : (json['params'] as Array<any>).map(TemplateArgDefFromJSON)),
         'enabled': json['enabled'],
         'authenticationId': json['authenticationId'] == null ? undefined : json['authenticationId'],
         'outgoingIntegrationTemplateId': json['outgoingIntegrationTemplateId'] == null ? undefined : json['outgoingIntegrationTemplateId'],
@@ -208,8 +208,8 @@ export function WebhookWithOutgoingIntegrationDetailsToJSONTyped(value?: Webhook
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
-        'modified': value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
         'applicationIds': value['applicationIds'],
         'title': value['title'],
         'description': value['description'],
@@ -218,7 +218,7 @@ export function WebhookWithOutgoingIntegrationDetailsToJSONTyped(value?: Webhook
         'url': value['url'],
         'headers': value['headers'],
         'payload': value['payload'],
-        'params': ((value['params'] as Array<any>).map(TemplateArgDefToJSON)),
+        'params': (value['params'] == null ? undefined : (value['params'] as Array<any>).map(TemplateArgDefToJSON)),
         'enabled': value['enabled'],
         'authenticationId': value['authenticationId'],
         'outgoingIntegrationTemplateId': value['outgoingIntegrationTemplateId'],

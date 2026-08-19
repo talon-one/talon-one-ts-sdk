@@ -68,7 +68,7 @@ export function GetApplicationCustomers200ResponseFromJSONTyped(json: any, ignor
         
         'totalResultSize': json['totalResultSize'] == null ? undefined : json['totalResultSize'],
         'hasMore': json['hasMore'] == null ? undefined : json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(ApplicationCustomerFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(ApplicationCustomerFromJSON)),
     };
 }
 
@@ -85,7 +85,7 @@ export function GetApplicationCustomers200ResponseToJSONTyped(value?: GetApplica
         
         'totalResultSize': value['totalResultSize'],
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(ApplicationCustomerToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ApplicationCustomerToJSON)),
     };
 }
 

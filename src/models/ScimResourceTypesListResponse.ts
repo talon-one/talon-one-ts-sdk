@@ -54,7 +54,7 @@ export function ScimResourceTypesListResponseFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'resources': ((json['Resources'] as Array<any>).map(ScimResourceFromJSON)),
+        'resources': (json['Resources'] == null ? undefined as any : (json['Resources'] as Array<any>).map(ScimResourceFromJSON)),
     };
 }
 
@@ -69,7 +69,7 @@ export function ScimResourceTypesListResponseToJSONTyped(value?: ScimResourceTyp
 
     return {
         
-        'Resources': ((value['resources'] as Array<any>).map(ScimResourceToJSON)),
+        'Resources': (value['resources'] == null ? undefined : (value['resources'] as Array<any>).map(ScimResourceToJSON)),
     };
 }
 

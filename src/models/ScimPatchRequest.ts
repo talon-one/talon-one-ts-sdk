@@ -61,7 +61,7 @@ export function ScimPatchRequestFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'schemas': json['schemas'] == null ? undefined : json['schemas'],
-        'operations': ((json['Operations'] as Array<any>).map(ScimPatchOperationFromJSON)),
+        'operations': (json['Operations'] == null ? undefined as any : (json['Operations'] as Array<any>).map(ScimPatchOperationFromJSON)),
     };
 }
 
@@ -77,7 +77,7 @@ export function ScimPatchRequestToJSONTyped(value?: ScimPatchRequest | null, ign
     return {
         
         'schemas': value['schemas'],
-        'Operations': ((value['operations'] as Array<any>).map(ScimPatchOperationToJSON)),
+        'Operations': (value['operations'] == null ? undefined : (value['operations'] as Array<any>).map(ScimPatchOperationToJSON)),
     };
 }
 

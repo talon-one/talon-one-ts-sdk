@@ -62,7 +62,7 @@ export function ExperimentVerdictResponseFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'verdict': ExperimentVerdictFromJSON(json['verdict']),
-        'generated': (new Date(json['generated'])),
+        'generated': (json['generated'] == null ? undefined as any : new Date(json['generated'])),
     };
 }
 
@@ -78,7 +78,7 @@ export function ExperimentVerdictResponseToJSONTyped(value?: ExperimentVerdictRe
     return {
         
         'verdict': ExperimentVerdictToJSON(value['verdict']),
-        'generated': value['generated'].toISOString(),
+        'generated': value['generated'] == null ? undefined : value['generated'].toISOString(),
     };
 }
 

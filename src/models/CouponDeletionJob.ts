@@ -135,7 +135,7 @@ export function CouponDeletionJobFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'applicationId': json['applicationId'],
         'accountId': json['accountId'],
         'filters': CouponDeletionFiltersFromJSON(json['filters']),
@@ -161,7 +161,7 @@ export function CouponDeletionJobToJSONTyped(value?: CouponDeletionJob | null, i
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'applicationId': value['applicationId'],
         'accountId': value['accountId'],
         'filters': CouponDeletionFiltersToJSON(value['filters']),

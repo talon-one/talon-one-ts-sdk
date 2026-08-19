@@ -62,7 +62,7 @@ export function GetRulesets200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(RulesetFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(RulesetFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetRulesets200ResponseToJSONTyped(value?: GetRulesets200Response
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(RulesetToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(RulesetToJSON)),
     };
 }
 

@@ -54,7 +54,7 @@ export function AccountDashboardStatisticReferralsFromJSONTyped(json: any, ignor
     return {
         
         'total': json['total'],
-        'datetime': (new Date(json['datetime'])),
+        'datetime': (json['datetime'] == null ? undefined as any : new Date(json['datetime'])),
     };
 }
 
@@ -70,7 +70,7 @@ export function AccountDashboardStatisticReferralsToJSONTyped(value?: AccountDas
     return {
         
         'total': value['total'],
-        'datetime': value['datetime'].toISOString(),
+        'datetime': value['datetime'] == null ? undefined : value['datetime'].toISOString(),
     };
 }
 

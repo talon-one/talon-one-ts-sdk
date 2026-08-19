@@ -62,7 +62,7 @@ export function OktaEventFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     return {
         
         'eventType': json['eventType'],
-        'target': ((json['target'] as Array<any>).map(OktaEventTargetFromJSON)),
+        'target': (json['target'] == null ? undefined as any : (json['target'] as Array<any>).map(OktaEventTargetFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function OktaEventToJSONTyped(value?: OktaEvent | null, ignoreDiscriminat
     return {
         
         'eventType': value['eventType'],
-        'target': ((value['target'] as Array<any>).map(OktaEventTargetToJSON)),
+        'target': (value['target'] == null ? undefined : (value['target'] as Array<any>).map(OktaEventTargetToJSON)),
     };
 }
 

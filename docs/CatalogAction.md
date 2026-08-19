@@ -1,13 +1,13 @@
 
 # CatalogAction
 
-Definition of all the properties that are needed for a single catalog sync action.
+Definition of all the properties that are needed for a single catalog sync action. The `type` field selects the concrete action variant.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`type` | any
+`type` | string
 `payload` | [AddPriceAdjustmentCatalogAction](AddPriceAdjustmentCatalogAction.md)
 
 ## Example

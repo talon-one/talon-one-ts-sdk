@@ -157,7 +157,7 @@ export function CardLedgerTransactionLogEntryFromJSONTyped(json: any, ignoreDisc
     return {
         
         'transactionUUID': json['transactionUUID'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'programId': json['programId'],
         'cardIdentifier': json['cardIdentifier'],
         'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
@@ -185,7 +185,7 @@ export function CardLedgerTransactionLogEntryToJSONTyped(value?: CardLedgerTrans
     return {
         
         'transactionUUID': value['transactionUUID'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'programId': value['programId'],
         'cardIdentifier': value['cardIdentifier'],
         'applicationId': value['applicationId'],

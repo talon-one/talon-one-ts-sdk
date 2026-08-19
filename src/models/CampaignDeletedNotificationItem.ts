@@ -71,7 +71,7 @@ export function CampaignDeletedNotificationItemFromJSONTyped(json: any, ignoreDi
         
         'event': json['Event'],
         'campaign': CampaignFromJSON(json['campaign']),
-        'deletedAt': (new Date(json['deletedAt'])),
+        'deletedAt': (json['deletedAt'] == null ? undefined as any : new Date(json['deletedAt'])),
     };
 }
 
@@ -88,7 +88,7 @@ export function CampaignDeletedNotificationItemToJSONTyped(value?: CampaignDelet
         
         'Event': value['event'],
         'campaign': CampaignToJSON(value['campaign']),
-        'deletedAt': value['deletedAt'].toISOString(),
+        'deletedAt': value['deletedAt'] == null ? undefined : value['deletedAt'].toISOString(),
     };
 }
 

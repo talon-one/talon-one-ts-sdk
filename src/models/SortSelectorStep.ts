@@ -74,7 +74,7 @@ export function SortSelectorStepFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'type': json['type'],
-        'fields': ((json['fields'] as Array<any>).map(SortSelectorStepFieldFromJSON)),
+        'fields': (json['fields'] == null ? undefined as any : (json['fields'] as Array<any>).map(SortSelectorStepFieldFromJSON)),
     };
 }
 
@@ -90,7 +90,7 @@ export function SortSelectorStepToJSONTyped(value?: SortSelectorStep | null, ign
     return {
         
         'type': value['type'],
-        'fields': ((value['fields'] as Array<any>).map(SortSelectorStepFieldToJSON)),
+        'fields': (value['fields'] == null ? undefined : (value['fields'] as Array<any>).map(SortSelectorStepFieldToJSON)),
     };
 }
 

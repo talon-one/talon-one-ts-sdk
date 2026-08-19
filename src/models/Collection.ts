@@ -118,9 +118,9 @@ export function CollectionFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'accountId': json['accountId'],
-        'modified': (new Date(json['modified'])),
+        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
         'description': json['description'] == null ? undefined : json['description'],
         'subscribedApplicationsIds': json['subscribedApplicationsIds'] == null ? undefined : json['subscribedApplicationsIds'],
         'name': json['name'],
@@ -144,9 +144,9 @@ export function CollectionToJSONTyped(value?: Collection | null, ignoreDiscrimin
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'accountId': value['accountId'],
-        'modified': value['modified'].toISOString(),
+        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
         'description': value['description'],
         'subscribedApplicationsIds': value['subscribedApplicationsIds'],
         'name': value['name'],

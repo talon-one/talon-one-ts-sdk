@@ -155,7 +155,7 @@ export function ExperimentFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'applicationId': json['applicationId'],
         'isVariantAssignmentExternal': json['isVariantAssignmentExternal'] == null ? undefined : json['isVariantAssignmentExternal'],
         'campaign': json['campaign'] == null ? undefined : CampaignFromJSON(json['campaign']),
@@ -180,7 +180,7 @@ export function ExperimentToJSONTyped(value?: Experiment | null, ignoreDiscrimin
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'applicationId': value['applicationId'],
         'isVariantAssignmentExternal': value['isVariantAssignmentExternal'],
         'campaign': CampaignToJSON(value['campaign']),

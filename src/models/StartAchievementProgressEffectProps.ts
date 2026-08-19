@@ -93,7 +93,7 @@ export function StartAchievementProgressEffectPropsFromJSONTyped(json: any, igno
         'achievementName': json['achievementName'],
         'progressTrackerId': json['progressTrackerId'],
         'target': json['target'],
-        'startDate': (new Date(json['startDate'])),
+        'startDate': (json['startDate'] == null ? undefined as any : new Date(json['startDate'])),
         'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
     };
 }
@@ -113,7 +113,7 @@ export function StartAchievementProgressEffectPropsToJSONTyped(value?: StartAchi
         'achievementName': value['achievementName'],
         'progressTrackerId': value['progressTrackerId'],
         'target': value['target'],
-        'startDate': value['startDate'].toISOString(),
+        'startDate': value['startDate'] == null ? undefined : value['startDate'].toISOString(),
         'endDate': value['endDate'] == null ? value['endDate'] : value['endDate'].toISOString(),
     };
 }

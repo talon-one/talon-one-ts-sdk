@@ -20,13 +20,6 @@ import {
     LabelTargetToJSON,
     LabelTargetToJSONTyped,
 } from './LabelTarget';
-import type { StrikethroughEffectProps } from './StrikethroughEffectProps';
-import {
-    StrikethroughEffectPropsFromJSON,
-    StrikethroughEffectPropsFromJSONTyped,
-    StrikethroughEffectPropsToJSON,
-    StrikethroughEffectPropsToJSONTyped,
-} from './StrikethroughEffectProps';
 
 /**
  * The effect produced for the catalog item.
@@ -66,10 +59,10 @@ export interface StrikethroughEffect {
     type: string;
     /**
      * Arbitrary properties associated with this effect type.
-     * @type {StrikethroughEffectProps}
+     * @type {object}
      * @memberof StrikethroughEffect
      */
-    props: StrikethroughEffectProps;
+    props: object;
     /**
      * The start of the time frame where the effect is active in UTC.
      * @type {Date}
@@ -137,7 +130,7 @@ export function StrikethroughEffectFromJSONTyped(json: any, ignoreDiscriminator:
         'ruleIndex': json['ruleIndex'],
         'ruleName': json['ruleName'],
         'type': json['type'],
-        'props': StrikethroughEffectPropsFromJSON(json['props']),
+        'props': json['props'],
         'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
         'endTime': json['endTime'] == null ? undefined : (new Date(json['endTime'])),
         'selectedPriceType': json['selectedPriceType'] == null ? undefined : json['selectedPriceType'],
@@ -163,7 +156,7 @@ export function StrikethroughEffectToJSONTyped(value?: StrikethroughEffect | nul
         'ruleIndex': value['ruleIndex'],
         'ruleName': value['ruleName'],
         'type': value['type'],
-        'props': StrikethroughEffectPropsToJSON(value['props']),
+        'props': value['props'],
         'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
         'endTime': value['endTime'] == null ? value['endTime'] : value['endTime'].toISOString(),
         'selectedPriceType': value['selectedPriceType'],

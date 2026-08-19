@@ -74,7 +74,7 @@ export function CardExpiringPointsNotificationPolicyFromJSONTyped(json: any, ign
     return {
         
         'name': json['name'],
-        'triggers': ((json['triggers'] as Array<any>).map(CardExpiringPointsNotificationTriggerFromJSON)),
+        'triggers': (json['triggers'] == null ? undefined as any : (json['triggers'] as Array<any>).map(CardExpiringPointsNotificationTriggerFromJSON)),
         'batchingEnabled': json['batchingEnabled'] == null ? undefined : json['batchingEnabled'],
         'batchSize': json['batchSize'] == null ? undefined : json['batchSize'],
     };
@@ -92,7 +92,7 @@ export function CardExpiringPointsNotificationPolicyToJSONTyped(value?: CardExpi
     return {
         
         'name': value['name'],
-        'triggers': ((value['triggers'] as Array<any>).map(CardExpiringPointsNotificationTriggerToJSON)),
+        'triggers': (value['triggers'] == null ? undefined : (value['triggers'] as Array<any>).map(CardExpiringPointsNotificationTriggerToJSON)),
         'batchingEnabled': value['batchingEnabled'],
         'batchSize': value['batchSize'],
     };

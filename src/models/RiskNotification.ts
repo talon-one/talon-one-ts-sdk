@@ -121,12 +121,12 @@ export function RiskNotificationFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'entity': json['entity'],
         'activity': json['activity'],
         'timeFrame': json['timeFrame'],
         'active': json['active'],
-        'modified': (new Date(json['modified'])),
+        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
     };
 }
 
@@ -142,12 +142,12 @@ export function RiskNotificationToJSONTyped(value?: RiskNotification | null, ign
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'entity': value['entity'],
         'activity': value['activity'],
         'timeFrame': value['timeFrame'],
         'active': value['active'],
-        'modified': value['modified'].toISOString(),
+        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
     };
 }
 

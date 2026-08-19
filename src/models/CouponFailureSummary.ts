@@ -115,8 +115,8 @@ export function CouponFailureSummaryFromJSONTyped(json: any, ignoreDiscriminator
         'couponCode': json['couponCode'],
         'language': json['language'],
         'summary': json['summary'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
+        'createdAt': (json['createdAt'] == null ? undefined as any : new Date(json['createdAt'])),
+        'updatedAt': (json['updatedAt'] == null ? undefined as any : new Date(json['updatedAt'])),
     };
 }
 
@@ -139,8 +139,8 @@ export function CouponFailureSummaryToJSONTyped(value?: CouponFailureSummary | n
         'couponCode': value['couponCode'],
         'language': value['language'],
         'summary': value['summary'],
-        'createdAt': value['createdAt'].toISOString(),
-        'updatedAt': value['updatedAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? undefined : value['createdAt'].toISOString(),
+        'updatedAt': value['updatedAt'] == null ? undefined : value['updatedAt'].toISOString(),
     };
 }
 

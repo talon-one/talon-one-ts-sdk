@@ -22,40 +22,52 @@ import {
 } from './AddItemCatalogAction';
 
 /**
- * 
+ * Adds an item to the catalog.
  * @export
- * @interface CatalogActionOneOf
+ * @interface CatalogActionAdd
  */
-export interface CatalogActionOneOf {
+export interface CatalogActionAdd {
     /**
-     * 
-     * @type {any}
-     * @memberof CatalogActionOneOf
+     * A catalog sync action discriminator of type `ADD`.
+     * @type {CatalogActionAddTypeEnum}
+     * @memberof CatalogActionAdd
      */
-    type: any | null;
+    type: CatalogActionAddTypeEnum;
     /**
      * The payload of sync action.
      * @type {AddItemCatalogAction}
-     * @memberof CatalogActionOneOf
+     * @memberof CatalogActionAdd
      */
     payload: AddItemCatalogAction;
 }
 
+
 /**
- * Check if a given object implements the CatalogActionOneOf interface.
+ * @export
  */
-export function instanceOfCatalogActionOneOf(value: object): value is CatalogActionOneOf {
+export const CatalogActionAddTypeEnum = {
+    Add: 'ADD'
+} as const;
+export type CatalogActionAddTypeEnum = typeof CatalogActionAddTypeEnum[keyof typeof CatalogActionAddTypeEnum];
+
+
+/**
+ * Check if a given object implements the CatalogActionAdd interface.
+ */
+export function instanceOfCatalogActionAdd(value: object): value is CatalogActionAdd {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'ADD') return false;
+    
     if (!('payload' in _v) || _v['payload'] === undefined) return false;
     return true;
 }
 
-export function CatalogActionOneOfFromJSON(json: any): CatalogActionOneOf {
-    return CatalogActionOneOfFromJSONTyped(json, false);
+export function CatalogActionAddFromJSON(json: any): CatalogActionAdd {
+    return CatalogActionAddFromJSONTyped(json, false);
 }
 
-export function CatalogActionOneOfFromJSONTyped(json: any, ignoreDiscriminator: boolean): CatalogActionOneOf {
+export function CatalogActionAddFromJSONTyped(json: any, ignoreDiscriminator: boolean): CatalogActionAdd {
     if (json == null) {
         return json;
     }
@@ -66,11 +78,11 @@ export function CatalogActionOneOfFromJSONTyped(json: any, ignoreDiscriminator: 
     };
 }
 
-export function CatalogActionOneOfToJSON(json: any): CatalogActionOneOf {
-    return CatalogActionOneOfToJSONTyped(json, false);
+export function CatalogActionAddToJSON(json: any): CatalogActionAdd {
+    return CatalogActionAddToJSONTyped(json, false);
 }
 
-export function CatalogActionOneOfToJSONTyped(value?: CatalogActionOneOf | null, ignoreDiscriminator: boolean = false): any {
+export function CatalogActionAddToJSONTyped(value?: CatalogActionAdd | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

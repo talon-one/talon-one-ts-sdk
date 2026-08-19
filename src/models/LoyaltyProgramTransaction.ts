@@ -159,7 +159,7 @@ export interface LoyaltyProgramTransaction {
      */
     flags?: LoyaltyLedgerEntryFlags;
     /**
-     * The duration for which the points remain active, relative to the  activation date.
+     * The duration for which the points remain active, relative to the activation date.
      * 
      * **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
      * 
@@ -212,7 +212,7 @@ export function LoyaltyProgramTransactionFromJSONTyped(json: any, ignoreDiscrimi
         'transactionUUID': json['transactionUUID'],
         'programId': json['programId'],
         'campaignId': json['campaignId'] == null ? undefined : json['campaignId'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'type': json['type'],
         'amount': json['amount'],
         'name': json['name'],
@@ -247,7 +247,7 @@ export function LoyaltyProgramTransactionToJSONTyped(value?: LoyaltyProgramTrans
         'transactionUUID': value['transactionUUID'],
         'programId': value['programId'],
         'campaignId': value['campaignId'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'type': value['type'],
         'amount': value['amount'],
         'name': value['name'],

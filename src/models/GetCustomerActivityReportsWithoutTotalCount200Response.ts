@@ -62,7 +62,7 @@ export function GetCustomerActivityReportsWithoutTotalCount200ResponseFromJSONTy
     return {
         
         'hasMore': json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(CustomerActivityReportFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CustomerActivityReportFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetCustomerActivityReportsWithoutTotalCount200ResponseToJSONType
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(CustomerActivityReportToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CustomerActivityReportToJSON)),
     };
 }
 

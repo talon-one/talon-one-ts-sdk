@@ -1,24 +1,25 @@
 
-# CatalogActionOneOf4
+# CatalogActionPatchMany
 
+Updates the items of the catalog that match the given filters.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`type` | any
-`payload` | [RemoveManyItemsCatalogAction](RemoveManyItemsCatalogAction.md)
+`type` | string
+`payload` | [PatchManyItemsCatalogAction](PatchManyItemsCatalogAction.md)
 
 ## Example
 
 ```typescript
-import type { CatalogActionOneOf4 } from 'talon_one_sdk'
+import type { CatalogActionPatchMany } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
   "type": null,
   "payload": null,
-} satisfies CatalogActionOneOf4
+} satisfies CatalogActionPatchMany
 
 console.log(example)
 
@@ -27,7 +28,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as CatalogActionOneOf4
+const exampleParsed = JSON.parse(exampleJSON) as CatalogActionPatchMany
 console.log(exampleParsed)
 ```
 

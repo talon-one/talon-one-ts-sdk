@@ -143,9 +143,9 @@ export function StrikethroughLabelingNotificationFromJSONTyped(json: any, ignore
         'currentBatch': json['currentBatch'],
         'totalBatches': json['totalBatches'],
         'trigger': StrikethroughTriggerFromJSON(json['trigger']),
-        'changedItems': ((json['changedItems'] as Array<any>).map(StrikethroughChangedItemFromJSON)),
+        'changedItems': (json['changedItems'] == null ? undefined as any : (json['changedItems'] as Array<any>).map(StrikethroughChangedItemFromJSON)),
         'notificationType': json['NotificationType'],
-        'sentAt': (new Date(json['sentAt'])),
+        'sentAt': (json['sentAt'] == null ? undefined as any : new Date(json['sentAt'])),
     };
 }
 
@@ -166,9 +166,9 @@ export function StrikethroughLabelingNotificationToJSONTyped(value?: Strikethrou
         'currentBatch': value['currentBatch'],
         'totalBatches': value['totalBatches'],
         'trigger': StrikethroughTriggerToJSON(value['trigger']),
-        'changedItems': ((value['changedItems'] as Array<any>).map(StrikethroughChangedItemToJSON)),
+        'changedItems': (value['changedItems'] == null ? undefined : (value['changedItems'] as Array<any>).map(StrikethroughChangedItemToJSON)),
         'NotificationType': value['notificationType'],
-        'sentAt': value['sentAt'].toISOString(),
+        'sentAt': value['sentAt'] == null ? undefined : value['sentAt'].toISOString(),
     };
 }
 

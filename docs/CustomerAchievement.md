@@ -17,6 +17,9 @@ Name | Type
 `fixedStartDate` | Date
 `endDate` | Date
 `allowRollbackAfterCompletion` | boolean
+`campaignId` | number
+`campaignIds` | Array&lt;number&gt;
+`referencedByCampaigns` | [Array&lt;CampaignReference&gt;](CampaignReference.md)
 `currentProgress` | [AchievementProgress](AchievementProgress.md)
 
 ## Example
@@ -36,6 +39,9 @@ const example = {
   "fixedStartDate": 2024-01-15T15:04:05Z07:00,
   "endDate": 2024-02-15T15:04:05Z07:00,
   "allowRollbackAfterCompletion": false,
+  "campaignId": 3,
+  "campaignIds": [1, 14, 27],
+  "referencedByCampaigns": null,
   "currentProgress": null,
 } satisfies CustomerAchievement
 

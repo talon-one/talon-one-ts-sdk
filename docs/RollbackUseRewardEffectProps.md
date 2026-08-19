@@ -1,30 +1,27 @@
 
-# StrikethroughEffectProps
+# RollbackUseRewardEffectProps
 
+This effect is triggered when a reward usage has been rolled back by a session cancellation.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`name` | string
-`value` | any
-`excludedFromPriceHistory` | boolean
-`effectId` | number
-`payload` | object
+`integrationId` | string
+`rewardId` | number
+`applicationId` | number
 
 ## Example
 
 ```typescript
-import type { StrikethroughEffectProps } from 'talon_one_sdk'
+import type { RollbackUseRewardEffectProps } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "name": 10% off members only,
-  "value": null,
-  "excludedFromPriceHistory": null,
-  "effectId": 1,
-  "payload": null,
-} satisfies StrikethroughEffectProps
+  "integrationId": 5c0b5e6d-3f8a-4c2b-9f1e-2a7d6b4c8e90,
+  "rewardId": 5,
+  "applicationId": 1,
+} satisfies RollbackUseRewardEffectProps
 
 console.log(example)
 
@@ -33,7 +30,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as StrikethroughEffectProps
+const exampleParsed = JSON.parse(exampleJSON) as RollbackUseRewardEffectProps
 console.log(exampleParsed)
 ```
 

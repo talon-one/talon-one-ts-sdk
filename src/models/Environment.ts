@@ -228,11 +228,11 @@ export function EnvironmentFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'applicationId': json['applicationId'],
-        'slots': ((json['slots'] as Array<any>).map(SlotDefFromJSON)),
-        'functions': ((json['functions'] as Array<any>).map(FunctionDefFromJSON)),
-        'templates': ((json['templates'] as Array<any>).map(TemplateDefFromJSON)),
+        'slots': (json['slots'] == null ? undefined as any : (json['slots'] as Array<any>).map(SlotDefFromJSON)),
+        'functions': (json['functions'] == null ? undefined as any : (json['functions'] as Array<any>).map(FunctionDefFromJSON)),
+        'templates': (json['templates'] == null ? undefined as any : (json['templates'] as Array<any>).map(TemplateDefFromJSON)),
         'variables': json['variables'],
         'giveawaysPools': json['giveawaysPools'] == null ? undefined : ((json['giveawaysPools'] as Array<any>).map(GiveawaysPoolFromJSON)),
         'loyaltyPrograms': json['loyaltyPrograms'] == null ? undefined : ((json['loyaltyPrograms'] as Array<any>).map(LoyaltyProgramFromJSON)),
@@ -258,11 +258,11 @@ export function EnvironmentToJSONTyped(value?: Environment | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'applicationId': value['applicationId'],
-        'slots': ((value['slots'] as Array<any>).map(SlotDefToJSON)),
-        'functions': ((value['functions'] as Array<any>).map(FunctionDefToJSON)),
-        'templates': ((value['templates'] as Array<any>).map(TemplateDefToJSON)),
+        'slots': (value['slots'] == null ? undefined : (value['slots'] as Array<any>).map(SlotDefToJSON)),
+        'functions': (value['functions'] == null ? undefined : (value['functions'] as Array<any>).map(FunctionDefToJSON)),
+        'templates': (value['templates'] == null ? undefined : (value['templates'] as Array<any>).map(TemplateDefToJSON)),
         'variables': value['variables'],
         'giveawaysPools': value['giveawaysPools'] == null ? undefined : ((value['giveawaysPools'] as Array<any>).map(GiveawaysPoolToJSON)),
         'loyaltyPrograms': value['loyaltyPrograms'] == null ? undefined : ((value['loyaltyPrograms'] as Array<any>).map(LoyaltyProgramToJSON)),

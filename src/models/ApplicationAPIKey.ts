@@ -142,7 +142,7 @@ export function ApplicationAPIKeyFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'title': json['title'],
-        'expires': (new Date(json['expires'])),
+        'expires': (json['expires'] == null ? undefined as any : new Date(json['expires'])),
         'platform': json['platform'] == null ? undefined : json['platform'],
         'type': json['type'] == null ? undefined : json['type'],
         'timeOffset': json['timeOffset'] == null ? undefined : json['timeOffset'],
@@ -150,7 +150,7 @@ export function ApplicationAPIKeyFromJSONTyped(json: any, ignoreDiscriminator: b
         'createdBy': json['createdBy'],
         'accountID': json['accountID'],
         'applicationID': json['applicationID'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
     };
 }
 
@@ -166,7 +166,7 @@ export function ApplicationAPIKeyToJSONTyped(value?: ApplicationAPIKey | null, i
     return {
         
         'title': value['title'],
-        'expires': value['expires'].toISOString(),
+        'expires': value['expires'] == null ? undefined : value['expires'].toISOString(),
         'platform': value['platform'],
         'type': value['type'],
         'timeOffset': value['timeOffset'],
@@ -174,7 +174,7 @@ export function ApplicationAPIKeyToJSONTyped(value?: ApplicationAPIKey | null, i
         'createdBy': value['createdBy'],
         'accountID': value['accountID'],
         'applicationID': value['applicationID'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
     };
 }
 

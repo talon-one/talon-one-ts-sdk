@@ -519,7 +519,7 @@ export function CampaignFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'applicationId': json['applicationId'],
         'userId': json['userId'],
         'name': json['name'],
@@ -534,7 +534,7 @@ export function CampaignFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'features': json['features'],
         'couponSettings': json['couponSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['couponSettings']),
         'referralSettings': json['referralSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['referralSettings']),
-        'limits': ((json['limits'] as Array<any>).map(LimitConfigFromJSON)),
+        'limits': (json['limits'] == null ? undefined as any : (json['limits'] as Array<any>).map(LimitConfigFromJSON)),
         'campaignGroups': json['campaignGroups'] == null ? undefined : json['campaignGroups'],
         'type': json['type'] == null ? undefined : json['type'],
         'linkedStoreIds': json['linkedStoreIds'] == null ? undefined : json['linkedStoreIds'],
@@ -586,7 +586,7 @@ export function CampaignToJSONTyped(value?: Campaign | null, ignoreDiscriminator
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'applicationId': value['applicationId'],
         'userId': value['userId'],
         'name': value['name'],
@@ -601,7 +601,7 @@ export function CampaignToJSONTyped(value?: Campaign | null, ignoreDiscriminator
         'features': value['features'],
         'couponSettings': CodeGeneratorSettingsToJSON(value['couponSettings']),
         'referralSettings': CodeGeneratorSettingsToJSON(value['referralSettings']),
-        'limits': ((value['limits'] as Array<any>).map(LimitConfigToJSON)),
+        'limits': (value['limits'] == null ? undefined : (value['limits'] as Array<any>).map(LimitConfigToJSON)),
         'campaignGroups': value['campaignGroups'],
         'type': value['type'],
         'linkedStoreIds': value['linkedStoreIds'],

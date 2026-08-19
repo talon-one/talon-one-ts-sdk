@@ -54,7 +54,7 @@ export function MultipleNewAudiencesFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'audiences': ((json['audiences'] as Array<any>).map(NewMultipleAudiencesItemFromJSON)),
+        'audiences': (json['audiences'] == null ? undefined as any : (json['audiences'] as Array<any>).map(NewMultipleAudiencesItemFromJSON)),
     };
 }
 
@@ -69,7 +69,7 @@ export function MultipleNewAudiencesToJSONTyped(value?: MultipleNewAudiences | n
 
     return {
         
-        'audiences': ((value['audiences'] as Array<any>).map(NewMultipleAudiencesItemToJSON)),
+        'audiences': (value['audiences'] == null ? undefined : (value['audiences'] as Array<any>).map(NewMultipleAudiencesItemToJSON)),
     };
 }
 

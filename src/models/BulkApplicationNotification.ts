@@ -62,7 +62,7 @@ export function BulkApplicationNotificationFromJSONTyped(json: any, ignoreDiscri
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function BulkApplicationNotificationToJSONTyped(value?: BulkApplicationNo
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationToJSON)),
     };
 }
 

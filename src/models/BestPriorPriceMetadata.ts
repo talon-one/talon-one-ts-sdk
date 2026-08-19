@@ -67,7 +67,7 @@ export function BestPriorPriceMetadataFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'influencingCampaignDetails': ((json['influencingCampaignDetails'] as Array<any>).map(InfluencingCampaignDetailsFromJSON)),
+        'influencingCampaignDetails': (json['influencingCampaignDetails'] == null ? undefined as any : (json['influencingCampaignDetails'] as Array<any>).map(InfluencingCampaignDetailsFromJSON)),
         'adjustmentDetails': json['adjustmentDetails'] == null ? undefined : AdjustmentDetailsFromJSON(json['adjustmentDetails']),
     };
 }
@@ -83,7 +83,7 @@ export function BestPriorPriceMetadataToJSONTyped(value?: BestPriorPriceMetadata
 
     return {
         
-        'influencingCampaignDetails': ((value['influencingCampaignDetails'] as Array<any>).map(InfluencingCampaignDetailsToJSON)),
+        'influencingCampaignDetails': (value['influencingCampaignDetails'] == null ? undefined : (value['influencingCampaignDetails'] as Array<any>).map(InfluencingCampaignDetailsToJSON)),
         'adjustmentDetails': AdjustmentDetailsToJSON(value['adjustmentDetails']),
     };
 }

@@ -97,8 +97,8 @@ export function ApplicationAnalyticsDataPointFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'startTime': (new Date(json['startTime'])),
-        'endTime': (new Date(json['endTime'])),
+        'startTime': (json['startTime'] == null ? undefined as any : new Date(json['startTime'])),
+        'endTime': (json['endTime'] == null ? undefined as any : new Date(json['endTime'])),
         'totalRevenue': json['totalRevenue'] == null ? undefined : AnalyticsDataPointFromJSON(json['totalRevenue']),
         'sessionsCount': json['sessionsCount'] == null ? undefined : AnalyticsDataPointFromJSON(json['sessionsCount']),
         'avgItemsPerSession': json['avgItemsPerSession'] == null ? undefined : AnalyticsDataPointFromJSON(json['avgItemsPerSession']),
@@ -119,8 +119,8 @@ export function ApplicationAnalyticsDataPointToJSONTyped(value?: ApplicationAnal
 
     return {
         
-        'startTime': value['startTime'].toISOString(),
-        'endTime': value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? undefined : value['startTime'].toISOString(),
+        'endTime': value['endTime'] == null ? undefined : value['endTime'].toISOString(),
         'totalRevenue': AnalyticsDataPointToJSON(value['totalRevenue']),
         'sessionsCount': AnalyticsDataPointToJSON(value['sessionsCount']),
         'avgItemsPerSession': AnalyticsDataPointToJSON(value['avgItemsPerSession']),

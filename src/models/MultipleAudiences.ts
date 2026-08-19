@@ -62,7 +62,7 @@ export function MultipleAudiencesFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'accountId': json['accountId'],
-        'audiences': ((json['audiences'] as Array<any>).map(MultipleAudiencesItemFromJSON)),
+        'audiences': (json['audiences'] == null ? undefined as any : (json['audiences'] as Array<any>).map(MultipleAudiencesItemFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function MultipleAudiencesToJSONTyped(value?: MultipleAudiences | null, i
     return {
         
         'accountId': value['accountId'],
-        'audiences': ((value['audiences'] as Array<any>).map(MultipleAudiencesItemToJSON)),
+        'audiences': (value['audiences'] == null ? undefined : (value['audiences'] as Array<any>).map(MultipleAudiencesItemToJSON)),
     };
 }
 

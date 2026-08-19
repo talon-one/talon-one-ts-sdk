@@ -122,10 +122,10 @@ export function ReturnFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'applicationId': json['applicationId'],
         'accountId': json['accountId'],
-        'returnedCartItems': ((json['returnedCartItems'] as Array<any>).map(ReturnedCartItemFromJSON)),
+        'returnedCartItems': (json['returnedCartItems'] == null ? undefined as any : (json['returnedCartItems'] as Array<any>).map(ReturnedCartItemFromJSON)),
         'eventId': json['eventId'],
         'sessionId': json['sessionId'],
         'sessionIntegrationId': json['sessionIntegrationId'],
@@ -147,10 +147,10 @@ export function ReturnToJSONTyped(value?: Return | null, ignoreDiscriminator: bo
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'applicationId': value['applicationId'],
         'accountId': value['accountId'],
-        'returnedCartItems': ((value['returnedCartItems'] as Array<any>).map(ReturnedCartItemToJSON)),
+        'returnedCartItems': (value['returnedCartItems'] == null ? undefined : (value['returnedCartItems'] as Array<any>).map(ReturnedCartItemToJSON)),
         'eventId': value['eventId'],
         'sessionId': value['sessionId'],
         'sessionIntegrationId': value['sessionIntegrationId'],

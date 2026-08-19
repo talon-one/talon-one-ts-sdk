@@ -76,12 +76,6 @@ export interface IntegrationHubFlowResponse {
      */
     eventType: string;
     /**
-     * The URL of the integration hub flow that we want to trigger for the event.
-     * @type {string}
-     * @memberof IntegrationHubFlowResponse
-     */
-    integrationHubFlowUrl: string;
-    /**
      * 
      * @type {IntegrationHubFlowConfigResponse}
      * @memberof IntegrationHubFlowResponse
@@ -97,7 +91,6 @@ export function instanceOfIntegrationHubFlowResponse(value: object): value is In
     if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('createdAt' in _v) || _v['createdAt'] === undefined) return false;
     if (!('eventType' in _v) || _v['eventType'] === undefined) return false;
-    if (!('integrationHubFlowUrl' in _v) || _v['integrationHubFlowUrl'] === undefined) return false;
     if (!('config' in _v) || _v['config'] === undefined) return false;
     return true;
 }
@@ -115,12 +108,11 @@ export function IntegrationHubFlowResponseFromJSONTyped(json: any, ignoreDiscrim
         'id': json['id'],
         'integrationName': json['integrationName'] == null ? undefined : json['integrationName'],
         'instanceName': json['instanceName'] == null ? undefined : json['instanceName'],
-        'createdAt': (new Date(json['createdAt'])),
+        'createdAt': (json['createdAt'] == null ? undefined as any : new Date(json['createdAt'])),
         'disabledUntil': json['disabledUntil'] === undefined ? undefined : json['disabledUntil'] === null ? null : (new Date(json['disabledUntil'])),
         'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
         'loyaltyProgramId': json['loyaltyProgramId'] == null ? undefined : json['loyaltyProgramId'],
         'eventType': json['eventType'],
-        'integrationHubFlowUrl': json['integrationHubFlowUrl'],
         'config': IntegrationHubFlowConfigResponseFromJSON(json['config']),
     };
 }
@@ -139,12 +131,11 @@ export function IntegrationHubFlowResponseToJSONTyped(value?: IntegrationHubFlow
         'id': value['id'],
         'integrationName': value['integrationName'],
         'instanceName': value['instanceName'],
-        'createdAt': value['createdAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? undefined : value['createdAt'].toISOString(),
         'disabledUntil': value['disabledUntil'] == null ? value['disabledUntil'] : value['disabledUntil'].toISOString(),
         'applicationId': value['applicationId'],
         'loyaltyProgramId': value['loyaltyProgramId'],
         'eventType': value['eventType'],
-        'integrationHubFlowUrl': value['integrationHubFlowUrl'],
         'config': IntegrationHubFlowConfigResponseToJSON(value['config']),
     };
 }

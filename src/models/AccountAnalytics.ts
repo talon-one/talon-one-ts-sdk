@@ -198,7 +198,7 @@ export function AccountAnalyticsFromJSONTyped(json: any, ignoreDiscriminator: bo
         'webhooks': json['webhooks'],
         'loyaltyPrograms': json['loyaltyPrograms'],
         'liveLoyaltyPrograms': json['liveLoyaltyPrograms'],
-        'lastUpdatedAt': (new Date(json['lastUpdatedAt'])),
+        'lastUpdatedAt': (json['lastUpdatedAt'] == null ? undefined as any : new Date(json['lastUpdatedAt'])),
     };
 }
 
@@ -232,7 +232,7 @@ export function AccountAnalyticsToJSONTyped(value?: AccountAnalytics | null, ign
         'webhooks': value['webhooks'],
         'loyaltyPrograms': value['loyaltyPrograms'],
         'liveLoyaltyPrograms': value['liveLoyaltyPrograms'],
-        'lastUpdatedAt': value['lastUpdatedAt'].toISOString(),
+        'lastUpdatedAt': value['lastUpdatedAt'] == null ? undefined : value['lastUpdatedAt'].toISOString(),
     };
 }
 

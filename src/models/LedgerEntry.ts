@@ -111,14 +111,14 @@ export function LedgerEntryFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'profileId': json['profileId'] == null ? undefined : json['profileId'],
         'accountId': json['accountId'],
         'loyaltyProgramId': json['loyaltyProgramId'],
         'eventId': json['eventId'],
         'amount': json['amount'],
         'reason': json['reason'],
-        'expiryDate': (new Date(json['expiryDate'])),
+        'expiryDate': (json['expiryDate'] == null ? undefined as any : new Date(json['expiryDate'])),
         'referenceId': json['referenceId'] == null ? undefined : json['referenceId'],
     };
 }
@@ -135,14 +135,14 @@ export function LedgerEntryToJSONTyped(value?: LedgerEntry | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'profileId': value['profileId'],
         'accountId': value['accountId'],
         'loyaltyProgramId': value['loyaltyProgramId'],
         'eventId': value['eventId'],
         'amount': value['amount'],
         'reason': value['reason'],
-        'expiryDate': value['expiryDate'].toISOString(),
+        'expiryDate': value['expiryDate'] == null ? undefined : value['expiryDate'].toISOString(),
         'referenceId': value['referenceId'],
     };
 }

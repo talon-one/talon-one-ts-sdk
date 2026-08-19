@@ -62,7 +62,7 @@ export function ListExperiments200ResponseFromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(ExperimentFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(ExperimentFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function ListExperiments200ResponseToJSONTyped(value?: ListExperiments200
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(ExperimentToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ExperimentToJSON)),
     };
 }
 

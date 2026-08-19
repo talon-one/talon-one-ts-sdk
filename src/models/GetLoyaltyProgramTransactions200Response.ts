@@ -62,7 +62,7 @@ export function GetLoyaltyProgramTransactions200ResponseFromJSONTyped(json: any,
     return {
         
         'hasMore': json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(LoyaltyProgramTransactionFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(LoyaltyProgramTransactionFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function GetLoyaltyProgramTransactions200ResponseToJSONTyped(value?: GetL
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(LoyaltyProgramTransactionToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(LoyaltyProgramTransactionToJSON)),
     };
 }
 

@@ -16,6 +16,8 @@ Name | Type
 `title` | string
 `description` | string
 `campaignId` | number
+`campaignIds` | Array&lt;number&gt;
+`referencedByCampaigns` | [Array&lt;CampaignReference&gt;](CampaignReference.md)
 `target` | number
 `achievementRecurrencePolicy` | string
 `achievementActivationPolicy` | string
@@ -40,6 +42,8 @@ const example = {
   "title": 50% off on 50th purchase.,
   "description": 50% off for every 50th purchase in a year.,
   "campaignId": 3,
+  "campaignIds": [1, 14, 27],
+  "referencedByCampaigns": null,
   "target": 10,
   "achievementRecurrencePolicy": no_recurrence,
   "achievementActivationPolicy": fixed_schedule,

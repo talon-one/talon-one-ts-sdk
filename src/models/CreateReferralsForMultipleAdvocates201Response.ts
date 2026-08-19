@@ -62,7 +62,7 @@ export function CreateReferralsForMultipleAdvocates201ResponseFromJSONTyped(json
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(ReferralFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(ReferralFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function CreateReferralsForMultipleAdvocates201ResponseToJSONTyped(value?
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(ReferralToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ReferralToJSON)),
     };
 }
 

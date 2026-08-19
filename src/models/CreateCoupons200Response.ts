@@ -62,7 +62,7 @@ export function CreateCoupons200ResponseFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': ((json['data'] as Array<any>).map(CouponFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CouponFromJSON)),
     };
 }
 
@@ -78,7 +78,7 @@ export function CreateCoupons200ResponseToJSONTyped(value?: CreateCoupons200Resp
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': ((value['data'] as Array<any>).map(CouponToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CouponToJSON)),
     };
 }
 

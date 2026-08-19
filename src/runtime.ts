@@ -397,7 +397,15 @@ export function selectOneOfBestMatch(
         if (!isInstance(value)) {
             continue;
         }
-        const mapped = map(value, true);
+        let mapped: any;
+        try {
+            mapped = map(value, true);
+        } catch {
+            // A variant whose mapper throws is by definition not the match:
+            // it expects properties this payload does not have. Skip it instead
+            // of aborting the whole union.
+            continue;
+        }
         if (mapped == null || typeof mapped !== 'object') {
             continue;
         }

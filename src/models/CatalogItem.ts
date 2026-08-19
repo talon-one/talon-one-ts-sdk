@@ -108,7 +108,7 @@ export function CatalogItemFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'sku': json['sku'],
         'price': json['price'] == null ? undefined : json['price'],
         'catalogid': json['catalogid'],
@@ -130,7 +130,7 @@ export function CatalogItemToJSONTyped(value?: CatalogItem | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'sku': value['sku'],
         'price': value['price'],
         'catalogid': value['catalogid'],

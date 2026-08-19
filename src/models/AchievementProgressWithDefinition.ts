@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CampaignReference } from './CampaignReference';
+import {
+    CampaignReferenceFromJSON,
+    CampaignReferenceFromJSONTyped,
+    CampaignReferenceToJSON,
+    CampaignReferenceToJSONTyped,
+} from './CampaignReference';
+
 /**
  * 
  * @export
@@ -75,11 +83,24 @@ export interface AchievementProgressWithDefinition {
      */
     description: string;
     /**
-     * The ID of the campaign the achievement belongs to.
+     * This property is **deprecated**. Use `campaignIds` (Integration API) or `referencedByCampaigns` (Management API) instead. The first campaign ID in `campaignIds`. Only returned when `campaignIds` is not empty.
      * @type {number}
      * @memberof AchievementProgressWithDefinition
+     * @deprecated
      */
     campaignId: number;
+    /**
+     * The IDs of the campaigns that reference this achievement, in ascending order.
+     * @type {Array<number>}
+     * @memberof AchievementProgressWithDefinition
+     */
+    campaignIds: Array<number>;
+    /**
+     * The campaigns that reference this achievement, in ascending order of their `id`.
+     * @type {Array<CampaignReference>}
+     * @memberof AchievementProgressWithDefinition
+     */
+    referencedByCampaigns: Array<CampaignReference>;
     /**
      * The required number of actions or the transactional milestone to complete the achievement.
      * @type {number}
@@ -175,6 +196,8 @@ export function instanceOfAchievementProgressWithDefinition(value: object): valu
     if (!('title' in _v) || _v['title'] === undefined) return false;
     if (!('description' in _v) || _v['description'] === undefined) return false;
     if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('campaignIds' in _v) || _v['campaignIds'] === undefined) return false;
+    if (!('referencedByCampaigns' in _v) || _v['referencedByCampaigns'] === undefined) return false;
     if (!('achievementRecurrencePolicy' in _v) || _v['achievementRecurrencePolicy'] === undefined) return false;
     if (!('achievementActivationPolicy' in _v) || _v['achievementActivationPolicy'] === undefined) return false;
     return true;
@@ -200,6 +223,8 @@ export function AchievementProgressWithDefinitionFromJSONTyped(json: any, ignore
         'title': json['title'],
         'description': json['description'],
         'campaignId': json['campaignId'],
+        'campaignIds': json['campaignIds'],
+        'referencedByCampaigns': (json['referencedByCampaigns'] == null ? undefined as any : (json['referencedByCampaigns'] as Array<any>).map(CampaignReferenceFromJSON)),
         'target': json['target'] == null ? undefined : json['target'],
         'achievementRecurrencePolicy': json['achievementRecurrencePolicy'],
         'achievementActivationPolicy': json['achievementActivationPolicy'],
@@ -230,6 +255,8 @@ export function AchievementProgressWithDefinitionToJSONTyped(value?: Achievement
         'title': value['title'],
         'description': value['description'],
         'campaignId': value['campaignId'],
+        'campaignIds': value['campaignIds'],
+        'referencedByCampaigns': (value['referencedByCampaigns'] == null ? undefined : (value['referencedByCampaigns'] as Array<any>).map(CampaignReferenceToJSON)),
         'target': value['target'],
         'achievementRecurrencePolicy': value['achievementRecurrencePolicy'],
         'achievementActivationPolicy': value['achievementActivationPolicy'],

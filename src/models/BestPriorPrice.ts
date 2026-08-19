@@ -60,14 +60,6 @@ export interface BestPriorPrice {
      */
     contextIds: Array<string>;
     /**
-     * This property is **deprecated**. Use `contextIds` instead. Defaults to an empty string.
-     * 
-     * @type {string}
-     * @memberof BestPriorPrice
-     * @deprecated
-     */
-    contextId?: string;
-    /**
      * Price of the item.
      * @type {number}
      * @memberof BestPriorPrice
@@ -114,9 +106,8 @@ export function BestPriorPriceFromJSONTyped(json: any, ignoreDiscriminator: bool
         
         'id': json['id'],
         'sku': json['sku'],
-        'observedAt': (new Date(json['observedAt'])),
+        'observedAt': (json['observedAt'] == null ? undefined as any : new Date(json['observedAt'])),
         'contextIds': json['contextIds'],
-        'contextId': json['contextId'] == null ? undefined : json['contextId'],
         'price': json['price'],
         'metadata': BestPriorPriceMetadataFromJSON(json['metadata']),
         'target': LabelTargetFromJSON(json['target']),
@@ -136,9 +127,8 @@ export function BestPriorPriceToJSONTyped(value?: BestPriorPrice | null, ignoreD
         
         'id': value['id'],
         'sku': value['sku'],
-        'observedAt': value['observedAt'].toISOString(),
+        'observedAt': value['observedAt'] == null ? undefined : value['observedAt'].toISOString(),
         'contextIds': value['contextIds'],
-        'contextId': value['contextId'],
         'price': value['price'],
         'metadata': BestPriorPriceMetadataToJSON(value['metadata']),
         'target': LabelTargetToJSON(value['target']),

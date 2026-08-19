@@ -274,7 +274,7 @@ export function CustomerSessionV2FromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'integrationId': json['integrationId'],
         'applicationId': json['applicationId'],
         'profileId': json['profileId'] == null ? undefined : json['profileId'],
@@ -295,7 +295,7 @@ export function CustomerSessionV2FromJSONTyped(json: any, ignoreDiscriminator: b
         'cartItemTotal': json['cartItemTotal'],
         'additionalCostTotal': json['additionalCostTotal'],
         'cartItemAdditionalCostTotal': json['cartItemAdditionalCostTotal'],
-        'updated': (new Date(json['updated'])),
+        'updated': (json['updated'] == null ? undefined as any : new Date(json['updated'])),
     };
 }
 
@@ -311,7 +311,7 @@ export function CustomerSessionV2ToJSONTyped(value?: Omit<CustomerSessionV2, 'ca
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'integrationId': value['integrationId'],
         'applicationId': value['applicationId'],
         'profileId': value['profileId'],
@@ -331,7 +331,7 @@ export function CustomerSessionV2ToJSONTyped(value?: Omit<CustomerSessionV2, 'ca
         'total': value['total'],
         'cartItemTotal': value['cartItemTotal'],
         'additionalCostTotal': value['additionalCostTotal'],
-        'updated': value['updated'].toISOString(),
+        'updated': value['updated'] == null ? undefined : value['updated'].toISOString(),
     };
 }
 

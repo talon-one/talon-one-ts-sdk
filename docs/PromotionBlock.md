@@ -15,7 +15,7 @@ Name | Type
 `onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
 `onError` | { [key: string]: Array&lt;PromotionBlock&gt;; }
 `name` | string
-`value` | number
+`value` | [RedeemLoyaltyPointsBlock1Value](RedeemLoyaltyPointsBlock1Value.md)
 `partial` | boolean
 `target` | [TriggerCustomEffectBlock1Target](TriggerCustomEffectBlock1Target.md)
 `expression` | Array&lt;any&gt;
@@ -37,7 +37,7 @@ Name | Type
 `values` | any
 `count` | any
 `audience` | [UpdateAudienceMembershipBlock1Audience](UpdateAudienceMembershipBlock1Audience.md)
-`program` | [CheckLoyaltyBalanceBlock1Program](CheckLoyaltyBalanceBlock1Program.md)
+`program` | [RedeemLoyaltyPointsBlock1Program](RedeemLoyaltyPointsBlock1Program.md)
 `subledger` | string
 `balance` | string
 `redeem` | boolean
@@ -59,6 +59,7 @@ Name | Type
 `validCharacters` | string
 `pattern` | string
 `friendId` | string
+`tier` | [CheckTierBlock1Tier](CheckTierBlock1Tier.md)
 
 ## Example
 
@@ -70,12 +71,12 @@ const example = {
   "id": a1b2c3d4-e5f6-7890-abcd-ef1234567890,
   "type": null,
   "tags": null,
-  "operator": available,
+  "operator": member,
   "blocks": null,
   "onFailure": null,
   "onError": null,
-  "name": Free Tote Bag,
-  "value": 5,
+  "name": Purchase Deduction,
+  "value": null,
   "partial": false,
   "target": null,
   "expression": null,
@@ -98,7 +99,7 @@ const example = {
   "count": null,
   "audience": null,
   "program": null,
-  "subledger": ,
+  "subledger": main,
   "balance": current,
   "redeem": true,
   "achievement": null,
@@ -119,6 +120,7 @@ const example = {
   "validCharacters": ABC,
   "pattern": SUMMER-####-####,
   "friendId": {{$Profile.IntegrationId}},
+  "tier": null,
 } satisfies PromotionBlock
 
 console.log(example)

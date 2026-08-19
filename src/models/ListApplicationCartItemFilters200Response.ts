@@ -61,7 +61,7 @@ export function ListApplicationCartItemFilters200ResponseFromJSONTyped(json: any
     return {
         
         'hasMore': json['hasMore'] == null ? undefined : json['hasMore'],
-        'data': ((json['data'] as Array<any>).map(ApplicationCIFFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(ApplicationCIFFromJSON)),
     };
 }
 
@@ -77,7 +77,7 @@ export function ListApplicationCartItemFilters200ResponseToJSONTyped(value?: Lis
     return {
         
         'hasMore': value['hasMore'],
-        'data': ((value['data'] as Array<any>).map(ApplicationCIFToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(ApplicationCIFToJSON)),
     };
 }
 

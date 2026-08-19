@@ -76,7 +76,7 @@ export function TierWillDowngradeNotificationPolicyFromJSONTyped(json: any, igno
         'name': json['name'],
         'batchingEnabled': json['batchingEnabled'] == null ? undefined : json['batchingEnabled'],
         'batchSize': json['batchSize'] == null ? undefined : json['batchSize'],
-        'triggers': ((json['triggers'] as Array<any>).map(TierWillDowngradeNotificationTriggerFromJSON)),
+        'triggers': (json['triggers'] == null ? undefined as any : (json['triggers'] as Array<any>).map(TierWillDowngradeNotificationTriggerFromJSON)),
     };
 }
 
@@ -94,7 +94,7 @@ export function TierWillDowngradeNotificationPolicyToJSONTyped(value?: TierWillD
         'name': value['name'],
         'batchingEnabled': value['batchingEnabled'],
         'batchSize': value['batchSize'],
-        'triggers': ((value['triggers'] as Array<any>).map(TierWillDowngradeNotificationTriggerToJSON)),
+        'triggers': (value['triggers'] == null ? undefined : (value['triggers'] as Array<any>).map(TierWillDowngradeNotificationTriggerToJSON)),
     };
 }
 

@@ -22,40 +22,52 @@ import {
 } from './AddPriceAdjustmentCatalogAction';
 
 /**
- * 
+ * Adds price adjustments to an item of the catalog.
  * @export
- * @interface CatalogActionOneOf5
+ * @interface CatalogActionAddPriceAdjustment
  */
-export interface CatalogActionOneOf5 {
+export interface CatalogActionAddPriceAdjustment {
     /**
-     * 
-     * @type {any}
-     * @memberof CatalogActionOneOf5
+     * A catalog sync action discriminator of type `ADD_PRICE_ADJUSTMENT`.
+     * @type {CatalogActionAddPriceAdjustmentTypeEnum}
+     * @memberof CatalogActionAddPriceAdjustment
      */
-    type: any | null;
+    type: CatalogActionAddPriceAdjustmentTypeEnum;
     /**
-     * 
+     * The payload of sync action.
      * @type {AddPriceAdjustmentCatalogAction}
-     * @memberof CatalogActionOneOf5
+     * @memberof CatalogActionAddPriceAdjustment
      */
     payload: AddPriceAdjustmentCatalogAction;
 }
 
+
 /**
- * Check if a given object implements the CatalogActionOneOf5 interface.
+ * @export
  */
-export function instanceOfCatalogActionOneOf5(value: object): value is CatalogActionOneOf5 {
+export const CatalogActionAddPriceAdjustmentTypeEnum = {
+    AddPriceAdjustment: 'ADD_PRICE_ADJUSTMENT'
+} as const;
+export type CatalogActionAddPriceAdjustmentTypeEnum = typeof CatalogActionAddPriceAdjustmentTypeEnum[keyof typeof CatalogActionAddPriceAdjustmentTypeEnum];
+
+
+/**
+ * Check if a given object implements the CatalogActionAddPriceAdjustment interface.
+ */
+export function instanceOfCatalogActionAddPriceAdjustment(value: object): value is CatalogActionAddPriceAdjustment {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'ADD_PRICE_ADJUSTMENT') return false;
+    
     if (!('payload' in _v) || _v['payload'] === undefined) return false;
     return true;
 }
 
-export function CatalogActionOneOf5FromJSON(json: any): CatalogActionOneOf5 {
-    return CatalogActionOneOf5FromJSONTyped(json, false);
+export function CatalogActionAddPriceAdjustmentFromJSON(json: any): CatalogActionAddPriceAdjustment {
+    return CatalogActionAddPriceAdjustmentFromJSONTyped(json, false);
 }
 
-export function CatalogActionOneOf5FromJSONTyped(json: any, ignoreDiscriminator: boolean): CatalogActionOneOf5 {
+export function CatalogActionAddPriceAdjustmentFromJSONTyped(json: any, ignoreDiscriminator: boolean): CatalogActionAddPriceAdjustment {
     if (json == null) {
         return json;
     }
@@ -66,11 +78,11 @@ export function CatalogActionOneOf5FromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function CatalogActionOneOf5ToJSON(json: any): CatalogActionOneOf5 {
-    return CatalogActionOneOf5ToJSONTyped(json, false);
+export function CatalogActionAddPriceAdjustmentToJSON(json: any): CatalogActionAddPriceAdjustment {
+    return CatalogActionAddPriceAdjustmentToJSONTyped(json, false);
 }
 
-export function CatalogActionOneOf5ToJSONTyped(value?: CatalogActionOneOf5 | null, ignoreDiscriminator: boolean = false): any {
+export function CatalogActionAddPriceAdjustmentToJSONTyped(value?: CatalogActionAddPriceAdjustment | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

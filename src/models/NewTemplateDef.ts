@@ -98,7 +98,7 @@ export function NewTemplateDefFromJSONTyped(json: any, ignoreDiscriminator: bool
         'help': json['help'] == null ? undefined : json['help'],
         'category': json['category'],
         'expr': json['expr'],
-        'args': ((json['args'] as Array<any>).map(TemplateArgDefFromJSON)),
+        'args': (json['args'] == null ? undefined as any : (json['args'] as Array<any>).map(TemplateArgDefFromJSON)),
         'expose': json['expose'] == null ? undefined : json['expose'],
     };
 }
@@ -119,7 +119,7 @@ export function NewTemplateDefToJSONTyped(value?: NewTemplateDef | null, ignoreD
         'help': value['help'],
         'category': value['category'],
         'expr': value['expr'],
-        'args': ((value['args'] as Array<any>).map(TemplateArgDefToJSON)),
+        'args': (value['args'] == null ? undefined : (value['args'] as Array<any>).map(TemplateArgDefToJSON)),
         'expose': value['expose'],
     };
 }

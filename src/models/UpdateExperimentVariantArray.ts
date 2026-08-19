@@ -54,7 +54,7 @@ export function UpdateExperimentVariantArrayFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'variants': ((json['variants'] as Array<any>).map(UpdateExperimentVariantFromJSON)),
+        'variants': (json['variants'] == null ? undefined as any : (json['variants'] as Array<any>).map(UpdateExperimentVariantFromJSON)),
     };
 }
 
@@ -69,7 +69,7 @@ export function UpdateExperimentVariantArrayToJSONTyped(value?: UpdateExperiment
 
     return {
         
-        'variants': ((value['variants'] as Array<any>).map(UpdateExperimentVariantToJSON)),
+        'variants': (value['variants'] == null ? undefined : (value['variants'] as Array<any>).map(UpdateExperimentVariantToJSON)),
     };
 }
 

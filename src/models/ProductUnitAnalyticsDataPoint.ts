@@ -82,8 +82,8 @@ export function ProductUnitAnalyticsDataPointFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'startTime': (new Date(json['startTime'])),
-        'endTime': (new Date(json['endTime'])),
+        'startTime': (json['startTime'] == null ? undefined as any : new Date(json['startTime'])),
+        'endTime': (json['endTime'] == null ? undefined as any : new Date(json['endTime'])),
         'unitsSold': AnalyticsDataPointWithTrendFromJSON(json['unitsSold']),
         'productId': json['productId'],
         'productName': json['productName'],
@@ -101,8 +101,8 @@ export function ProductUnitAnalyticsDataPointToJSONTyped(value?: ProductUnitAnal
 
     return {
         
-        'startTime': value['startTime'].toISOString(),
-        'endTime': value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? undefined : value['startTime'].toISOString(),
+        'endTime': value['endTime'] == null ? undefined : value['endTime'].toISOString(),
         'unitsSold': AnalyticsDataPointWithTrendToJSON(value['unitsSold']),
         'productId': value['productId'],
         'productName': value['productName'],

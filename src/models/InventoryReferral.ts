@@ -132,7 +132,7 @@ export function InventoryReferralFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
         'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
         'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
@@ -160,7 +160,7 @@ export function InventoryReferralToJSONTyped(value?: InventoryReferral | null, i
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
         'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
         'usageLimit': value['usageLimit'],

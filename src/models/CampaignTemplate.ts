@@ -293,7 +293,7 @@ export function CampaignTemplateFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'accountId': json['accountId'],
         'userId': json['userId'],
         'name': json['name'],
@@ -335,7 +335,7 @@ export function CampaignTemplateToJSONTyped(value?: CampaignTemplate | null, ign
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'accountId': value['accountId'],
         'userId': value['userId'],
         'name': value['name'],

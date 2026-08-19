@@ -66,7 +66,7 @@ export function ScimUsersListResponseFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'resources': ((json['Resources'] as Array<any>).map(ScimUserFromJSON)),
+        'resources': (json['Resources'] == null ? undefined as any : (json['Resources'] as Array<any>).map(ScimUserFromJSON)),
         'schemas': json['schemas'] == null ? undefined : json['schemas'],
         'totalResults': json['totalResults'] == null ? undefined : json['totalResults'],
     };
@@ -83,7 +83,7 @@ export function ScimUsersListResponseToJSONTyped(value?: ScimUsersListResponse |
 
     return {
         
-        'Resources': ((value['resources'] as Array<any>).map(ScimUserToJSON)),
+        'Resources': (value['resources'] == null ? undefined : (value['resources'] as Array<any>).map(ScimUserToJSON)),
         'schemas': value['schemas'],
         'totalResults': value['totalResults'],
     };

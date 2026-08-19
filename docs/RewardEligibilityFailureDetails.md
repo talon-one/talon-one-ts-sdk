@@ -1,24 +1,25 @@
 
-# CatalogActionOneOf2
+# RewardEligibilityFailureDetails
 
+The details about why the customer is not eligible for the reward.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`type` | any
-`payload` | [PatchManyItemsCatalogAction](PatchManyItemsCatalogAction.md)
+`failureCode` | string
+`conditionIndex` | number
 
 ## Example
 
 ```typescript
-import type { CatalogActionOneOf2 } from 'talon_one_sdk'
+import type { RewardEligibilityFailureDetails } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "type": null,
-  "payload": null,
-} satisfies CatalogActionOneOf2
+  "failureCode": CONDITION_NOT_MET,
+  "conditionIndex": 0,
+} satisfies RewardEligibilityFailureDetails
 
 console.log(example)
 
@@ -27,7 +28,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as CatalogActionOneOf2
+const exampleParsed = JSON.parse(exampleJSON) as RewardEligibilityFailureDetails
 console.log(exampleParsed)
 ```
 

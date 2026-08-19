@@ -16,8 +16,8 @@ Name | Type
 `promotionRules` | [Array&lt;PromotionRuleV2&gt;](PromotionRuleV2.md)
 `strikethroughRules` | [Array&lt;StrikethroughRuleV2&gt;](StrikethroughRuleV2.md)
 `selectors` | [Array&lt;Selector&gt;](Selector.md)
-`bundles` | Array&lt;{ [key: string]: any; }&gt;
-`parameters` | Array&lt;{ [key: string]: any; }&gt;
+`bundles` | [Array&lt;Bundle&gt;](Bundle.md)
+`parameters` | [Array&lt;TemplateParameter&gt;](TemplateParameter.md)
 
 ## Example
 

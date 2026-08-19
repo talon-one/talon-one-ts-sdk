@@ -140,7 +140,7 @@ export function EventFromJSONTyped(json: any, ignoreDiscriminator: boolean): Eve
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'applicationId': json['applicationId'],
         'profileId': json['profileId'] == null ? undefined : json['profileId'],
         'storeIntegrationId': json['storeIntegrationId'] == null ? undefined : json['storeIntegrationId'],
@@ -166,7 +166,7 @@ export function EventToJSONTyped(value?: Event | null, ignoreDiscriminator: bool
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'applicationId': value['applicationId'],
         'profileId': value['profileId'],
         'storeIntegrationId': value['storeIntegrationId'],

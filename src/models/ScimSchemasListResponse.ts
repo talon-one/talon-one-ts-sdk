@@ -66,7 +66,7 @@ export function ScimSchemasListResponseFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'resources': ((json['Resources'] as Array<any>).map(ScimSchemaResourceFromJSON)),
+        'resources': (json['Resources'] == null ? undefined as any : (json['Resources'] as Array<any>).map(ScimSchemaResourceFromJSON)),
         'schemas': json['schemas'] == null ? undefined : json['schemas'],
         'totalResults': json['totalResults'] == null ? undefined : json['totalResults'],
     };
@@ -83,7 +83,7 @@ export function ScimSchemasListResponseToJSONTyped(value?: ScimSchemasListRespon
 
     return {
         
-        'Resources': ((value['resources'] as Array<any>).map(ScimSchemaResourceToJSON)),
+        'Resources': (value['resources'] == null ? undefined : (value['resources'] as Array<any>).map(ScimSchemaResourceToJSON)),
         'schemas': value['schemas'],
         'totalResults': value['totalResults'],
     };

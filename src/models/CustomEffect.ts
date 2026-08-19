@@ -142,9 +142,9 @@ export function CustomEffectFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return {
         
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
         'accountId': json['accountId'],
-        'modified': (new Date(json['modified'])),
+        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
         'applicationIds': json['applicationIds'],
         'isPerItem': json['isPerItem'] == null ? undefined : json['isPerItem'],
         'name': json['name'],
@@ -170,9 +170,9 @@ export function CustomEffectToJSONTyped(value?: CustomEffect | null, ignoreDiscr
     return {
         
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : value['created'].toISOString(),
         'accountId': value['accountId'],
-        'modified': value['modified'].toISOString(),
+        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
         'applicationIds': value['applicationIds'],
         'isPerItem': value['isPerItem'],
         'name': value['name'],
