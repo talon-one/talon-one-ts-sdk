@@ -29,14 +29,10 @@ import {
 export interface CatalogActionRemove {
     /**
      * A catalog sync action discriminator of type `REMOVE`.
-     * @type {CatalogActionRemoveTypeEnum}
-     * @memberof CatalogActionRemove
      */
     type: CatalogActionRemoveTypeEnum;
     /**
      * The payload of sync action.
-     * @type {RemoveItemCatalogAction}
-     * @memberof CatalogActionRemove
      */
     payload: RemoveItemCatalogAction;
 }
@@ -46,7 +42,7 @@ export interface CatalogActionRemove {
  * @export
  */
 export const CatalogActionRemoveTypeEnum = {
-    Remove: 'REMOVE'
+    Remove: 'REMOVE',
 } as const;
 export type CatalogActionRemoveTypeEnum = typeof CatalogActionRemoveTypeEnum[keyof typeof CatalogActionRemoveTypeEnum];
 

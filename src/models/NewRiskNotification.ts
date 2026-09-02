@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface NewRiskNotification {
     /**
      * The entity type to analyze within the given time frame.
-     * @type {NewRiskNotificationEntityEnum}
-     * @memberof NewRiskNotification
      */
     entity: NewRiskNotificationEntityEnum;
     /**
      * The activity metric to analyze within the given entity.
-     * @type {NewRiskNotificationActivityEnum}
-     * @memberof NewRiskNotification
      */
     activity: NewRiskNotificationActivityEnum;
     /**
      * The rolling time window for risk evaluation.
-     * @type {NewRiskNotificationTimeFrameEnum}
-     * @memberof NewRiskNotification
      */
     timeFrame: NewRiskNotificationTimeFrameEnum;
 }
@@ -45,7 +39,7 @@ export interface NewRiskNotification {
  */
 export const NewRiskNotificationEntityEnum = {
     CustomerProfile: 'customer_profile',
-    CustomerSession: 'customer_session'
+    CustomerSession: 'customer_session',
 } as const;
 export type NewRiskNotificationEntityEnum = typeof NewRiskNotificationEntityEnum[keyof typeof NewRiskNotificationEntityEnum];
 
@@ -56,7 +50,7 @@ export const NewRiskNotificationActivityEnum = {
     LoyaltyPointsEarned: 'loyalty_points_earned',
     DiscountedAmount: 'discounted_amount',
     CompletedOrders: 'completed_orders',
-    CouponAttempts: 'coupon_attempts'
+    CouponAttempts: 'coupon_attempts',
 } as const;
 export type NewRiskNotificationActivityEnum = typeof NewRiskNotificationActivityEnum[keyof typeof NewRiskNotificationActivityEnum];
 
@@ -66,7 +60,7 @@ export type NewRiskNotificationActivityEnum = typeof NewRiskNotificationActivity
 export const NewRiskNotificationTimeFrameEnum = {
     _1D: '1D',
     _7D: '7D',
-    _30D: '30D'
+    _30D: '30D',
 } as const;
 export type NewRiskNotificationTimeFrameEnum = typeof NewRiskNotificationTimeFrameEnum[keyof typeof NewRiskNotificationTimeFrameEnum];
 

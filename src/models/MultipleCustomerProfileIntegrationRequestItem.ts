@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface MultipleCustomerProfileIntegrationRequestItem {
     /**
      * Arbitrary properties associated with this item.
-     * @type {{ [key: string]: any; }}
-     * @memberof MultipleCustomerProfileIntegrationRequestItem
      */
     attributes?: { [key: string]: any; };
     /**
@@ -31,8 +29,6 @@ export interface MultipleCustomerProfileIntegrationRequestItem {
      * To get the `integrationId` of the profile from a `sessionId`, use the
      * [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2).
      * 
-     * @type {string}
-     * @memberof MultipleCustomerProfileIntegrationRequestItem
      */
     integrationId: string;
 }

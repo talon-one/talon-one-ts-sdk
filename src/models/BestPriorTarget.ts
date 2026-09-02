@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface BestPriorTarget {
     /**
      * The type of price target.
-     * @type {BestPriorTargetTargetTypeEnum}
-     * @memberof BestPriorTarget
      */
     targetType: BestPriorTargetTargetTypeEnum;
     /**
      * The AudienceID of an audience. Must be used with "AUDIENCE" target type.
-     * @type {number}
-     * @memberof BestPriorTarget
      */
     audienceID?: number;
 }
@@ -39,7 +35,7 @@ export interface BestPriorTarget {
  */
 export const BestPriorTargetTargetTypeEnum = {
     None: 'NONE',
-    Audience: 'AUDIENCE'
+    Audience: 'AUDIENCE',
 } as const;
 export type BestPriorTargetTargetTypeEnum = typeof BestPriorTargetTargetTypeEnum[keyof typeof BestPriorTargetTargetTypeEnum];
 

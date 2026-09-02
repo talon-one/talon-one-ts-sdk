@@ -23,32 +23,22 @@ import { mapValues } from '../runtime';
 export interface SetDiscountPerAdditionalCostEffectProps {
     /**
      * The name of the discount.
-     * @type {string}
-     * @memberof SetDiscountPerAdditionalCostEffectProps
      */
     name: string;
     /**
      * The identifier of the additional cost.
-     * @type {number}
-     * @memberof SetDiscountPerAdditionalCostEffectProps
      */
     additionalCostId: number;
     /**
      * The API name of the additional cost.
-     * @type {string}
-     * @memberof SetDiscountPerAdditionalCostEffectProps
      */
     additionalCost: string;
     /**
      * The monetary value of the discount to apply.
-     * @type {number}
-     * @memberof SetDiscountPerAdditionalCostEffectProps
      */
     value: number;
     /**
      * _(Partial discounts enabled only)_ The monetary value of the discount to be applied without considering budget limitations.
-     * @type {number}
-     * @memberof SetDiscountPerAdditionalCostEffectProps
      */
     desiredValue?: number;
 }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * The current progress of the customer in the achievement.
  * @export
@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface AchievementProgress {
     /**
      * The status of the achievement.
-     * @type {AchievementProgressStatusEnum}
-     * @memberof AchievementProgress
      */
     status: AchievementProgressStatusEnum;
     /**
      * The current progress of the customer in the achievement.
-     * @type {number}
-     * @memberof AchievementProgress
      */
     progress: number;
     /**
      * Timestamp at which the customer started the achievement.
-     * @type {Date}
-     * @memberof AchievementProgress
      */
     startDate?: Date;
     /**
      * Timestamp at which point the customer completed the achievement.
-     * @type {Date}
-     * @memberof AchievementProgress
      */
     completionDate?: Date;
     /**
      * Timestamp at which point the achievement ends and resets for the customer.
-     * @type {Date}
-     * @memberof AchievementProgress
      */
     endDate?: Date;
 }
@@ -59,7 +49,7 @@ export const AchievementProgressStatusEnum = {
     Inprogress: 'inprogress',
     Completed: 'completed',
     Expired: 'expired',
-    NotStarted: 'not_started'
+    NotStarted: 'not_started',
 } as const;
 export type AchievementProgressStatusEnum = typeof AchievementProgressStatusEnum[keyof typeof AchievementProgressStatusEnum];
 
@@ -86,9 +76,9 @@ export function AchievementProgressFromJSONTyped(json: any, ignoreDiscriminator:
         
         'status': json['status'],
         'progress': json['progress'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'completionDate': json['completionDate'] == null ? undefined : (new Date(json['completionDate'])),
-        'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'completionDate': json['completionDate'] == null ? undefined : (parseDateTime(json['completionDate'])),
+        'endDate': json['endDate'] == null ? undefined : (parseDateTime(json['endDate'])),
     };
 }
 
@@ -105,9 +95,9 @@ export function AchievementProgressToJSONTyped(value?: AchievementProgress | nul
         
         'status': value['status'],
         'progress': value['progress'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'completionDate': value['completionDate'] == null ? value['completionDate'] : value['completionDate'].toISOString(),
-        'endDate': value['endDate'] == null ? value['endDate'] : value['endDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'completionDate': value['completionDate'] == null ? value['completionDate'] : serializeDateTime(value['completionDate']),
+        'endDate': value['endDate'] == null ? value['endDate'] : serializeDateTime(value['endDate']),
     };
 }
 

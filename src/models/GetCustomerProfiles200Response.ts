@@ -29,14 +29,10 @@ import {
 export interface GetCustomerProfiles200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetCustomerProfiles200Response
      */
     hasMore: boolean;
     /**
      * 
-     * @type {Array<CustomerProfile>}
-     * @memberof GetCustomerProfiles200Response
      */
     data: Array<CustomerProfile>;
 }

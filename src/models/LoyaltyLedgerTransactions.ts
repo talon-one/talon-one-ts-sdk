@@ -29,14 +29,10 @@ import {
 export interface LoyaltyLedgerTransactions {
     /**
      * If `true`, it means that there is more data to request in the source collection.
-     * @type {boolean}
-     * @memberof LoyaltyLedgerTransactions
      */
     hasMore?: boolean;
     /**
      * List of transaction entries from a loyalty ledger.
-     * @type {Array<LoyaltyLedgerEntry>}
-     * @memberof LoyaltyLedgerTransactions
      */
     data?: Array<LoyaltyLedgerEntry>;
 }

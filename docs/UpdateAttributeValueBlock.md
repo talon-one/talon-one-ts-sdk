@@ -26,7 +26,7 @@ const example = {
   "tags": null,
   "operator": setTo,
   "attribute": null,
-  "value": null,
+  "value": 10,
   "target": null,
 } satisfies UpdateAttributeValueBlock
 

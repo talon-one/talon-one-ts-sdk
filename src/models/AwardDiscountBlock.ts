@@ -36,44 +36,30 @@ import {
 export interface AwardDiscountBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof AwardDiscountBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof AwardDiscountBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof AwardDiscountBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * The human-readable label attached to the discount.
-     * @type {string}
-     * @memberof AwardDiscountBlock
      */
     name: string;
     /**
      * 
-     * @type {AwardDiscountBlock1Value}
-     * @memberof AwardDiscountBlock
      */
     value: AwardDiscountBlock1Value;
     /**
      * Whether to apply a partial discount when the requested value exceeds the configured budget.
-     * @type {boolean}
-     * @memberof AwardDiscountBlock
      */
     partial: boolean;
     /**
      * 
-     * @type {AwardDiscountTarget}
-     * @memberof AwardDiscountBlock
      */
     target: AwardDiscountTarget;
 }
@@ -83,7 +69,6 @@ export interface AwardDiscountBlock {
  */
 export function instanceOfAwardDiscountBlock(value: object): value is AwardDiscountBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('name' in _v) || _v['name'] === undefined) return false;
     if (!('value' in _v) || _v['value'] === undefined) return false;
@@ -102,7 +87,7 @@ export function AwardDiscountBlockFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'name': json['name'],
@@ -116,16 +101,14 @@ export function AwardDiscountBlockToJSON(json: any): AwardDiscountBlock {
     return AwardDiscountBlockToJSONTyped(json, false);
 }
 
-export function AwardDiscountBlockToJSONTyped(value?: AwardDiscountBlock | null, ignoreDiscriminator: boolean = false): any {
+export function AwardDiscountBlockToJSONTyped(value?: Omit<AwardDiscountBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'name': value['name'],
         'value': AwardDiscountBlock1ValueToJSON(value['value']),
         'partial': value['partial'],

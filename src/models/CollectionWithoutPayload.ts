@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,68 +21,46 @@ import { mapValues } from '../runtime';
 export interface CollectionWithoutPayload {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof CollectionWithoutPayload
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof CollectionWithoutPayload
      */
     created: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof CollectionWithoutPayload
      */
     accountId: number;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof CollectionWithoutPayload
      */
     modified: Date;
     /**
      * A short description of the purpose of this collection.
-     * @type {string}
-     * @memberof CollectionWithoutPayload
      */
     description?: string;
     /**
      * A list of the IDs of the Applications where this collection is enabled.
-     * @type {Array<number>}
-     * @memberof CollectionWithoutPayload
      */
     subscribedApplicationsIds?: Array<number>;
     /**
      * The name of this collection.
-     * @type {string}
-     * @memberof CollectionWithoutPayload
      */
     name: string;
     /**
      * ID of the user who last updated this effect if available.
-     * @type {number}
-     * @memberof CollectionWithoutPayload
      */
     modifiedBy?: number;
     /**
      * ID of the user who created this effect.
-     * @type {number}
-     * @memberof CollectionWithoutPayload
      */
     createdBy: number;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof CollectionWithoutPayload
      */
     applicationId?: number;
     /**
      * The ID of the campaign that owns this entity.
-     * @type {number}
-     * @memberof CollectionWithoutPayload
      */
     campaignId?: number;
 }
@@ -112,9 +90,9 @@ export function CollectionWithoutPayloadFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'accountId': json['accountId'],
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'description': json['description'] == null ? undefined : json['description'],
         'subscribedApplicationsIds': json['subscribedApplicationsIds'] == null ? undefined : json['subscribedApplicationsIds'],
         'name': json['name'],
@@ -137,9 +115,9 @@ export function CollectionWithoutPayloadToJSONTyped(value?: CollectionWithoutPay
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'accountId': value['accountId'],
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'description': value['description'],
         'subscribedApplicationsIds': value['subscribedApplicationsIds'],
         'name': value['name'],

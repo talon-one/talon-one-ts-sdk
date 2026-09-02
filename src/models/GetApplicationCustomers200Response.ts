@@ -29,20 +29,14 @@ import {
 export interface GetApplicationCustomers200Response {
     /**
      * 
-     * @type {number}
-     * @memberof GetApplicationCustomers200Response
      */
     totalResultSize?: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof GetApplicationCustomers200Response
      */
     hasMore?: boolean;
     /**
      * 
-     * @type {Array<ApplicationCustomer>}
-     * @memberof GetApplicationCustomers200Response
      */
     data: Array<ApplicationCustomer>;
 }

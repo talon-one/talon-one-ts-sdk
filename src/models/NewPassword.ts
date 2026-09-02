@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface NewPassword {
     /**
      * The new password for your account.
-     * @type {string}
-     * @memberof NewPassword
      */
     password: string;
     /**
      * 
-     * @type {string}
-     * @memberof NewPassword
      */
     resetToken: string;
 }

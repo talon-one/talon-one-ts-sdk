@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface CheckAchievementBlock1Achievement {
     /**
      * The ID of the achievement.
-     * @type {number}
-     * @memberof CheckAchievementBlock1Achievement
      */
     id: number;
     /**
      * The display name for the achievement in the Campaign Manager.
-     * @type {string}
-     * @memberof CheckAchievementBlock1Achievement
      */
     title: string;
     /**
      * The internal name of the achievement used in API requests.
-     * @type {string}
-     * @memberof CheckAchievementBlock1Achievement
      */
     name: string;
     /**
      * The required number of actions or the transactional milestone to complete the achievement.
-     * @type {number}
-     * @memberof CheckAchievementBlock1Achievement
      */
     target: number;
 }

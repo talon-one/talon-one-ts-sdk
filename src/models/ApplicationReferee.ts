@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface ApplicationReferee {
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof ApplicationReferee
      */
     applicationId: number;
     /**
      * Integration ID of the session in which the customer redeemed the referral.
-     * @type {string}
-     * @memberof ApplicationReferee
      */
     sessionId: string;
     /**
      * The unique ID of the advanced event in which the customer redeemed the referral. Omitted when the referral was redeemed through a customer session rather than an advanced event.
-     * @type {string}
-     * @memberof ApplicationReferee
      */
     advancedEventIntegrationId?: string;
     /**
      * Integration ID of the Advocate's Profile.
-     * @type {string}
-     * @memberof ApplicationReferee
      */
     advocateIntegrationId: string;
     /**
      * Integration ID of the Friend's Profile.
-     * @type {string}
-     * @memberof ApplicationReferee
      */
     friendIntegrationId: string;
     /**
      * Advocate's referral code.
-     * @type {string}
-     * @memberof ApplicationReferee
      */
     code: string;
     /**
      * Timestamp of the moment the customer redeemed the referral.
-     * @type {Date}
-     * @memberof ApplicationReferee
      */
     created: Date;
 }
@@ -93,7 +79,7 @@ export function ApplicationRefereeFromJSONTyped(json: any, ignoreDiscriminator: 
         'advocateIntegrationId': json['advocateIntegrationId'],
         'friendIntegrationId': json['friendIntegrationId'],
         'code': json['code'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
     };
 }
 
@@ -114,7 +100,7 @@ export function ApplicationRefereeToJSONTyped(value?: ApplicationReferee | null,
         'advocateIntegrationId': value['advocateIntegrationId'],
         'friendIntegrationId': value['friendIntegrationId'],
         'code': value['code'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
     };
 }
 

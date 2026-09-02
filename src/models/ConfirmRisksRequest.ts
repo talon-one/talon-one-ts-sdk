@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface ConfirmRisksRequest {
     /**
      * The IDs of the risks to confirm.
-     * @type {Array<number>}
-     * @memberof ConfirmRisksRequest
      */
     riskIds: Array<number>;
     /**
      * Free-text description of how the risk was resolved.
-     * @type {string}
-     * @memberof ConfirmRisksRequest
      */
     comment: string;
 }

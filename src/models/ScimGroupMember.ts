@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface ScimGroupMember {
     /**
      * Unique identifier of the member.
-     * @type {string}
-     * @memberof ScimGroupMember
      */
     value?: string;
     /**
      * Identifier of the user. This is usually an email address.
-     * @type {string}
-     * @memberof ScimGroupMember
      */
     display?: string;
 }

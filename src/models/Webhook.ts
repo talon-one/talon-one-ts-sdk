@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { TemplateArgDef } from './TemplateArgDef';
 import {
     TemplateArgDefFromJSON,
@@ -29,88 +29,60 @@ import {
 export interface Webhook {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Webhook
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Webhook
      */
     created: Date;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof Webhook
      */
     modified: Date;
     /**
      * The IDs of the Applications in which this webhook is available.
      * An empty array means the webhook is available in `All Applications`.
      * 
-     * @type {Array<number>}
-     * @memberof Webhook
      */
     applicationIds: Array<number>;
     /**
      * Name or title for this webhook.
-     * @type {string}
-     * @memberof Webhook
      */
     title: string;
     /**
      * A description of the webhook.
-     * @type {string}
-     * @memberof Webhook
      */
     description?: string;
     /**
      * Indicates if the webhook is a draft.
-     * @type {boolean}
-     * @memberof Webhook
      */
     draft: boolean;
     /**
      * API method for this webhook.
-     * @type {WebhookVerbEnum}
-     * @memberof Webhook
      */
     verb: WebhookVerbEnum;
     /**
      * API URL (supports templating using parameters) for this webhook.
-     * @type {string}
-     * @memberof Webhook
      */
     url: string;
     /**
      * List of API HTTP headers for this webhook.
-     * @type {Array<string>}
-     * @memberof Webhook
      */
     headers: Array<string>;
     /**
      * API payload (supports templating using parameters) for this webhook.
-     * @type {string}
-     * @memberof Webhook
      */
     payload?: string;
     /**
      * Array of template argument definitions.
-     * @type {Array<TemplateArgDef>}
-     * @memberof Webhook
      */
     params: Array<TemplateArgDef>;
     /**
      * Enables or disables webhook from showing in the Rule Builder.
-     * @type {boolean}
-     * @memberof Webhook
      */
     enabled: boolean;
     /**
      * The ID of the credential that this webhook is using.
-     * @type {number}
-     * @memberof Webhook
      */
     authenticationId?: number;
 }
@@ -124,7 +96,7 @@ export const WebhookVerbEnum = {
     Put: 'PUT',
     Get: 'GET',
     Delete: 'DELETE',
-    Patch: 'PATCH'
+    Patch: 'PATCH',
 } as const;
 export type WebhookVerbEnum = typeof WebhookVerbEnum[keyof typeof WebhookVerbEnum];
 
@@ -159,8 +131,8 @@ export function WebhookFromJSONTyped(json: any, ignoreDiscriminator: boolean): W
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'applicationIds': json['applicationIds'],
         'title': json['title'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -187,8 +159,8 @@ export function WebhookToJSONTyped(value?: Webhook | null, ignoreDiscriminator: 
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'applicationIds': value['applicationIds'],
         'title': value['title'],
         'description': value['description'],

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface FeatureFlagUpdate {
     /**
      * The name of the feature flag.
-     * @type {string}
-     * @memberof FeatureFlagUpdate
      */
     name: string;
     /**
      * The value of the feature flag.
-     * @type {string}
-     * @memberof FeatureFlagUpdate
      */
     value: string;
 }

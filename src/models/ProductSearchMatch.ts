@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface ProductSearchMatch {
     /**
      * The ID of the product.
-     * @type {number}
-     * @memberof ProductSearchMatch
      */
     productId?: number;
     /**
      * The string matching the given value. Either a product name or SKU.
-     * @type {string}
-     * @memberof ProductSearchMatch
      */
     value: string;
     /**
      * The ID of the SKU linked to a product. If empty, this is an product.
-     * @type {number}
-     * @memberof ProductSearchMatch
      */
     productSkuId?: number;
 }

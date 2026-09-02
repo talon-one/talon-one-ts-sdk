@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface ValueMap {
     /**
      * Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints.
-     * @type {number}
-     * @memberof ValueMap
      */
     id: number;
     /**
      * 
-     * @type {Date}
-     * @memberof ValueMap
      */
     created?: Date;
     /**
      * The ID of the user who created the value map.
-     * @type {number}
-     * @memberof ValueMap
      */
     createdBy?: number;
     /**
      * 
-     * @type {number}
-     * @memberof ValueMap
      */
     campaignId: number;
 }
@@ -66,7 +58,7 @@ export function ValueMapFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return {
         
         'id': json['id'],
-        'created': json['created'] == null ? undefined : (new Date(json['created'])),
+        'created': json['created'] == null ? undefined : (parseDateTime(json['created'])),
         'createdBy': json['createdBy'] == null ? undefined : json['createdBy'],
         'campaignId': json['campaignId'],
     };
@@ -84,7 +76,7 @@ export function ValueMapToJSONTyped(value?: ValueMap | null, ignoreDiscriminator
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? value['created'] : value['created'].toISOString(),
+        'created': value['created'] == null ? value['created'] : serializeDateTime(value['created']),
         'createdBy': value['createdBy'],
         'campaignId': value['campaignId'],
     };

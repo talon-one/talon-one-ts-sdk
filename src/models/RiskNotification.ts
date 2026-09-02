@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * A risk notification configuration rule.
  * @export
@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface RiskNotification {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof RiskNotification
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof RiskNotification
      */
     created: Date;
     /**
      * The entity type to analyze within the given time frame.
-     * @type {RiskNotificationEntityEnum}
-     * @memberof RiskNotification
      */
     entity: RiskNotificationEntityEnum;
     /**
      * The activity metric to analyze within the given entity.
-     * @type {RiskNotificationActivityEnum}
-     * @memberof RiskNotification
      */
     activity: RiskNotificationActivityEnum;
     /**
      * The rolling time window for risk evaluation.
-     * @type {RiskNotificationTimeFrameEnum}
-     * @memberof RiskNotification
      */
     timeFrame: RiskNotificationTimeFrameEnum;
     /**
      * Indicates whether this risk notification is active.
-     * @type {boolean}
-     * @memberof RiskNotification
      */
     active: boolean;
     /**
      * Timestamp of the most recent update.
-     * @type {Date}
-     * @memberof RiskNotification
      */
     modified: Date;
 }
@@ -69,7 +55,7 @@ export interface RiskNotification {
  */
 export const RiskNotificationEntityEnum = {
     CustomerProfile: 'customer_profile',
-    CustomerSession: 'customer_session'
+    CustomerSession: 'customer_session',
 } as const;
 export type RiskNotificationEntityEnum = typeof RiskNotificationEntityEnum[keyof typeof RiskNotificationEntityEnum];
 
@@ -80,7 +66,7 @@ export const RiskNotificationActivityEnum = {
     LoyaltyPointsEarned: 'loyalty_points_earned',
     DiscountedAmount: 'discounted_amount',
     CompletedOrders: 'completed_orders',
-    CouponAttempts: 'coupon_attempts'
+    CouponAttempts: 'coupon_attempts',
 } as const;
 export type RiskNotificationActivityEnum = typeof RiskNotificationActivityEnum[keyof typeof RiskNotificationActivityEnum];
 
@@ -90,7 +76,7 @@ export type RiskNotificationActivityEnum = typeof RiskNotificationActivityEnum[k
 export const RiskNotificationTimeFrameEnum = {
     _1D: '1D',
     _7D: '7D',
-    _30D: '30D'
+    _30D: '30D',
 } as const;
 export type RiskNotificationTimeFrameEnum = typeof RiskNotificationTimeFrameEnum[keyof typeof RiskNotificationTimeFrameEnum];
 
@@ -121,12 +107,12 @@ export function RiskNotificationFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'entity': json['entity'],
         'activity': json['activity'],
         'timeFrame': json['timeFrame'],
         'active': json['active'],
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
     };
 }
 
@@ -142,12 +128,12 @@ export function RiskNotificationToJSONTyped(value?: RiskNotification | null, ign
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'entity': value['entity'],
         'activity': value['activity'],
         'timeFrame': value['timeFrame'],
         'active': value['active'],
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
     };
 }
 

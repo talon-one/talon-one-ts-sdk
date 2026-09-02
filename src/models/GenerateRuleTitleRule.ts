@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface GenerateRuleTitleRule {
     /**
      * An array of effectful Talang expressions in arrays that will be evaluated when a rule matches.
-     * @type {Array<object>}
-     * @memberof GenerateRuleTitleRule
      */
     effects?: Array<object>;
     /**
      * A Talang expression that will be evaluated in the context of the given event.
-     * @type {Array<any>}
-     * @memberof GenerateRuleTitleRule
      */
     condition?: Array<any>;
 }

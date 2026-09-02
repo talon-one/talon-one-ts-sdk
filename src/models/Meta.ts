@@ -36,32 +36,22 @@ import {
 export interface Meta {
     /**
      * Maps each evaluated campaign ID to a key-value list of that campaigns attributes. Campaigns without attributes will be omitted.
-     * @type {object}
-     * @memberof Meta
      */
     campaigns?: object;
     /**
      * Maps the coupon value to a key-value list of that coupons attributes.
-     * @type {object}
-     * @memberof Meta
      */
     coupons?: object;
     /**
      * 
-     * @type {CouponRejectionReason}
-     * @memberof Meta
      */
     couponRejectionReason?: CouponRejectionReason;
     /**
      * 
-     * @type {ReferralRejectionReason}
-     * @memberof Meta
      */
     referralRejectionReason?: ReferralRejectionReason;
     /**
      * Contains warnings about possible misuse.
-     * @type {object}
-     * @memberof Meta
      */
     warnings?: object;
 }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * The properties specific to effects for changing the expiry dates of loyalty ledger entries.
  * @export
@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface LoyaltyLedgerEntryExpiryDateChange {
     /**
      * The identifier of the transaction affected by the extension or update.
-     * @type {string}
-     * @memberof LoyaltyLedgerEntryExpiryDateChange
      */
     transactionUUID: string;
     /**
      * Expiry date of the transactions before applying the extension or update.
-     * @type {Date}
-     * @memberof LoyaltyLedgerEntryExpiryDateChange
      */
     previousExpiryDate?: Date;
     /**
      * Expiry date of the transaction after applying the extension or update.
-     * @type {Date}
-     * @memberof LoyaltyLedgerEntryExpiryDateChange
      */
     newExpiryDate: Date;
 }
@@ -60,8 +54,8 @@ export function LoyaltyLedgerEntryExpiryDateChangeFromJSONTyped(json: any, ignor
     return {
         
         'transactionUUID': json['transactionUUID'],
-        'previousExpiryDate': json['previousExpiryDate'] == null ? undefined : (new Date(json['previousExpiryDate'])),
-        'newExpiryDate': (json['newExpiryDate'] == null ? undefined as any : new Date(json['newExpiryDate'])),
+        'previousExpiryDate': json['previousExpiryDate'] == null ? undefined : (parseDateTime(json['previousExpiryDate'])),
+        'newExpiryDate': (json['newExpiryDate'] == null ? json['newExpiryDate'] : parseDateTime(json['newExpiryDate'])),
     };
 }
 
@@ -77,8 +71,8 @@ export function LoyaltyLedgerEntryExpiryDateChangeToJSONTyped(value?: LoyaltyLed
     return {
         
         'transactionUUID': value['transactionUUID'],
-        'previousExpiryDate': value['previousExpiryDate'] == null ? value['previousExpiryDate'] : value['previousExpiryDate'].toISOString(),
-        'newExpiryDate': value['newExpiryDate'] == null ? undefined : value['newExpiryDate'].toISOString(),
+        'previousExpiryDate': value['previousExpiryDate'] == null ? value['previousExpiryDate'] : serializeDateTime(value['previousExpiryDate']),
+        'newExpiryDate': value['newExpiryDate'] == null ? undefined : serializeDateTime(value['newExpiryDate']),
     };
 }
 

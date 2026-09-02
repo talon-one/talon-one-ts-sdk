@@ -21,86 +21,66 @@ import { mapValues } from '../runtime';
 export interface RuleFailureReason {
     /**
      * The ID of the campaign that contains the rule that failed.
-     * @type {number}
-     * @memberof RuleFailureReason
      */
     campaignID: number;
     /**
      * The name of the campaign that contains the rule that failed.
-     * @type {string}
-     * @memberof RuleFailureReason
      */
     campaignName: string;
     /**
      * The ID of the ruleset that contains the rule that failed.
-     * @type {number}
-     * @memberof RuleFailureReason
      */
     rulesetID: number;
     /**
      * The ID of the coupon that was being evaluated at the time of the rule failure.
-     * @type {number}
-     * @memberof RuleFailureReason
      */
     couponID?: number;
     /**
      * The code of the coupon that was being evaluated at the time of the rule failure.
-     * @type {string}
-     * @memberof RuleFailureReason
      */
     couponValue?: string;
     /**
      * The ID of the referral that was being evaluated at the time of the rule failure.
-     * @type {number}
-     * @memberof RuleFailureReason
      */
     referralID?: number;
     /**
      * The code of the referral that was being evaluated at the time of the rule failure.
-     * @type {string}
-     * @memberof RuleFailureReason
      */
     referralValue?: string;
     /**
+     * The ID of the reward that was being evaluated at the time of the rule failure.
+     */
+    rewardId?: number;
+    /**
+     * The integration ID of the reward that was being evaluated at the time of the rule failure.
+     */
+    rewardIntegrationId?: string;
+    /**
      * The index of the rule that failed within the ruleset.
-     * @type {number}
-     * @memberof RuleFailureReason
      */
     ruleIndex: number;
     /**
      * The name of the rule that failed within the ruleset.
-     * @type {string}
-     * @memberof RuleFailureReason
      */
     ruleName: string;
     /**
      * The index of the condition that failed.
-     * @type {number}
-     * @memberof RuleFailureReason
      */
     conditionIndex?: number;
     /**
      * The index of the effect that failed.
-     * @type {number}
-     * @memberof RuleFailureReason
      */
     effectIndex?: number;
     /**
      * More details about the failure.
-     * @type {string}
-     * @memberof RuleFailureReason
      */
     details?: string;
     /**
      * The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
-     * @type {number}
-     * @memberof RuleFailureReason
      */
     evaluationGroupID?: number;
     /**
      * The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-
-     * @type {string}
-     * @memberof RuleFailureReason
      */
     evaluationGroupMode?: string;
 }
@@ -135,6 +115,8 @@ export function RuleFailureReasonFromJSONTyped(json: any, ignoreDiscriminator: b
         'couponValue': json['couponValue'] == null ? undefined : json['couponValue'],
         'referralID': json['referralID'] == null ? undefined : json['referralID'],
         'referralValue': json['referralValue'] == null ? undefined : json['referralValue'],
+        'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
+        'rewardIntegrationId': json['rewardIntegrationId'] == null ? undefined : json['rewardIntegrationId'],
         'ruleIndex': json['ruleIndex'],
         'ruleName': json['ruleName'],
         'conditionIndex': json['conditionIndex'] == null ? undefined : json['conditionIndex'],
@@ -163,6 +145,8 @@ export function RuleFailureReasonToJSONTyped(value?: RuleFailureReason | null, i
         'couponValue': value['couponValue'],
         'referralID': value['referralID'],
         'referralValue': value['referralValue'],
+        'rewardId': value['rewardId'],
+        'rewardIntegrationId': value['rewardIntegrationId'],
         'ruleIndex': value['ruleIndex'],
         'ruleName': value['ruleName'],
         'conditionIndex': value['conditionIndex'],

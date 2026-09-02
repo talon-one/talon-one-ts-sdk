@@ -23,6 +23,7 @@ Name | Type
 `selectedPriceType` | string
 `selectedPrice` | number
 `adjustmentReferenceId` | string
+`rewardId` | number
 
 ## Example
 
@@ -47,6 +48,7 @@ const example = {
   "selectedPriceType": member,
   "selectedPrice": 100,
   "adjustmentReferenceId": 68851723-e6fa-488f-ace9-112581e6c19b,
+  "rewardId": 7,
 } satisfies EffectEntity
 
 console.log(example)

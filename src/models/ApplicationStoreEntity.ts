@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ApplicationStoreEntity {
     /**
      * The ID of the store.
-     * @type {number}
-     * @memberof ApplicationStoreEntity
      */
     storeId?: number;
 }

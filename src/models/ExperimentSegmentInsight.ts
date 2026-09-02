@@ -29,33 +29,23 @@ import {
 export interface ExperimentSegmentInsight {
     /**
      * The segmentation dimension used to group customers or purchases for analysis.
-     * @type {ExperimentSegmentInsightDimensionEnum}
-     * @memberof ExperimentSegmentInsight
      */
     dimension: ExperimentSegmentInsightDimensionEnum;
     /**
      * The specific group within the segmentation dimension.
-     * @type {ExperimentSegmentInsightBucketEnum}
-     * @memberof ExperimentSegmentInsight
      */
     bucket: ExperimentSegmentInsightBucketEnum;
     /**
      * The raw (unadjusted) confidence score expressed as a percentage. Only segments with a confidence score greater than or equal to 95% are returned.
      * 
-     * @type {number}
-     * @memberof ExperimentSegmentInsight
      */
     confidence: number;
     /**
      * The ID of the variant that performed better in this segment.
-     * @type {number}
-     * @memberof ExperimentSegmentInsight
      */
     winnerVariantId: number;
     /**
      * Per-variant metric values for this segment.
-     * @type {Array<ExperimentSegmentInsightVariant>}
-     * @memberof ExperimentSegmentInsight
      */
     variants: Array<ExperimentSegmentInsightVariant>;
 }
@@ -67,7 +57,7 @@ export interface ExperimentSegmentInsight {
 export const ExperimentSegmentInsightDimensionEnum = {
     CartValue: 'cart_value',
     ItemCount: 'item_count',
-    CustomerType: 'customer_type'
+    CustomerType: 'customer_type',
 } as const;
 export type ExperimentSegmentInsightDimensionEnum = typeof ExperimentSegmentInsightDimensionEnum[keyof typeof ExperimentSegmentInsightDimensionEnum];
 
@@ -80,7 +70,7 @@ export const ExperimentSegmentInsightBucketEnum = {
     High: 'high',
     New: 'new',
     Returning: 'returning',
-    Loyal: 'loyal'
+    Loyal: 'loyal',
 } as const;
 export type ExperimentSegmentInsightBucketEnum = typeof ExperimentSegmentInsightBucketEnum[keyof typeof ExperimentSegmentInsightBucketEnum];
 

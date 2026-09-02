@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface CouponSearch {
     /**
      * Properties to match against a coupon. All provided attributes will be exactly matched against attributes.
-     * @type {object}
-     * @memberof CouponSearch
      */
     attributes: object;
 }

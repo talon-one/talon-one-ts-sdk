@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * Loyalty profile points with start and expiry dates.
  * @export
@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface LedgerPointsEntryIntegrationAPI {
     /**
      * ID of the transaction that adds loyalty points.
-     * @type {number}
-     * @memberof LedgerPointsEntryIntegrationAPI
      */
     id: number;
     /**
      * Unique identifier of the transaction in the UUID format.
-     * @type {string}
-     * @memberof LedgerPointsEntryIntegrationAPI
      */
     transactionUUID: string;
     /**
      * Date and time the loyalty points were added.
-     * @type {Date}
-     * @memberof LedgerPointsEntryIntegrationAPI
      */
     created: Date;
     /**
      * ID of the loyalty program.
-     * @type {number}
-     * @memberof LedgerPointsEntryIntegrationAPI
      */
     programId: number;
     /**
      * ID of the customer session where points were added.
-     * @type {string}
-     * @memberof LedgerPointsEntryIntegrationAPI
      */
     customerSessionId?: string;
     /**
      * Name or reason of the transaction that adds loyalty points.
-     * @type {string}
-     * @memberof LedgerPointsEntryIntegrationAPI
      */
     name: string;
     /**
@@ -60,8 +48,6 @@ export interface LedgerPointsEntryIntegrationAPI {
      *   - `immediate`: Points are active immediately.
      *   - `timestamp value`: Points become active at a given date and time.
      * 
-     * @type {string}
-     * @memberof LedgerPointsEntryIntegrationAPI
      */
     startDate: string;
     /**
@@ -69,20 +55,14 @@ export interface LedgerPointsEntryIntegrationAPI {
      *   - `unlimited`: Points have no expiration date.
      *   - `timestamp value`: Points expire on the given date and time.
      * 
-     * @type {string}
-     * @memberof LedgerPointsEntryIntegrationAPI
      */
     expiryDate: string;
     /**
      * ID of the subledger.
-     * @type {string}
-     * @memberof LedgerPointsEntryIntegrationAPI
      */
     subledgerId: string;
     /**
      * Amount of loyalty points added in the transaction.
-     * @type {number}
-     * @memberof LedgerPointsEntryIntegrationAPI
      */
     amount: number;
     /**
@@ -90,8 +70,6 @@ export interface LedgerPointsEntryIntegrationAPI {
      * 
      * **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
      * 
-     * @type {string}
-     * @memberof LedgerPointsEntryIntegrationAPI
      */
     validityDuration?: string;
 }
@@ -125,7 +103,7 @@ export function LedgerPointsEntryIntegrationAPIFromJSONTyped(json: any, ignoreDi
         
         'id': json['id'],
         'transactionUUID': json['transactionUUID'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'programId': json['programId'],
         'customerSessionId': json['customerSessionId'] == null ? undefined : json['customerSessionId'],
         'name': json['name'],
@@ -150,7 +128,7 @@ export function LedgerPointsEntryIntegrationAPIToJSONTyped(value?: LedgerPointsE
         
         'id': value['id'],
         'transactionUUID': value['transactionUUID'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'programId': value['programId'],
         'customerSessionId': value['customerSessionId'],
         'name': value['name'],

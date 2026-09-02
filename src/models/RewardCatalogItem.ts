@@ -43,40 +43,28 @@ import {
 export interface RewardCatalogItem {
     /**
      * The unique ID of the reward.
-     * @type {number}
-     * @memberof RewardCatalogItem
      */
     id: number;
     /**
      * The customer-facing name of the reward.
-     * @type {string}
-     * @memberof RewardCatalogItem
      */
     name: string;
     /**
      * The customer-facing description of the reward.
-     * @type {string}
-     * @memberof RewardCatalogItem
      */
     description?: string;
     /**
      * The loyalty points required to activate the reward.
-     * @type {Array<RewardPointsRequired>}
-     * @memberof RewardCatalogItem
      */
     pointsRequired?: Array<RewardPointsRequired>;
     /**
      * Customer-facing rule metadata for the reward.
-     * @type {RuleMetadata}
-     * @memberof RewardCatalogItem
      */
     rule: RuleMetadata;
     /**
      * The customer's eligibility for the reward. Returned only when the request
      * includes a `profileIntegrationId` or `loyaltyCardId`.
      * 
-     * @type {RewardEligibility}
-     * @memberof RewardCatalogItem
      */
     eligibility?: RewardEligibility;
 }

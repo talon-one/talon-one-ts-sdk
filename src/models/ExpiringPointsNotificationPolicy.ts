@@ -29,26 +29,18 @@ import {
 export interface ExpiringPointsNotificationPolicy {
     /**
      * Notification name.
-     * @type {string}
-     * @memberof ExpiringPointsNotificationPolicy
      */
     name: string;
     /**
      * 
-     * @type {Array<ExpiringPointsNotificationTrigger>}
-     * @memberof ExpiringPointsNotificationPolicy
      */
     triggers: Array<ExpiringPointsNotificationTrigger>;
     /**
      * Indicates whether batching is activated.
-     * @type {boolean}
-     * @memberof ExpiringPointsNotificationPolicy
      */
     batchingEnabled?: boolean;
     /**
      * The required size of each batch of data. This value applies only when `batchingEnabled` is `true`.
-     * @type {number}
-     * @memberof ExpiringPointsNotificationPolicy
      */
     batchSize?: number;
 }

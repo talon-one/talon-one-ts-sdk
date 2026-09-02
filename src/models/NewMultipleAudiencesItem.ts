@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface NewMultipleAudiencesItem {
     /**
      * The human-friendly display name for this audience.
-     * @type {string}
-     * @memberof NewMultipleAudiencesItem
      */
     name: string;
     /**
      * A list of the IDs of the Applications that are connected to this audience.
-     * @type {Set<number>}
-     * @memberof NewMultipleAudiencesItem
      */
     subscribedApplicationsIds?: Set<number>;
     /**
      * The ID of this audience in the third-party integration.
-     * @type {string}
-     * @memberof NewMultipleAudiencesItem
      */
     integrationId?: string;
 }

@@ -21,50 +21,36 @@ import { mapValues } from '../runtime';
 export interface CampaignVersions {
     /**
      * The campaign revision state displayed in the Campaign Manager.
-     * @type {CampaignVersionsRevisionFrontendStateEnum}
-     * @memberof CampaignVersions
      */
     revisionFrontendState?: CampaignVersionsRevisionFrontendStateEnum;
     /**
      * ID of the revision that was last activated on this campaign.
      * 
-     * @type {number}
-     * @memberof CampaignVersions
      */
     activeRevisionId?: number;
     /**
      * ID of the revision version that is active on the campaign.
      * 
-     * @type {number}
-     * @memberof CampaignVersions
      */
     activeRevisionVersionId?: number;
     /**
      * Incrementing number representing how many revisions have been activated on this campaign, starts from 0 for a new campaign.
      * 
-     * @type {number}
-     * @memberof CampaignVersions
      */
     version?: number;
     /**
      * ID of the revision currently being modified for the campaign.
      * 
-     * @type {number}
-     * @memberof CampaignVersions
      */
     currentRevisionId?: number;
     /**
      * ID of the latest version applied on the current revision.
      * 
-     * @type {number}
-     * @memberof CampaignVersions
      */
     currentRevisionVersionId?: number;
     /**
      * Flag for determining whether we use current revision when sending requests with staging API key.
      * 
-     * @type {boolean}
-     * @memberof CampaignVersions
      */
     stageRevision?: boolean;
 }
@@ -75,7 +61,7 @@ export interface CampaignVersions {
  */
 export const CampaignVersionsRevisionFrontendStateEnum = {
     Revised: 'revised',
-    Pending: 'pending'
+    Pending: 'pending',
 } as const;
 export type CampaignVersionsRevisionFrontendStateEnum = typeof CampaignVersionsRevisionFrontendStateEnum[keyof typeof CampaignVersionsRevisionFrontendStateEnum];
 

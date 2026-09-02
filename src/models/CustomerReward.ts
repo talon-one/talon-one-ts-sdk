@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * A reward unlocked by a customer profile.
  * @export
@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface CustomerReward {
     /**
      * The ID of the Application in which the reward was unlocked.
-     * @type {number}
-     * @memberof CustomerReward
      */
     applicationId: number;
     /**
      * The integration ID of the customer profile that unlocked this reward.
-     * @type {string}
-     * @memberof CustomerReward
      */
     profileIntegrationId: string;
     /**
      * The integration ID assigned to this reward unlock.
-     * @type {string}
-     * @memberof CustomerReward
      */
     integrationId: string;
     /**
      * The date and time when the reward was unlocked.
-     * @type {Date}
-     * @memberof CustomerReward
      */
     unlockedAt: Date;
     /**
      * The date and time when the reward was used.
-     * @type {Date}
-     * @memberof CustomerReward
      */
     usedAt?: Date;
 }
@@ -76,8 +66,8 @@ export function CustomerRewardFromJSONTyped(json: any, ignoreDiscriminator: bool
         'applicationId': json['applicationId'],
         'profileIntegrationId': json['profileIntegrationId'],
         'integrationId': json['integrationId'],
-        'unlockedAt': (json['unlockedAt'] == null ? undefined as any : new Date(json['unlockedAt'])),
-        'usedAt': json['usedAt'] == null ? undefined : (new Date(json['usedAt'])),
+        'unlockedAt': (json['unlockedAt'] == null ? json['unlockedAt'] : parseDateTime(json['unlockedAt'])),
+        'usedAt': json['usedAt'] == null ? undefined : (parseDateTime(json['usedAt'])),
     };
 }
 
@@ -95,8 +85,8 @@ export function CustomerRewardToJSONTyped(value?: CustomerReward | null, ignoreD
         'applicationId': value['applicationId'],
         'profileIntegrationId': value['profileIntegrationId'],
         'integrationId': value['integrationId'],
-        'unlockedAt': value['unlockedAt'] == null ? undefined : value['unlockedAt'].toISOString(),
-        'usedAt': value['usedAt'] == null ? value['usedAt'] : value['usedAt'].toISOString(),
+        'unlockedAt': value['unlockedAt'] == null ? undefined : serializeDateTime(value['unlockedAt']),
+        'usedAt': value['usedAt'] == null ? value['usedAt'] : serializeDateTime(value['usedAt']),
     };
 }
 

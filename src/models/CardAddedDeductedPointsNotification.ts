@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface CardAddedDeductedPointsNotification {
     /**
      * Loyalty card identification number.
-     * @type {string}
-     * @memberof CardAddedDeductedPointsNotification
      */
     cardIdentifier: string;
     /**
      * The name of the employee who added or deducted points.
-     * @type {string}
-     * @memberof CardAddedDeductedPointsNotification
      */
     employeeName: string;
     /**
      * The ID of the loyalty program.
-     * @type {number}
-     * @memberof CardAddedDeductedPointsNotification
      */
     loyaltyProgramID: number;
     /**
      * The type of notification.
-     * @type {CardAddedDeductedPointsNotificationNotificationTypeEnum}
-     * @memberof CardAddedDeductedPointsNotification
      */
     notificationType: CardAddedDeductedPointsNotificationNotificationTypeEnum;
     /**
      * The integration ID of the customer profile to whom points were added or deducted.
-     * @type {Array<string>}
-     * @memberof CardAddedDeductedPointsNotification
      */
     profileIntegrationIDs: Array<string>;
     /**
      * The integration ID of the session through which the points were earned or lost.
-     * @type {string}
-     * @memberof CardAddedDeductedPointsNotification
      */
     sessionIntegrationID: string;
     /**
      * The ID of the subledger within the loyalty program where these points were added or deducted.
-     * @type {string}
-     * @memberof CardAddedDeductedPointsNotification
      */
     subledgerID: string;
     /**
@@ -71,56 +57,38 @@ export interface CardAddedDeductedPointsNotification {
      * 
      * - [Rule Engine](/docs/product/applications/evaluation-order-for-rules-and-filters)
      * 
-     * @type {CardAddedDeductedPointsNotificationTypeOfChangeEnum}
-     * @memberof CardAddedDeductedPointsNotification
      */
     typeOfChange: CardAddedDeductedPointsNotificationTypeOfChangeEnum;
     /**
      * The ID of the employee who added or deducted points.
-     * @type {number}
-     * @memberof CardAddedDeductedPointsNotification
      */
     userID: number;
     /**
      * The max amount of user profiles with whom a card can be shared. This can be set to `0` for no limit.
-     * @type {number}
-     * @memberof CardAddedDeductedPointsNotification
      */
     usersPerCardLimit: number;
     /**
      * The amount of added or deducted loyalty points.
-     * @type {number}
-     * @memberof CardAddedDeductedPointsNotification
      */
     amount: number;
     /**
      * The expiration date for loyalty points.
-     * @type {Date}
-     * @memberof CardAddedDeductedPointsNotification
      */
     expiryDate?: Date;
     /**
      * The action (addition or subtraction) made with loyalty points.
-     * @type {CardAddedDeductedPointsNotificationOperationEnum}
-     * @memberof CardAddedDeductedPointsNotification
      */
     operation: CardAddedDeductedPointsNotificationOperationEnum;
     /**
      * The reason for the points addition or deduction.
-     * @type {string}
-     * @memberof CardAddedDeductedPointsNotification
      */
     reason: string;
     /**
      * The start date for loyalty points.
-     * @type {Date}
-     * @memberof CardAddedDeductedPointsNotification
      */
     startDate?: Date;
     /**
      * The identifier of the transaction in the loyalty ledger.
-     * @type {string}
-     * @memberof CardAddedDeductedPointsNotification
      */
     transactionUUID: string;
 }
@@ -131,7 +99,7 @@ export interface CardAddedDeductedPointsNotification {
  */
 export const CardAddedDeductedPointsNotificationNotificationTypeEnum = {
     LoyaltyCardPointsDeducted: 'LoyaltyCardPointsDeducted',
-    LoyaltyCardPointsAdded: 'LoyaltyCardPointsAdded'
+    LoyaltyCardPointsAdded: 'LoyaltyCardPointsAdded',
 } as const;
 export type CardAddedDeductedPointsNotificationNotificationTypeEnum = typeof CardAddedDeductedPointsNotificationNotificationTypeEnum[keyof typeof CardAddedDeductedPointsNotificationNotificationTypeEnum];
 
@@ -141,7 +109,7 @@ export type CardAddedDeductedPointsNotificationNotificationTypeEnum = typeof Car
 export const CardAddedDeductedPointsNotificationTypeOfChangeEnum = {
     CampaignManager: 'campaign_manager',
     RuleEngine: 'rule_engine',
-    ManagementApi: 'management_api'
+    ManagementApi: 'management_api',
 } as const;
 export type CardAddedDeductedPointsNotificationTypeOfChangeEnum = typeof CardAddedDeductedPointsNotificationTypeOfChangeEnum[keyof typeof CardAddedDeductedPointsNotificationTypeOfChangeEnum];
 
@@ -150,7 +118,7 @@ export type CardAddedDeductedPointsNotificationTypeOfChangeEnum = typeof CardAdd
  */
 export const CardAddedDeductedPointsNotificationOperationEnum = {
     Addition: 'addition',
-    Subtraction: 'subtraction'
+    Subtraction: 'subtraction',
 } as const;
 export type CardAddedDeductedPointsNotificationOperationEnum = typeof CardAddedDeductedPointsNotificationOperationEnum[keyof typeof CardAddedDeductedPointsNotificationOperationEnum];
 
@@ -198,10 +166,10 @@ export function CardAddedDeductedPointsNotificationFromJSONTyped(json: any, igno
         'userID': json['UserID'],
         'usersPerCardLimit': json['UsersPerCardLimit'],
         'amount': json['Amount'],
-        'expiryDate': json['ExpiryDate'] == null ? undefined : (new Date(json['ExpiryDate'])),
+        'expiryDate': json['ExpiryDate'] == null ? undefined : (parseDateTime(json['ExpiryDate'])),
         'operation': json['Operation'],
         'reason': json['Reason'],
-        'startDate': json['StartDate'] == null ? undefined : (new Date(json['StartDate'])),
+        'startDate': json['StartDate'] == null ? undefined : (parseDateTime(json['StartDate'])),
         'transactionUUID': json['TransactionUUID'],
     };
 }
@@ -228,10 +196,10 @@ export function CardAddedDeductedPointsNotificationToJSONTyped(value?: CardAdded
         'UserID': value['userID'],
         'UsersPerCardLimit': value['usersPerCardLimit'],
         'Amount': value['amount'],
-        'ExpiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'ExpiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'Operation': value['operation'],
         'Reason': value['reason'],
-        'StartDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
+        'StartDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
         'TransactionUUID': value['transactionUUID'],
     };
 }

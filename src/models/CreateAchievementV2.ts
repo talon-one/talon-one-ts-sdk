@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -24,26 +24,18 @@ export interface CreateAchievementV2 {
      * 
      * **Note**: The name should start with a letter. This cannot be changed after the achievement has been created.
      * 
-     * @type {string}
-     * @memberof CreateAchievementV2
      */
     name?: string;
     /**
      * The display name for the achievement in the Campaign Manager.
-     * @type {string}
-     * @memberof CreateAchievementV2
      */
     title?: string;
     /**
      * A description of the achievement.
-     * @type {string}
-     * @memberof CreateAchievementV2
      */
     description?: string;
     /**
      * The required number of actions or the transactional milestone to complete the achievement.
-     * @type {number}
-     * @memberof CreateAchievementV2
      */
     target?: number;
     /**
@@ -73,8 +65,6 @@ export interface CreateAchievementV2 {
      * 
      * **Note**: You can either use the round down and round up option or set an absolute period.
      * 
-     * @type {string}
-     * @memberof CreateAchievementV2
      */
     period?: string;
     /**
@@ -83,8 +73,6 @@ export interface CreateAchievementV2 {
      * - `on_expiration`: The achievement resets after it expires and becomes available again.
      * - `on_completion`: When the customer progress status reaches `completed`, the achievement resets and becomes available again.
      * 
-     * @type {CreateAchievementV2RecurrencePolicyEnum}
-     * @memberof CreateAchievementV2
      */
     recurrencePolicy?: CreateAchievementV2RecurrencePolicyEnum;
     /**
@@ -92,8 +80,6 @@ export interface CreateAchievementV2 {
      * - `user_action`: The achievement ends or resets relative to when the customer started the achievement.
      * - `fixed_schedule`: The achievement starts, ends, or resets for all customers following a fixed schedule.
      * 
-     * @type {CreateAchievementV2ActivationPolicyEnum}
-     * @memberof CreateAchievementV2
      */
     activationPolicy?: CreateAchievementV2ActivationPolicyEnum;
     /**
@@ -101,8 +87,6 @@ export interface CreateAchievementV2 {
      * 
      * **Note:** It must be an RFC3339 timestamp string.
      * 
-     * @type {Date}
-     * @memberof CreateAchievementV2
      */
     fixedStartDate?: Date;
     /**
@@ -110,32 +94,22 @@ export interface CreateAchievementV2 {
      * 
      * **Note:** It must be an RFC3339 timestamp string.
      * 
-     * @type {Date}
-     * @memberof CreateAchievementV2
      */
     endDate?: Date;
     /**
      * When `true`, customer progress can be rolled back in completed achievements.
-     * @type {boolean}
-     * @memberof CreateAchievementV2
      */
     allowRollbackAfterCompletion?: boolean;
     /**
      * A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.
-     * @type {Array<number>}
-     * @memberof CreateAchievementV2
      */
     subscribedApplications?: Array<number>;
     /**
      * Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.
-     * @type {boolean}
-     * @memberof CreateAchievementV2
      */
     sandbox: boolean;
     /**
      * A string containing an IANA timezone descriptor.
-     * @type {string}
-     * @memberof CreateAchievementV2
      */
     timezone: string;
 }
@@ -147,7 +121,7 @@ export interface CreateAchievementV2 {
 export const CreateAchievementV2RecurrencePolicyEnum = {
     NoRecurrence: 'no_recurrence',
     OnExpiration: 'on_expiration',
-    OnCompletion: 'on_completion'
+    OnCompletion: 'on_completion',
 } as const;
 export type CreateAchievementV2RecurrencePolicyEnum = typeof CreateAchievementV2RecurrencePolicyEnum[keyof typeof CreateAchievementV2RecurrencePolicyEnum];
 
@@ -156,7 +130,7 @@ export type CreateAchievementV2RecurrencePolicyEnum = typeof CreateAchievementV2
  */
 export const CreateAchievementV2ActivationPolicyEnum = {
     UserAction: 'user_action',
-    FixedSchedule: 'fixed_schedule'
+    FixedSchedule: 'fixed_schedule',
 } as const;
 export type CreateAchievementV2ActivationPolicyEnum = typeof CreateAchievementV2ActivationPolicyEnum[keyof typeof CreateAchievementV2ActivationPolicyEnum];
 
@@ -188,8 +162,8 @@ export function CreateAchievementV2FromJSONTyped(json: any, ignoreDiscriminator:
         'period': json['period'] == null ? undefined : json['period'],
         'recurrencePolicy': json['recurrencePolicy'] == null ? undefined : json['recurrencePolicy'],
         'activationPolicy': json['activationPolicy'] == null ? undefined : json['activationPolicy'],
-        'fixedStartDate': json['fixedStartDate'] == null ? undefined : (new Date(json['fixedStartDate'])),
-        'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
+        'fixedStartDate': json['fixedStartDate'] == null ? undefined : (parseDateTime(json['fixedStartDate'])),
+        'endDate': json['endDate'] == null ? undefined : (parseDateTime(json['endDate'])),
         'allowRollbackAfterCompletion': json['allowRollbackAfterCompletion'] == null ? undefined : json['allowRollbackAfterCompletion'],
         'subscribedApplications': json['subscribedApplications'] == null ? undefined : json['subscribedApplications'],
         'sandbox': json['sandbox'],
@@ -215,8 +189,8 @@ export function CreateAchievementV2ToJSONTyped(value?: CreateAchievementV2 | nul
         'period': value['period'],
         'recurrencePolicy': value['recurrencePolicy'],
         'activationPolicy': value['activationPolicy'],
-        'fixedStartDate': value['fixedStartDate'] == null ? value['fixedStartDate'] : value['fixedStartDate'].toISOString(),
-        'endDate': value['endDate'] == null ? value['endDate'] : value['endDate'].toISOString(),
+        'fixedStartDate': value['fixedStartDate'] == null ? value['fixedStartDate'] : serializeDateTime(value['fixedStartDate']),
+        'endDate': value['endDate'] == null ? value['endDate'] : serializeDateTime(value['endDate']),
         'allowRollbackAfterCompletion': value['allowRollbackAfterCompletion'],
         'subscribedApplications': value['subscribedApplications'],
         'sandbox': value['sandbox'],

@@ -29,14 +29,10 @@ import {
 export interface GetCampaignAnalytics200Response {
     /**
      * 
-     * @type {number}
-     * @memberof GetCampaignAnalytics200Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<CampaignAnalytics>}
-     * @memberof GetCampaignAnalytics200Response
      */
     data: Array<CampaignAnalytics>;
 }

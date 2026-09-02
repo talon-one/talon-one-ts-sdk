@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface Session {
     /**
      * The ID of the user of this session.
-     * @type {number}
-     * @memberof Session
      */
     userId: number;
     /**
      * The token to use as a bearer token to query Management API endpoints.
-     * @type {string}
-     * @memberof Session
      */
     token: string;
     /**
      * Unix timestamp indicating when the session was first created.
-     * @type {Date}
-     * @memberof Session
      */
     created: Date;
 }
@@ -62,7 +56,7 @@ export function SessionFromJSONTyped(json: any, ignoreDiscriminator: boolean): S
         
         'userId': json['userId'],
         'token': json['token'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
     };
 }
 
@@ -79,7 +73,7 @@ export function SessionToJSONTyped(value?: Session | null, ignoreDiscriminator: 
         
         'userId': value['userId'],
         'token': value['token'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
     };
 }
 

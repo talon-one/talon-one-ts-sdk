@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface CampaignSearch {
     /**
      * Properties to match against a campaign. All provided attributes will be exactly matched against campaign attributes.
-     * @type {object}
-     * @memberof CampaignSearch
      */
     attributes: object;
 }

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface AnalyticsDataPointWithTrend {
     /**
      * 
-     * @type {number}
-     * @memberof AnalyticsDataPointWithTrend
      */
     value: number;
     /**
      * 
-     * @type {number}
-     * @memberof AnalyticsDataPointWithTrend
      */
     trend: number;
 }

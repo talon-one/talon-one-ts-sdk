@@ -21,45 +21,31 @@ import { mapValues } from '../runtime';
 export interface LibraryAttribute {
     /**
      * The name of the entity that can have this attribute. When creating or updating the entities of a given type, you can include an `attributes` object with keys corresponding to the `name` of the custom attributes for that type.
-     * @type {LibraryAttributeEntityEnum}
-     * @memberof LibraryAttribute
      */
     entity: LibraryAttributeEntityEnum;
     /**
      * The attribute name that will be used in API requests and Talang. E.g. if `name == "region"` then you would set the region attribute by including an `attributes.region` property in your request payload.
      * 
-     * @type {string}
-     * @memberof LibraryAttribute
      */
     name: string;
     /**
      * The human-readable name for the attribute that will be shown in the Campaign Manager. Like `name`, the combination of entity and title must also be unique.
-     * @type {string}
-     * @memberof LibraryAttribute
      */
     title: string;
     /**
      * The data type of the attribute, a `time` attribute must be sent as a string that conforms to the [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) timestamp format.
-     * @type {LibraryAttributeTypeEnum}
-     * @memberof LibraryAttribute
      */
     type: LibraryAttributeTypeEnum;
     /**
      * A description of the attribute.
-     * @type {string}
-     * @memberof LibraryAttribute
      */
     description: string;
     /**
      * The presets that indicate to which industry the attribute applies to.
-     * @type {Array<string>}
-     * @memberof LibraryAttribute
      */
     presets: Array<string>;
     /**
      * Short suggestions that are used to group attributes.
-     * @type {Array<string>}
-     * @memberof LibraryAttribute
      */
     suggestions: Array<string>;
 }
@@ -75,7 +61,7 @@ export const LibraryAttributeEntityEnum = {
     CustomerSession: 'CustomerSession',
     CartItem: 'CartItem',
     Coupon: 'Coupon',
-    Event: 'Event'
+    Event: 'Event',
 } as const;
 export type LibraryAttributeEntityEnum = typeof LibraryAttributeEntityEnum[keyof typeof LibraryAttributeEntityEnum];
 
@@ -86,7 +72,7 @@ export const LibraryAttributeTypeEnum = {
     String: 'string',
     Number: 'number',
     Boolean: 'boolean',
-    Time: 'time'
+    Time: 'time',
 } as const;
 export type LibraryAttributeTypeEnum = typeof LibraryAttributeTypeEnum[keyof typeof LibraryAttributeTypeEnum];
 

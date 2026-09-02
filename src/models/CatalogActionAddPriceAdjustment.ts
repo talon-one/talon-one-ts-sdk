@@ -29,14 +29,10 @@ import {
 export interface CatalogActionAddPriceAdjustment {
     /**
      * A catalog sync action discriminator of type `ADD_PRICE_ADJUSTMENT`.
-     * @type {CatalogActionAddPriceAdjustmentTypeEnum}
-     * @memberof CatalogActionAddPriceAdjustment
      */
     type: CatalogActionAddPriceAdjustmentTypeEnum;
     /**
      * The payload of sync action.
-     * @type {AddPriceAdjustmentCatalogAction}
-     * @memberof CatalogActionAddPriceAdjustment
      */
     payload: AddPriceAdjustmentCatalogAction;
 }
@@ -46,7 +42,7 @@ export interface CatalogActionAddPriceAdjustment {
  * @export
  */
 export const CatalogActionAddPriceAdjustmentTypeEnum = {
-    AddPriceAdjustment: 'ADD_PRICE_ADJUSTMENT'
+    AddPriceAdjustment: 'ADD_PRICE_ADJUSTMENT',
 } as const;
 export type CatalogActionAddPriceAdjustmentTypeEnum = typeof CatalogActionAddPriceAdjustmentTypeEnum[keyof typeof CatalogActionAddPriceAdjustmentTypeEnum];
 

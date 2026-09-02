@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface AchievementAdditionalProperties {
     /**
      * The ID of the campaign the achievement belongs to.
-     * @type {number}
-     * @memberof AchievementAdditionalProperties
      */
     campaignId: number;
     /**
      * ID of the user that created this achievement.
-     * @type {number}
-     * @memberof AchievementAdditionalProperties
      */
     userId: number;
     /**
@@ -36,20 +32,14 @@ export interface AchievementAdditionalProperties {
      * 
      * **Note**: This is not available if the user has been deleted.
      * 
-     * @type {string}
-     * @memberof AchievementAdditionalProperties
      */
     createdBy?: string;
     /**
      * Indicates if a customer has made progress in the achievement.
-     * @type {boolean}
-     * @memberof AchievementAdditionalProperties
      */
     hasProgress?: boolean;
     /**
      * The status of the achievement.
-     * @type {AchievementAdditionalPropertiesStatusEnum}
-     * @memberof AchievementAdditionalProperties
      */
     status?: AchievementAdditionalPropertiesStatusEnum;
 }
@@ -62,7 +52,7 @@ export const AchievementAdditionalPropertiesStatusEnum = {
     Inprogress: 'inprogress',
     Expired: 'expired',
     NotStarted: 'not_started',
-    Completed: 'completed'
+    Completed: 'completed',
 } as const;
 export type AchievementAdditionalPropertiesStatusEnum = typeof AchievementAdditionalPropertiesStatusEnum[keyof typeof AchievementAdditionalPropertiesStatusEnum];
 

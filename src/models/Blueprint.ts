@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CatalogRule } from './CatalogRule';
 import {
     CatalogRuleFromJSON,
@@ -36,80 +36,54 @@ import {
 export interface Blueprint {
     /**
      * The internal ID of this blueprint.
-     * @type {number}
-     * @memberof Blueprint
      */
     id: number;
     /**
      * The ID of the account that owns this blueprint.
-     * @type {number}
-     * @memberof Blueprint
      */
     accountId: number;
     /**
      * The ID of the Application that owns this blueprint.
-     * @type {number}
-     * @memberof Blueprint
      */
     applicationId: number;
     /**
      * A short description of the blueprint.
-     * @type {string}
-     * @memberof Blueprint
      */
     title: string;
     /**
      * A longer, more detailed description of the blueprint.
-     * @type {string}
-     * @memberof Blueprint
      */
     description?: string;
     /**
      * Category used to group blueprints.
-     * @type {BlueprintCategoryEnum}
-     * @memberof Blueprint
      */
     category: BlueprintCategoryEnum;
     /**
      * Indicates whether the blueprint is custom or shipped by Talon.One.
-     * @type {BlueprintSourceEnum}
-     * @memberof Blueprint
      */
     source: BlueprintSourceEnum;
     /**
      * Array of rule templates in this blueprint. Rules only contain title (no description, as description is at the blueprint level).
-     * @type {Array<CatalogRule>}
-     * @memberof Blueprint
      */
     rules: Array<CatalogRule>;
     /**
      * Array of cart item filter templates in this blueprint. Cart item filters only contain name (no description, as description is at the blueprint level).
-     * @type {Array<CartItemFilterTemplate>}
-     * @memberof Blueprint
      */
     cartItemFilters: Array<CartItemFilterTemplate>;
     /**
      * Timestamp when the blueprint was created.
-     * @type {Date}
-     * @memberof Blueprint
      */
     created: Date;
     /**
      * ID of the user who created the blueprint.
-     * @type {number}
-     * @memberof Blueprint
      */
     createdBy: number;
     /**
      * Timestamp when the blueprint was last updated.
-     * @type {Date}
-     * @memberof Blueprint
      */
     modified?: Date;
     /**
      * ID of the user who last updated the blueprint.
-     * @type {number}
-     * @memberof Blueprint
      */
     modifiedBy?: number;
 }
@@ -122,7 +96,7 @@ export const BlueprintCategoryEnum = {
     Promotions: 'promotions',
     Pricing: 'pricing',
     Loyalty: 'loyalty',
-    Custom: 'custom'
+    Custom: 'custom',
 } as const;
 export type BlueprintCategoryEnum = typeof BlueprintCategoryEnum[keyof typeof BlueprintCategoryEnum];
 
@@ -131,7 +105,7 @@ export type BlueprintCategoryEnum = typeof BlueprintCategoryEnum[keyof typeof Bl
  */
 export const BlueprintSourceEnum = {
     Custom: 'custom',
-    Default: 'default'
+    Default: 'default',
 } as const;
 export type BlueprintSourceEnum = typeof BlueprintSourceEnum[keyof typeof BlueprintSourceEnum];
 
@@ -173,9 +147,9 @@ export function BlueprintFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'source': json['source'],
         'rules': (json['rules'] == null ? undefined as any : (json['rules'] as Array<any>).map(CatalogRuleFromJSON)),
         'cartItemFilters': (json['cartItemFilters'] == null ? undefined as any : (json['cartItemFilters'] as Array<any>).map(CartItemFilterTemplateFromJSON)),
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'createdBy': json['createdBy'],
-        'modified': json['modified'] == null ? undefined : (new Date(json['modified'])),
+        'modified': json['modified'] == null ? undefined : (parseDateTime(json['modified'])),
         'modifiedBy': json['modifiedBy'] == null ? undefined : json['modifiedBy'],
     };
 }
@@ -200,9 +174,9 @@ export function BlueprintToJSONTyped(value?: Blueprint | null, ignoreDiscriminat
         'source': value['source'],
         'rules': (value['rules'] == null ? undefined : (value['rules'] as Array<any>).map(CatalogRuleToJSON)),
         'cartItemFilters': (value['cartItemFilters'] == null ? undefined : (value['cartItemFilters'] as Array<any>).map(CartItemFilterTemplateToJSON)),
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'createdBy': value['createdBy'],
-        'modified': value['modified'] == null ? value['modified'] : value['modified'].toISOString(),
+        'modified': value['modified'] == null ? value['modified'] : serializeDateTime(value['modified']),
         'modifiedBy': value['modifiedBy'],
     };
 }

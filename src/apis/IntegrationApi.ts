@@ -179,10 +179,20 @@ import {
     IntegrationRequestToJSON,
 } from '../models/IntegrationRequest';
 import {
+    type IntegrationRewardsCatalog200Response,
+    IntegrationRewardsCatalog200ResponseFromJSON,
+    IntegrationRewardsCatalog200ResponseToJSON,
+} from '../models/IntegrationRewardsCatalog200Response';
+import {
     type IntegrationStateV2,
     IntegrationStateV2FromJSON,
     IntegrationStateV2ToJSON,
 } from '../models/IntegrationStateV2';
+import {
+    type IntegrationUnlockRewardRequest,
+    IntegrationUnlockRewardRequestFromJSON,
+    IntegrationUnlockRewardRequestToJSON,
+} from '../models/IntegrationUnlockRewardRequest';
 import {
     type LoyaltyBalancesWithTiers,
     LoyaltyBalancesWithTiersFromJSON,
@@ -244,6 +254,11 @@ import {
     ReturnIntegrationRequestToJSON,
 } from '../models/ReturnIntegrationRequest';
 import {
+    type RewardUnlockRejection,
+    RewardUnlockRejectionFromJSON,
+    RewardUnlockRejectionToJSON,
+} from '../models/RewardUnlockRejection';
+import {
     type UpdateAudience,
     UpdateAudienceFromJSON,
     UpdateAudienceToJSON,
@@ -260,260 +275,1173 @@ import {
 } from '../models/UpdateCustomerSessionV2409Response';
 
 export interface ActivateLoyaltyPointsRequest {
+    /**
+     * The identifier for the loyalty program. You can get the ID with the [List loyalty
+     * programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms)
+     * endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * 
+     */
     activateLoyaltyPoints: ActivateLoyaltyPoints;
 }
 
 export interface BestPriorPriceOperationRequest {
+    /**
+     * 
+     */
     bestPriorPriceRequest: BestPriorPriceRequest;
 }
 
 export interface CreateAudienceV2Request {
+    /**
+     * 
+     */
     newAudience: NewAudience;
 }
 
 export interface CreateCouponReservationRequest {
+    /**
+     * The code of the coupon.
+     * 
+     * **Important:** The coupon code requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp)
+     * if it contains special characters.
+     * For example, you must encode `SUMMER25%OFF` as `SUMMER25%25OFF`.
+     * 
+     */
     couponValue: string;
+    /**
+     * 
+     */
     couponReservations: CouponReservations;
 }
 
 export interface CreateReferralRequest {
+    /**
+     * 
+     */
     newReferral: NewReferral;
 }
 
 export interface CreateReferralsForMultipleAdvocatesRequest {
+    /**
+     * 
+     */
     newReferralsForMultipleAdvocates: NewReferralsForMultipleAdvocates;
+    /**
+     * Possible values: `yes` or `no`.
+     * - `yes`: Increases the performance of the API call by returning a 204 response.
+     * - `no`: Returns a 200 response that contains the updated customer profiles.
+     * 
+     */
     silent?: string;
 }
 
 export interface DeleteAudienceMembershipsV2Request {
+    /**
+     * The ID of the audience.
+     */
     audienceId: number;
 }
 
 export interface DeleteAudienceV2Request {
+    /**
+     * The ID of the audience.
+     */
     audienceId: number;
 }
 
 export interface DeleteCouponReservationRequest {
+    /**
+     * The code of the coupon.
+     * 
+     * **Important:** The coupon code requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp)
+     * if it contains special characters.
+     * For example, you must encode `SUMMER25%OFF` as `SUMMER25%25OFF`.
+     * 
+     */
     couponValue: string;
+    /**
+     * 
+     */
     couponReservations: CouponReservations;
 }
 
 export interface DeleteCustomerDataRequest {
+    /**
+     * The integration ID of the customer profile. You can get the `integrationId` of a profile using:
+     * - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint.
+     * - The Management API with the [List application's customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+     * 
+     */
     integrationId: string;
 }
 
 export interface DeleteLoyaltyTransactionsFromLedgersRequest {
+    /**
+     * Identifier of the profile-based loyalty program. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * The integration ID of the customer profile. You can get the `integrationId` of a profile using:
+     * - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint.
+     * - The Management API with the [List application's customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+     * 
+     */
     integrationId: string;
+    /**
+     * 
+     */
     deleteLoyaltyTransactionsRequest: DeleteLoyaltyTransactionsRequest;
 }
 
 export interface GenerateLoyaltyCardRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * 
+     */
     generateLoyaltyCard: GenerateLoyaltyCard;
 }
 
 export interface GetCustomerAchievementHistoryRequest {
+    /**
+     * The integration identifier for this customer profile. Must be:
+     * - Unique within the deployment.
+     * - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.
+     * 
+     * Once set, you cannot update this identifier.
+     * 
+     */
     integrationId: string;
+    /**
+     * The achievement identifier.
+     * 
+     */
     achievementId: number;
+    /**
+     * Filter by customer progress status in the achievement.
+     * 
+     */
     progressStatus?: Array<GetCustomerAchievementHistoryProgressStatusEnum>;
+    /**
+     * Timestamp that filters the results to only contain achievements created on or after the start date.
+     */
     startDate?: Date;
+    /**
+     * Timestamp that filters the results to only contain achievements created before or on the end date.
+     */
     endDate?: Date;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
 }
 
 export interface GetCustomerAchievementsRequest {
+    /**
+     * The integration identifier for this customer profile. Must be:
+     * - Unique within the deployment.
+     * - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.
+     * 
+     * Once set, you cannot update this identifier.
+     * 
+     */
     integrationId: string;
+    /**
+     * Filter by one or more Campaign IDs, separated by a comma.
+     * 
+     * **Note:** If no campaigns are specified, data for all the campaigns in the Application is returned.
+     * 
+     */
     campaignIds?: Array<string>;
+    /**
+     * Filter by one or more Achievement IDs, separated by a comma.
+     * 
+     * **Note:** If no achievements are specified, data for all the achievements in the Application is returned.
+     * 
+     */
     achievementIds?: Array<string>;
+    /**
+     * Filter by status of the achievement.
+     * 
+     * **Note:** If the achievement status is not specified, only data for all active achievements in the Application is returned.
+     * 
+     */
     achievementStatus?: Array<GetCustomerAchievementsAchievementStatusEnum>;
+    /**
+     * Filter by customer progress status in the achievement.
+     * 
+     */
     currentProgressStatus?: Array<GetCustomerAchievementsCurrentProgressStatusEnum>;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
 }
 
 export interface GetCustomerInventoryRequest {
+    /**
+     * The integration ID of the customer profile. You can get the `integrationId` of a profile using:
+     * - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint.
+     * - The Management API with the [List application's customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+     * 
+     */
     integrationId: string;
+    /**
+     * Set to `true` to include customer profile information in the response.
+     */
     profile?: boolean;
+    /**
+     * Set to `true` to include referral information in the response.
+     */
     referrals?: boolean;
+    /**
+     * Set to `true` to include coupon information in the response.
+     */
     coupons?: boolean;
+    /**
+     * Set to `true` to include loyalty information in the response.
+     */
     loyalty?: boolean;
+    /**
+     * Set to `true` to include giveaways information in the response.
+     */
     giveaways?: boolean;
+    /**
+     * Set to `true` to include achievement information in the response.
+     */
     achievements?: boolean;
+    /**
+     * Set to `true` to include `unlocked` rewards that have not been `used` in the response.
+     */
+    unlockedRewards?: boolean;
 }
 
 export interface GetCustomerSessionRequest {
+    /**
+     * The `integration ID` of the customer session. You set this ID when you create a customer session.
+     * 
+     * You can see existing customer session integration IDs in the Campaign Manager's **Sessions** menu, or via the
+     * [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint.
+     * **Notes**: - There is no length limit for this ID. - It must be URL-encoded. For example, replace spaces with `%20`. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp).
+     * 
+     */
     customerSessionId: string;
 }
 
 export interface GetEventV3Request {
+    /**
+     * The unique ID of the advanced event.
+     */
     integrationId: string;
 }
 
 export interface GetLoyaltyBalancesRequest {
+    /**
+     * Identifier of the profile-based loyalty program. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * The integration identifier for this customer profile. Must be:
+     * - Unique within the deployment.
+     * - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.
+     * 
+     * Once set, you cannot update this identifier.
+     * 
+     */
     integrationId: string;
+    /**
+     * Used to return expired, active, and pending loyalty balances before this
+     * timestamp. You can enter any past, present, or future timestamp value.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     endDate?: Date;
+    /**
+     * The ID of the subledger by which we filter the data.
+     */
     subledgerId?: string;
+    /**
+     * Indicates whether tier information is included in the response.
+     * 
+     * When set to `true`, the response includes information about the current tier and the number of points required to move to next tier.
+     * 
+     */
     includeTiers?: boolean;
+    /**
+     * Indicates whether the customer's projected tier information is included in the response.
+     * 
+     * When set to `true`, the response includes information about the customer's active points and the name of the projected tier.
+     * 
+     * **Note** We recommend filtering by `subledgerId` for better performance.
+     * 
+     */
     includeProjectedTier?: boolean;
 }
 
 export interface GetLoyaltyCardBalancesRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Identifier of the loyalty card. You can get the identifier with
+     * the [List loyalty
+     * cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards)
+     * endpoint.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
     loyaltyCardId: string;
+    /**
+     * Used to return expired, active, and pending loyalty balances before this
+     * timestamp. You can enter any past, present, or future timestamp value.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     endDate?: Date;
+    /**
+     * Filter results by one or more subledger IDs. Must be exact match.
+     */
     subledgerId?: Array<string>;
 }
 
 export interface GetLoyaltyCardPointsRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Identifier of the loyalty card. You can get the identifier with
+     * the [List loyalty
+     * cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards)
+     * endpoint.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
     loyaltyCardId: string;
+    /**
+     * Filter points based on their status.
+     */
     status?: GetLoyaltyCardPointsStatusEnum;
+    /**
+     * Filter results by one or more subledger IDs. Must be exact match.
+     */
     subledgerId?: Array<string>;
+    /**
+     * Filter the results by a list of customer session IDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?customerSessionIDs=id1&customerSessionIDs=id2`.
+     * 
+     * The response contains only data associated with the specified sessions.
+     * 
+     */
     customerSessionIDs?: Array<string>;
+    /**
+     * Filter the results by a list of transaction UUIDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.
+     * 
+     * The response contains only data associated with the specified transactions.
+     * 
+     */
     transactionUUIDs?: Array<string>;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. You can enter one of the following values:
+     * 
+     * - `startDate`: Sorts the results by the start date of the points.
+     * - `expiryDate`: Sorts the results by the expiry date of the points.
+     * 
+     * By default, results are sorted in ascending order.
+     * To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You can only sort by one field at a time.
+     * 
+     */
     sort?: GetLoyaltyCardPointsSortEnum;
 }
 
 export interface GetLoyaltyCardTransactionsRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Identifier of the loyalty card. You can get the identifier with
+     * the [List loyalty
+     * cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards)
+     * endpoint.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
     loyaltyCardId: string;
+    /**
+     * Filter results by one or more subledger IDs. Must be exact match.
+     */
     subledgerId?: Array<string>;
+    /**
+     * Filter results by loyalty transaction type:
+     * - `manual`: Loyalty transaction that was done manually.
+     * - `session`: Loyalty transaction that resulted from a customer session.
+     * - `import`: Loyalty transaction that was imported from a CSV file.
+     * 
+     */
     loyaltyTransactionType?: GetLoyaltyCardTransactionsLoyaltyTransactionTypeEnum;
+    /**
+     * Date and time from which results are returned. Results are filtered by
+     * transaction creation date.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     startDate?: Date;
+    /**
+     * Date and time by which results are returned. Results are filtered by
+     * transaction creation date.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     endDate?: Date;
+    /**
+     * Filter the results by a list of customer session IDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?customerSessionIDs=id1&customerSessionIDs=id2`.
+     * 
+     * The response contains only data associated with the specified sessions.
+     * 
+     */
     customerSessionIDs?: Array<string>;
+    /**
+     * Filter the results by a list of transaction UUIDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.
+     * 
+     * The response contains only data associated with the specified transactions.
+     * 
+     */
     transactionUUIDs?: Array<string>;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * If `true`: Filters results to include only point transactions that have action-based activation and have not expired.
+     * 
+     * If `false`: Returns a `400` response.
+     * 
+     */
     awaitsActivation?: boolean;
 }
 
 export interface GetLoyaltyProgramProfilePointsRequest {
+    /**
+     * Identifier of the profile-based loyalty program. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * The integration identifier for this customer profile. Must be:
+     * - Unique within the deployment.
+     * - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.
+     * 
+     * Once set, you cannot update this identifier.
+     * 
+     */
     integrationId: string;
+    /**
+     * Filter points based on their status.
+     */
     status?: GetLoyaltyProgramProfilePointsStatusEnum;
+    /**
+     * Filter the results by a list of subledger IDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?subledgerId=id1&subledgerId=id2`.
+     * 
+     * The response contains only data associated with the specified subledgers.
+     * 
+     */
     subledgerId?: Array<string>;
+    /**
+     * Filter the results by a list of customer session IDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?customerSessionIDs=id1&customerSessionIDs=id2`.
+     * 
+     * The response contains only data associated with the specified sessions.
+     * 
+     */
     customerSessionIDs?: Array<string>;
+    /**
+     * Filter the results by a list of transaction UUIDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.
+     * 
+     * The response contains only data associated with the specified transactions.
+     * 
+     */
     transactionUUIDs?: Array<string>;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. You can enter one of the following values:
+     * 
+     * - `startDate`: Sorts the results by the start date of the points.
+     * - `expiryDate`: Sorts the results by the expiry date of the points.
+     * 
+     * By default, results are sorted in ascending order.
+     * To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You can only sort by one field at a time.
+     * 
+     */
     sort?: GetLoyaltyProgramProfilePointsSortEnum;
 }
 
 export interface GetLoyaltyProgramProfileTransactionsRequest {
+    /**
+     * Identifier of the profile-based loyalty program. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * The integration identifier for this customer profile. Must be:
+     * - Unique within the deployment.
+     * - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.
+     * 
+     * Once set, you cannot update this identifier.
+     * 
+     */
     integrationId: string;
+    /**
+     * Filter the results by a list of customer session IDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?customerSessionIDs=id1&customerSessionIDs=id2`.
+     * 
+     * The response contains only data associated with the specified sessions.
+     * 
+     */
     customerSessionIDs?: Array<string>;
+    /**
+     * Filter the results by a list of transaction UUIDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.
+     * 
+     * The response contains only data associated with the specified transactions.
+     * 
+     */
     transactionUUIDs?: Array<string>;
-    subledgerId?: string;
+    /**
+     * Filter the results by a list of subledger IDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?subledgerId=id1&subledgerId=id2`.
+     * 
+     * The response contains only data associated with the specified subledgers.
+     * 
+     */
+    subledgerId?: Array<string>;
+    /**
+     * Filter results by loyalty transaction type:
+     * - `manual`: Loyalty transaction that was done manually.
+     * - `session`: Loyalty transaction that resulted from a customer session.
+     * - `import`: Loyalty transaction that was imported from a CSV file.
+     * 
+     */
     loyaltyTransactionType?: GetLoyaltyProgramProfileTransactionsLoyaltyTransactionTypeEnum;
+    /**
+     * Date and time from which results are returned. Results are filtered by
+     * transaction creation date.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     startDate?: Date;
+    /**
+     * Date and time by which results are returned. Results are filtered by
+     * transaction creation date.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     endDate?: Date;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * If `true`: Filters results to include only point transactions that have action-based activation and have not expired.
+     * 
+     * If `false`: Returns a `400` response.
+     * 
+     */
     awaitsActivation?: boolean;
 }
 
 export interface GetReservedCustomersRequest {
+    /**
+     * The code of the coupon.
+     * 
+     * **Important:** The coupon code requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp)
+     * if it contains special characters.
+     * For example, you must encode `SUMMER25%OFF` as `SUMMER25%25OFF`.
+     * 
+     */
     couponValue: string;
 }
 
 export interface IntegrationGetAllCampaignsRequest {
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * Filter by one or more campaign IDs, separated by a comma.
+     * 
+     * **Note:** If no campaigns are specified, data for all the campaigns in
+     * the Application is returned.
+     * 
+     */
     campaignIds?: Array<string>;
+    /**
+     * Filter results to only include campaigns that start on or after 
+     * the specified timestamp.
+     * 
+     * **Note:**
+     * 
+     * - It must be an RFC3339 timestamp string.
+     * 
+     * - You can include a time component in your string, for example,
+     * `T23:59:59` to specify the end of the day. The time zone setting
+     * considered is `UTC`. If you do not include a time component, a default
+     * time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     startAfter?: Date;
+    /**
+     * Filter results to only include campaigns that start on or before 
+     * the specified timestamp.
+     * 
+     * **Note:**
+     * 
+     * - It must be an RFC3339 timestamp string.
+     * 
+     * - You can include a time component in your string, for example,
+     * `T23:59:59` to specify the end of the day. The time zone setting
+     * considered is `UTC`. If you do not include a time component, a default
+     * time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     startBefore?: Date;
+    /**
+     * Filter results to only include campaigns that end on or after 
+     * the specified timestamp.
+     * 
+     * **Note:**
+     * 
+     * - It must be an RFC3339 timestamp string.
+     * 
+     * - You can include a time component in your string, for example,
+     * `T23:59:59` to specify the end of the day. The time zone setting
+     * considered is `UTC`. If you do not include a time component, a default
+     * time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     endAfter?: Date;
+    /**
+     * Filter results to only include campaigns that end on or before 
+     * the specified timestamp.
+     * 
+     * **Note:**
+     * 
+     * - It must be an RFC3339 timestamp string.
+     * 
+     * - You can include a time component in your string, for example,
+     * `T23:59:59` to specify the end of the day. The time zone setting
+     * considered is `UTC`. If you do not include a time component, a default
+     * time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     endBefore?: Date;
+    /**
+     * Filter results to campaigns linked to the specified store ID.
+     */
     storeId?: number;
+    /**
+     * Filter results to campaigns linked to the specified audience ID.
+     */
     audienceId?: number;
 }
 
+export interface IntegrationRewardsCatalogRequest {
+    /**
+     * The number of items in the response.
+     */
+    pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
+    skip?: number;
+    /**
+     * Return only rewards whose points required is greater than or equal to this value.
+     */
+    pointsFrom?: number;
+    /**
+     * Return only rewards whose points required is less than or equal to this value.
+     */
+    pointsTo?: number;
+    /**
+     * Whether to include rewards that have no `pointsRequired`. These rewards are
+     * treated as free and available to all customers.
+     * 
+     */
+    includeFree?: boolean;
+    /**
+     * Return only rewards available in this loyalty program.
+     * 
+     */
+    loyaltyProgramId?: number;
+    /**
+     * Return only rewards available in this subledger. Must be combined with `loyaltyProgramId`.
+     * To specify the main ledger, provide an empty string ("").
+     * 
+     */
+    subledgerId?: string;
+    /**
+     * The integration ID of the customer profile whose loyalty balances to
+     * include in the response. Balances are returned only when
+     * `loyaltyProgramId` is also provided.
+     * 
+     * **Note:** `profileIntegrationId` and `loyaltyCardId` are mutually exclusive. Do not send both in the same request.
+     * 
+     */
+    profileIntegrationId?: string;
+    /**
+     * The identifier of the loyalty card whose loyalty balances to include
+     * in the response. Balances are returned only when `loyaltyProgramId`
+     * is also provided.
+     * 
+     * **Note:** `profileIntegrationId` and `loyaltyCardId` are mutually exclusive. Do not send both in the same request.
+     * 
+     */
+    loyaltyCardId?: string;
+}
+
 export interface JoinLoyaltyProgramRequest {
+    /**
+     * Identifier of the profile-based loyalty program. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * The integration ID of the customer profile. You can get the `integrationId` of a profile using:
+     * - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint.
+     * - The Management API with the [List application's customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+     * 
+     */
     integrationId: string;
 }
 
 export interface LinkLoyaltyCardToProfileRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Identifier of the loyalty card. You can get the identifier with
+     * the [List loyalty
+     * cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards)
+     * endpoint.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
     loyaltyCardId: string;
+    /**
+     * 
+     */
     loyaltyCardRegistration: LoyaltyCardRegistration;
 }
 
 export interface ReopenCustomerSessionRequest {
+    /**
+     * The `integration ID` of the customer session. You set this ID when you create a customer session.
+     * 
+     * You can see existing customer session integration IDs in the Campaign Manager's **Sessions** menu, or via the
+     * [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint.
+     * 
+     */
     customerSessionId: string;
+    /**
+     * A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times.
+     */
+    idempotencyKey?: string;
 }
 
 export interface ReturnCartItemsRequest {
+    /**
+     * The `integration ID` of the customer session. You set this ID when you create a customer session.
+     * 
+     * You can see existing customer session integration IDs in the Campaign Manager's **Sessions** menu, or via the
+     * [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint.
+     * 
+     */
     customerSessionId: string;
+    /**
+     * 
+     */
     returnIntegrationRequest: ReturnIntegrationRequest;
+    /**
+     * Indicates whether to persist the changes. Changes are ignored when `dry=true`.
+     * 
+     */
     dry?: boolean;
+    /**
+     * When set to `true`, reevaluates the updated session after items are returned. Only reevaluates campaigns where `reevaluateOnReturn` is set to `true` and which produced an effect when the session was closed.
+     * 
+     */
     runRuleEngine?: boolean;
+    /**
+     * A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times.
+     */
+    idempotencyKey?: string;
 }
 
 export interface SyncCatalogRequest {
+    /**
+     * The ID of the catalog. You can find the ID in the Campaign Manager in **Account** > **Tools** > **Cart item catalogs**.
+     */
     catalogId: number;
+    /**
+     * 
+     */
     catalogSyncRequest: CatalogSyncRequest;
 }
 
 export interface TrackEventV2Request {
+    /**
+     * 
+     */
     integrationEventV2Request: IntegrationEventV2Request;
+    /**
+     * Possible values: `yes` or `no`.
+     * - `yes`: Increases the performance of the API call by returning a 204 response.
+     * - `no`: Returns a 200 response that contains the updated customer profiles.
+     * 
+     */
     silent?: string;
+    /**
+     * Indicates whether to persist the changes. Changes are ignored when `dry=true`.
+     * 
+     */
     dry?: boolean;
+    /**
+     * Forces evaluation for all matching campaigns regardless of the [campaign evaluation mode](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation#setting-campaign-evaluation-mode). Requires `dry=true`.
+     * 
+     */
     forceCompleteEvaluation?: boolean;
+    /**
+     * A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times.
+     */
+    idempotencyKey?: string;
 }
 
 export interface TrackEventV3Request {
+    /**
+     * 
+     */
     integrationEventV3Request: IntegrationEventV3Request;
+    /**
+     * Possible values: `yes` or `no`.
+     * - `yes`: Increases the performance of the API call by returning a 204 response.
+     * - `no`: Returns a 200 response that contains the updated customer profiles.
+     * 
+     */
     silent?: string;
+    /**
+     * Indicates whether to persist the changes. Changes are ignored when `dry=true`.
+     * 
+     */
     dry?: boolean;
+    /**
+     * Forces evaluation for all matching campaigns regardless of the [campaign evaluation mode](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation#setting-campaign-evaluation-mode). Requires `dry=true`.
+     * 
+     */
     forceCompleteEvaluation?: boolean;
 }
 
 export interface UnlinkLoyaltyCardFromProfileRequest {
+    /**
+     * The identifier of the card-based loyalty program containing the loyalty card. You can get this ID using the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * The identifier of the loyalty card. You can get this ID using the [List loyalty
+     * cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards)
+     * endpoint.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
     loyaltyCardId: string;
+    /**
+     * 
+     */
     loyaltyCardRegistration: LoyaltyCardRegistration;
 }
 
+export interface UnlockRewardRequest {
+    /**
+     * The ID of the reward. You can get the ID with the [List rewards](#tag/Rewards/operation/listRewards) endpoint.
+     */
+    rewardId: number;
+    /**
+     * 
+     */
+    integrationUnlockRewardRequest: IntegrationUnlockRewardRequest;
+    /**
+     * When set to `true`, the rule evaluation is performed but no changes are persisted. Use this to preview the outcome of an unlocking.
+     */
+    dry?: boolean;
+}
+
 export interface UpdateAudienceCustomersAttributesRequest {
+    /**
+     * The ID of the audience.
+     */
     audienceId: number;
+    /**
+     * 
+     */
     body: object;
 }
 
 export interface UpdateAudienceV2Request {
+    /**
+     * The ID of the audience.
+     */
     audienceId: number;
+    /**
+     * 
+     */
     updateAudience: UpdateAudience;
 }
 
 export interface UpdateCustomerProfileAudiencesRequest {
+    /**
+     * 
+     */
     customerProfileAudienceRequest: CustomerProfileAudienceRequest;
 }
 
 export interface UpdateCustomerProfileV2Request {
+    /**
+     * The integration identifier for this customer profile. Must be:
+     * - Unique within the deployment.
+     * - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.
+     * 
+     * Once set, you cannot update this identifier.
+     * **Note**: It must be URL-encoded. For example, replace spaces with `%20`. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp).
+     * 
+     */
     integrationId: string;
+    /**
+     * 
+     */
     customerProfileIntegrationRequestV2: CustomerProfileIntegrationRequestV2;
+    /**
+     * Indicates whether to run the Rule Engine.
+     * 
+     * If `true`, the response includes:
+     * - The effects generated by the triggered campaigns are returned in the `effects` property.
+     * - The created coupons and referral objects.
+     * 
+     * If `false`:
+     * - The rules are not executed and the `effects` property is always empty.
+     * - The response time improves.
+     * - You cannot use `responseContent` in the body.
+     * 
+     */
     runRuleEngine?: boolean;
+    /**
+     * (Only works when `runRuleEngine=true`) Indicates whether to persist the changes. Changes are ignored when `dry=true`.
+     * 
+     * When set to `true`, you can use the `evaluableCampaignIds` body property to select specific campaigns to run.
+     * 
+     */
     dry?: boolean;
+    /**
+     * A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times.
+     */
+    idempotencyKey?: string;
 }
 
 export interface UpdateCustomerProfilesV2Request {
+    /**
+     * 
+     */
     multipleCustomerProfileIntegrationRequest: MultipleCustomerProfileIntegrationRequest;
+    /**
+     * Possible values: `yes` or `no`.
+     * - `yes`: Increases the performance of the API call by returning a 204 response.
+     * - `no`: Returns a 200 response that contains the updated customer profiles.
+     * 
+     */
     silent?: string;
+    /**
+     * A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times.
+     */
+    idempotencyKey?: string;
 }
 
 export interface UpdateCustomerSessionV2Request {
+    /**
+     * The `integration ID` of the customer session. You set this ID when you create a customer session.
+     * 
+     * You can see existing customer session integration IDs in the Campaign Manager's **Sessions** menu, or via the
+     * [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint.
+     * **Notes**: - There is no length limit for this ID. - It must be URL-encoded. For example, replace spaces with `%20`. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp).
+     * 
+     */
     customerSessionId: string;
+    /**
+     * 
+     */
     integrationRequest: IntegrationRequest;
+    /**
+     * Indicates whether to persist the changes. Changes are ignored when `dry=true`.
+     * 
+     * When set to `true`:
+     * - The endpoint considers **only** the payload that you pass when **closing** the session.
+     *   When you do not use the `dry` parameter, the endpoint behaves as a typical PUT endpoint. Each update builds upon the previous ones.
+     * - You can use the `evaluableCampaignIds` body property to select specific campaigns to run.
+     * 
+     * [See the docs](https://docs.talon.one/docs/dev/integration-api/dry-requests).
+     * 
+     */
     dry?: boolean;
+    /**
+     * A timestamp value of a future date that acts as a current date when
+     * included in the query.
+     * 
+     * Use this parameter, for example, to test campaigns that would be
+     * evaluated for this customer session in the future (say, [scheduled
+     * campaigns](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-schedule)).
+     * 
+     * > [!note] **Note**
+     * > - It must be an RFC3339 timestamp string.
+     * > - It can **only** be a date in the future.
+     * > - It can **only** be used if the `dry` parameter in the query is set to `true`.
+     * 
+     */
     now?: Date;
+    /**
+     * A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times.
+     */
+    idempotencyKey?: string;
 }
 
 /**
@@ -948,7 +1876,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete an audience.  > [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  > [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
+     * Delete an audience.  > [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  > [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience).  The audience isn\'t deleted if any experiment variant uses it. The response identifies each blocking experiment by its Campaign Manager path. 
      * Delete audience
      */
     async deleteAudienceV2Raw(requestParameters: DeleteAudienceV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -959,7 +1887,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete an audience.  > [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  > [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
+     * Delete an audience.  > [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  > [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience).  The audience isn\'t deleted if any experiment variant uses it. The response identifies each blocking experiment by its Campaign Manager path. 
      * Delete audience
      */
     async deleteAudienceV2(requestParameters: DeleteAudienceV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
@@ -1230,11 +2158,11 @@ export class IntegrationApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['startDate'] != null) {
-            queryParameters['startDate'] = (requestParameters['startDate'] as any).toISOString();
+            queryParameters['startDate'] = runtime.serializeDateTime(requestParameters['startDate'] as any);
         }
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+            queryParameters['endDate'] = runtime.serializeDateTime(requestParameters['endDate'] as any);
         }
 
         if (requestParameters['pageSize'] != null) {
@@ -1394,6 +2322,10 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         if (requestParameters['achievements'] != null) {
             queryParameters['achievements'] = requestParameters['achievements'];
+        }
+
+        if (requestParameters['unlockedRewards'] != null) {
+            queryParameters['unlockedRewards'] = requestParameters['unlockedRewards'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1557,7 +2489,7 @@ export class IntegrationApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+            queryParameters['endDate'] = runtime.serializeDateTime(requestParameters['endDate'] as any);
         }
 
         if (requestParameters['subledgerId'] != null) {
@@ -1632,7 +2564,7 @@ export class IntegrationApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+            queryParameters['endDate'] = runtime.serializeDateTime(requestParameters['endDate'] as any);
         }
 
         if (requestParameters['subledgerId'] != null) {
@@ -1794,11 +2726,11 @@ export class IntegrationApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['startDate'] != null) {
-            queryParameters['startDate'] = (requestParameters['startDate'] as any).toISOString();
+            queryParameters['startDate'] = runtime.serializeDateTime(requestParameters['startDate'] as any);
         }
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+            queryParameters['endDate'] = runtime.serializeDateTime(requestParameters['endDate'] as any);
         }
 
         if (requestParameters['customerSessionIDs'] != null) {
@@ -1984,11 +2916,11 @@ export class IntegrationApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['startDate'] != null) {
-            queryParameters['startDate'] = (requestParameters['startDate'] as any).toISOString();
+            queryParameters['startDate'] = runtime.serializeDateTime(requestParameters['startDate'] as any);
         }
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+            queryParameters['endDate'] = runtime.serializeDateTime(requestParameters['endDate'] as any);
         }
 
         if (requestParameters['pageSize'] != null) {
@@ -2112,19 +3044,19 @@ export class IntegrationApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['startAfter'] != null) {
-            queryParameters['startAfter'] = (requestParameters['startAfter'] as any).toISOString();
+            queryParameters['startAfter'] = runtime.serializeDateTime(requestParameters['startAfter'] as any);
         }
 
         if (requestParameters['startBefore'] != null) {
-            queryParameters['startBefore'] = (requestParameters['startBefore'] as any).toISOString();
+            queryParameters['startBefore'] = runtime.serializeDateTime(requestParameters['startBefore'] as any);
         }
 
         if (requestParameters['endAfter'] != null) {
-            queryParameters['endAfter'] = (requestParameters['endAfter'] as any).toISOString();
+            queryParameters['endAfter'] = runtime.serializeDateTime(requestParameters['endAfter'] as any);
         }
 
         if (requestParameters['endBefore'] != null) {
-            queryParameters['endBefore'] = (requestParameters['endBefore'] as any).toISOString();
+            queryParameters['endBefore'] = runtime.serializeDateTime(requestParameters['endBefore'] as any);
         }
 
         if (requestParameters['storeId'] != null) {
@@ -2169,6 +3101,85 @@ export class IntegrationApi extends runtime.BaseAPI {
      */
     async integrationGetAllCampaigns(requestParameters: IntegrationGetAllCampaignsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationGetAllCampaigns200Response> {
         const response = await this.integrationGetAllCampaignsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for integrationRewardsCatalog without sending the request
+     */
+    async integrationRewardsCatalogRequestOpts(requestParameters: IntegrationRewardsCatalogRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['pointsFrom'] != null) {
+            queryParameters['pointsFrom'] = requestParameters['pointsFrom'];
+        }
+
+        if (requestParameters['pointsTo'] != null) {
+            queryParameters['pointsTo'] = requestParameters['pointsTo'];
+        }
+
+        if (requestParameters['includeFree'] != null) {
+            queryParameters['includeFree'] = requestParameters['includeFree'];
+        }
+
+        if (requestParameters['loyaltyProgramId'] != null) {
+            queryParameters['loyaltyProgramId'] = requestParameters['loyaltyProgramId'];
+        }
+
+        if (requestParameters['subledgerId'] != null) {
+            queryParameters['subledgerId'] = requestParameters['subledgerId'];
+        }
+
+        if (requestParameters['profileIntegrationId'] != null) {
+            queryParameters['profileIntegrationId'] = requestParameters['profileIntegrationId'];
+        }
+
+        if (requestParameters['loyaltyCardId'] != null) {
+            queryParameters['loyaltyCardId'] = requestParameters['loyaltyCardId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/rewards/catalog`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Retrieve the rewards catalog for the Application. Returns a paginated list of rewards. 
+     * List rewards in the catalog
+     */
+    async integrationRewardsCatalogRaw(requestParameters: IntegrationRewardsCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationRewardsCatalog200Response>> {
+        const requestOptions = await this.integrationRewardsCatalogRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => IntegrationRewardsCatalog200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve the rewards catalog for the Application. Returns a paginated list of rewards. 
+     * List rewards in the catalog
+     */
+    async integrationRewardsCatalog(requestParameters: IntegrationRewardsCatalogRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationRewardsCatalog200Response> {
+        const response = await this.integrationRewardsCatalogRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2314,6 +3325,10 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
+
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
         }
@@ -2331,7 +3346,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint.  A reopen session is treated like a standard open session.  When reopening a session:  - The `talon_session_reopened` event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to `open`. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed   are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.  <details>   <summary><strong>Effects and budgets unimpacted by a session reopening</strong></summary>   <div>     <p>The following effects and budgets remain in the state they were in when the session closed:</p>     <ul>       <li>Add free item effect</li>       <li>Award giveaway</li>       <li>Coupon and referral creation</li>       <li>Coupon reservation</li>       <li>Custom effect</li>       <li>Update attribute value</li>       <li>Update cart item attribute value</li>     </ul>   </div> </details>  To see an example of a rollback, see the [Cancelling a session with campaign budgets](https://docs.talon.one/docs/dev/tutorials/rolling-back-effects) tutorial.  > [!note] If your order workflow requires you to create a new session > instead of reopening a session, use the > [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) > endpoint to cancel a closed session and create a new one.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+     * Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint.  A reopen session is treated like a standard open session.  When reopening a session:  - The `talon_session_reopened` event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to `open`. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed   are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.  <details>   <summary><strong>Effects and budgets unimpacted by a session reopening</strong></summary>   <div>     <p>The following effects and budgets remain in the state they were in when the session closed:</p>     <ul>       <li>Add free item effect</li>       <li>Award giveaway</li>       <li>Coupon and referral creation</li>       <li>Coupon reservation</li>       <li>Custom effect</li>       <li>Update attribute value</li>       <li>Update cart item attribute value</li>     </ul>   </div> </details>  To see an example of a rollback, see the [Cancelling a session with campaign budgets](https://docs.talon.one/docs/dev/tutorials/rolling-back-effects) tutorial.  > [!note] If your order workflow requires you to create a new session > instead of reopening a session, use the > [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) > endpoint to cancel a closed session and create a new one.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
      * Reopen customer session
      */
     async reopenCustomerSessionRaw(requestParameters: ReopenCustomerSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReopenSessionResponse>> {
@@ -2342,7 +3357,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint.  A reopen session is treated like a standard open session.  When reopening a session:  - The `talon_session_reopened` event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to `open`. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed   are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.  <details>   <summary><strong>Effects and budgets unimpacted by a session reopening</strong></summary>   <div>     <p>The following effects and budgets remain in the state they were in when the session closed:</p>     <ul>       <li>Add free item effect</li>       <li>Award giveaway</li>       <li>Coupon and referral creation</li>       <li>Coupon reservation</li>       <li>Custom effect</li>       <li>Update attribute value</li>       <li>Update cart item attribute value</li>     </ul>   </div> </details>  To see an example of a rollback, see the [Cancelling a session with campaign budgets](https://docs.talon.one/docs/dev/tutorials/rolling-back-effects) tutorial.  > [!note] If your order workflow requires you to create a new session > instead of reopening a session, use the > [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) > endpoint to cancel a closed session and create a new one.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+     * Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint.  A reopen session is treated like a standard open session.  When reopening a session:  - The `talon_session_reopened` event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to `open`. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed   are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.  <details>   <summary><strong>Effects and budgets unimpacted by a session reopening</strong></summary>   <div>     <p>The following effects and budgets remain in the state they were in when the session closed:</p>     <ul>       <li>Add free item effect</li>       <li>Award giveaway</li>       <li>Coupon and referral creation</li>       <li>Coupon reservation</li>       <li>Custom effect</li>       <li>Update attribute value</li>       <li>Update cart item attribute value</li>     </ul>   </div> </details>  To see an example of a rollback, see the [Cancelling a session with campaign budgets](https://docs.talon.one/docs/dev/tutorials/rolling-back-effects) tutorial.  > [!note] If your order workflow requires you to create a new session > instead of reopening a session, use the > [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) > endpoint to cancel a closed session and create a new one.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
      * Reopen customer session
      */
     async reopenCustomerSession(requestParameters: ReopenCustomerSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReopenSessionResponse> {
@@ -2382,6 +3397,10 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
+
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
         }
@@ -2400,7 +3419,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new return request for the specified cart items.  This endpoint automatically changes the session state from `closed` to `partially_returned`.  > [!note] This will roll back any effects associated with these cart items. > For more information, see [our documentation on session > states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) > and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+     * Create a new return request for the specified cart items.  This endpoint automatically changes the session state from `closed` to `partially_returned`.  > [!note] This will roll back any effects associated with these cart items. > For more information, see [our documentation on session > states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) > and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
      * Return cart items
      */
     async returnCartItemsRaw(requestParameters: ReturnCartItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationStateV2>> {
@@ -2411,7 +3430,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new return request for the specified cart items.  This endpoint automatically changes the session state from `closed` to `partially_returned`.  > [!note] This will roll back any effects associated with these cart items. > For more information, see [our documentation on session > states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) > and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+     * Create a new return request for the specified cart items.  This endpoint automatically changes the session state from `closed` to `partially_returned`.  > [!note] This will roll back any effects associated with these cart items. > For more information, see [our documentation on session > states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) > and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
      * Return cart items
      */
     async returnCartItems(requestParameters: ReturnCartItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationStateV2> {
@@ -2509,6 +3528,10 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
+
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
         }
@@ -2526,7 +3549,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Trigger a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events).  To use this endpoint:  1. [Create](https://docs.talon.one/docs/dev/concepts/entities/events#create-an-event) an event in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  > [!note] **Note** > - `profileId` is required even though the schema does not specify it. > - If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. > - We recommend sending requests sequentially. See [Manage parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#manage-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archive-a-campaign) are not considered in rule evaluation.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+     * Trigger a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events).  To use this endpoint:  1. [Create](https://docs.talon.one/docs/dev/concepts/entities/events#create-an-event) an event in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  > [!note] **Note** > - `profileId` is required even though the schema does not specify it. > - If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. > - We recommend sending requests sequentially. See [Manage parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#manage-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archive-a-campaign) are not considered in rule evaluation.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
      * Track event
      */
     async trackEventV2Raw(requestParameters: TrackEventV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationEventV2Response>> {
@@ -2537,7 +3560,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Trigger a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events).  To use this endpoint:  1. [Create](https://docs.talon.one/docs/dev/concepts/entities/events#create-an-event) an event in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  > [!note] **Note** > - `profileId` is required even though the schema does not specify it. > - If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. > - We recommend sending requests sequentially. See [Manage parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#manage-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archive-a-campaign) are not considered in rule evaluation.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+     * Trigger a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events).  To use this endpoint:  1. [Create](https://docs.talon.one/docs/dev/concepts/entities/events#create-an-event) an event in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  > [!note] **Note** > - `profileId` is required even though the schema does not specify it. > - If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. > - We recommend sending requests sequentially. See [Manage parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#manage-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archive-a-campaign) are not considered in rule evaluation.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
      * Track event
      */
     async trackEventV2(requestParameters: TrackEventV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationEventV2Response> {
@@ -2676,6 +3699,71 @@ export class IntegrationApi extends runtime.BaseAPI {
      */
     async unlinkLoyaltyCardFromProfile(requestParameters: UnlinkLoyaltyCardFromProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoyaltyCard> {
         const response = await this.unlinkLoyaltyCardFromProfileRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for unlockReward without sending the request
+     */
+    async unlockRewardRequestOpts(requestParameters: UnlockRewardRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['rewardId'] == null) {
+            throw new runtime.RequiredError(
+                'rewardId',
+                'Required parameter "rewardId" was null or undefined when calling unlockReward().'
+            );
+        }
+
+        if (requestParameters['integrationUnlockRewardRequest'] == null) {
+            throw new runtime.RequiredError(
+                'integrationUnlockRewardRequest',
+                'Required parameter "integrationUnlockRewardRequest" was null or undefined when calling unlockReward().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['dry'] != null) {
+            queryParameters['dry'] = requestParameters['dry'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/rewards/{rewardId}/unlock`;
+        urlPath = urlPath.replace('{rewardId}', encodeURIComponent(String(requestParameters['rewardId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: IntegrationUnlockRewardRequestToJSON(requestParameters['integrationUnlockRewardRequest']),
+        };
+    }
+
+    /**
+     * Unlock a reward for a customer. If the reward has `pointsRequired` configured, the corresponding loyalty points are deducted from the customer\'s balance.  To unlock a reward with the points of a loyalty card, provide the card in `cardIdentifier`. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
+     * Unlock a reward
+     */
+    async unlockRewardRaw(requestParameters: UnlockRewardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationStateV2>> {
+        const requestOptions = await this.unlockRewardRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => IntegrationStateV2FromJSON(jsonValue));
+    }
+
+    /**
+     * Unlock a reward for a customer. If the reward has `pointsRequired` configured, the corresponding loyalty points are deducted from the customer\'s balance.  To unlock a reward with the points of a loyalty card, provide the card in `cardIdentifier`. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
+     * Unlock a reward
+     */
+    async unlockReward(requestParameters: UnlockRewardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationStateV2> {
+        const response = await this.unlockRewardRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2884,6 +3972,10 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
+
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
         }
@@ -2902,7 +3994,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  > [!note] **Note** > - Updating a customer profile returns a response with the requested integration state. > - The [Has joined an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) and >   [Has left an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) conditions >   only trigger through this endpoint. > - You can use the `responseContent` property to save yourself extra API calls. For example, you can get >   the customer profile details directly without extra requests. > - We recommend sending requests sequentially. >   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when `runRuleEngine` is `true`.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+     * Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  > [!note] **Note** > - Updating a customer profile returns a response with the requested integration state. > - The [Has joined an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) and >   [Has left an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) conditions >   only trigger through this endpoint. > - You can use the `responseContent` property to save yourself extra API calls. For example, you can get >   the customer profile details directly without extra requests. > - We recommend sending requests sequentially. >   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when `runRuleEngine` is `true`.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
      * Update customer profile
      */
     async updateCustomerProfileV2Raw(requestParameters: UpdateCustomerProfileV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerProfileIntegrationResponseV2>> {
@@ -2913,7 +4005,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  > [!note] **Note** > - Updating a customer profile returns a response with the requested integration state. > - The [Has joined an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) and >   [Has left an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) conditions >   only trigger through this endpoint. > - You can use the `responseContent` property to save yourself extra API calls. For example, you can get >   the customer profile details directly without extra requests. > - We recommend sending requests sequentially. >   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when `runRuleEngine` is `true`.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+     * Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  > [!note] **Note** > - Updating a customer profile returns a response with the requested integration state. > - The [Has joined an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) and >   [Has left an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) conditions >   only trigger through this endpoint. > - You can use the `responseContent` property to save yourself extra API calls. For example, you can get >   the customer profile details directly without extra requests. > - We recommend sending requests sequentially. >   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when `runRuleEngine` is `true`.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
      * Update customer profile
      */
     async updateCustomerProfileV2(requestParameters: UpdateCustomerProfileV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerProfileIntegrationResponseV2> {
@@ -2942,6 +4034,10 @@ export class IntegrationApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
+
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
         }
@@ -2959,7 +4055,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The `integrationId` must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  > [!note] This endpoint does not trigger the Rule Engine. > To trigger the Rule Engine for customer profile updates, > use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+     * Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The `integrationId` must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  > [!note] This endpoint does not trigger the Rule Engine. > To trigger the Rule Engine for customer profile updates, > use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
      * Update multiple customer profiles
      */
     async updateCustomerProfilesV2Raw(requestParameters: UpdateCustomerProfilesV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MultipleCustomerProfileIntegrationResponseV2>> {
@@ -2970,7 +4066,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The `integrationId` must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  > [!note] This endpoint does not trigger the Rule Engine. > To trigger the Rule Engine for customer profile updates, > use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+     * Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The `integrationId` must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  > [!note] This endpoint does not trigger the Rule Engine. > To trigger the Rule Engine for customer profile updates, > use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
      * Update multiple customer profiles
      */
     async updateCustomerProfilesV2(requestParameters: UpdateCustomerProfilesV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MultipleCustomerProfileIntegrationResponseV2> {
@@ -3003,12 +4099,16 @@ export class IntegrationApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['now'] != null) {
-            queryParameters['now'] = (requestParameters['now'] as any).toISOString();
+            queryParameters['now'] = runtime.serializeDateTime(requestParameters['now'] as any);
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
@@ -3028,7 +4128,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer\'s cart with Talon.One.  > [!note] **Note** > - The currency for the session and the cart items in it is the currency set for the Application linked to this session. > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the `state` parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the `profileId` parameter in the request body to a customer profile\'s `integrationId`.  - While you can create an anonymous session with `profileId=\"\"`, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  > [!note] **Note** > - If the specified profile does not exist, an empty profile is **created automatically**. >   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). > - Updating a customer session returns a response with the new integration state. Use the `responseContent` property to save yourself extra API calls. >   For example, you can get the customer profile details directly without extra requests. > - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one). 
+     * Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer\'s cart with Talon.One.  > [!note] **Note** > - The currency for the session and the cart items in it is the currency set for the Application linked to this session. > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the `state` parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the `profileId` parameter in the request body to a customer profile\'s `integrationId`.  - While you can create an anonymous session with `profileId=\"\"`, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  > [!note] **Note** > - If the specified profile does not exist, an empty profile is **created automatically**. >   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). > - Updating a customer session returns a response with the new integration state. Use the `responseContent` property to save yourself extra API calls. >   For example, you can get the customer profile details directly without extra requests. > - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one).  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
      * Update customer session
      */
     async updateCustomerSessionV2Raw(requestParameters: UpdateCustomerSessionV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationStateV2>> {
@@ -3039,7 +4139,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer\'s cart with Talon.One.  > [!note] **Note** > - The currency for the session and the cart items in it is the currency set for the Application linked to this session. > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the `state` parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the `profileId` parameter in the request body to a customer profile\'s `integrationId`.  - While you can create an anonymous session with `profileId=\"\"`, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  > [!note] **Note** > - If the specified profile does not exist, an empty profile is **created automatically**. >   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). > - Updating a customer session returns a response with the new integration state. Use the `responseContent` property to save yourself extra API calls. >   For example, you can get the customer profile details directly without extra requests. > - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one). 
+     * Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer\'s cart with Talon.One.  > [!note] **Note** > - The currency for the session and the cart items in it is the currency set for the Application linked to this session. > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the `state` parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the `profileId` parameter in the request body to a customer profile\'s `integrationId`.  - While you can create an anonymous session with `profileId=\"\"`, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  > [!note] **Note** > - If the specified profile does not exist, an empty profile is **created automatically**. >   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). > - Updating a customer session returns a response with the new integration state. Use the `responseContent` property to save yourself extra API calls. >   For example, you can get the customer profile details directly without extra requests. > - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one).  > [!note] To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
      * Update customer session
      */
     async updateCustomerSessionV2(requestParameters: UpdateCustomerSessionV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationStateV2> {
@@ -3055,7 +4155,7 @@ export class IntegrationApi extends runtime.BaseAPI {
 export const GetCustomerAchievementHistoryProgressStatusEnum = {
     Inprogress: 'inprogress',
     Completed: 'completed',
-    Expired: 'expired'
+    Expired: 'expired',
 } as const;
 export type GetCustomerAchievementHistoryProgressStatusEnum = typeof GetCustomerAchievementHistoryProgressStatusEnum[keyof typeof GetCustomerAchievementHistoryProgressStatusEnum];
 /**
@@ -3063,7 +4163,7 @@ export type GetCustomerAchievementHistoryProgressStatusEnum = typeof GetCustomer
  */
 export const GetCustomerAchievementsAchievementStatusEnum = {
     Active: 'active',
-    Scheduled: 'scheduled'
+    Scheduled: 'scheduled',
 } as const;
 export type GetCustomerAchievementsAchievementStatusEnum = typeof GetCustomerAchievementsAchievementStatusEnum[keyof typeof GetCustomerAchievementsAchievementStatusEnum];
 /**
@@ -3072,7 +4172,7 @@ export type GetCustomerAchievementsAchievementStatusEnum = typeof GetCustomerAch
 export const GetCustomerAchievementsCurrentProgressStatusEnum = {
     Inprogress: 'inprogress',
     Completed: 'completed',
-    NotStarted: 'not_started'
+    NotStarted: 'not_started',
 } as const;
 export type GetCustomerAchievementsCurrentProgressStatusEnum = typeof GetCustomerAchievementsCurrentProgressStatusEnum[keyof typeof GetCustomerAchievementsCurrentProgressStatusEnum];
 /**
@@ -3081,7 +4181,7 @@ export type GetCustomerAchievementsCurrentProgressStatusEnum = typeof GetCustome
 export const GetLoyaltyCardPointsStatusEnum = {
     Active: 'active',
     Pending: 'pending',
-    Expired: 'expired'
+    Expired: 'expired',
 } as const;
 export type GetLoyaltyCardPointsStatusEnum = typeof GetLoyaltyCardPointsStatusEnum[keyof typeof GetLoyaltyCardPointsStatusEnum];
 /**
@@ -3089,7 +4189,7 @@ export type GetLoyaltyCardPointsStatusEnum = typeof GetLoyaltyCardPointsStatusEn
  */
 export const GetLoyaltyCardPointsSortEnum = {
     StartDate: 'startDate',
-    ExpiryDate: 'expiryDate'
+    ExpiryDate: 'expiryDate',
 } as const;
 export type GetLoyaltyCardPointsSortEnum = typeof GetLoyaltyCardPointsSortEnum[keyof typeof GetLoyaltyCardPointsSortEnum];
 /**
@@ -3098,7 +4198,7 @@ export type GetLoyaltyCardPointsSortEnum = typeof GetLoyaltyCardPointsSortEnum[k
 export const GetLoyaltyCardTransactionsLoyaltyTransactionTypeEnum = {
     Manual: 'manual',
     Session: 'session',
-    Import: 'import'
+    Import: 'import',
 } as const;
 export type GetLoyaltyCardTransactionsLoyaltyTransactionTypeEnum = typeof GetLoyaltyCardTransactionsLoyaltyTransactionTypeEnum[keyof typeof GetLoyaltyCardTransactionsLoyaltyTransactionTypeEnum];
 /**
@@ -3107,7 +4207,7 @@ export type GetLoyaltyCardTransactionsLoyaltyTransactionTypeEnum = typeof GetLoy
 export const GetLoyaltyProgramProfilePointsStatusEnum = {
     Active: 'active',
     Pending: 'pending',
-    Expired: 'expired'
+    Expired: 'expired',
 } as const;
 export type GetLoyaltyProgramProfilePointsStatusEnum = typeof GetLoyaltyProgramProfilePointsStatusEnum[keyof typeof GetLoyaltyProgramProfilePointsStatusEnum];
 /**
@@ -3115,7 +4215,7 @@ export type GetLoyaltyProgramProfilePointsStatusEnum = typeof GetLoyaltyProgramP
  */
 export const GetLoyaltyProgramProfilePointsSortEnum = {
     StartDate: 'startDate',
-    ExpiryDate: 'expiryDate'
+    ExpiryDate: 'expiryDate',
 } as const;
 export type GetLoyaltyProgramProfilePointsSortEnum = typeof GetLoyaltyProgramProfilePointsSortEnum[keyof typeof GetLoyaltyProgramProfilePointsSortEnum];
 /**
@@ -3124,6 +4224,6 @@ export type GetLoyaltyProgramProfilePointsSortEnum = typeof GetLoyaltyProgramPro
 export const GetLoyaltyProgramProfileTransactionsLoyaltyTransactionTypeEnum = {
     Manual: 'manual',
     Session: 'session',
-    Import: 'import'
+    Import: 'import',
 } as const;
 export type GetLoyaltyProgramProfileTransactionsLoyaltyTransactionTypeEnum = typeof GetLoyaltyProgramProfileTransactionsLoyaltyTransactionTypeEnum[keyof typeof GetLoyaltyProgramProfileTransactionsLoyaltyTransactionTypeEnum];

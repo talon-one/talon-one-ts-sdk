@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface SamlConnectionMetadata {
     /**
      * ID of the SAML service.
-     * @type {string}
-     * @memberof SamlConnectionMetadata
      */
     name: string;
     /**
      * Determines if this SAML connection active.
-     * @type {boolean}
-     * @memberof SamlConnectionMetadata
      */
     enabled: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof SamlConnectionMetadata
      */
     accountId: number;
     /**
      * Identity Provider metadata XML document.
-     * @type {string}
-     * @memberof SamlConnectionMetadata
      */
     metadataDocument: string;
 }

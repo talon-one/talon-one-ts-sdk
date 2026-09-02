@@ -29,44 +29,30 @@ import {
 export interface SelectSelectorStep {
     /**
      * A step discriminator of type `select`.
-     * @type {SelectSelectorStepTypeEnum}
-     * @memberof SelectSelectorStep
      */
     type: SelectSelectorStepTypeEnum;
     /**
      * The selection operator applied to the items.
-     * @type {SelectSelectorStepOperatorEnum}
-     * @memberof SelectSelectorStep
      */
     operator: SelectSelectorStepOperatorEnum;
     /**
      * 
-     * @type {SelectSelectorStepFrom}
-     * @memberof SelectSelectorStep
      */
     from?: SelectSelectorStepFrom;
     /**
      * The end index for the `between` operator. The item at this index is not included.
-     * @type {number}
-     * @memberof SelectSelectorStep
      */
     to?: number;
     /**
      * The maximum number of items to select for the `many` operator.
-     * @type {number}
-     * @memberof SelectSelectorStep
      */
     count?: number;
     /**
      * The exact position of the item to select for the `one` operator.
-     * @type {number}
-     * @memberof SelectSelectorStep
      */
     index?: number;
     /**
      * Indicates if the step returns fewer items than requested when the source list is shorter than the range needs. Always `true` for the `many` and `between` operators; not present for `one`, which fails instead of returning a partial result.
-     * @type {boolean}
-     * @memberof SelectSelectorStep
      */
     partial?: boolean;
 }
@@ -76,7 +62,7 @@ export interface SelectSelectorStep {
  * @export
  */
 export const SelectSelectorStepTypeEnum = {
-    Select: 'select'
+    Select: 'select',
 } as const;
 export type SelectSelectorStepTypeEnum = typeof SelectSelectorStepTypeEnum[keyof typeof SelectSelectorStepTypeEnum];
 
@@ -86,7 +72,7 @@ export type SelectSelectorStepTypeEnum = typeof SelectSelectorStepTypeEnum[keyof
 export const SelectSelectorStepOperatorEnum = {
     Many: 'many',
     Between: 'between',
-    One: 'one'
+    One: 'one',
 } as const;
 export type SelectSelectorStepOperatorEnum = typeof SelectSelectorStepOperatorEnum[keyof typeof SelectSelectorStepOperatorEnum];
 

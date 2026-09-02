@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface UpdateExperimentVariantName {
     /**
      * The name of the variant.
-     * @type {string}
-     * @memberof UpdateExperimentVariantName
      */
     name: string;
 }

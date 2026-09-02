@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface ExperimentVariantAllocation {
     /**
      * The ID of the experiment.
-     * @type {number}
-     * @memberof ExperimentVariantAllocation
      */
     experimentID: number;
     /**
      * The ID of the variant to be allocated.
-     * @type {number}
-     * @memberof ExperimentVariantAllocation
      */
     variantID: number;
 }

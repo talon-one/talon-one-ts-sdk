@@ -21,92 +21,62 @@ import { mapValues } from '../runtime';
 export interface LimitCounter {
     /**
      * The ID of the campaign that owns this entity.
-     * @type {number}
-     * @memberof LimitCounter
      */
     campaignId: number;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof LimitCounter
      */
     applicationId: number;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof LimitCounter
      */
     accountId: number;
     /**
      * Unique ID for this entity.
-     * @type {number}
-     * @memberof LimitCounter
      */
     id: number;
     /**
      * The limitable action of the limit counter.
-     * @type {string}
-     * @memberof LimitCounter
      */
     action: string;
     /**
      * The profile ID for which this limit counter is used.
-     * @type {number}
-     * @memberof LimitCounter
      */
     profileId?: number;
     /**
      * The profile integration ID for which this limit counter is used.
-     * @type {string}
-     * @memberof LimitCounter
      */
     profileIntegrationId?: string;
     /**
      * The internal coupon ID for which this limit counter is used.
-     * @type {number}
-     * @memberof LimitCounter
      */
     couponId?: number;
     /**
      * The coupon value for which this limit counter is used.
-     * @type {string}
-     * @memberof LimitCounter
      */
     couponValue?: string;
     /**
      * The referral ID for which this limit counter is used.
-     * @type {number}
-     * @memberof LimitCounter
      */
     referralId?: number;
     /**
      * The referral value for which this limit counter is used.
-     * @type {string}
-     * @memberof LimitCounter
      */
     referralValue?: string;
     /**
      * The arbitrary identifier for which this limit counter is used.
-     * @type {string}
-     * @memberof LimitCounter
      */
     identifier?: string;
     /**
      * The time period for which this limit counter is used.
-     * @type {string}
-     * @memberof LimitCounter
      */
     period?: string;
     /**
      * The highest possible value for this limit counter.
-     * @type {number}
-     * @memberof LimitCounter
      */
     limit: number;
     /**
      * The current value for this limit counter.
-     * @type {number}
-     * @memberof LimitCounter
      */
     counter: number;
 }

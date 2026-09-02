@@ -29,14 +29,10 @@ import {
 export interface GetCampaignTemplates200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetCampaignTemplates200Response
      */
     hasMore: boolean;
     /**
      * 
-     * @type {Array<CampaignTemplate>}
-     * @memberof GetCampaignTemplates200Response
      */
     data: Array<CampaignTemplate>;
 }

@@ -29,26 +29,18 @@ import {
 export interface CatalogRule {
     /**
      * A short description of the rule.
-     * @type {string}
-     * @memberof CatalogRule
      */
     title: string;
     /**
      * An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array.
-     * @type {Array<Binding>}
-     * @memberof CatalogRule
      */
     bindings?: Array<Binding>;
     /**
      * A Talang expression that will be evaluated in the context of the given event.
-     * @type {Array<any>}
-     * @memberof CatalogRule
      */
     condition: Array<any>;
     /**
      * An array of effectful Talang expressions in arrays that will be evaluated when a rule matches.
-     * @type {Array<object>}
-     * @memberof CatalogRule
      */
     effects: Array<object>;
 }

@@ -12,7 +12,7 @@ Name | Type
 `operator` | string
 `action` | string
 `value` | number
-`onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
+`onFailure` | [Array&lt;Block&gt;](Block.md)
 
 ## Example
 

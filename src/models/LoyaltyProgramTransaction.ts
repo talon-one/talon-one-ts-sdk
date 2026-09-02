@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LoyaltyLedgerEntryFlags } from './LoyaltyLedgerEntryFlags';
 import {
     LoyaltyLedgerEntryFlagsFromJSON,
@@ -29,32 +29,22 @@ import {
 export interface LoyaltyProgramTransaction {
     /**
      * ID of the loyalty ledger transaction.
-     * @type {number}
-     * @memberof LoyaltyProgramTransaction
      */
     id: number;
     /**
      * Unique identifier of the transaction in the UUID format.
-     * @type {string}
-     * @memberof LoyaltyProgramTransaction
      */
     transactionUUID: string;
     /**
      * ID of the loyalty program.
-     * @type {number}
-     * @memberof LoyaltyProgramTransaction
      */
     programId: number;
     /**
      * ID of the campaign.
-     * @type {number}
-     * @memberof LoyaltyProgramTransaction
      */
     campaignId?: number;
     /**
      * Date and time the loyalty transaction occurred.
-     * @type {Date}
-     * @memberof LoyaltyProgramTransaction
      */
     created: Date;
     /**
@@ -62,20 +52,14 @@ export interface LoyaltyProgramTransaction {
      *   - `addition`: Signifies added points.
      *   - `subtraction`: Signifies deducted points.
      * 
-     * @type {LoyaltyProgramTransactionTypeEnum}
-     * @memberof LoyaltyProgramTransaction
      */
     type: LoyaltyProgramTransactionTypeEnum;
     /**
      * Amount of loyalty points added or deducted in the transaction.
-     * @type {number}
-     * @memberof LoyaltyProgramTransaction
      */
     amount: number;
     /**
      * Name or reason for the loyalty ledger transaction.
-     * @type {string}
-     * @memberof LoyaltyProgramTransaction
      */
     name: string;
     /**
@@ -84,8 +68,6 @@ export interface LoyaltyProgramTransaction {
      *   - `on_action`: Points become active based on the customer's action.
      *   - a timestamp value: Points become active at a given date and time.
      * 
-     * @type {string}
-     * @memberof LoyaltyProgramTransaction
      */
     startDate: string;
     /**
@@ -93,69 +75,47 @@ export interface LoyaltyProgramTransaction {
      *   - `unlimited`: Points have no expiration date.
      *   - a timestamp value: Points expire at a given date and time.
      * 
-     * @type {string}
-     * @memberof LoyaltyProgramTransaction
      */
     expiryDate: string;
     /**
      * Customer profile integration ID used in the loyalty program.
-     * @type {string}
-     * @memberof LoyaltyProgramTransaction
      */
     customerProfileId?: string;
     /**
      * The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`.
      * 
-     * @type {string}
-     * @memberof LoyaltyProgramTransaction
      */
     cardIdentifier?: string;
     /**
      * ID of the subledger.
-     * @type {string}
-     * @memberof LoyaltyProgramTransaction
      */
     subledgerId: string;
     /**
      * ID of the customer session where the transaction occurred.
-     * @type {string}
-     * @memberof LoyaltyProgramTransaction
      */
     customerSessionId?: string;
     /**
      * ID of the import where the transaction occurred.
-     * @type {number}
-     * @memberof LoyaltyProgramTransaction
      */
     importId?: number;
     /**
      * ID of the user who manually added or deducted points. Applies only to manual transactions.
-     * @type {number}
-     * @memberof LoyaltyProgramTransaction
      */
     userId?: number;
     /**
      * The email of the Campaign Manager account that manually added or deducted points. Applies only to manual transactions.
-     * @type {string}
-     * @memberof LoyaltyProgramTransaction
      */
     userEmail?: string;
     /**
      * ID of the ruleset containing the rule that triggered the effect. Applies only for transactions that resulted from a customer session.
-     * @type {number}
-     * @memberof LoyaltyProgramTransaction
      */
     rulesetId?: number;
     /**
      * Name of the rule that triggered the effect. Applies only for transactions that resulted from a customer session.
-     * @type {string}
-     * @memberof LoyaltyProgramTransaction
      */
     ruleName?: string;
     /**
      * The flags of the transaction, when applicable. The `createsNegativeBalance`  flag indicates whether the transaction results in a negative balance.
-     * @type {LoyaltyLedgerEntryFlags}
-     * @memberof LoyaltyProgramTransaction
      */
     flags?: LoyaltyLedgerEntryFlags;
     /**
@@ -163,8 +123,6 @@ export interface LoyaltyProgramTransaction {
      * 
      * **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
      * 
-     * @type {string}
-     * @memberof LoyaltyProgramTransaction
      */
     validityDuration?: string;
 }
@@ -175,7 +133,7 @@ export interface LoyaltyProgramTransaction {
  */
 export const LoyaltyProgramTransactionTypeEnum = {
     Addition: 'addition',
-    Subtraction: 'subtraction'
+    Subtraction: 'subtraction',
 } as const;
 export type LoyaltyProgramTransactionTypeEnum = typeof LoyaltyProgramTransactionTypeEnum[keyof typeof LoyaltyProgramTransactionTypeEnum];
 
@@ -212,7 +170,7 @@ export function LoyaltyProgramTransactionFromJSONTyped(json: any, ignoreDiscrimi
         'transactionUUID': json['transactionUUID'],
         'programId': json['programId'],
         'campaignId': json['campaignId'] == null ? undefined : json['campaignId'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'type': json['type'],
         'amount': json['amount'],
         'name': json['name'],
@@ -247,7 +205,7 @@ export function LoyaltyProgramTransactionToJSONTyped(value?: LoyaltyProgramTrans
         'transactionUUID': value['transactionUUID'],
         'programId': value['programId'],
         'campaignId': value['campaignId'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'type': value['type'],
         'amount': value['amount'],
         'name': value['name'],

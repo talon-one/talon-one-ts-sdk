@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface LoyaltyMembership {
     /**
      * The moment in which the loyalty program was joined.
-     * @type {Date}
-     * @memberof LoyaltyMembership
      */
     joined?: Date;
     /**
      * The ID of the loyalty program belonging to this entity.
-     * @type {number}
-     * @memberof LoyaltyMembership
      */
     loyaltyProgramId: number;
 }
@@ -52,7 +48,7 @@ export function LoyaltyMembershipFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'joined': json['joined'] == null ? undefined : (new Date(json['joined'])),
+        'joined': json['joined'] == null ? undefined : (parseDateTime(json['joined'])),
         'loyaltyProgramId': json['loyaltyProgramId'],
     };
 }
@@ -68,7 +64,7 @@ export function LoyaltyMembershipToJSONTyped(value?: LoyaltyMembership | null, i
 
     return {
         
-        'joined': value['joined'] == null ? value['joined'] : value['joined'].toISOString(),
+        'joined': value['joined'] == null ? value['joined'] : serializeDateTime(value['joined']),
         'loyaltyProgramId': value['loyaltyProgramId'],
     };
 }

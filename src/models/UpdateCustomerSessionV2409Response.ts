@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface UpdateCustomerSessionV2409Response {
     /**
      * 
-     * @type {string}
-     * @memberof UpdateCustomerSessionV2409Response
      */
     message?: string;
     /**
      * 
-     * @type {Array<any>}
-     * @memberof UpdateCustomerSessionV2409Response
      */
     errors?: Array<any>;
     /**
      * 
-     * @type {number}
-     * @memberof UpdateCustomerSessionV2409Response
      */
     statusCode?: number;
 }

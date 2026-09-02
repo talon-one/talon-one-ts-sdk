@@ -43,20 +43,14 @@ import {
 export interface RoleV2Permissions {
     /**
      * List of grouped logical operations referenced by roles.
-     * @type {Array<RoleV2PermissionSet>}
-     * @memberof RoleV2Permissions
      */
     permissionSets?: Array<RoleV2PermissionSet>;
     /**
      * 
-     * @type {RoleV2RolesGroup}
-     * @memberof RoleV2Permissions
      */
     roles?: RoleV2RolesGroup;
     /**
      * Support user limits for actions that require admin approval within the given application.
-     * @type {Array<RolesV2Thresholds>}
-     * @memberof RoleV2Permissions
      */
     thresholds?: Array<RolesV2Thresholds>;
 }

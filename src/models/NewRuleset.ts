@@ -36,32 +36,22 @@ import {
 export interface NewRuleset {
     /**
      * Set of rules to apply.
-     * @type {Array<Rule>}
-     * @memberof NewRuleset
      */
     rules: Array<Rule>;
     /**
      * Set of rules to apply for strikethrough.
-     * @type {Array<Rule>}
-     * @memberof NewRuleset
      */
     strikethroughRules?: Array<Rule>;
     /**
      * An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array.
-     * @type {Array<Binding>}
-     * @memberof NewRuleset
      */
     bindings: Array<Binding>;
     /**
      * The version of the rulebuilder used to create this ruleset.
-     * @type {string}
-     * @memberof NewRuleset
      */
     rbVersion?: string;
     /**
      * Indicates whether this created ruleset should be activated for the campaign that owns it.
-     * @type {boolean}
-     * @memberof NewRuleset
      */
     activate?: boolean;
 }

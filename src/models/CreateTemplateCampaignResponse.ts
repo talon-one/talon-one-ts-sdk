@@ -43,20 +43,14 @@ import {
 export interface CreateTemplateCampaignResponse {
     /**
      * 
-     * @type {Campaign}
-     * @memberof CreateTemplateCampaignResponse
      */
     campaign: Campaign;
     /**
      * 
-     * @type {Ruleset}
-     * @memberof CreateTemplateCampaignResponse
      */
     ruleset: Ruleset;
     /**
      * 
-     * @type {Array<Collection>}
-     * @memberof CreateTemplateCampaignResponse
      */
     collections?: Array<Collection>;
 }

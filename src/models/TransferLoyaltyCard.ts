@@ -22,15 +22,11 @@ export interface TransferLoyaltyCard {
     /**
      * The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`.
      * 
-     * @type {string}
-     * @memberof TransferLoyaltyCard
      */
     newCardIdentifier: string;
     /**
      * Reason for transferring and blocking the loyalty card.
      * 
-     * @type {string}
-     * @memberof TransferLoyaltyCard
      */
     blockReason?: string;
 }

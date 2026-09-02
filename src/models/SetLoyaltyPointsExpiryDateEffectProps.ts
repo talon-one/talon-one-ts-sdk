@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LoyaltyLedgerEntryExpiryDateChange } from './LoyaltyLedgerEntryExpiryDateChange';
 import {
     LoyaltyLedgerEntryExpiryDateChangeFromJSON,
@@ -30,26 +30,18 @@ import {
 export interface SetLoyaltyPointsExpiryDateEffectProps {
     /**
      * ID of the loyalty program that contains these points.
-     * @type {number}
-     * @memberof SetLoyaltyPointsExpiryDateEffectProps
      */
     programId: number;
     /**
      * API name of the loyalty program subledger that contains these points.
-     * @type {string}
-     * @memberof SetLoyaltyPointsExpiryDateEffectProps
      */
     subLedgerId: string;
     /**
      * The specified expiry date and time for all active and pending point transactions in the loyalty program subledger.
-     * @type {Date}
-     * @memberof SetLoyaltyPointsExpiryDateEffectProps
      */
     newExpiryDate: Date;
     /**
      * List of transactions affected by the expiry date update.
-     * @type {Array<LoyaltyLedgerEntryExpiryDateChange>}
-     * @memberof SetLoyaltyPointsExpiryDateEffectProps
      */
     affectedTransactions?: Array<LoyaltyLedgerEntryExpiryDateChange>;
 }
@@ -77,7 +69,7 @@ export function SetLoyaltyPointsExpiryDateEffectPropsFromJSONTyped(json: any, ig
         
         'programId': json['programId'],
         'subLedgerId': json['subLedgerId'],
-        'newExpiryDate': (json['newExpiryDate'] == null ? undefined as any : new Date(json['newExpiryDate'])),
+        'newExpiryDate': (json['newExpiryDate'] == null ? json['newExpiryDate'] : parseDateTime(json['newExpiryDate'])),
         'affectedTransactions': json['affectedTransactions'] == null ? undefined : ((json['affectedTransactions'] as Array<any>).map(LoyaltyLedgerEntryExpiryDateChangeFromJSON)),
     };
 }
@@ -95,7 +87,7 @@ export function SetLoyaltyPointsExpiryDateEffectPropsToJSONTyped(value?: SetLoya
         
         'programId': value['programId'],
         'subLedgerId': value['subLedgerId'],
-        'newExpiryDate': value['newExpiryDate'] == null ? undefined : value['newExpiryDate'].toISOString(),
+        'newExpiryDate': value['newExpiryDate'] == null ? undefined : serializeDateTime(value['newExpiryDate']),
         'affectedTransactions': value['affectedTransactions'] == null ? undefined : ((value['affectedTransactions'] as Array<any>).map(LoyaltyLedgerEntryExpiryDateChangeToJSON)),
     };
 }

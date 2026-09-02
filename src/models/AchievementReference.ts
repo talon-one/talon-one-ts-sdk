@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface AchievementReference {
     /**
      * The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievementsV2) endpoint.
-     * @type {number}
-     * @memberof AchievementReference
      */
     achievementId: number;
     /**
      * The ID of the Application associated with the campaign that references this achievement.
-     * @type {number}
-     * @memberof AchievementReference
      */
     applicationId: number;
     /**
      * The name of the Application associated with the campaign that references this achievement.
-     * @type {string}
-     * @memberof AchievementReference
      */
     applicationName: string;
     /**
      * The ID of the campaign that references this achievement.
-     * @type {number}
-     * @memberof AchievementReference
      */
     campaignId: number;
     /**
      * The name of the campaign that references this achievement.
-     * @type {string}
-     * @memberof AchievementReference
      */
     campaignName: string;
     /**
      * The state of the campaign that references this achievement.
-     * @type {AchievementReferenceCampaignStateEnum}
-     * @memberof AchievementReference
      */
     campaignState: AchievementReferenceCampaignStateEnum;
 }
@@ -64,7 +52,7 @@ export interface AchievementReference {
 export const AchievementReferenceCampaignStateEnum = {
     Enabled: 'enabled',
     Disabled: 'disabled',
-    Archived: 'archived'
+    Archived: 'archived',
 } as const;
 export type AchievementReferenceCampaignStateEnum = typeof AchievementReferenceCampaignStateEnum[keyof typeof AchievementReferenceCampaignStateEnum];
 

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AccountEntity {
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof AccountEntity
      */
     accountId: number;
 }

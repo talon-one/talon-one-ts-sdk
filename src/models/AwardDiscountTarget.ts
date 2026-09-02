@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import { type AwardDiscountAdditionalCostTarget, AwardDiscountAdditionalCostTargetFromJSONTyped, AwardDiscountAdditionalCostTargetToJSON } from './AwardDiscountAdditionalCostTarget';
 import { type AwardDiscountAllItemsTarget, AwardDiscountAllItemsTargetFromJSONTyped, AwardDiscountAllItemsTargetToJSON } from './AwardDiscountAllItemsTarget';
 import { type AwardDiscountBundleTarget, AwardDiscountBundleTargetFromJSONTyped, AwardDiscountBundleTargetToJSON } from './AwardDiscountBundleTarget';

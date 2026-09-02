@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface WebhookAuthenticationDataBasic {
     /**
      * The Basic HTTP username.
-     * @type {string}
-     * @memberof WebhookAuthenticationDataBasic
      */
     username: string;
     /**
      * The Basic HTTP password.
-     * @type {string}
-     * @memberof WebhookAuthenticationDataBasic
      */
     password: string;
 }

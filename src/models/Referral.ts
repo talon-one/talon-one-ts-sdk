@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,81 +21,55 @@ import { mapValues } from '../runtime';
 export interface Referral {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Referral
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Referral
      */
     created: Date;
     /**
      * Timestamp at which point the referral code becomes valid.
-     * @type {Date}
-     * @memberof Referral
      */
     startDate?: Date;
     /**
      * Expiration date of the referral code. Referral never expires if this is omitted.
-     * @type {Date}
-     * @memberof Referral
      */
     expiryDate?: Date;
     /**
      * The number of times a referral code can be used. `0` means no limit but any campaign usage limits will still apply.
      * 
-     * @type {number}
-     * @memberof Referral
      */
     usageLimit?: number;
     /**
      * ID of the campaign from which the referral received the referral code.
-     * @type {number}
-     * @memberof Referral
      */
     campaignId: number;
     /**
      * The Integration ID of the Advocate's Profile.
-     * @type {string}
-     * @memberof Referral
      */
     advocateProfileIntegrationId: string;
     /**
      * An optional Integration ID of the Friend's Profile.
-     * @type {string}
-     * @memberof Referral
      */
     friendProfileIntegrationId?: string;
     /**
      * Arbitrary properties associated with this item.
-     * @type {object}
-     * @memberof Referral
      */
     attributes?: object;
     /**
      * The ID of the Import which created this referral.
-     * @type {number}
-     * @memberof Referral
      */
     importId?: number;
     /**
      * The referral code.
-     * @type {string}
-     * @memberof Referral
      */
     code: string;
     /**
      * The number of times this referral code has been successfully used.
-     * @type {number}
-     * @memberof Referral
      */
     usageCounter: number;
     /**
      * The ID of the batch the referrals belong to.
-     * @type {string}
-     * @memberof Referral
      */
     batchId?: string;
 }
@@ -125,9 +99,9 @@ export function ReferralFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
         'campaignId': json['campaignId'],
         'advocateProfileIntegrationId': json['advocateProfileIntegrationId'],
@@ -152,9 +126,9 @@ export function ReferralToJSONTyped(value?: Referral | null, ignoreDiscriminator
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'usageLimit': value['usageLimit'],
         'campaignId': value['campaignId'],
         'advocateProfileIntegrationId': value['advocateProfileIntegrationId'],

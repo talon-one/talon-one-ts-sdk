@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface LoyaltyTier {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof LoyaltyTier
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof LoyaltyTier
      */
     created: Date;
     /**
      * The ID of the loyalty program that owns this entity.
-     * @type {number}
-     * @memberof LoyaltyTier
      */
     programID: number;
     /**
      * The integration name of the loyalty program that owns this entity.
-     * @type {string}
-     * @memberof LoyaltyTier
      */
     programName?: string;
     /**
      * The Campaign Manager-displayed name of the loyalty program that owns this entity.
-     * @type {string}
-     * @memberof LoyaltyTier
      */
     programTitle?: string;
     /**
      * The name of the tier.
-     * @type {string}
-     * @memberof LoyaltyTier
      */
     name: string;
     /**
      * The minimum amount of points required to enter the tier.
-     * @type {number}
-     * @memberof LoyaltyTier
      */
     minPoints: number;
 }
@@ -87,7 +73,7 @@ export function LoyaltyTierFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'programID': json['programID'],
         'programName': json['programName'] == null ? undefined : json['programName'],
         'programTitle': json['programTitle'] == null ? undefined : json['programTitle'],
@@ -108,7 +94,7 @@ export function LoyaltyTierToJSONTyped(value?: LoyaltyTier | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'programID': value['programID'],
         'programName': value['programName'],
         'programTitle': value['programTitle'],

@@ -30,28 +30,20 @@ export interface PromoteExperiment {
     /**
      * The ID of the Application to copy the experiment. It is displayed in your Talon.One deployment URL.
      * 
-     * @type {number}
-     * @memberof PromoteExperiment
      */
     targetApplicationId: number;
     /**
      * The ID of the Experiment Variant to build the new campaign.
      * 
-     * @type {number}
-     * @memberof PromoteExperiment
      */
     variantId: number;
     /**
      * Force disable the experiment.
      * 
-     * @type {boolean}
-     * @memberof PromoteExperiment
      */
     disableExperiment?: boolean;
     /**
      * 
-     * @type {ExperimentCampaignCopy}
-     * @memberof PromoteExperiment
      */
     campaign: ExperimentCampaignCopy;
 }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface MCPOAuthClient {
     /**
      * Unique identifier for the OAuth2 client.
-     * @type {string}
-     * @memberof MCPOAuthClient
      */
     clientId: string;
     /**
      * Human-readable name for the OAuth2 client.
-     * @type {string}
-     * @memberof MCPOAuthClient
      */
     clientName: string;
     /**
      * List of allowed redirect URIs for the authorization code flow.
-     * @type {Array<string>}
-     * @memberof MCPOAuthClient
      */
     redirectUris: Array<string>;
     /**
      * Timestamp of when the client was registered.
-     * @type {Date}
-     * @memberof MCPOAuthClient
      */
     createdAt: Date;
 }
@@ -70,7 +62,7 @@ export function MCPOAuthClientFromJSONTyped(json: any, ignoreDiscriminator: bool
         'clientId': json['client_id'],
         'clientName': json['client_name'],
         'redirectUris': json['redirect_uris'],
-        'createdAt': (json['created_at'] == null ? undefined as any : new Date(json['created_at'])),
+        'createdAt': (json['created_at'] == null ? json['created_at'] : parseDateTime(json['created_at'])),
     };
 }
 
@@ -88,7 +80,7 @@ export function MCPOAuthClientToJSONTyped(value?: MCPOAuthClient | null, ignoreD
         'client_id': value['clientId'],
         'client_name': value['clientName'],
         'redirect_uris': value['redirectUris'],
-        'created_at': value['createdAt'] == null ? undefined : value['createdAt'].toISOString(),
+        'created_at': value['createdAt'] == null ? undefined : serializeDateTime(value['createdAt']),
     };
 }
 

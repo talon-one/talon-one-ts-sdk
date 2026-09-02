@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface CustomerAnalytics {
     /**
      * Total accepted coupons for this customer.
-     * @type {number}
-     * @memberof CustomerAnalytics
      */
     acceptedCoupons: number;
     /**
      * Total created coupons for this customer.
-     * @type {number}
-     * @memberof CustomerAnalytics
      */
     createdCoupons: number;
     /**
      * Total free items given to this customer.
-     * @type {number}
-     * @memberof CustomerAnalytics
      */
     freeItems: number;
     /**
      * Total orders made by this customer.
-     * @type {number}
-     * @memberof CustomerAnalytics
      */
     totalOrders: number;
     /**
      * Total orders made by this customer that had a discount.
-     * @type {number}
-     * @memberof CustomerAnalytics
      */
     totalDiscountedOrders: number;
     /**
      * Total Revenue across all closed sessions.
-     * @type {number}
-     * @memberof CustomerAnalytics
      */
     totalRevenue: number;
     /**
      * The sum of discounts that were given across all closed sessions.
-     * @type {number}
-     * @memberof CustomerAnalytics
      */
     totalDiscounts: number;
 }

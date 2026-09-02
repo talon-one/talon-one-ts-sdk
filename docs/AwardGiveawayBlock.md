@@ -9,10 +9,10 @@ Name | Type
 `id` | string
 `type` | string
 `tags` | Array&lt;string&gt;
-`giveawayPool` | [AwardGiveawayBlock1GiveawayPool](AwardGiveawayBlock1GiveawayPool.md)
+`giveawayPool` | [GiveawayPoolReference](GiveawayPoolReference.md)
 `profile` | string
-`onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
-`onError` | { [key: string]: Array&lt;PromotionBlock&gt;; }
+`onFailure` | [Array&lt;Block&gt;](Block.md)
+`onError` | { [key: string]: Array&lt;Block&gt;; }
 
 ## Example
 

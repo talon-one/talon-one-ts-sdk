@@ -24,14 +24,10 @@ export interface IntegrationEventV2Request {
      * 
      * **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
      * 
-     * @type {string}
-     * @memberof IntegrationEventV2Request
      */
     profileId?: string;
     /**
      * The integration ID of the store. You choose this ID when you create a store.
-     * @type {string}
-     * @memberof IntegrationEventV2Request
      */
     storeIntegrationId?: string;
     /**
@@ -39,33 +35,23 @@ export interface IntegrationEventV2Request {
      * 
      * These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.
      * 
-     * @type {Array<number>}
-     * @memberof IntegrationEventV2Request
      */
     evaluableCampaignIds?: Array<number>;
     /**
      * The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.
-     * @type {string}
-     * @memberof IntegrationEventV2Request
      */
     type: string;
     /**
      * Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute).
-     * @type {object}
-     * @memberof IntegrationEventV2Request
      */
     attributes?: object;
     /**
      * Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints.
      * 
-     * @type {Array<IntegrationEventV2RequestResponseContentEnum>}
-     * @memberof IntegrationEventV2Request
      */
     responseContent?: Array<IntegrationEventV2RequestResponseContentEnum>;
     /**
      * Identifiers of the loyalty cards used during this event.
-     * @type {Array<string>}
-     * @memberof IntegrationEventV2Request
      */
     loyaltyCards?: Array<string>;
 }
@@ -83,7 +69,7 @@ export const IntegrationEventV2RequestResponseContentEnum = {
     RuleFailureReasons: 'ruleFailureReasons',
     CampaignEligibility: 'campaignEligibility',
     Achievements: 'achievements',
-    UnlockedRewards: 'unlockedRewards'
+    UnlockedRewards: 'unlockedRewards',
 } as const;
 export type IntegrationEventV2RequestResponseContentEnum = typeof IntegrationEventV2RequestResponseContentEnum[keyof typeof IntegrationEventV2RequestResponseContentEnum];
 

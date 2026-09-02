@@ -12,6 +12,7 @@ Name | Type
 `applicationId` | number
 `profileIntegrationId` | string
 `unlockedAt` | Date
+`cardIdentifier` | string
 
 ## Example
 
@@ -25,6 +26,7 @@ const example = {
   "applicationId": 1,
   "profileIntegrationId": customer1,
   "unlockedAt": 2024-05-29T15:04:05Z,
+  "cardIdentifier": summer-loyalty-card-0543,
 } satisfies UnlockRewardEffectProps
 
 console.log(example)

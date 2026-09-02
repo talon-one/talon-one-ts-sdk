@@ -29,38 +29,26 @@ import {
 export interface UpdateAchievementProgressBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof UpdateAchievementProgressBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof UpdateAchievementProgressBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof UpdateAchievementProgressBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * 
-     * @type {UpdateAchievementProgressBlockOperatorEnum}
-     * @memberof UpdateAchievementProgressBlock
      */
     operator: UpdateAchievementProgressBlockOperatorEnum;
     /**
      * The value to update the progress by. Supports template placeholders (e.g. "{{$Session.Total / 2}}") for dynamic quantities.
-     * @type {string}
-     * @memberof UpdateAchievementProgressBlock
      */
     value: string;
     /**
      * 
-     * @type {UpdateAchievementProgressBlock1Achievement}
-     * @memberof UpdateAchievementProgressBlock
      */
     achievement: UpdateAchievementProgressBlock1Achievement;
 }
@@ -70,7 +58,7 @@ export interface UpdateAchievementProgressBlock {
  * @export
  */
 export const UpdateAchievementProgressBlockOperatorEnum = {
-    IncreaseBy: 'increaseBy'
+    IncreaseBy: 'increaseBy',
 } as const;
 export type UpdateAchievementProgressBlockOperatorEnum = typeof UpdateAchievementProgressBlockOperatorEnum[keyof typeof UpdateAchievementProgressBlockOperatorEnum];
 
@@ -80,7 +68,6 @@ export type UpdateAchievementProgressBlockOperatorEnum = typeof UpdateAchievemen
  */
 export function instanceOfUpdateAchievementProgressBlock(value: object): value is UpdateAchievementProgressBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('operator' in _v) || _v['operator'] === undefined) return false;
     if (_v['operator'] !== 'increaseBy') return false;
@@ -100,7 +87,7 @@ export function UpdateAchievementProgressBlockFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
@@ -113,16 +100,14 @@ export function UpdateAchievementProgressBlockToJSON(json: any): UpdateAchieveme
     return UpdateAchievementProgressBlockToJSONTyped(json, false);
 }
 
-export function UpdateAchievementProgressBlockToJSONTyped(value?: UpdateAchievementProgressBlock | null, ignoreDiscriminator: boolean = false): any {
+export function UpdateAchievementProgressBlockToJSONTyped(value?: Omit<UpdateAchievementProgressBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'operator': value['operator'],
         'value': value['value'],
         'achievement': UpdateAchievementProgressBlock1AchievementToJSON(value['achievement']),

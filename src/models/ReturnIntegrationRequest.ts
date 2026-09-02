@@ -29,16 +29,12 @@ import {
 export interface ReturnIntegrationRequest {
     /**
      * The returned cart items details.
-     * @type {NewReturn}
-     * @memberof ReturnIntegrationRequest
      */
     _return: NewReturn;
     /**
      * Extends the response with the chosen data entities. Use this property to get as much data
      * as you need in one _Update customer session_ request instead of sending extra requests to other endpoints.
      * 
-     * @type {Array<ReturnIntegrationRequestResponseContentEnum>}
-     * @memberof ReturnIntegrationRequest
      */
     responseContent?: Array<ReturnIntegrationRequestResponseContentEnum>;
 }
@@ -55,7 +51,7 @@ export const ReturnIntegrationRequestResponseContentEnum = {
     Referral: 'referral',
     Loyalty: 'loyalty',
     Event: 'event',
-    PreviousReturns: 'previousReturns'
+    PreviousReturns: 'previousReturns',
 } as const;
 export type ReturnIntegrationRequestResponseContentEnum = typeof ReturnIntegrationRequestResponseContentEnum[keyof typeof ReturnIntegrationRequestResponseContentEnum];
 

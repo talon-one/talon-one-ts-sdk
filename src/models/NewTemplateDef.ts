@@ -29,44 +29,30 @@ import {
 export interface NewTemplateDef {
     /**
      * Campaigner-friendly name for the template that will be shown in the rule editor.
-     * @type {string}
-     * @memberof NewTemplateDef
      */
     title: string;
     /**
      * A short description of the template that will be shown in the rule editor.
-     * @type {string}
-     * @memberof NewTemplateDef
      */
     description?: string;
     /**
      * Extended help text for the template.
-     * @type {string}
-     * @memberof NewTemplateDef
      */
     help?: string;
     /**
      * Used for grouping templates in the rule editor sidebar.
-     * @type {string}
-     * @memberof NewTemplateDef
      */
     category: string;
     /**
      * A Talang expression that contains variable bindings referring to args.
-     * @type {Array<any>}
-     * @memberof NewTemplateDef
      */
     expr: Array<any>;
     /**
      * An array of argument definitions.
-     * @type {Array<TemplateArgDef>}
-     * @memberof NewTemplateDef
      */
     args: Array<TemplateArgDef>;
     /**
      * A flag to control exposure in Rule Builder.
-     * @type {boolean}
-     * @memberof NewTemplateDef
      */
     expose?: boolean;
 }

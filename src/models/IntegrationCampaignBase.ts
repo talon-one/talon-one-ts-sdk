@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,63 +21,43 @@ import { mapValues } from '../runtime';
 export interface IntegrationCampaignBase {
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof IntegrationCampaignBase
      */
     applicationId: number;
     /**
      * Unique ID of Campaign.
-     * @type {number}
-     * @memberof IntegrationCampaignBase
      */
     id: number;
     /**
      * The name of the campaign.
-     * @type {string}
-     * @memberof IntegrationCampaignBase
      */
     name: string;
     /**
      * A detailed description of the campaign.
-     * @type {string}
-     * @memberof IntegrationCampaignBase
      */
     description?: string;
     /**
      * Timestamp when the campaign will become active.
-     * @type {Date}
-     * @memberof IntegrationCampaignBase
      */
     startTime?: Date;
     /**
      * Timestamp when the campaign will become inactive.
-     * @type {Date}
-     * @memberof IntegrationCampaignBase
      */
     endTime?: Date;
     /**
      * Arbitrary properties associated with this campaign.
-     * @type {object}
-     * @memberof IntegrationCampaignBase
      */
     attributes?: object;
     /**
      * The state of the campaign.
      * 
-     * @type {IntegrationCampaignBaseStateEnum}
-     * @memberof IntegrationCampaignBase
      */
     state: IntegrationCampaignBaseStateEnum;
     /**
      * A list of tags for the campaign.
-     * @type {Array<string>}
-     * @memberof IntegrationCampaignBase
      */
     tags: Array<string>;
     /**
      * The features enabled in this campaign.
-     * @type {Array<IntegrationCampaignBaseFeaturesEnum>}
-     * @memberof IntegrationCampaignBase
      */
     features: Array<IntegrationCampaignBaseFeaturesEnum>;
 }
@@ -87,7 +67,7 @@ export interface IntegrationCampaignBase {
  * @export
  */
 export const IntegrationCampaignBaseStateEnum = {
-    Enabled: 'enabled'
+    Enabled: 'enabled',
 } as const;
 export type IntegrationCampaignBaseStateEnum = typeof IntegrationCampaignBaseStateEnum[keyof typeof IntegrationCampaignBaseStateEnum];
 
@@ -100,7 +80,8 @@ export const IntegrationCampaignBaseFeaturesEnum = {
     Loyalty: 'loyalty',
     Giveaways: 'giveaways',
     Strikethrough: 'strikethrough',
-    Achievements: 'achievements'
+    Achievements: 'achievements',
+    AdvancedEvents: 'advancedEvents',
 } as const;
 export type IntegrationCampaignBaseFeaturesEnum = typeof IntegrationCampaignBaseFeaturesEnum[keyof typeof IntegrationCampaignBaseFeaturesEnum];
 
@@ -135,8 +116,8 @@ export function IntegrationCampaignBaseFromJSONTyped(json: any, ignoreDiscrimina
         'id': json['id'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
-        'endTime': json['endTime'] == null ? undefined : (new Date(json['endTime'])),
+        'startTime': json['startTime'] == null ? undefined : (parseDateTime(json['startTime'])),
+        'endTime': json['endTime'] == null ? undefined : (parseDateTime(json['endTime'])),
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'state': json['state'],
         'tags': json['tags'],
@@ -159,8 +140,8 @@ export function IntegrationCampaignBaseToJSONTyped(value?: IntegrationCampaignBa
         'id': value['id'],
         'name': value['name'],
         'description': value['description'],
-        'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
-        'endTime': value['endTime'] == null ? value['endTime'] : value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? value['startTime'] : serializeDateTime(value['startTime']),
+        'endTime': value['endTime'] == null ? value['endTime'] : serializeDateTime(value['endTime']),
         'attributes': value['attributes'],
         'state': value['state'],
         'tags': value['tags'],

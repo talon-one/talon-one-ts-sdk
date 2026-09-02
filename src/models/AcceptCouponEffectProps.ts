@@ -27,8 +27,6 @@ import { mapValues } from '../runtime';
 export interface AcceptCouponEffectProps {
     /**
      * The coupon code that was accepted.
-     * @type {string}
-     * @memberof AcceptCouponEffectProps
      */
     value: string;
 }

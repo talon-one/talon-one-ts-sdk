@@ -29,14 +29,10 @@ import {
 export interface GetLoyaltyProgramProfilePoints200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetLoyaltyProgramProfilePoints200Response
      */
     hasMore: boolean;
     /**
      * 
-     * @type {Array<LedgerPointsEntryIntegrationAPI>}
-     * @memberof GetLoyaltyProgramProfilePoints200Response
      */
     data: Array<LedgerPointsEntryIntegrationAPI>;
 }

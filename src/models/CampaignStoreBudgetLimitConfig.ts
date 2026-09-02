@@ -26,32 +26,22 @@ export interface CampaignStoreBudgetLimitConfig {
      * - `redeemCoupon`
      * - `createCoupon`
      * 
-     * @type {string}
-     * @memberof CampaignStoreBudgetLimitConfig
      */
     action: string;
     /**
      * The value to set for the limit.
-     * @type {number}
-     * @memberof CampaignStoreBudgetLimitConfig
      */
     limit: number;
     /**
      * The period on which the budget limit recurs.
-     * @type {CampaignStoreBudgetLimitConfigPeriodEnum}
-     * @memberof CampaignStoreBudgetLimitConfig
      */
     period?: CampaignStoreBudgetLimitConfigPeriodEnum;
     /**
      * The entity that this limit applies to.
-     * @type {Array<CampaignStoreBudgetLimitConfigEntitiesEnum>}
-     * @memberof CampaignStoreBudgetLimitConfig
      */
     entities: Array<CampaignStoreBudgetLimitConfigEntitiesEnum>;
     /**
      * Indicates whether this limit configuration is managed via a CSV file.
-     * @type {boolean}
-     * @memberof CampaignStoreBudgetLimitConfig
      */
     imported: boolean;
 }
@@ -64,7 +54,7 @@ export const CampaignStoreBudgetLimitConfigPeriodEnum = {
     Daily: 'daily',
     Weekly: 'weekly',
     Monthly: 'monthly',
-    Yearly: 'yearly'
+    Yearly: 'yearly',
 } as const;
 export type CampaignStoreBudgetLimitConfigPeriodEnum = typeof CampaignStoreBudgetLimitConfigPeriodEnum[keyof typeof CampaignStoreBudgetLimitConfigPeriodEnum];
 
@@ -77,7 +67,7 @@ export const CampaignStoreBudgetLimitConfigEntitiesEnum = {
     Profile: 'Profile',
     Identifier: 'Identifier',
     Store: 'Store',
-    Session: 'Session'
+    Session: 'Session',
 } as const;
 export type CampaignStoreBudgetLimitConfigEntitiesEnum = typeof CampaignStoreBudgetLimitConfigEntitiesEnum[keyof typeof CampaignStoreBudgetLimitConfigEntitiesEnum];
 

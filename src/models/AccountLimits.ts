@@ -21,86 +21,58 @@ import { mapValues } from '../runtime';
 export interface AccountLimits {
     /**
      * Total number of allowed live applications in the account.
-     * @type {number}
-     * @memberof AccountLimits
      */
     liveApplications: number;
     /**
      * Total number of allowed sandbox applications in the account.
-     * @type {number}
-     * @memberof AccountLimits
      */
     sandboxApplications: number;
     /**
      * Total number of allowed active campaigns in live applications in the account.
-     * @type {number}
-     * @memberof AccountLimits
      */
     activeCampaigns: number;
     /**
      * Total number of allowed coupons in the account.
-     * @type {number}
-     * @memberof AccountLimits
      */
     coupons: number;
     /**
      * Total number of allowed referral codes in the account.
-     * @type {number}
-     * @memberof AccountLimits
      */
     referralCodes: number;
     /**
      * Total number of allowed active rulesets in the account.
-     * @type {number}
-     * @memberof AccountLimits
      */
     activeRules: number;
     /**
      * Total number of allowed live loyalty programs in the account.
-     * @type {number}
-     * @memberof AccountLimits
      */
     liveLoyaltyPrograms: number;
     /**
      * Total number of allowed sandbox loyalty programs in the account.
-     * @type {number}
-     * @memberof AccountLimits
      */
     sandboxLoyaltyPrograms: number;
     /**
      * Total number of allowed webhooks in the account.
-     * @type {number}
-     * @memberof AccountLimits
      */
     webhooks: number;
     /**
      * Total number of allowed users in the account.
-     * @type {number}
-     * @memberof AccountLimits
      */
     users: number;
     /**
      * Allowed volume of API requests to the account.
-     * @type {number}
-     * @memberof AccountLimits
      */
     apiVolume: number;
     /**
      * Array of promotion types that are employed in the account.
-     * @type {Array<string>}
-     * @memberof AccountLimits
      */
     promotionTypes: Array<string>;
     /**
      * The price for a secondary deployment according to contractual agreements.
-     * @type {number}
-     * @memberof AccountLimits
      */
     secondaryDeploymentPrice: number;
     /**
      * The currency of the contract.
-     * @type {string}
-     * @memberof AccountLimits
      */
     currencyCode: string;
 }

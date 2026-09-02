@@ -29,8 +29,6 @@ import {
 export interface NewCouponDeletionJob {
     /**
      * 
-     * @type {CouponDeletionFilters}
-     * @memberof NewCouponDeletionJob
      */
     filters: CouponDeletionFilters;
 }

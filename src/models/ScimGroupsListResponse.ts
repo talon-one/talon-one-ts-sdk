@@ -30,20 +30,14 @@ import {
 export interface ScimGroupsListResponse {
     /**
      * 
-     * @type {Array<ScimGroup>}
-     * @memberof ScimGroupsListResponse
      */
     resources: Array<ScimGroup>;
     /**
      * SCIM schema for the given resource.
-     * @type {Array<string>}
-     * @memberof ScimGroupsListResponse
      */
     schemas?: Array<string>;
     /**
      * Number of results in the response.
-     * @type {number}
-     * @memberof ScimGroupsListResponse
      */
     totalResults?: number;
 }

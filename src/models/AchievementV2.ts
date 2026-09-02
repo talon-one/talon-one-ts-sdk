@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { TimePoint } from './TimePoint';
 import {
     TimePointFromJSON,
@@ -36,14 +36,10 @@ import {
 export interface AchievementV2 {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof AchievementV2
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof AchievementV2
      */
     created: Date;
     /**
@@ -51,26 +47,18 @@ export interface AchievementV2 {
      * 
      * **Note**: The name should start with a letter. This cannot be changed after the achievement has been created.
      * 
-     * @type {string}
-     * @memberof AchievementV2
      */
     name?: string;
     /**
      * The display name for the achievement in the Campaign Manager.
-     * @type {string}
-     * @memberof AchievementV2
      */
     title?: string;
     /**
      * A description of the achievement.
-     * @type {string}
-     * @memberof AchievementV2
      */
     description?: string;
     /**
      * The required number of actions or the transactional milestone to complete the achievement.
-     * @type {number}
-     * @memberof AchievementV2
      */
     target?: number;
     /**
@@ -100,8 +88,6 @@ export interface AchievementV2 {
      * 
      * **Note**: You can either use the round down and round up option or set an absolute period.
      * 
-     * @type {string}
-     * @memberof AchievementV2
      */
     period?: string;
     /**
@@ -110,8 +96,6 @@ export interface AchievementV2 {
      * - `on_expiration`: The achievement resets after it expires and becomes available again.
      * - `on_completion`: When the customer progress status reaches `completed`, the achievement resets and becomes available again.
      * 
-     * @type {AchievementV2RecurrencePolicyEnum}
-     * @memberof AchievementV2
      */
     recurrencePolicy?: AchievementV2RecurrencePolicyEnum;
     /**
@@ -119,8 +103,6 @@ export interface AchievementV2 {
      * - `user_action`: The achievement ends or resets relative to when the customer started the achievement.
      * - `fixed_schedule`: The achievement starts, ends, or resets for all customers following a fixed schedule.
      * 
-     * @type {AchievementV2ActivationPolicyEnum}
-     * @memberof AchievementV2
      */
     activationPolicy?: AchievementV2ActivationPolicyEnum;
     /**
@@ -128,8 +110,6 @@ export interface AchievementV2 {
      * 
      * **Note:** It must be an RFC3339 timestamp string.
      * 
-     * @type {Date}
-     * @memberof AchievementV2
      */
     fixedStartDate?: Date;
     /**
@@ -137,26 +117,18 @@ export interface AchievementV2 {
      * 
      * **Note:** It must be an RFC3339 timestamp string.
      * 
-     * @type {Date}
-     * @memberof AchievementV2
      */
     endDate?: Date;
     /**
      * When `true`, customer progress can be rolled back in completed achievements.
-     * @type {boolean}
-     * @memberof AchievementV2
      */
     allowRollbackAfterCompletion?: boolean;
     /**
      * A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.
-     * @type {Array<number>}
-     * @memberof AchievementV2
      */
     subscribedApplications?: Array<number>;
     /**
      * The ID of the user that created this achievement.
-     * @type {number}
-     * @memberof AchievementV2
      */
     userId: number;
     /**
@@ -164,21 +136,15 @@ export interface AchievementV2 {
      * 
      * **Note**: This is not available if the user has been deleted.
      * 
-     * @type {string}
-     * @memberof AchievementV2
      */
     createdBy?: string;
     /**
      * 
-     * @type {TimePoint}
-     * @memberof AchievementV2
      * @deprecated
      */
     periodEndOverride?: TimePoint;
     /**
      * Indicates if a customer has made progress in the achievement.
-     * @type {boolean}
-     * @memberof AchievementV2
      */
     hasProgress?: boolean;
     /**
@@ -187,33 +153,23 @@ export interface AchievementV2 {
      * - `scheduled`: The achievement has a `fixedStartDate` set in the future.
      * - `expired`: The achievement's `endDate` is in the past.
      * 
-     * @type {AchievementV2StatusEnum}
-     * @memberof AchievementV2
      */
     status?: AchievementV2StatusEnum;
     /**
      * Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.
-     * @type {boolean}
-     * @memberof AchievementV2
      */
     sandbox: boolean;
     /**
      * A string containing an IANA timezone descriptor.
-     * @type {string}
-     * @memberof AchievementV2
      */
     timezone: string;
     /**
-     * This property is **deprecated**. Use `referencedByCampaigns` instead. The ID of the first campaign in `referencedByCampaigns`. Only returned when `referencedByCampaigns` is not empty.
-     * @type {number}
-     * @memberof AchievementV2
+     * This property is **deprecated**. Use `referencedByCampaigns` instead. This field contains the first campaign ID from the related `referencedByCampaigns`, and is omitted when `referencedByCampaigns` is empty.
      * @deprecated
      */
     campaignId?: number;
     /**
      * The campaigns that reference this achievement. They are sorted in ascending order by their id.
-     * @type {Array<CampaignReference>}
-     * @memberof AchievementV2
      */
     referencedByCampaigns: Array<CampaignReference>;
 }
@@ -225,7 +181,7 @@ export interface AchievementV2 {
 export const AchievementV2RecurrencePolicyEnum = {
     NoRecurrence: 'no_recurrence',
     OnExpiration: 'on_expiration',
-    OnCompletion: 'on_completion'
+    OnCompletion: 'on_completion',
 } as const;
 export type AchievementV2RecurrencePolicyEnum = typeof AchievementV2RecurrencePolicyEnum[keyof typeof AchievementV2RecurrencePolicyEnum];
 
@@ -234,7 +190,7 @@ export type AchievementV2RecurrencePolicyEnum = typeof AchievementV2RecurrencePo
  */
 export const AchievementV2ActivationPolicyEnum = {
     UserAction: 'user_action',
-    FixedSchedule: 'fixed_schedule'
+    FixedSchedule: 'fixed_schedule',
 } as const;
 export type AchievementV2ActivationPolicyEnum = typeof AchievementV2ActivationPolicyEnum[keyof typeof AchievementV2ActivationPolicyEnum];
 
@@ -244,7 +200,7 @@ export type AchievementV2ActivationPolicyEnum = typeof AchievementV2ActivationPo
 export const AchievementV2StatusEnum = {
     Active: 'active',
     Scheduled: 'scheduled',
-    Expired: 'expired'
+    Expired: 'expired',
 } as const;
 export type AchievementV2StatusEnum = typeof AchievementV2StatusEnum[keyof typeof AchievementV2StatusEnum];
 
@@ -274,7 +230,7 @@ export function AchievementV2FromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'name': json['name'] == null ? undefined : json['name'],
         'title': json['title'] == null ? undefined : json['title'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -282,8 +238,8 @@ export function AchievementV2FromJSONTyped(json: any, ignoreDiscriminator: boole
         'period': json['period'] == null ? undefined : json['period'],
         'recurrencePolicy': json['recurrencePolicy'] == null ? undefined : json['recurrencePolicy'],
         'activationPolicy': json['activationPolicy'] == null ? undefined : json['activationPolicy'],
-        'fixedStartDate': json['fixedStartDate'] == null ? undefined : (new Date(json['fixedStartDate'])),
-        'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
+        'fixedStartDate': json['fixedStartDate'] == null ? undefined : (parseDateTime(json['fixedStartDate'])),
+        'endDate': json['endDate'] == null ? undefined : (parseDateTime(json['endDate'])),
         'allowRollbackAfterCompletion': json['allowRollbackAfterCompletion'] == null ? undefined : json['allowRollbackAfterCompletion'],
         'subscribedApplications': json['subscribedApplications'] == null ? undefined : json['subscribedApplications'],
         'userId': json['userId'],
@@ -310,7 +266,7 @@ export function AchievementV2ToJSONTyped(value?: AchievementV2 | null, ignoreDis
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'name': value['name'],
         'title': value['title'],
         'description': value['description'],
@@ -318,8 +274,8 @@ export function AchievementV2ToJSONTyped(value?: AchievementV2 | null, ignoreDis
         'period': value['period'],
         'recurrencePolicy': value['recurrencePolicy'],
         'activationPolicy': value['activationPolicy'],
-        'fixedStartDate': value['fixedStartDate'] == null ? value['fixedStartDate'] : value['fixedStartDate'].toISOString(),
-        'endDate': value['endDate'] == null ? value['endDate'] : value['endDate'].toISOString(),
+        'fixedStartDate': value['fixedStartDate'] == null ? value['fixedStartDate'] : serializeDateTime(value['fixedStartDate']),
+        'endDate': value['endDate'] == null ? value['endDate'] : serializeDateTime(value['endDate']),
         'allowRollbackAfterCompletion': value['allowRollbackAfterCompletion'],
         'subscribedApplications': value['subscribedApplications'],
         'userId': value['userId'],

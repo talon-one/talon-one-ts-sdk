@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface NotificationActivation {
     /**
      * Indicates whether the notification is activated.
-     * @type {boolean}
-     * @memberof NotificationActivation
      */
     enabled: boolean;
 }

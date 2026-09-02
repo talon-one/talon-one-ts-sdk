@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface LoginParams {
     /**
      * The email address associated with the user profile.
-     * @type {string}
-     * @memberof LoginParams
      */
     email: string;
     /**
      * The password for your account.
-     * @type {string}
-     * @memberof LoginParams
      */
     password: string;
 }

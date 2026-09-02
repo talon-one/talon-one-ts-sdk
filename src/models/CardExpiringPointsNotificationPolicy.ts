@@ -29,26 +29,18 @@ import {
 export interface CardExpiringPointsNotificationPolicy {
     /**
      * Notification name.
-     * @type {string}
-     * @memberof CardExpiringPointsNotificationPolicy
      */
     name: string;
     /**
      * 
-     * @type {Array<CardExpiringPointsNotificationTrigger>}
-     * @memberof CardExpiringPointsNotificationPolicy
      */
     triggers: Array<CardExpiringPointsNotificationTrigger>;
     /**
      * Indicates whether batching is activated.
-     * @type {boolean}
-     * @memberof CardExpiringPointsNotificationPolicy
      */
     batchingEnabled?: boolean;
     /**
      * The required size of each batch of data. This value applies only when `batchingEnabled` is `true`.
-     * @type {number}
-     * @memberof CardExpiringPointsNotificationPolicy
      */
     batchSize?: number;
 }

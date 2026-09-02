@@ -29,20 +29,14 @@ import {
 export interface TierUpgradeNotification {
     /**
      * 
-     * @type {number}
-     * @memberof TierUpgradeNotification
      */
     totalResultSize: number;
     /**
      * The array of tier upgrade notifications.
-     * @type {Array<TierUpgradeData>}
-     * @memberof TierUpgradeNotification
      */
     data: Array<TierUpgradeData>;
     /**
      * The type of notification.
-     * @type {TierUpgradeNotificationNotificationTypeEnum}
-     * @memberof TierUpgradeNotification
      */
     notificationType: TierUpgradeNotificationNotificationTypeEnum;
 }
@@ -52,7 +46,7 @@ export interface TierUpgradeNotification {
  * @export
  */
 export const TierUpgradeNotificationNotificationTypeEnum = {
-    TierUpgrade: 'TierUpgrade'
+    TierUpgrade: 'TierUpgrade',
 } as const;
 export type TierUpgradeNotificationNotificationTypeEnum = typeof TierUpgradeNotificationNotificationTypeEnum[keyof typeof TierUpgradeNotificationNotificationTypeEnum];
 

@@ -29,20 +29,14 @@ import {
 export interface PendingActivePointsNotification {
     /**
      * 
-     * @type {number}
-     * @memberof PendingActivePointsNotification
      */
     totalResultSize: number;
     /**
      * The array of pending points.
-     * @type {Array<PendingActivePointsData>}
-     * @memberof PendingActivePointsNotification
      */
     data: Array<PendingActivePointsData>;
     /**
      * The type of notification.
-     * @type {PendingActivePointsNotificationNotificationTypeEnum}
-     * @memberof PendingActivePointsNotification
      */
     notificationType: PendingActivePointsNotificationNotificationTypeEnum;
 }
@@ -52,7 +46,7 @@ export interface PendingActivePointsNotification {
  * @export
  */
 export const PendingActivePointsNotificationNotificationTypeEnum = {
-    LoyaltyPointsPendingToActive: 'LoyaltyPointsPendingToActive'
+    LoyaltyPointsPendingToActive: 'LoyaltyPointsPendingToActive',
 } as const;
 export type PendingActivePointsNotificationNotificationTypeEnum = typeof PendingActivePointsNotificationNotificationTypeEnum[keyof typeof PendingActivePointsNotificationNotificationTypeEnum];
 

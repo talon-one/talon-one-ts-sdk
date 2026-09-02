@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface OktaEventTarget {
     /**
      * Type of the event target.
-     * @type {string}
-     * @memberof OktaEventTarget
      */
     type: string;
     /**
      * Identifier of the event target, depending on its type.
-     * @type {string}
-     * @memberof OktaEventTarget
      */
     alternateId: string;
     /**
      * Display name of the event target.
-     * @type {string}
-     * @memberof OktaEventTarget
      */
     displayName: string;
 }

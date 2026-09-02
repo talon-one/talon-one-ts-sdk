@@ -29,32 +29,22 @@ import {
 export interface FunctionDef {
     /**
      * The function name used in Talang.
-     * @type {string}
-     * @memberof FunctionDef
      */
     name: string;
     /**
      * The type of this function argument.
-     * @type {string}
-     * @memberof FunctionDef
      */
     type: string;
     /**
      * A short description of the function.
-     * @type {string}
-     * @memberof FunctionDef
      */
     description?: string;
     /**
      * Extended help text for the function.
-     * @type {string}
-     * @memberof FunctionDef
      */
     help?: string;
     /**
      * An array of argument definitions.
-     * @type {Array<FuncArgDef>}
-     * @memberof FunctionDef
      */
     args: Array<FuncArgDef>;
 }

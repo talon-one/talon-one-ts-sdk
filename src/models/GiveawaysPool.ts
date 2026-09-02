@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * Giveaways pools is an entity for managing multiple similar giveaways.
  * @export
@@ -21,62 +21,42 @@ import { mapValues } from '../runtime';
 export interface GiveawaysPool {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof GiveawaysPool
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof GiveawaysPool
      */
     created: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof GiveawaysPool
      */
     accountId: number;
     /**
      * The name of this giveaways pool.
-     * @type {string}
-     * @memberof GiveawaysPool
      */
     name: string;
     /**
      * The description of this giveaways pool.
-     * @type {string}
-     * @memberof GiveawaysPool
      */
     description?: string;
     /**
      * A list of the IDs of the applications that this giveaways pool is enabled for.
-     * @type {Array<number>}
-     * @memberof GiveawaysPool
      */
     subscribedApplicationsIds?: Array<number>;
     /**
      * Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.
-     * @type {boolean}
-     * @memberof GiveawaysPool
      */
     sandbox: boolean;
     /**
      * Timestamp of the most recent update to the giveaways pool.
-     * @type {Date}
-     * @memberof GiveawaysPool
      */
     modified?: Date;
     /**
      * ID of the user who created this giveaways pool.
-     * @type {number}
-     * @memberof GiveawaysPool
      */
     createdBy: number;
     /**
      * ID of the user who last updated this giveaways pool if available.
-     * @type {number}
-     * @memberof GiveawaysPool
      */
     modifiedBy?: number;
 }
@@ -106,13 +86,13 @@ export function GiveawaysPoolFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'accountId': json['accountId'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
         'subscribedApplicationsIds': json['subscribedApplicationsIds'] == null ? undefined : json['subscribedApplicationsIds'],
         'sandbox': json['sandbox'],
-        'modified': json['modified'] == null ? undefined : (new Date(json['modified'])),
+        'modified': json['modified'] == null ? undefined : (parseDateTime(json['modified'])),
         'createdBy': json['createdBy'],
         'modifiedBy': json['modifiedBy'] == null ? undefined : json['modifiedBy'],
     };
@@ -130,13 +110,13 @@ export function GiveawaysPoolToJSONTyped(value?: GiveawaysPool | null, ignoreDis
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'accountId': value['accountId'],
         'name': value['name'],
         'description': value['description'],
         'subscribedApplicationsIds': value['subscribedApplicationsIds'],
         'sandbox': value['sandbox'],
-        'modified': value['modified'] == null ? value['modified'] : value['modified'].toISOString(),
+        'modified': value['modified'] == null ? value['modified'] : serializeDateTime(value['modified']),
         'createdBy': value['createdBy'],
         'modifiedBy': value['modifiedBy'],
     };

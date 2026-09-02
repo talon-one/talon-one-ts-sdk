@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CodeGeneratorSettings } from './CodeGeneratorSettings';
 import {
     CodeGeneratorSettingsFromJSON,
@@ -43,115 +43,79 @@ import {
 export interface Campaign {
     /**
      * Unique ID for this entity.
-     * @type {number}
-     * @memberof Campaign
      */
     id: number;
     /**
      * The exact moment this entity was created.
-     * @type {Date}
-     * @memberof Campaign
      */
     created: Date;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof Campaign
      */
     applicationId: number;
     /**
      * The ID of the user associated with this entity.
-     * @type {number}
-     * @memberof Campaign
      */
     userId: number;
     /**
      * A user-facing name for this campaign.
-     * @type {string}
-     * @memberof Campaign
      */
     name: string;
     /**
      * A detailed description of the campaign.
-     * @type {string}
-     * @memberof Campaign
      */
     description?: string;
     /**
      * Timestamp when the campaign will become active.
-     * @type {Date}
-     * @memberof Campaign
      */
     startTime?: Date;
     /**
      * Timestamp when the campaign will become inactive.
-     * @type {Date}
-     * @memberof Campaign
      */
     endTime?: Date;
     /**
      * Arbitrary properties associated with this campaign.
-     * @type {object}
-     * @memberof Campaign
      */
     attributes?: object;
     /**
      * A disabled or archived campaign is not evaluated for rules or coupons.
      * 
-     * @type {CampaignStateEnum}
-     * @memberof Campaign
      */
     state: CampaignStateEnum;
     /**
      * [ID of Ruleset](https://docs.talon.one/management-api#tag/Campaigns/operation/getRulesets) this
      * campaign applies on customer session evaluation.
      * 
-     * @type {number}
-     * @memberof Campaign
      */
     activeRulesetId?: number;
     /**
      * A list of tags for the campaign.
-     * @type {Array<string>}
-     * @memberof Campaign
      */
     tags: Array<string>;
     /**
      * Indicates whether this campaign should be reevaluated when a customer returns an item.
-     * @type {boolean}
-     * @memberof Campaign
      */
     reevaluateOnReturn: boolean;
     /**
      * The features enabled in this campaign.
-     * @type {Array<CampaignFeaturesEnum>}
-     * @memberof Campaign
      */
     features: Array<CampaignFeaturesEnum>;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof Campaign
      */
     couponSettings?: CodeGeneratorSettings;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof Campaign
      */
     referralSettings?: CodeGeneratorSettings;
     /**
      * The set of [budget limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets) for this campaign.
      * 
-     * @type {Array<LimitConfig>}
-     * @memberof Campaign
      */
     limits: Array<LimitConfig>;
     /**
      * The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups) this campaign belongs to.
      * 
-     * @type {Array<number>}
-     * @memberof Campaign
      */
     campaignGroups?: Array<number>;
     /**
@@ -159,8 +123,6 @@ export interface Campaign {
      *   - `cartItem`: Type of campaign that can apply effects only to cart items.
      *   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
      * 
-     * @type {CampaignTypeEnum}
-     * @memberof Campaign
      */
     type?: CampaignTypeEnum;
     /**
@@ -170,14 +132,10 @@ export interface Campaign {
      * [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)
      * that references a linked store.
      * 
-     * @type {Array<number>}
-     * @memberof Campaign
      */
     linkedStoreIds?: Array<number>;
     /**
      * Arbitrary properties associated with coupons in this campaign.
-     * @type {object}
-     * @memberof Campaign
      */
     couponAttributes?: object;
     /**
@@ -186,16 +144,12 @@ export interface Campaign {
      * **Note:** Budgets that are not defined do not appear in this list and their usage is
      * not counted until they are defined.
      * 
-     * @type {Array<CampaignBudget>}
-     * @memberof Campaign
      */
     budgets?: Array<CampaignBudget>;
     /**
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Number of coupons redeemed in the campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     couponRedemptionCount?: number;
@@ -203,8 +157,6 @@ export interface Campaign {
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Number of referral codes redeemed in the campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     referralRedemptionCount?: number;
@@ -212,8 +164,6 @@ export interface Campaign {
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Total amount of discounts redeemed in the campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     discountCount?: number;
@@ -221,8 +171,6 @@ export interface Campaign {
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Total number of times discounts were redeemed in this campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     discountEffectCount?: number;
@@ -230,8 +178,6 @@ export interface Campaign {
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Total number of coupons created by rules in this campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     couponCreationCount?: number;
@@ -239,8 +185,6 @@ export interface Campaign {
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Total number of custom effects triggered by rules in this campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     customEffectCount?: number;
@@ -248,8 +192,6 @@ export interface Campaign {
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Total number of referrals created by rules in this campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     referralCreationCount?: number;
@@ -257,8 +199,6 @@ export interface Campaign {
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem) can be triggered in this campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     addFreeItemEffectCount?: number;
@@ -266,8 +206,6 @@ export interface Campaign {
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Total number of giveaways awarded by rules in this campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     awardedGiveawaysCount?: number;
@@ -275,8 +213,6 @@ export interface Campaign {
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Total number of loyalty points created by rules in this campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     createdLoyaltyPointsCount?: number;
@@ -284,8 +220,6 @@ export interface Campaign {
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Total number of loyalty point creation effects triggered by rules in this campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     createdLoyaltyPointsEffectCount?: number;
@@ -293,8 +227,6 @@ export interface Campaign {
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Total number of loyalty points redeemed by rules in this campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     redeemedLoyaltyPointsCount?: number;
@@ -302,8 +234,6 @@ export interface Campaign {
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Total number of loyalty point redemption effects triggered by rules in this campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     redeemedLoyaltyPointsEffectCount?: number;
@@ -311,8 +241,6 @@ export interface Campaign {
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Total number of webhooks triggered by rules in this campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     callApiEffectCount?: number;
@@ -320,113 +248,79 @@ export interface Campaign {
      * This property is **deprecated**. The count should be available under *budgets* property.
      * Total number of reserve coupon effects triggered by rules in this campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      * @deprecated
      */
     reservecouponEffectCount?: number;
     /**
      * Timestamp of the most recent event received by this campaign.
-     * @type {Date}
-     * @memberof Campaign
      */
     lastActivity?: Date;
     /**
      * Timestamp of the most recent update to the campaign's property. Updates to external entities used in this campaign
      * are **not** registered by this property, such as collection or coupon updates.
      * 
-     * @type {Date}
-     * @memberof Campaign
      */
     updated?: Date;
     /**
      * Name of the user who created this campaign if available.
-     * @type {string}
-     * @memberof Campaign
      */
     createdBy?: string;
     /**
      * Name of the user who last updated this campaign if available.
-     * @type {string}
-     * @memberof Campaign
      */
     updatedBy?: string;
     /**
      * The ID of the Campaign Template this Campaign was created from.
-     * @type {number}
-     * @memberof Campaign
      */
     templateId?: number;
     /**
      * The campaign state displayed in the Campaign Manager.
-     * @type {CampaignFrontendStateEnum}
-     * @memberof Campaign
      */
     frontendState: CampaignFrontendStateEnum;
     /**
      * Indicates whether the linked stores were imported via a CSV file.
-     * @type {boolean}
-     * @memberof Campaign
      */
     storesImported: boolean;
     /**
      * A list of value map IDs for the campaign.
-     * @type {Array<number>}
-     * @memberof Campaign
      */
     valueMapsIds?: Array<number>;
     /**
      * The ID of the Experiment this Campaign is part of.
-     * @type {number}
-     * @memberof Campaign
      */
     experimentId?: number;
     /**
      * The campaign revision state displayed in the Campaign Manager.
-     * @type {CampaignRevisionFrontendStateEnum}
-     * @memberof Campaign
      */
     revisionFrontendState?: CampaignRevisionFrontendStateEnum;
     /**
      * ID of the revision that was last activated on this campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      */
     activeRevisionId?: number;
     /**
      * ID of the revision version that is active on the campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      */
     activeRevisionVersionId?: number;
     /**
      * Incrementing number representing how many revisions have been activated on this campaign, starts from 0 for a new campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      */
     version?: number;
     /**
      * ID of the revision currently being modified for the campaign.
      * 
-     * @type {number}
-     * @memberof Campaign
      */
     currentRevisionId?: number;
     /**
      * ID of the latest version applied on the current revision.
      * 
-     * @type {number}
-     * @memberof Campaign
      */
     currentRevisionVersionId?: number;
     /**
      * Flag for determining whether we use current revision when sending requests with staging API key.
      * 
-     * @type {boolean}
-     * @memberof Campaign
      */
     stageRevision?: boolean;
 }
@@ -438,7 +332,7 @@ export interface Campaign {
 export const CampaignStateEnum = {
     Enabled: 'enabled',
     Disabled: 'disabled',
-    Archived: 'archived'
+    Archived: 'archived',
 } as const;
 export type CampaignStateEnum = typeof CampaignStateEnum[keyof typeof CampaignStateEnum];
 
@@ -452,7 +346,7 @@ export const CampaignFeaturesEnum = {
     Giveaways: 'giveaways',
     Strikethrough: 'strikethrough',
     Achievements: 'achievements',
-    AdvancedEvents: 'advancedEvents'
+    AdvancedEvents: 'advancedEvents',
 } as const;
 export type CampaignFeaturesEnum = typeof CampaignFeaturesEnum[keyof typeof CampaignFeaturesEnum];
 
@@ -461,7 +355,7 @@ export type CampaignFeaturesEnum = typeof CampaignFeaturesEnum[keyof typeof Camp
  */
 export const CampaignTypeEnum = {
     CartItem: 'cartItem',
-    Advanced: 'advanced'
+    Advanced: 'advanced',
 } as const;
 export type CampaignTypeEnum = typeof CampaignTypeEnum[keyof typeof CampaignTypeEnum];
 
@@ -474,7 +368,7 @@ export const CampaignFrontendStateEnum = {
     Running: 'running',
     Disabled: 'disabled',
     Archived: 'archived',
-    Staged: 'staged'
+    Staged: 'staged',
 } as const;
 export type CampaignFrontendStateEnum = typeof CampaignFrontendStateEnum[keyof typeof CampaignFrontendStateEnum];
 
@@ -483,7 +377,7 @@ export type CampaignFrontendStateEnum = typeof CampaignFrontendStateEnum[keyof t
  */
 export const CampaignRevisionFrontendStateEnum = {
     Revised: 'revised',
-    Pending: 'pending'
+    Pending: 'pending',
 } as const;
 export type CampaignRevisionFrontendStateEnum = typeof CampaignRevisionFrontendStateEnum[keyof typeof CampaignRevisionFrontendStateEnum];
 
@@ -519,13 +413,13 @@ export function CampaignFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'applicationId': json['applicationId'],
         'userId': json['userId'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
-        'endTime': json['endTime'] == null ? undefined : (new Date(json['endTime'])),
+        'startTime': json['startTime'] == null ? undefined : (parseDateTime(json['startTime'])),
+        'endTime': json['endTime'] == null ? undefined : (parseDateTime(json['endTime'])),
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'state': json['state'],
         'activeRulesetId': json['activeRulesetId'] == null ? undefined : json['activeRulesetId'],
@@ -555,8 +449,8 @@ export function CampaignFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'redeemedLoyaltyPointsEffectCount': json['redeemedLoyaltyPointsEffectCount'] == null ? undefined : json['redeemedLoyaltyPointsEffectCount'],
         'callApiEffectCount': json['callApiEffectCount'] == null ? undefined : json['callApiEffectCount'],
         'reservecouponEffectCount': json['reservecouponEffectCount'] == null ? undefined : json['reservecouponEffectCount'],
-        'lastActivity': json['lastActivity'] == null ? undefined : (new Date(json['lastActivity'])),
-        'updated': json['updated'] == null ? undefined : (new Date(json['updated'])),
+        'lastActivity': json['lastActivity'] == null ? undefined : (parseDateTime(json['lastActivity'])),
+        'updated': json['updated'] == null ? undefined : (parseDateTime(json['updated'])),
         'createdBy': json['createdBy'] == null ? undefined : json['createdBy'],
         'updatedBy': json['updatedBy'] == null ? undefined : json['updatedBy'],
         'templateId': json['templateId'] == null ? undefined : json['templateId'],
@@ -586,13 +480,13 @@ export function CampaignToJSONTyped(value?: Campaign | null, ignoreDiscriminator
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'applicationId': value['applicationId'],
         'userId': value['userId'],
         'name': value['name'],
         'description': value['description'],
-        'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
-        'endTime': value['endTime'] == null ? value['endTime'] : value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? value['startTime'] : serializeDateTime(value['startTime']),
+        'endTime': value['endTime'] == null ? value['endTime'] : serializeDateTime(value['endTime']),
         'attributes': value['attributes'],
         'state': value['state'],
         'activeRulesetId': value['activeRulesetId'],
@@ -622,8 +516,8 @@ export function CampaignToJSONTyped(value?: Campaign | null, ignoreDiscriminator
         'redeemedLoyaltyPointsEffectCount': value['redeemedLoyaltyPointsEffectCount'],
         'callApiEffectCount': value['callApiEffectCount'],
         'reservecouponEffectCount': value['reservecouponEffectCount'],
-        'lastActivity': value['lastActivity'] == null ? value['lastActivity'] : value['lastActivity'].toISOString(),
-        'updated': value['updated'] == null ? value['updated'] : value['updated'].toISOString(),
+        'lastActivity': value['lastActivity'] == null ? value['lastActivity'] : serializeDateTime(value['lastActivity']),
+        'updated': value['updated'] == null ? value['updated'] : serializeDateTime(value['updated']),
         'createdBy': value['createdBy'],
         'updatedBy': value['updatedBy'],
         'templateId': value['templateId'],

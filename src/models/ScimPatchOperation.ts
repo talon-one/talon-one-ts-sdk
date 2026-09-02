@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface ScimPatchOperation {
     /**
      * The method that should be used in the operation.
-     * @type {ScimPatchOperationOpEnum}
-     * @memberof ScimPatchOperation
      */
     op: ScimPatchOperationOpEnum;
     /**
      * The path specifying the attribute that should be updated.
-     * @type {string}
-     * @memberof ScimPatchOperation
      */
     path?: string;
     /**
      * The value that should be updated. Required if `op` is `add` or `replace`.
-     * @type {string}
-     * @memberof ScimPatchOperation
      */
     value?: string;
 }
@@ -46,7 +40,7 @@ export interface ScimPatchOperation {
 export const ScimPatchOperationOpEnum = {
     Add: 'add',
     Remove: 'remove',
-    Replace: 'replace'
+    Replace: 'replace',
 } as const;
 export type ScimPatchOperationOpEnum = typeof ScimPatchOperationOpEnum[keyof typeof ScimPatchOperationOpEnum];
 

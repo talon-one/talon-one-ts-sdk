@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface LoyaltyBalance {
     /**
      * Total amount of points awarded to this customer and available to spend.
-     * @type {number}
-     * @memberof LoyaltyBalance
      */
     activePoints?: number;
     /**
      * Total amount of points awarded to this customer but not available until their start date.
-     * @type {number}
-     * @memberof LoyaltyBalance
      */
     pendingPoints?: number;
     /**
      * Total amount of points already spent by this customer.
-     * @type {number}
-     * @memberof LoyaltyBalance
      */
     spentPoints?: number;
     /**
      * Total amount of points awarded but never redeemed. They cannot be used anymore.
-     * @type {number}
-     * @memberof LoyaltyBalance
      */
     expiredPoints?: number;
     /**
      * Total amount of negative points. This implies that `activePoints` is `0`.
-     * @type {number}
-     * @memberof LoyaltyBalance
      */
     negativePoints?: number;
 }

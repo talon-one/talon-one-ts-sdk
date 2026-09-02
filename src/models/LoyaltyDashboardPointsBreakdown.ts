@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface LoyaltyDashboardPointsBreakdown {
     /**
      * 
-     * @type {number}
-     * @memberof LoyaltyDashboardPointsBreakdown
      */
     createdManually: number;
     /**
      * 
-     * @type {number}
-     * @memberof LoyaltyDashboardPointsBreakdown
      */
     createdViaRuleEngine: number;
 }

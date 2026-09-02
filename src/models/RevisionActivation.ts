@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface RevisionActivation {
     /**
      * 
-     * @type {Date}
-     * @memberof RevisionActivation
      */
     activateAt?: Date;
 }
@@ -45,7 +43,7 @@ export function RevisionActivationFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'activateAt': json['activateAt'] == null ? undefined : (new Date(json['activateAt'])),
+        'activateAt': json['activateAt'] == null ? undefined : (parseDateTime(json['activateAt'])),
     };
 }
 
@@ -60,7 +58,7 @@ export function RevisionActivationToJSONTyped(value?: RevisionActivation | null,
 
     return {
         
-        'activateAt': value['activateAt'] == null ? value['activateAt'] : value['activateAt'].toISOString(),
+        'activateAt': value['activateAt'] == null ? value['activateAt'] : serializeDateTime(value['activateAt']),
     };
 }
 

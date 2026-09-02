@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ErrorEffectProps {
     /**
      * The error message.
-     * @type {string}
-     * @memberof ErrorEffectProps
      */
     message: string;
 }

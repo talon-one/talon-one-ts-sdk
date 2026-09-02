@@ -29,26 +29,18 @@ import {
 export interface UpdateExperimentVariant {
     /**
      * 
-     * @type {number}
-     * @memberof UpdateExperimentVariant
      */
     id: number;
     /**
      * The name of this variant.
-     * @type {string}
-     * @memberof UpdateExperimentVariant
      */
     name: string;
     /**
      * 
-     * @type {NewRuleset}
-     * @memberof UpdateExperimentVariant
      */
     ruleset: NewRuleset;
     /**
      * The percentage split of this variant. The sum of all variant percentages must be 100.
-     * @type {number}
-     * @memberof UpdateExperimentVariant
      */
     weight: number;
 }

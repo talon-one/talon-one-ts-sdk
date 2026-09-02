@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { RoleV2Permissions } from './RoleV2Permissions';
 import {
     RoleV2PermissionsFromJSON,
@@ -29,56 +29,38 @@ import {
 export interface RoleV2 {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof RoleV2
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof RoleV2
      */
     created: Date;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof RoleV2
      */
     modified: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof RoleV2
      */
     accountId: number;
     /**
      * Name of the role.
-     * @type {string}
-     * @memberof RoleV2
      */
     name?: string;
     /**
      * Description of the role.
-     * @type {string}
-     * @memberof RoleV2
      */
     description?: string;
     /**
      * The permissions that this role gives.
-     * @type {RoleV2Permissions}
-     * @memberof RoleV2
      */
     permissions?: RoleV2Permissions;
     /**
      * A list of user IDs the role is assigned to.
-     * @type {Array<number>}
-     * @memberof RoleV2
      */
     members?: Array<number>;
     /**
      * Identifies if the role is read-only. For read-only roles, you can only assign or unassign users. You cannot edit any other properties, such as the name, description, or permissions. The 'isReadonly' property cannot be set for new or existing roles. It is reserved for predefined roles, such as the Talon.One support role.
-     * @type {boolean}
-     * @memberof RoleV2
      */
     isReadonly?: boolean;
 }
@@ -106,8 +88,8 @@ export function RoleV2FromJSONTyped(json: any, ignoreDiscriminator: boolean): Ro
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'accountId': json['accountId'],
         'name': json['name'] == null ? undefined : json['name'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -129,8 +111,8 @@ export function RoleV2ToJSONTyped(value?: RoleV2 | null, ignoreDiscriminator: bo
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'accountId': value['accountId'],
         'name': value['name'],
         'description': value['description'],

@@ -25,14 +25,10 @@ import { mapValues } from '../runtime';
 export interface SetDiscountEffectProps {
     /**
      * The name or description of this discount.
-     * @type {string}
-     * @memberof SetDiscountEffectProps
      */
     name: string;
     /**
      * The monetary value of the effective discount.
-     * @type {number}
-     * @memberof SetDiscountEffectProps
      */
     value: number;
     /**
@@ -43,14 +39,10 @@ export interface SetDiscountEffectProps {
      * - `sessionTotal`: Discount on the total value of the customer session.
      * 
      * **Note:** [Cascading discounts](https://docs.talon.one/docs/product/applications/manage-general-settings#cascading-discounts) must be enabled for this property to be returned.
-     * @type {string}
-     * @memberof SetDiscountEffectProps
      */
     scope?: string;
     /**
      * _(Partial discounts enabled only)_ The monetary value of the discount to be applied without considering budget limitations.
-     * @type {number}
-     * @memberof SetDiscountEffectProps
      */
     desiredValue?: number;
 }

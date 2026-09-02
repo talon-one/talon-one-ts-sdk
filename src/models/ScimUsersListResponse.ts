@@ -29,20 +29,14 @@ import {
 export interface ScimUsersListResponse {
     /**
      * 
-     * @type {Array<ScimUser>}
-     * @memberof ScimUsersListResponse
      */
     resources: Array<ScimUser>;
     /**
      * SCIM schema for the given resource.
-     * @type {Array<string>}
-     * @memberof ScimUsersListResponse
      */
     schemas?: Array<string>;
     /**
      * Number of total results in the response.
-     * @type {number}
-     * @memberof ScimUsersListResponse
      */
     totalResults?: number;
 }

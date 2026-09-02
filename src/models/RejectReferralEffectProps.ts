@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface RejectReferralEffectProps {
     /**
      * The referral code that was rejected
-     * @type {string}
-     * @memberof RejectReferralEffectProps
      */
     value: string;
     /**
@@ -42,26 +40,18 @@ export interface RejectReferralEffectProps {
      * - `ReferralRejectedByCondition`: The referral code is valid and in an active campaign, but there were other conditions in that campaign's rules that were not met.
      * - `ReferralStartDateInFuture`: The transferred referral code isn't active yet.
      * - `ReferralPartOfNotTriggeredCampaign`: The campaign the referral code belongs to was not triggered during evaluation (an exclusive or stackable campaign). The campaign ID field shows the ID of that campaign.
-     * @type {string}
-     * @memberof RejectReferralEffectProps
      */
     rejectionReason: string;
     /**
      * The index of the condition that caused the rejection of the referral.
-     * @type {number}
-     * @memberof RejectReferralEffectProps
      */
     conditionIndex?: number;
     /**
      * The index of the effect that caused the rejection of the referral.
-     * @type {number}
-     * @memberof RejectReferralEffectProps
      */
     effectIndex?: number;
     /**
      * More details about the failure.
-     * @type {string}
-     * @memberof RejectReferralEffectProps
      */
     details?: string;
     /**
@@ -71,8 +61,6 @@ export interface RejectReferralEffectProps {
      * - `CampaignGaveLowerDiscount`: The required campaign and referral conditions were met, but another campaign in a [Highest discount value](https://docs.talon.one/docs/product/applications/manage-campaign-evaluation#set-campaign-evaluation-mode) group offered a higher discount value.
      * - `CampaignIsNotFirst`: The campaign was not evaluated because another campaign in a [First campaign](https://docs.talon.one/docs/product/applications/manage-campaign-evaluation#set-campaign-evaluation-mode) group was picked and evaluated first.
      * - `CampaignNotInEvaluationSet`: The campaign did not meet other evaluation requirements, for example, because the referral is part of an archived campaign.
-     * @type {string}
-     * @memberof RejectReferralEffectProps
      */
     campaignExclusionReason?: string;
 }

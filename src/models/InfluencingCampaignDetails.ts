@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface InfluencingCampaignDetails {
     /**
      * Identifier of the campaign that influenced the final price.
-     * @type {number}
-     * @memberof InfluencingCampaignDetails
      */
     campaignId: number;
     /**
      * Discount value applied by the campaign.
-     * @type {number}
-     * @memberof InfluencingCampaignDetails
      */
     discountValue: number;
 }

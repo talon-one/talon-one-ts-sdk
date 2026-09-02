@@ -13,8 +13,8 @@ Name | Type
 `name` | string
 `quantity` | string
 `partial` | boolean
-`onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
-`onError` | { [key: string]: Array&lt;PromotionBlock&gt;; }
+`onFailure` | [Array&lt;Block&gt;](Block.md)
+`onError` | { [key: string]: Array&lt;Block&gt;; }
 
 ## Example
 

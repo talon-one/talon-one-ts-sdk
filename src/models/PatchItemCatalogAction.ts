@@ -34,32 +34,22 @@ import {
 export interface PatchItemCatalogAction {
     /**
      * The unique SKU of the item to patch.
-     * @type {string}
-     * @memberof PatchItemCatalogAction
      */
     sku: string;
     /**
      * Price of the item.
-     * @type {number}
-     * @memberof PatchItemCatalogAction
      */
     price?: number;
     /**
      * The attributes of the item to patch.
-     * @type {object}
-     * @memberof PatchItemCatalogAction
      */
     attributes?: object;
     /**
      * 
-     * @type {Product}
-     * @memberof PatchItemCatalogAction
      */
     product?: Product;
     /**
      * Indicates whether to create an item if the SKU does not exist.
-     * @type {boolean}
-     * @memberof PatchItemCatalogAction
      */
     createIfNotExists?: boolean;
 }

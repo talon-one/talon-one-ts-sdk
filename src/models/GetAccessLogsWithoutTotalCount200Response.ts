@@ -29,14 +29,10 @@ import {
 export interface GetAccessLogsWithoutTotalCount200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetAccessLogsWithoutTotalCount200Response
      */
     hasMore: boolean;
     /**
      * 
-     * @type {Array<AccessLogEntry>}
-     * @memberof GetAccessLogsWithoutTotalCount200Response
      */
     data: Array<AccessLogEntry>;
 }

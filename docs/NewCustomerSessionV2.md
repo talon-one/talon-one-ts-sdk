@@ -13,6 +13,7 @@ Name | Type
 `couponCodes` | Array&lt;string&gt;
 `referralCode` | string
 `loyaltyCards` | Array&lt;string&gt;
+`rewardIntegrationIds` | Array&lt;string&gt;
 `state` | string
 `cartItems` | [Array&lt;CartItem&gt;](CartItem.md)
 `experimentVariantAllocations` | [Array&lt;ExperimentVariantAllocation&gt;](ExperimentVariantAllocation.md)
@@ -33,6 +34,7 @@ const example = {
   "couponCodes": [XMAS-20-2021],
   "referralCode": NT2K54D9,
   "loyaltyCards": [loyalty-card-1],
+  "rewardIntegrationIds": [5c0b5e6d-3f8a-4c2b-9f1e-2a7d6b4c8e90],
   "state": open,
   "cartItems": null,
   "experimentVariantAllocations": null,

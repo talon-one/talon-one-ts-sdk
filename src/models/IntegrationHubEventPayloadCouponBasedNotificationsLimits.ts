@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface IntegrationHubEventPayloadCouponBasedNotificationsLimits {
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotificationsLimits
      */
     action: string;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotificationsLimits
      */
     limit: number;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotificationsLimits
      */
     period?: string;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotificationsLimits
      */
     entities: Array<string>;
 }

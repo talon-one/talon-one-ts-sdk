@@ -29,14 +29,10 @@ import {
 export interface MultipleAudiences {
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof MultipleAudiences
      */
     accountId: number;
     /**
      * 
-     * @type {Array<MultipleAudiencesItem>}
-     * @memberof MultipleAudiences
      */
     audiences: Array<MultipleAudiencesItem>;
 }

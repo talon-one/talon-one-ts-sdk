@@ -44,40 +44,28 @@ export interface CampaignStateChangedNotificationItem {
     /**
      * The type of the event. Can be one of the following: ['campaign_state_changed', 'campaign_ruleset_changed', 'campaign_edited', 'campaign_created', 'campaign_deleted']
      * 
-     * @type {string}
-     * @memberof CampaignStateChangedNotificationItem
      */
     event: string;
     /**
      * The campaign whose state changed.
-     * @type {Campaign}
-     * @memberof CampaignStateChangedNotificationItem
      */
     campaign: Campaign;
     /**
      * The campaign's old state. Can be one of the following: ['running', 'disabled', 'scheduled', 'expired', 'archived']
      * 
-     * @type {string}
-     * @memberof CampaignStateChangedNotificationItem
      */
     oldState: string;
     /**
      * The campaign's new state. Can be one of the following: ['running', 'disabled', 'scheduled', 'expired', 'archived']
      * 
-     * @type {string}
-     * @memberof CampaignStateChangedNotificationItem
      */
     newState: string;
     /**
      * The current ruleset.
-     * @type {Ruleset}
-     * @memberof CampaignStateChangedNotificationItem
      */
     ruleset?: Ruleset;
     /**
      * The current details of the [placeholders](https://docs.talon.one/docs/product/campaigns/templates/create-templates#use-placeholders) in the campaign.
-     * @type {Array<PlaceholderDetails>}
-     * @memberof CampaignStateChangedNotificationItem
      */
     placeholders?: Array<PlaceholderDetails>;
 }

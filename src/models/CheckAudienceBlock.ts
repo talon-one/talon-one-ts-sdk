@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PromotionBlock } from './PromotionBlock';
+import type { Block } from './Block';
 import {
-    PromotionBlockFromJSON,
-    PromotionBlockFromJSONTyped,
-    PromotionBlockToJSON,
-    PromotionBlockToJSONTyped,
-} from './PromotionBlock';
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
 import type { CheckAudienceBlock1Audience } from './CheckAudienceBlock1Audience';
 import {
     CheckAudienceBlock1AudienceFromJSON,
@@ -36,46 +36,32 @@ import {
 export interface CheckAudienceBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof CheckAudienceBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof CheckAudienceBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof CheckAudienceBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * An indicator of how the block compares its elements.
-     * @type {CheckAudienceBlockOperatorEnum}
-     * @memberof CheckAudienceBlock
      */
     operator: CheckAudienceBlockOperatorEnum;
     /**
      * The customer profile to check against the audience. `Current` targets the customer in the current session; `Advocate` targets the person who invited their friend via referral program.
-     * @type {CheckAudienceBlockProfileEnum}
-     * @memberof CheckAudienceBlock
      */
     profile: CheckAudienceBlockProfileEnum;
     /**
      * 
-     * @type {CheckAudienceBlock1Audience}
-     * @memberof CheckAudienceBlock
      */
     audience: CheckAudienceBlock1Audience;
     /**
      * Promotion blocks evaluated when this block fails or returns false.
-     * @type {Array<PromotionBlock>}
-     * @memberof CheckAudienceBlock
      */
-    onFailure?: Array<PromotionBlock>;
+    onFailure?: Array<Block>;
 }
 
 
@@ -86,7 +72,7 @@ export const CheckAudienceBlockOperatorEnum = {
     Member: 'member',
     NotMember: 'not(member)',
     JustJoined: 'justJoined',
-    JustLeft: 'justLeft'
+    JustLeft: 'justLeft',
 } as const;
 export type CheckAudienceBlockOperatorEnum = typeof CheckAudienceBlockOperatorEnum[keyof typeof CheckAudienceBlockOperatorEnum];
 
@@ -95,7 +81,7 @@ export type CheckAudienceBlockOperatorEnum = typeof CheckAudienceBlockOperatorEn
  */
 export const CheckAudienceBlockProfileEnum = {
     Current: 'Current',
-    Advocate: 'Advocate'
+    Advocate: 'Advocate',
 } as const;
 export type CheckAudienceBlockProfileEnum = typeof CheckAudienceBlockProfileEnum[keyof typeof CheckAudienceBlockProfileEnum];
 
@@ -105,7 +91,6 @@ export type CheckAudienceBlockProfileEnum = typeof CheckAudienceBlockProfileEnum
  */
 export function instanceOfCheckAudienceBlock(value: object): value is CheckAudienceBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('operator' in _v) || _v['operator'] === undefined) return false;
     if (!('profile' in _v) || _v['profile'] === undefined) return false;
@@ -123,13 +108,13 @@ export function CheckAudienceBlockFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
         'profile': json['profile'],
         'audience': CheckAudienceBlock1AudienceFromJSON(json['audience']),
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -137,20 +122,18 @@ export function CheckAudienceBlockToJSON(json: any): CheckAudienceBlock {
     return CheckAudienceBlockToJSONTyped(json, false);
 }
 
-export function CheckAudienceBlockToJSONTyped(value?: CheckAudienceBlock | null, ignoreDiscriminator: boolean = false): any {
+export function CheckAudienceBlockToJSONTyped(value?: Omit<CheckAudienceBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'operator': value['operator'],
         'profile': value['profile'],
         'audience': CheckAudienceBlock1AudienceToJSON(value['audience']),
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { MessageLogResponse } from './MessageLogResponse';
 import {
     MessageLogResponseFromJSON,
@@ -36,93 +36,63 @@ import {
 export interface MessageLogEntry {
     /**
      * Unique identifier of the message.
-     * @type {string}
-     * @memberof MessageLogEntry
      */
     id: string;
     /**
      * Name of the service that generated the log entry.
-     * @type {string}
-     * @memberof MessageLogEntry
      */
     service: string;
     /**
      * Type of change that triggered the notification.
-     * @type {string}
-     * @memberof MessageLogEntry
      */
     changeType?: string;
     /**
      * ID of the notification.
-     * @type {number}
-     * @memberof MessageLogEntry
      */
     notificationId?: number;
     /**
      * The name of the notification.
-     * @type {string}
-     * @memberof MessageLogEntry
      */
     notificationName?: string;
     /**
      * ID of the webhook.
-     * @type {number}
-     * @memberof MessageLogEntry
      */
     webhookId?: number;
     /**
      * The name of the webhook.
-     * @type {string}
-     * @memberof MessageLogEntry
      */
     webhookName?: string;
     /**
      * 
-     * @type {MessageLogRequest}
-     * @memberof MessageLogEntry
      */
     request?: MessageLogRequest;
     /**
      * 
-     * @type {MessageLogResponse}
-     * @memberof MessageLogEntry
      */
     response?: MessageLogResponse;
     /**
      * Timestamp when the log entry was created.
-     * @type {Date}
-     * @memberof MessageLogEntry
      */
     createdAt: Date;
     /**
      * The entity type the log is related to.
      * 
-     * @type {MessageLogEntryEntityTypeEnum}
-     * @memberof MessageLogEntry
      */
     entityType: MessageLogEntryEntityTypeEnum;
     /**
      * The target URL of the request.
-     * @type {string}
-     * @memberof MessageLogEntry
      */
     url?: string;
     /**
      * Identifier of the Application.
-     * @type {number}
-     * @memberof MessageLogEntry
      */
     applicationId?: number;
     /**
      * Identifier of the loyalty program.
-     * @type {number}
-     * @memberof MessageLogEntry
      */
     loyaltyProgramId?: number;
     /**
      * Identifier of the campaign.
-     * @type {number}
-     * @memberof MessageLogEntry
      */
     campaignId?: number;
 }
@@ -134,7 +104,7 @@ export interface MessageLogEntry {
 export const MessageLogEntryEntityTypeEnum = {
     Application: 'application',
     LoyaltyProgram: 'loyalty_program',
-    Webhook: 'webhook'
+    Webhook: 'webhook',
 } as const;
 export type MessageLogEntryEntityTypeEnum = typeof MessageLogEntryEntityTypeEnum[keyof typeof MessageLogEntryEntityTypeEnum];
 
@@ -170,7 +140,7 @@ export function MessageLogEntryFromJSONTyped(json: any, ignoreDiscriminator: boo
         'webhookName': json['webhookName'] == null ? undefined : json['webhookName'],
         'request': json['request'] == null ? undefined : MessageLogRequestFromJSON(json['request']),
         'response': json['response'] == null ? undefined : MessageLogResponseFromJSON(json['response']),
-        'createdAt': (json['createdAt'] == null ? undefined as any : new Date(json['createdAt'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : parseDateTime(json['createdAt'])),
         'entityType': json['entityType'],
         'url': json['url'] == null ? undefined : json['url'],
         'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
@@ -199,7 +169,7 @@ export function MessageLogEntryToJSONTyped(value?: MessageLogEntry | null, ignor
         'webhookName': value['webhookName'],
         'request': MessageLogRequestToJSON(value['request']),
         'response': MessageLogResponseToJSON(value['response']),
-        'createdAt': value['createdAt'] == null ? undefined : value['createdAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? undefined : serializeDateTime(value['createdAt']),
         'entityType': value['entityType'],
         'url': value['url'],
         'applicationId': value['applicationId'],

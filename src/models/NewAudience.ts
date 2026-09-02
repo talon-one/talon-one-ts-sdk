@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface NewAudience {
     /**
      * The human-friendly display name for this audience.
-     * @type {string}
-     * @memberof NewAudience
      */
     name: string;
     /**
      * Indicates if this is a live or sandbox Application.
-     * @type {boolean}
-     * @memberof NewAudience
      */
     sandbox?: boolean;
     /**
      * A description of the audience.
-     * @type {string}
-     * @memberof NewAudience
      */
     description?: string;
     /**
      * A list of the IDs of the Applications that are connected to this audience.
-     * @type {Set<number>}
-     * @memberof NewAudience
      */
     subscribedApplicationsIds?: Set<number>;
     /**
@@ -50,8 +42,6 @@ export interface NewAudience {
      * 
      * **Note:** If you do not integrate with any of these platforms, do not use this property.
      * 
-     * @type {string}
-     * @memberof NewAudience
      */
     integration?: string;
     /**
@@ -59,20 +49,14 @@ export interface NewAudience {
      * 
      * **Note:** To create an audience that doesn't come from a 3rd party platform, do not use this property.
      * 
-     * @type {string}
-     * @memberof NewAudience
      */
     integrationId?: string;
     /**
      * Determines if this audience is a 3rd party audience or not.
-     * @type {boolean}
-     * @memberof NewAudience
      */
     createdIn3rdParty?: boolean;
     /**
      * The last time that the audience memberships changed.
-     * @type {Date}
-     * @memberof NewAudience
      */
     lastUpdate?: Date;
 }
@@ -103,7 +87,7 @@ export function NewAudienceFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'integration': json['integration'] == null ? undefined : json['integration'],
         'integrationId': json['integrationId'] == null ? undefined : json['integrationId'],
         'createdIn3rdParty': json['createdIn3rdParty'] == null ? undefined : json['createdIn3rdParty'],
-        'lastUpdate': json['lastUpdate'] == null ? undefined : (new Date(json['lastUpdate'])),
+        'lastUpdate': json['lastUpdate'] == null ? undefined : (parseDateTime(json['lastUpdate'])),
     };
 }
 
@@ -125,7 +109,7 @@ export function NewAudienceToJSONTyped(value?: NewAudience | null, ignoreDiscrim
         'integration': value['integration'],
         'integrationId': value['integrationId'],
         'createdIn3rdParty': value['createdIn3rdParty'],
-        'lastUpdate': value['lastUpdate'] == null ? value['lastUpdate'] : value['lastUpdate'].toISOString(),
+        'lastUpdate': value['lastUpdate'] == null ? value['lastUpdate'] : serializeDateTime(value['lastUpdate']),
     };
 }
 

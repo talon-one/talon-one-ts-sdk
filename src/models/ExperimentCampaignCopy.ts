@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface ExperimentCampaignCopy {
     /**
      * Name of the copied campaign (Defaults to "Copy of original campaign name").
-     * @type {string}
-     * @memberof ExperimentCampaignCopy
      */
     name?: string;
     /**
      * A detailed description of the campaign.
-     * @type {string}
-     * @memberof ExperimentCampaignCopy
      */
     description?: string;
     /**
      * Timestamp when the campaign will become active.
-     * @type {Date}
-     * @memberof ExperimentCampaignCopy
      */
     startTime?: Date;
     /**
      * Timestamp when the campaign will become inactive.
-     * @type {Date}
-     * @memberof ExperimentCampaignCopy
      */
     endTime?: Date;
     /**
      * A list of tags for the campaign.
-     * @type {Array<string>}
-     * @memberof ExperimentCampaignCopy
      */
     tags?: Array<string>;
     /**
      * The ID of the campaign evaluation group the campaign belongs to.
-     * @type {number}
-     * @memberof ExperimentCampaignCopy
      */
     evaluationGroupId?: number;
 }
@@ -77,8 +65,8 @@ export function ExperimentCampaignCopyFromJSONTyped(json: any, ignoreDiscriminat
         
         'name': json['name'] == null ? undefined : json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
-        'endTime': json['endTime'] == null ? undefined : (new Date(json['endTime'])),
+        'startTime': json['startTime'] == null ? undefined : (parseDateTime(json['startTime'])),
+        'endTime': json['endTime'] == null ? undefined : (parseDateTime(json['endTime'])),
         'tags': json['tags'] == null ? undefined : json['tags'],
         'evaluationGroupId': json['evaluationGroupId'] == null ? undefined : json['evaluationGroupId'],
     };
@@ -97,8 +85,8 @@ export function ExperimentCampaignCopyToJSONTyped(value?: ExperimentCampaignCopy
         
         'name': value['name'],
         'description': value['description'],
-        'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
-        'endTime': value['endTime'] == null ? value['endTime'] : value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? value['startTime'] : serializeDateTime(value['startTime']),
+        'endTime': value['endTime'] == null ? value['endTime'] : serializeDateTime(value['endTime']),
         'tags': value['tags'],
         'evaluationGroupId': value['evaluationGroupId'],
     };

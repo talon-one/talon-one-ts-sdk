@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface ScimServiceProviderConfigResponseFilter {
     /**
      * The maximum number of resources that can be returned in a single filtered query response.
-     * @type {number}
-     * @memberof ScimServiceProviderConfigResponseFilter
      */
     maxResults?: number;
     /**
      * Indicates whether the SCIM service provider supports filtering operations.
-     * @type {boolean}
-     * @memberof ScimServiceProviderConfigResponseFilter
      */
     supported?: boolean;
 }

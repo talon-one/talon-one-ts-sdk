@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CouponDeletionFilters } from './CouponDeletionFilters';
 import {
     CouponDeletionFiltersFromJSON,
@@ -29,32 +29,22 @@ import {
 export interface CouponDeletionJob {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof CouponDeletionJob
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof CouponDeletionJob
      */
     created: Date;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof CouponDeletionJob
      */
     applicationId: number;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof CouponDeletionJob
      */
     accountId: number;
     /**
      * 
-     * @type {CouponDeletionFilters}
-     * @memberof CouponDeletionJob
      */
     filters: CouponDeletionFilters;
     /**
@@ -64,44 +54,30 @@ export interface CouponDeletionJob {
      * - `completed`
      * - `failed`
      * 
-     * @type {string}
-     * @memberof CouponDeletionJob
      */
     status: string;
     /**
      * The number of coupon codes that were already deleted for this request.
-     * @type {number}
-     * @memberof CouponDeletionJob
      */
     deletedAmount?: number;
     /**
      * The number of times this job failed.
-     * @type {number}
-     * @memberof CouponDeletionJob
      */
     failCount: number;
     /**
      * An array of individual problems encountered during the request.
-     * @type {Array<string>}
-     * @memberof CouponDeletionJob
      */
     errors: Array<string>;
     /**
      * ID of the user who created this effect.
-     * @type {number}
-     * @memberof CouponDeletionJob
      */
     createdBy: number;
     /**
      * Indicates whether the user that created this job was notified of its final state.
-     * @type {boolean}
-     * @memberof CouponDeletionJob
      */
     communicated: boolean;
     /**
      * 
-     * @type {Array<number>}
-     * @memberof CouponDeletionJob
      */
     campaignIDs?: Array<number>;
 }
@@ -135,7 +111,7 @@ export function CouponDeletionJobFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'applicationId': json['applicationId'],
         'accountId': json['accountId'],
         'filters': CouponDeletionFiltersFromJSON(json['filters']),
@@ -161,7 +137,7 @@ export function CouponDeletionJobToJSONTyped(value?: CouponDeletionJob | null, i
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'applicationId': value['applicationId'],
         'accountId': value['accountId'],
         'filters': CouponDeletionFiltersToJSON(value['filters']),

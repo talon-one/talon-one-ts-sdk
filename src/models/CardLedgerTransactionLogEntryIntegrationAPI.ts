@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * Log entry for a given loyalty card transaction.
  * @export
@@ -21,33 +21,23 @@ import { mapValues } from '../runtime';
 export interface CardLedgerTransactionLogEntryIntegrationAPI {
     /**
      * Unique identifier of the transaction in the UUID format.
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     transactionUUID: string;
     /**
      * Date and time the loyalty card transaction occurred.
-     * @type {Date}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     created: Date;
     /**
      * ID of the loyalty program.
-     * @type {number}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     programId: number;
     /**
      * The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`.
      * 
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     cardIdentifier: string;
     /**
      * ID of the customer session where the transaction occurred.
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     customerSessionId?: string;
     /**
@@ -55,14 +45,10 @@ export interface CardLedgerTransactionLogEntryIntegrationAPI {
      *   - `addition`: Signifies added points.
      *   - `subtraction`: Signifies deducted points.
      * 
-     * @type {CardLedgerTransactionLogEntryIntegrationAPITypeEnum}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     type: CardLedgerTransactionLogEntryIntegrationAPITypeEnum;
     /**
      * Name or reason of the loyalty ledger transaction.
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     name: string;
     /**
@@ -71,8 +57,6 @@ export interface CardLedgerTransactionLogEntryIntegrationAPI {
      *   - `on_action`: Points become active based on the customer's action.
      *   - a timestamp value: Points become active at a given date and time.
      * 
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     startDate: string;
     /**
@@ -80,38 +64,26 @@ export interface CardLedgerTransactionLogEntryIntegrationAPI {
      *   - `unlimited`: Points have no expiration date.
      *   - `timestamp value`: Points expire on the given date.
      * 
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     expiryDate: string;
     /**
      * ID of the subledger.
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     subledgerId: string;
     /**
      * Amount of loyalty points added or deducted in the transaction.
-     * @type {number}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     amount: number;
     /**
      * ID of the loyalty ledger transaction.
-     * @type {number}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     id: number;
     /**
      * The ID of the ruleset containing the rule that triggered this effect.
-     * @type {number}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     rulesetId?: number;
     /**
      * The name of the rule that triggered this effect.
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     ruleName?: string;
     /**
@@ -119,8 +91,6 @@ export interface CardLedgerTransactionLogEntryIntegrationAPI {
      * 
      * **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
      * 
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntryIntegrationAPI
      */
     validityDuration?: string;
 }
@@ -131,7 +101,7 @@ export interface CardLedgerTransactionLogEntryIntegrationAPI {
  */
 export const CardLedgerTransactionLogEntryIntegrationAPITypeEnum = {
     Addition: 'addition',
-    Subtraction: 'subtraction'
+    Subtraction: 'subtraction',
 } as const;
 export type CardLedgerTransactionLogEntryIntegrationAPITypeEnum = typeof CardLedgerTransactionLogEntryIntegrationAPITypeEnum[keyof typeof CardLedgerTransactionLogEntryIntegrationAPITypeEnum];
 
@@ -166,7 +136,7 @@ export function CardLedgerTransactionLogEntryIntegrationAPIFromJSONTyped(json: a
     return {
         
         'transactionUUID': json['transactionUUID'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'programId': json['programId'],
         'cardIdentifier': json['cardIdentifier'],
         'customerSessionId': json['customerSessionId'] == null ? undefined : json['customerSessionId'],
@@ -195,7 +165,7 @@ export function CardLedgerTransactionLogEntryIntegrationAPIToJSONTyped(value?: C
     return {
         
         'transactionUUID': value['transactionUUID'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'programId': value['programId'],
         'cardIdentifier': value['cardIdentifier'],
         'customerSessionId': value['customerSessionId'],

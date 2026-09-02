@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ImportEntity {
     /**
      * The ID of the Import which created this referral.
-     * @type {number}
-     * @memberof ImportEntity
      */
     importId?: number;
 }

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ApplicationSessionEntity {
     /**
      * The globally unique Talon.One ID of the session where this entity was created.
-     * @type {number}
-     * @memberof ApplicationSessionEntity
      */
     sessionId: number;
 }

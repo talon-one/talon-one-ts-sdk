@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Block } from './Block';
+import {
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
+
 /**
  * 
  * @export
@@ -21,94 +29,68 @@ import { mapValues } from '../runtime';
 export interface CheckAttributeBlockBase {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof CheckAttributeBlockBase
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof CheckAttributeBlockBase
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof CheckAttributeBlockBase
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * The comparison operator applied to the attribute.
-     * @type {CheckAttributeBlockBaseOperatorEnum}
-     * @memberof CheckAttributeBlockBase
      */
     operator: CheckAttributeBlockBaseOperatorEnum;
     /**
-     * 
-     * @type {any}
-     * @memberof CheckAttributeBlockBase
+     * The attribute path identifier (e.g. "$Session.Total").
      */
     attribute: any | null;
     /**
-     * 
-     * @type {any}
-     * @memberof CheckAttributeBlockBase
+     * The comparison value for scalar operators.
      */
     value?: any | null;
     /**
-     * 
-     * @type {any}
-     * @memberof CheckAttributeBlockBase
+     * The minimum value allowed for the `between` operator.
      */
     min?: any | null;
     /**
-     * 
-     * @type {any}
-     * @memberof CheckAttributeBlockBase
+     * The maximum value allowed for the `between` operator.
      */
     max?: any | null;
     /**
-     * 
-     * @type {any}
-     * @memberof CheckAttributeBlockBase
+     * The start value for the `within` operator.
      */
     start?: any | null;
     /**
-     * 
-     * @type {any}
-     * @memberof CheckAttributeBlockBase
+     * The end value for the `within` operator.
      */
     end?: any | null;
     /**
      * When `true`, the `start` value is included in the range for the `within` operator.
-     * @type {boolean}
-     * @memberof CheckAttributeBlockBase
      */
     startInclusive?: boolean;
     /**
      * When `true`, the `end` value is included in the range for the `within` operator.
-     * @type {boolean}
-     * @memberof CheckAttributeBlockBase
      */
     endInclusive?: boolean;
     /**
      * Indicates whether the `within` operator ignores time zones and compares the wall-clock time only. When `false`, time zones are taken into account.
-     * @type {boolean}
-     * @memberof CheckAttributeBlockBase
      */
     timezoneInsensitive?: boolean;
     /**
-     * 
-     * @type {any}
-     * @memberof CheckAttributeBlockBase
+     * The set of values to match against for list operators. For location operators (`in`, `not(in)`), an array of objects with a `geometry` (see `GeoJSONGeometry`) and an optional `name`, or a string reference to a list attribute.
      */
     values?: any | null;
     /**
-     * 
-     * @type {any}
-     * @memberof CheckAttributeBlockBase
+     * The count threshold for `containsAtLeast` and `containsExactly` operators.
      */
     count?: any | null;
+    /**
+     * Promotion blocks evaluated when this block fails or returns false.
+     */
+    onFailure?: Array<Block>;
 }
 
 
@@ -146,7 +128,9 @@ export const CheckAttributeBlockBaseOperatorEnum = {
     After: 'after',
     Before: 'before',
     Within: 'within',
-    NotWithin: 'not(within)'
+    NotWithin: 'not(within)',
+    In: 'in',
+    NotIn: 'not(in)',
 } as const;
 export type CheckAttributeBlockBaseOperatorEnum = typeof CheckAttributeBlockBaseOperatorEnum[keyof typeof CheckAttributeBlockBaseOperatorEnum];
 
@@ -156,7 +140,6 @@ export type CheckAttributeBlockBaseOperatorEnum = typeof CheckAttributeBlockBase
  */
 export function instanceOfCheckAttributeBlockBase(value: object): value is CheckAttributeBlockBase {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('operator' in _v) || _v['operator'] === undefined) return false;
     if (!('attribute' in _v) || _v['attribute'] === undefined) return false;
@@ -173,7 +156,7 @@ export function CheckAttributeBlockBaseFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
@@ -188,6 +171,7 @@ export function CheckAttributeBlockBaseFromJSONTyped(json: any, ignoreDiscrimina
         'timezoneInsensitive': json['timezoneInsensitive'] == null ? undefined : json['timezoneInsensitive'],
         'values': json['values'] === undefined ? undefined : json['values'] === null ? null : json['values'],
         'count': json['count'] === undefined ? undefined : json['count'] === null ? null : json['count'],
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -195,16 +179,14 @@ export function CheckAttributeBlockBaseToJSON(json: any): CheckAttributeBlockBas
     return CheckAttributeBlockBaseToJSONTyped(json, false);
 }
 
-export function CheckAttributeBlockBaseToJSONTyped(value?: CheckAttributeBlockBase | null, ignoreDiscriminator: boolean = false): any {
+export function CheckAttributeBlockBaseToJSONTyped(value?: Omit<CheckAttributeBlockBase, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'operator': value['operator'],
         'attribute': value['attribute'],
         'value': value['value'],
@@ -217,6 +199,7 @@ export function CheckAttributeBlockBaseToJSONTyped(value?: CheckAttributeBlockBa
         'timezoneInsensitive': value['timezoneInsensitive'],
         'values': value['values'],
         'count': value['count'],
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }
 

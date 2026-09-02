@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface LoyaltyCardProfileRegistration {
     /**
      * Integration ID of the customer profile linked to the card.
-     * @type {string}
-     * @memberof LoyaltyCardProfileRegistration
      */
     integrationId: string;
     /**
      * Timestamp the customer profile was linked to the card.
-     * @type {Date}
-     * @memberof LoyaltyCardProfileRegistration
      */
     timestamp: Date;
 }
@@ -54,7 +50,7 @@ export function LoyaltyCardProfileRegistrationFromJSONTyped(json: any, ignoreDis
     return {
         
         'integrationId': json['integrationId'],
-        'timestamp': (json['timestamp'] == null ? undefined as any : new Date(json['timestamp'])),
+        'timestamp': (json['timestamp'] == null ? json['timestamp'] : parseDateTime(json['timestamp'])),
     };
 }
 
@@ -70,7 +66,7 @@ export function LoyaltyCardProfileRegistrationToJSONTyped(value?: LoyaltyCardPro
     return {
         
         'integrationId': value['integrationId'],
-        'timestamp': value['timestamp'] == null ? undefined : value['timestamp'].toISOString(),
+        'timestamp': value['timestamp'] == null ? undefined : serializeDateTime(value['timestamp']),
     };
 }
 

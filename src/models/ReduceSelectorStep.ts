@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ReduceSelectorStep {
     /**
      * A step discriminator of type `reduce`.
-     * @type {ReduceSelectorStepTypeEnum}
-     * @memberof ReduceSelectorStep
      */
     type: ReduceSelectorStepTypeEnum;
     /**
@@ -31,8 +29,6 @@ export interface ReduceSelectorStep {
      * - `count` returns the number of items.
      * - `empty` reports whether the list is empty.
      * 
-     * @type {ReduceSelectorStepOperatorEnum}
-     * @memberof ReduceSelectorStep
      */
     operator: ReduceSelectorStepOperatorEnum;
 }
@@ -42,7 +38,7 @@ export interface ReduceSelectorStep {
  * @export
  */
 export const ReduceSelectorStepTypeEnum = {
-    Reduce: 'reduce'
+    Reduce: 'reduce',
 } as const;
 export type ReduceSelectorStepTypeEnum = typeof ReduceSelectorStepTypeEnum[keyof typeof ReduceSelectorStepTypeEnum];
 
@@ -54,7 +50,7 @@ export const ReduceSelectorStepOperatorEnum = {
     Min: 'min',
     Sum: 'sum',
     Count: 'count',
-    Empty: 'empty'
+    Empty: 'empty',
 } as const;
 export type ReduceSelectorStepOperatorEnum = typeof ReduceSelectorStepOperatorEnum[keyof typeof ReduceSelectorStepOperatorEnum];
 

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AwardDiscountCartTarget {
     /**
      * A target discriminator of type `cart`.
-     * @type {AwardDiscountCartTargetTypeEnum}
-     * @memberof AwardDiscountCartTarget
      */
     type: AwardDiscountCartTargetTypeEnum;
 }
@@ -32,7 +30,7 @@ export interface AwardDiscountCartTarget {
  * @export
  */
 export const AwardDiscountCartTargetTypeEnum = {
-    Cart: 'cart'
+    Cart: 'cart',
 } as const;
 export type AwardDiscountCartTargetTypeEnum = typeof AwardDiscountCartTargetTypeEnum[keyof typeof AwardDiscountCartTargetTypeEnum];
 

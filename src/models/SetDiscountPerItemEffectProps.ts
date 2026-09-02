@@ -29,32 +29,22 @@ import { mapValues } from '../runtime';
 export interface SetDiscountPerItemEffectProps {
     /**
      * The description of this discount. `#number` is equal to the `position` property.
-     * @type {string}
-     * @memberof SetDiscountPerItemEffectProps
      */
     name: string;
     /**
      * The monetary value of the effective discount applied to the item.
-     * @type {number}
-     * @memberof SetDiscountPerItemEffectProps
      */
     value: number;
     /**
      * The index of the item in the `cartItem` object on which this discount should be applied.
-     * @type {number}
-     * @memberof SetDiscountPerItemEffectProps
      */
     position: number;
     /**
      * The index of the item unit in its line item.
-     * @type {number}
-     * @memberof SetDiscountPerItemEffectProps
      */
     subPosition?: number;
     /**
      * _(Partial discounts enabled only)_ The monetary value of the discount to be applied to the item without considering budget limitations.
-     * @type {number}
-     * @memberof SetDiscountPerItemEffectProps
      */
     desiredValue?: number;
     /**
@@ -63,50 +53,34 @@ export interface SetDiscountPerItemEffectProps {
      * - `price`: discount on the price of the item.
      * - `additionalCosts`: discount on the [additional cost](https://docs.talon.one/docs/product/account/dev-tools/manage-additional-costs) of the item.
      * - `itemTotal`: discount on the sum of price + additional cost of the item.
-     * @type {string}
-     * @memberof SetDiscountPerItemEffectProps
      */
     scope?: string;
     /**
      * _(Pro rata discounts only)_ The monetary value of the total effective discount
-     * @type {number}
-     * @memberof SetDiscountPerItemEffectProps
      */
     totalDiscount?: number;
     /**
      * _(Pro rata discounts only)_ The monetary value of the total discount to be applied without considering budget limitations
-     * @type {number}
-     * @memberof SetDiscountPerItemEffectProps
      */
     desiredTotalDiscount?: number;
     /**
      * _(Discounts with bundles only)_ The position of the specific item bundle in the list of bundles created from the same bundle definition.
-     * @type {number}
-     * @memberof SetDiscountPerItemEffectProps
      */
     bundleIndex?: number;
     /**
      * _(Discounts with bundles only)_ The name of the bundle definition.
-     * @type {string}
-     * @memberof SetDiscountPerItemEffectProps
      */
     bundleName?: string;
     /**
      * _(Discounting individual item in bundles only)_ The index of the targeted bundle item on which the applied discount is based.
-     * @type {number}
-     * @memberof SetDiscountPerItemEffectProps
      */
     targetedItemPosition?: number;
     /**
      * _(Discounting individual item in bundles only)_ The sub-position of the targeted bundle item on which the applied discount is based.
-     * @type {number}
-     * @memberof SetDiscountPerItemEffectProps
      */
     targetedItemSubPosition?: number;
     /**
      * When set to `true`, the applied discount is excluded from the item's price history.
-     * @type {boolean}
-     * @memberof SetDiscountPerItemEffectProps
      */
     excludedFromPriceHistory?: boolean;
 }

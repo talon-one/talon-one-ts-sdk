@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface GenerateAuditLogSummary {
     /**
      * The ID of the audit log.
-     * @type {number}
-     * @memberof GenerateAuditLogSummary
      */
     logID: number;
 }

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CampaignReference {
     /**
      * The ID of the campaign that references this achievement.
-     * @type {number}
-     * @memberof CampaignReference
      */
     id: number;
     /**
      * The ID of the Application the campaign belongs to.
-     * @type {number}
-     * @memberof CampaignReference
      */
     applicationId: number;
 }

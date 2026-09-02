@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface UpdateAudienceMembershipBlock1Audience {
     /**
      * The ID of the audience.
-     * @type {number}
-     * @memberof UpdateAudienceMembershipBlock1Audience
      */
     id: number;
     /**
      * The display name of the audience.
-     * @type {string}
-     * @memberof UpdateAudienceMembershipBlock1Audience
      */
     name: string;
     /**
@@ -38,8 +34,6 @@ export interface UpdateAudienceMembershipBlock1Audience {
      * 
      * **Note:** If you do not integrate with any of these platforms, do not use this property.
      * 
-     * @type {string}
-     * @memberof UpdateAudienceMembershipBlock1Audience
      */
     integration?: string;
     /**
@@ -47,8 +41,6 @@ export interface UpdateAudienceMembershipBlock1Audience {
      * 
      * **Note:** To create an audience that doesn't come from a 3rd party platform, do not use this property.
      * 
-     * @type {string}
-     * @memberof UpdateAudienceMembershipBlock1Audience
      */
     integrationId?: string;
 }

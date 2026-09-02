@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * Points to add.
  * @export
@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface AddLoyaltyPoints {
     /**
      * Amount of loyalty points.
-     * @type {number}
-     * @memberof AddLoyaltyPoints
      */
     points: number;
     /**
      * Name / reason for the point addition.
-     * @type {string}
-     * @memberof AddLoyaltyPoints
      */
     name?: string;
     /**
@@ -54,16 +50,12 @@ export interface AddLoyaltyPoints {
      * 
      * If passed, `validUntil` should be omitted.
      * 
-     * @type {string}
-     * @memberof AddLoyaltyPoints
      */
     validityDuration?: string;
     /**
      * Date and time when points should expire. The value should be provided in RFC 3339 format.
      * If passed, `validityDuration` should be omitted.
      * 
-     * @type {Date}
-     * @memberof AddLoyaltyPoints
      */
     validUntil?: Date;
     /**
@@ -90,28 +82,20 @@ export interface AddLoyaltyPoints {
      * - `_D` for rounding down days only. Signifies the start of the day.
      * - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.
      * 
-     * @type {string}
-     * @memberof AddLoyaltyPoints
      */
     pendingDuration?: string;
     /**
      * Date and time after the points are considered valid. The value should be provided in RFC 3339 format.
      * If passed, `pendingDuration` should be omitted.
      * 
-     * @type {Date}
-     * @memberof AddLoyaltyPoints
      */
     pendingUntil?: Date;
     /**
      * ID of the subledger the points are added to. If there is no existing subledger with this ID, the subledger is created automatically.
-     * @type {string}
-     * @memberof AddLoyaltyPoints
      */
     subledgerId?: string;
     /**
      * ID of the Application that is connected to the loyalty program. It is displayed in your Talon.One deployment URL.
-     * @type {number}
-     * @memberof AddLoyaltyPoints
      */
     applicationId?: number;
 }
@@ -138,9 +122,9 @@ export function AddLoyaltyPointsFromJSONTyped(json: any, ignoreDiscriminator: bo
         'points': json['points'],
         'name': json['name'] == null ? undefined : json['name'],
         'validityDuration': json['validityDuration'] == null ? undefined : json['validityDuration'],
-        'validUntil': json['validUntil'] == null ? undefined : (new Date(json['validUntil'])),
+        'validUntil': json['validUntil'] == null ? undefined : (parseDateTime(json['validUntil'])),
         'pendingDuration': json['pendingDuration'] == null ? undefined : json['pendingDuration'],
-        'pendingUntil': json['pendingUntil'] == null ? undefined : (new Date(json['pendingUntil'])),
+        'pendingUntil': json['pendingUntil'] == null ? undefined : (parseDateTime(json['pendingUntil'])),
         'subledgerId': json['subledgerId'] == null ? undefined : json['subledgerId'],
         'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
     };
@@ -160,9 +144,9 @@ export function AddLoyaltyPointsToJSONTyped(value?: AddLoyaltyPoints | null, ign
         'points': value['points'],
         'name': value['name'],
         'validityDuration': value['validityDuration'],
-        'validUntil': value['validUntil'] == null ? value['validUntil'] : value['validUntil'].toISOString(),
+        'validUntil': value['validUntil'] == null ? value['validUntil'] : serializeDateTime(value['validUntil']),
         'pendingDuration': value['pendingDuration'],
-        'pendingUntil': value['pendingUntil'] == null ? value['pendingUntil'] : value['pendingUntil'].toISOString(),
+        'pendingUntil': value['pendingUntil'] == null ? value['pendingUntil'] : serializeDateTime(value['pendingUntil']),
         'subledgerId': value['subledgerId'],
         'applicationId': value['applicationId'],
     };

@@ -22,15 +22,11 @@ export interface CodeGeneratorSettings {
     /**
      * List of characters used to generate the random parts of a code.
      * 
-     * @type {Array<string>}
-     * @memberof CodeGeneratorSettings
      */
     validCharacters: Array<string>;
     /**
      * The pattern used to generate codes, such as coupon codes, referral codes, and loyalty cards. The character `#` is a placeholder and is replaced by a random character from the `validCharacters` set.
      * 
-     * @type {string}
-     * @memberof CodeGeneratorSettings
      */
     couponPattern: string;
 }

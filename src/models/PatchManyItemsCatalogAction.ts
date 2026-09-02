@@ -29,8 +29,6 @@ import {
 export interface PatchManyItemsCatalogAction {
     /**
      * Price of the item.
-     * @type {number}
-     * @memberof PatchManyItemsCatalogAction
      */
     price?: number;
     /**
@@ -38,14 +36,10 @@ export interface PatchManyItemsCatalogAction {
      * 
      * **Note:** Every item in the catalog will be modified if there are no filters.
      * 
-     * @type {Array<CatalogActionFilter>}
-     * @memberof PatchManyItemsCatalogAction
      */
     filters?: Array<CatalogActionFilter>;
     /**
      * The attributes of the items to patch.
-     * @type {object}
-     * @memberof PatchManyItemsCatalogAction
      */
     attributes?: object;
 }

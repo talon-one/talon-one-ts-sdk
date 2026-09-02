@@ -36,20 +36,14 @@ import {
 export interface NewBaseNotification {
     /**
      * 
-     * @type {BaseNotificationPolicy}
-     * @memberof NewBaseNotification
      */
     policy: BaseNotificationPolicy;
     /**
      * Indicates whether the notification is activated.
-     * @type {boolean}
-     * @memberof NewBaseNotification
      */
     enabled?: boolean;
     /**
      * 
-     * @type {NewNotificationWebhook}
-     * @memberof NewBaseNotification
      */
     webhook: NewNotificationWebhook;
 }

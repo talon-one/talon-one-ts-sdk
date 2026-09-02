@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface UpdateCampaignEvaluationGroup {
     /**
      * The name of the campaign evaluation group.
-     * @type {string}
-     * @memberof UpdateCampaignEvaluationGroup
      */
     name: string;
     /**
      * The ID of the parent group that contains the campaign evaluation group.
-     * @type {number}
-     * @memberof UpdateCampaignEvaluationGroup
      */
     parentId: number;
     /**
      * A description of the campaign evaluation group.
-     * @type {string}
-     * @memberof UpdateCampaignEvaluationGroup
      */
     description?: string;
     /**
      * The mode by which campaigns in the campaign evaluation group are evaluated.
-     * @type {UpdateCampaignEvaluationGroupEvaluationModeEnum}
-     * @memberof UpdateCampaignEvaluationGroup
      */
     evaluationMode: UpdateCampaignEvaluationGroupEvaluationModeEnum;
     /**
      * The evaluation scope of the campaign evaluation group.
-     * @type {UpdateCampaignEvaluationGroupEvaluationScopeEnum}
-     * @memberof UpdateCampaignEvaluationGroup
      */
     evaluationScope: UpdateCampaignEvaluationGroupEvaluationScopeEnum;
     /**
      * An indicator of whether the campaign evaluation group is locked for modification.
-     * @type {boolean}
-     * @memberof UpdateCampaignEvaluationGroup
      */
     locked: boolean;
 }
@@ -65,7 +53,7 @@ export const UpdateCampaignEvaluationGroupEvaluationModeEnum = {
     Stackable: 'stackable',
     ListOrder: 'listOrder',
     LowestDiscount: 'lowestDiscount',
-    HighestDiscount: 'highestDiscount'
+    HighestDiscount: 'highestDiscount',
 } as const;
 export type UpdateCampaignEvaluationGroupEvaluationModeEnum = typeof UpdateCampaignEvaluationGroupEvaluationModeEnum[keyof typeof UpdateCampaignEvaluationGroupEvaluationModeEnum];
 
@@ -74,7 +62,7 @@ export type UpdateCampaignEvaluationGroupEvaluationModeEnum = typeof UpdateCampa
  */
 export const UpdateCampaignEvaluationGroupEvaluationScopeEnum = {
     CartItem: 'cartItem',
-    Session: 'session'
+    Session: 'session',
 } as const;
 export type UpdateCampaignEvaluationGroupEvaluationScopeEnum = typeof UpdateCampaignEvaluationGroupEvaluationScopeEnum[keyof typeof UpdateCampaignEvaluationGroupEvaluationScopeEnum];
 

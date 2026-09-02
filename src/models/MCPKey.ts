@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,50 +21,34 @@ import { mapValues } from '../runtime';
 export interface MCPKey {
     /**
      * Name for the MCP key.
-     * @type {string}
-     * @memberof MCPKey
      */
     name: string;
     /**
      * The date the MCP key expires.
-     * @type {Date}
-     * @memberof MCPKey
      */
     expiryDate: Date;
     /**
      * ID of the MCP key.
-     * @type {number}
-     * @memberof MCPKey
      */
     id: number;
     /**
      * ID of the user who created it.
-     * @type {number}
-     * @memberof MCPKey
      */
     createdBy: number;
     /**
      * ID of account the key is used for.
-     * @type {number}
-     * @memberof MCPKey
      */
     accountID: number;
     /**
      * The date the MCP key was created.
-     * @type {Date}
-     * @memberof MCPKey
      */
     created: Date;
     /**
      * The MCP key is disabled (this property is set to `true`) when the user who created the key is disabled or deleted.
-     * @type {boolean}
-     * @memberof MCPKey
      */
     disabled?: boolean;
     /**
      * The last time the MCP key was used.
-     * @type {Date}
-     * @memberof MCPKey
      */
     lastUsed?: Date;
 }
@@ -94,13 +78,13 @@ export function MCPKeyFromJSONTyped(json: any, ignoreDiscriminator: boolean): MC
     return {
         
         'name': json['name'],
-        'expiryDate': (json['expiryDate'] == null ? undefined as any : new Date(json['expiryDate'])),
+        'expiryDate': (json['expiryDate'] == null ? json['expiryDate'] : parseDateTime(json['expiryDate'])),
         'id': json['id'],
         'createdBy': json['createdBy'],
         'accountID': json['accountID'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'disabled': json['disabled'] == null ? undefined : json['disabled'],
-        'lastUsed': json['lastUsed'] == null ? undefined : (new Date(json['lastUsed'])),
+        'lastUsed': json['lastUsed'] == null ? undefined : (parseDateTime(json['lastUsed'])),
     };
 }
 
@@ -116,13 +100,13 @@ export function MCPKeyToJSONTyped(value?: MCPKey | null, ignoreDiscriminator: bo
     return {
         
         'name': value['name'],
-        'expiryDate': value['expiryDate'] == null ? undefined : value['expiryDate'].toISOString(),
+        'expiryDate': value['expiryDate'] == null ? undefined : serializeDateTime(value['expiryDate']),
         'id': value['id'],
         'createdBy': value['createdBy'],
         'accountID': value['accountID'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'disabled': value['disabled'],
-        'lastUsed': value['lastUsed'] == null ? value['lastUsed'] : value['lastUsed'].toISOString(),
+        'lastUsed': value['lastUsed'] == null ? value['lastUsed'] : serializeDateTime(value['lastUsed']),
     };
 }
 

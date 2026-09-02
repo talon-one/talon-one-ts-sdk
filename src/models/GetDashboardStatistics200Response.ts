@@ -29,14 +29,10 @@ import {
 export interface GetDashboardStatistics200Response {
     /**
      * 
-     * @type {number}
-     * @memberof GetDashboardStatistics200Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<LoyaltyDashboardData>}
-     * @memberof GetDashboardStatistics200Response
      */
     data: Array<LoyaltyDashboardData>;
 }

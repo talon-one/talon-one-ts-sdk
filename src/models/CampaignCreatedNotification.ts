@@ -29,20 +29,14 @@ import {
 export interface CampaignCreatedNotification {
     /**
      * The type of the notification
-     * @type {CampaignCreatedNotificationNotificationTypeEnum}
-     * @memberof CampaignCreatedNotification
      */
     notificationType: CampaignCreatedNotificationNotificationTypeEnum;
     /**
      * The total size of the result set.
-     * @type {number}
-     * @memberof CampaignCreatedNotification
      */
     totalResultSize: number;
     /**
      * A list of campaign notification data.
-     * @type {Array<CampaignCreatedNotificationItem>}
-     * @memberof CampaignCreatedNotification
      */
     data?: Array<CampaignCreatedNotificationItem>;
 }
@@ -52,7 +46,7 @@ export interface CampaignCreatedNotification {
  * @export
  */
 export const CampaignCreatedNotificationNotificationTypeEnum = {
-    CampaignNotification: 'CampaignNotification'
+    CampaignNotification: 'CampaignNotification',
 } as const;
 export type CampaignCreatedNotificationNotificationTypeEnum = typeof CampaignCreatedNotificationNotificationTypeEnum[keyof typeof CampaignCreatedNotificationNotificationTypeEnum];
 

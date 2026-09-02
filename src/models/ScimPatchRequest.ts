@@ -29,14 +29,10 @@ import {
 export interface ScimPatchRequest {
     /**
      * SCIM schema for the given resource.
-     * @type {Array<string>}
-     * @memberof ScimPatchRequest
      */
     schemas?: Array<string>;
     /**
      * 
-     * @type {Array<ScimPatchOperation>}
-     * @memberof ScimPatchRequest
      */
     operations: Array<ScimPatchOperation>;
 }

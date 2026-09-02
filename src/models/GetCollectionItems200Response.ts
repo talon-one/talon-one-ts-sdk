@@ -29,14 +29,10 @@ import {
 export interface GetCollectionItems200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetCollectionItems200Response
      */
     hasMore: boolean;
     /**
      * 
-     * @type {Array<CollectionItem>}
-     * @memberof GetCollectionItems200Response
      */
     data: Array<CollectionItem>;
 }

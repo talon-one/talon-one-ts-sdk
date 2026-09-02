@@ -29,14 +29,10 @@ import {
 export interface CreateCoupons200Response {
     /**
      * 
-     * @type {number}
-     * @memberof CreateCoupons200Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<Coupon>}
-     * @memberof CreateCoupons200Response
      */
     data: Array<Coupon>;
 }

@@ -8,7 +8,7 @@ A single step in a selector item pipeline. The `type` field determines the step 
 Name | Type
 ------------ | -------------
 `type` | string
-`predicate` | [SelectorBlock](SelectorBlock.md)
+`predicate` | [Block](Block.md)
 `fields` | [Array&lt;SortSelectorStepField&gt;](SortSelectorStepField.md)
 `operator` | string
 `from` | [SelectSelectorStepFrom](SelectSelectorStepFrom.md)

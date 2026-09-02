@@ -23,20 +23,14 @@ import { mapValues } from '../runtime';
 export interface ReserveCouponEffectProps {
     /**
      * The coupon code that was created.
-     * @type {string}
-     * @memberof ReserveCouponEffectProps
      */
     couponValue: string;
     /**
      * The integration identifier of the customer for whom this coupon was reserved.
-     * @type {string}
-     * @memberof ReserveCouponEffectProps
      */
     profileIntegrationId: string;
     /**
      * Indicates whether this is a new coupon reservation or not.
-     * @type {boolean}
-     * @memberof ReserveCouponEffectProps
      */
     isNewReservation: boolean;
 }

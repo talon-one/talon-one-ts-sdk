@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LoyaltyProgram } from './LoyaltyProgram';
 import {
     LoyaltyProgramFromJSON,
@@ -50,125 +50,85 @@ import {
 export interface Application {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Application
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Application
      */
     created: Date;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof Application
      */
     modified: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof Application
      */
     accountId: number;
     /**
      * The name of this application.
-     * @type {string}
-     * @memberof Application
      */
     name: string;
     /**
      * A longer description of the application.
-     * @type {string}
-     * @memberof Application
      */
     description?: string;
     /**
      * A string containing an IANA timezone descriptor.
-     * @type {string}
-     * @memberof Application
      */
     timezone: string;
     /**
      * The default currency for new customer sessions.
-     * @type {string}
-     * @memberof Application
      */
     currency: string;
     /**
      * The case sensitivity behavior to check coupon codes in the campaigns of this Application.
-     * @type {ApplicationCaseSensitivityEnum}
-     * @memberof Application
      */
     caseSensitivity?: ApplicationCaseSensitivityEnum;
     /**
      * Arbitrary properties associated with this campaign.
-     * @type {object}
-     * @memberof Application
      */
     attributes?: object;
     /**
      * Default limits for campaigns created in this application.
-     * @type {Array<LimitConfig>}
-     * @memberof Application
      */
     limits?: Array<LimitConfig>;
     /**
      * The default scope to apply `setDiscount` effects on if no scope was provided with the effect.
      * 
-     * @type {ApplicationDefaultDiscountScopeEnum}
-     * @memberof Application
      */
     defaultDiscountScope?: ApplicationDefaultDiscountScopeEnum;
     /**
      * Indicates if discounts should cascade for this Application.
-     * @type {boolean}
-     * @memberof Application
      */
     enableCascadingDiscounts?: boolean;
     /**
      * Indicates if cart items of quantity larger than one should be separated into different items of quantity one.
      * 
-     * @type {boolean}
-     * @memberof Application
      */
     enableFlattenedCartItems?: boolean;
     /**
      * 
-     * @type {AttributesSettings}
-     * @memberof Application
      */
     attributesSettings?: AttributesSettings;
     /**
      * Indicates if this is a live or sandbox Application.
-     * @type {boolean}
-     * @memberof Application
      */
     sandbox?: boolean;
     /**
      * Indicates if this Application supports partial discounts.
-     * @type {boolean}
-     * @memberof Application
      */
     enablePartialDiscounts?: boolean;
     /**
      * The default scope to apply `setDiscountPerItem` effects on if no scope was provided with the effect.
      * 
-     * @type {ApplicationDefaultDiscountAdditionalCostPerItemScopeEnum}
-     * @memberof Application
      */
     defaultDiscountAdditionalCostPerItemScope?: ApplicationDefaultDiscountAdditionalCostPerItemScopeEnum;
     /**
      * The ID of the default campaign evaluation group to which new campaigns will be added unless a different group is selected when creating the campaign.
-     * @type {number}
-     * @memberof Application
      */
     defaultEvaluationGroupId?: number;
     /**
      * The ID of the default Cart-Item-Filter for this application.
-     * @type {number}
-     * @memberof Application
      */
     defaultCartItemFilterId?: number;
     /**
@@ -176,20 +136,14 @@ export interface Application {
      * 
      * **Important:** After this feature is enabled, it cannot be disabled.
      * 
-     * @type {boolean}
-     * @memberof Application
      */
     enableCampaignStateManagement?: boolean;
     /**
      * 
-     * @type {BestPriorPriceSettings}
-     * @memberof Application
      */
     bestPriorPriceSettings?: BestPriorPriceSettings;
     /**
      * An array containing all the loyalty programs to which this application is subscribed.
-     * @type {Array<LoyaltyProgram>}
-     * @memberof Application
      */
     loyaltyPrograms: Array<LoyaltyProgram>;
 }
@@ -201,7 +155,7 @@ export interface Application {
 export const ApplicationCaseSensitivityEnum = {
     Sensitive: 'sensitive',
     InsensitiveUppercase: 'insensitive-uppercase',
-    InsensitiveLowercase: 'insensitive-lowercase'
+    InsensitiveLowercase: 'insensitive-lowercase',
 } as const;
 export type ApplicationCaseSensitivityEnum = typeof ApplicationCaseSensitivityEnum[keyof typeof ApplicationCaseSensitivityEnum];
 
@@ -211,7 +165,7 @@ export type ApplicationCaseSensitivityEnum = typeof ApplicationCaseSensitivityEn
 export const ApplicationDefaultDiscountScopeEnum = {
     SessionTotal: 'sessionTotal',
     CartItems: 'cartItems',
-    AdditionalCosts: 'additionalCosts'
+    AdditionalCosts: 'additionalCosts',
 } as const;
 export type ApplicationDefaultDiscountScopeEnum = typeof ApplicationDefaultDiscountScopeEnum[keyof typeof ApplicationDefaultDiscountScopeEnum];
 
@@ -221,7 +175,7 @@ export type ApplicationDefaultDiscountScopeEnum = typeof ApplicationDefaultDisco
 export const ApplicationDefaultDiscountAdditionalCostPerItemScopeEnum = {
     Price: 'price',
     ItemTotal: 'itemTotal',
-    AdditionalCosts: 'additionalCosts'
+    AdditionalCosts: 'additionalCosts',
 } as const;
 export type ApplicationDefaultDiscountAdditionalCostPerItemScopeEnum = typeof ApplicationDefaultDiscountAdditionalCostPerItemScopeEnum[keyof typeof ApplicationDefaultDiscountAdditionalCostPerItemScopeEnum];
 
@@ -253,8 +207,8 @@ export function ApplicationFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'accountId': json['accountId'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -290,8 +244,8 @@ export function ApplicationToJSONTyped(value?: Application | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'accountId': value['accountId'],
         'name': value['name'],
         'description': value['description'],

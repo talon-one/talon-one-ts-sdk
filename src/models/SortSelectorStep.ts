@@ -29,14 +29,10 @@ import {
 export interface SortSelectorStep {
     /**
      * A step discriminator of type `sort`.
-     * @type {SortSelectorStepTypeEnum}
-     * @memberof SortSelectorStep
      */
     type: SortSelectorStepTypeEnum;
     /**
      * One or more fields to sort by, applied in order. Each field has its own direction.
-     * @type {Array<SortSelectorStepField>}
-     * @memberof SortSelectorStep
      */
     fields: Array<SortSelectorStepField>;
 }
@@ -46,7 +42,7 @@ export interface SortSelectorStep {
  * @export
  */
 export const SortSelectorStepTypeEnum = {
-    Sort: 'sort'
+    Sort: 'sort',
 } as const;
 export type SortSelectorStepTypeEnum = typeof SortSelectorStepTypeEnum[keyof typeof SortSelectorStepTypeEnum];
 

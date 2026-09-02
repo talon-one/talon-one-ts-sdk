@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface NewCustomerProfile {
     /**
      * Arbitrary properties associated with this item.
-     * @type {{ [key: string]: any; }}
-     * @memberof NewCustomerProfile
      */
     attributes?: { [key: string]: any; };
 }

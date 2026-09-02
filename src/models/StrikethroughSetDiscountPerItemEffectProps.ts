@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface StrikethroughSetDiscountPerItemEffectProps {
     /**
      * The effect name.
-     * @type {string}
-     * @memberof StrikethroughSetDiscountPerItemEffectProps
      */
     name: string;
     /**
-     * 
-     * @type {any}
-     * @memberof StrikethroughSetDiscountPerItemEffectProps
+     * The discount value.
      */
     value: any | null;
     /**
      * When set to `true`, the applied discount is excluded from the item's price history.
-     * @type {boolean}
-     * @memberof StrikethroughSetDiscountPerItemEffectProps
      */
     excludedFromPriceHistory?: boolean;
 }

@@ -22,8 +22,6 @@ export interface EventV3ReferralEntity {
     /**
      * The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the "Referral code is valid" condition in the Rule Builder to validate and redeem the code, or "Referral code is valid (without redemption)" to validate without redeeming.
      * 
-     * @type {string}
-     * @memberof EventV3ReferralEntity
      */
     referralCode?: string;
 }

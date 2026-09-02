@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,86 +21,58 @@ import { mapValues } from '../runtime';
 export interface IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification {
     /**
      * The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     eventId: number;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     profileIntegrationID: string;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     loyaltyProgramID: number;
     /**
      * The name of the loyalty program.
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     loyaltyProgramName: string;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     subledgerID: string;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     sourceOfEvent: string;
     /**
      * The name of the customer's current tier.
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     currentTier: string;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     currentPoints: number;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     oldTier?: string;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     pointsRequiredToTheNextTier?: number;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     nextTier?: string;
     /**
      * 
-     * @type {Date}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     tierExpirationDate?: Date;
     /**
      * 
-     * @type {Date}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     timestampOfTierChange?: Date;
     /**
      * Timestamp when the event was published.
-     * @type {Date}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification
      */
     publishedAt: Date;
 }
@@ -143,9 +115,9 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotifica
         'oldTier': json['OldTier'] == null ? undefined : json['OldTier'],
         'pointsRequiredToTheNextTier': json['PointsRequiredToTheNextTier'] == null ? undefined : json['PointsRequiredToTheNextTier'],
         'nextTier': json['NextTier'] == null ? undefined : json['NextTier'],
-        'tierExpirationDate': json['TierExpirationDate'] == null ? undefined : (new Date(json['TierExpirationDate'])),
-        'timestampOfTierChange': json['TimestampOfTierChange'] == null ? undefined : (new Date(json['TimestampOfTierChange'])),
-        'publishedAt': (json['PublishedAt'] == null ? undefined as any : new Date(json['PublishedAt'])),
+        'tierExpirationDate': json['TierExpirationDate'] == null ? undefined : (parseDateTime(json['TierExpirationDate'])),
+        'timestampOfTierChange': json['TimestampOfTierChange'] == null ? undefined : (parseDateTime(json['TimestampOfTierChange'])),
+        'publishedAt': (json['PublishedAt'] == null ? json['PublishedAt'] : parseDateTime(json['PublishedAt'])),
     };
 }
 
@@ -171,9 +143,9 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotifica
         'OldTier': value['oldTier'],
         'PointsRequiredToTheNextTier': value['pointsRequiredToTheNextTier'],
         'NextTier': value['nextTier'],
-        'TierExpirationDate': value['tierExpirationDate'] == null ? value['tierExpirationDate'] : value['tierExpirationDate'].toISOString(),
-        'TimestampOfTierChange': value['timestampOfTierChange'] == null ? value['timestampOfTierChange'] : value['timestampOfTierChange'].toISOString(),
-        'PublishedAt': value['publishedAt'] == null ? undefined : value['publishedAt'].toISOString(),
+        'TierExpirationDate': value['tierExpirationDate'] == null ? value['tierExpirationDate'] : serializeDateTime(value['tierExpirationDate']),
+        'TimestampOfTierChange': value['timestampOfTierChange'] == null ? value['timestampOfTierChange'] : serializeDateTime(value['timestampOfTierChange']),
+        'PublishedAt': value['publishedAt'] == null ? undefined : serializeDateTime(value['publishedAt']),
     };
 }
 

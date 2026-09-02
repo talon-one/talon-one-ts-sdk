@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CustomerProfileEntity {
     /**
      * The internal ID of the customer profile.
-     * @type {number}
-     * @memberof CustomerProfileEntity
      */
     id: number;
     /**
      * The time the customer profile was created.
-     * @type {Date}
-     * @memberof CustomerProfileEntity
      */
     created: Date;
 }
@@ -54,7 +50,7 @@ export function CustomerProfileEntityFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
     };
 }
 
@@ -70,7 +66,7 @@ export function CustomerProfileEntityToJSONTyped(value?: CustomerProfileEntity |
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
     };
 }
 

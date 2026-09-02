@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface Endpoint {
     /**
      * allowed endpoint
-     * @type {string}
-     * @memberof Endpoint
      */
     path: string;
 }

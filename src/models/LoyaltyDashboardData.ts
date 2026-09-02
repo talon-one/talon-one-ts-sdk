@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LoyaltyDashboardPointsBreakdown } from './LoyaltyDashboardPointsBreakdown';
 import {
     LoyaltyDashboardPointsBreakdownFromJSON,
@@ -29,62 +29,42 @@ import {
 export interface LoyaltyDashboardData {
     /**
      * Date at which data point was collected.
-     * @type {Date}
-     * @memberof LoyaltyDashboardData
      */
     date: Date;
     /**
      * Total of active points for this loyalty program.
-     * @type {number}
-     * @memberof LoyaltyDashboardData
      */
     totalActivePoints: number;
     /**
      * Total of pending points for this loyalty program.
-     * @type {number}
-     * @memberof LoyaltyDashboardData
      */
     totalPendingPoints: number;
     /**
      * Total of spent points for this loyalty program.
-     * @type {number}
-     * @memberof LoyaltyDashboardData
      */
     totalSpentPoints: number;
     /**
      * Total of expired points for this loyalty program.
-     * @type {number}
-     * @memberof LoyaltyDashboardData
      */
     totalExpiredPoints: number;
     /**
      * Total of negative points for this loyalty program.
-     * @type {number}
-     * @memberof LoyaltyDashboardData
      */
     totalNegativePoints: number;
     /**
      * Number of loyalty program members.
-     * @type {number}
-     * @memberof LoyaltyDashboardData
      */
     totalMembers: number;
     /**
      * Number of members who joined on this day.
-     * @type {number}
-     * @memberof LoyaltyDashboardData
      */
     newMembers: number;
     /**
      * Points spent on this day.
-     * @type {LoyaltyDashboardPointsBreakdown}
-     * @memberof LoyaltyDashboardData
      */
     spentPoints: LoyaltyDashboardPointsBreakdown;
     /**
      * Points that were earned on this day.
-     * @type {LoyaltyDashboardPointsBreakdown}
-     * @memberof LoyaltyDashboardData
      */
     earnedPoints: LoyaltyDashboardPointsBreakdown;
 }
@@ -117,7 +97,7 @@ export function LoyaltyDashboardDataFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'date': (json['date'] == null ? undefined as any : new Date(json['date'])),
+        'date': (json['date'] == null ? json['date'] : parseDateTime(json['date'])),
         'totalActivePoints': json['totalActivePoints'],
         'totalPendingPoints': json['totalPendingPoints'],
         'totalSpentPoints': json['totalSpentPoints'],
@@ -141,7 +121,7 @@ export function LoyaltyDashboardDataToJSONTyped(value?: LoyaltyDashboardData | n
 
     return {
         
-        'date': value['date'] == null ? undefined : value['date'].toISOString(),
+        'date': value['date'] == null ? undefined : serializeDateTime(value['date']),
         'totalActivePoints': value['totalActivePoints'],
         'totalPendingPoints': value['totalPendingPoints'],
         'totalSpentPoints': value['totalSpentPoints'],

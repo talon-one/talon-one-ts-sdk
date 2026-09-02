@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface AudienceAnalytics {
     /**
      * The ID of the audience.
-     * @type {number}
-     * @memberof AudienceAnalytics
      */
     audienceId?: number;
     /**
      * The member count of the audience.
-     * @type {number}
-     * @memberof AudienceAnalytics
      */
     membersCount?: number;
 }

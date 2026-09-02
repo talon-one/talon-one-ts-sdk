@@ -29,26 +29,18 @@ import {
 export interface ListCampaignStoreBudgets {
     /**
      * 
-     * @type {ListCampaignStoreBudgetsStore}
-     * @memberof ListCampaignStoreBudgets
      */
     store: ListCampaignStoreBudgetsStore;
     /**
      * 
-     * @type {number}
-     * @memberof ListCampaignStoreBudgets
      */
     limit: number;
     /**
      * 
-     * @type {string}
-     * @memberof ListCampaignStoreBudgets
      */
     action: string;
     /**
      * 
-     * @type {string}
-     * @memberof ListCampaignStoreBudgets
      */
     period?: string;
 }

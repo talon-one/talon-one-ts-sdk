@@ -29,26 +29,18 @@ import {
 export interface TierWillDowngradeNotificationPolicy {
     /**
      * The name of the notification.
-     * @type {string}
-     * @memberof TierWillDowngradeNotificationPolicy
      */
     name: string;
     /**
      * Indicates whether batching is activated.
-     * @type {boolean}
-     * @memberof TierWillDowngradeNotificationPolicy
      */
     batchingEnabled?: boolean;
     /**
      * The required size of each batch of data. This value applies only when `batchingEnabled` is `true`.
-     * @type {number}
-     * @memberof TierWillDowngradeNotificationPolicy
      */
     batchSize?: number;
     /**
      * 
-     * @type {Array<TierWillDowngradeNotificationTrigger>}
-     * @memberof TierWillDowngradeNotificationPolicy
      */
     triggers: Array<TierWillDowngradeNotificationTrigger>;
 }

@@ -31,68 +31,46 @@ export interface NewWebhook {
      * The IDs of the Applications in which this webhook is available.
      * An empty array means the webhook is available in `All Applications`.
      * 
-     * @type {Array<number>}
-     * @memberof NewWebhook
      */
     applicationIds: Array<number>;
     /**
      * Name or title for this webhook.
-     * @type {string}
-     * @memberof NewWebhook
      */
     title: string;
     /**
      * A description of the webhook.
-     * @type {string}
-     * @memberof NewWebhook
      */
     description?: string;
     /**
      * Indicates if the webhook is a draft.
-     * @type {boolean}
-     * @memberof NewWebhook
      */
     draft: boolean;
     /**
      * API method for this webhook.
-     * @type {NewWebhookVerbEnum}
-     * @memberof NewWebhook
      */
     verb: NewWebhookVerbEnum;
     /**
      * API URL (supports templating using parameters) for this webhook.
-     * @type {string}
-     * @memberof NewWebhook
      */
     url: string;
     /**
      * List of API HTTP headers for this webhook.
-     * @type {Array<string>}
-     * @memberof NewWebhook
      */
     headers: Array<string>;
     /**
      * API payload (supports templating using parameters) for this webhook.
-     * @type {string}
-     * @memberof NewWebhook
      */
     payload?: string;
     /**
      * Array of template argument definitions.
-     * @type {Array<TemplateArgDef>}
-     * @memberof NewWebhook
      */
     params: Array<TemplateArgDef>;
     /**
      * Enables or disables webhook from showing in the Rule Builder.
-     * @type {boolean}
-     * @memberof NewWebhook
      */
     enabled: boolean;
     /**
      * The ID of the credential that this webhook is using.
-     * @type {number}
-     * @memberof NewWebhook
      */
     authenticationId?: number;
 }
@@ -106,7 +84,7 @@ export const NewWebhookVerbEnum = {
     Put: 'PUT',
     Get: 'GET',
     Delete: 'DELETE',
-    Patch: 'PATCH'
+    Patch: 'PATCH',
 } as const;
 export type NewWebhookVerbEnum = typeof NewWebhookVerbEnum[keyof typeof NewWebhookVerbEnum];
 

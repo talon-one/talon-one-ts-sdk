@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * Log entry for a given loyalty card transaction.
  * @export
@@ -21,46 +21,32 @@ import { mapValues } from '../runtime';
 export interface CardLedgerTransactionLogEntry {
     /**
      * Unique identifier of the transaction in the UUID format.
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntry
      */
     transactionUUID: string;
     /**
      * Date and time the loyalty card transaction occurred.
-     * @type {Date}
-     * @memberof CardLedgerTransactionLogEntry
      */
     created: Date;
     /**
      * ID of the loyalty program.
-     * @type {number}
-     * @memberof CardLedgerTransactionLogEntry
      */
     programId: number;
     /**
      * The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`.
      * 
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntry
      */
     cardIdentifier: string;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof CardLedgerTransactionLogEntry
      */
     applicationId?: number;
     /**
      * The **internal** ID of the session.
      * 
-     * @type {number}
-     * @memberof CardLedgerTransactionLogEntry
      */
     sessionId?: number;
     /**
      * ID of the customer session where the transaction occurred.
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntry
      */
     customerSessionId?: string;
     /**
@@ -68,14 +54,10 @@ export interface CardLedgerTransactionLogEntry {
      *   - `addition`: Signifies added points.
      *   - `subtraction`: Signifies deducted points.
      * 
-     * @type {CardLedgerTransactionLogEntryTypeEnum}
-     * @memberof CardLedgerTransactionLogEntry
      */
     type: CardLedgerTransactionLogEntryTypeEnum;
     /**
      * Name or reason of the loyalty ledger transaction.
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntry
      */
     name: string;
     /**
@@ -83,8 +65,6 @@ export interface CardLedgerTransactionLogEntry {
      *   - `immediate`: Points are immediately active.
      *   - a timestamp value: Points become active at a given date and time.
      * 
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntry
      */
     startDate: string;
     /**
@@ -92,26 +72,18 @@ export interface CardLedgerTransactionLogEntry {
      *   - `unlimited`: Points have no expiration date.
      *   - `timestamp value`: Points become active from the given date.
      * 
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntry
      */
     expiryDate: string;
     /**
      * ID of the subledger.
-     * @type {string}
-     * @memberof CardLedgerTransactionLogEntry
      */
     subledgerId: string;
     /**
      * Amount of loyalty points added or deducted in the transaction.
-     * @type {number}
-     * @memberof CardLedgerTransactionLogEntry
      */
     amount: number;
     /**
      * ID of the loyalty ledger entry.
-     * @type {number}
-     * @memberof CardLedgerTransactionLogEntry
      */
     id: number;
 }
@@ -122,7 +94,7 @@ export interface CardLedgerTransactionLogEntry {
  */
 export const CardLedgerTransactionLogEntryTypeEnum = {
     Addition: 'addition',
-    Subtraction: 'subtraction'
+    Subtraction: 'subtraction',
 } as const;
 export type CardLedgerTransactionLogEntryTypeEnum = typeof CardLedgerTransactionLogEntryTypeEnum[keyof typeof CardLedgerTransactionLogEntryTypeEnum];
 
@@ -157,7 +129,7 @@ export function CardLedgerTransactionLogEntryFromJSONTyped(json: any, ignoreDisc
     return {
         
         'transactionUUID': json['transactionUUID'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'programId': json['programId'],
         'cardIdentifier': json['cardIdentifier'],
         'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
@@ -185,7 +157,7 @@ export function CardLedgerTransactionLogEntryToJSONTyped(value?: CardLedgerTrans
     return {
         
         'transactionUUID': value['transactionUUID'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'programId': value['programId'],
         'cardIdentifier': value['cardIdentifier'],
         'applicationId': value['applicationId'],

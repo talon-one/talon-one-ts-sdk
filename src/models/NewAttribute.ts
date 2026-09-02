@@ -21,76 +21,52 @@ import { mapValues } from '../runtime';
 export interface NewAttribute {
     /**
      * The name of the entity that can have this attribute. When creating or updating the entities of a given type, you can include an `attributes` object with keys corresponding to the `name` of the custom attributes for that type.
-     * @type {NewAttributeEntityEnum}
-     * @memberof NewAttribute
      */
     entity: NewAttributeEntityEnum;
     /**
      * 
-     * @type {string}
-     * @memberof NewAttribute
      */
     eventType?: string;
     /**
      * The attribute name that will be used in API requests and Talang. E.g. if `name == "region"` then you would set the region attribute by including an `attributes.region` property in your request payload.
-     * @type {string}
-     * @memberof NewAttribute
      */
     name: string;
     /**
      * The human-readable name for the attribute that will be shown in the Campaign Manager. Like `name`, the combination of entity and title must also be unique.
-     * @type {string}
-     * @memberof NewAttribute
      */
     title: string;
     /**
      * The data type of the attribute, a `time` attribute must be sent as a string that conforms to the [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) timestamp format.
-     * @type {NewAttributeTypeEnum}
-     * @memberof NewAttribute
      */
     type: NewAttributeTypeEnum;
     /**
      * A description of this attribute.
-     * @type {string}
-     * @memberof NewAttribute
      */
     description: string;
     /**
      * A list of suggestions for the attribute.
-     * @type {Array<string>}
-     * @memberof NewAttribute
      */
     suggestions: Array<string>;
     /**
      * Whether or not this attribute has an allowed list of values associated with it.
-     * @type {boolean}
-     * @memberof NewAttribute
      */
     hasAllowedList?: boolean;
     /**
      * Whether or not this attribute's value is restricted by suggestions (`suggestions` property)
      * or by an allowed list of value (`hasAllowedList` property).
      * 
-     * @type {boolean}
-     * @memberof NewAttribute
      */
     restrictedBySuggestions?: boolean;
     /**
      * Whether or not this attribute can be edited.
-     * @type {boolean}
-     * @memberof NewAttribute
      */
     editable: boolean;
     /**
      * A list of the IDs of the applications where this attribute is available.
-     * @type {Array<number>}
-     * @memberof NewAttribute
      */
     subscribedApplicationsIds?: Array<number>;
     /**
      * A list of the IDs of the catalogs where this attribute is available.
-     * @type {Array<number>}
-     * @memberof NewAttribute
      */
     subscribedCatalogsIds?: Array<number>;
     /**
@@ -98,8 +74,6 @@ export interface NewAttribute {
      * 
      * **Note:** This only applies to attributes associated with the `CartItem` entity.
      * 
-     * @type {Array<NewAttributeAllowedSubscriptionsEnum>}
-     * @memberof NewAttribute
      */
     allowedSubscriptions?: Array<NewAttributeAllowedSubscriptionsEnum>;
 }
@@ -119,7 +93,7 @@ export const NewAttributeEntityEnum = {
     Giveaway: 'Giveaway',
     LoyaltyCard: 'LoyaltyCard',
     Referral: 'Referral',
-    Store: 'Store'
+    Store: 'Store',
 } as const;
 export type NewAttributeEntityEnum = typeof NewAttributeEntityEnum[keyof typeof NewAttributeEntityEnum];
 
@@ -135,7 +109,7 @@ export const NewAttributeTypeEnum = {
     ListNumber: '(list number)',
     ListTime: '(list time)',
     Location: 'location',
-    ListLocation: '(list location)'
+    ListLocation: '(list location)',
 } as const;
 export type NewAttributeTypeEnum = typeof NewAttributeTypeEnum[keyof typeof NewAttributeTypeEnum];
 
@@ -144,7 +118,7 @@ export type NewAttributeTypeEnum = typeof NewAttributeTypeEnum[keyof typeof NewA
  */
 export const NewAttributeAllowedSubscriptionsEnum = {
     Application: 'application',
-    Catalog: 'catalog'
+    Catalog: 'catalog',
 } as const;
 export type NewAttributeAllowedSubscriptionsEnum = typeof NewAttributeAllowedSubscriptionsEnum[keyof typeof NewAttributeAllowedSubscriptionsEnum];
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,50 +21,34 @@ import { mapValues } from '../runtime';
 export interface TierWillDowngradeData {
     /**
      * The integration ID of the customer profile whose tier was downgraded.
-     * @type {string}
-     * @memberof TierWillDowngradeData
      */
     customerProfileID: string;
     /**
      * The ID of the loyalty program.
-     * @type {number}
-     * @memberof TierWillDowngradeData
      */
     loyaltyProgramID: number;
     /**
      * The ID of the subledger, when applicable. If this field is empty, the main ledger is used.
-     * @type {string}
-     * @memberof TierWillDowngradeData
      */
     subledgerID: string;
     /**
      * The name of the customer's current tier.
-     * @type {string}
-     * @memberof TierWillDowngradeData
      */
     currentTier: string;
     /**
      * The number of points the customer will have after the tier downgrade.
-     * @type {number}
-     * @memberof TierWillDowngradeData
      */
     currentPoints: number;
     /**
      * The number of points needed for a customer to remain on the same tier.
-     * @type {number}
-     * @memberof TierWillDowngradeData
      */
     pointsRequiredToRemain: number;
     /**
      * The name of the customer's next tier.
-     * @type {string}
-     * @memberof TierWillDowngradeData
      */
     nextTier?: string;
     /**
      * The date and time the tier expires.
-     * @type {Date}
-     * @memberof TierWillDowngradeData
      */
     tierExpirationDate?: Date;
 }
@@ -100,7 +84,7 @@ export function TierWillDowngradeDataFromJSONTyped(json: any, ignoreDiscriminato
         'currentPoints': json['CurrentPoints'],
         'pointsRequiredToRemain': json['PointsRequiredToRemain'],
         'nextTier': json['NextTier'] == null ? undefined : json['NextTier'],
-        'tierExpirationDate': json['TierExpirationDate'] == null ? undefined : (new Date(json['TierExpirationDate'])),
+        'tierExpirationDate': json['TierExpirationDate'] == null ? undefined : (parseDateTime(json['TierExpirationDate'])),
     };
 }
 
@@ -122,7 +106,7 @@ export function TierWillDowngradeDataToJSONTyped(value?: TierWillDowngradeData |
         'CurrentPoints': value['currentPoints'],
         'PointsRequiredToRemain': value['pointsRequiredToRemain'],
         'NextTier': value['nextTier'],
-        'TierExpirationDate': value['tierExpirationDate'] == null ? value['tierExpirationDate'] : value['tierExpirationDate'].toISOString(),
+        'TierExpirationDate': value['tierExpirationDate'] == null ? value['tierExpirationDate'] : serializeDateTime(value['tierExpirationDate']),
     };
 }
 

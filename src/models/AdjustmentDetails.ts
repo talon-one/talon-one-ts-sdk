@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface AdjustmentDetails {
     /**
      * The reference identifier used during an `ADD_PRICE_ADJUSTMENT` action.
-     * @type {string}
-     * @memberof AdjustmentDetails
      */
     referenceId: string;
     /**
      * The selected price type for the SKU targeted by this effect.
-     * @type {string}
-     * @memberof AdjustmentDetails
      */
     selectedPriceType: string;
     /**
      * The value of the applied price adjustment.
-     * @type {number}
-     * @memberof AdjustmentDetails
      */
     value: number;
 }

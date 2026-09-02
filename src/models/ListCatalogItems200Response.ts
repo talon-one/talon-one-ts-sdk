@@ -29,20 +29,14 @@ import {
 export interface ListCatalogItems200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof ListCatalogItems200Response
      */
     hasMore?: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof ListCatalogItems200Response
      */
     totalResultSize?: number;
     /**
      * 
-     * @type {Array<CatalogItem>}
-     * @memberof ListCatalogItems200Response
      */
     data: Array<CatalogItem>;
 }

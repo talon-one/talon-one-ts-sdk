@@ -19,7 +19,7 @@ import type { StrikethroughSetDiscountPerItemEffectProps } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "name": 1EuroOff,
-  "value": null,
+  "value": 1,
   "excludedFromPriceHistory": null,
 } satisfies StrikethroughSetDiscountPerItemEffectProps
 

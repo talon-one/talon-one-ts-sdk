@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { IntegrationHubEventPayloadCouponBasedNotificationsLimits } from './IntegrationHubEventPayloadCouponBasedNotificationsLimits';
 import {
     IntegrationHubEventPayloadCouponBasedNotificationsLimitsFromJSON,
@@ -29,134 +29,90 @@ import {
 export interface IntegrationHubEventPayloadCouponBasedNotifications {
     /**
      * The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     eventId: number;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     id: number;
     /**
      * 
-     * @type {Date}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     created: Date;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     campaignId: number;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     value: string;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     usageLimit: number;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     discountLimit?: number;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     reservationLimit?: number;
     /**
      * 
-     * @type {Date}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     startDate?: Date;
     /**
      * 
-     * @type {Date}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     expiryDate?: Date;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     usageCounter: number;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     discountCounter?: number;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     discountRemainder?: number;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     referralId?: number;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     recipientIntegrationId?: string;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     importId?: number;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     batchId?: string;
     /**
      * 
-     * @type {object}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     attributes?: object;
     /**
      * 
-     * @type {Array<IntegrationHubEventPayloadCouponBasedNotificationsLimits>}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     limits?: Array<IntegrationHubEventPayloadCouponBasedNotificationsLimits>;
     /**
      * Timestamp when the event was published.
-     * @type {Date}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     publishedAt: Date;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     sourceOfEvent: string;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadCouponBasedNotifications
      */
     employeeName: string;
 }
@@ -191,14 +147,14 @@ export function IntegrationHubEventPayloadCouponBasedNotificationsFromJSONTyped(
         
         'eventId': json['EventId'],
         'id': json['Id'],
-        'created': (json['Created'] == null ? undefined as any : new Date(json['Created'])),
+        'created': (json['Created'] == null ? json['Created'] : parseDateTime(json['Created'])),
         'campaignId': json['CampaignId'],
         'value': json['Value'],
         'usageLimit': json['UsageLimit'],
         'discountLimit': json['DiscountLimit'] == null ? undefined : json['DiscountLimit'],
         'reservationLimit': json['ReservationLimit'] == null ? undefined : json['ReservationLimit'],
-        'startDate': json['StartDate'] == null ? undefined : (new Date(json['StartDate'])),
-        'expiryDate': json['ExpiryDate'] == null ? undefined : (new Date(json['ExpiryDate'])),
+        'startDate': json['StartDate'] == null ? undefined : (parseDateTime(json['StartDate'])),
+        'expiryDate': json['ExpiryDate'] == null ? undefined : (parseDateTime(json['ExpiryDate'])),
         'usageCounter': json['UsageCounter'],
         'discountCounter': json['DiscountCounter'] == null ? undefined : json['DiscountCounter'],
         'discountRemainder': json['DiscountRemainder'] == null ? undefined : json['DiscountRemainder'],
@@ -208,7 +164,7 @@ export function IntegrationHubEventPayloadCouponBasedNotificationsFromJSONTyped(
         'batchId': json['BatchId'] == null ? undefined : json['BatchId'],
         'attributes': json['Attributes'] == null ? undefined : json['Attributes'],
         'limits': json['Limits'] == null ? undefined : ((json['Limits'] as Array<any>).map(IntegrationHubEventPayloadCouponBasedNotificationsLimitsFromJSON)),
-        'publishedAt': (json['PublishedAt'] == null ? undefined as any : new Date(json['PublishedAt'])),
+        'publishedAt': (json['PublishedAt'] == null ? json['PublishedAt'] : parseDateTime(json['PublishedAt'])),
         'sourceOfEvent': json['SourceOfEvent'],
         'employeeName': json['EmployeeName'],
     };
@@ -227,14 +183,14 @@ export function IntegrationHubEventPayloadCouponBasedNotificationsToJSONTyped(va
         
         'EventId': value['eventId'],
         'Id': value['id'],
-        'Created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'Created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'CampaignId': value['campaignId'],
         'Value': value['value'],
         'UsageLimit': value['usageLimit'],
         'DiscountLimit': value['discountLimit'],
         'ReservationLimit': value['reservationLimit'],
-        'StartDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'ExpiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'StartDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'ExpiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'UsageCounter': value['usageCounter'],
         'DiscountCounter': value['discountCounter'],
         'DiscountRemainder': value['discountRemainder'],
@@ -244,7 +200,7 @@ export function IntegrationHubEventPayloadCouponBasedNotificationsToJSONTyped(va
         'BatchId': value['batchId'],
         'Attributes': value['attributes'],
         'Limits': value['limits'] == null ? undefined : ((value['limits'] as Array<any>).map(IntegrationHubEventPayloadCouponBasedNotificationsLimitsToJSON)),
-        'PublishedAt': value['publishedAt'] == null ? undefined : value['publishedAt'].toISOString(),
+        'PublishedAt': value['publishedAt'] == null ? undefined : serializeDateTime(value['publishedAt']),
         'SourceOfEvent': value['sourceOfEvent'],
         'EmployeeName': value['employeeName'],
     };

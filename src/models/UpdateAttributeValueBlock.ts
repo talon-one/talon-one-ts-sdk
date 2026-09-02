@@ -36,44 +36,30 @@ import {
 export interface UpdateAttributeValueBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof UpdateAttributeValueBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof UpdateAttributeValueBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof UpdateAttributeValueBlock
      */
     tags?: Array<string>;
     /**
      * The update operation applied to the attribute.
-     * @type {UpdateAttributeValueBlockOperatorEnum}
-     * @memberof UpdateAttributeValueBlock
      */
     operator: UpdateAttributeValueBlockOperatorEnum;
     /**
      * 
-     * @type {UpdateAttributeValueBlock1Attribute}
-     * @memberof UpdateAttributeValueBlock
      */
     attribute: UpdateAttributeValueBlock1Attribute;
     /**
-     * 
-     * @type {any}
-     * @memberof UpdateAttributeValueBlock
+     * The value of the attribute. Omitted when operator is set to `toggle`.
      */
     value?: any | null;
     /**
      * 
-     * @type {UpdateAttributeValueBlock1Target}
-     * @memberof UpdateAttributeValueBlock
      */
     target: UpdateAttributeValueBlock1Target;
 }
@@ -90,7 +76,7 @@ export const UpdateAttributeValueBlockOperatorEnum = {
     DivideBy: 'divideBy',
     Toggle: 'toggle',
     LaterBy: 'laterBy',
-    EarlierBy: 'earlierBy'
+    EarlierBy: 'earlierBy',
 } as const;
 export type UpdateAttributeValueBlockOperatorEnum = typeof UpdateAttributeValueBlockOperatorEnum[keyof typeof UpdateAttributeValueBlockOperatorEnum];
 
@@ -100,7 +86,6 @@ export type UpdateAttributeValueBlockOperatorEnum = typeof UpdateAttributeValueB
  */
 export function instanceOfUpdateAttributeValueBlock(value: object): value is UpdateAttributeValueBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('operator' in _v) || _v['operator'] === undefined) return false;
     if (!('attribute' in _v) || _v['attribute'] === undefined) return false;
@@ -118,7 +103,7 @@ export function UpdateAttributeValueBlockFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
@@ -132,14 +117,13 @@ export function UpdateAttributeValueBlockToJSON(json: any): UpdateAttributeValue
     return UpdateAttributeValueBlockToJSONTyped(json, false);
 }
 
-export function UpdateAttributeValueBlockToJSONTyped(value?: UpdateAttributeValueBlock | null, ignoreDiscriminator: boolean = false): any {
+export function UpdateAttributeValueBlockToJSONTyped(value?: Omit<UpdateAttributeValueBlock, 'id'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
         'tags': value['tags'],
         'operator': value['operator'],

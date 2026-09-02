@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface NewInvitation {
     /**
      * Name of the user.
-     * @type {string}
-     * @memberof NewInvitation
      */
     name?: string;
     /**
      * Email address of the user.
-     * @type {string}
-     * @memberof NewInvitation
      */
     email: string;
     /**
      * Indicates whether the user is an `admin`.
-     * @type {boolean}
-     * @memberof NewInvitation
      */
     isAdmin?: boolean;
     /**
      * A list of the IDs of the roles assigned to the user.
-     * @type {Array<number>}
-     * @memberof NewInvitation
      */
     roles?: Array<number>;
     /**
      * Indicates the access level of the user.
-     * @type {string}
-     * @memberof NewInvitation
      */
     acl?: string;
 }

@@ -29,8 +29,6 @@ import {
 export interface SummarizeCampaignStoreBudget200Response {
     /**
      * 
-     * @type {Array<SummaryCampaignStoreBudget>}
-     * @memberof SummarizeCampaignStoreBudget200Response
      */
     data?: Array<SummaryCampaignStoreBudget>;
 }

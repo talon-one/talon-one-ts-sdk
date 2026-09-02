@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface User {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof User
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof User
      */
     created: Date;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof User
      */
     modified: Date;
     /**
      * The email address associated with the user profile.
-     * @type {string}
-     * @memberof User
      */
     email: string;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof User
      */
     accountId: number;
     /**
      * Name of the user.
-     * @type {string}
-     * @memberof User
      */
     name: string;
     /**
      * State of the user.
-     * @type {UserStateEnum}
-     * @memberof User
      */
     state: UserStateEnum;
     /**
@@ -66,62 +52,42 @@ export interface User {
      * 
      * **Note**: If the user has already accepted their invitation, this is `null`.
      * 
-     * @type {string}
-     * @memberof User
      */
     inviteToken: string;
     /**
      * Indicates whether the user is an `admin`.
-     * @type {boolean}
-     * @memberof User
      */
     isAdmin?: boolean;
     /**
      * Access level of the user.
-     * @type {object}
-     * @memberof User
      */
     policy: object;
     /**
      * A list of the IDs of the roles assigned to the user.
-     * @type {Array<number>}
-     * @memberof User
      */
     roles?: Array<number>;
     /**
      * Authentication method for this user.
-     * @type {string}
-     * @memberof User
      */
     authMethod?: string;
     /**
      * Application notifications that the user is subscribed to.
-     * @type {object}
-     * @memberof User
      */
     applicationNotificationSubscriptions?: object;
     /**
      * Timestamp when the user last signed in to Talon.One.
-     * @type {Date}
-     * @memberof User
      */
     lastSignedIn?: Date;
     /**
      * Timestamp of the user's last activity after signing in to Talon.One.
-     * @type {Date}
-     * @memberof User
      */
     lastAccessed?: Date;
     /**
      * Timestamp when the user was notified for feed.
-     * @type {Date}
-     * @memberof User
      */
     latestFeedTimestamp?: Date;
     /**
      * Additional user attributes, created and used by external identity providers.
-     * @type {object}
-     * @memberof User
      */
     additionalAttributes?: object;
 }
@@ -133,7 +99,7 @@ export interface User {
 export const UserStateEnum = {
     Invited: 'invited',
     Active: 'active',
-    Deactivated: 'deactivated'
+    Deactivated: 'deactivated',
 } as const;
 export type UserStateEnum = typeof UserStateEnum[keyof typeof UserStateEnum];
 
@@ -166,8 +132,8 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'email': json['email'],
         'accountId': json['accountId'],
         'name': json['name'],
@@ -178,9 +144,9 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'roles': json['roles'] == null ? undefined : json['roles'],
         'authMethod': json['authMethod'] == null ? undefined : json['authMethod'],
         'applicationNotificationSubscriptions': json['applicationNotificationSubscriptions'] == null ? undefined : json['applicationNotificationSubscriptions'],
-        'lastSignedIn': json['lastSignedIn'] == null ? undefined : (new Date(json['lastSignedIn'])),
-        'lastAccessed': json['lastAccessed'] == null ? undefined : (new Date(json['lastAccessed'])),
-        'latestFeedTimestamp': json['latestFeedTimestamp'] == null ? undefined : (new Date(json['latestFeedTimestamp'])),
+        'lastSignedIn': json['lastSignedIn'] == null ? undefined : (parseDateTime(json['lastSignedIn'])),
+        'lastAccessed': json['lastAccessed'] == null ? undefined : (parseDateTime(json['lastAccessed'])),
+        'latestFeedTimestamp': json['latestFeedTimestamp'] == null ? undefined : (parseDateTime(json['latestFeedTimestamp'])),
         'additionalAttributes': json['additionalAttributes'] == null ? undefined : json['additionalAttributes'],
     };
 }
@@ -197,8 +163,8 @@ export function UserToJSONTyped(value?: User | null, ignoreDiscriminator: boolea
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'email': value['email'],
         'accountId': value['accountId'],
         'name': value['name'],
@@ -209,9 +175,9 @@ export function UserToJSONTyped(value?: User | null, ignoreDiscriminator: boolea
         'roles': value['roles'],
         'authMethod': value['authMethod'],
         'applicationNotificationSubscriptions': value['applicationNotificationSubscriptions'],
-        'lastSignedIn': value['lastSignedIn'] == null ? value['lastSignedIn'] : value['lastSignedIn'].toISOString(),
-        'lastAccessed': value['lastAccessed'] == null ? value['lastAccessed'] : value['lastAccessed'].toISOString(),
-        'latestFeedTimestamp': value['latestFeedTimestamp'] == null ? value['latestFeedTimestamp'] : value['latestFeedTimestamp'].toISOString(),
+        'lastSignedIn': value['lastSignedIn'] == null ? value['lastSignedIn'] : serializeDateTime(value['lastSignedIn']),
+        'lastAccessed': value['lastAccessed'] == null ? value['lastAccessed'] : serializeDateTime(value['lastAccessed']),
+        'latestFeedTimestamp': value['latestFeedTimestamp'] == null ? value['latestFeedTimestamp'] : serializeDateTime(value['latestFeedTimestamp']),
         'additionalAttributes': value['additionalAttributes'],
     };
 }

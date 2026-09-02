@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface AccountDashboardStatisticLoyaltyPoints {
     /**
      * Total loyalty points earned by users.
-     * @type {number}
-     * @memberof AccountDashboardStatisticLoyaltyPoints
      */
     total: number;
     /**
      * Values aggregated for the specified date.
-     * @type {Date}
-     * @memberof AccountDashboardStatisticLoyaltyPoints
      */
     datetime: Date;
 }
@@ -54,7 +50,7 @@ export function AccountDashboardStatisticLoyaltyPointsFromJSONTyped(json: any, i
     return {
         
         'total': json['total'],
-        'datetime': (json['datetime'] == null ? undefined as any : new Date(json['datetime'])),
+        'datetime': (json['datetime'] == null ? json['datetime'] : parseDateTime(json['datetime'])),
     };
 }
 
@@ -70,7 +66,7 @@ export function AccountDashboardStatisticLoyaltyPointsToJSONTyped(value?: Accoun
     return {
         
         'total': value['total'],
-        'datetime': value['datetime'] == null ? undefined : value['datetime'].toISOString(),
+        'datetime': value['datetime'] == null ? undefined : serializeDateTime(value['datetime']),
     };
 }
 

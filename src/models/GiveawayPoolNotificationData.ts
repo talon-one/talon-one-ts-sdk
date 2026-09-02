@@ -21,62 +21,42 @@ import { mapValues } from '../runtime';
 export interface GiveawayPoolNotificationData {
     /**
      * The event type of the notification.
-     * @type {string}
-     * @memberof GiveawayPoolNotificationData
      */
     event: string;
     /**
      * The ID of the giveaway pool.
-     * @type {number}
-     * @memberof GiveawayPoolNotificationData
      */
     poolId: number;
     /**
      * The name of the giveaway pool.
-     * @type {string}
-     * @memberof GiveawayPoolNotificationData
      */
     poolName: string;
     /**
      * The description of the giveaway pool.
-     * @type {string}
-     * @memberof GiveawayPoolNotificationData
      */
     poolDescription: string;
     /**
      * The ID of the account that owns the giveaway pool.
-     * @type {number}
-     * @memberof GiveawayPoolNotificationData
      */
     accountId: number;
     /**
      * The ID of the Application connected to the giveaway pool.
-     * @type {number}
-     * @memberof GiveawayPoolNotificationData
      */
     applicationId: number;
     /**
      * The total number of codes in the giveaway pool.
-     * @type {number}
-     * @memberof GiveawayPoolNotificationData
      */
     totalCodes: number;
     /**
      * The number of codes that have been used.
-     * @type {number}
-     * @memberof GiveawayPoolNotificationData
      */
     usedCodes: number;
     /**
      * The number of codes remaining in the giveaway pool.
-     * @type {number}
-     * @memberof GiveawayPoolNotificationData
      */
     remainingCodes: number;
     /**
      * The percentage threshold for the notification. The notification is triggered when the number of codes drops below this threshold.
-     * @type {number}
-     * @memberof GiveawayPoolNotificationData
      */
     thresholdPercent: number;
 }

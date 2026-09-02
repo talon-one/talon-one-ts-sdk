@@ -57,32 +57,22 @@ import {
 export interface AccountDashboardStatistic {
     /**
      * Aggregated statistic for account revenue.
-     * @type {Array<AccountDashboardStatisticRevenue>}
-     * @memberof AccountDashboardStatistic
      */
     revenue?: Array<AccountDashboardStatisticRevenue>;
     /**
      * Aggregated statistic for account discount.
-     * @type {Array<AccountDashboardStatisticDiscount>}
-     * @memberof AccountDashboardStatistic
      */
     discounts?: Array<AccountDashboardStatisticDiscount>;
     /**
      * Aggregated statistic for account loyalty points.
-     * @type {Array<AccountDashboardStatisticLoyaltyPoints>}
-     * @memberof AccountDashboardStatistic
      */
     loyaltyPoints?: Array<AccountDashboardStatisticLoyaltyPoints>;
     /**
      * Aggregated statistic for account referrals.
-     * @type {Array<AccountDashboardStatisticReferrals>}
-     * @memberof AccountDashboardStatistic
      */
     referrals?: Array<AccountDashboardStatisticReferrals>;
     /**
      * 
-     * @type {AccountDashboardStatisticCampaigns}
-     * @memberof AccountDashboardStatistic
      */
     campaigns: AccountDashboardStatisticCampaigns;
 }

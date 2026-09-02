@@ -29,8 +29,6 @@ import {
 export interface MultipleNewAudiences {
     /**
      * 
-     * @type {Array<NewMultipleAudiencesItem>}
-     * @memberof MultipleNewAudiences
      */
     audiences: Array<NewMultipleAudiencesItem>;
 }

@@ -29,8 +29,6 @@ import {
 export interface OutgoingIntegrationTemplates {
     /**
      * The list of templates for a given outgoing integration type.
-     * @type {Array<OutgoingIntegrationTemplate>}
-     * @memberof OutgoingIntegrationTemplates
      */
     data?: Array<OutgoingIntegrationTemplate>;
 }

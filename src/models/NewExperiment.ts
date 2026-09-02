@@ -30,28 +30,20 @@ export interface NewExperiment {
     /**
      * The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.
      * 
-     * @type {boolean}
-     * @memberof NewExperiment
      */
     isVariantAssignmentExternal: boolean;
     /**
      * 
-     * @type {NewCampaign}
-     * @memberof NewExperiment
      */
     campaign: NewCampaign;
     /**
      * The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to `other`, multiple metrics are used.
      * 
-     * @type {NewExperimentGoalTypeEnum}
-     * @memberof NewExperiment
      */
     goalType: NewExperimentGoalTypeEnum;
     /**
      * A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal.
      * 
-     * @type {string}
-     * @memberof NewExperiment
      */
     goalDescription?: string;
 }
@@ -64,7 +56,7 @@ export const NewExperimentGoalTypeEnum = {
     Other: 'other',
     MaximizeRevenue: 'maximize_revenue',
     MaximizeItemsSold: 'maximize_items_sold',
-    OptimizeDiscountEfficiency: 'optimize_discount_efficiency'
+    OptimizeDiscountEfficiency: 'optimize_discount_efficiency',
 } as const;
 export type NewExperimentGoalTypeEnum = typeof NewExperimentGoalTypeEnum[keyof typeof NewExperimentGoalTypeEnum];
 

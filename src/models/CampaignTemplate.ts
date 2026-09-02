@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CampaignTemplateCollection } from './CampaignTemplateCollection';
 import {
     CampaignTemplateCollectionFromJSON,
@@ -57,134 +57,90 @@ import {
 export interface CampaignTemplate {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof CampaignTemplate
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof CampaignTemplate
      */
     created: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof CampaignTemplate
      */
     accountId: number;
     /**
      * The ID of the user associated with this entity.
-     * @type {number}
-     * @memberof CampaignTemplate
      */
     userId: number;
     /**
      * The campaign template name.
-     * @type {string}
-     * @memberof CampaignTemplate
      */
     name: string;
     /**
      * Customer-facing text that explains the objective of the template.
-     * @type {string}
-     * @memberof CampaignTemplate
      */
     description: string;
     /**
      * Customer-facing text that explains how to use the template. For example, you can use this property to explain the available attributes of this template, and how they can be modified when a user uses this template to create a new campaign.
-     * @type {string}
-     * @memberof CampaignTemplate
      */
     instructions: string;
     /**
      * The campaign attributes that campaigns created from this template will have by default.
-     * @type {object}
-     * @memberof CampaignTemplate
      */
     campaignAttributes?: object;
     /**
      * The campaign attributes that coupons created from this template will have by default.
-     * @type {object}
-     * @memberof CampaignTemplate
      */
     couponAttributes?: object;
     /**
      * Only campaign templates in 'available' state may be used to create campaigns.
-     * @type {CampaignTemplateStateEnum}
-     * @memberof CampaignTemplate
      */
     state: CampaignTemplateStateEnum;
     /**
      * The ID of the ruleset this campaign template will use.
-     * @type {number}
-     * @memberof CampaignTemplate
      */
     activeRulesetId?: number;
     /**
      * A list of tags for the campaign template.
-     * @type {Array<string>}
-     * @memberof CampaignTemplate
      */
     tags?: Array<string>;
     /**
      * Indicates whether campaigns created from this template should be reevaluated when a customer returns an item.
-     * @type {boolean}
-     * @memberof CampaignTemplate
      */
     reevaluateOnReturn: boolean;
     /**
      * A list of features for the campaign template.
-     * @type {Array<CampaignTemplateFeaturesEnum>}
-     * @memberof CampaignTemplate
      */
     features?: Array<CampaignTemplateFeaturesEnum>;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof CampaignTemplate
      */
     couponSettings?: CodeGeneratorSettings;
     /**
      * 
-     * @type {CampaignTemplateCouponReservationSettings}
-     * @memberof CampaignTemplate
      */
     couponReservationSettings?: CampaignTemplateCouponReservationSettings;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof CampaignTemplate
      */
     referralSettings?: CodeGeneratorSettings;
     /**
      * The set of limits that operate for this campaign template.
-     * @type {Array<TemplateLimitConfig>}
-     * @memberof CampaignTemplate
      */
     limits?: Array<TemplateLimitConfig>;
     /**
      * Fields which can be used to replace values in a rule.
-     * @type {Array<CampaignTemplateParams>}
-     * @memberof CampaignTemplate
      */
     templateParams?: Array<CampaignTemplateParams>;
     /**
      * 
-     * @type {Array<number>}
-     * @memberof CampaignTemplate
      */
     applicationsIds: Array<number>;
     /**
      * The campaign collections from the blueprint campaign for the template.
-     * @type {Array<CampaignTemplateCollection>}
-     * @memberof CampaignTemplate
      */
     campaignCollections?: Array<CampaignTemplateCollection>;
     /**
      * The default campaign group ID.
-     * @type {number}
-     * @memberof CampaignTemplate
      */
     defaultCampaignGroupId?: number;
     /**
@@ -192,38 +148,26 @@ export interface CampaignTemplate {
      *   - `cartItem`: Type of campaign that can apply effects only to cart items.
      *   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
      * 
-     * @type {CampaignTemplateCampaignTypeEnum}
-     * @memberof CampaignTemplate
      */
     campaignType?: CampaignTemplateCampaignTypeEnum;
     /**
      * The number of Campaigns created from this template.
-     * @type {number}
-     * @memberof CampaignTemplate
      */
     campaignsCount?: number;
     /**
      * Timestamp of the most recent update to the campaign template or any of its elements.
-     * @type {Date}
-     * @memberof CampaignTemplate
      */
     updated?: Date;
     /**
      * Name of the user who last updated this campaign template, if available.
-     * @type {string}
-     * @memberof CampaignTemplate
      */
     updatedBy?: string;
     /**
      * The IDs of the Applications that are related to this entity.
-     * @type {Array<number>}
-     * @memberof CampaignTemplate
      */
     validApplicationIds: Array<number>;
     /**
      * A flag indicating whether the user marked the template as a favorite.
-     * @type {boolean}
-     * @memberof CampaignTemplate
      */
     isUserFavorite?: boolean;
 }
@@ -235,7 +179,7 @@ export interface CampaignTemplate {
 export const CampaignTemplateStateEnum = {
     Draft: 'draft',
     Enabled: 'enabled',
-    Disabled: 'disabled'
+    Disabled: 'disabled',
 } as const;
 export type CampaignTemplateStateEnum = typeof CampaignTemplateStateEnum[keyof typeof CampaignTemplateStateEnum];
 
@@ -249,7 +193,7 @@ export const CampaignTemplateFeaturesEnum = {
     Giveaways: 'giveaways',
     Strikethrough: 'strikethrough',
     Achievements: 'achievements',
-    AdvancedEvents: 'advancedEvents'
+    AdvancedEvents: 'advancedEvents',
 } as const;
 export type CampaignTemplateFeaturesEnum = typeof CampaignTemplateFeaturesEnum[keyof typeof CampaignTemplateFeaturesEnum];
 
@@ -258,7 +202,7 @@ export type CampaignTemplateFeaturesEnum = typeof CampaignTemplateFeaturesEnum[k
  */
 export const CampaignTemplateCampaignTypeEnum = {
     CartItem: 'cartItem',
-    Advanced: 'advanced'
+    Advanced: 'advanced',
 } as const;
 export type CampaignTemplateCampaignTypeEnum = typeof CampaignTemplateCampaignTypeEnum[keyof typeof CampaignTemplateCampaignTypeEnum];
 
@@ -293,7 +237,7 @@ export function CampaignTemplateFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'accountId': json['accountId'],
         'userId': json['userId'],
         'name': json['name'],
@@ -316,7 +260,7 @@ export function CampaignTemplateFromJSONTyped(json: any, ignoreDiscriminator: bo
         'defaultCampaignGroupId': json['defaultCampaignGroupId'] == null ? undefined : json['defaultCampaignGroupId'],
         'campaignType': json['campaignType'] == null ? undefined : json['campaignType'],
         'campaignsCount': json['campaignsCount'] == null ? undefined : json['campaignsCount'],
-        'updated': json['updated'] == null ? undefined : (new Date(json['updated'])),
+        'updated': json['updated'] == null ? undefined : (parseDateTime(json['updated'])),
         'updatedBy': json['updatedBy'] == null ? undefined : json['updatedBy'],
         'validApplicationIds': json['validApplicationIds'],
         'isUserFavorite': json['isUserFavorite'] == null ? undefined : json['isUserFavorite'],
@@ -335,7 +279,7 @@ export function CampaignTemplateToJSONTyped(value?: CampaignTemplate | null, ign
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'accountId': value['accountId'],
         'userId': value['userId'],
         'name': value['name'],
@@ -358,7 +302,7 @@ export function CampaignTemplateToJSONTyped(value?: CampaignTemplate | null, ign
         'defaultCampaignGroupId': value['defaultCampaignGroupId'],
         'campaignType': value['campaignType'],
         'campaignsCount': value['campaignsCount'],
-        'updated': value['updated'] == null ? value['updated'] : value['updated'].toISOString(),
+        'updated': value['updated'] == null ? value['updated'] : serializeDateTime(value['updated']),
         'updatedBy': value['updatedBy'],
         'validApplicationIds': value['validApplicationIds'],
         'isUserFavorite': value['isUserFavorite'],

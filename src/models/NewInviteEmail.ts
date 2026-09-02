@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface NewInviteEmail {
     /**
      * Email address of the user.
-     * @type {string}
-     * @memberof NewInviteEmail
      */
     email: string;
     /**
      * Invitation token of the user.
-     * @type {string}
-     * @memberof NewInviteEmail
      */
     token: string;
 }

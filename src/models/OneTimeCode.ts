@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface OneTimeCode {
     /**
      * The ID of the user.
-     * @type {number}
-     * @memberof OneTimeCode
      */
     userId: number;
     /**
      * The ID of the account.
-     * @type {number}
-     * @memberof OneTimeCode
      */
     accountId: number;
     /**
      * The two-factor authentication token created during sign-in. This token is used to ensure that the correct user is trying to sign in with a given one-time security code.
-     * @type {string}
-     * @memberof OneTimeCode
      */
     token: string;
     /**
      * The one-time security code used for signing in.
-     * @type {string}
-     * @memberof OneTimeCode
      */
     code?: string;
 }

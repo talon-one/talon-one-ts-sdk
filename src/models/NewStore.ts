@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface NewStore {
     /**
      * The name of the store.
-     * @type {string}
-     * @memberof NewStore
      */
     name: string;
     /**
      * The description of the store.
-     * @type {string}
-     * @memberof NewStore
      */
     description: string;
     /**
      * The attributes of the store.
-     * @type {object}
-     * @memberof NewStore
      */
     attributes?: object;
     /**
@@ -42,8 +36,6 @@ export interface NewStore {
      * 
      * **Note**: You cannot edit the `integrationId` after the store has been created.
      * 
-     * @type {string}
-     * @memberof NewStore
      */
     integrationId: string;
 }

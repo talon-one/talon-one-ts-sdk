@@ -27,8 +27,6 @@ export interface TimePoint {
      * 
      * **Note**: Only applicable if the period is set to `Y`.
      * 
-     * @type {number}
-     * @memberof TimePoint
      */
     month?: number;
     /**
@@ -36,8 +34,6 @@ export interface TimePoint {
      * 
      * **Note**: Only applicable if the period is set to `Y` or `M`.
      * 
-     * @type {number}
-     * @memberof TimePoint
      */
     dayOfMonth?: number;
     /**
@@ -45,26 +41,18 @@ export interface TimePoint {
      * 
      * **Note**: Only applicable if the period is set to `W`.
      * 
-     * @type {number}
-     * @memberof TimePoint
      */
     dayOfWeek?: number;
     /**
      * The achievement ends and resets at this hour.
-     * @type {number}
-     * @memberof TimePoint
      */
     hour: number;
     /**
      * The achievement ends and resets at this minute.
-     * @type {number}
-     * @memberof TimePoint
      */
     minute: number;
     /**
      * The achievement ends and resets at this second.
-     * @type {number}
-     * @memberof TimePoint
      */
     second: number;
 }

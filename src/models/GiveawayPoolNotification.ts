@@ -29,20 +29,14 @@ import {
 export interface GiveawayPoolNotification {
     /**
      * 
-     * @type {number}
-     * @memberof GiveawayPoolNotification
      */
     totalResultSize: number;
     /**
      * The array of giveaway pool notifications.
-     * @type {Array<GiveawayPoolNotificationData>}
-     * @memberof GiveawayPoolNotification
      */
     data: Array<GiveawayPoolNotificationData>;
     /**
      * The type of notification.
-     * @type {GiveawayPoolNotificationNotificationTypeEnum}
-     * @memberof GiveawayPoolNotification
      */
     notificationType: GiveawayPoolNotificationNotificationTypeEnum;
 }
@@ -52,7 +46,7 @@ export interface GiveawayPoolNotification {
  * @export
  */
 export const GiveawayPoolNotificationNotificationTypeEnum = {
-    GiveawayPoolNotification: 'GiveawayPoolNotification'
+    GiveawayPoolNotification: 'GiveawayPoolNotification',
 } as const;
 export type GiveawayPoolNotificationNotificationTypeEnum = typeof GiveawayPoolNotificationNotificationTypeEnum[keyof typeof GiveawayPoolNotificationNotificationTypeEnum];
 

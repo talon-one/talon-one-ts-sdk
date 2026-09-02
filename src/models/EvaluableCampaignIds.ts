@@ -24,8 +24,6 @@ export interface EvaluableCampaignIds {
      * 
      * These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.
      * 
-     * @type {Array<number>}
-     * @memberof EvaluableCampaignIds
      */
     evaluableCampaignIds?: Array<number>;
 }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,56 +21,38 @@ import { mapValues } from '../runtime';
 export interface ApplicationCIF {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof ApplicationCIF
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof ApplicationCIF
      */
     created: Date;
     /**
      * The name of the Application cart item filter used in API requests.
-     * @type {string}
-     * @memberof ApplicationCIF
      */
     name: string;
     /**
      * A short description of the Application cart item filter.
-     * @type {string}
-     * @memberof ApplicationCIF
      */
     description?: string;
     /**
      * The ID of the expression that the Application cart item filter uses.
-     * @type {number}
-     * @memberof ApplicationCIF
      */
     activeExpressionId?: number;
     /**
      * The ID of the user who last updated the Application cart item filter.
-     * @type {number}
-     * @memberof ApplicationCIF
      */
     modifiedBy?: number;
     /**
      * The ID of the user who created the Application cart item filter.
-     * @type {number}
-     * @memberof ApplicationCIF
      */
     createdBy?: number;
     /**
      * Timestamp of the most recent update to the Application cart item filter.
-     * @type {Date}
-     * @memberof ApplicationCIF
      */
     modified?: Date;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof ApplicationCIF
      */
     applicationId: number;
 }
@@ -98,13 +80,13 @@ export function ApplicationCIFFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
         'activeExpressionId': json['activeExpressionId'] == null ? undefined : json['activeExpressionId'],
         'modifiedBy': json['modifiedBy'] == null ? undefined : json['modifiedBy'],
         'createdBy': json['createdBy'] == null ? undefined : json['createdBy'],
-        'modified': json['modified'] == null ? undefined : (new Date(json['modified'])),
+        'modified': json['modified'] == null ? undefined : (parseDateTime(json['modified'])),
         'applicationId': json['applicationId'],
     };
 }
@@ -121,13 +103,13 @@ export function ApplicationCIFToJSONTyped(value?: ApplicationCIF | null, ignoreD
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'name': value['name'],
         'description': value['description'],
         'activeExpressionId': value['activeExpressionId'],
         'modifiedBy': value['modifiedBy'],
         'createdBy': value['createdBy'],
-        'modified': value['modified'] == null ? value['modified'] : value['modified'].toISOString(),
+        'modified': value['modified'] == null ? value['modified'] : serializeDateTime(value['modified']),
         'applicationId': value['applicationId'],
     };
 }

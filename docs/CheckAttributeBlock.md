@@ -21,6 +21,7 @@ Name | Type
 `timezoneInsensitive` | boolean
 `values` | any
 `count` | any
+`onFailure` | [Array&lt;Block&gt;](Block.md)
 
 ## Example
 
@@ -33,17 +34,18 @@ const example = {
   "type": checkAttribute,
   "tags": null,
   "operator": greaterThan,
-  "attribute": null,
-  "value": null,
-  "min": null,
-  "max": null,
-  "start": null,
-  "end": null,
+  "attribute": $Session.Total,
+  "value": 100,
+  "min": 10,
+  "max": 100,
+  "start": 2021-09-22T22:00:00Z,
+  "end": 2021-09-22T22:00:00Z,
   "startInclusive": true,
   "endInclusive": true,
   "timezoneInsensitive": false,
-  "values": null,
-  "count": null,
+  "values": [{name=Berlin district, geometry={type=Point, coordinates=[13.405, 52.52]}}],
+  "count": 2,
+  "onFailure": null,
 } satisfies CheckAttributeBlock
 
 console.log(example)

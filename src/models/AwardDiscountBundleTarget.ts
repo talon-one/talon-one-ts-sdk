@@ -29,26 +29,18 @@ import {
 export interface AwardDiscountBundleTarget {
     /**
      * A target discriminator of type `bundle`.
-     * @type {AwardDiscountBundleTargetTypeEnum}
-     * @memberof AwardDiscountBundleTarget
      */
     type: AwardDiscountBundleTargetTypeEnum;
     /**
      * Name of the bundle binding the discount targets.
-     * @type {string}
-     * @memberof AwardDiscountBundleTarget
      */
     name: string;
     /**
      * 
-     * @type {AwardDiscountBundleItem}
-     * @memberof AwardDiscountBundleTarget
      */
     item?: AwardDiscountBundleItem;
     /**
      * Whether to distribute the discount proportionally across the bundle's items.
-     * @type {boolean}
-     * @memberof AwardDiscountBundleTarget
      */
     prorated?: boolean;
 }
@@ -58,7 +50,7 @@ export interface AwardDiscountBundleTarget {
  * @export
  */
 export const AwardDiscountBundleTargetTypeEnum = {
-    Bundle: 'bundle'
+    Bundle: 'bundle',
 } as const;
 export type AwardDiscountBundleTargetTypeEnum = typeof AwardDiscountBundleTargetTypeEnum[keyof typeof AwardDiscountBundleTargetTypeEnum];
 

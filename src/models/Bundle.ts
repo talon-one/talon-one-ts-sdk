@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface Bundle {
     /**
      * An identifier derived from the bundle content.
-     * @type {string}
-     * @memberof Bundle
      */
     id: string;
     /**
      * The name of the bundle.
-     * @type {string}
-     * @memberof Bundle
      */
     name: string;
     /**
      * A binding of type `bundle`.
-     * @type {BundleTypeEnum}
-     * @memberof Bundle
      */
     type: BundleTypeEnum;
     /**
      * The selector sources of bundle items. Each source is expressed as a `{{$selectorName}}` reference.
-     * @type {Array<string>}
-     * @memberof Bundle
      */
     sources: Array<string>;
     /**
      * The number of items to retrieve from each corresponding source in `sources`.
-     * @type {Array<number>}
-     * @memberof Bundle
      */
     counts: Array<number>;
     /**
      * Attribute names that the bundled items must share.
-     * @type {Array<string>}
-     * @memberof Bundle
      */
     matchers?: Array<string>;
 }
@@ -62,7 +50,7 @@ export interface Bundle {
  * @export
  */
 export const BundleTypeEnum = {
-    Bundle: 'bundle'
+    Bundle: 'bundle',
 } as const;
 export type BundleTypeEnum = typeof BundleTypeEnum[keyof typeof BundleTypeEnum];
 

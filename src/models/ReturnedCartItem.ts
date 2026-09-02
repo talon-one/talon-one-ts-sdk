@@ -21,21 +21,15 @@ import { mapValues } from '../runtime';
 export interface ReturnedCartItem {
     /**
      * The index of the cart item in the provided customer session's `cartItems` property.
-     * @type {number}
-     * @memberof ReturnedCartItem
      */
     position?: number;
     /**
      * Number of cart items to return.
      * 
-     * @type {number}
-     * @memberof ReturnedCartItem
      */
     quantity?: number;
     /**
      * The SKU of the cart item in the provided customer session's `cartItems` property.
-     * @type {string}
-     * @memberof ReturnedCartItem
      */
     sku?: string;
 }

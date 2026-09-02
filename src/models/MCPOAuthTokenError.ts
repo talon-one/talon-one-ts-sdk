@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface MCPOAuthTokenError {
     /**
      * RFC 6749 §5.2 error code.
-     * @type {MCPOAuthTokenErrorErrorEnum}
-     * @memberof MCPOAuthTokenError
      */
     error: MCPOAuthTokenErrorErrorEnum;
     /**
      * Human-readable description of the error.
-     * @type {string}
-     * @memberof MCPOAuthTokenError
      */
     errorDescription?: string;
 }
@@ -41,7 +37,7 @@ export const MCPOAuthTokenErrorErrorEnum = {
     InvalidRequest: 'invalid_request',
     InvalidClient: 'invalid_client',
     InvalidGrant: 'invalid_grant',
-    UnsupportedGrantType: 'unsupported_grant_type'
+    UnsupportedGrantType: 'unsupported_grant_type',
 } as const;
 export type MCPOAuthTokenErrorErrorEnum = typeof MCPOAuthTokenErrorErrorEnum[keyof typeof MCPOAuthTokenErrorErrorEnum];
 

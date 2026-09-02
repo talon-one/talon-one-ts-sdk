@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface LoyaltyCardBatchResponse {
     /**
      * Number of loyalty cards in the batch.
-     * @type {number}
-     * @memberof LoyaltyCardBatchResponse
      */
     numberOfCardsGenerated: number;
     /**
      * ID of the loyalty card batch.
-     * @type {string}
-     * @memberof LoyaltyCardBatchResponse
      */
     batchId: string;
 }

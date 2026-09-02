@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface TalangAttributeVisibility {
     /**
      * List of attribute names to hide in the UI.
-     * @type {Array<string>}
-     * @memberof TalangAttributeVisibility
      */
     invisible?: Array<string>;
     /**
      * List of attribute names to show in the UI.
-     * @type {Array<string>}
-     * @memberof TalangAttributeVisibility
      */
     visible?: Array<string>;
 }

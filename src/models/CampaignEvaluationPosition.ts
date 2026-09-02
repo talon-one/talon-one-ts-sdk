@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface CampaignEvaluationPosition {
     /**
      * The ID of the campaign evaluation group the campaign belongs to.
-     * @type {number}
-     * @memberof CampaignEvaluationPosition
      */
     groupId: number;
     /**
      * The name of the campaign evaluation group the campaign belongs to.
-     * @type {string}
-     * @memberof CampaignEvaluationPosition
      */
     groupName: string;
     /**
      * The position of the campaign node in its parent group.
-     * @type {number}
-     * @memberof CampaignEvaluationPosition
      */
     position: number;
 }

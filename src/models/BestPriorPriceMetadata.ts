@@ -36,14 +36,10 @@ import {
 export interface BestPriorPriceMetadata {
     /**
      * Details about campaigns that influenced the final price.
-     * @type {Array<InfluencingCampaignDetails>}
-     * @memberof BestPriorPriceMetadata
      */
     influencingCampaignDetails: Array<InfluencingCampaignDetails>;
     /**
      * Details about the applied price adjustment.
-     * @type {AdjustmentDetails}
-     * @memberof BestPriorPriceMetadata
      */
     adjustmentDetails?: AdjustmentDetails;
 }

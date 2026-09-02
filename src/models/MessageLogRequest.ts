@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * Details of the request.
  * @export
@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface MessageLogRequest {
     /**
      * Timestamp when the request was made.
-     * @type {Date}
-     * @memberof MessageLogRequest
      */
     createdAt: Date;
     /**
      * Raw request data.
-     * @type {string}
-     * @memberof MessageLogRequest
      */
     request: string;
 }
@@ -53,7 +49,7 @@ export function MessageLogRequestFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'createdAt': (json['createdAt'] == null ? undefined as any : new Date(json['createdAt'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : parseDateTime(json['createdAt'])),
         'request': json['request'],
     };
 }
@@ -69,7 +65,7 @@ export function MessageLogRequestToJSONTyped(value?: MessageLogRequest | null, i
 
     return {
         
-        'createdAt': value['createdAt'] == null ? undefined : value['createdAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? undefined : serializeDateTime(value['createdAt']),
         'request': value['request'],
     };
 }

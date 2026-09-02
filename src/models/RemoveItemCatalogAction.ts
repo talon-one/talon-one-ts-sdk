@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface RemoveItemCatalogAction {
     /**
      * The unique SKU of the item to remove.
-     * @type {string}
-     * @memberof RemoveItemCatalogAction
      */
     sku: string;
 }

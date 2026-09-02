@@ -29,14 +29,10 @@ import {
 export interface GetCustomerAchievementHistory200Response {
     /**
      * 
-     * @type {number}
-     * @memberof GetCustomerAchievementHistory200Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<AchievementProgress>}
-     * @memberof GetCustomerAchievementHistory200Response
      */
     data: Array<AchievementProgress>;
 }

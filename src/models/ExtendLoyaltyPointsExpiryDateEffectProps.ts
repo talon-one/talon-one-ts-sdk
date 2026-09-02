@@ -30,14 +30,10 @@ import {
 export interface ExtendLoyaltyPointsExpiryDateEffectProps {
     /**
      * ID of the loyalty program that contains these points.
-     * @type {number}
-     * @memberof ExtendLoyaltyPointsExpiryDateEffectProps
      */
     programId: number;
     /**
      * API name of the loyalty program subledger that contains these points.
-     * @type {string}
-     * @memberof ExtendLoyaltyPointsExpiryDateEffectProps
      */
     subLedgerId: string;
     /**
@@ -63,14 +59,10 @@ export interface ExtendLoyaltyPointsExpiryDateEffectProps {
      * - `_D` for rounding down days only. Signifies the start of the day.
      * - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.
      * 
-     * @type {string}
-     * @memberof ExtendLoyaltyPointsExpiryDateEffectProps
      */
     extensionDuration: string;
     /**
      * List of transactions affected by the expiry date update.
-     * @type {Array<LoyaltyLedgerEntryExpiryDateChange>}
-     * @memberof ExtendLoyaltyPointsExpiryDateEffectProps
      */
     affectedTransactions?: Array<LoyaltyLedgerEntryExpiryDateChange>;
 }

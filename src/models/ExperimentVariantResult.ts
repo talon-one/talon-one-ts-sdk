@@ -21,68 +21,46 @@ import { mapValues } from '../runtime';
 export interface ExperimentVariantResult {
     /**
      * The ID of the variant.
-     * @type {number}
-     * @memberof ExperimentVariantResult
      */
     variantId?: number;
     /**
      * The name of the variant.
-     * @type {string}
-     * @memberof ExperimentVariantResult
      */
     variantName?: string;
     /**
      * The weight of the variant.
-     * @type {number}
-     * @memberof ExperimentVariantResult
      */
     variantWeight?: number;
     /**
      * Calculated flag if the variant is the winner.
-     * @type {boolean}
-     * @memberof ExperimentVariantResult
      */
     isWinner?: boolean;
     /**
      * The total, pre-discount value of all items purchased in a customer session.
-     * @type {number}
-     * @memberof ExperimentVariantResult
      */
     totalRevenue?: number;
     /**
      * The number of all closed sessions.
-     * @type {number}
-     * @memberof ExperimentVariantResult
      */
     sessionsCount?: number;
     /**
      * The number of items from sessions divided by the number of sessions.
-     * @type {number}
-     * @memberof ExperimentVariantResult
      */
     avgItemsPerSession?: number;
     /**
      * The average customer session value, calculated by dividing the revenue value by the number of sessions.
-     * @type {number}
-     * @memberof ExperimentVariantResult
      */
     avgSessionValue?: number;
     /**
      * The average customer session value, calculated by dividing the revenue value by the number of sessions.
-     * @type {number}
-     * @memberof ExperimentVariantResult
      */
     avgDiscountedSessionValue?: number;
     /**
      * The total value of discounts given for cart items in sessions.
-     * @type {number}
-     * @memberof ExperimentVariantResult
      */
     totalDiscounts?: number;
     /**
      * The number of times a coupon was successfully redeemed in sessions.
-     * @type {number}
-     * @memberof ExperimentVariantResult
      */
     couponsCount?: number;
 }

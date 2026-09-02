@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface MCPOAuthServerMetadata {
     /**
      * The authorization server's issuer identifier (its base URL).
-     * @type {string}
-     * @memberof MCPOAuthServerMetadata
      */
     issuer: string;
     /**
      * URL of the authorization endpoint.
-     * @type {string}
-     * @memberof MCPOAuthServerMetadata
      */
     authorizationEndpoint: string;
     /**
      * URL of the token endpoint.
-     * @type {string}
-     * @memberof MCPOAuthServerMetadata
      */
     tokenEndpoint: string;
     /**
      * URL of the client registration endpoint.
-     * @type {string}
-     * @memberof MCPOAuthServerMetadata
      */
     registrationEndpoint: string;
     /**
      * List of supported OAuth2 response types.
-     * @type {Array<string>}
-     * @memberof MCPOAuthServerMetadata
      */
     responseTypesSupported: Array<string>;
     /**
      * List of supported OAuth2 grant types.
-     * @type {Array<string>}
-     * @memberof MCPOAuthServerMetadata
      */
     grantTypesSupported: Array<string>;
     /**
      * List of supported PKCE code challenge methods.
-     * @type {Array<string>}
-     * @memberof MCPOAuthServerMetadata
      */
     codeChallengeMethodsSupported: Array<string>;
 }

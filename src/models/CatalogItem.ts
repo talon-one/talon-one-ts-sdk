@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { Product } from './Product';
 import {
     ProductFromJSON,
@@ -36,50 +36,34 @@ import {
 export interface CatalogItem {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof CatalogItem
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof CatalogItem
      */
     created: Date;
     /**
      * The stock keeping unit of the item.
-     * @type {string}
-     * @memberof CatalogItem
      */
     sku: string;
     /**
      * Price of the item.
-     * @type {number}
-     * @memberof CatalogItem
      */
     price?: number;
     /**
      * The ID of the catalog the item belongs to.
-     * @type {number}
-     * @memberof CatalogItem
      */
     catalogid: number;
     /**
      * The version of the catalog item.
-     * @type {number}
-     * @memberof CatalogItem
      */
     version: number;
     /**
      * 
-     * @type {Array<ItemAttribute>}
-     * @memberof CatalogItem
      */
     attributes?: Array<ItemAttribute>;
     /**
      * 
-     * @type {Product}
-     * @memberof CatalogItem
      */
     product?: Product;
 }
@@ -108,7 +92,7 @@ export function CatalogItemFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'sku': json['sku'],
         'price': json['price'] == null ? undefined : json['price'],
         'catalogid': json['catalogid'],
@@ -130,7 +114,7 @@ export function CatalogItemToJSONTyped(value?: CatalogItem | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'sku': value['sku'],
         'price': value['price'],
         'catalogid': value['catalogid'],

@@ -24,14 +24,10 @@ export interface EventV2 {
      * 
      * **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
      * 
-     * @type {string}
-     * @memberof EventV2
      */
     profileId?: string;
     /**
      * The integration ID of the store. You choose this ID when you create a store.
-     * @type {string}
-     * @memberof EventV2
      */
     storeIntegrationId?: string;
     /**
@@ -39,20 +35,14 @@ export interface EventV2 {
      * 
      * These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.
      * 
-     * @type {Array<number>}
-     * @memberof EventV2
      */
     evaluableCampaignIds?: Array<number>;
     /**
      * The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.
-     * @type {string}
-     * @memberof EventV2
      */
     type: string;
     /**
      * Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute).
-     * @type {object}
-     * @memberof EventV2
      */
     attributes?: object;
 }

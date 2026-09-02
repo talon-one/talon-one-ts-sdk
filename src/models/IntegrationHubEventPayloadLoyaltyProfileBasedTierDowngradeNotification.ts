@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,74 +21,50 @@ import { mapValues } from '../runtime';
 export interface IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification {
     /**
      * The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification
      */
     eventId: number;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification
      */
     profileIntegrationID: string;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification
      */
     loyaltyProgramID: number;
     /**
      * The name of the loyalty program.
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification
      */
     loyaltyProgramName: string;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification
      */
     subledgerID: string;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification
      */
     sourceOfEvent: string;
     /**
      * The name of the customer's current tier, or null if the customer was downgraded below all tiers.
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification
      */
     currentTier?: string;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification
      */
     currentPoints: number;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification
      */
     oldTier?: string;
     /**
      * 
-     * @type {Date}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification
      */
     tierExpirationDate?: Date;
     /**
      * 
-     * @type {Date}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification
      */
     timestampOfTierChange?: Date;
     /**
      * Timestamp when the event was published.
-     * @type {Date}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification
      */
     publishedAt: Date;
 }
@@ -128,9 +104,9 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotifi
         'currentTier': json['CurrentTier'] == null ? undefined : json['CurrentTier'],
         'currentPoints': json['CurrentPoints'],
         'oldTier': json['OldTier'] == null ? undefined : json['OldTier'],
-        'tierExpirationDate': json['TierExpirationDate'] == null ? undefined : (new Date(json['TierExpirationDate'])),
-        'timestampOfTierChange': json['TimestampOfTierChange'] == null ? undefined : (new Date(json['TimestampOfTierChange'])),
-        'publishedAt': (json['PublishedAt'] == null ? undefined as any : new Date(json['PublishedAt'])),
+        'tierExpirationDate': json['TierExpirationDate'] == null ? undefined : (parseDateTime(json['TierExpirationDate'])),
+        'timestampOfTierChange': json['TimestampOfTierChange'] == null ? undefined : (parseDateTime(json['TimestampOfTierChange'])),
+        'publishedAt': (json['PublishedAt'] == null ? json['PublishedAt'] : parseDateTime(json['PublishedAt'])),
     };
 }
 
@@ -154,9 +130,9 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotifi
         'CurrentTier': value['currentTier'],
         'CurrentPoints': value['currentPoints'],
         'OldTier': value['oldTier'],
-        'TierExpirationDate': value['tierExpirationDate'] == null ? value['tierExpirationDate'] : value['tierExpirationDate'].toISOString(),
-        'TimestampOfTierChange': value['timestampOfTierChange'] == null ? value['timestampOfTierChange'] : value['timestampOfTierChange'].toISOString(),
-        'PublishedAt': value['publishedAt'] == null ? undefined : value['publishedAt'].toISOString(),
+        'TierExpirationDate': value['tierExpirationDate'] == null ? value['tierExpirationDate'] : serializeDateTime(value['tierExpirationDate']),
+        'TimestampOfTierChange': value['timestampOfTierChange'] == null ? value['timestampOfTierChange'] : serializeDateTime(value['timestampOfTierChange']),
+        'PublishedAt': value['publishedAt'] == null ? undefined : serializeDateTime(value['publishedAt']),
     };
 }
 

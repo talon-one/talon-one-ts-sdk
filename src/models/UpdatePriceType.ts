@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface UpdatePriceType {
     /**
      * The name displayed in the Campaign Manager for the price type.
-     * @type {string}
-     * @memberof UpdatePriceType
      */
     title: string;
     /**
      * A description of the price type.
-     * @type {string}
-     * @memberof UpdatePriceType
      */
     description?: string;
     /**
      * A list of the IDs of the audiences targeted by this price type.
-     * @type {Set<number>}
-     * @memberof UpdatePriceType
      */
     targetedAudiencesIds: Set<number>;
 }

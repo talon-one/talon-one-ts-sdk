@@ -29,27 +29,19 @@ import {
 export interface AnalyticsProduct {
     /**
      * The ID of the product.
-     * @type {number}
-     * @memberof AnalyticsProduct
      */
     id: number;
     /**
      * The name of the product.
-     * @type {string}
-     * @memberof AnalyticsProduct
      */
     name: string;
     /**
      * The ID of the catalog. You can find the ID in the Campaign Manager in **Account** > **Tools** > **Cart item catalogs**.
      * 
-     * @type {number}
-     * @memberof AnalyticsProduct
      */
     catalogId: number;
     /**
      * The number of times the product or SKU was purchased.
-     * @type {AnalyticsDataPointWithTrend}
-     * @memberof AnalyticsProduct
      */
     unitsSold?: AnalyticsDataPointWithTrend;
 }

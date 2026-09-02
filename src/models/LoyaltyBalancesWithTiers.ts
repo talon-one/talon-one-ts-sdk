@@ -29,14 +29,10 @@ import {
 export interface LoyaltyBalancesWithTiers {
     /**
      * 
-     * @type {LoyaltyBalanceWithTier}
-     * @memberof LoyaltyBalancesWithTiers
      */
     balance?: LoyaltyBalanceWithTier;
     /**
      * Map of the loyalty balances of the subledgers of a ledger.
-     * @type {{ [key: string]: LoyaltyBalanceWithTier; }}
-     * @memberof LoyaltyBalancesWithTiers
      */
     subledgerBalances?: { [key: string]: LoyaltyBalanceWithTier; };
 }

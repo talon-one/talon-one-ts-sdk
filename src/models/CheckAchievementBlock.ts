@@ -20,13 +20,13 @@ import {
     CheckAchievementBlock1AchievementToJSON,
     CheckAchievementBlock1AchievementToJSONTyped,
 } from './CheckAchievementBlock1Achievement';
-import type { PromotionBlock } from './PromotionBlock';
+import type { Block } from './Block';
 import {
-    PromotionBlockFromJSON,
-    PromotionBlockFromJSONTyped,
-    PromotionBlockToJSON,
-    PromotionBlockToJSONTyped,
-} from './PromotionBlock';
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
 
 /**
  * 
@@ -36,40 +36,28 @@ import {
 export interface CheckAchievementBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof CheckAchievementBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof CheckAchievementBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof CheckAchievementBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * The comparison operator applied to the achievement.
-     * @type {CheckAchievementBlockOperatorEnum}
-     * @memberof CheckAchievementBlock
      */
     operator: CheckAchievementBlockOperatorEnum;
     /**
      * 
-     * @type {CheckAchievementBlock1Achievement}
-     * @memberof CheckAchievementBlock
      */
     achievement: CheckAchievementBlock1Achievement;
     /**
      * Promotion blocks evaluated when this block fails or returns false.
-     * @type {Array<PromotionBlock>}
-     * @memberof CheckAchievementBlock
      */
-    onFailure?: Array<PromotionBlock>;
+    onFailure?: Array<Block>;
 }
 
 
@@ -83,7 +71,7 @@ export const CheckAchievementBlockOperatorEnum = {
     InProgress: 'inProgress',
     NotInProgress: 'not(inProgress)',
     Completed: 'completed',
-    NotCompleted: 'not(completed)'
+    NotCompleted: 'not(completed)',
 } as const;
 export type CheckAchievementBlockOperatorEnum = typeof CheckAchievementBlockOperatorEnum[keyof typeof CheckAchievementBlockOperatorEnum];
 
@@ -93,7 +81,6 @@ export type CheckAchievementBlockOperatorEnum = typeof CheckAchievementBlockOper
  */
 export function instanceOfCheckAchievementBlock(value: object): value is CheckAchievementBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('operator' in _v) || _v['operator'] === undefined) return false;
     if (!('achievement' in _v) || _v['achievement'] === undefined) return false;
@@ -110,12 +97,12 @@ export function CheckAchievementBlockFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
         'achievement': CheckAchievementBlock1AchievementFromJSON(json['achievement']),
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -123,19 +110,17 @@ export function CheckAchievementBlockToJSON(json: any): CheckAchievementBlock {
     return CheckAchievementBlockToJSONTyped(json, false);
 }
 
-export function CheckAchievementBlockToJSONTyped(value?: CheckAchievementBlock | null, ignoreDiscriminator: boolean = false): any {
+export function CheckAchievementBlockToJSONTyped(value?: Omit<CheckAchievementBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'operator': value['operator'],
         'achievement': CheckAchievementBlock1AchievementToJSON(value['achievement']),
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }
 

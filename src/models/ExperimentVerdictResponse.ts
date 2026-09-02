@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { ExperimentVerdict } from './ExperimentVerdict';
 import {
     ExperimentVerdictFromJSON,
@@ -29,14 +29,10 @@ import {
 export interface ExperimentVerdictResponse {
     /**
      * 
-     * @type {ExperimentVerdict}
-     * @memberof ExperimentVerdictResponse
      */
     verdict: ExperimentVerdict;
     /**
      * Timestamp of the moment when the verdict was generated.
-     * @type {Date}
-     * @memberof ExperimentVerdictResponse
      */
     generated: Date;
 }
@@ -62,7 +58,7 @@ export function ExperimentVerdictResponseFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'verdict': ExperimentVerdictFromJSON(json['verdict']),
-        'generated': (json['generated'] == null ? undefined as any : new Date(json['generated'])),
+        'generated': (json['generated'] == null ? json['generated'] : parseDateTime(json['generated'])),
     };
 }
 
@@ -78,7 +74,7 @@ export function ExperimentVerdictResponseToJSONTyped(value?: ExperimentVerdictRe
     return {
         
         'verdict': ExperimentVerdictToJSON(value['verdict']),
-        'generated': value['generated'] == null ? undefined : value['generated'].toISOString(),
+        'generated': value['generated'] == null ? undefined : serializeDateTime(value['generated']),
     };
 }
 

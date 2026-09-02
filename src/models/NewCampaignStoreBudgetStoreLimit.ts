@@ -23,14 +23,10 @@ export interface NewCampaignStoreBudgetStoreLimit {
      * The ID of the store.
      * You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.
      * 
-     * @type {number}
-     * @memberof NewCampaignStoreBudgetStoreLimit
      */
     storeId: number;
     /**
      * The value to set for the limit.
-     * @type {number}
-     * @memberof NewCampaignStoreBudgetStoreLimit
      */
     limit: number;
 }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { AnalyticsDataPointWithTrend } from './AnalyticsDataPointWithTrend';
 import {
     AnalyticsDataPointWithTrendFromJSON,
@@ -29,32 +29,22 @@ import {
 export interface ProductUnitAnalyticsDataPoint {
     /**
      * The start of the aggregation time frame in UTC.
-     * @type {Date}
-     * @memberof ProductUnitAnalyticsDataPoint
      */
     startTime: Date;
     /**
      * The end of the aggregation time frame in UTC.
-     * @type {Date}
-     * @memberof ProductUnitAnalyticsDataPoint
      */
     endTime: Date;
     /**
      * The number of times the product or SKU was purchased.
-     * @type {AnalyticsDataPointWithTrend}
-     * @memberof ProductUnitAnalyticsDataPoint
      */
     unitsSold: AnalyticsDataPointWithTrend;
     /**
      * The ID of the product.
-     * @type {number}
-     * @memberof ProductUnitAnalyticsDataPoint
      */
     productId: number;
     /**
      * The name of the product.
-     * @type {string}
-     * @memberof ProductUnitAnalyticsDataPoint
      */
     productName: string;
 }
@@ -82,8 +72,8 @@ export function ProductUnitAnalyticsDataPointFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'startTime': (json['startTime'] == null ? undefined as any : new Date(json['startTime'])),
-        'endTime': (json['endTime'] == null ? undefined as any : new Date(json['endTime'])),
+        'startTime': (json['startTime'] == null ? json['startTime'] : parseDateTime(json['startTime'])),
+        'endTime': (json['endTime'] == null ? json['endTime'] : parseDateTime(json['endTime'])),
         'unitsSold': AnalyticsDataPointWithTrendFromJSON(json['unitsSold']),
         'productId': json['productId'],
         'productName': json['productName'],
@@ -101,8 +91,8 @@ export function ProductUnitAnalyticsDataPointToJSONTyped(value?: ProductUnitAnal
 
     return {
         
-        'startTime': value['startTime'] == null ? undefined : value['startTime'].toISOString(),
-        'endTime': value['endTime'] == null ? undefined : value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? undefined : serializeDateTime(value['startTime']),
+        'endTime': value['endTime'] == null ? undefined : serializeDateTime(value['endTime']),
         'unitsSold': AnalyticsDataPointWithTrendToJSON(value['unitsSold']),
         'productId': value['productId'],
         'productName': value['productName'],

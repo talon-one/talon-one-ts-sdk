@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface OutgoingIntegrationCleverTapPolicy {
     /**
      * The base URL that is based on the region key of your CleverTap account.
-     * @type {string}
-     * @memberof OutgoingIntegrationCleverTapPolicy
      */
     baseUrl: string;
     /**
      * The CleverTap Project ID.
-     * @type {string}
-     * @memberof OutgoingIntegrationCleverTapPolicy
      */
     accountId: string;
     /**
      * The CleverTap Project passcode.
-     * @type {string}
-     * @memberof OutgoingIntegrationCleverTapPolicy
      */
     passcode: string;
 }

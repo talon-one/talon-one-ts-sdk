@@ -12,7 +12,7 @@ Name | Type
 `customEffect` | [TriggerCustomEffectBlock1CustomEffect](TriggerCustomEffectBlock1CustomEffect.md)
 `params` | { [key: string]: any; }
 `target` | [TriggerCustomEffectBlock1Target](TriggerCustomEffectBlock1Target.md)
-`onError` | { [key: string]: Array&lt;PromotionBlock&gt;; }
+`onError` | { [key: string]: Array&lt;Block&gt;; }
 
 ## Example
 

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface TriggerCustomEffectBlock1Target {
     /**
      * The scope the custom effect applies to: - `cart` applies once to the whole cart. - `allItems` applies once per cart item. - `selector` applies once per item matched by the named selector. - `globalFilter` applies once per item matched by the named global item filter. - `bundle` applies once per item in the named bundle.
-     * @type {TriggerCustomEffectBlock1TargetTypeEnum}
-     * @memberof TriggerCustomEffectBlock1Target
      */
     type: TriggerCustomEffectBlock1TargetTypeEnum;
     /**
      * The name of the targeted selector or bundle. Only set when `type` is `selector`, `globalFilter`, or `bundle`.
-     * @type {string}
-     * @memberof TriggerCustomEffectBlock1Target
      */
     name?: string;
 }
@@ -42,7 +38,7 @@ export const TriggerCustomEffectBlock1TargetTypeEnum = {
     AllItems: 'allItems',
     Selector: 'selector',
     GlobalFilter: 'globalFilter',
-    Bundle: 'bundle'
+    Bundle: 'bundle',
 } as const;
 export type TriggerCustomEffectBlock1TargetTypeEnum = typeof TriggerCustomEffectBlock1TargetTypeEnum[keyof typeof TriggerCustomEffectBlock1TargetTypeEnum];
 

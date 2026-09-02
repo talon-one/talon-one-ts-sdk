@@ -29,8 +29,6 @@ import {
 export interface BaseNotifications {
     /**
      * List of notifications.
-     * @type {Array<BaseNotification>}
-     * @memberof BaseNotifications
      */
     data?: Array<BaseNotification>;
 }

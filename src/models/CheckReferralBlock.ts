@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PromotionBlock } from './PromotionBlock';
+import type { Block } from './Block';
 import {
-    PromotionBlockFromJSON,
-    PromotionBlockFromJSONTyped,
-    PromotionBlockToJSON,
-    PromotionBlockToJSONTyped,
-} from './PromotionBlock';
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
 
 /**
  * 
@@ -29,34 +29,24 @@ import {
 export interface CheckReferralBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof CheckReferralBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof CheckReferralBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof CheckReferralBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * When `true`, the referral code is redeemed.
-     * @type {boolean}
-     * @memberof CheckReferralBlock
      */
     redeem: boolean;
     /**
      * Promotion blocks evaluated when this block fails or returns false.
-     * @type {Array<PromotionBlock>}
-     * @memberof CheckReferralBlock
      */
-    onFailure?: Array<PromotionBlock>;
+    onFailure?: Array<Block>;
 }
 
 /**
@@ -64,7 +54,6 @@ export interface CheckReferralBlock {
  */
 export function instanceOfCheckReferralBlock(value: object): value is CheckReferralBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('redeem' in _v) || _v['redeem'] === undefined) return false;
     return true;
@@ -80,11 +69,11 @@ export function CheckReferralBlockFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'redeem': json['redeem'],
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -92,18 +81,16 @@ export function CheckReferralBlockToJSON(json: any): CheckReferralBlock {
     return CheckReferralBlockToJSONTyped(json, false);
 }
 
-export function CheckReferralBlockToJSONTyped(value?: CheckReferralBlock | null, ignoreDiscriminator: boolean = false): any {
+export function CheckReferralBlockToJSONTyped(value?: Omit<CheckReferralBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'redeem': value['redeem'],
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }
 

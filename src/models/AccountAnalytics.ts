@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,122 +21,82 @@ import { mapValues } from '../runtime';
 export interface AccountAnalytics {
     /**
      * Total number of applications in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     applications: number;
     /**
      * Total number of live applications in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     liveApplications: number;
     /**
      * Total number of sandbox applications in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     sandboxApplications: number;
     /**
      * Total number of campaigns in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     campaigns: number;
     /**
      * Total number of active campaigns in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     activeCampaigns: number;
     /**
      * Total number of active campaigns in live applications in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     liveActiveCampaigns: number;
     /**
      * Total number of coupons in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     coupons: number;
     /**
      * Total number of active coupons in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     activeCoupons: number;
     /**
      * Total number of expired coupons in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     expiredCoupons: number;
     /**
      * Total number of referral codes in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     referralCodes: number;
     /**
      * Total number of active referral codes in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     activeReferralCodes: number;
     /**
      * Total number of expired referral codes in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     expiredReferralCodes: number;
     /**
      * Total number of active rules in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     activeRules: number;
     /**
      * Total number of users in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     users: number;
     /**
      * Total number of roles in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     roles: number;
     /**
      * Total number of custom attributes in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     customAttributes: number;
     /**
      * Total number of webhooks in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     webhooks: number;
     /**
      * Total number of all loyalty programs in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     loyaltyPrograms: number;
     /**
      * Total number of live loyalty programs in the account.
-     * @type {number}
-     * @memberof AccountAnalytics
      */
     liveLoyaltyPrograms: number;
     /**
      * The point in time when the analytics numbers were updated last.
-     * @type {Date}
-     * @memberof AccountAnalytics
      */
     lastUpdatedAt: Date;
 }
@@ -198,7 +158,7 @@ export function AccountAnalyticsFromJSONTyped(json: any, ignoreDiscriminator: bo
         'webhooks': json['webhooks'],
         'loyaltyPrograms': json['loyaltyPrograms'],
         'liveLoyaltyPrograms': json['liveLoyaltyPrograms'],
-        'lastUpdatedAt': (json['lastUpdatedAt'] == null ? undefined as any : new Date(json['lastUpdatedAt'])),
+        'lastUpdatedAt': (json['lastUpdatedAt'] == null ? json['lastUpdatedAt'] : parseDateTime(json['lastUpdatedAt'])),
     };
 }
 
@@ -232,7 +192,7 @@ export function AccountAnalyticsToJSONTyped(value?: AccountAnalytics | null, ign
         'webhooks': value['webhooks'],
         'loyaltyPrograms': value['loyaltyPrograms'],
         'liveLoyaltyPrograms': value['liveLoyaltyPrograms'],
-        'lastUpdatedAt': value['lastUpdatedAt'] == null ? undefined : value['lastUpdatedAt'].toISOString(),
+        'lastUpdatedAt': value['lastUpdatedAt'] == null ? undefined : serializeDateTime(value['lastUpdatedAt']),
     };
 }
 

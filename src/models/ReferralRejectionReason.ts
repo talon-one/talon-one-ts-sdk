@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface ReferralRejectionReason {
     /**
      * 
-     * @type {number}
-     * @memberof ReferralRejectionReason
      */
     campaignId: number;
     /**
      * 
-     * @type {number}
-     * @memberof ReferralRejectionReason
      */
     referralId: number;
     /**
      * 
-     * @type {ReferralRejectionReasonReasonEnum}
-     * @memberof ReferralRejectionReason
      */
     reason: ReferralRejectionReasonReasonEnum;
 }
@@ -55,7 +49,7 @@ export const ReferralRejectionReasonReasonEnum = {
     ReferralStartDateInFuture: 'ReferralStartDateInFuture',
     ReferralRejectedByCondition: 'ReferralRejectedByCondition',
     EffectCouldNotBeApplied: 'EffectCouldNotBeApplied',
-    ReferralPartOfNotTriggeredCampaign: 'ReferralPartOfNotTriggeredCampaign'
+    ReferralPartOfNotTriggeredCampaign: 'ReferralPartOfNotTriggeredCampaign',
 } as const;
 export type ReferralRejectionReasonReasonEnum = typeof ReferralRejectionReasonReasonEnum[keyof typeof ReferralRejectionReasonReasonEnum];
 

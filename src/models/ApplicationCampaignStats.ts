@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface ApplicationCampaignStats {
     /**
      * Number of disabled campaigns.
-     * @type {number}
-     * @memberof ApplicationCampaignStats
      */
     disabled: number;
     /**
      * Number of staged campaigns.
-     * @type {number}
-     * @memberof ApplicationCampaignStats
      */
     staged: number;
     /**
      * Number of scheduled campaigns.
-     * @type {number}
-     * @memberof ApplicationCampaignStats
      */
     scheduled: number;
     /**
      * Number of running campaigns.
-     * @type {number}
-     * @memberof ApplicationCampaignStats
      */
     running: number;
     /**
      * Number of expired campaigns.
-     * @type {number}
-     * @memberof ApplicationCampaignStats
      */
     expired: number;
     /**
      * Number of archived campaigns.
-     * @type {number}
-     * @memberof ApplicationCampaignStats
      */
     archived: number;
 }

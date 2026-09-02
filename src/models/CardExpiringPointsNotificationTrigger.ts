@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CardExpiringPointsNotificationTrigger {
     /**
      * The amount of period.
-     * @type {number}
-     * @memberof CardExpiringPointsNotificationTrigger
      */
     amount: number;
     /**
      * Notification period indicated by a letter; "w" means week, "d" means day.
-     * @type {CardExpiringPointsNotificationTriggerPeriodEnum}
-     * @memberof CardExpiringPointsNotificationTrigger
      */
     period: CardExpiringPointsNotificationTriggerPeriodEnum;
 }
@@ -39,7 +35,7 @@ export interface CardExpiringPointsNotificationTrigger {
  */
 export const CardExpiringPointsNotificationTriggerPeriodEnum = {
     W: 'w',
-    D: 'd'
+    D: 'd',
 } as const;
 export type CardExpiringPointsNotificationTriggerPeriodEnum = typeof CardExpiringPointsNotificationTriggerPeriodEnum[keyof typeof CardExpiringPointsNotificationTriggerPeriodEnum];
 

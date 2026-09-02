@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface CampaignNotificationGeneric {
     /**
      * The type of the notification
-     * @type {CampaignNotificationGenericNotificationTypeEnum}
-     * @memberof CampaignNotificationGeneric
      */
     notificationType: CampaignNotificationGenericNotificationTypeEnum;
     /**
      * The total size of the result set.
-     * @type {number}
-     * @memberof CampaignNotificationGeneric
      */
     totalResultSize: number;
     /**
      * A list of campaign notification data.
-     * @type {Array<object>}
-     * @memberof CampaignNotificationGeneric
      */
     data: Array<object>;
 }
@@ -44,7 +38,7 @@ export interface CampaignNotificationGeneric {
  * @export
  */
 export const CampaignNotificationGenericNotificationTypeEnum = {
-    CampaignNotification: 'CampaignNotification'
+    CampaignNotification: 'CampaignNotification',
 } as const;
 export type CampaignNotificationGenericNotificationTypeEnum = typeof CampaignNotificationGenericNotificationTypeEnum[keyof typeof CampaignNotificationGenericNotificationTypeEnum];
 

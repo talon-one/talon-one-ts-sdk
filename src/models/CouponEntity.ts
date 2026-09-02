@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CouponEntity {
     /**
      * The internal ID of the coupon.
-     * @type {number}
-     * @memberof CouponEntity
      */
     id: number;
     /**
      * The time the coupon was created.
-     * @type {Date}
-     * @memberof CouponEntity
      */
     created: Date;
 }
@@ -54,7 +50,7 @@ export function CouponEntityFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
     };
 }
 
@@ -70,7 +66,7 @@ export function CouponEntityToJSONTyped(value?: CouponEntity | null, ignoreDiscr
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
     };
 }
 

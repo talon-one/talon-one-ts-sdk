@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -22,61 +22,47 @@ export interface NewCouponsForMultipleRecipients {
     /**
      * The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
      * 
-     * @type {number}
-     * @memberof NewCouponsForMultipleRecipients
      */
     usageLimit?: number;
     /**
      * The total discount value that the code can give. Typically used to represent a gift card value.
      * 
-     * @type {number}
-     * @memberof NewCouponsForMultipleRecipients
      */
     discountLimit?: number;
     /**
      * The number of reservations that can be made with this coupon code.
      * 
-     * @type {number}
-     * @memberof NewCouponsForMultipleRecipients
      */
     reservationLimit?: number;
     /**
      * Timestamp at which point the coupon becomes valid.
-     * @type {Date}
-     * @memberof NewCouponsForMultipleRecipients
      */
     startDate?: Date;
     /**
      * Expiration date of the coupon. Coupon never expires if this is omitted.
-     * @type {Date}
-     * @memberof NewCouponsForMultipleRecipients
      */
     expiryDate?: Date;
     /**
+     * The batch ID that all coupons created by the request will bear. If omitted, a batch ID is generated automatically.
+     */
+    batchId?: string;
+    /**
      * Arbitrary properties associated with this item.
-     * @type {object}
-     * @memberof NewCouponsForMultipleRecipients
      */
     attributes?: object;
     /**
      * The integration IDs for recipients.
-     * @type {Array<string>}
-     * @memberof NewCouponsForMultipleRecipients
      */
     recipientsIntegrationIds: Array<string>;
     /**
      * List of characters used to generate the random parts of a code. By default, the list of
      * characters is equivalent to the `[A-Z, 0-9]` regular expression.
      * 
-     * @type {Array<string>}
-     * @memberof NewCouponsForMultipleRecipients
      */
     validCharacters?: Array<string>;
     /**
      * The pattern used to generate coupon codes. The character `#` is a placeholder and is replaced by a random character from the `validCharacters` set.
      * 
-     * @type {string}
-     * @memberof NewCouponsForMultipleRecipients
      */
     couponPattern?: string;
 }
@@ -103,8 +89,9 @@ export function NewCouponsForMultipleRecipientsFromJSONTyped(json: any, ignoreDi
         'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
         'discountLimit': json['discountLimit'] == null ? undefined : json['discountLimit'],
         'reservationLimit': json['reservationLimit'] == null ? undefined : json['reservationLimit'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
+        'batchId': json['batchId'] == null ? undefined : json['batchId'],
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'recipientsIntegrationIds': json['recipientsIntegrationIds'],
         'validCharacters': json['validCharacters'] == null ? undefined : json['validCharacters'],
@@ -126,8 +113,9 @@ export function NewCouponsForMultipleRecipientsToJSONTyped(value?: NewCouponsFor
         'usageLimit': value['usageLimit'],
         'discountLimit': value['discountLimit'],
         'reservationLimit': value['reservationLimit'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
+        'batchId': value['batchId'],
         'attributes': value['attributes'],
         'recipientsIntegrationIds': value['recipientsIntegrationIds'],
         'validCharacters': value['validCharacters'],

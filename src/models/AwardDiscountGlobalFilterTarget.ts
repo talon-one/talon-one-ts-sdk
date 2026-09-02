@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface AwardDiscountGlobalFilterTarget {
     /**
      * A target discriminator of type `globalFilter`.
-     * @type {AwardDiscountGlobalFilterTargetTypeEnum}
-     * @memberof AwardDiscountGlobalFilterTarget
      */
     type: AwardDiscountGlobalFilterTargetTypeEnum;
     /**
      * The name of the Application-level cart-item filter the discount targets.
-     * @type {string}
-     * @memberof AwardDiscountGlobalFilterTarget
      */
     name: string;
     /**
      * Whether to distribute the discount proportionally across the matched items.
-     * @type {boolean}
-     * @memberof AwardDiscountGlobalFilterTarget
      */
     prorated?: boolean;
 }
@@ -44,7 +38,7 @@ export interface AwardDiscountGlobalFilterTarget {
  * @export
  */
 export const AwardDiscountGlobalFilterTargetTypeEnum = {
-    GlobalFilter: 'globalFilter'
+    GlobalFilter: 'globalFilter',
 } as const;
 export type AwardDiscountGlobalFilterTargetTypeEnum = typeof AwardDiscountGlobalFilterTargetTypeEnum[keyof typeof AwardDiscountGlobalFilterTargetTypeEnum];
 

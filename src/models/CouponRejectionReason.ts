@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface CouponRejectionReason {
     /**
      * 
-     * @type {number}
-     * @memberof CouponRejectionReason
      */
     campaignId: number;
     /**
      * 
-     * @type {number}
-     * @memberof CouponRejectionReason
      */
     couponId: number;
     /**
      * 
-     * @type {CouponRejectionReasonReasonEnum}
-     * @memberof CouponRejectionReason
      */
     reason: CouponRejectionReasonReasonEnum;
 }
@@ -55,7 +49,7 @@ export const CouponRejectionReasonReasonEnum = {
     EffectCouldNotBeApplied: 'EffectCouldNotBeApplied',
     CouponPartOfNotTriggeredCampaign: 'CouponPartOfNotTriggeredCampaign',
     CouponReservationRequired: 'CouponReservationRequired',
-    ProfileRequired: 'ProfileRequired'
+    ProfileRequired: 'ProfileRequired',
 } as const;
 export type CouponRejectionReasonReasonEnum = typeof CouponRejectionReasonReasonEnum[keyof typeof CouponRejectionReasonReasonEnum];
 

@@ -29,14 +29,10 @@ import {
 export interface GetCouponsWithoutTotalCount200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetCouponsWithoutTotalCount200Response
      */
     hasMore: boolean;
     /**
      * 
-     * @type {Array<Coupon>}
-     * @memberof GetCouponsWithoutTotalCount200Response
      */
     data: Array<Coupon>;
 }

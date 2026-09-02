@@ -21,104 +21,74 @@ import { mapValues } from '../runtime';
 export interface Effect {
     /**
      * The ID of the experiment that campaign belongs to.
-     * @type {number}
-     * @memberof Effect
      */
     experimentId?: number;
     /**
      * The ID of the campaign that triggered this effect.
-     * @type {number}
-     * @memberof Effect
      */
     campaignId: number;
     /**
      * The ID of the ruleset that was active in the campaign when this effect was triggered.
-     * @type {number}
-     * @memberof Effect
      */
     rulesetId: number;
     /**
      * The position of the rule that triggered this effect within the ruleset.
-     * @type {number}
-     * @memberof Effect
      */
     ruleIndex: number;
     /**
      * The name of the rule that triggered this effect.
-     * @type {string}
-     * @memberof Effect
      */
     ruleName: string;
     /**
      * The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
-     * @type {string}
-     * @memberof Effect
      */
     effectType: string;
     /**
      * The ID of the coupon that was being evaluated when this effect was triggered.
-     * @type {number}
-     * @memberof Effect
      */
     triggeredByCoupon?: number;
     /**
      * The ID of the catalog item that was being evaluated when this effect was triggered.
-     * @type {number}
-     * @memberof Effect
      */
     triggeredForCatalogItem?: number;
     /**
      * The index of the condition that was triggered.
-     * @type {number}
-     * @memberof Effect
      */
     conditionIndex?: number;
     /**
      * The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
-     * @type {number}
-     * @memberof Effect
      */
     evaluationGroupID?: number;
     /**
      * The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
-     * @type {string}
-     * @memberof Effect
      */
     evaluationGroupMode?: string;
     /**
      * The revision ID of the campaign that was used when triggering the effect.
-     * @type {number}
-     * @memberof Effect
      */
     campaignRevisionId?: number;
     /**
      * The revision version ID of the campaign that was used when triggering the effect.
-     * @type {number}
-     * @memberof Effect
      */
     campaignRevisionVersionId?: number;
     /**
      * The selected price type for the SKU targeted by this effect.
-     * @type {string}
-     * @memberof Effect
      */
     selectedPriceType?: string;
     /**
      * The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.
-     * @type {number}
-     * @memberof Effect
      */
     selectedPrice?: number;
     /**
      * The reference identifier of the selected price adjustment for this SKU. This is only returned if the `selectedPrice` resulted from a price adjustment.
-     * @type {string}
-     * @memberof Effect
      */
     adjustmentReferenceId?: string;
     /**
+     * The ID of the reward that was being evaluated when this effect was triggered.
+     */
+    rewardId?: number;
+    /**
      * 
-     * @type {any}
-     * @memberof Effect
      */
     props: any | null;
 }
@@ -163,6 +133,7 @@ export function EffectFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ef
         'selectedPriceType': json['selectedPriceType'] == null ? undefined : json['selectedPriceType'],
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
+        'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
         'props': json['props'],
     };
 }
@@ -194,6 +165,7 @@ export function EffectToJSONTyped(value?: Effect | null, ignoreDiscriminator: bo
         'selectedPriceType': value['selectedPriceType'],
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
+        'rewardId': value['rewardId'],
         'props': value['props'],
     };
 }

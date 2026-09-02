@@ -44,32 +44,22 @@ export interface CampaignEditedNotificationItem {
     /**
      * The type of the event. Can be one of the following: ['campaign_state_changed', 'campaign_ruleset_changed', 'campaign_edited', 'campaign_created', 'campaign_deleted']
      * 
-     * @type {string}
-     * @memberof CampaignEditedNotificationItem
      */
     event: string;
     /**
      * The campaign whose state changed.
-     * @type {Campaign}
-     * @memberof CampaignEditedNotificationItem
      */
     campaign: Campaign;
     /**
      * The campaign before the change.
-     * @type {Campaign}
-     * @memberof CampaignEditedNotificationItem
      */
     oldCampaign: Campaign;
     /**
      * The current ruleset.
-     * @type {Ruleset}
-     * @memberof CampaignEditedNotificationItem
      */
     ruleset?: Ruleset;
     /**
      * The current details of the [placeholders](https://docs.talon.one/docs/product/campaigns/templates/create-templates#use-placeholders) in the campaign.
-     * @type {Array<PlaceholderDetails>}
-     * @memberof CampaignEditedNotificationItem
      */
     placeholders?: Array<PlaceholderDetails>;
 }

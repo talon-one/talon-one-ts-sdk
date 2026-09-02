@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { ExperimentVariantResultConfidence } from './ExperimentVariantResultConfidence';
 import {
     ExperimentVariantResultConfidenceFromJSON,
@@ -29,14 +29,10 @@ import {
 export interface ExperimentConfidenceTimelineDataPoint {
     /**
      * The date-time this data point represents.
-     * @type {Date}
-     * @memberof ExperimentConfidenceTimelineDataPoint
      */
     date: Date;
     /**
      * 
-     * @type {ExperimentVariantResultConfidence}
-     * @memberof ExperimentConfidenceTimelineDataPoint
      */
     confidence: ExperimentVariantResultConfidence;
 }
@@ -61,7 +57,7 @@ export function ExperimentConfidenceTimelineDataPointFromJSONTyped(json: any, ig
     }
     return {
         
-        'date': (json['date'] == null ? undefined as any : new Date(json['date'])),
+        'date': (json['date'] == null ? json['date'] : parseDateTime(json['date'])),
         'confidence': ExperimentVariantResultConfidenceFromJSON(json['confidence']),
     };
 }
@@ -77,7 +73,7 @@ export function ExperimentConfidenceTimelineDataPointToJSONTyped(value?: Experim
 
     return {
         
-        'date': value['date'] == null ? undefined : value['date'].toISOString(),
+        'date': value['date'] == null ? undefined : serializeDateTime(value['date']),
         'confidence': ExperimentVariantResultConfidenceToJSON(value['confidence']),
     };
 }

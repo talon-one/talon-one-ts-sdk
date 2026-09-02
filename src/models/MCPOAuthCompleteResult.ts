@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface MCPOAuthCompleteResult {
     /**
      * The full redirect URL the browser should be sent to, containing the authorization code and state as query parameters.
-     * @type {string}
-     * @memberof MCPOAuthCompleteResult
      */
     redirectUrl: string;
 }

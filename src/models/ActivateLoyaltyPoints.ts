@@ -24,8 +24,6 @@ export interface ActivateLoyaltyPoints {
      * 
      * If provided, do not include the `sessionId` parameter.
      * 
-     * @type {Set<string>}
-     * @memberof ActivateLoyaltyPoints
      */
     transactionUUIDs?: Set<string>;
     /**
@@ -33,8 +31,6 @@ export interface ActivateLoyaltyPoints {
      * 
      * If provided, do not include the `transactionUUIDs` parameter.
      * 
-     * @type {string}
-     * @memberof ActivateLoyaltyPoints
      */
     sessionId?: string;
 }

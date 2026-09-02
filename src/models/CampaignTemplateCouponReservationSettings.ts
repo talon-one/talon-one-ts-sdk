@@ -22,14 +22,10 @@ export interface CampaignTemplateCouponReservationSettings {
     /**
      * The number of reservations that can be made with this coupon code.
      * 
-     * @type {number}
-     * @memberof CampaignTemplateCouponReservationSettings
      */
     reservationLimit?: number;
     /**
      * An indication of whether the code can be redeemed only if it has been reserved first.
-     * @type {boolean}
-     * @memberof CampaignTemplateCouponReservationSettings
      */
     isReservationMandatory?: boolean;
 }

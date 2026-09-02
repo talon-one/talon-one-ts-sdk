@@ -29,14 +29,10 @@ import {
 export interface GetCustomerActivityReportsWithoutTotalCount200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetCustomerActivityReportsWithoutTotalCount200Response
      */
     hasMore: boolean;
     /**
      * 
-     * @type {Array<CustomerActivityReport>}
-     * @memberof GetCustomerActivityReportsWithoutTotalCount200Response
      */
     data: Array<CustomerActivityReport>;
 }

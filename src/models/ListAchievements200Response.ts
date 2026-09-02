@@ -29,14 +29,10 @@ import {
 export interface ListAchievements200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof ListAchievements200Response
      */
     hasMore?: boolean;
     /**
      * 
-     * @type {Array<Achievement>}
-     * @memberof ListAchievements200Response
      */
     data: Array<Achievement>;
 }

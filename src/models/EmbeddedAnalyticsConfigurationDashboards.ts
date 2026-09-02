@@ -29,8 +29,6 @@ import {
 export interface EmbeddedAnalyticsConfigurationDashboards {
     /**
      * The configuration of the embedded Insights dashboard for campaigns.
-     * @type {EmbeddedDashboardConfiguration}
-     * @memberof EmbeddedAnalyticsConfigurationDashboards
      */
     campaignInsights?: EmbeddedDashboardConfiguration;
 }

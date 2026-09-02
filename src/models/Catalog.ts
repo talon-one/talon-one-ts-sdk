@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,56 +21,38 @@ import { mapValues } from '../runtime';
 export interface Catalog {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Catalog
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Catalog
      */
     created: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof Catalog
      */
     accountId: number;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof Catalog
      */
     modified: Date;
     /**
      * The cart item catalog name.
-     * @type {string}
-     * @memberof Catalog
      */
     name: string;
     /**
      * A description of this cart item catalog.
-     * @type {string}
-     * @memberof Catalog
      */
     description: string;
     /**
      * A list of the IDs of the applications that are subscribed to this catalog.
-     * @type {Array<number>}
-     * @memberof Catalog
      */
     subscribedApplicationsIds?: Array<number>;
     /**
      * The current version of this catalog.
-     * @type {number}
-     * @memberof Catalog
      */
     version: number;
     /**
      * The ID of user who created this catalog.
-     * @type {number}
-     * @memberof Catalog
      */
     createdBy: number;
 }
@@ -102,9 +84,9 @@ export function CatalogFromJSONTyped(json: any, ignoreDiscriminator: boolean): C
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'accountId': json['accountId'],
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'name': json['name'],
         'description': json['description'],
         'subscribedApplicationsIds': json['subscribedApplicationsIds'] == null ? undefined : json['subscribedApplicationsIds'],
@@ -125,9 +107,9 @@ export function CatalogToJSONTyped(value?: Catalog | null, ignoreDiscriminator: 
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'accountId': value['accountId'],
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'name': value['name'],
         'description': value['description'],
         'subscribedApplicationsIds': value['subscribedApplicationsIds'],

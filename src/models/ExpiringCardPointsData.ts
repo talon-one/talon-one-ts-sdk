@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,46 +21,32 @@ import { mapValues } from '../runtime';
 export interface ExpiringCardPointsData {
     /**
      * The expiration date of loyalty points.
-     * @type {Date}
-     * @memberof ExpiringCardPointsData
      */
     expiryDate: Date;
     /**
      * The ID of the loyalty program.
-     * @type {number}
-     * @memberof ExpiringCardPointsData
      */
     loyaltyProgramID: number;
     /**
      * The amount of loyalty points that will be expired soon.
-     * @type {number}
-     * @memberof ExpiringCardPointsData
      */
     amountOfExpiringPoints: number;
     /**
      * The ID of the subledger within the loyalty program where these points were added.
-     * @type {string}
-     * @memberof ExpiringCardPointsData
      */
     subledgerID: string;
     /**
      * The identifier of the loyalty card, `which must match the regular expression `^[A-Za-z0-9._%+@-]+$`.
      * 
-     * @type {string}
-     * @memberof ExpiringCardPointsData
      */
     cardIdentifier: string;
     /**
      * The maximum number of customer profiles with which a card can be shared. This can be set to `0` for no limit.
      * 
-     * @type {number}
-     * @memberof ExpiringCardPointsData
      */
     usersPerCardLimit: number;
     /**
      * The integration IDs of the customer profiles linked to the card.
-     * @type {Array<string>}
-     * @memberof ExpiringCardPointsData
      */
     profiles: Array<string>;
 }
@@ -90,7 +76,7 @@ export function ExpiringCardPointsDataFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'expiryDate': (json['ExpiryDate'] == null ? undefined as any : new Date(json['ExpiryDate'])),
+        'expiryDate': (json['ExpiryDate'] == null ? json['ExpiryDate'] : parseDate(json['ExpiryDate'])),
         'loyaltyProgramID': json['LoyaltyProgramID'],
         'amountOfExpiringPoints': json['AmountOfExpiringPoints'],
         'subledgerID': json['SubledgerID'],
@@ -111,7 +97,7 @@ export function ExpiringCardPointsDataToJSONTyped(value?: ExpiringCardPointsData
 
     return {
         
-        'ExpiryDate': value['expiryDate'] == null ? undefined : value['expiryDate'].toISOString().substring(0,10),
+        'ExpiryDate': value['expiryDate'] == null ? undefined : serializeDate(value['expiryDate']),
         'LoyaltyProgramID': value['loyaltyProgramID'],
         'AmountOfExpiringPoints': value['amountOfExpiringPoints'],
         'SubledgerID': value['subledgerID'],

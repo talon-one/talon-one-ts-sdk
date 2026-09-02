@@ -29,44 +29,30 @@ import {
 export interface CardAddedDeductedPointsBalancesNotification {
     /**
      * Loyalty card identification number.
-     * @type {string}
-     * @memberof CardAddedDeductedPointsBalancesNotification
      */
     cardIdentifier: string;
     /**
      * The name of the employee who added or deducted points.
-     * @type {string}
-     * @memberof CardAddedDeductedPointsBalancesNotification
      */
     employeeName: string;
     /**
      * The ID of the loyalty program.
-     * @type {number}
-     * @memberof CardAddedDeductedPointsBalancesNotification
      */
     loyaltyProgramID: number;
     /**
      * The type of notification.
-     * @type {CardAddedDeductedPointsBalancesNotificationNotificationTypeEnum}
-     * @memberof CardAddedDeductedPointsBalancesNotification
      */
     notificationType: CardAddedDeductedPointsBalancesNotificationNotificationTypeEnum;
     /**
      * The integration ID of the customer profile to whom points were added or deducted.
-     * @type {Array<string>}
-     * @memberof CardAddedDeductedPointsBalancesNotification
      */
     profileIntegrationIDs: Array<string>;
     /**
      * The integration ID of the session through which the points were earned or lost.
-     * @type {string}
-     * @memberof CardAddedDeductedPointsBalancesNotification
      */
     sessionIntegrationID: string;
     /**
      * The ID of the subledger within the loyalty program where these points were added or deducted.
-     * @type {string}
-     * @memberof CardAddedDeductedPointsBalancesNotification
      */
     subledgerID: string;
     /**
@@ -75,32 +61,22 @@ export interface CardAddedDeductedPointsBalancesNotification {
      * - [Management API](/management-api#tag/Loyalty)
      * - [Rule Engine](/docs/product/applications/evaluation-order-for-rules-and-filters)
      * 
-     * @type {CardAddedDeductedPointsBalancesNotificationTypeOfChangeEnum}
-     * @memberof CardAddedDeductedPointsBalancesNotification
      */
     typeOfChange: CardAddedDeductedPointsBalancesNotificationTypeOfChangeEnum;
     /**
      * The ID of the employee who added or deducted points.
-     * @type {number}
-     * @memberof CardAddedDeductedPointsBalancesNotification
      */
     userID: number;
     /**
      * The max amount of user profiles with whom a card can be shared. This can be set to `0` for no limit.
-     * @type {number}
-     * @memberof CardAddedDeductedPointsBalancesNotification
      */
     usersPerCardLimit: number;
     /**
      * The list of actions that have been triggered in the loyalty program.
-     * @type {Array<AddedDeductedPointsBalancesAction>}
-     * @memberof CardAddedDeductedPointsBalancesNotification
      */
     actions: Array<AddedDeductedPointsBalancesAction>;
     /**
      * The current points balance.
-     * @type {number}
-     * @memberof CardAddedDeductedPointsBalancesNotification
      */
     currentPoints: number;
 }
@@ -110,7 +86,7 @@ export interface CardAddedDeductedPointsBalancesNotification {
  * @export
  */
 export const CardAddedDeductedPointsBalancesNotificationNotificationTypeEnum = {
-    LoyaltyCardAddedDeductedPointsBalances: 'LoyaltyCardAddedDeductedPointsBalances'
+    LoyaltyCardAddedDeductedPointsBalances: 'LoyaltyCardAddedDeductedPointsBalances',
 } as const;
 export type CardAddedDeductedPointsBalancesNotificationNotificationTypeEnum = typeof CardAddedDeductedPointsBalancesNotificationNotificationTypeEnum[keyof typeof CardAddedDeductedPointsBalancesNotificationNotificationTypeEnum];
 
@@ -120,7 +96,7 @@ export type CardAddedDeductedPointsBalancesNotificationNotificationTypeEnum = ty
 export const CardAddedDeductedPointsBalancesNotificationTypeOfChangeEnum = {
     CampaignManager: 'campaign_manager',
     RuleEngine: 'rule_engine',
-    ManagementApi: 'management_api'
+    ManagementApi: 'management_api',
 } as const;
 export type CardAddedDeductedPointsBalancesNotificationTypeOfChangeEnum = typeof CardAddedDeductedPointsBalancesNotificationTypeOfChangeEnum[keyof typeof CardAddedDeductedPointsBalancesNotificationTypeOfChangeEnum];
 

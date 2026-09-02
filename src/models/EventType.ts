@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,33 +21,23 @@ import { mapValues } from '../runtime';
 export interface EventType {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof EventType
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof EventType
      */
     created: Date;
     /**
      * The human-friendly name for this event type.
-     * @type {string}
-     * @memberof EventType
      */
     title: string;
     /**
      * The integration name for this event type. This will be used in URLs and cannot be changed after an event type has been created.
-     * @type {string}
-     * @memberof EventType
      */
     name: string;
     /**
      * A description of what the event represents.
      * 
-     * @type {string}
-     * @memberof EventType
      */
     description?: string;
 }
@@ -75,7 +65,7 @@ export function EventTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'title': json['title'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -94,7 +84,7 @@ export function EventTypeToJSONTyped(value?: EventType | null, ignoreDiscriminat
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'title': value['title'],
         'name': value['name'],
         'description': value['description'],

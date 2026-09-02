@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,33 +21,23 @@ import { mapValues } from '../runtime';
 export interface UpdateReferralBatch {
     /**
      * Arbitrary properties associated with this item.
-     * @type {object}
-     * @memberof UpdateReferralBatch
      */
     attributes?: object;
     /**
      * The id of the batch the referral belongs to.
-     * @type {string}
-     * @memberof UpdateReferralBatch
      */
     batchID: string;
     /**
      * Timestamp at which point the referral code becomes valid.
-     * @type {Date}
-     * @memberof UpdateReferralBatch
      */
     startDate?: Date;
     /**
      * Expiration date of the referral code. Referral never expires if this is omitted.
-     * @type {Date}
-     * @memberof UpdateReferralBatch
      */
     expiryDate?: Date;
     /**
      * The number of times a referral code can be used. This can be set to 0 for no limit, but any campaign usage limits will still apply.
      * 
-     * @type {number}
-     * @memberof UpdateReferralBatch
      */
     usageLimit?: number;
 }
@@ -73,8 +63,8 @@ export function UpdateReferralBatchFromJSONTyped(json: any, ignoreDiscriminator:
         
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'batchID': json['batchID'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
     };
 }
@@ -92,8 +82,8 @@ export function UpdateReferralBatchToJSONTyped(value?: UpdateReferralBatch | nul
         
         'attributes': value['attributes'],
         'batchID': value['batchID'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'usageLimit': value['usageLimit'],
     };
 }

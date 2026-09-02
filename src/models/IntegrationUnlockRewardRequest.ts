@@ -14,27 +14,28 @@
 
 import { mapValues } from '../runtime';
 /**
- * The request body for unlocking a reward for a customer profile.
+ * The request body for unlocking a reward for a customer profile, optionally
+ * using the balance of one of the customer's loyalty cards.
+ * 
  * @export
  * @interface IntegrationUnlockRewardRequest
  */
 export interface IntegrationUnlockRewardRequest {
     /**
      * The integration ID to assign to the created customer reward unlock.
-     * @type {string}
-     * @memberof IntegrationUnlockRewardRequest
      */
     integrationId: string;
     /**
      * The integration ID of the customer profile unlocking the reward.
-     * @type {string}
-     * @memberof IntegrationUnlockRewardRequest
      */
     profileIntegrationId: string;
     /**
+     * The identifier of the loyalty card unlocking the reward. When provided, the required points are deducted from the card's balance and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card.
+     * The customer profile given in `profileIntegrationId` must be linked to the card, and the card must be active.
+     */
+    cardIdentifier?: string;
+    /**
      * The ID of the loyalty program from which points will be deducted. Required when the reward has `pointsRequired` configured.
-     * @type {number}
-     * @memberof IntegrationUnlockRewardRequest
      */
     loyaltyProgramId?: number;
     /**
@@ -43,17 +44,26 @@ export interface IntegrationUnlockRewardRequest {
      * 
      * To specify the main ledger, provide an empty string ("").
      * 
-     * @type {string}
-     * @memberof IntegrationUnlockRewardRequest
      */
     subledgerId?: string;
     /**
-     * Determines which data is included in the response. Add any of the following optional values to the array to get that data in the response: `customerProfile`, `effects`, `ruleFailureReasons`, `loyalty`.
-     * @type {Array<string>}
-     * @memberof IntegrationUnlockRewardRequest
+     * Determines which data is included in the response. Add any of the following optional values to the array to get that data in the response: `customerProfile`, `ruleFailureReasons`, `loyalty`. `effects` is always returned regardless of whether it is included here.
      */
-    responseContent?: Array<string>;
+    responseContent?: Array<IntegrationUnlockRewardRequestResponseContentEnum>;
 }
+
+
+/**
+ * @export
+ */
+export const IntegrationUnlockRewardRequestResponseContentEnum = {
+    CustomerProfile: 'customerProfile',
+    Effects: 'effects',
+    RuleFailureReasons: 'ruleFailureReasons',
+    Loyalty: 'loyalty',
+} as const;
+export type IntegrationUnlockRewardRequestResponseContentEnum = typeof IntegrationUnlockRewardRequestResponseContentEnum[keyof typeof IntegrationUnlockRewardRequestResponseContentEnum];
+
 
 /**
  * Check if a given object implements the IntegrationUnlockRewardRequest interface.
@@ -77,6 +87,7 @@ export function IntegrationUnlockRewardRequestFromJSONTyped(json: any, ignoreDis
         
         'integrationId': json['integrationId'],
         'profileIntegrationId': json['profileIntegrationId'],
+        'cardIdentifier': json['cardIdentifier'] == null ? undefined : json['cardIdentifier'],
         'loyaltyProgramId': json['loyaltyProgramId'] == null ? undefined : json['loyaltyProgramId'],
         'subledgerId': json['subledgerId'] == null ? undefined : json['subledgerId'],
         'responseContent': json['responseContent'] == null ? undefined : json['responseContent'],
@@ -96,6 +107,7 @@ export function IntegrationUnlockRewardRequestToJSONTyped(value?: IntegrationUnl
         
         'integrationId': value['integrationId'],
         'profileIntegrationId': value['profileIntegrationId'],
+        'cardIdentifier': value['cardIdentifier'],
         'loyaltyProgramId': value['loyaltyProgramId'],
         'subledgerId': value['subledgerId'],
         'responseContent': value['responseContent'],

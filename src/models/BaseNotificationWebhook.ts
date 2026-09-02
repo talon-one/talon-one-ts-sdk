@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface BaseNotificationWebhook {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof BaseNotificationWebhook
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof BaseNotificationWebhook
      */
     created: Date;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof BaseNotificationWebhook
      */
     modified: Date;
     /**
      * API URL for the given webhook-based notification.
-     * @type {string}
-     * @memberof BaseNotificationWebhook
      */
     url: string;
     /**
      * List of API HTTP headers for the given webhook-based notification.
-     * @type {Array<string>}
-     * @memberof BaseNotificationWebhook
      */
     headers: Array<string>;
     /**
      * Indicates whether the notification is activated.
-     * @type {boolean}
-     * @memberof BaseNotificationWebhook
      */
     enabled?: boolean;
 }
@@ -81,8 +69,8 @@ export function BaseNotificationWebhookFromJSONTyped(json: any, ignoreDiscrimina
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'url': json['url'],
         'headers': json['headers'],
         'enabled': json['enabled'] == null ? undefined : json['enabled'],
@@ -101,8 +89,8 @@ export function BaseNotificationWebhookToJSONTyped(value?: BaseNotificationWebho
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'url': value['url'],
         'headers': value['headers'],
         'enabled': value['enabled'],

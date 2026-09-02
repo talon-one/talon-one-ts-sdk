@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface AddedDeductedPointsBalancesAction {
     /**
      * The amount of added or deducted loyalty points.
-     * @type {number}
-     * @memberof AddedDeductedPointsBalancesAction
      */
     amount: number;
     /**
      * The reason for the points addition or deduction.
-     * @type {string}
-     * @memberof AddedDeductedPointsBalancesAction
      */
     reason: string;
     /**
      * The action (addition or subtraction) made with loyalty points.
-     * @type {AddedDeductedPointsBalancesActionOperationEnum}
-     * @memberof AddedDeductedPointsBalancesAction
      */
     operation: AddedDeductedPointsBalancesActionOperationEnum;
     /**
      * The start date for loyalty points.
-     * @type {Date}
-     * @memberof AddedDeductedPointsBalancesAction
      */
     startDate?: Date;
     /**
      * The expiration date for loyalty points.
-     * @type {Date}
-     * @memberof AddedDeductedPointsBalancesAction
      */
     expiryDate?: Date;
     /**
      * The identifier of the transaction in the loyalty ledger.
-     * @type {string}
-     * @memberof AddedDeductedPointsBalancesAction
      */
     transactionUUID: string;
 }
@@ -63,7 +51,7 @@ export interface AddedDeductedPointsBalancesAction {
  */
 export const AddedDeductedPointsBalancesActionOperationEnum = {
     Addition: 'addition',
-    Subtraction: 'subtraction'
+    Subtraction: 'subtraction',
 } as const;
 export type AddedDeductedPointsBalancesActionOperationEnum = typeof AddedDeductedPointsBalancesActionOperationEnum[keyof typeof AddedDeductedPointsBalancesActionOperationEnum];
 
@@ -93,8 +81,8 @@ export function AddedDeductedPointsBalancesActionFromJSONTyped(json: any, ignore
         'amount': json['Amount'],
         'reason': json['Reason'],
         'operation': json['Operation'],
-        'startDate': json['StartDate'] == null ? undefined : (new Date(json['StartDate'])),
-        'expiryDate': json['ExpiryDate'] == null ? undefined : (new Date(json['ExpiryDate'])),
+        'startDate': json['StartDate'] == null ? undefined : (parseDateTime(json['StartDate'])),
+        'expiryDate': json['ExpiryDate'] == null ? undefined : (parseDateTime(json['ExpiryDate'])),
         'transactionUUID': json['TransactionUUID'],
     };
 }
@@ -113,8 +101,8 @@ export function AddedDeductedPointsBalancesActionToJSONTyped(value?: AddedDeduct
         'Amount': value['amount'],
         'Reason': value['reason'],
         'Operation': value['operation'],
-        'StartDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'ExpiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'StartDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'ExpiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'TransactionUUID': value['transactionUUID'],
     };
 }

@@ -24,32 +24,22 @@ export interface AsyncCouponsData {
      * 
      * **Note:** The Batch ID is generated when coupons are created.
      * 
-     * @type {string}
-     * @memberof AsyncCouponsData
      */
     batchID: string;
     /**
      * 
-     * @type {string}
-     * @memberof AsyncCouponsData
      */
     typeOfChange: string;
     /**
      * 
-     * @type {string}
-     * @memberof AsyncCouponsData
      */
     operation: string;
     /**
      * 
-     * @type {string}
-     * @memberof AsyncCouponsData
      */
     employeeName: string;
     /**
      * The type of the notification
-     * @type {AsyncCouponsDataNotificationTypeEnum}
-     * @memberof AsyncCouponsData
      */
     notificationType: AsyncCouponsDataNotificationTypeEnum;
 }
@@ -59,7 +49,7 @@ export interface AsyncCouponsData {
  * @export
  */
 export const AsyncCouponsDataNotificationTypeEnum = {
-    AsyncCouponsCreated: 'AsyncCouponsCreated'
+    AsyncCouponsCreated: 'AsyncCouponsCreated',
 } as const;
 export type AsyncCouponsDataNotificationTypeEnum = typeof AsyncCouponsDataNotificationTypeEnum[keyof typeof AsyncCouponsDataNotificationTypeEnum];
 

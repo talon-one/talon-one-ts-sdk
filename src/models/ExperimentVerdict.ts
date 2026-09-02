@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface ExperimentVerdict {
     /**
      * The name of the winning variant. If no variant shows a statistically significant advantage on key business metrics, return 'Inconclusive'.
-     * @type {string}
-     * @memberof ExperimentVerdict
      */
     winnerVariantName: string;
     /**
      * A one-sentence summary of the outcome, including the key metric and confidence level that led to the decision.
-     * @type {string}
-     * @memberof ExperimentVerdict
      */
     verdictSummary: string;
     /**
      * A bullet point stating the most important finding, including the metric, the percentage change, and the confidence.
-     * @type {Array<string>}
-     * @memberof ExperimentVerdict
      */
     keyFindings: Array<string>;
     /**
      * Your confidence in this overall verdict, from 0 to 100.
-     * @type {string}
-     * @memberof ExperimentVerdict
      */
     aiConfidenceLevel: string;
     /**
      * A short, actionable recommendation based on the findings. If inconclusive, suggest running the test longer. If there is a clear winner, recommend promoting it.
-     * @type {string}
-     * @memberof ExperimentVerdict
      */
     recommendation: string;
 }

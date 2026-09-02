@@ -29,20 +29,14 @@ import {
 export interface RuleEligibility {
     /**
      * Indicates whether the customer was eligible for the rule in the current session, based on whether all of the rule's conditions were met.
-     * @type {boolean}
-     * @memberof RuleEligibility
      */
     passed: boolean;
     /**
      * The coupon code used to check a customer's eligibility for the rule in the current session, if applicable.
-     * @type {string}
-     * @memberof RuleEligibility
      */
     couponCode?: string;
     /**
      * The details about why the customer was not eligible for the rule in the current session. Only returned when `passed` is `false`.
-     * @type {RuleEligibilityFailureDetails}
-     * @memberof RuleEligibility
      */
     details?: RuleEligibilityFailureDetails;
 }

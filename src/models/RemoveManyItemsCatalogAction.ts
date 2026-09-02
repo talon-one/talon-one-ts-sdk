@@ -32,8 +32,6 @@ export interface RemoveManyItemsCatalogAction {
      * 
      * **Note:** Every item in the catalog will be removed if there are no filters.
      * 
-     * @type {Array<CatalogActionFilter>}
-     * @memberof RemoveManyItemsCatalogAction
      */
     filters?: Array<CatalogActionFilter>;
 }

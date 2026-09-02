@@ -29,20 +29,14 @@ import {
 export interface CampaignDeletedNotification {
     /**
      * The type of the notification
-     * @type {CampaignDeletedNotificationNotificationTypeEnum}
-     * @memberof CampaignDeletedNotification
      */
     notificationType: CampaignDeletedNotificationNotificationTypeEnum;
     /**
      * The total size of the result set.
-     * @type {number}
-     * @memberof CampaignDeletedNotification
      */
     totalResultSize: number;
     /**
      * A list of campaign notification data.
-     * @type {Array<CampaignDeletedNotificationItem>}
-     * @memberof CampaignDeletedNotification
      */
     data?: Array<CampaignDeletedNotificationItem>;
 }
@@ -52,7 +46,7 @@ export interface CampaignDeletedNotification {
  * @export
  */
 export const CampaignDeletedNotificationNotificationTypeEnum = {
-    CampaignNotification: 'CampaignNotification'
+    CampaignNotification: 'CampaignNotification',
 } as const;
 export type CampaignDeletedNotificationNotificationTypeEnum = typeof CampaignDeletedNotificationNotificationTypeEnum[keyof typeof CampaignDeletedNotificationNotificationTypeEnum];
 

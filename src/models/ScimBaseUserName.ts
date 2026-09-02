@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ScimBaseUserName {
     /**
      * The full name, including all middle names, titles, and suffixes as appropriate, formatted for display.
-     * @type {string}
-     * @memberof ScimBaseUserName
      */
     formatted?: string;
 }

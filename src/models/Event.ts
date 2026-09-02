@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { Meta } from './Meta';
 import {
     MetaFromJSON,
@@ -36,20 +36,14 @@ import {
 export interface Event {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Event
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Event
      */
     created: Date;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof Event
      */
     applicationId: number;
     /**
@@ -57,39 +51,27 @@ export interface Event {
      * 
      * **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
      * 
-     * @type {string}
-     * @memberof Event
      */
     profileId?: string;
     /**
      * The integration ID of the store. You choose this ID when you create a store.
-     * @type {string}
-     * @memberof Event
      */
     storeIntegrationId?: string;
     /**
      * The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.
-     * @type {string}
-     * @memberof Event
      */
     type: string;
     /**
      * Arbitrary additional JSON data associated with the event.
-     * @type {object}
-     * @memberof Event
      */
     attributes: object;
     /**
      * The unique ID of the event. Only one event with this ID can be registered.
      * 
-     * @type {string}
-     * @memberof Event
      */
     integrationId?: string;
     /**
      * The ID of the session that this event occurred in.
-     * @type {string}
-     * @memberof Event
      */
     sessionId?: string;
     /**
@@ -97,20 +79,14 @@ export interface Event {
      * 
      * You decide how to apply them in your system. See the list of [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
      * 
-     * @type {Array<object>}
-     * @memberof Event
      */
     effects: Array<object>;
     /**
      * Ledger entries for the event.
-     * @type {Array<LedgerEntry>}
-     * @memberof Event
      */
     ledgerEntries?: Array<LedgerEntry>;
     /**
      * 
-     * @type {Meta}
-     * @memberof Event
      */
     meta?: Meta;
 }
@@ -140,7 +116,7 @@ export function EventFromJSONTyped(json: any, ignoreDiscriminator: boolean): Eve
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'applicationId': json['applicationId'],
         'profileId': json['profileId'] == null ? undefined : json['profileId'],
         'storeIntegrationId': json['storeIntegrationId'] == null ? undefined : json['storeIntegrationId'],
@@ -166,7 +142,7 @@ export function EventToJSONTyped(value?: Event | null, ignoreDiscriminator: bool
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'applicationId': value['applicationId'],
         'profileId': value['profileId'],
         'storeIntegrationId': value['storeIntegrationId'],

@@ -29,14 +29,10 @@ import {
 export interface IntegrationGetAllCampaigns200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof IntegrationGetAllCampaigns200Response
      */
     hasMore: boolean;
     /**
      * 
-     * @type {Array<IntegrationCampaign>}
-     * @memberof IntegrationGetAllCampaigns200Response
      */
     data: Array<IntegrationCampaign>;
 }

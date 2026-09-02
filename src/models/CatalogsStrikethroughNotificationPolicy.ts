@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface CatalogsStrikethroughNotificationPolicy {
     /**
      * Notification name.
-     * @type {string}
-     * @memberof CatalogsStrikethroughNotificationPolicy
      */
     name: string;
     /**
      * The number of days in advance that strikethrough pricing updates should be sent.
-     * @type {number}
-     * @memberof CatalogsStrikethroughNotificationPolicy
      */
     aheadOfDaysTrigger?: number;
     /**
      * The required size of each batch of data.
-     * @type {number}
-     * @memberof CatalogsStrikethroughNotificationPolicy
      */
     batchSize?: number;
 }

@@ -29,8 +29,6 @@ import {
 export interface MultipleCustomerProfileIntegrationRequest {
     /**
      * 
-     * @type {Array<MultipleCustomerProfileIntegrationRequestItem>}
-     * @memberof MultipleCustomerProfileIntegrationRequest
      */
     customerProfiles?: Array<MultipleCustomerProfileIntegrationRequestItem>;
 }

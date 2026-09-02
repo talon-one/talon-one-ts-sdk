@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface CouponReservations {
     /**
      * List of customer integration IDs.
-     * @type {Array<string>}
-     * @memberof CouponReservations
      */
     integrationIDs: Array<string>;
 }

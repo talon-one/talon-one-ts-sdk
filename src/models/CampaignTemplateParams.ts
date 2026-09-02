@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface CampaignTemplateParams {
     /**
      * Name of the campaign template parameter.
-     * @type {string}
-     * @memberof CampaignTemplateParams
      */
     name: string;
     /**
      * Defines the type of parameter value.
-     * @type {CampaignTemplateParamsTypeEnum}
-     * @memberof CampaignTemplateParams
      */
     type: CampaignTemplateParamsTypeEnum;
     /**
      * Explains the meaning of this template parameter and the placeholder value that will define it. It is used on campaign creation from this template.
-     * @type {string}
-     * @memberof CampaignTemplateParams
      */
     description: string;
     /**
      * ID of the corresponding attribute.
-     * @type {number}
-     * @memberof CampaignTemplateParams
      */
     attributeId?: number;
 }
@@ -56,7 +48,7 @@ export const CampaignTemplateParamsTypeEnum = {
     Percent: 'percent',
     ListString: '(list string)',
     ListNumber: '(list number)',
-    Time: 'time'
+    Time: 'time',
 } as const;
 export type CampaignTemplateParamsTypeEnum = typeof CampaignTemplateParamsTypeEnum[keyof typeof CampaignTemplateParamsTypeEnum];
 

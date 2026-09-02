@@ -29,14 +29,10 @@ import {
 export interface PriceTypeReferences {
     /**
      * The ID of the price type.
-     * @type {number}
-     * @memberof PriceTypeReferences
      */
     priceTypeId: number;
     /**
      * A list of entities that reference the price type, including details about the entities.
-     * @type {Array<PriceTypeReferenceDetail>}
-     * @memberof PriceTypeReferences
      */
     references?: Array<PriceTypeReferenceDetail>;
 }

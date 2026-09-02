@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface LoyaltyLedgerEntryFlags {
     /**
      * Set to true if the entry creates negative balance.
-     * @type {boolean}
-     * @memberof LoyaltyLedgerEntryFlags
      */
     createsNegativeBalance?: boolean;
 }

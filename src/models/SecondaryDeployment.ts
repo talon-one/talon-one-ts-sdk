@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,50 +21,34 @@ import { mapValues } from '../runtime';
 export interface SecondaryDeployment {
     /**
      * Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints.
-     * @type {number}
-     * @memberof SecondaryDeployment
      */
     id: number;
     /**
      * The name of the deployment. Used as subdomain, e.g. experimental.your-company.europe-west1.talon.one
-     * @type {string}
-     * @memberof SecondaryDeployment
      */
     name: string;
     /**
      * The ID of the user who created the deployment.
-     * @type {number}
-     * @memberof SecondaryDeployment
      */
     userId: number;
     /**
      * The status of the deployment.
-     * @type {SecondaryDeploymentStatusEnum}
-     * @memberof SecondaryDeployment
      */
     status: SecondaryDeploymentStatusEnum;
     /**
      * Timestamp when the deployment was created.
-     * @type {Date}
-     * @memberof SecondaryDeployment
      */
     createdAt: Date;
     /**
      * Timestamp when the deployment became active.
-     * @type {Date}
-     * @memberof SecondaryDeployment
      */
     activeAt?: Date;
     /**
      * Timestamp when the deployment failed.
-     * @type {Date}
-     * @memberof SecondaryDeployment
      */
     failedAt?: Date;
     /**
      * Timestamp when the deployment was deleted.
-     * @type {Date}
-     * @memberof SecondaryDeployment
      */
     deletedAt?: Date;
 }
@@ -77,7 +61,7 @@ export const SecondaryDeploymentStatusEnum = {
     Created: 'created',
     Active: 'active',
     Failed: 'failed',
-    Deleted: 'deleted'
+    Deleted: 'deleted',
 } as const;
 export type SecondaryDeploymentStatusEnum = typeof SecondaryDeploymentStatusEnum[keyof typeof SecondaryDeploymentStatusEnum];
 
@@ -109,10 +93,10 @@ export function SecondaryDeploymentFromJSONTyped(json: any, ignoreDiscriminator:
         'name': json['name'],
         'userId': json['userId'],
         'status': json['status'],
-        'createdAt': (json['createdAt'] == null ? undefined as any : new Date(json['createdAt'])),
-        'activeAt': json['activeAt'] == null ? undefined : (new Date(json['activeAt'])),
-        'failedAt': json['failedAt'] == null ? undefined : (new Date(json['failedAt'])),
-        'deletedAt': json['deletedAt'] == null ? undefined : (new Date(json['deletedAt'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : parseDateTime(json['createdAt'])),
+        'activeAt': json['activeAt'] == null ? undefined : (parseDateTime(json['activeAt'])),
+        'failedAt': json['failedAt'] == null ? undefined : (parseDateTime(json['failedAt'])),
+        'deletedAt': json['deletedAt'] == null ? undefined : (parseDateTime(json['deletedAt'])),
     };
 }
 
@@ -131,10 +115,10 @@ export function SecondaryDeploymentToJSONTyped(value?: SecondaryDeployment | nul
         'name': value['name'],
         'userId': value['userId'],
         'status': value['status'],
-        'createdAt': value['createdAt'] == null ? undefined : value['createdAt'].toISOString(),
-        'activeAt': value['activeAt'] == null ? value['activeAt'] : value['activeAt'].toISOString(),
-        'failedAt': value['failedAt'] == null ? value['failedAt'] : value['failedAt'].toISOString(),
-        'deletedAt': value['deletedAt'] == null ? value['deletedAt'] : value['deletedAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? undefined : serializeDateTime(value['createdAt']),
+        'activeAt': value['activeAt'] == null ? value['activeAt'] : serializeDateTime(value['activeAt']),
+        'failedAt': value['failedAt'] == null ? value['failedAt'] : serializeDateTime(value['failedAt']),
+        'deletedAt': value['deletedAt'] == null ? value['deletedAt'] : serializeDateTime(value['deletedAt']),
     };
 }
 

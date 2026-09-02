@@ -29,14 +29,10 @@ import {
 export interface GetRulesets200Response {
     /**
      * 
-     * @type {number}
-     * @memberof GetRulesets200Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<Ruleset>}
-     * @memberof GetRulesets200Response
      */
     data: Array<Ruleset>;
 }

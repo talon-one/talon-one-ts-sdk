@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CodeGeneratorSettings } from './CodeGeneratorSettings';
 import {
     CodeGeneratorSettingsFromJSON,
@@ -36,80 +36,54 @@ import {
 export interface NewRevisionVersion {
     /**
      * A user-facing name for this campaign.
-     * @type {string}
-     * @memberof NewRevisionVersion
      */
     name?: string;
     /**
      * Timestamp when the campaign will become active.
-     * @type {Date}
-     * @memberof NewRevisionVersion
      */
     startTime?: Date | null;
     /**
      * Timestamp when the campaign will become inactive.
-     * @type {Date}
-     * @memberof NewRevisionVersion
      */
     endTime?: Date | null;
     /**
      * Arbitrary properties associated with this campaign.
-     * @type {object}
-     * @memberof NewRevisionVersion
      */
     attributes?: object;
     /**
      * A detailed description of the campaign.
-     * @type {string}
-     * @memberof NewRevisionVersion
      */
     description?: string | null;
     /**
      * The ID of the ruleset this campaign will use.
-     * @type {number}
-     * @memberof NewRevisionVersion
      */
     activeRulesetId?: number | null;
     /**
      * A list of tags for the campaign.
-     * @type {Array<string>}
-     * @memberof NewRevisionVersion
      */
     tags?: Array<string>;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof NewRevisionVersion
      */
     couponSettings?: CodeGeneratorSettings;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof NewRevisionVersion
      */
     referralSettings?: CodeGeneratorSettings;
     /**
      * The set of limits that will operate for this campaign version.
-     * @type {Array<LimitConfig>}
-     * @memberof NewRevisionVersion
      */
     limits?: Array<LimitConfig>;
     /**
      * Indicates whether this campaign should be reevaluated when a customer returns an item.
-     * @type {boolean}
-     * @memberof NewRevisionVersion
      */
     reevaluateOnReturn?: boolean;
     /**
      * A list of features for the campaign.
-     * @type {Array<NewRevisionVersionFeaturesEnum>}
-     * @memberof NewRevisionVersion
      */
     features?: Array<NewRevisionVersionFeaturesEnum>;
     /**
      * Arbitrary properties associated with coupons in this campaign.
-     * @type {object}
-     * @memberof NewRevisionVersion
      */
     couponAttributes?: object;
 }
@@ -125,7 +99,7 @@ export const NewRevisionVersionFeaturesEnum = {
     Giveaways: 'giveaways',
     Strikethrough: 'strikethrough',
     Achievements: 'achievements',
-    AdvancedEvents: 'advancedEvents'
+    AdvancedEvents: 'advancedEvents',
 } as const;
 export type NewRevisionVersionFeaturesEnum = typeof NewRevisionVersionFeaturesEnum[keyof typeof NewRevisionVersionFeaturesEnum];
 
@@ -149,8 +123,8 @@ export function NewRevisionVersionFromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'name': json['name'] == null ? undefined : json['name'],
-        'startTime': json['startTime'] === undefined ? undefined : json['startTime'] === null ? null : (new Date(json['startTime'])),
-        'endTime': json['endTime'] === undefined ? undefined : json['endTime'] === null ? null : (new Date(json['endTime'])),
+        'startTime': json['startTime'] === undefined ? undefined : json['startTime'] === null ? null : (parseDateTime(json['startTime'])),
+        'endTime': json['endTime'] === undefined ? undefined : json['endTime'] === null ? null : (parseDateTime(json['endTime'])),
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'description': json['description'] === undefined ? undefined : json['description'] === null ? null : json['description'],
         'activeRulesetId': json['activeRulesetId'] === undefined ? undefined : json['activeRulesetId'] === null ? null : json['activeRulesetId'],
@@ -176,8 +150,8 @@ export function NewRevisionVersionToJSONTyped(value?: NewRevisionVersion | null,
     return {
         
         'name': value['name'],
-        'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
-        'endTime': value['endTime'] == null ? value['endTime'] : value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? value['startTime'] : serializeDateTime(value['startTime']),
+        'endTime': value['endTime'] == null ? value['endTime'] : serializeDateTime(value['endTime']),
         'attributes': value['attributes'],
         'description': value['description'],
         'activeRulesetId': value['activeRulesetId'],

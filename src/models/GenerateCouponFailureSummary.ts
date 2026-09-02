@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface GenerateCouponFailureSummary {
     /**
      * The ID of the event.
-     * @type {number}
-     * @memberof GenerateCouponFailureSummary
      */
     eventID: number;
     /**
      * The language the summary will be generated in.
-     * @type {string}
-     * @memberof GenerateCouponFailureSummary
      */
     language?: string;
 }

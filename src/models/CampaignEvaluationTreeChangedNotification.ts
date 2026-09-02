@@ -29,20 +29,14 @@ import {
 export interface CampaignEvaluationTreeChangedNotification {
     /**
      * The ID of the Application whose campaign evaluation tree changed.
-     * @type {number}
-     * @memberof CampaignEvaluationTreeChangedNotification
      */
     applicationId: number;
     /**
      * The previous campaign evaluation tree.
-     * @type {CampaignSet}
-     * @memberof CampaignEvaluationTreeChangedNotification
      */
     oldEvaluationTree?: CampaignSet;
     /**
      * The new campaign evaluation tree.
-     * @type {CampaignSet}
-     * @memberof CampaignEvaluationTreeChangedNotification
      */
     evaluationTree: CampaignSet;
 }

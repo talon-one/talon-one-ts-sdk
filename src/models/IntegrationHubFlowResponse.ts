@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { IntegrationHubFlowConfigResponse } from './IntegrationHubFlowConfigResponse';
 import {
     IntegrationHubFlowConfigResponseFromJSON,
@@ -29,56 +29,38 @@ import {
 export interface IntegrationHubFlowResponse {
     /**
      * ID of the integration hub flow.
-     * @type {number}
-     * @memberof IntegrationHubFlowResponse
      */
     id: number;
     /**
      * Name of the integration.
-     * @type {string}
-     * @memberof IntegrationHubFlowResponse
      */
     integrationName?: string;
     /**
      * Name of the integration instance.
-     * @type {string}
-     * @memberof IntegrationHubFlowResponse
      */
     instanceName?: string;
     /**
      * Timestamp when the flow was created.
-     * @type {Date}
-     * @memberof IntegrationHubFlowResponse
      */
     createdAt: Date;
     /**
      * Timestamp until which the flow is disabled. Null when the flow is active.
-     * @type {Date}
-     * @memberof IntegrationHubFlowResponse
      */
     disabledUntil?: Date | null;
     /**
      * ID of the application the flow is registered for.
-     * @type {number}
-     * @memberof IntegrationHubFlowResponse
      */
     applicationId?: number;
     /**
      * ID of the loyalty program the flow is registered for.
-     * @type {number}
-     * @memberof IntegrationHubFlowResponse
      */
     loyaltyProgramId?: number;
     /**
      * The event type we want to register a flow for.
-     * @type {string}
-     * @memberof IntegrationHubFlowResponse
      */
     eventType: string;
     /**
      * 
-     * @type {IntegrationHubFlowConfigResponse}
-     * @memberof IntegrationHubFlowResponse
      */
     config: IntegrationHubFlowConfigResponse;
 }
@@ -108,8 +90,8 @@ export function IntegrationHubFlowResponseFromJSONTyped(json: any, ignoreDiscrim
         'id': json['id'],
         'integrationName': json['integrationName'] == null ? undefined : json['integrationName'],
         'instanceName': json['instanceName'] == null ? undefined : json['instanceName'],
-        'createdAt': (json['createdAt'] == null ? undefined as any : new Date(json['createdAt'])),
-        'disabledUntil': json['disabledUntil'] === undefined ? undefined : json['disabledUntil'] === null ? null : (new Date(json['disabledUntil'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : parseDateTime(json['createdAt'])),
+        'disabledUntil': json['disabledUntil'] === undefined ? undefined : json['disabledUntil'] === null ? null : (parseDateTime(json['disabledUntil'])),
         'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
         'loyaltyProgramId': json['loyaltyProgramId'] == null ? undefined : json['loyaltyProgramId'],
         'eventType': json['eventType'],
@@ -131,8 +113,8 @@ export function IntegrationHubFlowResponseToJSONTyped(value?: IntegrationHubFlow
         'id': value['id'],
         'integrationName': value['integrationName'],
         'instanceName': value['instanceName'],
-        'createdAt': value['createdAt'] == null ? undefined : value['createdAt'].toISOString(),
-        'disabledUntil': value['disabledUntil'] == null ? value['disabledUntil'] : value['disabledUntil'].toISOString(),
+        'createdAt': value['createdAt'] == null ? undefined : serializeDateTime(value['createdAt']),
+        'disabledUntil': value['disabledUntil'] == null ? value['disabledUntil'] : serializeDateTime(value['disabledUntil']),
         'applicationId': value['applicationId'],
         'loyaltyProgramId': value['loyaltyProgramId'],
         'eventType': value['eventType'],

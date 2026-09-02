@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface SelectorValueMapRef {
     /**
      * The internal ID of the referenced value map.
-     * @type {number}
-     * @memberof SelectorValueMapRef
      */
     id: number;
 }

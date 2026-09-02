@@ -29,8 +29,6 @@ import {
 export interface EmbeddedAnalyticsConfiguration {
     /**
      * 
-     * @type {EmbeddedAnalyticsConfigurationDashboards}
-     * @memberof EmbeddedAnalyticsConfiguration
      */
     dashboards: EmbeddedAnalyticsConfigurationDashboards;
 }

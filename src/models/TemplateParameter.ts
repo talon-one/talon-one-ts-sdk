@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface TemplateParameter {
     /**
      * The name of the template parameter.
-     * @type {string}
-     * @memberof TemplateParameter
      */
     name: string;
     /**
-     * 
-     * @type {any}
-     * @memberof TemplateParameter
+     * The parameter's bound value. Its type depends on the `valueType`.
      */
     value: any | null;
     /**
      * The data type of the value, derived from the bound expression (for example `number`, `string`, `boolean`, `percent`, `time`, `(list string)`, or `(list number)`).
-     * @type {string}
-     * @memberof TemplateParameter
      */
     valueType: string;
     /**
      * The minimum value allowed for this parameter.
-     * @type {number}
-     * @memberof TemplateParameter
      */
     minValue?: number;
     /**
      * The maximum value allowed for this parameter.
-     * @type {number}
-     * @memberof TemplateParameter
      */
     maxValue?: number;
     /**
      * A human-readable description of the parameter shown when creating campaigns from the template.
-     * @type {string}
-     * @memberof TemplateParameter
      */
     description: string;
     /**
      * The ID of the attribute linked to this parameter. Omitted when the parameter is not linked to an attribute.
-     * @type {number}
-     * @memberof TemplateParameter
      */
     attribute?: number;
 }

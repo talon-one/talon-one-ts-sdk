@@ -29,56 +29,38 @@ import {
 export interface CampaignSetBranchNode {
     /**
      * Indicates the node type.
-     * @type {CampaignSetBranchNodeTypeEnum}
-     * @memberof CampaignSetBranchNode
      */
     type: CampaignSetBranchNodeTypeEnum;
     /**
      * Name of the set.
-     * @type {string}
-     * @memberof CampaignSetBranchNode
      */
     name: string;
     /**
      * An indicator of how the set operates on its elements.
-     * @type {CampaignSetBranchNodeOperatorEnum}
-     * @memberof CampaignSetBranchNode
      */
     operator: CampaignSetBranchNodeOperatorEnum;
     /**
      * Child elements of this set.
-     * @type {Array<CampaignSetNode>}
-     * @memberof CampaignSetBranchNode
      */
     elements: Array<CampaignSetNode>;
     /**
      * The ID of the campaign set.
-     * @type {number}
-     * @memberof CampaignSetBranchNode
      */
     groupId: number;
     /**
      * An indicator of whether the campaign set is locked for modification.
-     * @type {boolean}
-     * @memberof CampaignSetBranchNode
      */
     locked: boolean;
     /**
      * A description of the campaign set.
-     * @type {string}
-     * @memberof CampaignSetBranchNode
      */
     description?: string;
     /**
      * The mode by which campaigns in the campaign evaluation group are evaluated.
-     * @type {CampaignSetBranchNodeEvaluationModeEnum}
-     * @memberof CampaignSetBranchNode
      */
     evaluationMode: CampaignSetBranchNodeEvaluationModeEnum;
     /**
      * The evaluation scope of the campaign evaluation group.
-     * @type {CampaignSetBranchNodeEvaluationScopeEnum}
-     * @memberof CampaignSetBranchNode
      */
     evaluationScope: CampaignSetBranchNodeEvaluationScopeEnum;
 }
@@ -88,7 +70,7 @@ export interface CampaignSetBranchNode {
  * @export
  */
 export const CampaignSetBranchNodeTypeEnum = {
-    Set: 'SET'
+    Set: 'SET',
 } as const;
 export type CampaignSetBranchNodeTypeEnum = typeof CampaignSetBranchNodeTypeEnum[keyof typeof CampaignSetBranchNodeTypeEnum];
 
@@ -97,7 +79,7 @@ export type CampaignSetBranchNodeTypeEnum = typeof CampaignSetBranchNodeTypeEnum
  */
 export const CampaignSetBranchNodeOperatorEnum = {
     All: 'ALL',
-    First: 'FIRST'
+    First: 'FIRST',
 } as const;
 export type CampaignSetBranchNodeOperatorEnum = typeof CampaignSetBranchNodeOperatorEnum[keyof typeof CampaignSetBranchNodeOperatorEnum];
 
@@ -108,7 +90,7 @@ export const CampaignSetBranchNodeEvaluationModeEnum = {
     Stackable: 'stackable',
     ListOrder: 'listOrder',
     LowestDiscount: 'lowestDiscount',
-    HighestDiscount: 'highestDiscount'
+    HighestDiscount: 'highestDiscount',
 } as const;
 export type CampaignSetBranchNodeEvaluationModeEnum = typeof CampaignSetBranchNodeEvaluationModeEnum[keyof typeof CampaignSetBranchNodeEvaluationModeEnum];
 
@@ -117,7 +99,7 @@ export type CampaignSetBranchNodeEvaluationModeEnum = typeof CampaignSetBranchNo
  */
 export const CampaignSetBranchNodeEvaluationScopeEnum = {
     CartItem: 'cartItem',
-    Session: 'session'
+    Session: 'session',
 } as const;
 export type CampaignSetBranchNodeEvaluationScopeEnum = typeof CampaignSetBranchNodeEvaluationScopeEnum[keyof typeof CampaignSetBranchNodeEvaluationScopeEnum];
 

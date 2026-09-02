@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface IntegrationEntity {
     /**
      * The integration ID set by your integration layer.
-     * @type {string}
-     * @memberof IntegrationEntity
      */
     integrationId: string;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof IntegrationEntity
      */
     created: Date;
 }
@@ -54,7 +50,7 @@ export function IntegrationEntityFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'integrationId': json['integrationId'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
     };
 }
 
@@ -70,7 +66,7 @@ export function IntegrationEntityToJSONTyped(value?: IntegrationEntity | null, i
     return {
         
         'integrationId': value['integrationId'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
     };
 }
 

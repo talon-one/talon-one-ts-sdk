@@ -22,15 +22,11 @@ export interface UpdateLoyaltyCard {
     /**
      * Status of the loyalty card. Can be `active` or `inactive`.
      * 
-     * @type {string}
-     * @memberof UpdateLoyaltyCard
      */
     status: string;
     /**
      * Reason for transferring and blocking the loyalty card.
      * 
-     * @type {string}
-     * @memberof UpdateLoyaltyCard
      */
     blockReason?: string;
 }

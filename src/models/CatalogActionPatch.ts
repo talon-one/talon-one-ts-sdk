@@ -29,14 +29,10 @@ import {
 export interface CatalogActionPatch {
     /**
      * A catalog sync action discriminator of type `PATCH`.
-     * @type {CatalogActionPatchTypeEnum}
-     * @memberof CatalogActionPatch
      */
     type: CatalogActionPatchTypeEnum;
     /**
      * The payload of sync action.
-     * @type {PatchItemCatalogAction}
-     * @memberof CatalogActionPatch
      */
     payload: PatchItemCatalogAction;
 }
@@ -46,7 +42,7 @@ export interface CatalogActionPatch {
  * @export
  */
 export const CatalogActionPatchTypeEnum = {
-    Patch: 'PATCH'
+    Patch: 'PATCH',
 } as const;
 export type CatalogActionPatchTypeEnum = typeof CatalogActionPatchTypeEnum[keyof typeof CatalogActionPatchTypeEnum];
 

@@ -43,101 +43,69 @@ import {
 export interface UpdateApplication {
     /**
      * The name of this application.
-     * @type {string}
-     * @memberof UpdateApplication
      */
     name: string;
     /**
      * A longer description of the application.
-     * @type {string}
-     * @memberof UpdateApplication
      */
     description?: string;
     /**
      * A string containing an IANA timezone descriptor.
-     * @type {string}
-     * @memberof UpdateApplication
      */
     timezone: string;
     /**
      * The default currency for new customer sessions.
-     * @type {string}
-     * @memberof UpdateApplication
      */
     currency: string;
     /**
      * The case sensitivity behavior to check coupon codes in the campaigns of this Application.
-     * @type {UpdateApplicationCaseSensitivityEnum}
-     * @memberof UpdateApplication
      */
     caseSensitivity?: UpdateApplicationCaseSensitivityEnum;
     /**
      * Arbitrary properties associated with this campaign.
-     * @type {object}
-     * @memberof UpdateApplication
      */
     attributes?: object;
     /**
      * Default limits for campaigns created in this application.
-     * @type {Array<LimitConfig>}
-     * @memberof UpdateApplication
      */
     limits?: Array<LimitConfig>;
     /**
      * The default scope to apply `setDiscount` effects on if no scope was provided with the effect.
      * 
-     * @type {UpdateApplicationDefaultDiscountScopeEnum}
-     * @memberof UpdateApplication
      */
     defaultDiscountScope?: UpdateApplicationDefaultDiscountScopeEnum;
     /**
      * Indicates if discounts should cascade for this Application.
-     * @type {boolean}
-     * @memberof UpdateApplication
      */
     enableCascadingDiscounts?: boolean;
     /**
      * Indicates if cart items of quantity larger than one should be separated into different items of quantity one.
      * 
-     * @type {boolean}
-     * @memberof UpdateApplication
      */
     enableFlattenedCartItems?: boolean;
     /**
      * 
-     * @type {AttributesSettings}
-     * @memberof UpdateApplication
      */
     attributesSettings?: AttributesSettings;
     /**
      * Indicates if this is a live or sandbox Application.
-     * @type {boolean}
-     * @memberof UpdateApplication
      */
     sandbox?: boolean;
     /**
      * Indicates if this Application supports partial discounts.
-     * @type {boolean}
-     * @memberof UpdateApplication
      */
     enablePartialDiscounts?: boolean;
     /**
      * The default scope to apply `setDiscountPerItem` effects on if no scope was provided with the effect.
      * 
-     * @type {UpdateApplicationDefaultDiscountAdditionalCostPerItemScopeEnum}
-     * @memberof UpdateApplication
      */
     defaultDiscountAdditionalCostPerItemScope?: UpdateApplicationDefaultDiscountAdditionalCostPerItemScopeEnum;
     /**
      * The ID of the default campaign evaluation group to which new campaigns will be added unless a different group is selected when creating the campaign.
-     * @type {number}
-     * @memberof UpdateApplication
      */
     defaultEvaluationGroupId?: number;
     /**
      * The ID of the default Cart-Item-Filter for this application.
-     * @type {number}
-     * @memberof UpdateApplication
      */
     defaultCartItemFilterId?: number;
     /**
@@ -145,14 +113,10 @@ export interface UpdateApplication {
      * 
      * **Important:** After this feature is enabled, it cannot be disabled.
      * 
-     * @type {boolean}
-     * @memberof UpdateApplication
      */
     enableCampaignStateManagement?: boolean;
     /**
      * 
-     * @type {BestPriorPriceSettings}
-     * @memberof UpdateApplication
      */
     bestPriorPriceSettings?: BestPriorPriceSettings;
 }
@@ -164,7 +128,7 @@ export interface UpdateApplication {
 export const UpdateApplicationCaseSensitivityEnum = {
     Sensitive: 'sensitive',
     InsensitiveUppercase: 'insensitive-uppercase',
-    InsensitiveLowercase: 'insensitive-lowercase'
+    InsensitiveLowercase: 'insensitive-lowercase',
 } as const;
 export type UpdateApplicationCaseSensitivityEnum = typeof UpdateApplicationCaseSensitivityEnum[keyof typeof UpdateApplicationCaseSensitivityEnum];
 
@@ -174,7 +138,7 @@ export type UpdateApplicationCaseSensitivityEnum = typeof UpdateApplicationCaseS
 export const UpdateApplicationDefaultDiscountScopeEnum = {
     SessionTotal: 'sessionTotal',
     CartItems: 'cartItems',
-    AdditionalCosts: 'additionalCosts'
+    AdditionalCosts: 'additionalCosts',
 } as const;
 export type UpdateApplicationDefaultDiscountScopeEnum = typeof UpdateApplicationDefaultDiscountScopeEnum[keyof typeof UpdateApplicationDefaultDiscountScopeEnum];
 
@@ -184,7 +148,7 @@ export type UpdateApplicationDefaultDiscountScopeEnum = typeof UpdateApplication
 export const UpdateApplicationDefaultDiscountAdditionalCostPerItemScopeEnum = {
     Price: 'price',
     ItemTotal: 'itemTotal',
-    AdditionalCosts: 'additionalCosts'
+    AdditionalCosts: 'additionalCosts',
 } as const;
 export type UpdateApplicationDefaultDiscountAdditionalCostPerItemScopeEnum = typeof UpdateApplicationDefaultDiscountAdditionalCostPerItemScopeEnum[keyof typeof UpdateApplicationDefaultDiscountAdditionalCostPerItemScopeEnum];
 

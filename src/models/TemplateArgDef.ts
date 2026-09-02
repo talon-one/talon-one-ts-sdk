@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface TemplateArgDef {
     /**
      * The type of value this argument expects.
-     * @type {TemplateArgDefTypeEnum}
-     * @memberof TemplateArgDef
      */
     type: TemplateArgDefTypeEnum;
     /**
      * A campaigner-friendly description of the argument, this will also be shown in the rule editor.
-     * @type {string}
-     * @memberof TemplateArgDef
      */
     description?: string;
     /**
      * A campaigner friendly name for the argument, this will be shown in the rule editor.
-     * @type {string}
-     * @memberof TemplateArgDef
      */
     title: string;
     /**
      * Arbitrary metadata that may be used to render an input for this argument.
-     * @type {object}
-     * @memberof TemplateArgDef
      */
     ui: object;
     /**
      * The identifier for the associated value within the JSON object.
-     * @type {string}
-     * @memberof TemplateArgDef
      */
     key?: string;
     /**
      * ID of the picklist linked to a template.
-     * @type {number}
-     * @memberof TemplateArgDef
      */
     picklistID?: number;
     /**
      * Whether or not this attribute's value is restricted by picklist (`picklist` property)
-     * @type {boolean}
-     * @memberof TemplateArgDef
      */
     restrictedByPicklist?: boolean;
 }
@@ -73,7 +59,7 @@ export const TemplateArgDefTypeEnum = {
     Number: 'number',
     Time: 'time',
     ListString: '(list string)',
-    ListNumber: '(list number)'
+    ListNumber: '(list number)',
 } as const;
 export type TemplateArgDefTypeEnum = typeof TemplateArgDefTypeEnum[keyof typeof TemplateArgDefTypeEnum];
 

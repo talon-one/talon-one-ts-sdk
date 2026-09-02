@@ -29,20 +29,14 @@ import {
 export interface CampaignStateChangedNotification {
     /**
      * The type of the notification
-     * @type {CampaignStateChangedNotificationNotificationTypeEnum}
-     * @memberof CampaignStateChangedNotification
      */
     notificationType: CampaignStateChangedNotificationNotificationTypeEnum;
     /**
      * The total size of the result set.
-     * @type {number}
-     * @memberof CampaignStateChangedNotification
      */
     totalResultSize: number;
     /**
      * A list of campaign notification data.
-     * @type {Array<CampaignStateChangedNotificationItem>}
-     * @memberof CampaignStateChangedNotification
      */
     data?: Array<CampaignStateChangedNotificationItem>;
 }
@@ -52,7 +46,7 @@ export interface CampaignStateChangedNotification {
  * @export
  */
 export const CampaignStateChangedNotificationNotificationTypeEnum = {
-    CampaignNotification: 'CampaignNotification'
+    CampaignNotification: 'CampaignNotification',
 } as const;
 export type CampaignStateChangedNotificationNotificationTypeEnum = typeof CampaignStateChangedNotificationNotificationTypeEnum[keyof typeof CampaignStateChangedNotificationNotificationTypeEnum];
 

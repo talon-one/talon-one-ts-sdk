@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface CatalogActionFilter {
     /**
      * The name of the attribute to filter on.
-     * @type {string}
-     * @memberof CatalogActionFilter
      */
     attr: string;
     /**
      * The filtering operator.
-     * @type {CatalogActionFilterOpEnum}
-     * @memberof CatalogActionFilter
      */
     op: CatalogActionFilterOpEnum;
     /**
-     * 
-     * @type {any}
-     * @memberof CatalogActionFilter
+     * The value to filter for.
      */
     value: any | null;
 }
@@ -49,7 +43,7 @@ export const CatalogActionFilterOpEnum = {
     Le: 'LE',
     Gt: 'GT',
     Ge: 'GE',
-    In: 'IN'
+    In: 'IN',
 } as const;
 export type CatalogActionFilterOpEnum = typeof CatalogActionFilterOpEnum[keyof typeof CatalogActionFilterOpEnum];
 

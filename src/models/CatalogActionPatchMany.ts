@@ -29,14 +29,10 @@ import {
 export interface CatalogActionPatchMany {
     /**
      * A catalog sync action discriminator of type `PATCH_MANY`.
-     * @type {CatalogActionPatchManyTypeEnum}
-     * @memberof CatalogActionPatchMany
      */
     type: CatalogActionPatchManyTypeEnum;
     /**
      * The payload of sync action.
-     * @type {PatchManyItemsCatalogAction}
-     * @memberof CatalogActionPatchMany
      */
     payload: PatchManyItemsCatalogAction;
 }
@@ -46,7 +42,7 @@ export interface CatalogActionPatchMany {
  * @export
  */
 export const CatalogActionPatchManyTypeEnum = {
-    PatchMany: 'PATCH_MANY'
+    PatchMany: 'PATCH_MANY',
 } as const;
 export type CatalogActionPatchManyTypeEnum = typeof CatalogActionPatchManyTypeEnum[keyof typeof CatalogActionPatchManyTypeEnum];
 

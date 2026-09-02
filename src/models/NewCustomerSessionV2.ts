@@ -46,14 +46,10 @@ export interface NewCustomerSessionV2 {
      * 
      * **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
      * 
-     * @type {string}
-     * @memberof NewCustomerSessionV2
      */
     profileId?: string;
     /**
      * The integration ID of the store. You choose this ID when you create a store.
-     * @type {string}
-     * @memberof NewCustomerSessionV2
      */
     storeIntegrationId?: string;
     /**
@@ -61,8 +57,6 @@ export interface NewCustomerSessionV2 {
      * 
      * These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.
      * 
-     * @type {Array<number>}
-     * @memberof NewCustomerSessionV2
      */
     evaluableCampaignIds?: Array<number>;
     /**
@@ -73,8 +67,6 @@ export interface NewCustomerSessionV2 {
      * - If you [create a coupon budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a coupon code by the time you close it.
      * - In requests where `dry=false`, providing an empty array discards any previous coupons. To avoid this, omit the parameter entirely.
      * 
-     * @type {Array<string>}
-     * @memberof NewCustomerSessionV2
      */
     couponCodes?: Array<string>;
     /**
@@ -85,16 +77,17 @@ export interface NewCustomerSessionV2 {
      * - If you [create a referral budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a referral code by the time you close it.
      * - In requests where `dry=false`, providing an empty value discards the previous referral code. To avoid this, omit the parameter entirely.
      * 
-     * @type {string}
-     * @memberof NewCustomerSessionV2
      */
     referralCode?: string;
     /**
      * Identifier of a loyalty card.
-     * @type {Array<string>}
-     * @memberof NewCustomerSessionV2
      */
     loyaltyCards?: Array<string>;
+    /**
+     * The integration IDs of the unlocked rewards that can be used in this session.
+     * 
+     */
+    rewardIntegrationIds?: Array<string>;
     /**
      * Indicates the current state of the session. Sessions can be created as `open` or `closed`. The state transitions are:
      * 
@@ -108,22 +101,16 @@ export interface NewCustomerSessionV2 {
      * 
      * For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
      * 
-     * @type {NewCustomerSessionV2StateEnum}
-     * @memberof NewCustomerSessionV2
      */
     state?: NewCustomerSessionV2StateEnum;
     /**
      * The items to add to this session. **Do not exceed 1000 items** and ensure the sum of all cart item's `quantity` **does not exceed 10.000** per request.
      * 
-     * @type {Array<CartItem>}
-     * @memberof NewCustomerSessionV2
      */
     cartItems?: Array<CartItem>;
     /**
      * The experiment variant allocations to add to this session.
      * 
-     * @type {Array<ExperimentVariantAllocation>}
-     * @memberof NewCustomerSessionV2
      */
     experimentVariantAllocations?: Array<ExperimentVariantAllocation>;
     /**
@@ -132,8 +119,6 @@ export interface NewCustomerSessionV2 {
      * They must be created in the Campaign Manager
      * before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).
      * 
-     * @type {{ [key: string]: AdditionalCost; }}
-     * @memberof NewCustomerSessionV2
      */
     additionalCosts?: { [key: string]: AdditionalCost; };
     /**
@@ -149,8 +134,6 @@ export interface NewCustomerSessionV2 {
      * - Your campaign has [coupons](https://docs.talon.one/docs/product/campaigns/coupons/coupon-page-overview).
      * - We recommend passing an anonymized (hashed) version of the identifier value.
      * 
-     * @type {Array<string>}
-     * @memberof NewCustomerSessionV2
      */
     identifiers?: Array<string>;
     /**
@@ -159,8 +142,6 @@ export interface NewCustomerSessionV2 {
      * You can use [built-in attributes](https://docs.talon.one/docs/dev/concepts/attributes#built-in-attributes) or [custom ones](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes).
      * Custom attributes must be created in the Campaign Manager before you set them with this property.
      * 
-     * @type {{ [key: string]: any; }}
-     * @memberof NewCustomerSessionV2
      */
     attributes?: { [key: string]: any; };
 }
@@ -173,7 +154,7 @@ export const NewCustomerSessionV2StateEnum = {
     Open: 'open',
     Closed: 'closed',
     PartiallyReturned: 'partially_returned',
-    Cancelled: 'cancelled'
+    Cancelled: 'cancelled',
 } as const;
 export type NewCustomerSessionV2StateEnum = typeof NewCustomerSessionV2StateEnum[keyof typeof NewCustomerSessionV2StateEnum];
 
@@ -202,6 +183,7 @@ export function NewCustomerSessionV2FromJSONTyped(json: any, ignoreDiscriminator
         'couponCodes': json['couponCodes'] == null ? undefined : json['couponCodes'],
         'referralCode': json['referralCode'] == null ? undefined : json['referralCode'],
         'loyaltyCards': json['loyaltyCards'] == null ? undefined : json['loyaltyCards'],
+        'rewardIntegrationIds': json['rewardIntegrationIds'] == null ? undefined : json['rewardIntegrationIds'],
         'state': json['state'] == null ? undefined : json['state'],
         'cartItems': json['cartItems'] == null ? undefined : ((json['cartItems'] as Array<any>).map(CartItemFromJSON)),
         'experimentVariantAllocations': json['experimentVariantAllocations'] == null ? undefined : ((json['experimentVariantAllocations'] as Array<any>).map(ExperimentVariantAllocationFromJSON)),
@@ -228,6 +210,7 @@ export function NewCustomerSessionV2ToJSONTyped(value?: NewCustomerSessionV2 | n
         'couponCodes': value['couponCodes'],
         'referralCode': value['referralCode'],
         'loyaltyCards': value['loyaltyCards'],
+        'rewardIntegrationIds': value['rewardIntegrationIds'],
         'state': value['state'],
         'cartItems': value['cartItems'] == null ? undefined : ((value['cartItems'] as Array<any>).map(CartItemToJSON)),
         'experimentVariantAllocations': value['experimentVariantAllocations'] == null ? undefined : ((value['experimentVariantAllocations'] as Array<any>).map(ExperimentVariantAllocationToJSON)),

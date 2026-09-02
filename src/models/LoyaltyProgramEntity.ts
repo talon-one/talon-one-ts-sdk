@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface LoyaltyProgramEntity {
     /**
      * The ID of the loyalty program that owns this entity.
-     * @type {number}
-     * @memberof LoyaltyProgramEntity
      */
     programID: number;
     /**
      * The integration name of the loyalty program that owns this entity.
-     * @type {string}
-     * @memberof LoyaltyProgramEntity
      */
     programName?: string;
     /**
      * The Campaign Manager-displayed name of the loyalty program that owns this entity.
-     * @type {string}
-     * @memberof LoyaltyProgramEntity
      */
     programTitle?: string;
 }

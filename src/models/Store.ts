@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface Store {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Store
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Store
      */
     created: Date;
     /**
      * The name of the store.
-     * @type {string}
-     * @memberof Store
      */
     name: string;
     /**
      * The description of the store.
-     * @type {string}
-     * @memberof Store
      */
     description: string;
     /**
      * The attributes of the store.
-     * @type {object}
-     * @memberof Store
      */
     attributes?: object;
     /**
@@ -54,26 +44,18 @@ export interface Store {
      * 
      * **Note**: You cannot edit the `integrationId` after the store has been created.
      * 
-     * @type {string}
-     * @memberof Store
      */
     integrationId: string;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof Store
      */
     applicationId: number;
     /**
      * Timestamp of the most recent update on this entity.
-     * @type {Date}
-     * @memberof Store
      */
     updated: Date;
     /**
      * A list of IDs of the campaigns that are linked with current store.
-     * @type {Array<number>}
-     * @memberof Store
      */
     linkedCampaignIds?: Array<number>;
 }
@@ -104,13 +86,13 @@ export function StoreFromJSONTyped(json: any, ignoreDiscriminator: boolean): Sto
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'name': json['name'],
         'description': json['description'],
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'integrationId': json['integrationId'],
         'applicationId': json['applicationId'],
-        'updated': (json['updated'] == null ? undefined as any : new Date(json['updated'])),
+        'updated': (json['updated'] == null ? json['updated'] : parseDateTime(json['updated'])),
         'linkedCampaignIds': json['linkedCampaignIds'] == null ? undefined : json['linkedCampaignIds'],
     };
 }
@@ -127,13 +109,13 @@ export function StoreToJSONTyped(value?: Store | null, ignoreDiscriminator: bool
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'name': value['name'],
         'description': value['description'],
         'attributes': value['attributes'],
         'integrationId': value['integrationId'],
         'applicationId': value['applicationId'],
-        'updated': value['updated'] == null ? undefined : value['updated'].toISOString(),
+        'updated': value['updated'] == null ? undefined : serializeDateTime(value['updated']),
         'linkedCampaignIds': value['linkedCampaignIds'],
     };
 }

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface NewLoyaltyTier {
     /**
      * The name of the tier.
-     * @type {string}
-     * @memberof NewLoyaltyTier
      */
     name: string;
     /**
      * The minimum amount of points required to enter the tier.
-     * @type {number}
-     * @memberof NewLoyaltyTier
      */
     minPoints: number;
 }

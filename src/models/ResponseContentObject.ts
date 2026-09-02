@@ -22,8 +22,6 @@ export interface ResponseContentObject {
     /**
      * Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints.
      * 
-     * @type {Array<ResponseContentObjectResponseContentEnum>}
-     * @memberof ResponseContentObject
      */
     responseContent?: Array<ResponseContentObjectResponseContentEnum>;
 }
@@ -41,7 +39,7 @@ export const ResponseContentObjectResponseContentEnum = {
     RuleFailureReasons: 'ruleFailureReasons',
     CampaignEligibility: 'campaignEligibility',
     Achievements: 'achievements',
-    UnlockedRewards: 'unlockedRewards'
+    UnlockedRewards: 'unlockedRewards',
 } as const;
 export type ResponseContentObjectResponseContentEnum = typeof ResponseContentObjectResponseContentEnum[keyof typeof ResponseContentObjectResponseContentEnum];
 

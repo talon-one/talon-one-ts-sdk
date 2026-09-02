@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface OutgoingIntegrationBrazePolicy {
     /**
      * The base URL of your Braze deployment.
-     * @type {string}
-     * @memberof OutgoingIntegrationBrazePolicy
      */
     baseUrl: string;
     /**
      * The API key of your Braze deployment.
-     * @type {string}
-     * @memberof OutgoingIntegrationBrazePolicy
      */
     apiKey: string;
 }

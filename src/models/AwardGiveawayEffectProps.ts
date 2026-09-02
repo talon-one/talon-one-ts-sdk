@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface AwardGiveawayEffectProps {
     /**
      * The internal ID of the giveaway pool.
-     * @type {number}
-     * @memberof AwardGiveawayEffectProps
      */
     poolId: number;
     /**
      * The name of the giveaway pool.
-     * @type {string}
-     * @memberof AwardGiveawayEffectProps
      */
     poolName: string;
     /**
      * The integration ID of the customer that receives the giveaway.
-     * @type {string}
-     * @memberof AwardGiveawayEffectProps
      */
     recipientIntegrationId: string;
     /**
      * The internal ID of the giveaway.
-     * @type {number}
-     * @memberof AwardGiveawayEffectProps
      */
     giveawayId: number;
     /**
      * The giveaway code to be rewarded.
-     * @type {string}
-     * @memberof AwardGiveawayEffectProps
      */
     code: string;
 }

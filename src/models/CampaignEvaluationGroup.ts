@@ -21,50 +21,34 @@ import { mapValues } from '../runtime';
 export interface CampaignEvaluationGroup {
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof CampaignEvaluationGroup
      */
     applicationId: number;
     /**
      * The name of the campaign evaluation group.
-     * @type {string}
-     * @memberof CampaignEvaluationGroup
      */
     name: string;
     /**
      * The ID of the parent group that contains the campaign evaluation group.
-     * @type {number}
-     * @memberof CampaignEvaluationGroup
      */
     parentId: number;
     /**
      * A description of the campaign evaluation group.
-     * @type {string}
-     * @memberof CampaignEvaluationGroup
      */
     description?: string;
     /**
      * The mode by which campaigns in the campaign evaluation group are evaluated.
-     * @type {CampaignEvaluationGroupEvaluationModeEnum}
-     * @memberof CampaignEvaluationGroup
      */
     evaluationMode: CampaignEvaluationGroupEvaluationModeEnum;
     /**
      * The evaluation scope of the campaign evaluation group.
-     * @type {CampaignEvaluationGroupEvaluationScopeEnum}
-     * @memberof CampaignEvaluationGroup
      */
     evaluationScope: CampaignEvaluationGroupEvaluationScopeEnum;
     /**
      * An indicator of whether the campaign evaluation group is locked for modification.
-     * @type {boolean}
-     * @memberof CampaignEvaluationGroup
      */
     locked: boolean;
     /**
      * Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints.
-     * @type {number}
-     * @memberof CampaignEvaluationGroup
      */
     id: number;
 }
@@ -77,7 +61,7 @@ export const CampaignEvaluationGroupEvaluationModeEnum = {
     Stackable: 'stackable',
     ListOrder: 'listOrder',
     LowestDiscount: 'lowestDiscount',
-    HighestDiscount: 'highestDiscount'
+    HighestDiscount: 'highestDiscount',
 } as const;
 export type CampaignEvaluationGroupEvaluationModeEnum = typeof CampaignEvaluationGroupEvaluationModeEnum[keyof typeof CampaignEvaluationGroupEvaluationModeEnum];
 
@@ -86,7 +70,7 @@ export type CampaignEvaluationGroupEvaluationModeEnum = typeof CampaignEvaluatio
  */
 export const CampaignEvaluationGroupEvaluationScopeEnum = {
     CartItem: 'cartItem',
-    Session: 'session'
+    Session: 'session',
 } as const;
 export type CampaignEvaluationGroupEvaluationScopeEnum = typeof CampaignEvaluationGroupEvaluationScopeEnum[keyof typeof CampaignEvaluationGroupEvaluationScopeEnum];
 

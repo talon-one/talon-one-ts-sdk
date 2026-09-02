@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LoyaltyLedgerEntryFlags } from './LoyaltyLedgerEntryFlags';
 import {
     LoyaltyLedgerEntryFlagsFromJSON,
@@ -29,32 +29,22 @@ import {
 export interface LedgerTransactionLogEntryIntegrationAPI {
     /**
      * Unique identifier of the transaction in the UUID format.
-     * @type {string}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     transactionUUID: string;
     /**
      * Date and time the loyalty transaction occurred.
-     * @type {Date}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     created: Date;
     /**
      * ID of the loyalty program.
-     * @type {number}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     programId: number;
     /**
      * ID of the customer session where the transaction occurred.
-     * @type {string}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     customerSessionId?: string;
     /**
      * The integration ID of the store where the transaction occurred. Only set for transactions created by a customer session or event that referenced a store.
-     * @type {string}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     storeIntegrationId?: string;
     /**
@@ -62,14 +52,10 @@ export interface LedgerTransactionLogEntryIntegrationAPI {
      *   - `addition`: Signifies added points.
      *   - `subtraction`: Signifies deducted points.
      * 
-     * @type {LedgerTransactionLogEntryIntegrationAPITypeEnum}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     type: LedgerTransactionLogEntryIntegrationAPITypeEnum;
     /**
      * Name or reason of the loyalty ledger transaction.
-     * @type {string}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     name: string;
     /**
@@ -78,8 +64,6 @@ export interface LedgerTransactionLogEntryIntegrationAPI {
      *   - `on_action`: Points become active based on the customer's action.
      *   - a timestamp value: Points become active at a given date and time.
      * 
-     * @type {string}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     startDate: string;
     /**
@@ -87,44 +71,30 @@ export interface LedgerTransactionLogEntryIntegrationAPI {
      *   - `unlimited`: Points have no expiration date.
      *   - `timestamp value`: Points expire on the given date.
      * 
-     * @type {string}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     expiryDate: string;
     /**
      * ID of the subledger.
-     * @type {string}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     subledgerId: string;
     /**
      * Amount of loyalty points added or deducted in the transaction.
-     * @type {number}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     amount: number;
     /**
      * ID of the loyalty ledger transaction.
-     * @type {number}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     id: number;
     /**
      * The ID of the ruleset containing the rule that triggered this effect.
-     * @type {number}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     rulesetId?: number;
     /**
      * The name of the rule that triggered this effect.
-     * @type {string}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     ruleName?: string;
     /**
      * The flags of the transaction, when applicable. The `createsNegativeBalance`  flag indicates whether the transaction results in a negative balance.
-     * @type {LoyaltyLedgerEntryFlags}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     flags?: LoyaltyLedgerEntryFlags;
     /**
@@ -132,8 +102,6 @@ export interface LedgerTransactionLogEntryIntegrationAPI {
      * 
      * **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
      * 
-     * @type {string}
-     * @memberof LedgerTransactionLogEntryIntegrationAPI
      */
     validityDuration?: string;
 }
@@ -144,7 +112,7 @@ export interface LedgerTransactionLogEntryIntegrationAPI {
  */
 export const LedgerTransactionLogEntryIntegrationAPITypeEnum = {
     Addition: 'addition',
-    Subtraction: 'subtraction'
+    Subtraction: 'subtraction',
 } as const;
 export type LedgerTransactionLogEntryIntegrationAPITypeEnum = typeof LedgerTransactionLogEntryIntegrationAPITypeEnum[keyof typeof LedgerTransactionLogEntryIntegrationAPITypeEnum];
 
@@ -178,7 +146,7 @@ export function LedgerTransactionLogEntryIntegrationAPIFromJSONTyped(json: any, 
     return {
         
         'transactionUUID': json['transactionUUID'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'programId': json['programId'],
         'customerSessionId': json['customerSessionId'] == null ? undefined : json['customerSessionId'],
         'storeIntegrationId': json['storeIntegrationId'] == null ? undefined : json['storeIntegrationId'],
@@ -208,7 +176,7 @@ export function LedgerTransactionLogEntryIntegrationAPIToJSONTyped(value?: Ledge
     return {
         
         'transactionUUID': value['transactionUUID'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'programId': value['programId'],
         'customerSessionId': value['customerSessionId'],
         'storeIntegrationId': value['storeIntegrationId'],

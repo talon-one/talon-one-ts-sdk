@@ -29,20 +29,14 @@ import {
 export interface TierWillDowngradeNotification {
     /**
      * 
-     * @type {number}
-     * @memberof TierWillDowngradeNotification
      */
     totalResultSize: number;
     /**
      * The array of upcoming tier downgrade notifications.
-     * @type {Array<TierWillDowngradeData>}
-     * @memberof TierWillDowngradeNotification
      */
     data: Array<TierWillDowngradeData>;
     /**
      * The type of notification.
-     * @type {TierWillDowngradeNotificationNotificationTypeEnum}
-     * @memberof TierWillDowngradeNotification
      */
     notificationType: TierWillDowngradeNotificationNotificationTypeEnum;
 }
@@ -52,7 +46,7 @@ export interface TierWillDowngradeNotification {
  * @export
  */
 export const TierWillDowngradeNotificationNotificationTypeEnum = {
-    TierWillDowngrade: 'TierWillDowngrade'
+    TierWillDowngrade: 'TierWillDowngrade',
 } as const;
 export type TierWillDowngradeNotificationNotificationTypeEnum = typeof TierWillDowngradeNotificationNotificationTypeEnum[keyof typeof TierWillDowngradeNotificationNotificationTypeEnum];
 

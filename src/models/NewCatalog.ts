@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface NewCatalog {
     /**
      * The cart item catalog name.
-     * @type {string}
-     * @memberof NewCatalog
      */
     name: string;
     /**
      * A description of this cart item catalog.
-     * @type {string}
-     * @memberof NewCatalog
      */
     description: string;
     /**
      * A list of the IDs of the applications that are subscribed to this catalog.
-     * @type {Array<number>}
-     * @memberof NewCatalog
      */
     subscribedApplicationsIds?: Array<number>;
 }

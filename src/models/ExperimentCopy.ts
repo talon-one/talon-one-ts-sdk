@@ -30,14 +30,10 @@ export interface ExperimentCopy {
     /**
      * The ID of the Application to copy the experiment. It is displayed in your Talon.One deployment URL.
      * 
-     * @type {number}
-     * @memberof ExperimentCopy
      */
     targetApplicationId: number;
     /**
      * 
-     * @type {ExperimentCopyExperiment}
-     * @memberof ExperimentCopy
      */
     experiment: ExperimentCopyExperiment;
 }

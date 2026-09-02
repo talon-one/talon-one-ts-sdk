@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface GenerateItemFilterDescription {
     /**
      * An array of item filter Talang expressions.
-     * @type {Array<object>}
-     * @memberof GenerateItemFilterDescription
      */
     itemFilter: Array<object>;
 }

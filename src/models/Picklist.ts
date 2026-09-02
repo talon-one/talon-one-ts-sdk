@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,50 +21,34 @@ import { mapValues } from '../runtime';
 export interface Picklist {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Picklist
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Picklist
      */
     created: Date;
     /**
      * The type of allowed values in the picklist. If the type `time` is chosen, it must be an RFC3339 timestamp string.
-     * @type {PicklistTypeEnum}
-     * @memberof Picklist
      */
     type: PicklistTypeEnum;
     /**
      * The list of allowed values provided by this picklist.
-     * @type {Array<string>}
-     * @memberof Picklist
      */
     values: Array<string>;
     /**
      * ID of the user who last updated this effect if available.
-     * @type {number}
-     * @memberof Picklist
      */
     modifiedBy?: number;
     /**
      * ID of the user who created this effect.
-     * @type {number}
-     * @memberof Picklist
      */
     createdBy: number;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof Picklist
      */
     accountId?: number;
     /**
      * Imported flag shows that a picklist is imported by a CSV file or not
-     * @type {boolean}
-     * @memberof Picklist
      */
     imported?: boolean;
 }
@@ -77,7 +61,7 @@ export const PicklistTypeEnum = {
     String: 'string',
     Boolean: 'boolean',
     Number: 'number',
-    Time: 'time'
+    Time: 'time',
 } as const;
 export type PicklistTypeEnum = typeof PicklistTypeEnum[keyof typeof PicklistTypeEnum];
 
@@ -106,7 +90,7 @@ export function PicklistFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'type': json['type'],
         'values': json['values'],
         'modifiedBy': json['modifiedBy'] == null ? undefined : json['modifiedBy'],
@@ -128,7 +112,7 @@ export function PicklistToJSONTyped(value?: Picklist | null, ignoreDiscriminator
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'type': value['type'],
         'values': value['values'],
         'modifiedBy': value['modifiedBy'],

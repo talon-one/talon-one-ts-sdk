@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface UpdateAttributeEffectProps {
     /**
      * The entity type and the attribute name.
-     * @type {string}
-     * @memberof UpdateAttributeEffectProps
      */
     path: string;
     /**
-     * 
-     * @type {any}
-     * @memberof UpdateAttributeEffectProps
+     * The new value of the attribute.
      */
     value: any | null;
 }

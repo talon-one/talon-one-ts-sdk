@@ -21,16 +21,12 @@ import { mapValues } from '../runtime';
 export interface RoleV2PermissionSet {
     /**
      * Name of the permission set.
-     * @type {string}
-     * @memberof RoleV2PermissionSet
      */
     name: string;
     /**
      * List of logical operations in the permission set.
      * Each logical operation must be shown under the `x-permission` tag on an endpoint level.
      * 
-     * @type {Array<string>}
-     * @memberof RoleV2PermissionSet
      */
     logicalOperations: Array<string>;
 }

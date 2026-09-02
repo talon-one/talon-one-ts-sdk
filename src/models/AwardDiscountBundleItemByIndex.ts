@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface AwardDiscountBundleItemByIndex {
     /**
      * A bundle-item selector of type `byIndex`.
-     * @type {AwardDiscountBundleItemByIndexTypeEnum}
-     * @memberof AwardDiscountBundleItemByIndex
      */
     type: AwardDiscountBundleItemByIndexTypeEnum;
     /**
      * The zero-based index of the slot within the bundle.
-     * @type {number}
-     * @memberof AwardDiscountBundleItemByIndex
      */
     value: number;
 }
@@ -38,7 +34,7 @@ export interface AwardDiscountBundleItemByIndex {
  * @export
  */
 export const AwardDiscountBundleItemByIndexTypeEnum = {
-    ByIndex: 'byIndex'
+    ByIndex: 'byIndex',
 } as const;
 export type AwardDiscountBundleItemByIndexTypeEnum = typeof AwardDiscountBundleItemByIndexTypeEnum[keyof typeof AwardDiscountBundleItemByIndexTypeEnum];
 

@@ -29,20 +29,14 @@ import {
 export interface NewCampaignStoreBudget {
     /**
      * 
-     * @type {NewCampaignStoreBudgetActionEnum}
-     * @memberof NewCampaignStoreBudget
      */
     action: NewCampaignStoreBudgetActionEnum;
     /**
      * The set of budget limits for stores linked to the campaign.
-     * @type {Array<NewCampaignStoreBudgetStoreLimit>}
-     * @memberof NewCampaignStoreBudget
      */
     storeLimits: Array<NewCampaignStoreBudgetStoreLimit>;
     /**
      * 
-     * @type {NewCampaignStoreBudgetPeriodEnum}
-     * @memberof NewCampaignStoreBudget
      */
     period?: NewCampaignStoreBudgetPeriodEnum;
 }
@@ -52,7 +46,7 @@ export interface NewCampaignStoreBudget {
  * @export
  */
 export const NewCampaignStoreBudgetActionEnum = {
-    SetDiscount: 'setDiscount'
+    SetDiscount: 'setDiscount',
 } as const;
 export type NewCampaignStoreBudgetActionEnum = typeof NewCampaignStoreBudgetActionEnum[keyof typeof NewCampaignStoreBudgetActionEnum];
 
@@ -63,7 +57,7 @@ export const NewCampaignStoreBudgetPeriodEnum = {
     Daily: 'daily',
     Weekly: 'weekly',
     Monthly: 'monthly',
-    Yearly: 'yearly'
+    Yearly: 'yearly',
 } as const;
 export type NewCampaignStoreBudgetPeriodEnum = typeof NewCampaignStoreBudgetPeriodEnum[keyof typeof NewCampaignStoreBudgetPeriodEnum];
 

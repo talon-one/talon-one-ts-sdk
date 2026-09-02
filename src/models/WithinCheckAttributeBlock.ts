@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface WithinCheckAttributeBlock {
     /**
      * The range comparison operator. Must be `within` or `not(within)`.
-     * @type {WithinCheckAttributeBlockOperatorEnum}
-     * @memberof WithinCheckAttributeBlock
      */
     operator?: WithinCheckAttributeBlockOperatorEnum;
     /**
-     * 
-     * @type {any}
-     * @memberof WithinCheckAttributeBlock
+     * The start value for the `within` operator.
      */
     start: any | null;
     /**
-     * 
-     * @type {any}
-     * @memberof WithinCheckAttributeBlock
+     * The end value for the `within` operator.
      */
     end: any | null;
     /**
      * When `true`, the `start` value is included in the range for the `within` operator.
-     * @type {boolean}
-     * @memberof WithinCheckAttributeBlock
      */
     startInclusive?: boolean;
     /**
      * When `true`, the `end` value is included in the range for the `within` operator.
-     * @type {boolean}
-     * @memberof WithinCheckAttributeBlock
      */
     endInclusive?: boolean;
     /**
      * Indicates whether the `within` operator ignores time zones and compares the wall-clock time only. When `false`, time zones are taken into account.
-     * @type {boolean}
-     * @memberof WithinCheckAttributeBlock
      */
     timezoneInsensitive?: boolean;
 }
@@ -63,7 +51,7 @@ export interface WithinCheckAttributeBlock {
  */
 export const WithinCheckAttributeBlockOperatorEnum = {
     Within: 'within',
-    NotWithin: 'not(within)'
+    NotWithin: 'not(within)',
 } as const;
 export type WithinCheckAttributeBlockOperatorEnum = typeof WithinCheckAttributeBlockOperatorEnum[keyof typeof WithinCheckAttributeBlockOperatorEnum];
 

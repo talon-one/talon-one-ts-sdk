@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CampaignEligibilityDetails } from './CampaignEligibilityDetails';
 import {
     CampaignEligibilityDetailsFromJSON,
@@ -43,81 +43,55 @@ import {
 export interface CampaignEligibility {
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof CampaignEligibility
      */
     applicationId: number;
     /**
      * Unique ID of Campaign.
-     * @type {number}
-     * @memberof CampaignEligibility
      */
     id: number;
     /**
      * The name of the campaign.
-     * @type {string}
-     * @memberof CampaignEligibility
      */
     name: string;
     /**
      * A detailed description of the campaign.
-     * @type {string}
-     * @memberof CampaignEligibility
      */
     description?: string;
     /**
      * Timestamp when the campaign will become active.
-     * @type {Date}
-     * @memberof CampaignEligibility
      */
     startTime?: Date;
     /**
      * Timestamp when the campaign will become inactive.
-     * @type {Date}
-     * @memberof CampaignEligibility
      */
     endTime?: Date;
     /**
      * Arbitrary properties associated with this campaign.
-     * @type {object}
-     * @memberof CampaignEligibility
      */
     attributes?: object;
     /**
      * The state of the campaign.
      * 
-     * @type {CampaignEligibilityStateEnum}
-     * @memberof CampaignEligibility
      */
     state: CampaignEligibilityStateEnum;
     /**
      * A list of tags for the campaign.
-     * @type {Array<string>}
-     * @memberof CampaignEligibility
      */
     tags: Array<string>;
     /**
      * The features enabled in this campaign.
-     * @type {Array<CampaignEligibilityFeaturesEnum>}
-     * @memberof CampaignEligibility
      */
     features: Array<CampaignEligibilityFeaturesEnum>;
     /**
      * The customer's eligibility for each campaign in the current customer session.
-     * @type {Array<CampaignEligibilityDetails>}
-     * @memberof CampaignEligibility
      */
     eligibility: Array<CampaignEligibilityDetails>;
     /**
      * A list of rules containing customer-facing details of the rewards defined in the campaign.
-     * @type {Array<RuleMetadataEligibility>}
-     * @memberof CampaignEligibility
      */
     rules: Array<RuleMetadataEligibility>;
     /**
      * 
-     * @type {CampaignEligibilityExperiment}
-     * @memberof CampaignEligibility
      */
     experiment?: CampaignEligibilityExperiment;
 }
@@ -127,7 +101,7 @@ export interface CampaignEligibility {
  * @export
  */
 export const CampaignEligibilityStateEnum = {
-    Enabled: 'enabled'
+    Enabled: 'enabled',
 } as const;
 export type CampaignEligibilityStateEnum = typeof CampaignEligibilityStateEnum[keyof typeof CampaignEligibilityStateEnum];
 
@@ -140,7 +114,8 @@ export const CampaignEligibilityFeaturesEnum = {
     Loyalty: 'loyalty',
     Giveaways: 'giveaways',
     Strikethrough: 'strikethrough',
-    Achievements: 'achievements'
+    Achievements: 'achievements',
+    AdvancedEvents: 'advancedEvents',
 } as const;
 export type CampaignEligibilityFeaturesEnum = typeof CampaignEligibilityFeaturesEnum[keyof typeof CampaignEligibilityFeaturesEnum];
 
@@ -177,8 +152,8 @@ export function CampaignEligibilityFromJSONTyped(json: any, ignoreDiscriminator:
         'id': json['id'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
-        'endTime': json['endTime'] == null ? undefined : (new Date(json['endTime'])),
+        'startTime': json['startTime'] == null ? undefined : (parseDateTime(json['startTime'])),
+        'endTime': json['endTime'] == null ? undefined : (parseDateTime(json['endTime'])),
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'state': json['state'],
         'tags': json['tags'],
@@ -204,8 +179,8 @@ export function CampaignEligibilityToJSONTyped(value?: CampaignEligibility | nul
         'id': value['id'],
         'name': value['name'],
         'description': value['description'],
-        'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
-        'endTime': value['endTime'] == null ? value['endTime'] : value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? value['startTime'] : serializeDateTime(value['startTime']),
+        'endTime': value['endTime'] == null ? value['endTime'] : serializeDateTime(value['endTime']),
         'attributes': value['attributes'],
         'state': value['state'],
         'tags': value['tags'],

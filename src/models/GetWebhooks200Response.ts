@@ -29,14 +29,10 @@ import {
 export interface GetWebhooks200Response {
     /**
      * 
-     * @type {number}
-     * @memberof GetWebhooks200Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<WebhookWithOutgoingIntegrationDetails>}
-     * @memberof GetWebhooks200Response
      */
     data: Array<WebhookWithOutgoingIntegrationDetails>;
 }

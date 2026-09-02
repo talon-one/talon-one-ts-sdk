@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { AnalyticsDataPointWithTrendAndUplift } from './AnalyticsDataPointWithTrendAndUplift';
 import {
     AnalyticsDataPointWithTrendAndUpliftFromJSON,
@@ -43,32 +43,22 @@ import {
 export interface ApplicationCampaignAnalytics {
     /**
      * The start of the aggregation time frame in UTC.
-     * @type {Date}
-     * @memberof ApplicationCampaignAnalytics
      */
     startTime: Date;
     /**
      * The end of the aggregation time frame in UTC.
-     * @type {Date}
-     * @memberof ApplicationCampaignAnalytics
      */
     endTime: Date;
     /**
      * The ID of the campaign.
-     * @type {number}
-     * @memberof ApplicationCampaignAnalytics
      */
     campaignId: number;
     /**
      * The name of the campaign.
-     * @type {string}
-     * @memberof ApplicationCampaignAnalytics
      */
     campaignName: string;
     /**
      * A list of tags for the campaign.
-     * @type {Array<string>}
-     * @memberof ApplicationCampaignAnalytics
      */
     campaignTags: Array<string>;
     /**
@@ -76,44 +66,30 @@ export interface ApplicationCampaignAnalytics {
      * 
      * **Note:** A disabled or archived campaign is not evaluated for rules or coupons.
      * 
-     * @type {ApplicationCampaignAnalyticsCampaignStateEnum}
-     * @memberof ApplicationCampaignAnalytics
      */
     campaignState: ApplicationCampaignAnalyticsCampaignStateEnum;
     /**
      * The total, pre-discount value of all items purchased in a customer session.
-     * @type {AnalyticsDataPointWithTrendAndInfluencedRate}
-     * @memberof ApplicationCampaignAnalytics
      */
     totalRevenue?: AnalyticsDataPointWithTrendAndInfluencedRate;
     /**
      * The number of all closed sessions. The `influenced` value includes only sessions with at least one applied effect.
-     * @type {AnalyticsDataPointWithTrendAndInfluencedRate}
-     * @memberof ApplicationCampaignAnalytics
      */
     sessionsCount?: AnalyticsDataPointWithTrendAndInfluencedRate;
     /**
      * The number of items from sessions divided by the number of sessions. The `influenced` value includes only sessions with at least one applied effect.
-     * @type {AnalyticsDataPointWithTrendAndUplift}
-     * @memberof ApplicationCampaignAnalytics
      */
     avgItemsPerSession?: AnalyticsDataPointWithTrendAndUplift;
     /**
      * The average customer session value, calculated by dividing the revenue value by the number of sessions. The `influenced` value includes only sessions with at least one applied effect.
-     * @type {AnalyticsDataPointWithTrendAndUplift}
-     * @memberof ApplicationCampaignAnalytics
      */
     avgSessionValue?: AnalyticsDataPointWithTrendAndUplift;
     /**
      * The total value of discounts given for cart items in influenced sessions.
-     * @type {AnalyticsDataPointWithTrend}
-     * @memberof ApplicationCampaignAnalytics
      */
     totalDiscounts?: AnalyticsDataPointWithTrend;
     /**
      * The number of times a coupon was successfully redeemed in influenced sessions.
-     * @type {AnalyticsDataPointWithTrend}
-     * @memberof ApplicationCampaignAnalytics
      */
     couponsCount?: AnalyticsDataPointWithTrend;
 }
@@ -128,7 +104,7 @@ export const ApplicationCampaignAnalyticsCampaignStateEnum = {
     Running: 'running',
     Disabled: 'disabled',
     Archived: 'archived',
-    Staged: 'staged'
+    Staged: 'staged',
 } as const;
 export type ApplicationCampaignAnalyticsCampaignStateEnum = typeof ApplicationCampaignAnalyticsCampaignStateEnum[keyof typeof ApplicationCampaignAnalyticsCampaignStateEnum];
 
@@ -157,8 +133,8 @@ export function ApplicationCampaignAnalyticsFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'startTime': (json['startTime'] == null ? undefined as any : new Date(json['startTime'])),
-        'endTime': (json['endTime'] == null ? undefined as any : new Date(json['endTime'])),
+        'startTime': (json['startTime'] == null ? json['startTime'] : parseDateTime(json['startTime'])),
+        'endTime': (json['endTime'] == null ? json['endTime'] : parseDateTime(json['endTime'])),
         'campaignId': json['campaignId'],
         'campaignName': json['campaignName'],
         'campaignTags': json['campaignTags'],
@@ -183,8 +159,8 @@ export function ApplicationCampaignAnalyticsToJSONTyped(value?: ApplicationCampa
 
     return {
         
-        'startTime': value['startTime'] == null ? undefined : value['startTime'].toISOString(),
-        'endTime': value['endTime'] == null ? undefined : value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? undefined : serializeDateTime(value['startTime']),
+        'endTime': value['endTime'] == null ? undefined : serializeDateTime(value['endTime']),
         'campaignId': value['campaignId'],
         'campaignName': value['campaignName'],
         'campaignTags': value['campaignTags'],

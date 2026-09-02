@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface DigitalPass {
     /**
      * The ID of the generated digital pass.
-     * @type {string}
-     * @memberof DigitalPass
      */
     passId: string;
     /**
      * The ID of the digital pass template used to generate the pass.
-     * @type {string}
-     * @memberof DigitalPass
      */
     passTemplateId: string;
     /**
      * The status of the digital pass.
-     * @type {DigitalPassStatusEnum}
-     * @memberof DigitalPass
      */
     status: DigitalPassStatusEnum;
     /**
      * The URL you can use to let the customer add the digital pass to their wallet.
-     * @type {string}
-     * @memberof DigitalPass
      */
     passUrl: string;
 }
@@ -50,7 +42,7 @@ export interface DigitalPass {
  * @export
  */
 export const DigitalPassStatusEnum = {
-    Created: 'created'
+    Created: 'created',
 } as const;
 export type DigitalPassStatusEnum = typeof DigitalPassStatusEnum[keyof typeof DigitalPassStatusEnum];
 

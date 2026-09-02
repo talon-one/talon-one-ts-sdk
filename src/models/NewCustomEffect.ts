@@ -29,50 +29,34 @@ import {
 export interface NewCustomEffect {
     /**
      * The IDs of the Applications that are related to this entity.
-     * @type {Array<number>}
-     * @memberof NewCustomEffect
      */
     applicationIds: Array<number>;
     /**
      * Indicates if this effect is per item or not.
-     * @type {boolean}
-     * @memberof NewCustomEffect
      */
     isPerItem?: boolean;
     /**
      * The name of this effect.
-     * @type {string}
-     * @memberof NewCustomEffect
      */
     name: string;
     /**
      * The title of this effect.
-     * @type {string}
-     * @memberof NewCustomEffect
      */
     title: string;
     /**
      * The JSON payload of this effect.
-     * @type {string}
-     * @memberof NewCustomEffect
      */
     payload: string;
     /**
      * The description of this effect.
-     * @type {string}
-     * @memberof NewCustomEffect
      */
     description?: string;
     /**
      * Determines if this effect is active.
-     * @type {boolean}
-     * @memberof NewCustomEffect
      */
     enabled: boolean;
     /**
      * Array of template argument definitions.
-     * @type {Array<TemplateArgDef>}
-     * @memberof NewCustomEffect
      */
     params?: Array<TemplateArgDef>;
 }

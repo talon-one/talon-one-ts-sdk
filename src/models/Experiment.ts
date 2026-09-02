@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { Campaign } from './Campaign';
 import {
     CampaignFromJSON,
@@ -36,74 +36,52 @@ import {
 export interface Experiment {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Experiment
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Experiment
      */
     created: Date;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof Experiment
      */
     applicationId: number;
     /**
      * The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.
      * 
-     * @type {boolean}
-     * @memberof Experiment
      */
     isVariantAssignmentExternal?: boolean;
     /**
      * 
-     * @type {Campaign}
-     * @memberof Experiment
      */
     campaign?: Campaign;
     /**
      * The date and time the experiment was activated.
      * 
-     * @type {Date}
-     * @memberof Experiment
      */
     activated?: Date;
     /**
      * A disabled experiment is not evaluated for rules or coupons.
      * 
-     * @type {ExperimentStateEnum}
-     * @memberof Experiment
      */
     state: ExperimentStateEnum;
     /**
      * 
-     * @type {Array<ExperimentVariant>}
-     * @memberof Experiment
      */
     variants?: Array<ExperimentVariant>;
     /**
      * The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to `other`, multiple metrics are used.
      * 
-     * @type {ExperimentGoalTypeEnum}
-     * @memberof Experiment
      */
     goalType: ExperimentGoalTypeEnum;
     /**
      * A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal.
      * 
-     * @type {string}
-     * @memberof Experiment
      */
     goalDescription?: string;
     /**
      * The date and time the experiment was deleted.
      * 
-     * @type {Date}
-     * @memberof Experiment
      */
     deletedat?: Date;
 }
@@ -115,7 +93,7 @@ export interface Experiment {
 export const ExperimentStateEnum = {
     Enabled: 'enabled',
     Disabled: 'disabled',
-    Archived: 'archived'
+    Archived: 'archived',
 } as const;
 export type ExperimentStateEnum = typeof ExperimentStateEnum[keyof typeof ExperimentStateEnum];
 
@@ -126,7 +104,7 @@ export const ExperimentGoalTypeEnum = {
     Other: 'other',
     MaximizeRevenue: 'maximize_revenue',
     OptimizeDiscountEfficiency: 'optimize_discount_efficiency',
-    MaximizeItemsSold: 'maximize_items_sold'
+    MaximizeItemsSold: 'maximize_items_sold',
 } as const;
 export type ExperimentGoalTypeEnum = typeof ExperimentGoalTypeEnum[keyof typeof ExperimentGoalTypeEnum];
 
@@ -155,16 +133,16 @@ export function ExperimentFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'applicationId': json['applicationId'],
         'isVariantAssignmentExternal': json['isVariantAssignmentExternal'] == null ? undefined : json['isVariantAssignmentExternal'],
         'campaign': json['campaign'] == null ? undefined : CampaignFromJSON(json['campaign']),
-        'activated': json['activated'] == null ? undefined : (new Date(json['activated'])),
+        'activated': json['activated'] == null ? undefined : (parseDateTime(json['activated'])),
         'state': json['state'],
         'variants': json['variants'] == null ? undefined : ((json['variants'] as Array<any>).map(ExperimentVariantFromJSON)),
         'goalType': json['goalType'],
         'goalDescription': json['goalDescription'] == null ? undefined : json['goalDescription'],
-        'deletedat': json['deletedat'] == null ? undefined : (new Date(json['deletedat'])),
+        'deletedat': json['deletedat'] == null ? undefined : (parseDateTime(json['deletedat'])),
     };
 }
 
@@ -180,16 +158,16 @@ export function ExperimentToJSONTyped(value?: Experiment | null, ignoreDiscrimin
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'applicationId': value['applicationId'],
         'isVariantAssignmentExternal': value['isVariantAssignmentExternal'],
         'campaign': CampaignToJSON(value['campaign']),
-        'activated': value['activated'] == null ? value['activated'] : value['activated'].toISOString(),
+        'activated': value['activated'] == null ? value['activated'] : serializeDateTime(value['activated']),
         'state': value['state'],
         'variants': value['variants'] == null ? undefined : ((value['variants'] as Array<any>).map(ExperimentVariantToJSON)),
         'goalType': value['goalType'],
         'goalDescription': value['goalDescription'],
-        'deletedat': value['deletedat'] == null ? value['deletedat'] : value['deletedat'].toISOString(),
+        'deletedat': value['deletedat'] == null ? value['deletedat'] : serializeDateTime(value['deletedat']),
     };
 }
 

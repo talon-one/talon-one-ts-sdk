@@ -36,20 +36,14 @@ import {
 export interface LoyaltyCardBalances {
     /**
      * 
-     * @type {LoyaltyBalance}
-     * @memberof LoyaltyCardBalances
      */
     balance?: LoyaltyBalance;
     /**
      * Map of the loyalty balances of the subledgers of a ledger.
-     * @type {{ [key: string]: LoyaltyBalance; }}
-     * @memberof LoyaltyCardBalances
      */
     subledgerBalances?: { [key: string]: LoyaltyBalance; };
     /**
      * Customer profiles linked to the loyalty card.
-     * @type {Array<LoyaltyCardProfileRegistration>}
-     * @memberof LoyaltyCardBalances
      */
     profiles?: Array<LoyaltyCardProfileRegistration>;
 }

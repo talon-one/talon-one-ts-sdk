@@ -29,8 +29,6 @@ import {
 export interface ScimResourceTypesListResponse {
     /**
      * 
-     * @type {Array<ScimResource>}
-     * @memberof ScimResourceTypesListResponse
      */
     resources: Array<ScimResource>;
 }

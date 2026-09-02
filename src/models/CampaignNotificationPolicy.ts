@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface CampaignNotificationPolicy {
     /**
      * Notification name.
-     * @type {string}
-     * @memberof CampaignNotificationPolicy
      */
     name: string;
     /**
      * Indicates whether batching is activated.
-     * @type {boolean}
-     * @memberof CampaignNotificationPolicy
      */
     batchingEnabled?: boolean;
     /**
      * The required size of each batch of data. This value applies only when `batchingEnabled` is `true`.
-     * @type {number}
-     * @memberof CampaignNotificationPolicy
      */
     batchSize?: number;
 }

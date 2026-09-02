@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ScimServiceProviderConfigResponsePatch {
     /**
      * Indicates whether the service provider supports patch operations for modifying resources.
-     * @type {boolean}
-     * @memberof ScimServiceProviderConfigResponsePatch
      */
     supported?: boolean;
 }

@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface NewGiveawaysPool {
     /**
      * The name of this giveaways pool.
-     * @type {string}
-     * @memberof NewGiveawaysPool
      */
     name: string;
     /**
      * The description of this giveaways pool.
-     * @type {string}
-     * @memberof NewGiveawaysPool
      */
     description?: string;
     /**
      * A list of the IDs of the applications that this giveaways pool is enabled for.
-     * @type {Array<number>}
-     * @memberof NewGiveawaysPool
      */
     subscribedApplicationsIds?: Array<number>;
     /**
      * Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.
-     * @type {boolean}
-     * @memberof NewGiveawaysPool
      */
     sandbox: boolean;
 }

@@ -30,20 +30,14 @@ import {
 export interface ScimGroup {
     /**
      * Display name of the group (Talon.One role).
-     * @type {string}
-     * @memberof ScimGroup
      */
     displayName?: string;
     /**
      * List of members to assign to the new Talon.One role.
-     * @type {Array<ScimGroupMember>}
-     * @memberof ScimGroup
      */
     members?: Array<ScimGroupMember>;
     /**
      * ID of the group.
-     * @type {string}
-     * @memberof ScimGroup
      */
     id: string;
 }

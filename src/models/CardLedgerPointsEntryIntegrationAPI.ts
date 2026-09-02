@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * Loyalty card points with start and expiry dates.
  * @export
@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface CardLedgerPointsEntryIntegrationAPI {
     /**
      * ID of the transaction that adds loyalty points.
-     * @type {number}
-     * @memberof CardLedgerPointsEntryIntegrationAPI
      */
     id: number;
     /**
      * Unique identifier of the transaction in the UUID format.
-     * @type {string}
-     * @memberof CardLedgerPointsEntryIntegrationAPI
      */
     transactionUUID: string;
     /**
      * Date and time the loyalty card points were added.
-     * @type {Date}
-     * @memberof CardLedgerPointsEntryIntegrationAPI
      */
     created: Date;
     /**
      * ID of the loyalty program.
-     * @type {number}
-     * @memberof CardLedgerPointsEntryIntegrationAPI
      */
     programId: number;
     /**
      * Integration ID of the customer profile linked to the card.
-     * @type {string}
-     * @memberof CardLedgerPointsEntryIntegrationAPI
      */
     customerProfileID?: string;
     /**
      * ID of the customer session where points were added.
-     * @type {string}
-     * @memberof CardLedgerPointsEntryIntegrationAPI
      */
     customerSessionId?: string;
     /**
      * Name or reason of the transaction that adds loyalty points.
-     * @type {string}
-     * @memberof CardLedgerPointsEntryIntegrationAPI
      */
     name: string;
     /**
@@ -66,8 +52,6 @@ export interface CardLedgerPointsEntryIntegrationAPI {
      *   - `immediate`: Points are active immediately.
      *   - `timestamp value`: Points become active at a given date and time.
      * 
-     * @type {string}
-     * @memberof CardLedgerPointsEntryIntegrationAPI
      */
     startDate: string;
     /**
@@ -75,20 +59,14 @@ export interface CardLedgerPointsEntryIntegrationAPI {
      *   - `unlimited`: Points have no expiration date.
      *   - `timestamp value`: Points expire on the given date and time.
      * 
-     * @type {string}
-     * @memberof CardLedgerPointsEntryIntegrationAPI
      */
     expiryDate: string;
     /**
      * ID of the subledger.
-     * @type {string}
-     * @memberof CardLedgerPointsEntryIntegrationAPI
      */
     subledgerId: string;
     /**
      * Amount of loyalty points added in the transaction.
-     * @type {number}
-     * @memberof CardLedgerPointsEntryIntegrationAPI
      */
     amount: number;
     /**
@@ -96,8 +74,6 @@ export interface CardLedgerPointsEntryIntegrationAPI {
      * 
      * **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
      * 
-     * @type {string}
-     * @memberof CardLedgerPointsEntryIntegrationAPI
      */
     validityDuration?: string;
 }
@@ -131,7 +107,7 @@ export function CardLedgerPointsEntryIntegrationAPIFromJSONTyped(json: any, igno
         
         'id': json['id'],
         'transactionUUID': json['transactionUUID'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'programId': json['programId'],
         'customerProfileID': json['customerProfileID'] == null ? undefined : json['customerProfileID'],
         'customerSessionId': json['customerSessionId'] == null ? undefined : json['customerSessionId'],
@@ -157,7 +133,7 @@ export function CardLedgerPointsEntryIntegrationAPIToJSONTyped(value?: CardLedge
         
         'id': value['id'],
         'transactionUUID': value['transactionUUID'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'programId': value['programId'],
         'customerProfileID': value['customerProfileID'],
         'customerSessionId': value['customerSessionId'],

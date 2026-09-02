@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LimitConfig } from './LimitConfig';
 import {
     LimitConfigFromJSON,
@@ -29,59 +29,41 @@ import {
 export interface Coupon {
     /**
      * The internal ID of the coupon.
-     * @type {number}
-     * @memberof Coupon
      */
     id: number;
     /**
      * The time the coupon was created.
-     * @type {Date}
-     * @memberof Coupon
      */
     created: Date;
     /**
      * The ID of the campaign that owns this entity.
-     * @type {number}
-     * @memberof Coupon
      */
     campaignId: number;
     /**
      * The coupon code.
-     * @type {string}
-     * @memberof Coupon
      */
     value?: string;
     /**
      * The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
      * 
-     * @type {number}
-     * @memberof Coupon
      */
     usageLimit?: number;
     /**
      * The total discount value that the code can give. Typically used to represent a gift card value.
      * 
-     * @type {number}
-     * @memberof Coupon
      */
     discountLimit?: number;
     /**
      * The number of reservations that can be made with this coupon code.
      * 
-     * @type {number}
-     * @memberof Coupon
      */
     reservationLimit?: number;
     /**
      * Timestamp at which point the coupon becomes valid.
-     * @type {Date}
-     * @memberof Coupon
      */
     startDate?: Date;
     /**
      * Expiration date of the coupon. Coupon never expires if this is omitted.
-     * @type {Date}
-     * @memberof Coupon
      */
     expiryDate?: Date;
     /**
@@ -91,56 +73,38 @@ export interface Coupon {
      * **Note:** Only usable when creating a single coupon which is not tied to a specific recipient.
      * Only per-profile limits are allowed to be configured.
      * 
-     * @type {Array<LimitConfig>}
-     * @memberof Coupon
      */
     limits?: Array<LimitConfig>;
     /**
      * The number of times the coupon has been successfully redeemed.
-     * @type {number}
-     * @memberof Coupon
      */
     usageCounter: number;
     /**
      * The amount of discounts given on rules redeeming this coupon. Only usable if a coupon discount budget was set for this coupon.
-     * @type {number}
-     * @memberof Coupon
      */
     discountCounter?: number;
     /**
      * The remaining discount this coupon can give.
-     * @type {number}
-     * @memberof Coupon
      */
     discountRemainder?: number;
     /**
      * The number of times this coupon has been reserved.
-     * @type {number}
-     * @memberof Coupon
      */
     reservationCounter?: number;
     /**
      * Custom attributes associated with this coupon.
-     * @type {object}
-     * @memberof Coupon
      */
     attributes?: object;
     /**
      * The integration ID of the referring customer (if any) for whom this coupon was created as an effect.
-     * @type {number}
-     * @memberof Coupon
      */
     referralId?: number;
     /**
      * The Integration ID of the customer that is allowed to redeem this coupon.
-     * @type {string}
-     * @memberof Coupon
      */
     recipientIntegrationId?: string;
     /**
      * The ID of the Import which created this coupon.
-     * @type {number}
-     * @memberof Coupon
      */
     importId?: number;
     /**
@@ -148,26 +112,18 @@ export interface Coupon {
      * - `true`: The coupon can be reserved for multiple customers.
      * - `false`: The coupon can be reserved only for one customer. It is a personal code.
      * 
-     * @type {boolean}
-     * @memberof Coupon
      */
     reservation?: boolean;
     /**
      * The id of the batch the coupon belongs to.
-     * @type {string}
-     * @memberof Coupon
      */
     batchId?: string;
     /**
      * An indication of whether the code can be redeemed only if it has been reserved first.
-     * @type {boolean}
-     * @memberof Coupon
      */
     isReservationMandatory?: boolean;
     /**
      * An indication of whether the coupon is implicitly reserved for all customers.
-     * @type {boolean}
-     * @memberof Coupon
      */
     implicitlyReserved?: boolean;
 }
@@ -195,14 +151,14 @@ export function CouponFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'campaignId': json['campaignId'],
         'value': json['value'] == null ? undefined : json['value'],
         'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
         'discountLimit': json['discountLimit'] == null ? undefined : json['discountLimit'],
         'reservationLimit': json['reservationLimit'] == null ? undefined : json['reservationLimit'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'limits': json['limits'] == null ? undefined : ((json['limits'] as Array<any>).map(LimitConfigFromJSON)),
         'usageCounter': json['usageCounter'],
         'discountCounter': json['discountCounter'] == null ? undefined : json['discountCounter'],
@@ -231,14 +187,14 @@ export function CouponToJSONTyped(value?: Coupon | null, ignoreDiscriminator: bo
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'campaignId': value['campaignId'],
         'value': value['value'],
         'usageLimit': value['usageLimit'],
         'discountLimit': value['discountLimit'],
         'reservationLimit': value['reservationLimit'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'limits': value['limits'] == null ? undefined : ((value['limits'] as Array<any>).map(LimitConfigToJSON)),
         'usageCounter': value['usageCounter'],
         'discountCounter': value['discountCounter'],

@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface AnalyticsDataPointWithTrendAndInfluencedRate {
     /**
      * 
-     * @type {number}
-     * @memberof AnalyticsDataPointWithTrendAndInfluencedRate
      */
     value: number;
     /**
      * 
-     * @type {number}
-     * @memberof AnalyticsDataPointWithTrendAndInfluencedRate
      */
     influencedRate: number;
     /**
      * 
-     * @type {number}
-     * @memberof AnalyticsDataPointWithTrendAndInfluencedRate
      */
     trend: number;
 }

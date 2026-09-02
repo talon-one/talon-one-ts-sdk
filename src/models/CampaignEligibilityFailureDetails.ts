@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface CampaignEligibilityFailureDetails {
     /**
      * A code identifying why the customer was not eligible for the campaign.
-     * @type {CampaignEligibilityFailureDetailsFailureCodeEnum}
-     * @memberof CampaignEligibilityFailureDetails
      */
     failureCode: CampaignEligibilityFailureDetailsFailureCodeEnum;
 }
@@ -34,7 +32,7 @@ export interface CampaignEligibilityFailureDetails {
 export const CampaignEligibilityFailureDetailsFailureCodeEnum = {
     AllRulesFailed: 'ALL_RULES_FAILED',
     Skipped: 'SKIPPED',
-    AudienceNotMatched: 'AUDIENCE_NOT_MATCHED'
+    AudienceNotMatched: 'AUDIENCE_NOT_MATCHED',
 } as const;
 export type CampaignEligibilityFailureDetailsFailureCodeEnum = typeof CampaignEligibilityFailureDetailsFailureCodeEnum[keyof typeof CampaignEligibilityFailureDetailsFailureCodeEnum];
 

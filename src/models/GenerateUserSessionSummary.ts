@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface GenerateUserSessionSummary {
     /**
      * The ID of the session.
-     * @type {string}
-     * @memberof GenerateUserSessionSummary
      */
     sessionID: string;
     /**
      * The ID of the Application. It is displayed in your Talon.One deployment URL.
-     * @type {number}
-     * @memberof GenerateUserSessionSummary
      */
     applicationID: number;
 }

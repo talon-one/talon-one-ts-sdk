@@ -36,8 +36,6 @@ import {
 export interface IntegrationCustomerSessionResponse {
     /**
      * 
-     * @type {CustomerSessionV2}
-     * @memberof IntegrationCustomerSessionResponse
      */
     customerSession?: CustomerSessionV2;
     /**
@@ -45,8 +43,6 @@ export interface IntegrationCustomerSessionResponse {
      * 
      * **Note:** This endpoint returns only the effects that are valid after any rollback effects and their corresponding non-rollback effects are removed.
      * 
-     * @type {Array<Effect>}
-     * @memberof IntegrationCustomerSessionResponse
      */
     effects?: Array<Effect>;
 }

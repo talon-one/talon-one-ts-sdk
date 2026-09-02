@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PromotionBlock } from './PromotionBlock';
+import type { Block } from './Block';
 import {
-    PromotionBlockFromJSON,
-    PromotionBlockFromJSONTyped,
-    PromotionBlockToJSON,
-    PromotionBlockToJSONTyped,
-} from './PromotionBlock';
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
 
 /**
  * 
@@ -29,46 +29,32 @@ import {
 export interface CheckBudgetBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof CheckBudgetBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof CheckBudgetBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof CheckBudgetBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * The comparison operator applied to the limit. `available` checks if there is budget available for a given limitable action; `enoughFor` checks if the available budget meets or exceeds a specific value limit.
-     * @type {CheckBudgetBlockOperatorEnum}
-     * @memberof CheckBudgetBlock
      */
     operator: CheckBudgetBlockOperatorEnum;
     /**
      * The limitable action to check.
-     * @type {CheckBudgetBlockActionEnum}
-     * @memberof CheckBudgetBlock
      */
     action: CheckBudgetBlockActionEnum;
     /**
      * The value to check against when using the `enoughFor` operator.
-     * @type {number}
-     * @memberof CheckBudgetBlock
      */
     value?: number;
     /**
      * Promotion blocks evaluated when this block fails or returns false.
-     * @type {Array<PromotionBlock>}
-     * @memberof CheckBudgetBlock
      */
-    onFailure?: Array<PromotionBlock>;
+    onFailure?: Array<Block>;
 }
 
 
@@ -77,7 +63,7 @@ export interface CheckBudgetBlock {
  */
 export const CheckBudgetBlockOperatorEnum = {
     Available: 'available',
-    EnoughFor: 'enoughFor'
+    EnoughFor: 'enoughFor',
 } as const;
 export type CheckBudgetBlockOperatorEnum = typeof CheckBudgetBlockOperatorEnum[keyof typeof CheckBudgetBlockOperatorEnum];
 
@@ -98,7 +84,7 @@ export const CheckBudgetBlockActionEnum = {
     AwardGiveaway: 'awardGiveaway',
     AddFreeItemEffect: 'addFreeItemEffect',
     CustomEffect: 'customEffect',
-    CallApi: 'callApi'
+    CallApi: 'callApi',
 } as const;
 export type CheckBudgetBlockActionEnum = typeof CheckBudgetBlockActionEnum[keyof typeof CheckBudgetBlockActionEnum];
 
@@ -108,7 +94,6 @@ export type CheckBudgetBlockActionEnum = typeof CheckBudgetBlockActionEnum[keyof
  */
 export function instanceOfCheckBudgetBlock(value: object): value is CheckBudgetBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('operator' in _v) || _v['operator'] === undefined) return false;
     if (!('action' in _v) || _v['action'] === undefined) return false;
@@ -125,13 +110,13 @@ export function CheckBudgetBlockFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
         'action': json['action'],
         'value': json['value'] == null ? undefined : json['value'],
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -139,20 +124,18 @@ export function CheckBudgetBlockToJSON(json: any): CheckBudgetBlock {
     return CheckBudgetBlockToJSONTyped(json, false);
 }
 
-export function CheckBudgetBlockToJSONTyped(value?: CheckBudgetBlock | null, ignoreDiscriminator: boolean = false): any {
+export function CheckBudgetBlockToJSONTyped(value?: Omit<CheckBudgetBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'operator': value['operator'],
         'action': value['action'],
         'value': value['value'],
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,33 +21,23 @@ import { mapValues } from '../runtime';
 export interface UpdateReferral {
     /**
      * An optional Integration ID of the Friend's Profile.
-     * @type {string}
-     * @memberof UpdateReferral
      */
     friendProfileIntegrationId?: string;
     /**
      * Timestamp at which point the referral code becomes valid.
-     * @type {Date}
-     * @memberof UpdateReferral
      */
     startDate?: Date;
     /**
      * Expiration date of the referral code. Referral never expires if this is omitted.
-     * @type {Date}
-     * @memberof UpdateReferral
      */
     expiryDate?: Date;
     /**
      * The number of times a referral code can be used. This can be set to 0 for no limit, but any campaign usage limits will still apply.
      * 
-     * @type {number}
-     * @memberof UpdateReferral
      */
     usageLimit?: number;
     /**
      * Arbitrary properties associated with this item.
-     * @type {object}
-     * @memberof UpdateReferral
      */
     attributes?: object;
 }
@@ -71,8 +61,8 @@ export function UpdateReferralFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'friendProfileIntegrationId': json['friendProfileIntegrationId'] == null ? undefined : json['friendProfileIntegrationId'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
     };
@@ -90,8 +80,8 @@ export function UpdateReferralToJSONTyped(value?: UpdateReferral | null, ignoreD
     return {
         
         'friendProfileIntegrationId': value['friendProfileIntegrationId'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'usageLimit': value['usageLimit'],
         'attributes': value['attributes'],
     };

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LabelTarget } from './LabelTarget';
 import {
     LabelTargetFromJSON,
@@ -36,45 +36,31 @@ import {
 export interface BestPriorPrice {
     /**
      * The ID of the historical price.
-     * @type {number}
-     * @memberof BestPriorPrice
      */
     id: number;
     /**
      * sku
-     * @type {string}
-     * @memberof BestPriorPrice
      */
     sku: string;
     /**
      * The date and time when the price was observed.
-     * @type {Date}
-     * @memberof BestPriorPrice
      */
     observedAt: Date;
     /**
      * The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
      * 
-     * @type {Array<string>}
-     * @memberof BestPriorPrice
      */
     contextIds: Array<string>;
     /**
      * Price of the item.
-     * @type {number}
-     * @memberof BestPriorPrice
      */
     price: number;
     /**
      * 
-     * @type {BestPriorPriceMetadata}
-     * @memberof BestPriorPrice
      */
     metadata: BestPriorPriceMetadata;
     /**
      * 
-     * @type {LabelTarget}
-     * @memberof BestPriorPrice
      */
     target: LabelTarget;
 }
@@ -106,7 +92,7 @@ export function BestPriorPriceFromJSONTyped(json: any, ignoreDiscriminator: bool
         
         'id': json['id'],
         'sku': json['sku'],
-        'observedAt': (json['observedAt'] == null ? undefined as any : new Date(json['observedAt'])),
+        'observedAt': (json['observedAt'] == null ? json['observedAt'] : parseDateTime(json['observedAt'])),
         'contextIds': json['contextIds'],
         'price': json['price'],
         'metadata': BestPriorPriceMetadataFromJSON(json['metadata']),
@@ -127,7 +113,7 @@ export function BestPriorPriceToJSONTyped(value?: BestPriorPrice | null, ignoreD
         
         'id': value['id'],
         'sku': value['sku'],
-        'observedAt': value['observedAt'] == null ? undefined : value['observedAt'].toISOString(),
+        'observedAt': value['observedAt'] == null ? undefined : serializeDateTime(value['observedAt']),
         'contextIds': value['contextIds'],
         'price': value['price'],
         'metadata': BestPriorPriceMetadataToJSON(value['metadata']),

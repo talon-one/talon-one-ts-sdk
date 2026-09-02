@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction {
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction
      */
     amount: number;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction
      */
     reason?: string;
     /**
      * 
-     * @type {IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction
      */
     operation: IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum;
     /**
      * 
-     * @type {Date}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction
      */
     startDate?: Date;
     /**
      * 
-     * @type {Date}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction
      */
     expiryDate?: Date;
     /**
      * The identifier of the transaction in the loyalty ledger.
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction
      */
     transactionUUID: string;
 }
@@ -63,7 +51,7 @@ export interface IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotif
  */
 export const IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum = {
     Addition: 'addition',
-    Subtraction: 'subtraction'
+    Subtraction: 'subtraction',
 } as const;
 export type IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum = typeof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum[keyof typeof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum];
 
@@ -92,8 +80,8 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotifi
         'amount': json['Amount'],
         'reason': json['Reason'] == null ? undefined : json['Reason'],
         'operation': json['Operation'],
-        'startDate': json['StartDate'] == null ? undefined : (new Date(json['StartDate'])),
-        'expiryDate': json['ExpiryDate'] == null ? undefined : (new Date(json['ExpiryDate'])),
+        'startDate': json['StartDate'] == null ? undefined : (parseDateTime(json['StartDate'])),
+        'expiryDate': json['ExpiryDate'] == null ? undefined : (parseDateTime(json['ExpiryDate'])),
         'transactionUUID': json['TransactionUUID'],
     };
 }
@@ -112,8 +100,8 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotifi
         'Amount': value['amount'],
         'Reason': value['reason'],
         'Operation': value['operation'],
-        'StartDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'ExpiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'StartDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'ExpiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'TransactionUUID': value['transactionUUID'],
     };
 }

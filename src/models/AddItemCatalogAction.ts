@@ -30,26 +30,18 @@ import {
 export interface AddItemCatalogAction {
     /**
      * The unique SKU of the item to add.
-     * @type {string}
-     * @memberof AddItemCatalogAction
      */
     sku: string;
     /**
      * Price of the item.
-     * @type {number}
-     * @memberof AddItemCatalogAction
      */
     price?: number;
     /**
      * The attributes of the item to add.
-     * @type {object}
-     * @memberof AddItemCatalogAction
      */
     attributes?: object;
     /**
      * 
-     * @type {Product}
-     * @memberof AddItemCatalogAction
      */
     product?: Product;
     /**
@@ -59,8 +51,6 @@ export interface AddItemCatalogAction {
      *   - If you do not provide a new `price` value, the existing `price` value is retained.
      *   - If you do not provide a new `product` value, the `product` value is set to `null`.
      * 
-     * @type {boolean}
-     * @memberof AddItemCatalogAction
      */
     replaceIfExists?: boolean;
 }

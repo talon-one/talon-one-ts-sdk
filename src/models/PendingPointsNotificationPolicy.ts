@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface PendingPointsNotificationPolicy {
     /**
      * Notification name.
-     * @type {string}
-     * @memberof PendingPointsNotificationPolicy
      */
     name: string;
     /**
      * Indicates whether batching is activated.
-     * @type {boolean}
-     * @memberof PendingPointsNotificationPolicy
      */
     batchingEnabled?: boolean;
     /**
      * The required size of each batch of data. This value applies only when `batchingEnabled` is `true`.
-     * @type {number}
-     * @memberof PendingPointsNotificationPolicy
      */
     batchSize?: number;
 }

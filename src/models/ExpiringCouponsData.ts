@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,63 +21,43 @@ import { mapValues } from '../runtime';
 export interface ExpiringCouponsData {
     /**
      * The coupon code.
-     * @type {string}
-     * @memberof ExpiringCouponsData
      */
     couponValue: string;
     /**
      * Timestamp at which point the coupon was created.
-     * @type {Date}
-     * @memberof ExpiringCouponsData
      */
     createdDate?: Date;
     /**
      * Timestamp at which point the coupon becomes valid.
-     * @type {Date}
-     * @memberof ExpiringCouponsData
      */
     validFrom?: Date;
     /**
      * Timestamp at which point the coupon expires. Coupon never expires if this is omitted, zero, or negative.
-     * @type {Date}
-     * @memberof ExpiringCouponsData
      */
     validUntil?: Date;
     /**
      * The ID of the campaign to which the coupon belongs.
-     * @type {number}
-     * @memberof ExpiringCouponsData
      */
     campaignId: number;
     /**
      * The Integration ID of the customer that is allowed to redeem this coupon.
-     * @type {string}
-     * @memberof ExpiringCouponsData
      */
     customerProfileId?: string;
     /**
      * The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
      * 
-     * @type {number}
-     * @memberof ExpiringCouponsData
      */
     usageLimit: number;
     /**
      * The number of times the coupon has been successfully redeemed.
-     * @type {number}
-     * @memberof ExpiringCouponsData
      */
     usageCounter: number;
     /**
      * The ID of the batch the coupon belongs to.
-     * @type {string}
-     * @memberof ExpiringCouponsData
      */
     batchId?: string;
     /**
      * Custom attributes associated with this coupon.
-     * @type {{ [key: string]: any; }}
-     * @memberof ExpiringCouponsData
      */
     attributes: { [key: string]: any; };
 }
@@ -106,9 +86,9 @@ export function ExpiringCouponsDataFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'couponValue': json['CouponValue'],
-        'createdDate': json['CreatedDate'] == null ? undefined : (new Date(json['CreatedDate'])),
-        'validFrom': json['ValidFrom'] == null ? undefined : (new Date(json['ValidFrom'])),
-        'validUntil': json['ValidUntil'] == null ? undefined : (new Date(json['ValidUntil'])),
+        'createdDate': json['CreatedDate'] == null ? undefined : (parseDateTime(json['CreatedDate'])),
+        'validFrom': json['ValidFrom'] == null ? undefined : (parseDateTime(json['ValidFrom'])),
+        'validUntil': json['ValidUntil'] == null ? undefined : (parseDateTime(json['ValidUntil'])),
         'campaignId': json['CampaignId'],
         'customerProfileId': json['CustomerProfileId'] == null ? undefined : json['CustomerProfileId'],
         'usageLimit': json['UsageLimit'],
@@ -130,9 +110,9 @@ export function ExpiringCouponsDataToJSONTyped(value?: ExpiringCouponsData | nul
     return {
         
         'CouponValue': value['couponValue'],
-        'CreatedDate': value['createdDate'] == null ? value['createdDate'] : value['createdDate'].toISOString(),
-        'ValidFrom': value['validFrom'] == null ? value['validFrom'] : value['validFrom'].toISOString(),
-        'ValidUntil': value['validUntil'] == null ? value['validUntil'] : value['validUntil'].toISOString(),
+        'CreatedDate': value['createdDate'] == null ? value['createdDate'] : serializeDateTime(value['createdDate']),
+        'ValidFrom': value['validFrom'] == null ? value['validFrom'] : serializeDateTime(value['validFrom']),
+        'ValidUntil': value['validUntil'] == null ? value['validUntil'] : serializeDateTime(value['validUntil']),
         'CampaignId': value['campaignId'],
         'CustomerProfileId': value['customerProfileId'],
         'UsageLimit': value['usageLimit'],

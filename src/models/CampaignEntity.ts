@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface CampaignEntity {
     /**
      * The ID of the campaign that owns this entity.
-     * @type {number}
-     * @memberof CampaignEntity
      */
     campaignId: number;
 }

@@ -43,81 +43,55 @@ import {
 export interface CreateCouponBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof CreateCouponBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof CreateCouponBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof CreateCouponBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * 
-     * @type {CreateCouponBlock1CampaignId}
-     * @memberof CreateCouponBlock
      */
     campaignId: CreateCouponBlock1CampaignId;
     /**
      * The integration ID of the customer that is allowed to redeem this coupon.
-     * @type {string}
-     * @memberof CreateCouponBlock
      */
     recipientId: string;
     /**
      * When `true`, the coupon is stored in the session.
-     * @type {boolean}
-     * @memberof CreateCouponBlock
      */
     storeInSession: boolean;
     /**
      * 
-     * @type {CreateCouponBlock1UsageLimit}
-     * @memberof CreateCouponBlock
      */
     usageLimit?: CreateCouponBlock1UsageLimit;
     /**
      * 
-     * @type {CreateCouponBlock1DiscountLimit}
-     * @memberof CreateCouponBlock
      */
     discountLimit?: CreateCouponBlock1DiscountLimit;
     /**
-     * 
-     * @type {any}
-     * @memberof CreateCouponBlock
+     * Timestamp at which point the coupon becomes valid.
      */
     startDate?: any | null;
     /**
-     * 
-     * @type {any}
-     * @memberof CreateCouponBlock
+     * Expiration date of the coupon. Coupon never expires if this is omitted.
      */
     expiryDate?: any | null;
     /**
-     * 
-     * @type {any}
-     * @memberof CreateCouponBlock
+     * Custom attributes associated with this coupon code.
      */
     attributes?: any | null;
     /**
      * Characters used to generate the random parts of a code.
-     * @type {string}
-     * @memberof CreateCouponBlock
      */
     validCharacters?: string;
     /**
      * The pattern used to generate codes, such as coupon codes, referral codes, and loyalty cards. The character `#` is a placeholder and is replaced by a random character from the `validCharacters` set.
      * 
-     * @type {string}
-     * @memberof CreateCouponBlock
      */
     pattern?: string;
 }
@@ -127,7 +101,6 @@ export interface CreateCouponBlock {
  */
 export function instanceOfCreateCouponBlock(value: object): value is CreateCouponBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
     if (!('recipientId' in _v) || _v['recipientId'] === undefined) return false;
@@ -145,7 +118,7 @@ export function CreateCouponBlockFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'campaignId': CreateCouponBlock1CampaignIdFromJSON(json['campaignId']),
@@ -165,16 +138,14 @@ export function CreateCouponBlockToJSON(json: any): CreateCouponBlock {
     return CreateCouponBlockToJSONTyped(json, false);
 }
 
-export function CreateCouponBlockToJSONTyped(value?: CreateCouponBlock | null, ignoreDiscriminator: boolean = false): any {
+export function CreateCouponBlockToJSONTyped(value?: Omit<CreateCouponBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'campaignId': CreateCouponBlock1CampaignIdToJSON(value['campaignId']),
         'recipientId': value['recipientId'],
         'storeInSession': value['storeInSession'],

@@ -29,14 +29,10 @@ import {
 export interface GetReferralsWithoutTotalCount200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetReferralsWithoutTotalCount200Response
      */
     hasMore: boolean;
     /**
      * 
-     * @type {Array<Referral>}
-     * @memberof GetReferralsWithoutTotalCount200Response
      */
     data: Array<Referral>;
 }

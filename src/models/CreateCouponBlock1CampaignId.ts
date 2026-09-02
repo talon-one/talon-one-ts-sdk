@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * @type CreateCouponBlock1CampaignId
  * The ID of the campaign in which the coupon code is created.

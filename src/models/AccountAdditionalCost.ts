@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface AccountAdditionalCost {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof AccountAdditionalCost
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof AccountAdditionalCost
      */
     created: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof AccountAdditionalCost
      */
     accountId: number;
     /**
      * The internal name used in API requests.
-     * @type {string}
-     * @memberof AccountAdditionalCost
      */
     name: string;
     /**
      * The human-readable name for the additional cost that will be shown in the Campaign Manager. Like `name`, the combination of entity and title must also be unique.
-     * @type {string}
-     * @memberof AccountAdditionalCost
      */
     title: string;
     /**
      * A description of this additional cost.
-     * @type {string}
-     * @memberof AccountAdditionalCost
      */
     description: string;
     /**
      * A list of the IDs of the applications that are subscribed to this additional cost.
-     * @type {Array<number>}
-     * @memberof AccountAdditionalCost
      */
     subscribedApplicationsIds?: Array<number>;
     /**
@@ -67,8 +53,6 @@ export interface AccountAdditionalCost {
      * - `item`: Additional cost will be added per item.
      * - `both`: Additional cost will be added per item and session.
      * 
-     * @type {AccountAdditionalCostTypeEnum}
-     * @memberof AccountAdditionalCost
      */
     type?: AccountAdditionalCostTypeEnum;
 }
@@ -80,7 +64,7 @@ export interface AccountAdditionalCost {
 export const AccountAdditionalCostTypeEnum = {
     Session: 'session',
     Item: 'item',
-    Both: 'both'
+    Both: 'both',
 } as const;
 export type AccountAdditionalCostTypeEnum = typeof AccountAdditionalCostTypeEnum[keyof typeof AccountAdditionalCostTypeEnum];
 
@@ -110,7 +94,7 @@ export function AccountAdditionalCostFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'accountId': json['accountId'],
         'name': json['name'],
         'title': json['title'],
@@ -132,7 +116,7 @@ export function AccountAdditionalCostToJSONTyped(value?: AccountAdditionalCost |
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'accountId': value['accountId'],
         'name': value['name'],
         'title': value['title'],

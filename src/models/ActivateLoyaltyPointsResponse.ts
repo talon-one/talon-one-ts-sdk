@@ -29,8 +29,6 @@ import {
 export interface ActivateLoyaltyPointsResponse {
     /**
      * Updated ledger entries after activation.
-     * @type {Array<LoyaltyLedgerEntry>}
-     * @memberof ActivateLoyaltyPointsResponse
      */
     ledgerEntries?: Array<LoyaltyLedgerEntry>;
 }

@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface IntegrationHubFlowConfig {
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubFlowConfig
      */
     apiKey: string;
     /**
      * Number of IntegrationHub workers to run in parallel for this flow (maximum 500).
-     * @type {number}
-     * @memberof IntegrationHubFlowConfig
      */
     workerCount?: number;
     /**
      * Maximum number of events to send in a single message to IntegrationHub.
-     * @type {number}
-     * @memberof IntegrationHubFlowConfig
      */
     maxEventsPerMessage?: number;
     /**
      * Maximum number of retries for a IntegrationHub event before it is ignored.
-     * @type {number}
-     * @memberof IntegrationHubFlowConfig
      */
     maxRetries?: number;
     /**
      * Name of the Prismatic instance that registered this flow.
-     * @type {string}
-     * @memberof IntegrationHubFlowConfig
      */
     instanceName?: string;
     /**
      * Name of the Prismatic integration that registered this flow.
-     * @type {string}
-     * @memberof IntegrationHubFlowConfig
      */
     integrationName?: string;
 }

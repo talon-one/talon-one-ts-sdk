@@ -21,21 +21,15 @@ import { mapValues } from '../runtime';
 export interface GenerateLoyaltyCard {
     /**
      * Status of the loyalty card.
-     * @type {GenerateLoyaltyCardStatusEnum}
-     * @memberof GenerateLoyaltyCard
      */
     status?: GenerateLoyaltyCardStatusEnum;
     /**
      * Integration IDs of the customer profiles linked to the card.
-     * @type {Array<string>}
-     * @memberof GenerateLoyaltyCard
      */
     customerProfileIds?: Array<string>;
     /**
      * The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`.
      * 
-     * @type {string}
-     * @memberof GenerateLoyaltyCard
      */
     cardIdentifier?: string;
 }
@@ -46,7 +40,7 @@ export interface GenerateLoyaltyCard {
  */
 export const GenerateLoyaltyCardStatusEnum = {
     Active: 'active',
-    Inactive: 'inactive'
+    Inactive: 'inactive',
 } as const;
 export type GenerateLoyaltyCardStatusEnum = typeof GenerateLoyaltyCardStatusEnum[keyof typeof GenerateLoyaltyCardStatusEnum];
 

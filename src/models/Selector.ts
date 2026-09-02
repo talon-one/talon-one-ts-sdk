@@ -29,26 +29,18 @@ import {
 export interface Selector {
     /**
      * The name of the selector binding.
-     * @type {string}
-     * @memberof Selector
      */
     name: string;
     /**
      * A binding of type `selector`.
-     * @type {SelectorTypeEnum}
-     * @memberof Selector
      */
     type: SelectorTypeEnum;
     /**
      * The attribute path the pipeline draws items from.
-     * @type {string}
-     * @memberof Selector
      */
     source: string;
     /**
      * Ordered pipeline steps applied to the source items.
-     * @type {Array<SelectorStep>}
-     * @memberof Selector
      */
     steps: Array<SelectorStep>;
 }
@@ -58,7 +50,7 @@ export interface Selector {
  * @export
  */
 export const SelectorTypeEnum = {
-    Selector: 'selector'
+    Selector: 'selector',
 } as const;
 export type SelectorTypeEnum = typeof SelectorTypeEnum[keyof typeof SelectorTypeEnum];
 

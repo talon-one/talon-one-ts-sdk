@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface NewAccount {
     /**
      * 
-     * @type {string}
-     * @memberof NewAccount
      */
     companyName: string;
 }

@@ -36,32 +36,22 @@ import {
 export interface BaseNotification {
     /**
      * 
-     * @type {BaseNotificationPolicy}
-     * @memberof BaseNotification
      */
     policy: BaseNotificationPolicy;
     /**
      * Indicates whether the notification is activated.
-     * @type {boolean}
-     * @memberof BaseNotification
      */
     enabled?: boolean;
     /**
      * 
-     * @type {BaseNotificationWebhook}
-     * @memberof BaseNotification
      */
     webhook: BaseNotificationWebhook;
     /**
      * Unique ID for this entity.
-     * @type {number}
-     * @memberof BaseNotification
      */
     id: number;
     /**
      * The notification type.
-     * @type {BaseNotificationTypeEnum}
-     * @memberof BaseNotification
      */
     type: BaseNotificationTypeEnum;
 }
@@ -84,7 +74,7 @@ export const BaseNotificationTypeEnum = {
     StrikethroughPricing: 'strikethrough_pricing',
     TierDowngrade: 'tier_downgrade',
     TierUpgrade: 'tier_upgrade',
-    TierWillDowngrade: 'tier_will_downgrade'
+    TierWillDowngrade: 'tier_will_downgrade',
 } as const;
 export type BaseNotificationTypeEnum = typeof BaseNotificationTypeEnum[keyof typeof BaseNotificationTypeEnum];
 

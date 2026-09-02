@@ -29,8 +29,6 @@ import {
 export interface IntegrationCustomerProfileAudienceRequest {
     /**
      * 
-     * @type {Array<IntegrationCustomerProfileAudienceRequestItem>}
-     * @memberof IntegrationCustomerProfileAudienceRequest
      */
     data?: Array<IntegrationCustomerProfileAudienceRequestItem>;
 }

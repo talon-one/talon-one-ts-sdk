@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,68 +21,46 @@ import { mapValues } from '../runtime';
 export interface CampaignCollection {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof CampaignCollection
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof CampaignCollection
      */
     created: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof CampaignCollection
      */
     accountId: number;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof CampaignCollection
      */
     modified: Date;
     /**
      * A short description of the purpose of this collection.
-     * @type {string}
-     * @memberof CampaignCollection
      */
     description?: string;
     /**
      * The name of this collection.
-     * @type {string}
-     * @memberof CampaignCollection
      */
     name: string;
     /**
      * ID of the user who last updated this effect if available.
-     * @type {number}
-     * @memberof CampaignCollection
      */
     modifiedBy?: number;
     /**
      * ID of the user who created this effect.
-     * @type {number}
-     * @memberof CampaignCollection
      */
     createdBy: number;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof CampaignCollection
      */
     applicationId?: number;
     /**
      * The ID of the campaign that owns this entity.
-     * @type {number}
-     * @memberof CampaignCollection
      */
     campaignId?: number;
     /**
      * The content of the collection.
-     * @type {Array<string>}
-     * @memberof CampaignCollection
      */
     payload?: Array<string>;
 }
@@ -112,9 +90,9 @@ export function CampaignCollectionFromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'accountId': json['accountId'],
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'description': json['description'] == null ? undefined : json['description'],
         'name': json['name'],
         'modifiedBy': json['modifiedBy'] == null ? undefined : json['modifiedBy'],
@@ -137,9 +115,9 @@ export function CampaignCollectionToJSONTyped(value?: CampaignCollection | null,
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'accountId': value['accountId'],
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'description': value['description'],
         'name': value['name'],
         'modifiedBy': value['modifiedBy'],

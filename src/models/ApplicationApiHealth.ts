@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * Report of health of the API connection of an application.
  * @export
@@ -27,14 +27,10 @@ export interface ApplicationApiHealth {
      * - `CRITICAL`: All received requests failed.
      * - `NONE`: During the last 5 minutes, the Application hasn't recorded any integration API requests.
      * 
-     * @type {ApplicationApiHealthSummaryEnum}
-     * @memberof ApplicationApiHealth
      */
     summary: ApplicationApiHealthSummaryEnum;
     /**
      * time of last request relevant to the API health test.
-     * @type {Date}
-     * @memberof ApplicationApiHealth
      */
     lastUsed: Date;
 }
@@ -48,7 +44,7 @@ export const ApplicationApiHealthSummaryEnum = {
     Warning: 'WARNING',
     Error: 'ERROR',
     Critical: 'CRITICAL',
-    None: 'NONE'
+    None: 'NONE',
 } as const;
 export type ApplicationApiHealthSummaryEnum = typeof ApplicationApiHealthSummaryEnum[keyof typeof ApplicationApiHealthSummaryEnum];
 
@@ -74,7 +70,7 @@ export function ApplicationApiHealthFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'summary': json['summary'],
-        'lastUsed': (json['lastUsed'] == null ? undefined as any : new Date(json['lastUsed'])),
+        'lastUsed': (json['lastUsed'] == null ? json['lastUsed'] : parseDateTime(json['lastUsed'])),
     };
 }
 
@@ -90,7 +86,7 @@ export function ApplicationApiHealthToJSONTyped(value?: ApplicationApiHealth | n
     return {
         
         'summary': value['summary'],
-        'lastUsed': value['lastUsed'] == null ? undefined : value['lastUsed'].toISOString(),
+        'lastUsed': value['lastUsed'] == null ? undefined : serializeDateTime(value['lastUsed']),
     };
 }
 

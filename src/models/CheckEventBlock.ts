@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PromotionBlock } from './PromotionBlock';
+import type { Block } from './Block';
 import {
-    PromotionBlockFromJSON,
-    PromotionBlockFromJSONTyped,
-    PromotionBlockToJSON,
-    PromotionBlockToJSONTyped,
-} from './PromotionBlock';
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
 
 /**
  * 
@@ -29,40 +29,28 @@ import {
 export interface CheckEventBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof CheckEventBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof CheckEventBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof CheckEventBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * The event type to check against.
-     * @type {string}
-     * @memberof CheckEventBlock
      */
     eventType: string;
     /**
      * 
-     * @type {Array<PromotionBlock>}
-     * @memberof CheckEventBlock
      */
-    matchers?: Array<PromotionBlock>;
+    matchers?: Array<Block>;
     /**
      * Promotion blocks evaluated when this block fails or returns false.
-     * @type {Array<PromotionBlock>}
-     * @memberof CheckEventBlock
      */
-    onFailure?: Array<PromotionBlock>;
+    onFailure?: Array<Block>;
 }
 
 /**
@@ -70,7 +58,6 @@ export interface CheckEventBlock {
  */
 export function instanceOfCheckEventBlock(value: object): value is CheckEventBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('eventType' in _v) || _v['eventType'] === undefined) return false;
     return true;
@@ -86,12 +73,12 @@ export function CheckEventBlockFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'eventType': json['eventType'],
-        'matchers': json['matchers'] == null ? undefined : ((json['matchers'] as Array<any>).map(PromotionBlockFromJSON)),
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
+        'matchers': json['matchers'] == null ? undefined : ((json['matchers'] as Array<any>).map(BlockFromJSON)),
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -99,19 +86,17 @@ export function CheckEventBlockToJSON(json: any): CheckEventBlock {
     return CheckEventBlockToJSONTyped(json, false);
 }
 
-export function CheckEventBlockToJSONTyped(value?: CheckEventBlock | null, ignoreDiscriminator: boolean = false): any {
+export function CheckEventBlockToJSONTyped(value?: Omit<CheckEventBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'eventType': value['eventType'],
-        'matchers': value['matchers'] == null ? undefined : ((value['matchers'] as Array<any>).map(PromotionBlockToJSON)),
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
+        'matchers': value['matchers'] == null ? undefined : ((value['matchers'] as Array<any>).map(BlockToJSON)),
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }
 

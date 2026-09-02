@@ -29,56 +29,38 @@ import {
 export interface OutgoingIntegrationTemplateWithConfigurationDetails {
     /**
      * Unique ID for this entity.
-     * @type {number}
-     * @memberof OutgoingIntegrationTemplateWithConfigurationDetails
      */
     id: number;
     /**
      * Unique ID of outgoing integration type.
-     * @type {number}
-     * @memberof OutgoingIntegrationTemplateWithConfigurationDetails
      */
     integrationType: number;
     /**
      * The title of the integration template.
-     * @type {string}
-     * @memberof OutgoingIntegrationTemplateWithConfigurationDetails
      */
     title: string;
     /**
      * The description of the specific outgoing integration template.
-     * @type {string}
-     * @memberof OutgoingIntegrationTemplateWithConfigurationDetails
      */
     description: string;
     /**
      * The API payload (supports templating using parameters) for this integration template.
-     * @type {string}
-     * @memberof OutgoingIntegrationTemplateWithConfigurationDetails
      */
     payload: string;
     /**
      * API method for this webhook.
-     * @type {OutgoingIntegrationTemplateWithConfigurationDetailsMethodEnum}
-     * @memberof OutgoingIntegrationTemplateWithConfigurationDetails
      */
     method: OutgoingIntegrationTemplateWithConfigurationDetailsMethodEnum;
     /**
      * The relative URL corresponding to each integration template.
-     * @type {string}
-     * @memberof OutgoingIntegrationTemplateWithConfigurationDetails
      */
     relativeUrl: string;
     /**
      * The list of HTTP headers for this integration template.
-     * @type {Array<string>}
-     * @memberof OutgoingIntegrationTemplateWithConfigurationDetails
      */
     headers: Array<string>;
     /**
      * 
-     * @type {OutgoingIntegrationConfigurationPolicy}
-     * @memberof OutgoingIntegrationTemplateWithConfigurationDetails
      */
     policy: OutgoingIntegrationConfigurationPolicy;
 }
@@ -92,7 +74,7 @@ export const OutgoingIntegrationTemplateWithConfigurationDetailsMethodEnum = {
     Put: 'PUT',
     Get: 'GET',
     Delete: 'DELETE',
-    Patch: 'PATCH'
+    Patch: 'PATCH',
 } as const;
 export type OutgoingIntegrationTemplateWithConfigurationDetailsMethodEnum = typeof OutgoingIntegrationTemplateWithConfigurationDetailsMethodEnum[keyof typeof OutgoingIntegrationTemplateWithConfigurationDetailsMethodEnum];
 

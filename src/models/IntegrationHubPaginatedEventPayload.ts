@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { IntegrationHubPaginatedEventPayloadDataInner } from './IntegrationHubPaginatedEventPayloadDataInner';
 import {
     IntegrationHubPaginatedEventPayloadDataInnerFromJSON,
@@ -36,26 +36,18 @@ import {
 export interface IntegrationHubPaginatedEventPayload {
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubPaginatedEventPayload
      */
     totalResultSize: number;
     /**
      * Timestamp when the batch was created.
-     * @type {Date}
-     * @memberof IntegrationHubPaginatedEventPayload
      */
     batchedAt?: Date;
     /**
      * 
-     * @type {IntegrationHubEventType}
-     * @memberof IntegrationHubPaginatedEventPayload
      */
     eventType: IntegrationHubEventType;
     /**
      * 
-     * @type {Array<IntegrationHubPaginatedEventPayloadDataInner>}
-     * @memberof IntegrationHubPaginatedEventPayload
      */
     data: Array<IntegrationHubPaginatedEventPayloadDataInner>;
 }
@@ -84,7 +76,7 @@ export function IntegrationHubPaginatedEventPayloadFromJSONTyped(json: any, igno
     return {
         
         'totalResultSize': json['TotalResultSize'],
-        'batchedAt': json['BatchedAt'] == null ? undefined : (new Date(json['BatchedAt'])),
+        'batchedAt': json['BatchedAt'] == null ? undefined : (parseDateTime(json['BatchedAt'])),
         'eventType': IntegrationHubEventTypeFromJSON(json['EventType']),
         'data': (json['Data'] == null ? undefined as any : (json['Data'] as Array<any>).map(IntegrationHubPaginatedEventPayloadDataInnerFromJSON)),
     };
@@ -102,7 +94,7 @@ export function IntegrationHubPaginatedEventPayloadToJSONTyped(value?: Integrati
     return {
         
         'TotalResultSize': value['totalResultSize'],
-        'BatchedAt': value['batchedAt'] == null ? value['batchedAt'] : value['batchedAt'].toISOString(),
+        'BatchedAt': value['batchedAt'] == null ? value['batchedAt'] : serializeDateTime(value['batchedAt']),
         'EventType': IntegrationHubEventTypeToJSON(value['eventType']),
         'Data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(IntegrationHubPaginatedEventPayloadDataInnerToJSON)),
     };

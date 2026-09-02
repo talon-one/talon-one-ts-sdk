@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface UpdateRiskNotification {
     /**
      * The entity type to analyze within the given time frame.
-     * @type {UpdateRiskNotificationEntityEnum}
-     * @memberof UpdateRiskNotification
      */
     entity: UpdateRiskNotificationEntityEnum;
     /**
      * The activity metric to analyze within the given entity.
-     * @type {UpdateRiskNotificationActivityEnum}
-     * @memberof UpdateRiskNotification
      */
     activity: UpdateRiskNotificationActivityEnum;
     /**
      * The rolling time window for risk evaluation.
-     * @type {UpdateRiskNotificationTimeFrameEnum}
-     * @memberof UpdateRiskNotification
      */
     timeFrame: UpdateRiskNotificationTimeFrameEnum;
     /**
      * Indicates whether this risk notification is active.
-     * @type {boolean}
-     * @memberof UpdateRiskNotification
      */
     active: boolean;
 }
@@ -51,7 +43,7 @@ export interface UpdateRiskNotification {
  */
 export const UpdateRiskNotificationEntityEnum = {
     CustomerProfile: 'customer_profile',
-    CustomerSession: 'customer_session'
+    CustomerSession: 'customer_session',
 } as const;
 export type UpdateRiskNotificationEntityEnum = typeof UpdateRiskNotificationEntityEnum[keyof typeof UpdateRiskNotificationEntityEnum];
 
@@ -62,7 +54,7 @@ export const UpdateRiskNotificationActivityEnum = {
     LoyaltyPointsEarned: 'loyalty_points_earned',
     DiscountedAmount: 'discounted_amount',
     CompletedOrders: 'completed_orders',
-    CouponAttempts: 'coupon_attempts'
+    CouponAttempts: 'coupon_attempts',
 } as const;
 export type UpdateRiskNotificationActivityEnum = typeof UpdateRiskNotificationActivityEnum[keyof typeof UpdateRiskNotificationActivityEnum];
 
@@ -72,7 +64,7 @@ export type UpdateRiskNotificationActivityEnum = typeof UpdateRiskNotificationAc
 export const UpdateRiskNotificationTimeFrameEnum = {
     _1D: '1D',
     _7D: '7D',
-    _30D: '30D'
+    _30D: '30D',
 } as const;
 export type UpdateRiskNotificationTimeFrameEnum = typeof UpdateRiskNotificationTimeFrameEnum[keyof typeof UpdateRiskNotificationTimeFrameEnum];
 

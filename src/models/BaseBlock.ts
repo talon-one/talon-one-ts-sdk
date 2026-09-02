@@ -21,22 +21,16 @@ import { mapValues } from '../runtime';
 export interface BaseBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof BaseBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof BaseBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof BaseBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
 }
 
 /**
@@ -44,7 +38,6 @@ export interface BaseBlock {
  */
 export function instanceOfBaseBlock(value: object): value is BaseBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     return true;
 }
@@ -59,7 +52,7 @@ export function BaseBlockFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
     };
@@ -69,16 +62,14 @@ export function BaseBlockToJSON(json: any): BaseBlock {
     return BaseBlockToJSONTyped(json, false);
 }
 
-export function BaseBlockToJSONTyped(value?: BaseBlock | null, ignoreDiscriminator: boolean = false): any {
+export function BaseBlockToJSONTyped(value?: Omit<BaseBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
     };
 }
 

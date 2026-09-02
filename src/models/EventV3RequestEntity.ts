@@ -24,14 +24,10 @@ export interface EventV3RequestEntity {
      * 
      * **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
      * 
-     * @type {string}
-     * @memberof EventV3RequestEntity
      */
     profileId: string;
     /**
      * The integration ID of the store. You choose this ID when you create a store.
-     * @type {string}
-     * @memberof EventV3RequestEntity
      */
     storeIntegrationId?: string;
     /**
@@ -39,40 +35,28 @@ export interface EventV3RequestEntity {
      * 
      * These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.
      * 
-     * @type {Array<number>}
-     * @memberof EventV3RequestEntity
      */
     evaluableCampaignIds?: Array<number>;
     /**
      * The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.
-     * @type {string}
-     * @memberof EventV3RequestEntity
      */
     type: string;
     /**
      * Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute).
-     * @type {object}
-     * @memberof EventV3RequestEntity
      */
     attributes?: object;
     /**
      * The unique ID of the event. Only one event with this ID can be registered.
      * 
-     * @type {string}
-     * @memberof EventV3RequestEntity
      */
     integrationId: string;
     /**
      * The ID of the session to reference. The session must be in `closed` state. Otherwise, the API call will fail.
-     * @type {string}
-     * @memberof EventV3RequestEntity
      */
     connectedSessionId?: string;
     /**
      * The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the "Referral code is valid" condition in the Rule Builder to validate and redeem the code, or "Referral code is valid (without redemption)" to validate without redeeming.
      * 
-     * @type {string}
-     * @memberof EventV3RequestEntity
      */
     referralCode?: string;
 }

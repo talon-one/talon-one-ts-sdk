@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CodeGeneratorSettings } from './CodeGeneratorSettings';
 import {
     CodeGeneratorSettingsFromJSON,
@@ -36,128 +36,86 @@ import {
 export interface RevisionVersion {
     /**
      * Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints.
-     * @type {number}
-     * @memberof RevisionVersion
      */
     id: number;
     /**
      * A user-facing name for this campaign.
-     * @type {string}
-     * @memberof RevisionVersion
      */
     name?: string;
     /**
      * Timestamp when the campaign will become active.
-     * @type {Date}
-     * @memberof RevisionVersion
      */
     startTime?: Date;
     /**
      * Timestamp when the campaign will become inactive.
-     * @type {Date}
-     * @memberof RevisionVersion
      */
     endTime?: Date;
     /**
      * Arbitrary properties associated with this campaign.
-     * @type {object}
-     * @memberof RevisionVersion
      */
     attributes?: object;
     /**
      * A detailed description of the campaign.
-     * @type {string}
-     * @memberof RevisionVersion
      */
     description?: string;
     /**
      * The ID of the ruleset this campaign will use.
-     * @type {number}
-     * @memberof RevisionVersion
      */
     activeRulesetId?: number;
     /**
      * A list of tags for the campaign.
-     * @type {Array<string>}
-     * @memberof RevisionVersion
      */
     tags?: Array<string>;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof RevisionVersion
      */
     couponSettings?: CodeGeneratorSettings;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof RevisionVersion
      */
     referralSettings?: CodeGeneratorSettings;
     /**
      * The set of limits that will operate for this campaign version.
-     * @type {Array<LimitConfig>}
-     * @memberof RevisionVersion
      */
     limits?: Array<LimitConfig>;
     /**
      * Indicates whether this campaign should be reevaluated when a customer returns an item.
-     * @type {boolean}
-     * @memberof RevisionVersion
      */
     reevaluateOnReturn?: boolean;
     /**
      * A list of features for the campaign.
-     * @type {Array<RevisionVersionFeaturesEnum>}
-     * @memberof RevisionVersion
      */
     features?: Array<RevisionVersionFeaturesEnum>;
     /**
      * Arbitrary properties associated with coupons in this campaign.
-     * @type {object}
-     * @memberof RevisionVersion
      */
     couponAttributes?: object;
     /**
      * 
-     * @type {number}
-     * @memberof RevisionVersion
      */
     accountId: number;
     /**
      * 
-     * @type {number}
-     * @memberof RevisionVersion
      */
     applicationId: number;
     /**
      * 
-     * @type {number}
-     * @memberof RevisionVersion
      */
     campaignId: number;
     /**
      * 
-     * @type {Date}
-     * @memberof RevisionVersion
      */
     created: Date;
     /**
      * 
-     * @type {number}
-     * @memberof RevisionVersion
      */
     createdBy: number;
     /**
      * 
-     * @type {number}
-     * @memberof RevisionVersion
      */
     revisionId: number;
     /**
      * 
-     * @type {number}
-     * @memberof RevisionVersion
      */
     version: number;
 }
@@ -173,7 +131,7 @@ export const RevisionVersionFeaturesEnum = {
     Giveaways: 'giveaways',
     Strikethrough: 'strikethrough',
     Achievements: 'achievements',
-    AdvancedEvents: 'advancedEvents'
+    AdvancedEvents: 'advancedEvents',
 } as const;
 export type RevisionVersionFeaturesEnum = typeof RevisionVersionFeaturesEnum[keyof typeof RevisionVersionFeaturesEnum];
 
@@ -206,8 +164,8 @@ export function RevisionVersionFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'id': json['id'],
         'name': json['name'] == null ? undefined : json['name'],
-        'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
-        'endTime': json['endTime'] == null ? undefined : (new Date(json['endTime'])),
+        'startTime': json['startTime'] == null ? undefined : (parseDateTime(json['startTime'])),
+        'endTime': json['endTime'] == null ? undefined : (parseDateTime(json['endTime'])),
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'description': json['description'] == null ? undefined : json['description'],
         'activeRulesetId': json['activeRulesetId'] == null ? undefined : json['activeRulesetId'],
@@ -221,7 +179,7 @@ export function RevisionVersionFromJSONTyped(json: any, ignoreDiscriminator: boo
         'accountId': json['accountId'],
         'applicationId': json['applicationId'],
         'campaignId': json['campaignId'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'createdBy': json['createdBy'],
         'revisionId': json['revisionId'],
         'version': json['version'],
@@ -241,8 +199,8 @@ export function RevisionVersionToJSONTyped(value?: RevisionVersion | null, ignor
         
         'id': value['id'],
         'name': value['name'],
-        'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
-        'endTime': value['endTime'] == null ? value['endTime'] : value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? value['startTime'] : serializeDateTime(value['startTime']),
+        'endTime': value['endTime'] == null ? value['endTime'] : serializeDateTime(value['endTime']),
         'attributes': value['attributes'],
         'description': value['description'],
         'activeRulesetId': value['activeRulesetId'],
@@ -256,7 +214,7 @@ export function RevisionVersionToJSONTyped(value?: RevisionVersion | null, ignor
         'accountId': value['accountId'],
         'applicationId': value['applicationId'],
         'campaignId': value['campaignId'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'createdBy': value['createdBy'],
         'revisionId': value['revisionId'],
         'version': value['version'],

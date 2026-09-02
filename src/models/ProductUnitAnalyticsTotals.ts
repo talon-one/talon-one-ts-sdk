@@ -29,8 +29,6 @@ import {
 export interface ProductUnitAnalyticsTotals {
     /**
      * The number of times the product or SKU was purchased.
-     * @type {AnalyticsDataPointWithTrend}
-     * @memberof ProductUnitAnalyticsTotals
      */
     unitsSold?: AnalyticsDataPointWithTrend;
 }

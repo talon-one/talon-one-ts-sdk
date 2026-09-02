@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface TriggerCustomEffectBlock1CustomEffect {
     /**
      * The unique identifier of the custom effect.
-     * @type {number}
-     * @memberof TriggerCustomEffectBlock1CustomEffect
      */
     id: number;
     /**
      * The name of the custom effect, as used in API requests.
-     * @type {string}
-     * @memberof TriggerCustomEffectBlock1CustomEffect
      */
     name: string;
     /**
      * The display name of the custom effect.
-     * @type {string}
-     * @memberof TriggerCustomEffectBlock1CustomEffect
      */
     title: string;
 }

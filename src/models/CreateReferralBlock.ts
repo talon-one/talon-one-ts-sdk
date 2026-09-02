@@ -36,75 +36,51 @@ import {
 export interface CreateReferralBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof CreateReferralBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof CreateReferralBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof CreateReferralBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * 
-     * @type {CreateReferralBlock1CampaignId}
-     * @memberof CreateReferralBlock
      */
     campaignId: CreateReferralBlock1CampaignId;
     /**
      * An optional integration ID of the friend's profile.
-     * @type {string}
-     * @memberof CreateReferralBlock
      */
     friendId: string;
     /**
      * When `true`, the referral code is stored in the session.
-     * @type {boolean}
-     * @memberof CreateReferralBlock
      */
     storeInSession: boolean;
     /**
      * 
-     * @type {CreateReferralBlock1UsageLimit}
-     * @memberof CreateReferralBlock
      */
     usageLimit?: CreateReferralBlock1UsageLimit;
     /**
-     * 
-     * @type {any}
-     * @memberof CreateReferralBlock
+     * Timestamp at which point the referral code becomes valid.
      */
     startDate?: any | null;
     /**
-     * 
-     * @type {any}
-     * @memberof CreateReferralBlock
+     * Expiration date of the referral code. Referral code never expires if this is omitted.
      */
     expiryDate?: any | null;
     /**
-     * 
-     * @type {any}
-     * @memberof CreateReferralBlock
+     * Custom attributes associated with this referral code.
      */
     attributes?: any | null;
     /**
      * Characters used to generate the random parts of a code.
-     * @type {string}
-     * @memberof CreateReferralBlock
      */
     validCharacters?: string;
     /**
      * The pattern used to generate codes, such as coupon codes, referral codes, and loyalty cards. The character `#` is a placeholder and is replaced by a random character from the `validCharacters` set.
      * 
-     * @type {string}
-     * @memberof CreateReferralBlock
      */
     pattern?: string;
 }
@@ -114,7 +90,6 @@ export interface CreateReferralBlock {
  */
 export function instanceOfCreateReferralBlock(value: object): value is CreateReferralBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
     if (!('friendId' in _v) || _v['friendId'] === undefined) return false;
@@ -132,7 +107,7 @@ export function CreateReferralBlockFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'campaignId': CreateReferralBlock1CampaignIdFromJSON(json['campaignId']),
@@ -151,16 +126,14 @@ export function CreateReferralBlockToJSON(json: any): CreateReferralBlock {
     return CreateReferralBlockToJSONTyped(json, false);
 }
 
-export function CreateReferralBlockToJSONTyped(value?: CreateReferralBlock | null, ignoreDiscriminator: boolean = false): any {
+export function CreateReferralBlockToJSONTyped(value?: Omit<CreateReferralBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'campaignId': CreateReferralBlock1CampaignIdToJSON(value['campaignId']),
         'friendId': value['friendId'],
         'storeInSession': value['storeInSession'],

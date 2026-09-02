@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface MCPOAuthProtectedResource {
     /**
      * The URL of the protected resource (the MCP entrypoint).
-     * @type {string}
-     * @memberof MCPOAuthProtectedResource
      */
     resource: string;
     /**
      * List of authorization server base URLs that can issue tokens for this resource.
-     * @type {Array<string>}
-     * @memberof MCPOAuthProtectedResource
      */
     authorizationServers: Array<string>;
 }

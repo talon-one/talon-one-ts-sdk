@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface FeatureFlag {
     /**
      * The name of the feature flag.
-     * @type {string}
-     * @memberof FeatureFlag
      */
     name: string;
     /**
      * The value of the feature flag.
-     * @type {string}
-     * @memberof FeatureFlag
      */
     value: string;
     /**
      * The time this entity was last created.
-     * @type {Date}
-     * @memberof FeatureFlag
      */
     created?: Date;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof FeatureFlag
      */
     modified?: Date;
 }
@@ -67,8 +59,8 @@ export function FeatureFlagFromJSONTyped(json: any, ignoreDiscriminator: boolean
         
         'name': json['name'],
         'value': json['value'],
-        'created': json['created'] == null ? undefined : (new Date(json['created'])),
-        'modified': json['modified'] == null ? undefined : (new Date(json['modified'])),
+        'created': json['created'] == null ? undefined : (parseDateTime(json['created'])),
+        'modified': json['modified'] == null ? undefined : (parseDateTime(json['modified'])),
     };
 }
 
@@ -85,8 +77,8 @@ export function FeatureFlagToJSONTyped(value?: FeatureFlag | null, ignoreDiscrim
         
         'name': value['name'],
         'value': value['value'],
-        'created': value['created'] == null ? value['created'] : value['created'].toISOString(),
-        'modified': value['modified'] == null ? value['modified'] : value['modified'].toISOString(),
+        'created': value['created'] == null ? value['created'] : serializeDateTime(value['created']),
+        'modified': value['modified'] == null ? value['modified'] : serializeDateTime(value['modified']),
     };
 }
 

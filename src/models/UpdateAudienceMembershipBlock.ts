@@ -29,38 +29,26 @@ import {
 export interface UpdateAudienceMembershipBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof UpdateAudienceMembershipBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof UpdateAudienceMembershipBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof UpdateAudienceMembershipBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * The action to perform.
-     * @type {UpdateAudienceMembershipBlockOperatorEnum}
-     * @memberof UpdateAudienceMembershipBlock
      */
     operator: UpdateAudienceMembershipBlockOperatorEnum;
     /**
      * The customer profile to add or remove from the audience. `Current` targets the customer in the current session; `Advocate` targets the person who invited their friend via referral program.
-     * @type {UpdateAudienceMembershipBlockProfileEnum}
-     * @memberof UpdateAudienceMembershipBlock
      */
     profile: UpdateAudienceMembershipBlockProfileEnum;
     /**
      * 
-     * @type {UpdateAudienceMembershipBlock1Audience}
-     * @memberof UpdateAudienceMembershipBlock
      */
     audience: UpdateAudienceMembershipBlock1Audience;
 }
@@ -71,7 +59,7 @@ export interface UpdateAudienceMembershipBlock {
  */
 export const UpdateAudienceMembershipBlockOperatorEnum = {
     Add: 'add',
-    Remove: 'remove'
+    Remove: 'remove',
 } as const;
 export type UpdateAudienceMembershipBlockOperatorEnum = typeof UpdateAudienceMembershipBlockOperatorEnum[keyof typeof UpdateAudienceMembershipBlockOperatorEnum];
 
@@ -80,7 +68,7 @@ export type UpdateAudienceMembershipBlockOperatorEnum = typeof UpdateAudienceMem
  */
 export const UpdateAudienceMembershipBlockProfileEnum = {
     Current: 'Current',
-    Advocate: 'Advocate'
+    Advocate: 'Advocate',
 } as const;
 export type UpdateAudienceMembershipBlockProfileEnum = typeof UpdateAudienceMembershipBlockProfileEnum[keyof typeof UpdateAudienceMembershipBlockProfileEnum];
 
@@ -90,7 +78,6 @@ export type UpdateAudienceMembershipBlockProfileEnum = typeof UpdateAudienceMemb
  */
 export function instanceOfUpdateAudienceMembershipBlock(value: object): value is UpdateAudienceMembershipBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('operator' in _v) || _v['operator'] === undefined) return false;
     if (!('profile' in _v) || _v['profile'] === undefined) return false;
@@ -108,7 +95,7 @@ export function UpdateAudienceMembershipBlockFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
@@ -121,16 +108,14 @@ export function UpdateAudienceMembershipBlockToJSON(json: any): UpdateAudienceMe
     return UpdateAudienceMembershipBlockToJSONTyped(json, false);
 }
 
-export function UpdateAudienceMembershipBlockToJSONTyped(value?: UpdateAudienceMembershipBlock | null, ignoreDiscriminator: boolean = false): any {
+export function UpdateAudienceMembershipBlockToJSONTyped(value?: Omit<UpdateAudienceMembershipBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'operator': value['operator'],
         'profile': value['profile'],
         'audience': UpdateAudienceMembershipBlock1AudienceToJSON(value['audience']),

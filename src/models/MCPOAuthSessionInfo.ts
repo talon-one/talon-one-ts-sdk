@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { MCPOAuthClient } from './MCPOAuthClient';
 import {
     MCPOAuthClientFromJSON,
@@ -29,20 +29,14 @@ import {
 export interface MCPOAuthSessionInfo {
     /**
      * The identifier of the authorization session.
-     * @type {string}
-     * @memberof MCPOAuthSessionInfo
      */
     sessionId: string;
     /**
      * The date and time at which the session expires. Date and time. Follows RFC3339 format.
-     * @type {Date}
-     * @memberof MCPOAuthSessionInfo
      */
     expiresAt?: Date;
     /**
      * The MCP OAuth client requesting authorization.
-     * @type {MCPOAuthClient}
-     * @memberof MCPOAuthSessionInfo
      */
     client: MCPOAuthClient;
 }
@@ -68,7 +62,7 @@ export function MCPOAuthSessionInfoFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'sessionId': json['session_id'],
-        'expiresAt': json['expires_at'] == null ? undefined : (new Date(json['expires_at'])),
+        'expiresAt': json['expires_at'] == null ? undefined : (parseDateTime(json['expires_at'])),
         'client': MCPOAuthClientFromJSON(json['client']),
     };
 }
@@ -85,7 +79,7 @@ export function MCPOAuthSessionInfoToJSONTyped(value?: MCPOAuthSessionInfo | nul
     return {
         
         'session_id': value['sessionId'],
-        'expires_at': value['expiresAt'] == null ? value['expiresAt'] : value['expiresAt'].toISOString(),
+        'expires_at': value['expiresAt'] == null ? value['expiresAt'] : serializeDateTime(value['expiresAt']),
         'client': MCPOAuthClientToJSON(value['client']),
     };
 }

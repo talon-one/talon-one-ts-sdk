@@ -29,14 +29,10 @@ import {
 export interface GetAdditionalCosts200Response {
     /**
      * 
-     * @type {number}
-     * @memberof GetAdditionalCosts200Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<AccountAdditionalCost>}
-     * @memberof GetAdditionalCosts200Response
      */
     data: Array<AccountAdditionalCost>;
 }

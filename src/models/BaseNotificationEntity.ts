@@ -29,14 +29,10 @@ import {
 export interface BaseNotificationEntity {
     /**
      * 
-     * @type {BaseNotificationPolicy}
-     * @memberof BaseNotificationEntity
      */
     policy: BaseNotificationPolicy;
     /**
      * Indicates whether the notification is activated.
-     * @type {boolean}
-     * @memberof BaseNotificationEntity
      */
     enabled?: boolean;
 }

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AsyncCouponCreationResponse {
     /**
      * The batch ID that all coupons created by the request will have.
-     * @type {string}
-     * @memberof AsyncCouponCreationResponse
      */
     batchId: string;
 }

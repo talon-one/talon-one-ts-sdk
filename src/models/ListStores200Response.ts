@@ -29,20 +29,14 @@ import {
 export interface ListStores200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof ListStores200Response
      */
     hasMore?: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof ListStores200Response
      */
     totalResultSize?: number;
     /**
      * 
-     * @type {Array<Store>}
-     * @memberof ListStores200Response
      */
     data: Array<Store>;
 }

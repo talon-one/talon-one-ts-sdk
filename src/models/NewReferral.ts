@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,45 +21,31 @@ import { mapValues } from '../runtime';
 export interface NewReferral {
     /**
      * Timestamp at which point the referral code becomes valid.
-     * @type {Date}
-     * @memberof NewReferral
      */
     startDate?: Date;
     /**
      * Expiration date of the referral code. Referral never expires if this is omitted.
-     * @type {Date}
-     * @memberof NewReferral
      */
     expiryDate?: Date;
     /**
      * The number of times a referral code can be used. `0` means no limit but any campaign usage limits will still apply.
      * 
-     * @type {number}
-     * @memberof NewReferral
      */
     usageLimit?: number;
     /**
      * ID of the campaign from which the referral received the referral code.
-     * @type {number}
-     * @memberof NewReferral
      */
     campaignId: number;
     /**
      * The Integration ID of the Advocate's Profile.
-     * @type {string}
-     * @memberof NewReferral
      */
     advocateProfileIntegrationId: string;
     /**
      * An optional Integration ID of the Friend's Profile.
-     * @type {string}
-     * @memberof NewReferral
      */
     friendProfileIntegrationId?: string;
     /**
      * Arbitrary properties associated with this item.
-     * @type {object}
-     * @memberof NewReferral
      */
     attributes?: object;
 }
@@ -84,8 +70,8 @@ export function NewReferralFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
         'campaignId': json['campaignId'],
         'advocateProfileIntegrationId': json['advocateProfileIntegrationId'],
@@ -105,8 +91,8 @@ export function NewReferralToJSONTyped(value?: NewReferral | null, ignoreDiscrim
 
     return {
         
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'usageLimit': value['usageLimit'],
         'campaignId': value['campaignId'],
         'advocateProfileIntegrationId': value['advocateProfileIntegrationId'],

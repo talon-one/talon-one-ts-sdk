@@ -11,7 +11,7 @@ Name | Type
 `tags` | Array&lt;string&gt;
 `webhook` | [TriggerWebhookBlock1Webhook](TriggerWebhookBlock1Webhook.md)
 `params` | { [key: string]: any; }
-`onError` | { [key: string]: Array&lt;PromotionBlock&gt;; }
+`onError` | { [key: string]: Array&lt;Block&gt;; }
 
 ## Example
 

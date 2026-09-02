@@ -25,20 +25,14 @@ import { mapValues } from '../runtime';
 export interface ShowBundleMetadataEffectProps {
     /**
      * Description of the product bundle.
-     * @type {string}
-     * @memberof ShowBundleMetadataEffectProps
      */
     description: string;
     /**
      * The cart item attributes that determined which items are being bundled together.
-     * @type {Array<string>}
-     * @memberof ShowBundleMetadataEffectProps
      */
     bundleAttributes: Array<string>;
     /**
      * The indices in the cart items array of the bundled items.
-     * @type {Array<number>}
-     * @memberof ShowBundleMetadataEffectProps
      */
     itemsIndices: Array<number>;
 }

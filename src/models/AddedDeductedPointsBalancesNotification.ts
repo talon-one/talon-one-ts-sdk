@@ -29,38 +29,26 @@ import {
 export interface AddedDeductedPointsBalancesNotification {
     /**
      * The name of the employee who added or deducted points.
-     * @type {string}
-     * @memberof AddedDeductedPointsBalancesNotification
      */
     employeeName: string;
     /**
      * The ID of the loyalty program.
-     * @type {number}
-     * @memberof AddedDeductedPointsBalancesNotification
      */
     loyaltyProgramID: number;
     /**
      * The type of notification.
-     * @type {AddedDeductedPointsBalancesNotificationNotificationTypeEnum}
-     * @memberof AddedDeductedPointsBalancesNotification
      */
     notificationType: AddedDeductedPointsBalancesNotificationNotificationTypeEnum;
     /**
      * The integration ID of the customer profile to whom points were added or deducted.
-     * @type {string}
-     * @memberof AddedDeductedPointsBalancesNotification
      */
     profileIntegrationID: string;
     /**
      * The integration ID of the session through which the points were earned or lost.
-     * @type {string}
-     * @memberof AddedDeductedPointsBalancesNotification
      */
     sessionIntegrationID: string;
     /**
      * The ID of the subledger within the loyalty program where these points were added.
-     * @type {string}
-     * @memberof AddedDeductedPointsBalancesNotification
      */
     subledgerID: string;
     /**
@@ -69,26 +57,18 @@ export interface AddedDeductedPointsBalancesNotification {
      * - [Management API](/management-api#tag/Loyalty)
      * - [Rule Engine](/docs/product/applications/evaluation-order-for-rules-and-filters)
      * 
-     * @type {AddedDeductedPointsBalancesNotificationTypeOfChangeEnum}
-     * @memberof AddedDeductedPointsBalancesNotification
      */
     typeOfChange: AddedDeductedPointsBalancesNotificationTypeOfChangeEnum;
     /**
      * The ID of the employee who added or deducted points.
-     * @type {number}
-     * @memberof AddedDeductedPointsBalancesNotification
      */
     userID: number;
     /**
      * The list of actions that have been triggered in the loyalty program.
-     * @type {Array<AddedDeductedPointsBalancesAction>}
-     * @memberof AddedDeductedPointsBalancesNotification
      */
     actions: Array<AddedDeductedPointsBalancesAction>;
     /**
      * The current points balance.
-     * @type {number}
-     * @memberof AddedDeductedPointsBalancesNotification
      */
     currentPoints: number;
 }
@@ -98,7 +78,7 @@ export interface AddedDeductedPointsBalancesNotification {
  * @export
  */
 export const AddedDeductedPointsBalancesNotificationNotificationTypeEnum = {
-    LoyaltyAddedDeductedPointsBalances: 'LoyaltyAddedDeductedPointsBalances'
+    LoyaltyAddedDeductedPointsBalances: 'LoyaltyAddedDeductedPointsBalances',
 } as const;
 export type AddedDeductedPointsBalancesNotificationNotificationTypeEnum = typeof AddedDeductedPointsBalancesNotificationNotificationTypeEnum[keyof typeof AddedDeductedPointsBalancesNotificationNotificationTypeEnum];
 
@@ -108,7 +88,7 @@ export type AddedDeductedPointsBalancesNotificationNotificationTypeEnum = typeof
 export const AddedDeductedPointsBalancesNotificationTypeOfChangeEnum = {
     CampaignManager: 'campaign_manager',
     RuleEngine: 'rule_engine',
-    ManagementApi: 'management_api'
+    ManagementApi: 'management_api',
 } as const;
 export type AddedDeductedPointsBalancesNotificationTypeOfChangeEnum = typeof AddedDeductedPointsBalancesNotificationTypeOfChangeEnum[keyof typeof AddedDeductedPointsBalancesNotificationTypeOfChangeEnum];
 

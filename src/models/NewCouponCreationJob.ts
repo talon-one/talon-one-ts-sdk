@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CodeGeneratorSettings } from './CodeGeneratorSettings';
 import {
     CodeGeneratorSettingsFromJSON,
@@ -30,58 +30,40 @@ export interface NewCouponCreationJob {
     /**
      * The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
      * 
-     * @type {number}
-     * @memberof NewCouponCreationJob
      */
     usageLimit?: number;
     /**
      * The total discount value that the code can give. Typically used to represent a gift card value.
      * 
-     * @type {number}
-     * @memberof NewCouponCreationJob
      */
     discountLimit?: number;
     /**
      * The number of reservations that can be made with this coupon code.
      * 
-     * @type {number}
-     * @memberof NewCouponCreationJob
      */
     reservationLimit?: number;
     /**
      * Timestamp at which point the coupon becomes valid.
-     * @type {Date}
-     * @memberof NewCouponCreationJob
      */
     startDate?: Date;
     /**
      * Expiration date of the coupon. Coupon never expires if this is omitted.
-     * @type {Date}
-     * @memberof NewCouponCreationJob
      */
     expiryDate?: Date;
     /**
      * The number of new coupon codes to generate for the campaign.
-     * @type {number}
-     * @memberof NewCouponCreationJob
      */
     numberOfCoupons: number;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof NewCouponCreationJob
      */
     couponSettings?: CodeGeneratorSettings;
     /**
      * Arbitrary properties associated with coupons.
-     * @type {object}
-     * @memberof NewCouponCreationJob
      */
     attributes: object;
     /**
      * An indication of whether the code can be redeemed only if it has been reserved first.
-     * @type {boolean}
-     * @memberof NewCouponCreationJob
      */
     isReservationMandatory?: boolean;
 }
@@ -109,8 +91,8 @@ export function NewCouponCreationJobFromJSONTyped(json: any, ignoreDiscriminator
         'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
         'discountLimit': json['discountLimit'] == null ? undefined : json['discountLimit'],
         'reservationLimit': json['reservationLimit'] == null ? undefined : json['reservationLimit'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'numberOfCoupons': json['numberOfCoupons'],
         'couponSettings': json['couponSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['couponSettings']),
         'attributes': json['attributes'],
@@ -132,8 +114,8 @@ export function NewCouponCreationJobToJSONTyped(value?: NewCouponCreationJob | n
         'usageLimit': value['usageLimit'],
         'discountLimit': value['discountLimit'],
         'reservationLimit': value['reservationLimit'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'numberOfCoupons': value['numberOfCoupons'],
         'couponSettings': CodeGeneratorSettingsToJSON(value['couponSettings']),
         'attributes': value['attributes'],

@@ -29,20 +29,14 @@ import {
 export interface GetAudiences200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetAudiences200Response
      */
     hasMore?: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof GetAudiences200Response
      */
     totalResultSize?: number;
     /**
      * 
-     * @type {Array<Audience>}
-     * @memberof GetAudiences200Response
      */
     data: Array<Audience>;
 }

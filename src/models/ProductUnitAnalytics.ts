@@ -36,14 +36,10 @@ import {
 export interface ProductUnitAnalytics {
     /**
      * 
-     * @type {Array<ProductUnitAnalyticsDataPoint>}
-     * @memberof ProductUnitAnalytics
      */
     data: Array<ProductUnitAnalyticsDataPoint>;
     /**
      * 
-     * @type {ProductUnitAnalyticsTotals}
-     * @memberof ProductUnitAnalytics
      */
     totals: ProductUnitAnalyticsTotals;
 }

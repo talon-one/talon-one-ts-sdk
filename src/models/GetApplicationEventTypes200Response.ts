@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface GetApplicationEventTypes200Response {
     /**
      * 
-     * @type {number}
-     * @memberof GetApplicationEventTypes200Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof GetApplicationEventTypes200Response
      */
     data: Array<string>;
 }

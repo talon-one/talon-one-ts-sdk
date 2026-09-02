@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { AdditionalCost } from './AdditionalCost';
 import {
     AdditionalCostFromJSON,
@@ -43,26 +43,18 @@ import {
 export interface CustomerSessionV2 {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof CustomerSessionV2
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof CustomerSessionV2
      */
     created: Date;
     /**
      * The integration ID set by your integration layer.
-     * @type {string}
-     * @memberof CustomerSessionV2
      */
     integrationId: string;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof CustomerSessionV2
      */
     applicationId: number;
     /**
@@ -70,14 +62,10 @@ export interface CustomerSessionV2 {
      * 
      * **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
      * 
-     * @type {string}
-     * @memberof CustomerSessionV2
      */
     profileId?: string;
     /**
      * The integration ID of the store. You choose this ID when you create a store.
-     * @type {string}
-     * @memberof CustomerSessionV2
      */
     storeIntegrationId?: string;
     /**
@@ -85,8 +73,6 @@ export interface CustomerSessionV2 {
      * 
      * These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.
      * 
-     * @type {Array<number>}
-     * @memberof CustomerSessionV2
      */
     evaluableCampaignIds?: Array<number>;
     /**
@@ -97,8 +83,6 @@ export interface CustomerSessionV2 {
      * - If you [create a coupon budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a coupon code by the time you close it.
      * - In requests where `dry=false`, providing an empty array discards any previous coupons. To avoid this, omit the parameter entirely.
      * 
-     * @type {Array<string>}
-     * @memberof CustomerSessionV2
      */
     couponCodes?: Array<string>;
     /**
@@ -109,16 +93,17 @@ export interface CustomerSessionV2 {
      * - If you [create a referral budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a referral code by the time you close it.
      * - In requests where `dry=false`, providing an empty value discards the previous referral code. To avoid this, omit the parameter entirely.
      * 
-     * @type {string}
-     * @memberof CustomerSessionV2
      */
     referralCode?: string;
     /**
      * Identifier of a loyalty card.
-     * @type {Array<string>}
-     * @memberof CustomerSessionV2
      */
     loyaltyCards?: Array<string>;
+    /**
+     * The integration IDs of the unlocked rewards that can be used in this session.
+     * 
+     */
+    rewardIntegrationIds?: Array<string>;
     /**
      * Indicates the current state of the session. Sessions can be created as `open` or `closed`. The state transitions are:
      * 
@@ -132,22 +117,16 @@ export interface CustomerSessionV2 {
      * 
      * For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
      * 
-     * @type {CustomerSessionV2StateEnum}
-     * @memberof CustomerSessionV2
      */
     state?: CustomerSessionV2StateEnum;
     /**
      * The items to add to this session. **Do not exceed 1000 items** and ensure the sum of all cart item's `quantity` **does not exceed 10.000** per request.
      * 
-     * @type {Array<CartItem>}
-     * @memberof CustomerSessionV2
      */
     cartItems?: Array<CartItem>;
     /**
      * The experiment variant allocations to add to this session.
      * 
-     * @type {Array<ExperimentVariantAllocation>}
-     * @memberof CustomerSessionV2
      */
     experimentVariantAllocations?: Array<ExperimentVariantAllocation>;
     /**
@@ -156,8 +135,6 @@ export interface CustomerSessionV2 {
      * They must be created in the Campaign Manager
      * before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).
      * 
-     * @type {{ [key: string]: AdditionalCost; }}
-     * @memberof CustomerSessionV2
      */
     additionalCosts?: { [key: string]: AdditionalCost; };
     /**
@@ -173,8 +150,6 @@ export interface CustomerSessionV2 {
      * - Your campaign has [coupons](https://docs.talon.one/docs/product/campaigns/coupons/coupon-page-overview).
      * - We recommend passing an anonymized (hashed) version of the identifier value.
      * 
-     * @type {Array<string>}
-     * @memberof CustomerSessionV2
      */
     identifiers?: Array<string>;
     /**
@@ -183,50 +158,34 @@ export interface CustomerSessionV2 {
      * You can use [built-in attributes](https://docs.talon.one/docs/dev/concepts/attributes#built-in-attributes) or [custom ones](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes).
      * Custom attributes must be created in the Campaign Manager before you set them with this property.
      * 
-     * @type {{ [key: string]: any; }}
-     * @memberof CustomerSessionV2
      */
     attributes?: { [key: string]: any; };
     /**
      * Indicates whether this is the first session for the customer's profile. It's always `true` for anonymous sessions.
-     * @type {boolean}
-     * @memberof CustomerSessionV2
      */
     firstSession: boolean;
     /**
      * The number of times the session was updated. When the session is created, this value is initialized to `1`.
-     * @type {number}
-     * @memberof CustomerSessionV2
      */
     updateCount: number;
     /**
      * The total value of cart items and additional costs in the session, before any discounts are applied.
-     * @type {number}
-     * @memberof CustomerSessionV2
      */
     total: number;
     /**
      * The total value of cart items, before any discounts are applied.
-     * @type {number}
-     * @memberof CustomerSessionV2
      */
     cartItemTotal: number;
     /**
      * The total value of additional costs, before any discounts are applied.
-     * @type {number}
-     * @memberof CustomerSessionV2
      */
     additionalCostTotal: number;
     /**
      * The total value of additional costs applied to individual items, before any discounts are applied.
-     * @type {number}
-     * @memberof CustomerSessionV2
      */
     readonly cartItemAdditionalCostTotal: number;
     /**
      * Timestamp of the most recent event received on this session.
-     * @type {Date}
-     * @memberof CustomerSessionV2
      */
     updated: Date;
 }
@@ -239,7 +198,7 @@ export const CustomerSessionV2StateEnum = {
     Open: 'open',
     Closed: 'closed',
     PartiallyReturned: 'partially_returned',
-    Cancelled: 'cancelled'
+    Cancelled: 'cancelled',
 } as const;
 export type CustomerSessionV2StateEnum = typeof CustomerSessionV2StateEnum[keyof typeof CustomerSessionV2StateEnum];
 
@@ -274,7 +233,7 @@ export function CustomerSessionV2FromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'integrationId': json['integrationId'],
         'applicationId': json['applicationId'],
         'profileId': json['profileId'] == null ? undefined : json['profileId'],
@@ -283,6 +242,7 @@ export function CustomerSessionV2FromJSONTyped(json: any, ignoreDiscriminator: b
         'couponCodes': json['couponCodes'] == null ? undefined : json['couponCodes'],
         'referralCode': json['referralCode'] == null ? undefined : json['referralCode'],
         'loyaltyCards': json['loyaltyCards'] == null ? undefined : json['loyaltyCards'],
+        'rewardIntegrationIds': json['rewardIntegrationIds'] == null ? undefined : json['rewardIntegrationIds'],
         'state': json['state'] == null ? undefined : json['state'],
         'cartItems': json['cartItems'] == null ? undefined : ((json['cartItems'] as Array<any>).map(CartItemFromJSON)),
         'experimentVariantAllocations': json['experimentVariantAllocations'] == null ? undefined : ((json['experimentVariantAllocations'] as Array<any>).map(ExperimentVariantAllocationFromJSON)),
@@ -295,7 +255,7 @@ export function CustomerSessionV2FromJSONTyped(json: any, ignoreDiscriminator: b
         'cartItemTotal': json['cartItemTotal'],
         'additionalCostTotal': json['additionalCostTotal'],
         'cartItemAdditionalCostTotal': json['cartItemAdditionalCostTotal'],
-        'updated': (json['updated'] == null ? undefined as any : new Date(json['updated'])),
+        'updated': (json['updated'] == null ? json['updated'] : parseDateTime(json['updated'])),
     };
 }
 
@@ -311,7 +271,7 @@ export function CustomerSessionV2ToJSONTyped(value?: Omit<CustomerSessionV2, 'ca
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'integrationId': value['integrationId'],
         'applicationId': value['applicationId'],
         'profileId': value['profileId'],
@@ -320,6 +280,7 @@ export function CustomerSessionV2ToJSONTyped(value?: Omit<CustomerSessionV2, 'ca
         'couponCodes': value['couponCodes'],
         'referralCode': value['referralCode'],
         'loyaltyCards': value['loyaltyCards'],
+        'rewardIntegrationIds': value['rewardIntegrationIds'],
         'state': value['state'],
         'cartItems': value['cartItems'] == null ? undefined : ((value['cartItems'] as Array<any>).map(CartItemToJSON)),
         'experimentVariantAllocations': value['experimentVariantAllocations'] == null ? undefined : ((value['experimentVariantAllocations'] as Array<any>).map(ExperimentVariantAllocationToJSON)),
@@ -331,7 +292,7 @@ export function CustomerSessionV2ToJSONTyped(value?: Omit<CustomerSessionV2, 'ca
         'total': value['total'],
         'cartItemTotal': value['cartItemTotal'],
         'additionalCostTotal': value['additionalCostTotal'],
-        'updated': value['updated'] == null ? undefined : value['updated'].toISOString(),
+        'updated': value['updated'] == null ? undefined : serializeDateTime(value['updated']),
     };
 }
 

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface NewCampaignCollection {
     /**
      * A short description of the purpose of this collection.
-     * @type {string}
-     * @memberof NewCampaignCollection
      */
     description?: string;
     /**
      * The name of this collection.
-     * @type {string}
-     * @memberof NewCampaignCollection
      */
     name: string;
 }

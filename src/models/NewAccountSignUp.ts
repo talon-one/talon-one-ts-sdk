@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface NewAccountSignUp {
     /**
      * The email address associated with the user profile.
-     * @type {string}
-     * @memberof NewAccountSignUp
      */
     email: string;
     /**
      * The password for your account.
-     * @type {string}
-     * @memberof NewAccountSignUp
      */
     password: string;
     /**
      * 
-     * @type {string}
-     * @memberof NewAccountSignUp
      */
     companyName: string;
 }

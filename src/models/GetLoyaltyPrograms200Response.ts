@@ -29,14 +29,10 @@ import {
 export interface GetLoyaltyPrograms200Response {
     /**
      * 
-     * @type {number}
-     * @memberof GetLoyaltyPrograms200Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<LoyaltyProgram>}
-     * @memberof GetLoyaltyPrograms200Response
      */
     data: Array<LoyaltyProgram>;
 }

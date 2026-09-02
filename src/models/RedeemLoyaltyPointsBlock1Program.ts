@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface RedeemLoyaltyPointsBlock1Program {
     /**
      * The ID of the loyalty program.
-     * @type {number}
-     * @memberof RedeemLoyaltyPointsBlock1Program
      */
     id: number;
     /**
      * The internal name of the loyalty program.
-     * @type {string}
-     * @memberof RedeemLoyaltyPointsBlock1Program
      */
     name: string;
     /**
      * The display name of the loyalty program.
-     * @type {string}
-     * @memberof RedeemLoyaltyPointsBlock1Program
      */
     title: string;
 }

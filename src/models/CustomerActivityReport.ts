@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * A summary report of customer activity for a given time range.
  * @export
@@ -21,80 +21,54 @@ import { mapValues } from '../runtime';
 export interface CustomerActivityReport {
     /**
      * The integration ID set by your integration layer.
-     * @type {string}
-     * @memberof CustomerActivityReport
      */
     integrationId: string;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof CustomerActivityReport
      */
     created: Date;
     /**
      * The name for this customer profile.
-     * @type {string}
-     * @memberof CustomerActivityReport
      */
     name: string;
     /**
      * The internal Talon.One ID of the customer.
-     * @type {number}
-     * @memberof CustomerActivityReport
      */
     customerId: number;
     /**
      * The last activity of the customer.
-     * @type {Date}
-     * @memberof CustomerActivityReport
      */
     lastActivity?: Date;
     /**
      * Number of coupon redemptions in all customer campaigns.
-     * @type {number}
-     * @memberof CustomerActivityReport
      */
     couponRedemptions: number;
     /**
      * Number of coupon use attempts in all customer campaigns.
-     * @type {number}
-     * @memberof CustomerActivityReport
      */
     couponUseAttempts: number;
     /**
      * Number of failed coupon use attempts in all customer campaigns.
-     * @type {number}
-     * @memberof CustomerActivityReport
      */
     couponFailedAttempts: number;
     /**
      * Number of accrued discounts in all customer campaigns.
-     * @type {number}
-     * @memberof CustomerActivityReport
      */
     accruedDiscounts: number;
     /**
      * Amount of accrued revenue in all customer campaigns.
-     * @type {number}
-     * @memberof CustomerActivityReport
      */
     accruedRevenue: number;
     /**
      * Number of orders in all customer campaigns.
-     * @type {number}
-     * @memberof CustomerActivityReport
      */
     totalOrders: number;
     /**
      * Number of orders without coupon used in all customer campaigns.
-     * @type {number}
-     * @memberof CustomerActivityReport
      */
     totalOrdersNoCoupon: number;
     /**
      * The name of the campaign this customer belongs to.
-     * @type {string}
-     * @memberof CustomerActivityReport
      */
     campaignName: string;
 }
@@ -130,10 +104,10 @@ export function CustomerActivityReportFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'integrationId': json['integrationId'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'name': json['name'],
         'customerId': json['customerId'],
-        'lastActivity': json['lastActivity'] == null ? undefined : (new Date(json['lastActivity'])),
+        'lastActivity': json['lastActivity'] == null ? undefined : (parseDateTime(json['lastActivity'])),
         'couponRedemptions': json['couponRedemptions'],
         'couponUseAttempts': json['couponUseAttempts'],
         'couponFailedAttempts': json['couponFailedAttempts'],
@@ -157,10 +131,10 @@ export function CustomerActivityReportToJSONTyped(value?: CustomerActivityReport
     return {
         
         'integrationId': value['integrationId'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'name': value['name'],
         'customerId': value['customerId'],
-        'lastActivity': value['lastActivity'] == null ? value['lastActivity'] : value['lastActivity'].toISOString(),
+        'lastActivity': value['lastActivity'] == null ? value['lastActivity'] : serializeDateTime(value['lastActivity']),
         'couponRedemptions': value['couponRedemptions'],
         'couponUseAttempts': value['couponUseAttempts'],
         'couponFailedAttempts': value['couponFailedAttempts'],

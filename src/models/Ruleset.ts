@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { Binding } from './Binding';
 import {
     BindingFromJSON,
@@ -36,68 +36,46 @@ import {
 export interface Ruleset {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Ruleset
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Ruleset
      */
     created: Date;
     /**
      * The ID of the user associated with this entity.
-     * @type {number}
-     * @memberof Ruleset
      */
     userId: number;
     /**
      * Set of rules to apply.
-     * @type {Array<Rule>}
-     * @memberof Ruleset
      */
     rules: Array<Rule>;
     /**
      * Set of rules to apply for strikethrough.
-     * @type {Array<Rule>}
-     * @memberof Ruleset
      */
     strikethroughRules?: Array<Rule>;
     /**
      * An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array.
-     * @type {Array<Binding>}
-     * @memberof Ruleset
      */
     bindings: Array<Binding>;
     /**
      * The version of the rulebuilder used to create this ruleset.
-     * @type {string}
-     * @memberof Ruleset
      */
     rbVersion?: string;
     /**
      * Indicates whether this created ruleset should be activated for the campaign that owns it.
-     * @type {boolean}
-     * @memberof Ruleset
      */
     activate?: boolean;
     /**
      * The ID of the campaign that owns this entity.
-     * @type {number}
-     * @memberof Ruleset
      */
     campaignId?: number;
     /**
      * The ID of the campaign template that owns this entity.
-     * @type {number}
-     * @memberof Ruleset
      */
     templateId?: number;
     /**
      * Timestamp indicating when this Ruleset was activated.
-     * @type {Date}
-     * @memberof Ruleset
      */
     activatedAt?: Date;
 }
@@ -126,7 +104,7 @@ export function RulesetFromJSONTyped(json: any, ignoreDiscriminator: boolean): R
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'userId': json['userId'],
         'rules': (json['rules'] == null ? undefined as any : (json['rules'] as Array<any>).map(RuleFromJSON)),
         'strikethroughRules': json['strikethroughRules'] == null ? undefined : ((json['strikethroughRules'] as Array<any>).map(RuleFromJSON)),
@@ -135,7 +113,7 @@ export function RulesetFromJSONTyped(json: any, ignoreDiscriminator: boolean): R
         'activate': json['activate'] == null ? undefined : json['activate'],
         'campaignId': json['campaignId'] == null ? undefined : json['campaignId'],
         'templateId': json['templateId'] == null ? undefined : json['templateId'],
-        'activatedAt': json['activatedAt'] == null ? undefined : (new Date(json['activatedAt'])),
+        'activatedAt': json['activatedAt'] == null ? undefined : (parseDateTime(json['activatedAt'])),
     };
 }
 
@@ -151,7 +129,7 @@ export function RulesetToJSONTyped(value?: Ruleset | null, ignoreDiscriminator: 
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'userId': value['userId'],
         'rules': (value['rules'] == null ? undefined : (value['rules'] as Array<any>).map(RuleToJSON)),
         'strikethroughRules': value['strikethroughRules'] == null ? undefined : ((value['strikethroughRules'] as Array<any>).map(RuleToJSON)),
@@ -160,7 +138,7 @@ export function RulesetToJSONTyped(value?: Ruleset | null, ignoreDiscriminator: 
         'activate': value['activate'],
         'campaignId': value['campaignId'],
         'templateId': value['templateId'],
-        'activatedAt': value['activatedAt'] == null ? value['activatedAt'] : value['activatedAt'].toISOString(),
+        'activatedAt': value['activatedAt'] == null ? value['activatedAt'] : serializeDateTime(value['activatedAt']),
     };
 }
 

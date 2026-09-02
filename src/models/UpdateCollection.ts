@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface UpdateCollection {
     /**
      * A short description of the purpose of this collection.
-     * @type {string}
-     * @memberof UpdateCollection
      */
     description?: string;
     /**
      * A list of the IDs of the Applications where this collection is enabled.
-     * @type {Array<number>}
-     * @memberof UpdateCollection
      */
     subscribedApplicationsIds?: Array<number>;
 }

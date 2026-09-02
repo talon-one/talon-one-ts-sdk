@@ -29,20 +29,14 @@ import {
 export interface NewCampaignSet {
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof NewCampaignSet
      */
     applicationId: number;
     /**
      * Version of the campaign set.
-     * @type {number}
-     * @memberof NewCampaignSet
      */
     version: number;
     /**
      * 
-     * @type {CampaignSetBranchNode}
-     * @memberof NewCampaignSet
      */
     set: CampaignSetBranchNode;
 }

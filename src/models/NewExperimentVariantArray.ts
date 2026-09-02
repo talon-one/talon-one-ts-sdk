@@ -29,8 +29,6 @@ import {
 export interface NewExperimentVariantArray {
     /**
      * Array of experiment variants to create
-     * @type {Array<NewExperimentVariant>}
-     * @memberof NewExperimentVariantArray
      */
     variants: Array<NewExperimentVariant>;
 }

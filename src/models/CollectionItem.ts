@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface CollectionItem {
     /**
      * 
-     * @type {string}
-     * @memberof CollectionItem
      */
     item: string;
 }

@@ -29,14 +29,10 @@ import {
 export interface ListApplicationCartItemFilters200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof ListApplicationCartItemFilters200Response
      */
     hasMore?: boolean;
     /**
      * 
-     * @type {Array<ApplicationCIF>}
-     * @memberof ListApplicationCartItemFilters200Response
      */
     data: Array<ApplicationCIF>;
 }

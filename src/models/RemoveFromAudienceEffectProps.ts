@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface RemoveFromAudienceEffectProps {
     /**
      * The internal ID of the audience.
-     * @type {number}
-     * @memberof RemoveFromAudienceEffectProps
      */
     audienceId?: number;
     /**
      * The name of the audience.
-     * @type {string}
-     * @memberof RemoveFromAudienceEffectProps
      */
     audienceName?: string;
     /**
      * The ID of the customer profile in the third-party integration platform.
-     * @type {string}
-     * @memberof RemoveFromAudienceEffectProps
      */
     profileIntegrationId?: string;
     /**
      * The internal ID of the customer profile.
-     * @type {number}
-     * @memberof RemoveFromAudienceEffectProps
      */
     profileId?: number;
 }

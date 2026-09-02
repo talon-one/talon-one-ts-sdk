@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CartItem } from './CartItem';
 import {
     CartItemFromJSON,
@@ -29,56 +29,38 @@ import {
 export interface ApplicationSession {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof ApplicationSession
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof ApplicationSession
      */
     created: Date;
     /**
      * The integration ID set by your integration layer.
-     * @type {string}
-     * @memberof ApplicationSession
      */
     integrationId: string;
     /**
      * The integration ID of the store. You choose this ID when you create a store.
-     * @type {string}
-     * @memberof ApplicationSession
      */
     storeIntegrationId?: string;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof ApplicationSession
      */
     applicationId: number;
     /**
      * The globally unique Talon.One ID of the customer that created this entity.
-     * @type {number}
-     * @memberof ApplicationSession
      */
     profileId?: number;
     /**
      * Integration ID of the customer for the session.
-     * @type {string}
-     * @memberof ApplicationSession
      */
     profileintegrationid?: string;
     /**
      * Any coupon code entered.
-     * @type {string}
-     * @memberof ApplicationSession
      */
     coupon: string;
     /**
      * Any referral code entered.
-     * @type {string}
-     * @memberof ApplicationSession
      */
     referral: string;
     /**
@@ -91,14 +73,10 @@ export interface ApplicationSession {
      * 
      * For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
      * 
-     * @type {ApplicationSessionStateEnum}
-     * @memberof ApplicationSession
      */
     state: ApplicationSessionStateEnum;
     /**
      * Serialized JSON representation.
-     * @type {Array<CartItem>}
-     * @memberof ApplicationSession
      */
     cartItems: Array<CartItem>;
     /**
@@ -106,8 +84,6 @@ export interface ApplicationSession {
      * 
      * If you are using the V2 endpoints, refer to the `totalDiscounts` property instead.
      * 
-     * @type {{ [key: string]: number; }}
-     * @memberof ApplicationSession
      */
     discounts: { [key: string]: number; };
     /**
@@ -115,20 +91,14 @@ export interface ApplicationSession {
      * 
      * **Note:** If more than one session is returned, this value is displayed as `0`.
      * 
-     * @type {number}
-     * @memberof ApplicationSession
      */
     totalDiscounts: number;
     /**
      * The total sum of the session before any discounts applied.
-     * @type {number}
-     * @memberof ApplicationSession
      */
     total: number;
     /**
      * Arbitrary properties associated with this item.
-     * @type {object}
-     * @memberof ApplicationSession
      */
     attributes?: object;
 }
@@ -141,7 +111,7 @@ export const ApplicationSessionStateEnum = {
     Open: 'open',
     Closed: 'closed',
     PartiallyReturned: 'partially_returned',
-    Cancelled: 'cancelled'
+    Cancelled: 'cancelled',
 } as const;
 export type ApplicationSessionStateEnum = typeof ApplicationSessionStateEnum[keyof typeof ApplicationSessionStateEnum];
 
@@ -176,7 +146,7 @@ export function ApplicationSessionFromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'integrationId': json['integrationId'],
         'storeIntegrationId': json['storeIntegrationId'] == null ? undefined : json['storeIntegrationId'],
         'applicationId': json['applicationId'],
@@ -205,7 +175,7 @@ export function ApplicationSessionToJSONTyped(value?: ApplicationSession | null,
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'integrationId': value['integrationId'],
         'storeIntegrationId': value['storeIntegrationId'],
         'applicationId': value['applicationId'],

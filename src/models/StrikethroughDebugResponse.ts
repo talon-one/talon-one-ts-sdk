@@ -29,14 +29,10 @@ import {
 export interface StrikethroughDebugResponse {
     /**
      * The campaign IDs that got fetched for the evaluation process.
-     * @type {Array<number>}
-     * @memberof StrikethroughDebugResponse
      */
     campaignsIDs?: Array<number>;
     /**
      * The strikethrough effects that are returned from the evaluation process.
-     * @type {Array<StrikethroughEffect>}
-     * @memberof StrikethroughDebugResponse
      */
     effects?: Array<StrikethroughEffect>;
 }

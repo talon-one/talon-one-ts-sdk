@@ -29,14 +29,10 @@ import {
 export interface ListAllRolesV2200Response {
     /**
      * 
-     * @type {number}
-     * @memberof ListAllRolesV2200Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<RoleV2>}
-     * @memberof ListAllRolesV2200Response
      */
     data: Array<RoleV2>;
 }

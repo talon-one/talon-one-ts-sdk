@@ -29,20 +29,14 @@ import {
 export interface GetChanges200Response {
     /**
      * 
-     * @type {number}
-     * @memberof GetChanges200Response
      */
     totalResultSize?: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof GetChanges200Response
      */
     hasMore?: boolean;
     /**
      * 
-     * @type {Array<Change>}
-     * @memberof GetChanges200Response
      */
     data: Array<Change>;
 }

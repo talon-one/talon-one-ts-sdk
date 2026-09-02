@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface LabelTargetNone {
     /**
      * 
-     * @type {LabelTargetNoneTypeEnum}
-     * @memberof LabelTargetNone
      */
     type: LabelTargetNoneTypeEnum;
 }
@@ -32,7 +30,7 @@ export interface LabelTargetNone {
  * @export
  */
 export const LabelTargetNoneTypeEnum = {
-    None: 'NONE'
+    None: 'NONE',
 } as const;
 export type LabelTargetNoneTypeEnum = typeof LabelTargetNoneTypeEnum[keyof typeof LabelTargetNoneTypeEnum];
 

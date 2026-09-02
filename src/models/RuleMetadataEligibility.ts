@@ -29,14 +29,10 @@ import {
 export interface RuleMetadataEligibility {
     /**
      * A short description of the rule.
-     * @type {string}
-     * @memberof RuleMetadataEligibility
      */
     title: string;
     /**
      * A customer-facing name for the rule.
-     * @type {string}
-     * @memberof RuleMetadataEligibility
      */
     displayName?: string;
     /**
@@ -44,21 +40,15 @@ export interface RuleMetadataEligibility {
      * 
      * For example, this property can contain details about eligibility requirements, reward timelines, or terms and conditions.
      * 
-     * @type {string}
-     * @memberof RuleMetadataEligibility
      */
     displayDescription?: string;
     /**
      * Any additional data associated with the rule, such as an image URL, vendor name, or a content management system (CMS) ID.
      * 
-     * @type {string}
-     * @memberof RuleMetadataEligibility
      */
     relatedData?: string;
     /**
      * 
-     * @type {Array<RuleEligibility>}
-     * @memberof RuleMetadataEligibility
      */
     eligibility: Array<RuleEligibility>;
 }

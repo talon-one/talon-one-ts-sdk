@@ -24,8 +24,6 @@ export interface DeleteLoyaltyTransactionsRequest {
      * 
      * `SelectedSubledgers` deletes all transactions for the specified customer profile only from the given ledgers in the loyalty program.
      * 
-     * @type {DeleteLoyaltyTransactionsRequestScopeEnum}
-     * @memberof DeleteLoyaltyTransactionsRequest
      */
     scope: DeleteLoyaltyTransactionsRequestScopeEnum;
     /**
@@ -33,8 +31,6 @@ export interface DeleteLoyaltyTransactionsRequest {
      * 
      * To specify the main ledger, provide an empty string ("").
      * 
-     * @type {Array<string>}
-     * @memberof DeleteLoyaltyTransactionsRequest
      */
     subledgerIds?: Array<string> | null;
 }
@@ -45,7 +41,7 @@ export interface DeleteLoyaltyTransactionsRequest {
  */
 export const DeleteLoyaltyTransactionsRequestScopeEnum = {
     AllSubledgers: 'AllSubledgers',
-    SelectedSubledgers: 'SelectedSubledgers'
+    SelectedSubledgers: 'SelectedSubledgers',
 } as const;
 export type DeleteLoyaltyTransactionsRequestScopeEnum = typeof DeleteLoyaltyTransactionsRequestScopeEnum[keyof typeof DeleteLoyaltyTransactionsRequestScopeEnum];
 

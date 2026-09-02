@@ -29,20 +29,14 @@ import {
 export interface ScimSchemasListResponse {
     /**
      * 
-     * @type {Array<ScimSchemaResource>}
-     * @memberof ScimSchemasListResponse
      */
     resources: Array<ScimSchemaResource>;
     /**
      * SCIM schema for the given resource.
-     * @type {Array<string>}
-     * @memberof ScimSchemasListResponse
      */
     schemas?: Array<string>;
     /**
      * Number of total results in the response.
-     * @type {number}
-     * @memberof ScimSchemasListResponse
      */
     totalResults?: number;
 }

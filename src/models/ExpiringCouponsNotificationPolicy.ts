@@ -29,26 +29,18 @@ import {
 export interface ExpiringCouponsNotificationPolicy {
     /**
      * Notification name.
-     * @type {string}
-     * @memberof ExpiringCouponsNotificationPolicy
      */
     name: string;
     /**
      * 
-     * @type {Array<ExpiringCouponsNotificationTrigger>}
-     * @memberof ExpiringCouponsNotificationPolicy
      */
     triggers: Array<ExpiringCouponsNotificationTrigger>;
     /**
      * Indicates whether batching is activated.
-     * @type {boolean}
-     * @memberof ExpiringCouponsNotificationPolicy
      */
     batchingEnabled?: boolean;
     /**
      * The required size of each batch of data. This value applies only when `batchingEnabled` is `true`.
-     * @type {number}
-     * @memberof ExpiringCouponsNotificationPolicy
      */
     batchSize?: number;
 }

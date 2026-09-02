@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ExperimentListResultsRequest {
     /**
      * 
-     * @type {Array<number>}
-     * @memberof ExperimentListResultsRequest
      */
     experimentIds: Array<number>;
 }

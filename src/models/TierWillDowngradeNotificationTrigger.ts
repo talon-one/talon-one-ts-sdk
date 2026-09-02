@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface TierWillDowngradeNotificationTrigger {
     /**
      * The amount of period.
-     * @type {number}
-     * @memberof TierWillDowngradeNotificationTrigger
      */
     amount: number;
     /**
      * Notification period indicated by a letter; "w" means week, "d" means day.
-     * @type {TierWillDowngradeNotificationTriggerPeriodEnum}
-     * @memberof TierWillDowngradeNotificationTrigger
      */
     period: TierWillDowngradeNotificationTriggerPeriodEnum;
 }
@@ -39,7 +35,7 @@ export interface TierWillDowngradeNotificationTrigger {
  */
 export const TierWillDowngradeNotificationTriggerPeriodEnum = {
     W: 'w',
-    D: 'd'
+    D: 'd',
 } as const;
 export type TierWillDowngradeNotificationTriggerPeriodEnum = typeof TierWillDowngradeNotificationTriggerPeriodEnum[keyof typeof TierWillDowngradeNotificationTriggerPeriodEnum];
 

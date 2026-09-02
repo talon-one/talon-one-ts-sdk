@@ -29,14 +29,10 @@ import {
 export interface CreateReferralsForMultipleAdvocates201Response {
     /**
      * 
-     * @type {number}
-     * @memberof CreateReferralsForMultipleAdvocates201Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<Referral>}
-     * @memberof CreateReferralsForMultipleAdvocates201Response
      */
     data: Array<Referral>;
 }
