@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { TemplateArgDef } from './TemplateArgDef';
 import {
     TemplateArgDefFromJSON,
@@ -29,106 +29,72 @@ import {
 export interface WebhookWithOutgoingIntegrationDetails {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     created: Date;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     modified: Date;
     /**
      * The IDs of the Applications in which this webhook is available.
      * An empty array means the webhook is available in `All Applications`.
      * 
-     * @type {Array<number>}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     applicationIds: Array<number>;
     /**
      * Name or title for this webhook.
-     * @type {string}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     title: string;
     /**
      * A description of the webhook.
-     * @type {string}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     description?: string;
     /**
      * Indicates if the webhook is a draft.
-     * @type {boolean}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     draft: boolean;
     /**
      * API method for this webhook.
-     * @type {WebhookWithOutgoingIntegrationDetailsVerbEnum}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     verb: WebhookWithOutgoingIntegrationDetailsVerbEnum;
     /**
      * API URL (supports templating using parameters) for this webhook.
-     * @type {string}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     url: string;
     /**
      * List of API HTTP headers for this webhook.
-     * @type {Array<string>}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     headers: Array<string>;
     /**
      * API payload (supports templating using parameters) for this webhook.
-     * @type {string}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     payload?: string;
     /**
      * Array of template argument definitions.
-     * @type {Array<TemplateArgDef>}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     params: Array<TemplateArgDef>;
     /**
      * Enables or disables webhook from showing in the Rule Builder.
-     * @type {boolean}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     enabled: boolean;
     /**
      * The ID of the credential that this webhook is using.
-     * @type {number}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     authenticationId?: number;
     /**
      * Identifier of the outgoing integration template.
-     * @type {number}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     outgoingIntegrationTemplateId?: number;
     /**
      * Identifier of the outgoing integration type.
-     * @type {number}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     outgoingIntegrationTypeId?: number;
     /**
      * Name of the outgoing integration.
-     * @type {string}
-     * @memberof WebhookWithOutgoingIntegrationDetails
      */
     outgoingIntegrationTypeName?: string;
 }
@@ -142,7 +108,7 @@ export const WebhookWithOutgoingIntegrationDetailsVerbEnum = {
     Put: 'PUT',
     Get: 'GET',
     Delete: 'DELETE',
-    Patch: 'PATCH'
+    Patch: 'PATCH',
 } as const;
 export type WebhookWithOutgoingIntegrationDetailsVerbEnum = typeof WebhookWithOutgoingIntegrationDetailsVerbEnum[keyof typeof WebhookWithOutgoingIntegrationDetailsVerbEnum];
 
@@ -177,8 +143,8 @@ export function WebhookWithOutgoingIntegrationDetailsFromJSONTyped(json: any, ig
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'applicationIds': json['applicationIds'],
         'title': json['title'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -208,8 +174,8 @@ export function WebhookWithOutgoingIntegrationDetailsToJSONTyped(value?: Webhook
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'applicationIds': value['applicationIds'],
         'title': value['title'],
         'description': value['description'],

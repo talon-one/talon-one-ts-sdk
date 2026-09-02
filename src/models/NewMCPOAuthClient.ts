@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface NewMCPOAuthClient {
     /**
      * Human-readable name for the OAuth2 client.
-     * @type {string}
-     * @memberof NewMCPOAuthClient
      */
     clientName: string;
     /**
      * List of allowed redirect URIs for the authorization code flow. At least one URI is required.
-     * @type {Array<string>}
-     * @memberof NewMCPOAuthClient
      */
     redirectUris: Array<string>;
 }

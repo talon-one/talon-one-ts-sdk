@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface EmbeddedDashboardConfiguration {
     /**
      * The ID of the workspace that contains dashboards.
-     * @type {string}
-     * @memberof EmbeddedDashboardConfiguration
      */
     workspaceId: string;
     /**
      * The ID of the dashboard that contains metrics.
-     * @type {string}
-     * @memberof EmbeddedDashboardConfiguration
      */
     dashboardId: string;
 }

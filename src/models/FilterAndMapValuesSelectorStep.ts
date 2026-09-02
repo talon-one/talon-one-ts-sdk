@@ -29,14 +29,10 @@ import {
 export interface FilterAndMapValuesSelectorStep {
     /**
      * A step discriminator of type `filterAndMapValues`.
-     * @type {FilterAndMapValuesSelectorStepTypeEnum}
-     * @memberof FilterAndMapValuesSelectorStep
      */
     type: FilterAndMapValuesSelectorStepTypeEnum;
     /**
      * 
-     * @type {SelectorValueMapRef}
-     * @memberof FilterAndMapValuesSelectorStep
      */
     valueMap: SelectorValueMapRef;
 }
@@ -46,7 +42,7 @@ export interface FilterAndMapValuesSelectorStep {
  * @export
  */
 export const FilterAndMapValuesSelectorStepTypeEnum = {
-    FilterAndMapValues: 'filterAndMapValues'
+    FilterAndMapValues: 'filterAndMapValues',
 } as const;
 export type FilterAndMapValuesSelectorStepTypeEnum = typeof FilterAndMapValuesSelectorStepTypeEnum[keyof typeof FilterAndMapValuesSelectorStepTypeEnum];
 

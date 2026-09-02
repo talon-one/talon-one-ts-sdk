@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface ListWithCountCheckAttributeBlock {
     /**
      * The list membership operator with a count threshold applied to the attribute.
-     * @type {ListWithCountCheckAttributeBlockOperatorEnum}
-     * @memberof ListWithCountCheckAttributeBlock
      */
     operator?: ListWithCountCheckAttributeBlockOperatorEnum;
     /**
-     * 
-     * @type {any}
-     * @memberof ListWithCountCheckAttributeBlock
+     * The set of values to match against.
      */
     values: any | null;
     /**
-     * 
-     * @type {any}
-     * @memberof ListWithCountCheckAttributeBlock
+     * The count threshold for this operator.
      */
     count: any | null;
 }
@@ -45,7 +39,7 @@ export interface ListWithCountCheckAttributeBlock {
  */
 export const ListWithCountCheckAttributeBlockOperatorEnum = {
     ContainsAtLeast: 'containsAtLeast',
-    ContainsExactly: 'containsExactly'
+    ContainsExactly: 'containsExactly',
 } as const;
 export type ListWithCountCheckAttributeBlockOperatorEnum = typeof ListWithCountCheckAttributeBlockOperatorEnum[keyof typeof ListWithCountCheckAttributeBlockOperatorEnum];
 

@@ -23,7 +23,7 @@ import type { TemplateParameter } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "name": minCartTotal,
-  "value": null,
+  "value": 50,
   "valueType": number,
   "minValue": 0,
   "maxValue": 10000,

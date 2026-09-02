@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface StrikethroughCustomEffectPerItemProps {
     /**
      * ID of the effect.
-     * @type {number}
-     * @memberof StrikethroughCustomEffectPerItemProps
      */
     effectId: number;
     /**
      * The type of the custom effect.
-     * @type {string}
-     * @memberof StrikethroughCustomEffectPerItemProps
      */
     name: string;
     /**
      * The JSON payload of the custom effect.
-     * @type {object}
-     * @memberof StrikethroughCustomEffectPerItemProps
      */
     payload: object;
 }

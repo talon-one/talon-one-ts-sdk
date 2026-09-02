@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { WebhookAuthenticationAllOfData } from './WebhookAuthenticationAllOfData';
 import {
     WebhookAuthenticationAllOfDataFromJSON,
@@ -36,56 +36,38 @@ import {
 export interface WebhookAuthentication {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof WebhookAuthentication
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof WebhookAuthentication
      */
     created: Date;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof WebhookAuthentication
      */
     modified: Date;
     /**
      * The name of the user who created the webhook authentication.
-     * @type {string}
-     * @memberof WebhookAuthentication
      */
     createdBy: string;
     /**
      * The name of the user who last modified the webhook authentication.
-     * @type {string}
-     * @memberof WebhookAuthentication
      */
     modifiedBy: string;
     /**
      * 
-     * @type {Array<WebhookAuthenticationWebhookRef>}
-     * @memberof WebhookAuthentication
      */
     webhooks: Array<WebhookAuthenticationWebhookRef>;
     /**
      * The name of the webhook authentication.
-     * @type {string}
-     * @memberof WebhookAuthentication
      */
     name: string;
     /**
      * 
-     * @type {WebhookAuthenticationTypeEnum}
-     * @memberof WebhookAuthentication
      */
     type: WebhookAuthenticationTypeEnum;
     /**
      * 
-     * @type {WebhookAuthenticationAllOfData}
-     * @memberof WebhookAuthentication
      */
     data: WebhookAuthenticationAllOfData;
 }
@@ -96,7 +78,7 @@ export interface WebhookAuthentication {
  */
 export const WebhookAuthenticationTypeEnum = {
     Basic: 'basic',
-    Custom: 'custom'
+    Custom: 'custom',
 } as const;
 export type WebhookAuthenticationTypeEnum = typeof WebhookAuthenticationTypeEnum[keyof typeof WebhookAuthenticationTypeEnum];
 
@@ -129,8 +111,8 @@ export function WebhookAuthenticationFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'createdBy': json['createdBy'],
         'modifiedBy': json['modifiedBy'],
         'webhooks': (json['webhooks'] == null ? undefined as any : (json['webhooks'] as Array<any>).map(WebhookAuthenticationWebhookRefFromJSON)),
@@ -152,8 +134,8 @@ export function WebhookAuthenticationToJSONTyped(value?: WebhookAuthentication |
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'createdBy': value['createdBy'],
         'modifiedBy': value['modifiedBy'],
         'webhooks': (value['webhooks'] == null ? undefined : (value['webhooks'] as Array<any>).map(WebhookAuthenticationWebhookRefToJSON)),

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface WebhookAuthenticationDataCustom {
     /**
      * 
-     * @type {{ [key: string]: string; }}
-     * @memberof WebhookAuthenticationDataCustom
      */
     headers: { [key: string]: string; };
 }

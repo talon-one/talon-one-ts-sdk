@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,94 +21,64 @@ import { mapValues } from '../runtime';
 export interface Attribute {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Attribute
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Attribute
      */
     created: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof Attribute
      */
     accountId: number;
     /**
      * The name of the entity that can have this attribute. When creating or updating the entities of a given type, you can include an `attributes` object with keys corresponding to the `name` of the custom attributes for that type.
-     * @type {AttributeEntityEnum}
-     * @memberof Attribute
      */
     entity: AttributeEntityEnum;
     /**
      * 
-     * @type {string}
-     * @memberof Attribute
      */
     eventType?: string;
     /**
      * The attribute name that will be used in API requests and Talang. E.g. if `name == "region"` then you would set the region attribute by including an `attributes.region` property in your request payload.
-     * @type {string}
-     * @memberof Attribute
      */
     name: string;
     /**
      * The human-readable name for the attribute that will be shown in the Campaign Manager. Like `name`, the combination of entity and title must also be unique.
-     * @type {string}
-     * @memberof Attribute
      */
     title: string;
     /**
      * The data type of the attribute, a `time` attribute must be sent as a string that conforms to the [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) timestamp format.
-     * @type {AttributeTypeEnum}
-     * @memberof Attribute
      */
     type: AttributeTypeEnum;
     /**
      * A description of this attribute.
-     * @type {string}
-     * @memberof Attribute
      */
     description: string;
     /**
      * A list of suggestions for the attribute.
-     * @type {Array<string>}
-     * @memberof Attribute
      */
     suggestions: Array<string>;
     /**
      * Whether or not this attribute has an allowed list of values associated with it.
-     * @type {boolean}
-     * @memberof Attribute
      */
     hasAllowedList?: boolean;
     /**
      * Whether or not this attribute's value is restricted by suggestions (`suggestions` property)
      * or by an allowed list of value (`hasAllowedList` property).
      * 
-     * @type {boolean}
-     * @memberof Attribute
      */
     restrictedBySuggestions?: boolean;
     /**
      * Whether or not this attribute can be edited.
-     * @type {boolean}
-     * @memberof Attribute
      */
     editable: boolean;
     /**
      * A list of the IDs of the applications where this attribute is available.
-     * @type {Array<number>}
-     * @memberof Attribute
      */
     subscribedApplicationsIds?: Array<number>;
     /**
      * A list of the IDs of the catalogs where this attribute is available.
-     * @type {Array<number>}
-     * @memberof Attribute
      */
     subscribedCatalogsIds?: Array<number>;
     /**
@@ -116,14 +86,10 @@ export interface Attribute {
      * 
      * **Note:** This only applies to attributes associated with the `CartItem` entity.
      * 
-     * @type {Array<AttributeAllowedSubscriptionsEnum>}
-     * @memberof Attribute
      */
     allowedSubscriptions?: Array<AttributeAllowedSubscriptionsEnum>;
     /**
      * 
-     * @type {number}
-     * @memberof Attribute
      */
     eventTypeId?: number;
 }
@@ -143,7 +109,7 @@ export const AttributeEntityEnum = {
     Giveaway: 'Giveaway',
     LoyaltyCard: 'LoyaltyCard',
     Referral: 'Referral',
-    Store: 'Store'
+    Store: 'Store',
 } as const;
 export type AttributeEntityEnum = typeof AttributeEntityEnum[keyof typeof AttributeEntityEnum];
 
@@ -159,7 +125,7 @@ export const AttributeTypeEnum = {
     ListNumber: '(list number)',
     ListTime: '(list time)',
     Location: 'location',
-    ListLocation: '(list location)'
+    ListLocation: '(list location)',
 } as const;
 export type AttributeTypeEnum = typeof AttributeTypeEnum[keyof typeof AttributeTypeEnum];
 
@@ -168,7 +134,7 @@ export type AttributeTypeEnum = typeof AttributeTypeEnum[keyof typeof AttributeT
  */
 export const AttributeAllowedSubscriptionsEnum = {
     Application: 'application',
-    Catalog: 'catalog'
+    Catalog: 'catalog',
 } as const;
 export type AttributeAllowedSubscriptionsEnum = typeof AttributeAllowedSubscriptionsEnum[keyof typeof AttributeAllowedSubscriptionsEnum];
 
@@ -202,7 +168,7 @@ export function AttributeFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'accountId': json['accountId'],
         'entity': json['entity'],
         'eventType': json['eventType'] == null ? undefined : json['eventType'],
@@ -233,7 +199,7 @@ export function AttributeToJSONTyped(value?: Attribute | null, ignoreDiscriminat
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'accountId': value['accountId'],
         'entity': value['entity'],
         'eventType': value['eventType'],

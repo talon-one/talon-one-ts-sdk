@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface Export {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Export
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Export
      */
     created: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof Export
      */
     accountId: number;
     /**
      * The ID of the user associated with this entity.
-     * @type {number}
-     * @memberof Export
      */
     userId: number;
     /**
      * The name of the entity that was exported.
-     * @type {ExportEntityEnum}
-     * @memberof Export
      */
     entity: ExportEntityEnum;
     /**
      * Map of keys and values that were used to filter the exported rows.
-     * @type {object}
-     * @memberof Export
      */
     filter: object;
 }
@@ -68,7 +56,7 @@ export const ExportEntityEnum = {
     CustomerSession: 'CustomerSession',
     LoyaltyLedger: 'LoyaltyLedger',
     LoyaltyLedgerLog: 'LoyaltyLedgerLog',
-    Collection: 'Collection'
+    Collection: 'Collection',
 } as const;
 export type ExportEntityEnum = typeof ExportEntityEnum[keyof typeof ExportEntityEnum];
 
@@ -98,7 +86,7 @@ export function ExportFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ex
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'accountId': json['accountId'],
         'userId': json['userId'],
         'entity': json['entity'],
@@ -118,7 +106,7 @@ export function ExportToJSONTyped(value?: Export | null, ignoreDiscriminator: bo
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'accountId': value['accountId'],
         'userId': value['userId'],
         'entity': value['entity'],

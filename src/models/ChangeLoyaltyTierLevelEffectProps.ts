@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * This effect indicates that a customer's loyalty tier has been upgraded.
  * 
@@ -23,38 +23,26 @@ import { mapValues } from '../runtime';
 export interface ChangeLoyaltyTierLevelEffectProps {
     /**
      * The title of the rule that triggered the tier upgrade.
-     * @type {string}
-     * @memberof ChangeLoyaltyTierLevelEffectProps
      */
     ruleTitle: string;
     /**
      * The ID of the loyalty program where the points were added.
-     * @type {number}
-     * @memberof ChangeLoyaltyTierLevelEffectProps
      */
     programId: number;
     /**
      * The ID of the subledger within the loyalty program where the points were added.
-     * @type {string}
-     * @memberof ChangeLoyaltyTierLevelEffectProps
      */
     subLedgerId: string;
     /**
      * The name of the tier from which the user was upgraded.
-     * @type {string}
-     * @memberof ChangeLoyaltyTierLevelEffectProps
      */
     previousTierName?: string;
     /**
      * The name of the tier to which the user has been upgraded.
-     * @type {string}
-     * @memberof ChangeLoyaltyTierLevelEffectProps
      */
     newTierName: string;
     /**
      * The expiration date of the new tier.
-     * @type {Date}
-     * @memberof ChangeLoyaltyTierLevelEffectProps
      */
     expiryDate?: Date;
 }
@@ -86,7 +74,7 @@ export function ChangeLoyaltyTierLevelEffectPropsFromJSONTyped(json: any, ignore
         'subLedgerId': json['subLedgerId'],
         'previousTierName': json['previousTierName'] == null ? undefined : json['previousTierName'],
         'newTierName': json['newTierName'],
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
     };
 }
 
@@ -106,7 +94,7 @@ export function ChangeLoyaltyTierLevelEffectPropsToJSONTyped(value?: ChangeLoyal
         'subLedgerId': value['subLedgerId'],
         'previousTierName': value['previousTierName'],
         'newTierName': value['newTierName'],
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
     };
 }
 

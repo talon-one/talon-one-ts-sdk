@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface ListCampaignStoreBudgetsStore {
     /**
      * 
-     * @type {number}
-     * @memberof ListCampaignStoreBudgetsStore
      */
     id: number;
     /**
      * 
-     * @type {string}
-     * @memberof ListCampaignStoreBudgetsStore
      */
     integrationId: string;
     /**
      * 
-     * @type {string}
-     * @memberof ListCampaignStoreBudgetsStore
      */
     name: string;
 }

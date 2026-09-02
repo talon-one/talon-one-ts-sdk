@@ -33,14 +33,10 @@ import {
 export interface AddPriceAdjustmentCatalogAction {
     /**
      * The SKU of the item for which the price is being adjusted.
-     * @type {string}
-     * @memberof AddPriceAdjustmentCatalogAction
      */
     sku: string;
     /**
      * A list of adjustments to apply to a given item.
-     * @type {Array<NewPriceAdjustment>}
-     * @memberof AddPriceAdjustmentCatalogAction
      */
     adjustments: Array<NewPriceAdjustment>;
 }

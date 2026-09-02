@@ -20,7 +20,7 @@ import type { ListWithCountCheckAttributeBlock } from 'talon_one_sdk'
 const example = {
   "operator": null,
   "values": null,
-  "count": null,
+  "count": 2,
 } satisfies ListWithCountCheckAttributeBlock
 
 console.log(example)

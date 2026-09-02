@@ -21,28 +21,20 @@ import { mapValues } from '../runtime';
 export interface NotificationListItem {
     /**
      * The ID of the notification.
-     * @type {number}
-     * @memberof NotificationListItem
      */
     notificationId: number;
     /**
      * The name of the notification.
-     * @type {string}
-     * @memberof NotificationListItem
      */
     notificationName: string;
     /**
      * The ID of the entity to which this notification belongs.
      * For example, in case of a loyalty notification, this value is the ID of the loyalty program.
      * 
-     * @type {number}
-     * @memberof NotificationListItem
      */
     entityId: number;
     /**
      * Indicates whether the notification is activated.
-     * @type {boolean}
-     * @memberof NotificationListItem
      */
     enabled: boolean;
 }

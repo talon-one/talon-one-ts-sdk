@@ -29,8 +29,6 @@ import {
 export interface GenerateCouponRejections200Response {
     /**
      * 
-     * @type {Array<CouponFailureSummary>}
-     * @memberof GenerateCouponRejections200Response
      */
     data: Array<CouponFailureSummary>;
 }

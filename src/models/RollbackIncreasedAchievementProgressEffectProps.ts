@@ -25,38 +25,26 @@ import { mapValues } from '../runtime';
 export interface RollbackIncreasedAchievementProgressEffectProps {
     /**
      * The internal ID of the achievement.
-     * @type {number}
-     * @memberof RollbackIncreasedAchievementProgressEffectProps
      */
     achievementId: number;
     /**
      * The name of the achievement.
-     * @type {string}
-     * @memberof RollbackIncreasedAchievementProgressEffectProps
      */
     achievementName: string;
     /**
      * The internal ID of the achievement progress tracker.
-     * @type {number}
-     * @memberof RollbackIncreasedAchievementProgressEffectProps
      */
     progressTrackerId: number;
     /**
      * The value by which the customer's current progress in the achievement has decreased.
-     * @type {number}
-     * @memberof RollbackIncreasedAchievementProgressEffectProps
      */
     decreaseProgressBy: number;
     /**
      * The current progress of the customer in the achievement.
-     * @type {number}
-     * @memberof RollbackIncreasedAchievementProgressEffectProps
      */
     currentProgress: number;
     /**
      * The target value to complete the achievement.
-     * @type {number}
-     * @memberof RollbackIncreasedAchievementProgressEffectProps
      */
     target: number;
 }

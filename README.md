@@ -222,6 +222,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *IntegrationApi* | [**getLoyaltyProgramProfileTransactions**](docs/IntegrationApi.md#getloyaltyprogramprofiletransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions | List customer\&#39;s loyalty transactions
 *IntegrationApi* | [**getReservedCustomers**](docs/IntegrationApi.md#getreservedcustomers) | **GET** /v1/coupon_reservations/customerprofiles/{couponValue} | List customers that have this coupon reserved
 *IntegrationApi* | [**integrationGetAllCampaigns**](docs/IntegrationApi.md#integrationgetallcampaigns) | **GET** /v1/integration/campaigns | List all running campaigns
+*IntegrationApi* | [**integrationRewardsCatalog**](docs/IntegrationApi.md#integrationrewardscatalog) | **GET** /v1/rewards/catalog | List rewards in the catalog
 *IntegrationApi* | [**joinLoyaltyProgram**](docs/IntegrationApi.md#joinloyaltyprogram) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/join | Join customer profile to loyalty program
 *IntegrationApi* | [**linkLoyaltyCardToProfile**](docs/IntegrationApi.md#linkloyaltycardtoprofile) | **POST** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile | Link customer profile to card
 *IntegrationApi* | [**reopenCustomerSession**](docs/IntegrationApi.md#reopencustomersession) | **PUT** /v2/customer_sessions/{customerSessionId}/reopen | Reopen customer session
@@ -230,6 +231,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *IntegrationApi* | [**trackEventV2**](docs/IntegrationApi.md#trackeventv2) | **POST** /v2/events | Track event
 *IntegrationApi* | [**trackEventV3**](docs/IntegrationApi.md#trackeventv3) | **POST** /v3/events | Track advanced event
 *IntegrationApi* | [**unlinkLoyaltyCardFromProfile**](docs/IntegrationApi.md#unlinkloyaltycardfromprofile) | **POST** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile | Unlink customer profile from a loyalty card
+*IntegrationApi* | [**unlockReward**](docs/IntegrationApi.md#unlockreward) | **POST** /v1/rewards/{rewardId}/unlock | Unlock a reward
 *IntegrationApi* | [**updateAudienceCustomersAttributes**](docs/IntegrationApi.md#updateaudiencecustomersattributes) | **PUT** /v2/audience_customers/{audienceId}/attributes | Update profile attributes for all customers in audience
 *IntegrationApi* | [**updateAudienceV2**](docs/IntegrationApi.md#updateaudiencev2) | **PUT** /v2/audiences/{audienceId} | Update audience name
 *IntegrationApi* | [**updateCustomerProfileAudiences**](docs/IntegrationApi.md#updatecustomerprofileaudiences) | **POST** /v2/customer_audiences | Update multiple customer profiles\&#39; audiences
@@ -256,6 +258,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**createInviteEmail**](docs/ManagementApi.md#createinviteemail) | **POST** /v1/invite_emails | Resend invitation email
 *ManagementApi* | [**createInviteV2**](docs/ManagementApi.md#createinvitev2) | **POST** /v2/invites | Invite user
 *ManagementApi* | [**createPasswordRecoveryEmail**](docs/ManagementApi.md#createpasswordrecoveryemail) | **POST** /v1/password_recovery_emails | Request a password reset
+*ManagementApi* | [**createRulesetV2**](docs/ManagementApi.md#createrulesetv2) | **POST** /v2/applications/{applicationId}/campaigns/{campaignId}/rulesets | Create ruleset (V2)
 *ManagementApi* | [**createSession**](docs/ManagementApi.md#createsession) | **POST** /v1/sessions | Create session
 *ManagementApi* | [**createStore**](docs/ManagementApi.md#createstore) | **POST** /v1/applications/{applicationId}/stores | Create store
 *ManagementApi* | [**deactivateUserByEmail**](docs/ManagementApi.md#deactivateuserbyemail) | **POST** /v1/users/deactivate | Disable user by email address
@@ -528,7 +531,6 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [AwardDiscountSelectorTarget](docs/AwardDiscountSelectorTarget.md)
 - [AwardDiscountTarget](docs/AwardDiscountTarget.md)
 - [AwardGiveawayBlock](docs/AwardGiveawayBlock.md)
-- [AwardGiveawayBlock1GiveawayPool](docs/AwardGiveawayBlock1GiveawayPool.md)
 - [AwardGiveawayEffectProps](docs/AwardGiveawayEffectProps.md)
 - [AwardItemBlock](docs/AwardItemBlock.md)
 - [BaseBlock](docs/BaseBlock.md)
@@ -547,6 +549,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [BestPriorTarget](docs/BestPriorTarget.md)
 - [BetweenCheckAttributeBlock](docs/BetweenCheckAttributeBlock.md)
 - [Binding](docs/Binding.md)
+- [Block](docs/Block.md)
 - [Blueprint](docs/Blueprint.md)
 - [BulkApplicationNotification](docs/BulkApplicationNotification.md)
 - [BulkOperationOnCampaigns](docs/BulkOperationOnCampaigns.md)
@@ -580,6 +583,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [CampaignGroup](docs/CampaignGroup.md)
 - [CampaignGroupEntity](docs/CampaignGroupEntity.md)
 - [CampaignLogSummary](docs/CampaignLogSummary.md)
+- [CampaignLoyaltyProgram](docs/CampaignLoyaltyProgram.md)
 - [CampaignNotificationBase](docs/CampaignNotificationBase.md)
 - [CampaignNotificationGeneric](docs/CampaignNotificationGeneric.md)
 - [CampaignNotificationItemBase](docs/CampaignNotificationItemBase.md)
@@ -654,6 +658,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [CouponCreationJob](docs/CouponCreationJob.md)
 - [CouponDeletionFilters](docs/CouponDeletionFilters.md)
 - [CouponDeletionJob](docs/CouponDeletionJob.md)
+- [CouponEligibilityInfo](docs/CouponEligibilityInfo.md)
 - [CouponEntity](docs/CouponEntity.md)
 - [CouponFailureSummary](docs/CouponFailureSummary.md)
 - [CouponLimitConfigs](docs/CouponLimitConfigs.md)
@@ -784,6 +789,11 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [GenerateRuleTitle](docs/GenerateRuleTitle.md)
 - [GenerateRuleTitleRule](docs/GenerateRuleTitleRule.md)
 - [GenerateUserSessionSummary](docs/GenerateUserSessionSummary.md)
+- [GeoJSONGeometry](docs/GeoJSONGeometry.md)
+- [GeoJSONGeometryCollection](docs/GeoJSONGeometryCollection.md)
+- [GeoJSONMultiPolygon](docs/GeoJSONMultiPolygon.md)
+- [GeoJSONPoint](docs/GeoJSONPoint.md)
+- [GeoJSONPolygon](docs/GeoJSONPolygon.md)
 - [GetAccessLogsWithoutTotalCount200Response](docs/GetAccessLogsWithoutTotalCount200Response.md)
 - [GetAdditionalCosts200Response](docs/GetAdditionalCosts200Response.md)
 - [GetApplicationCustomerFriends200Response](docs/GetApplicationCustomerFriends200Response.md)
@@ -831,7 +841,9 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [Giveaway](docs/Giveaway.md)
 - [GiveawayPoolNotification](docs/GiveawayPoolNotification.md)
 - [GiveawayPoolNotificationData](docs/GiveawayPoolNotificationData.md)
+- [GiveawayPoolReference](docs/GiveawayPoolReference.md)
 - [GiveawaysPool](docs/GiveawaysPool.md)
+- [GroupBlock](docs/GroupBlock.md)
 - [HiddenConditionsEffects](docs/HiddenConditionsEffects.md)
 - [History](docs/History.md)
 - [IdentifiableEntity](docs/IdentifiableEntity.md)
@@ -867,12 +879,15 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [IntegrationHubFlowConfigResponse](docs/IntegrationHubFlowConfigResponse.md)
 - [IntegrationHubFlowResponse](docs/IntegrationHubFlowResponse.md)
 - [IntegrationHubFlowWithConfig](docs/IntegrationHubFlowWithConfig.md)
+- [IntegrationHubInstance](docs/IntegrationHubInstance.md)
 - [IntegrationHubPaginatedEventPayload](docs/IntegrationHubPaginatedEventPayload.md)
 - [IntegrationHubPaginatedEventPayloadDataInner](docs/IntegrationHubPaginatedEventPayloadDataInner.md)
 - [IntegrationProfileEntity](docs/IntegrationProfileEntity.md)
 - [IntegrationProfileEntityV3](docs/IntegrationProfileEntityV3.md)
 - [IntegrationRequest](docs/IntegrationRequest.md)
 - [IntegrationResponse](docs/IntegrationResponse.md)
+- [IntegrationRewardsCatalog200Response](docs/IntegrationRewardsCatalog200Response.md)
+- [IntegrationRewardsCatalog200ResponseCatalog](docs/IntegrationRewardsCatalog200ResponseCatalog.md)
 - [IntegrationState](docs/IntegrationState.md)
 - [IntegrationStateV2](docs/IntegrationStateV2.md)
 - [IntegrationStoreEntity](docs/IntegrationStoreEntity.md)
@@ -880,6 +895,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [InventoryCoupon](docs/InventoryCoupon.md)
 - [InventoryReferral](docs/InventoryReferral.md)
 - [ItemAttribute](docs/ItemAttribute.md)
+- [JoinLoyaltyProgramEffectProps](docs/JoinLoyaltyProgramEffectProps.md)
 - [LabelTarget](docs/LabelTarget.md)
 - [LabelTargetAudience](docs/LabelTargetAudience.md)
 - [LabelTargetNone](docs/LabelTargetNone.md)
@@ -903,6 +919,9 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [ListExperiments200Response](docs/ListExperiments200Response.md)
 - [ListStores200Response](docs/ListStores200Response.md)
 - [ListWithCountCheckAttributeBlock](docs/ListWithCountCheckAttributeBlock.md)
+- [LocationCheckAttributeBlock](docs/LocationCheckAttributeBlock.md)
+- [LocationCheckAttributeBlockValues](docs/LocationCheckAttributeBlockValues.md)
+- [LocationCheckAttributeBlockValuesOneOfInner](docs/LocationCheckAttributeBlockValuesOneOfInner.md)
 - [LoginParams](docs/LoginParams.md)
 - [Loyalty](docs/Loyalty.md)
 - [LoyaltyBalance](docs/LoyaltyBalance.md)
@@ -998,6 +1017,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [NewExperimentVariantArray](docs/NewExperimentVariantArray.md)
 - [NewExternalInvitation](docs/NewExternalInvitation.md)
 - [NewGiveawaysPool](docs/NewGiveawaysPool.md)
+- [NewIntegrationHubCoupons](docs/NewIntegrationHubCoupons.md)
 - [NewInternalAudience](docs/NewInternalAudience.md)
 - [NewInvitation](docs/NewInvitation.md)
 - [NewInviteEmail](docs/NewInviteEmail.md)
@@ -1071,14 +1091,11 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [ProfileAudiencesChanges](docs/ProfileAudiencesChanges.md)
 - [ProjectedTier](docs/ProjectedTier.md)
 - [PromoteExperiment](docs/PromoteExperiment.md)
-- [PromotionBlock](docs/PromotionBlock.md)
-- [PromotionCheckAttributeBlock](docs/PromotionCheckAttributeBlock.md)
-- [PromotionGroupBlock](docs/PromotionGroupBlock.md)
-- [PromotionRuleV2](docs/PromotionRuleV2.md)
 - [RedeemLoyaltyPointsBlock](docs/RedeemLoyaltyPointsBlock.md)
 - [RedeemLoyaltyPointsBlock1Program](docs/RedeemLoyaltyPointsBlock1Program.md)
 - [RedeemLoyaltyPointsBlock1Value](docs/RedeemLoyaltyPointsBlock1Value.md)
 - [RedeemReferralEffectProps](docs/RedeemReferralEffectProps.md)
+- [RedeemableCoupon](docs/RedeemableCoupon.md)
 - [ReduceSelectorStep](docs/ReduceSelectorStep.md)
 - [Referral](docs/Referral.md)
 - [ReferralConstraints](docs/ReferralConstraints.md)
@@ -1107,6 +1124,8 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [RewardEligibility](docs/RewardEligibility.md)
 - [RewardEligibilityFailureDetails](docs/RewardEligibilityFailureDetails.md)
 - [RewardPointsRequired](docs/RewardPointsRequired.md)
+- [RewardUnlockRejection](docs/RewardUnlockRejection.md)
+- [RewardWithUnlocks](docs/RewardWithUnlocks.md)
 - [Risk](docs/Risk.md)
 - [RiskAffectedEntityItem](docs/RiskAffectedEntityItem.md)
 - [RiskCriticalityUpdate](docs/RiskCriticalityUpdate.md)
@@ -1170,8 +1189,6 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [SelectSelectorStep](docs/SelectSelectorStep.md)
 - [SelectSelectorStepFrom](docs/SelectSelectorStepFrom.md)
 - [Selector](docs/Selector.md)
-- [SelectorBlock](docs/SelectorBlock.md)
-- [SelectorGroupBlock](docs/SelectorGroupBlock.md)
 - [SelectorStep](docs/SelectorStep.md)
 - [SelectorValueMapRef](docs/SelectorValueMapRef.md)
 - [Session](docs/Session.md)
@@ -1190,15 +1207,11 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [SortSelectorStepField](docs/SortSelectorStepField.md)
 - [StartAchievementProgressEffectProps](docs/StartAchievementProgressEffectProps.md)
 - [Store](docs/Store.md)
-- [StrikethroughBlock](docs/StrikethroughBlock.md)
 - [StrikethroughChangedItem](docs/StrikethroughChangedItem.md)
-- [StrikethroughCheckAttributeBlock](docs/StrikethroughCheckAttributeBlock.md)
 - [StrikethroughCustomEffectPerItemProps](docs/StrikethroughCustomEffectPerItemProps.md)
 - [StrikethroughDebugResponse](docs/StrikethroughDebugResponse.md)
 - [StrikethroughEffect](docs/StrikethroughEffect.md)
-- [StrikethroughGroupBlock](docs/StrikethroughGroupBlock.md)
 - [StrikethroughLabelingNotification](docs/StrikethroughLabelingNotification.md)
-- [StrikethroughRuleV2](docs/StrikethroughRuleV2.md)
 - [StrikethroughSetDiscountPerItemEffectProps](docs/StrikethroughSetDiscountPerItemEffectProps.md)
 - [StrikethroughSetDiscountPerItemMemberEffectProps](docs/StrikethroughSetDiscountPerItemMemberEffectProps.md)
 - [StrikethroughTrigger](docs/StrikethroughTrigger.md)
@@ -1290,8 +1303,8 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [WebhookAuthentication](docs/WebhookAuthentication.md)
 - [WebhookAuthenticationAllOfData](docs/WebhookAuthenticationAllOfData.md)
 - [WebhookAuthenticationBase](docs/WebhookAuthenticationBase.md)
-- [WebhookAuthenticationBaseOneOf](docs/WebhookAuthenticationBaseOneOf.md)
-- [WebhookAuthenticationBaseOneOf1](docs/WebhookAuthenticationBaseOneOf1.md)
+- [WebhookAuthenticationBaseBasic](docs/WebhookAuthenticationBaseBasic.md)
+- [WebhookAuthenticationBaseCustom](docs/WebhookAuthenticationBaseCustom.md)
 - [WebhookAuthenticationDataBasic](docs/WebhookAuthenticationDataBasic.md)
 - [WebhookAuthenticationDataCustom](docs/WebhookAuthenticationDataCustom.md)
 - [WebhookAuthenticationWebhookRef](docs/WebhookAuthenticationWebhookRef.md)

@@ -29,44 +29,30 @@ import {
 export interface Rule {
     /**
      * A unique identifier for the rule.
-     * @type {string}
-     * @memberof Rule
      */
     id?: string;
     /**
      * The ID of the rule that was copied to create this rule.
-     * @type {string}
-     * @memberof Rule
      */
     parentId?: string;
     /**
      * A short description of the rule.
-     * @type {string}
-     * @memberof Rule
      */
     title: string;
     /**
      * A longer, more detailed description of the rule.
-     * @type {string}
-     * @memberof Rule
      */
     description?: string;
     /**
      * An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array.
-     * @type {Array<Binding>}
-     * @memberof Rule
      */
     bindings?: Array<Binding>;
     /**
      * A Talang expression that will be evaluated in the context of the given event.
-     * @type {Array<any>}
-     * @memberof Rule
      */
     condition: Array<any>;
     /**
      * An array of effectful Talang expressions in arrays that will be evaluated when a rule matches.
-     * @type {Array<object>}
-     * @memberof Rule
      */
     effects: Array<object>;
 }

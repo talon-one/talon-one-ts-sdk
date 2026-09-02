@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface HiddenConditionsEffects {
     /**
      * List of hidden built-in effects.
-     * @type {Array<string>}
-     * @memberof HiddenConditionsEffects
      */
     builtInEffects?: Array<string>;
     /**
      * List of hidden conditions.
-     * @type {Array<string>}
-     * @memberof HiddenConditionsEffects
      */
     conditions?: Array<string>;
     /**
      * List of the IDs of hidden custom effects.
-     * @type {Array<number>}
-     * @memberof HiddenConditionsEffects
      */
     customEffects?: Array<number>;
     /**
      * List of the IDs of hidden webhooks.
-     * @type {Array<number>}
-     * @memberof HiddenConditionsEffects
      */
     webhooks?: Array<number>;
 }

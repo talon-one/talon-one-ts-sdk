@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Block } from './Block';
+import {
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
+
 /**
  * Shared fields common to all V2 rule types.
  * @export
@@ -21,28 +29,24 @@ import { mapValues } from '../runtime';
 export interface RuleV2 {
     /**
      * Unique identifier of the rule.
-     * @type {string}
-     * @memberof RuleV2
      */
     id?: string;
     /**
      * ID of the parent rule, if any.
-     * @type {string}
-     * @memberof RuleV2
      */
     parentId?: string;
     /**
      * A short description of the rule.
-     * @type {string}
-     * @memberof RuleV2
      */
     title: string;
     /**
      * A longer description of the rule.
-     * @type {string}
-     * @memberof RuleV2
      */
     description?: string;
+    /**
+     * The condition and effect blocks that make up this rule.
+     */
+    blocks: Array<Block>;
 }
 
 /**
@@ -51,6 +55,7 @@ export interface RuleV2 {
 export function instanceOfRuleV2(value: object): value is RuleV2 {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('blocks' in _v) || _v['blocks'] === undefined) return false;
     return true;
 }
 
@@ -68,6 +73,7 @@ export function RuleV2FromJSONTyped(json: any, ignoreDiscriminator: boolean): Ru
         'parentId': json['parentId'] == null ? undefined : json['parentId'],
         'title': json['title'],
         'description': json['description'] == null ? undefined : json['description'],
+        'blocks': (json['blocks'] == null ? undefined as any : (json['blocks'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -86,6 +92,7 @@ export function RuleV2ToJSONTyped(value?: RuleV2 | null, ignoreDiscriminator: bo
         'parentId': value['parentId'],
         'title': value['title'],
         'description': value['description'],
+        'blocks': (value['blocks'] == null ? undefined : (value['blocks'] as Array<any>).map(BlockToJSON)),
     };
 }
 

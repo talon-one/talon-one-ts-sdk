@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { AnalyticsDataPoint } from './AnalyticsDataPoint';
 import {
     AnalyticsDataPointFromJSON,
@@ -29,50 +29,34 @@ import {
 export interface ApplicationAnalyticsDataPoint {
     /**
      * The start of the aggregation time frame in UTC.
-     * @type {Date}
-     * @memberof ApplicationAnalyticsDataPoint
      */
     startTime: Date;
     /**
      * The end of the aggregation time frame in UTC.
-     * @type {Date}
-     * @memberof ApplicationAnalyticsDataPoint
      */
     endTime: Date;
     /**
      * The total, pre-discount value of all items purchased in a customer session.
-     * @type {AnalyticsDataPoint}
-     * @memberof ApplicationAnalyticsDataPoint
      */
     totalRevenue?: AnalyticsDataPoint;
     /**
      * The number of all closed sessions. The `influenced` value includes only sessions with at least one applied effect.
-     * @type {AnalyticsDataPoint}
-     * @memberof ApplicationAnalyticsDataPoint
      */
     sessionsCount?: AnalyticsDataPoint;
     /**
      * The number of items from sessions divided by the number of sessions. The `influenced` value includes only sessions with at least one applied effect.
-     * @type {AnalyticsDataPoint}
-     * @memberof ApplicationAnalyticsDataPoint
      */
     avgItemsPerSession?: AnalyticsDataPoint;
     /**
      * The average customer session value, calculated by dividing the revenue value by the number of sessions. The `influenced` value includes only sessions with at least one applied effect.
-     * @type {AnalyticsDataPoint}
-     * @memberof ApplicationAnalyticsDataPoint
      */
     avgSessionValue?: AnalyticsDataPoint;
     /**
      * The total value of discounts given for cart items in influenced sessions.
-     * @type {number}
-     * @memberof ApplicationAnalyticsDataPoint
      */
     totalDiscounts?: number;
     /**
      * The number of times a coupon was successfully redeemed in influenced sessions.
-     * @type {number}
-     * @memberof ApplicationAnalyticsDataPoint
      */
     couponsCount?: number;
 }
@@ -97,8 +81,8 @@ export function ApplicationAnalyticsDataPointFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'startTime': (json['startTime'] == null ? undefined as any : new Date(json['startTime'])),
-        'endTime': (json['endTime'] == null ? undefined as any : new Date(json['endTime'])),
+        'startTime': (json['startTime'] == null ? json['startTime'] : parseDateTime(json['startTime'])),
+        'endTime': (json['endTime'] == null ? json['endTime'] : parseDateTime(json['endTime'])),
         'totalRevenue': json['totalRevenue'] == null ? undefined : AnalyticsDataPointFromJSON(json['totalRevenue']),
         'sessionsCount': json['sessionsCount'] == null ? undefined : AnalyticsDataPointFromJSON(json['sessionsCount']),
         'avgItemsPerSession': json['avgItemsPerSession'] == null ? undefined : AnalyticsDataPointFromJSON(json['avgItemsPerSession']),
@@ -119,8 +103,8 @@ export function ApplicationAnalyticsDataPointToJSONTyped(value?: ApplicationAnal
 
     return {
         
-        'startTime': value['startTime'] == null ? undefined : value['startTime'].toISOString(),
-        'endTime': value['endTime'] == null ? undefined : value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? undefined : serializeDateTime(value['startTime']),
+        'endTime': value['endTime'] == null ? undefined : serializeDateTime(value['endTime']),
         'totalRevenue': AnalyticsDataPointToJSON(value['totalRevenue']),
         'sessionsCount': AnalyticsDataPointToJSON(value['sessionsCount']),
         'avgItemsPerSession': AnalyticsDataPointToJSON(value['avgItemsPerSession']),

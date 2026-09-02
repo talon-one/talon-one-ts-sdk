@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface NewAdditionalCost {
     /**
      * The internal name used in API requests.
-     * @type {string}
-     * @memberof NewAdditionalCost
      */
     name: string;
     /**
      * The human-readable name for the additional cost that will be shown in the Campaign Manager. Like `name`, the combination of entity and title must also be unique.
-     * @type {string}
-     * @memberof NewAdditionalCost
      */
     title: string;
     /**
      * A description of this additional cost.
-     * @type {string}
-     * @memberof NewAdditionalCost
      */
     description: string;
     /**
      * A list of the IDs of the applications that are subscribed to this additional cost.
-     * @type {Array<number>}
-     * @memberof NewAdditionalCost
      */
     subscribedApplicationsIds?: Array<number>;
     /**
@@ -49,8 +41,6 @@ export interface NewAdditionalCost {
      * - `item`: Additional cost will be added per item.
      * - `both`: Additional cost will be added per item and session.
      * 
-     * @type {NewAdditionalCostTypeEnum}
-     * @memberof NewAdditionalCost
      */
     type?: NewAdditionalCostTypeEnum;
 }
@@ -62,7 +52,7 @@ export interface NewAdditionalCost {
 export const NewAdditionalCostTypeEnum = {
     Session: 'session',
     Item: 'item',
-    Both: 'both'
+    Both: 'both',
 } as const;
 export type NewAdditionalCostTypeEnum = typeof NewAdditionalCostTypeEnum[keyof typeof NewAdditionalCostTypeEnum];
 

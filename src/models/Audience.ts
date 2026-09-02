@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface Audience {
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof Audience
      */
     accountId: number;
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Audience
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Audience
      */
     created: Date;
     /**
      * The human-friendly display name for this audience.
-     * @type {string}
-     * @memberof Audience
      */
     name: string;
     /**
      * Indicates if this is a live or sandbox Application.
-     * @type {boolean}
-     * @memberof Audience
      */
     sandbox?: boolean;
     /**
      * A description of the audience.
-     * @type {string}
-     * @memberof Audience
      */
     description?: string;
     /**
      * A list of the IDs of the Applications that are connected to this audience.
-     * @type {Set<number>}
-     * @memberof Audience
      */
     subscribedApplicationsIds?: Set<number>;
     /**
@@ -68,8 +54,6 @@ export interface Audience {
      * 
      * **Note:** If you do not integrate with any of these platforms, do not use this property.
      * 
-     * @type {string}
-     * @memberof Audience
      */
     integration?: string;
     /**
@@ -77,20 +61,14 @@ export interface Audience {
      * 
      * **Note:** To create an audience that doesn't come from a 3rd party platform, do not use this property.
      * 
-     * @type {string}
-     * @memberof Audience
      */
     integrationId?: string;
     /**
      * Determines if this audience is a 3rd party audience or not.
-     * @type {boolean}
-     * @memberof Audience
      */
     createdIn3rdParty?: boolean;
     /**
      * The last time that the audience memberships changed.
-     * @type {Date}
-     * @memberof Audience
      */
     lastUpdate?: Date;
 }
@@ -119,7 +97,7 @@ export function AudienceFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         
         'accountId': json['accountId'],
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'name': json['name'],
         'sandbox': json['sandbox'] == null ? undefined : json['sandbox'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -127,7 +105,7 @@ export function AudienceFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'integration': json['integration'] == null ? undefined : json['integration'],
         'integrationId': json['integrationId'] == null ? undefined : json['integrationId'],
         'createdIn3rdParty': json['createdIn3rdParty'] == null ? undefined : json['createdIn3rdParty'],
-        'lastUpdate': json['lastUpdate'] == null ? undefined : (new Date(json['lastUpdate'])),
+        'lastUpdate': json['lastUpdate'] == null ? undefined : (parseDateTime(json['lastUpdate'])),
     };
 }
 
@@ -144,7 +122,7 @@ export function AudienceToJSONTyped(value?: Audience | null, ignoreDiscriminator
         
         'accountId': value['accountId'],
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'name': value['name'],
         'sandbox': value['sandbox'],
         'description': value['description'],
@@ -152,7 +130,7 @@ export function AudienceToJSONTyped(value?: Audience | null, ignoreDiscriminator
         'integration': value['integration'],
         'integrationId': value['integrationId'],
         'createdIn3rdParty': value['createdIn3rdParty'],
-        'lastUpdate': value['lastUpdate'] == null ? value['lastUpdate'] : value['lastUpdate'].toISOString(),
+        'lastUpdate': value['lastUpdate'] == null ? value['lastUpdate'] : serializeDateTime(value['lastUpdate']),
     };
 }
 

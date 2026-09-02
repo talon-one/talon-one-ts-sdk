@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface BestPriorPriceSettings {
     /**
      * When set to `true`, the best prior price feature is enabled in this Application and its [price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory) is recorded.
-     * @type {boolean}
-     * @memberof BestPriorPriceSettings
      */
     enableBestPriorPrice?: boolean;
 }

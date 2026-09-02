@@ -29,14 +29,10 @@ import {
 export interface GenerateRuleTitle {
     /**
      * 
-     * @type {GenerateRuleTitleRule}
-     * @memberof GenerateRuleTitle
      */
     rule: GenerateRuleTitleRule;
     /**
      * Currency for the campaign.
-     * @type {string}
-     * @memberof GenerateRuleTitle
      */
     currency: string;
 }

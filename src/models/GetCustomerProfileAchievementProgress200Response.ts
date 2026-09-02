@@ -29,14 +29,10 @@ import {
 export interface GetCustomerProfileAchievementProgress200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetCustomerProfileAchievementProgress200Response
      */
     hasMore: boolean;
     /**
      * 
-     * @type {Array<AchievementProgressWithDefinition>}
-     * @memberof GetCustomerProfileAchievementProgress200Response
      */
     data: Array<AchievementProgressWithDefinition>;
 }

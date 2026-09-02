@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface GetIntegrationCouponRequest {
     /**
      * A list of IDs of the campaigns to get coupons from.
-     * @type {Array<number>}
-     * @memberof GetIntegrationCouponRequest
      */
     campaignIds: Array<number>;
     /**
      * The maximum number of coupons included in the response.
-     * @type {number}
-     * @memberof GetIntegrationCouponRequest
      */
     limit: number;
 }

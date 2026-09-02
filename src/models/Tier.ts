@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface Tier {
     /**
      * The internal ID of the tier.
-     * @type {number}
-     * @memberof Tier
      */
     id: number;
     /**
      * The name of the tier.
-     * @type {string}
-     * @memberof Tier
      */
     name: string;
     /**
      * Date and time when the customer moved to this tier. This value uses the loyalty program's time zone setting.
-     * @type {Date}
-     * @memberof Tier
      */
     startDate?: Date;
     /**
      * Date when tier level expires in the RFC3339 format (in the Loyalty Program's timezone).
-     * @type {Date}
-     * @memberof Tier
      */
     expiryDate?: Date;
     /**
@@ -48,8 +40,6 @@ export interface Tier {
      *  - `one_down`: If the customer doesn't have enough points to stay in the current tier, they are downgraded by one tier.
      *  - `balance_based`: The customer's tier is reevaluated based on the amount of active points they have at the moment.
      * 
-     * @type {TierDowngradePolicyEnum}
-     * @memberof Tier
      */
     downgradePolicy?: TierDowngradePolicyEnum;
 }
@@ -60,7 +50,7 @@ export interface Tier {
  */
 export const TierDowngradePolicyEnum = {
     OneDown: 'one_down',
-    BalanceBased: 'balance_based'
+    BalanceBased: 'balance_based',
 } as const;
 export type TierDowngradePolicyEnum = typeof TierDowngradePolicyEnum[keyof typeof TierDowngradePolicyEnum];
 
@@ -87,8 +77,8 @@ export function TierFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tier
         
         'id': json['id'],
         'name': json['name'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'downgradePolicy': json['downgradePolicy'] == null ? undefined : json['downgradePolicy'],
     };
 }
@@ -106,8 +96,8 @@ export function TierToJSONTyped(value?: Tier | null, ignoreDiscriminator: boolea
         
         'id': value['id'],
         'name': value['name'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'downgradePolicy': value['downgradePolicy'],
     };
 }

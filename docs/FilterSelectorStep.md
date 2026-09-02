@@ -8,7 +8,7 @@ Filters only items that match a predicate block.
 Name | Type
 ------------ | -------------
 `type` | string
-`predicate` | [SelectorBlock](SelectorBlock.md)
+`predicate` | [Block](Block.md)
 
 ## Example
 

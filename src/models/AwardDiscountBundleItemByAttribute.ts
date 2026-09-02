@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface AwardDiscountBundleItemByAttribute {
     /**
      * A bundle-item selector of type `byAttribute`.
-     * @type {AwardDiscountBundleItemByAttributeTypeEnum}
-     * @memberof AwardDiscountBundleItemByAttribute
      */
     type: AwardDiscountBundleItemByAttributeTypeEnum;
     /**
      * A per-item attribute expression used to rank bundle items.
-     * @type {string}
-     * @memberof AwardDiscountBundleItemByAttribute
      */
     attribute: string;
     /**
      * Ranking direction. `highest` picks the item with the largest attribute value, `lowest` the smallest.
-     * @type {AwardDiscountBundleItemByAttributeDirectionEnum}
-     * @memberof AwardDiscountBundleItemByAttribute
      */
     direction: AwardDiscountBundleItemByAttributeDirectionEnum;
 }
@@ -44,7 +38,7 @@ export interface AwardDiscountBundleItemByAttribute {
  * @export
  */
 export const AwardDiscountBundleItemByAttributeTypeEnum = {
-    ByAttribute: 'byAttribute'
+    ByAttribute: 'byAttribute',
 } as const;
 export type AwardDiscountBundleItemByAttributeTypeEnum = typeof AwardDiscountBundleItemByAttributeTypeEnum[keyof typeof AwardDiscountBundleItemByAttributeTypeEnum];
 
@@ -53,7 +47,7 @@ export type AwardDiscountBundleItemByAttributeTypeEnum = typeof AwardDiscountBun
  */
 export const AwardDiscountBundleItemByAttributeDirectionEnum = {
     Highest: 'highest',
-    Lowest: 'lowest'
+    Lowest: 'lowest',
 } as const;
 export type AwardDiscountBundleItemByAttributeDirectionEnum = typeof AwardDiscountBundleItemByAttributeDirectionEnum[keyof typeof AwardDiscountBundleItemByAttributeDirectionEnum];
 

@@ -29,14 +29,10 @@ import {
 export interface GetLoyaltyProgramProfileTransactions200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetLoyaltyProgramProfileTransactions200Response
      */
     hasMore: boolean;
     /**
      * 
-     * @type {Array<LedgerTransactionLogEntryIntegrationAPI>}
-     * @memberof GetLoyaltyProgramProfileTransactions200Response
      */
     data: Array<LedgerTransactionLogEntryIntegrationAPI>;
 }

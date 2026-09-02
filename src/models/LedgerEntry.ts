@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface LedgerEntry {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof LedgerEntry
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof LedgerEntry
      */
     created: Date;
     /**
@@ -36,50 +32,34 @@ export interface LedgerEntry {
      * 
      * **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
      * 
-     * @type {string}
-     * @memberof LedgerEntry
      */
     profileId?: string;
     /**
      * The ID of the Talon.One account that owns this profile.
-     * @type {number}
-     * @memberof LedgerEntry
      */
     accountId: number;
     /**
      * ID of the ledger.
-     * @type {number}
-     * @memberof LedgerEntry
      */
     loyaltyProgramId: number;
     /**
      * ID of the related event.
-     * @type {number}
-     * @memberof LedgerEntry
      */
     eventId: number;
     /**
      * Amount of loyalty points.
-     * @type {number}
-     * @memberof LedgerEntry
      */
     amount: number;
     /**
      * reason for awarding/deducting points.
-     * @type {string}
-     * @memberof LedgerEntry
      */
     reason: string;
     /**
      * Expiration date of the points.
-     * @type {Date}
-     * @memberof LedgerEntry
      */
     expiryDate: Date;
     /**
      * The ID of the balancing ledgerEntry.
-     * @type {number}
-     * @memberof LedgerEntry
      */
     referenceId?: number;
 }
@@ -111,14 +91,14 @@ export function LedgerEntryFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'profileId': json['profileId'] == null ? undefined : json['profileId'],
         'accountId': json['accountId'],
         'loyaltyProgramId': json['loyaltyProgramId'],
         'eventId': json['eventId'],
         'amount': json['amount'],
         'reason': json['reason'],
-        'expiryDate': (json['expiryDate'] == null ? undefined as any : new Date(json['expiryDate'])),
+        'expiryDate': (json['expiryDate'] == null ? json['expiryDate'] : parseDateTime(json['expiryDate'])),
         'referenceId': json['referenceId'] == null ? undefined : json['referenceId'],
     };
 }
@@ -135,14 +115,14 @@ export function LedgerEntryToJSONTyped(value?: LedgerEntry | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'profileId': value['profileId'],
         'accountId': value['accountId'],
         'loyaltyProgramId': value['loyaltyProgramId'],
         'eventId': value['eventId'],
         'amount': value['amount'],
         'reason': value['reason'],
-        'expiryDate': value['expiryDate'] == null ? undefined : value['expiryDate'].toISOString(),
+        'expiryDate': value['expiryDate'] == null ? undefined : serializeDateTime(value['expiryDate']),
         'referenceId': value['referenceId'],
     };
 }

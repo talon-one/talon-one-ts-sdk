@@ -12,18 +12,20 @@
  * Do not edit the class manually.
  */
 
+import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import { type ScalarCheckAttributeBlock, ScalarCheckAttributeBlockFromJSONTyped, ScalarCheckAttributeBlockToJSON } from './ScalarCheckAttributeBlock';
 import { type BetweenCheckAttributeBlock, BetweenCheckAttributeBlockFromJSONTyped, BetweenCheckAttributeBlockToJSON } from './BetweenCheckAttributeBlock';
 import { type ListCheckAttributeBlock, ListCheckAttributeBlockFromJSONTyped, ListCheckAttributeBlockToJSON } from './ListCheckAttributeBlock';
 import { type ListWithCountCheckAttributeBlock, ListWithCountCheckAttributeBlockFromJSONTyped, ListWithCountCheckAttributeBlockToJSON } from './ListWithCountCheckAttributeBlock';
 import { type UnaryCheckAttributeBlock, UnaryCheckAttributeBlockFromJSONTyped, UnaryCheckAttributeBlockToJSON } from './UnaryCheckAttributeBlock';
+import { type LocationCheckAttributeBlock, LocationCheckAttributeBlockFromJSONTyped, LocationCheckAttributeBlockToJSON } from './LocationCheckAttributeBlock';
 import { type WithinCheckAttributeBlock, WithinCheckAttributeBlockFromJSONTyped, WithinCheckAttributeBlockToJSON } from './WithinCheckAttributeBlock';
 /**
  * @type CheckAttributeBlock
  * 
  * @export
  */
-export type CheckAttributeBlock = { operator: 'after' } & ScalarCheckAttributeBlock | { operator: 'before' } & ScalarCheckAttributeBlock | { operator: 'between' } & BetweenCheckAttributeBlock | { operator: 'contains' } & ScalarCheckAttributeBlock | { operator: 'containsAllOf' } & ListCheckAttributeBlock | { operator: 'containsAtLeast' } & ListWithCountCheckAttributeBlock | { operator: 'containsExactly' } & ListWithCountCheckAttributeBlock | { operator: 'containsNoneOf' } & ListCheckAttributeBlock | { operator: 'containsOneOf' } & ListCheckAttributeBlock | { operator: 'empty' } & UnaryCheckAttributeBlock | { operator: 'endsWith' } & ScalarCheckAttributeBlock | { operator: 'equals' } & ScalarCheckAttributeBlock | { operator: 'exists' } & UnaryCheckAttributeBlock | { operator: 'greaterThan' } & ScalarCheckAttributeBlock | { operator: 'greaterThanOrEqual' } & ScalarCheckAttributeBlock | { operator: 'inCollection' } & ScalarCheckAttributeBlock | { operator: 'isFalse' } & UnaryCheckAttributeBlock | { operator: 'isTrue' } & UnaryCheckAttributeBlock | { operator: 'lessThan' } & ScalarCheckAttributeBlock | { operator: 'lessThanOrEqual' } & ScalarCheckAttributeBlock | { operator: 'matchesRegexp' } & ScalarCheckAttributeBlock | { operator: 'not(contains)' } & ScalarCheckAttributeBlock | { operator: 'not(empty)' } & UnaryCheckAttributeBlock | { operator: 'not(equals)' } & ScalarCheckAttributeBlock | { operator: 'not(exists)' } & UnaryCheckAttributeBlock | { operator: 'not(inCollection)' } & ScalarCheckAttributeBlock | { operator: 'not(oneOf)' } & ScalarCheckAttributeBlock | { operator: 'not(within)' } & WithinCheckAttributeBlock | { operator: 'oneOf' } & ScalarCheckAttributeBlock | { operator: 'startsWith' } & ScalarCheckAttributeBlock | { operator: 'within' } & WithinCheckAttributeBlock;
+export type CheckAttributeBlock = { operator: 'after' } & ScalarCheckAttributeBlock | { operator: 'before' } & ScalarCheckAttributeBlock | { operator: 'between' } & BetweenCheckAttributeBlock | { operator: 'contains' } & ScalarCheckAttributeBlock | { operator: 'containsAllOf' } & ListCheckAttributeBlock | { operator: 'containsAtLeast' } & ListWithCountCheckAttributeBlock | { operator: 'containsExactly' } & ListWithCountCheckAttributeBlock | { operator: 'containsNoneOf' } & ListCheckAttributeBlock | { operator: 'containsOneOf' } & ListCheckAttributeBlock | { operator: 'empty' } & UnaryCheckAttributeBlock | { operator: 'endsWith' } & ScalarCheckAttributeBlock | { operator: 'equals' } & ScalarCheckAttributeBlock | { operator: 'exists' } & UnaryCheckAttributeBlock | { operator: 'greaterThan' } & ScalarCheckAttributeBlock | { operator: 'greaterThanOrEqual' } & ScalarCheckAttributeBlock | { operator: 'in' } & LocationCheckAttributeBlock | { operator: 'inCollection' } & ScalarCheckAttributeBlock | { operator: 'isFalse' } & UnaryCheckAttributeBlock | { operator: 'isTrue' } & UnaryCheckAttributeBlock | { operator: 'lessThan' } & ScalarCheckAttributeBlock | { operator: 'lessThanOrEqual' } & ScalarCheckAttributeBlock | { operator: 'matchesRegexp' } & ScalarCheckAttributeBlock | { operator: 'not(contains)' } & ScalarCheckAttributeBlock | { operator: 'not(empty)' } & UnaryCheckAttributeBlock | { operator: 'not(equals)' } & ScalarCheckAttributeBlock | { operator: 'not(exists)' } & UnaryCheckAttributeBlock | { operator: 'not(in)' } & LocationCheckAttributeBlock | { operator: 'not(inCollection)' } & ScalarCheckAttributeBlock | { operator: 'not(oneOf)' } & ScalarCheckAttributeBlock | { operator: 'not(within)' } & WithinCheckAttributeBlock | { operator: 'oneOf' } & ScalarCheckAttributeBlock | { operator: 'startsWith' } & ScalarCheckAttributeBlock | { operator: 'within' } & WithinCheckAttributeBlock;
 /**
  * Check if a given object implements the CheckAttributeBlock interface.
  */
@@ -45,6 +47,7 @@ export function instanceOfCheckAttributeBlock(value: any): value is CheckAttribu
         case 'exists':
         case 'greaterThan':
         case 'greaterThanOrEqual':
+        case 'in':
         case 'inCollection':
         case 'isFalse':
         case 'isTrue':
@@ -55,6 +58,7 @@ export function instanceOfCheckAttributeBlock(value: any): value is CheckAttribu
         case 'not(empty)':
         case 'not(equals)':
         case 'not(exists)':
+        case 'not(in)':
         case 'not(inCollection)':
         case 'not(oneOf)':
         case 'not(within)':
@@ -106,6 +110,8 @@ export function CheckAttributeBlockFromJSONTyped(json: any, ignoreDiscriminator:
             return Object.assign({}, ScalarCheckAttributeBlockFromJSONTyped(json, true), { operator: 'greaterThan' } as const);
         case 'greaterThanOrEqual':
             return Object.assign({}, ScalarCheckAttributeBlockFromJSONTyped(json, true), { operator: 'greaterThanOrEqual' } as const);
+        case 'in':
+            return Object.assign({}, LocationCheckAttributeBlockFromJSONTyped(json, true), { operator: 'in' } as const);
         case 'inCollection':
             return Object.assign({}, ScalarCheckAttributeBlockFromJSONTyped(json, true), { operator: 'inCollection' } as const);
         case 'isFalse':
@@ -126,6 +132,8 @@ export function CheckAttributeBlockFromJSONTyped(json: any, ignoreDiscriminator:
             return Object.assign({}, ScalarCheckAttributeBlockFromJSONTyped(json, true), { operator: 'not(equals)' } as const);
         case 'not(exists)':
             return Object.assign({}, UnaryCheckAttributeBlockFromJSONTyped(json, true), { operator: 'not(exists)' } as const);
+        case 'not(in)':
+            return Object.assign({}, LocationCheckAttributeBlockFromJSONTyped(json, true), { operator: 'not(in)' } as const);
         case 'not(inCollection)':
             return Object.assign({}, ScalarCheckAttributeBlockFromJSONTyped(json, true), { operator: 'not(inCollection)' } as const);
         case 'not(oneOf)':
@@ -182,6 +190,8 @@ export function CheckAttributeBlockToJSONTyped(value?: CheckAttributeBlock | nul
             return Object.assign({}, ScalarCheckAttributeBlockToJSON(value), { 'operator': 'greaterThan' } as const);
         case 'greaterThanOrEqual':
             return Object.assign({}, ScalarCheckAttributeBlockToJSON(value), { 'operator': 'greaterThanOrEqual' } as const);
+        case 'in':
+            return Object.assign({}, LocationCheckAttributeBlockToJSON(value), { 'operator': 'in' } as const);
         case 'inCollection':
             return Object.assign({}, ScalarCheckAttributeBlockToJSON(value), { 'operator': 'inCollection' } as const);
         case 'isFalse':
@@ -202,6 +212,8 @@ export function CheckAttributeBlockToJSONTyped(value?: CheckAttributeBlock | nul
             return Object.assign({}, ScalarCheckAttributeBlockToJSON(value), { 'operator': 'not(equals)' } as const);
         case 'not(exists)':
             return Object.assign({}, UnaryCheckAttributeBlockToJSON(value), { 'operator': 'not(exists)' } as const);
+        case 'not(in)':
+            return Object.assign({}, LocationCheckAttributeBlockToJSON(value), { 'operator': 'not(in)' } as const);
         case 'not(inCollection)':
             return Object.assign({}, ScalarCheckAttributeBlockToJSON(value), { 'operator': 'not(inCollection)' } as const);
         case 'not(oneOf)':

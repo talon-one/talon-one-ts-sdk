@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CartItem } from './CartItem';
 import {
     CartItemFromJSON,
@@ -29,20 +29,14 @@ import {
 export interface CustomerSession {
     /**
      * 
-     * @type {string}
-     * @memberof CustomerSession
      */
     integrationId: string;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof CustomerSession
      */
     created: Date;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof CustomerSession
      */
     applicationId: number;
     /**
@@ -50,20 +44,14 @@ export interface CustomerSession {
      * 
      * **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
      * 
-     * @type {string}
-     * @memberof CustomerSession
      */
     profileId?: string;
     /**
      * Any coupon code entered.
-     * @type {string}
-     * @memberof CustomerSession
      */
     coupon?: string;
     /**
      * Any referral code entered.
-     * @type {string}
-     * @memberof CustomerSession
      */
     referral?: string;
     /**
@@ -76,14 +64,10 @@ export interface CustomerSession {
      * 
      * For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
      * 
-     * @type {CustomerSessionStateEnum}
-     * @memberof CustomerSession
      */
     state?: CustomerSessionStateEnum;
     /**
      * Serialized JSON representation.
-     * @type {Array<CartItem>}
-     * @memberof CustomerSession
      */
     cartItems?: Array<CartItem>;
     /**
@@ -92,45 +76,31 @@ export interface CustomerSession {
      * For example, you can use IP addresses as identifiers to potentially identify devices
      * and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers).
      * 
-     * @type {Array<string>}
-     * @memberof CustomerSession
      */
     identifiers?: Array<string>;
     /**
      * The total sum of the cart in one session.
-     * @type {number}
-     * @memberof CustomerSession
      */
     total?: number;
     /**
      * A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings.
      * 
-     * @type {object}
-     * @memberof CustomerSession
      */
     attributes?: object;
     /**
      * Indicates whether this is the first session for the customer's profile. Will always be true for anonymous sessions.
-     * @type {boolean}
-     * @memberof CustomerSession
      */
     firstSession: boolean;
     /**
      * The number of times the session was updated. When the session is created, this value is initialized to `1`.
-     * @type {number}
-     * @memberof CustomerSession
      */
     updateCount: number;
     /**
      * A map of labelled discount values, values will be in the same currency as the application associated with the session.
-     * @type {{ [key: string]: number; }}
-     * @memberof CustomerSession
      */
     discounts: { [key: string]: number; };
     /**
      * Timestamp of the most recent event received on this session.
-     * @type {Date}
-     * @memberof CustomerSession
      */
     updated: Date;
 }
@@ -143,7 +113,7 @@ export const CustomerSessionStateEnum = {
     Open: 'open',
     Closed: 'closed',
     PartiallyReturned: 'partially_returned',
-    Cancelled: 'cancelled'
+    Cancelled: 'cancelled',
 } as const;
 export type CustomerSessionStateEnum = typeof CustomerSessionStateEnum[keyof typeof CustomerSessionStateEnum];
 
@@ -174,7 +144,7 @@ export function CustomerSessionFromJSONTyped(json: any, ignoreDiscriminator: boo
     return {
         
         'integrationId': json['integrationId'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'applicationId': json['applicationId'],
         'profileId': json['profileId'] == null ? undefined : json['profileId'],
         'coupon': json['coupon'] == null ? undefined : json['coupon'],
@@ -187,7 +157,7 @@ export function CustomerSessionFromJSONTyped(json: any, ignoreDiscriminator: boo
         'firstSession': json['firstSession'],
         'updateCount': json['updateCount'],
         'discounts': json['discounts'],
-        'updated': (json['updated'] == null ? undefined as any : new Date(json['updated'])),
+        'updated': (json['updated'] == null ? json['updated'] : parseDateTime(json['updated'])),
     };
 }
 
@@ -203,7 +173,7 @@ export function CustomerSessionToJSONTyped(value?: CustomerSession | null, ignor
     return {
         
         'integrationId': value['integrationId'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'applicationId': value['applicationId'],
         'profileId': value['profileId'],
         'coupon': value['coupon'],
@@ -216,7 +186,7 @@ export function CustomerSessionToJSONTyped(value?: CustomerSession | null, ignor
         'firstSession': value['firstSession'],
         'updateCount': value['updateCount'],
         'discounts': value['discounts'],
-        'updated': value['updated'] == null ? undefined : value['updated'].toISOString(),
+        'updated': value['updated'] == null ? undefined : serializeDateTime(value['updated']),
     };
 }
 

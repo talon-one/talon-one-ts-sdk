@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface NewSecondaryDeployment {
     /**
      * The name of the deployment. Used as subdomain, e.g. experimental.your-company.europe-west1.talon.one
-     * @type {string}
-     * @memberof NewSecondaryDeployment
      */
     name: string;
 }

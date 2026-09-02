@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { TemplateArgDef } from './TemplateArgDef';
 import {
     TemplateArgDefFromJSON,
@@ -29,68 +29,46 @@ import {
 export interface TemplateDef {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof TemplateDef
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof TemplateDef
      */
     created: Date;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof TemplateDef
      */
     applicationId: number;
     /**
      * Campaigner-friendly name for the template that will be shown in the rule editor.
-     * @type {string}
-     * @memberof TemplateDef
      */
     title: string;
     /**
      * A short description of the template that will be shown in the rule editor.
-     * @type {string}
-     * @memberof TemplateDef
      */
     description?: string;
     /**
      * Extended help text for the template.
-     * @type {string}
-     * @memberof TemplateDef
      */
     help?: string;
     /**
      * Used for grouping templates in the rule editor sidebar.
-     * @type {string}
-     * @memberof TemplateDef
      */
     category: string;
     /**
      * A Talang expression that contains variable bindings referring to args.
-     * @type {Array<any>}
-     * @memberof TemplateDef
      */
     expr: Array<any>;
     /**
      * An array of argument definitions.
-     * @type {Array<TemplateArgDef>}
-     * @memberof TemplateDef
      */
     args: Array<TemplateArgDef>;
     /**
      * A flag to control exposure in Rule Builder.
-     * @type {boolean}
-     * @memberof TemplateDef
      */
     expose?: boolean;
     /**
      * The template name used in Talang.
-     * @type {string}
-     * @memberof TemplateDef
      */
     name: string;
 }
@@ -122,7 +100,7 @@ export function TemplateDefFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'applicationId': json['applicationId'],
         'title': json['title'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -147,7 +125,7 @@ export function TemplateDefToJSONTyped(value?: TemplateDef | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'applicationId': value['applicationId'],
         'title': value['title'],
         'description': value['description'],

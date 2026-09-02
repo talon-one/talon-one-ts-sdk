@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface SlotDef {
     /**
      * The dot-separated path to this slot for use in Talang.
-     * @type {string}
-     * @memberof SlotDef
      */
     name: string;
     /**
      * The type of this slot, one of string, number, boolean, or list[type].
-     * @type {string}
-     * @memberof SlotDef
      */
     type: string;
     /**
      * Campaigner-friendly name for the slot.
-     * @type {string}
-     * @memberof SlotDef
      */
     title: string;
     /**
      * A short description of the slot.
-     * @type {string}
-     * @memberof SlotDef
      */
     description?: string;
     /**
      * Extended help text for the slot.
-     * @type {string}
-     * @memberof SlotDef
      */
     help?: string;
     /**
      * Whether or not this slot can be updated by rule effects.
-     * @type {boolean}
-     * @memberof SlotDef
      */
     writable: boolean;
 }

@@ -29,32 +29,22 @@ import {
 export interface ScimUser {
     /**
      * Status of the user.
-     * @type {boolean}
-     * @memberof ScimUser
      */
     active?: boolean;
     /**
      * Display name of the user.
-     * @type {string}
-     * @memberof ScimUser
      */
     displayName?: string;
     /**
      * Unique identifier of the user. This is usually an email address.
-     * @type {string}
-     * @memberof ScimUser
      */
     userName: string;
     /**
      * 
-     * @type {ScimBaseUserName}
-     * @memberof ScimUser
      */
     name?: ScimBaseUserName;
     /**
      * ID of the user.
-     * @type {string}
-     * @memberof ScimUser
      */
     id: string;
 }

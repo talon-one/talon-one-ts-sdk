@@ -29,26 +29,18 @@ import {
 export interface IntegrationHubFlow {
     /**
      * ID of the application the flow is registered for.
-     * @type {number}
-     * @memberof IntegrationHubFlow
      */
     applicationID?: number;
     /**
      * ID of the loyalty program the flow is registered for.
-     * @type {number}
-     * @memberof IntegrationHubFlow
      */
     loyaltyProgramID?: number;
     /**
      * 
-     * @type {IntegrationHubEventType}
-     * @memberof IntegrationHubFlow
      */
     eventType: IntegrationHubEventType;
     /**
      * The URL of the integration hub flow that we want to trigger for the event.
-     * @type {string}
-     * @memberof IntegrationHubFlow
      */
     integrationHubFlowUrl: string;
 }

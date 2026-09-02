@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface NewApplicationCIFExpression {
     /**
      * The ID of the Application cart item filter.
-     * @type {number}
-     * @memberof NewApplicationCIFExpression
      */
     cartItemFilterId?: number;
     /**
      * The ID of the user who created the Application cart item filter.
-     * @type {number}
-     * @memberof NewApplicationCIFExpression
      */
     createdBy?: number;
     /**
      * Arbitrary additional JSON data associated with the Application cart item filter.
-     * @type {Array<any>}
-     * @memberof NewApplicationCIFExpression
      */
     expression?: Array<any>;
 }

@@ -21,58 +21,40 @@ import { mapValues } from '../runtime';
 export interface NewSamlConnection {
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof NewSamlConnection
      */
     accountId: number;
     /**
      * ID of the SAML service.
-     * @type {string}
-     * @memberof NewSamlConnection
      */
     name: string;
     /**
      * Determines if this SAML connection active.
-     * @type {boolean}
-     * @memberof NewSamlConnection
      */
     enabled: boolean;
     /**
      * Identity Provider Entity ID.
-     * @type {string}
-     * @memberof NewSamlConnection
      */
     issuer: string;
     /**
      * Single Sign-On URL.
-     * @type {string}
-     * @memberof NewSamlConnection
      */
     signOnURL: string;
     /**
      * Single Sign-Out URL.
-     * @type {string}
-     * @memberof NewSamlConnection
      */
     signOutURL?: string;
     /**
      * Metadata URL.
-     * @type {string}
-     * @memberof NewSamlConnection
      */
     metadataURL?: string;
     /**
      * The application-defined unique identifier that is the intended audience of the SAML assertion.
      * This is most often the SP Entity ID of your application. When not specified, the ACS URL will be used.
      * 
-     * @type {string}
-     * @memberof NewSamlConnection
      */
     audienceURI?: string;
     /**
      * X.509 Certificate.
-     * @type {string}
-     * @memberof NewSamlConnection
      */
     x509certificate: string;
 }

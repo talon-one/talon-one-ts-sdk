@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface UpdateAudience {
     /**
      * The human-friendly display name for this audience.
-     * @type {string}
-     * @memberof UpdateAudience
      */
     name: string;
     /**
      * A list of the IDs of the Applications that are connected to this audience.
-     * @type {Set<number>}
-     * @memberof UpdateAudience
      */
     subscribedApplicationsIds?: Set<number>;
 }

@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface TierUpgradeNotificationPolicy {
     /**
      * Notification name.
-     * @type {string}
-     * @memberof TierUpgradeNotificationPolicy
      */
     name: string;
     /**
      * Indicates whether batching is activated.
-     * @type {boolean}
-     * @memberof TierUpgradeNotificationPolicy
      */
     batchingEnabled?: boolean;
     /**
      * The required size of each batch of data. This value applies only when `batchingEnabled` is `true`.
-     * @type {number}
-     * @memberof TierUpgradeNotificationPolicy
      */
     batchSize?: number;
 }

@@ -29,14 +29,10 @@ import {
 export interface ErrorResponse {
     /**
      * A message describing the error.
-     * @type {string}
-     * @memberof ErrorResponse
      */
     message: string;
     /**
      * An array of individual problems encountered during the request.
-     * @type {Array<APIError>}
-     * @memberof ErrorResponse
      */
     errors?: Array<APIError>;
 }

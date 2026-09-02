@@ -29,14 +29,10 @@ import {
 export interface ApplicationCIFReferences {
     /**
      * The ID of the Application Cart Item Filter that is referenced by a campaign.
-     * @type {number}
-     * @memberof ApplicationCIFReferences
      */
     applicationCartItemFilterId?: number;
     /**
      * Campaigns that reference a speciifc Application Cart Item Filter.
-     * @type {Array<CampaignDetail>}
-     * @memberof ApplicationCIFReferences
      */
     campaigns?: Array<CampaignDetail>;
 }

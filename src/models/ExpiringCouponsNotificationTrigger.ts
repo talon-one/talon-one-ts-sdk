@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface ExpiringCouponsNotificationTrigger {
     /**
      * The amount of period.
-     * @type {number}
-     * @memberof ExpiringCouponsNotificationTrigger
      */
     amount: number;
     /**
      * Notification period indicated by a letter; "w" means week, "d" means day.
-     * @type {ExpiringCouponsNotificationTriggerPeriodEnum}
-     * @memberof ExpiringCouponsNotificationTrigger
      */
     period: ExpiringCouponsNotificationTriggerPeriodEnum;
 }
@@ -39,7 +35,7 @@ export interface ExpiringCouponsNotificationTrigger {
  */
 export const ExpiringCouponsNotificationTriggerPeriodEnum = {
     W: 'w',
-    D: 'd'
+    D: 'd',
 } as const;
 export type ExpiringCouponsNotificationTriggerPeriodEnum = typeof ExpiringCouponsNotificationTriggerPeriodEnum[keyof typeof ExpiringCouponsNotificationTriggerPeriodEnum];
 

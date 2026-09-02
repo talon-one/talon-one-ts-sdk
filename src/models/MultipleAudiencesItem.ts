@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,39 +21,27 @@ import { mapValues } from '../runtime';
 export interface MultipleAudiencesItem {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof MultipleAudiencesItem
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof MultipleAudiencesItem
      */
     created: Date;
     /**
      * The human-friendly display name for this audience.
-     * @type {string}
-     * @memberof MultipleAudiencesItem
      */
     name: string;
     /**
      * A list of the IDs of the Applications that are connected to this audience.
-     * @type {Set<number>}
-     * @memberof MultipleAudiencesItem
      */
     subscribedApplicationsIds?: Set<number>;
     /**
      * The ID of this audience in the third-party integration.
-     * @type {string}
-     * @memberof MultipleAudiencesItem
      */
     integrationId?: string;
     /**
      * Indicates whether the audience is new, updated or unmodified by the request.
      * 
-     * @type {MultipleAudiencesItemStatusEnum}
-     * @memberof MultipleAudiencesItem
      */
     status: MultipleAudiencesItemStatusEnum;
 }
@@ -65,7 +53,7 @@ export interface MultipleAudiencesItem {
 export const MultipleAudiencesItemStatusEnum = {
     Unmodified: 'unmodified',
     Updated: 'updated',
-    New: 'new'
+    New: 'new',
 } as const;
 export type MultipleAudiencesItemStatusEnum = typeof MultipleAudiencesItemStatusEnum[keyof typeof MultipleAudiencesItemStatusEnum];
 
@@ -93,7 +81,7 @@ export function MultipleAudiencesItemFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'name': json['name'],
         'subscribedApplicationsIds': json['subscribedApplicationsIds'] == null ? undefined : new Set(json['subscribedApplicationsIds']),
         'integrationId': json['integrationId'] == null ? undefined : json['integrationId'],
@@ -113,7 +101,7 @@ export function MultipleAudiencesItemToJSONTyped(value?: MultipleAudiencesItem |
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'name': value['name'],
         'subscribedApplicationsIds': value['subscribedApplicationsIds'] == null ? undefined : Array.from(value['subscribedApplicationsIds'] as Set<any>),
         'integrationId': value['integrationId'],

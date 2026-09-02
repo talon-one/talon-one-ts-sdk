@@ -22,8 +22,6 @@ export interface EventV3Entity {
     /**
      * The unique ID of the event. Only one event with this ID can be registered.
      * 
-     * @type {string}
-     * @memberof EventV3Entity
      */
     integrationId?: string;
 }

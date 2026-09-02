@@ -22,8 +22,8 @@ import type { WithinCheckAttributeBlock } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "operator": null,
-  "start": null,
-  "end": null,
+  "start": 2021-09-22T22:00:00Z,
+  "end": 2021-09-22T22:00:00Z,
   "startInclusive": true,
   "endInclusive": true,
   "timezoneInsensitive": false,

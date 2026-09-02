@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface AnalyticsDataPoint {
     /**
      * 
-     * @type {number}
-     * @memberof AnalyticsDataPoint
      */
     total: number;
     /**
      * 
-     * @type {number}
-     * @memberof AnalyticsDataPoint
      */
     influenced: number;
 }

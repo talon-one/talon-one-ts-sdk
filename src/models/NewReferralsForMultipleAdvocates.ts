@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,54 +21,38 @@ import { mapValues } from '../runtime';
 export interface NewReferralsForMultipleAdvocates {
     /**
      * Timestamp at which point the referral code becomes valid.
-     * @type {Date}
-     * @memberof NewReferralsForMultipleAdvocates
      */
     startDate?: Date;
     /**
      * Expiration date of the referral code. Referral never expires if this is omitted.
-     * @type {Date}
-     * @memberof NewReferralsForMultipleAdvocates
      */
     expiryDate?: Date;
     /**
      * The number of times a referral code can be used. `0` means no limit but any campaign usage limits will still apply.
      * 
-     * @type {number}
-     * @memberof NewReferralsForMultipleAdvocates
      */
     usageLimit?: number;
     /**
      * The ID of the campaign from which the referral received the referral code.
-     * @type {number}
-     * @memberof NewReferralsForMultipleAdvocates
      */
     campaignId: number;
     /**
      * An array containing all the respective advocate profiles.
-     * @type {Array<string>}
-     * @memberof NewReferralsForMultipleAdvocates
      */
     advocateProfileIntegrationIds: Array<string>;
     /**
      * Arbitrary properties associated with this referral code.
-     * @type {object}
-     * @memberof NewReferralsForMultipleAdvocates
      */
     attributes?: object;
     /**
      * List of characters used to generate the random parts of a code. By default, the list of characters
      * is equivalent to the `[A-Z, 0-9]` regular expression.
      * 
-     * @type {Array<string>}
-     * @memberof NewReferralsForMultipleAdvocates
      */
     validCharacters?: Array<string>;
     /**
      * The pattern used to generate referrals. The character `#` is a placeholder and is replaced by a random character from the `validCharacters` set.
      * 
-     * @type {string}
-     * @memberof NewReferralsForMultipleAdvocates
      */
     referralPattern?: string;
 }
@@ -93,8 +77,8 @@ export function NewReferralsForMultipleAdvocatesFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
         'campaignId': json['campaignId'],
         'advocateProfileIntegrationIds': json['advocateProfileIntegrationIds'],
@@ -115,8 +99,8 @@ export function NewReferralsForMultipleAdvocatesToJSONTyped(value?: NewReferrals
 
     return {
         
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'usageLimit': value['usageLimit'],
         'campaignId': value['campaignId'],
         'advocateProfileIntegrationIds': value['advocateProfileIntegrationIds'],

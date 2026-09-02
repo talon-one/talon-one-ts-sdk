@@ -25,45 +25,31 @@ import { mapValues } from '../runtime';
 export interface CustomEffectProps {
     /**
      * The ID of the custom effect that was triggered.
-     * @type {number}
-     * @memberof CustomEffectProps
      */
     effectId: number;
     /**
      * The type of the custom effect.
-     * @type {string}
-     * @memberof CustomEffectProps
      */
     name: string;
     /**
      * The index of the item in the cart item list to which the custom effect is applied.
-     * @type {number}
-     * @memberof CustomEffectProps
      */
     cartItemPosition?: number;
     /**
      * For cart items with quantity > 1, the sub position indicates to which item unit the custom effect is applied.
      * 
-     * @type {number}
-     * @memberof CustomEffectProps
      */
     cartItemSubPosition?: number;
     /**
      * The position of the bundle in a list of item bundles created from the same bundle definition.
-     * @type {number}
-     * @memberof CustomEffectProps
      */
     bundleIndex?: number;
     /**
      * The name of the bundle definition.
-     * @type {string}
-     * @memberof CustomEffectProps
      */
     bundleName?: string;
     /**
      * The JSON payload of the custom effect.
-     * @type {object}
-     * @memberof CustomEffectProps
      */
     payload: object;
 }

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface NewExternalInvitation {
     /**
      * Name of the user.
-     * @type {string}
-     * @memberof NewExternalInvitation
      */
     name?: string;
     /**
@@ -31,14 +29,10 @@ export interface NewExternalInvitation {
      * If there are roles in Talon.One whose names match these user groups,
      * those roles will be automatically assigned to the user upon invitation.
      * 
-     * @type {Array<string>}
-     * @memberof NewExternalInvitation
      */
     userGroups?: Array<string>;
     /**
      * Email address of the user.
-     * @type {string}
-     * @memberof NewExternalInvitation
      */
     email: string;
 }

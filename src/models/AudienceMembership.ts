@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface AudienceMembership {
     /**
      * The ID of the audience belonging to this entity.
-     * @type {number}
-     * @memberof AudienceMembership
      */
     id: number;
     /**
      * The Name of the audience belonging to this entity.
-     * @type {string}
-     * @memberof AudienceMembership
      */
     name: string;
 }

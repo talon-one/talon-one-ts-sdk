@@ -29,8 +29,6 @@ import {
 export interface OktaEventPayloadData {
     /**
      * 
-     * @type {Array<OktaEvent>}
-     * @memberof OktaEventPayloadData
      */
     events: Array<OktaEvent>;
 }

@@ -24,26 +24,18 @@ export interface IntegrationEvent {
      * 
      * **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
      * 
-     * @type {string}
-     * @memberof IntegrationEvent
      */
     profileId?: string;
     /**
      * The integration ID of the store. You choose this ID when you create a store.
-     * @type {string}
-     * @memberof IntegrationEvent
      */
     storeIntegrationId?: string;
     /**
      * The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.
-     * @type {string}
-     * @memberof IntegrationEvent
      */
     type: string;
     /**
      * Arbitrary additional JSON data associated with the event.
-     * @type {object}
-     * @memberof IntegrationEvent
      */
     attributes: object;
 }

@@ -29,14 +29,10 @@ import {
 export interface GetApplicationEventsWithoutTotalCount200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetApplicationEventsWithoutTotalCount200Response
      */
     hasMore: boolean;
     /**
      * 
-     * @type {Array<ApplicationEvent>}
-     * @memberof GetApplicationEventsWithoutTotalCount200Response
      */
     data: Array<ApplicationEvent>;
 }

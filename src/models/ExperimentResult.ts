@@ -36,20 +36,14 @@ import {
 export interface ExperimentResult {
     /**
      * 
-     * @type {Array<ExperimentVariantResult>}
-     * @memberof ExperimentResult
      */
     variants: Array<ExperimentVariantResult>;
     /**
      * 
-     * @type {ExperimentVariantResultConfidence}
-     * @memberof ExperimentResult
      */
     confidence: ExperimentVariantResultConfidence;
     /**
      * 
-     * @type {number}
-     * @memberof ExperimentResult
      */
     experimentId: number;
 }

@@ -29,8 +29,6 @@ import {
 export interface CustomerProfileIntegrationRequestV2 {
     /**
      * Arbitrary properties associated with this item.
-     * @type {{ [key: string]: any; }}
-     * @memberof CustomerProfileIntegrationRequestV2
      */
     attributes?: { [key: string]: any; };
     /**
@@ -38,21 +36,15 @@ export interface CustomerProfileIntegrationRequestV2 {
      * 
      * These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.
      * 
-     * @type {Array<number>}
-     * @memberof CustomerProfileIntegrationRequestV2
      */
     evaluableCampaignIds?: Array<number>;
     /**
      * Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints.
      * 
-     * @type {Array<CustomerProfileIntegrationRequestV2ResponseContentEnum>}
-     * @memberof CustomerProfileIntegrationRequestV2
      */
     responseContent?: Array<CustomerProfileIntegrationRequestV2ResponseContentEnum>;
     /**
      * Audiences memberships changes for this profile.
-     * @type {ProfileAudiencesChanges}
-     * @memberof CustomerProfileIntegrationRequestV2
      */
     audiencesChanges?: ProfileAudiencesChanges;
 }
@@ -70,7 +62,7 @@ export const CustomerProfileIntegrationRequestV2ResponseContentEnum = {
     RuleFailureReasons: 'ruleFailureReasons',
     CampaignEligibility: 'campaignEligibility',
     Achievements: 'achievements',
-    UnlockedRewards: 'unlockedRewards'
+    UnlockedRewards: 'unlockedRewards',
 } as const;
 export type CustomerProfileIntegrationRequestV2ResponseContentEnum = typeof CustomerProfileIntegrationRequestV2ResponseContentEnum[keyof typeof CustomerProfileIntegrationRequestV2ResponseContentEnum];
 

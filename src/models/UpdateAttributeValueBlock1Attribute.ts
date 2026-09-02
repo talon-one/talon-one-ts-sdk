@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface UpdateAttributeValueBlock1Attribute {
     /**
      * The internal ID of the attribute. Reverts to `0` when the attribute is deleted or does not exist.
-     * @type {number}
-     * @memberof UpdateAttributeValueBlock1Attribute
      */
     id: number;
     /**
      * The entity type that owns the attribute. Reverts to an empty string when the attribute is deleted or does not exist.
-     * @type {string}
-     * @memberof UpdateAttributeValueBlock1Attribute
      */
     entity: string;
     /**
      * The attribute name as used in API requests.
-     * @type {string}
-     * @memberof UpdateAttributeValueBlock1Attribute
      */
     name: string;
     /**
      * The human-readable name of the attribute.
-     * @type {string}
-     * @memberof UpdateAttributeValueBlock1Attribute
      */
     title: string;
     /**
      * The data type of the attribute.
-     * @type {string}
-     * @memberof UpdateAttributeValueBlock1Attribute
      */
     type: string;
 }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LabelTarget } from './LabelTarget';
 import {
     LabelTargetFromJSON,
@@ -36,51 +36,35 @@ import {
 export interface History {
     /**
      * The ID of the historical price.
-     * @type {number}
-     * @memberof History
      */
     id: number;
     /**
      * The date and time when the price was observed.
-     * @type {Date}
-     * @memberof History
      */
     observedAt: Date;
     /**
      * The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
      * 
-     * @type {Array<string>}
-     * @memberof History
      */
     contextIds: Array<string>;
     /**
      * Price of the item.
-     * @type {number}
-     * @memberof History
      */
     price: number;
     /**
      * 
-     * @type {BestPriorPriceMetadata}
-     * @memberof History
      */
     metadata: BestPriorPriceMetadata;
     /**
      * 
-     * @type {LabelTarget}
-     * @memberof History
      */
     target: LabelTarget;
     /**
      * The date and time when the historical price ID was excluded.
-     * @type {Date}
-     * @memberof History
      */
     excludedAt?: Date;
     /**
      * The reason for excluding this historical price ID.
-     * @type {string}
-     * @memberof History
      */
     exclusionReason?: string;
 }
@@ -110,12 +94,12 @@ export function HistoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): H
     return {
         
         'id': json['id'],
-        'observedAt': (json['observedAt'] == null ? undefined as any : new Date(json['observedAt'])),
+        'observedAt': (json['observedAt'] == null ? json['observedAt'] : parseDateTime(json['observedAt'])),
         'contextIds': json['contextIds'],
         'price': json['price'],
         'metadata': BestPriorPriceMetadataFromJSON(json['metadata']),
         'target': LabelTargetFromJSON(json['target']),
-        'excludedAt': json['excludedAt'] == null ? undefined : (new Date(json['excludedAt'])),
+        'excludedAt': json['excludedAt'] == null ? undefined : (parseDateTime(json['excludedAt'])),
         'exclusionReason': json['exclusionReason'] == null ? undefined : json['exclusionReason'],
     };
 }
@@ -132,12 +116,12 @@ export function HistoryToJSONTyped(value?: History | null, ignoreDiscriminator: 
     return {
         
         'id': value['id'],
-        'observedAt': value['observedAt'] == null ? undefined : value['observedAt'].toISOString(),
+        'observedAt': value['observedAt'] == null ? undefined : serializeDateTime(value['observedAt']),
         'contextIds': value['contextIds'],
         'price': value['price'],
         'metadata': BestPriorPriceMetadataToJSON(value['metadata']),
         'target': LabelTargetToJSON(value['target']),
-        'excludedAt': value['excludedAt'] == null ? value['excludedAt'] : value['excludedAt'].toISOString(),
+        'excludedAt': value['excludedAt'] == null ? value['excludedAt'] : serializeDateTime(value['excludedAt']),
         'exclusionReason': value['exclusionReason'],
     };
 }

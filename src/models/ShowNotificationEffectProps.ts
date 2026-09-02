@@ -30,20 +30,14 @@ import { mapValues } from '../runtime';
 export interface ShowNotificationEffectProps {
     /**
      * The type of notification.
-     * @type {string}
-     * @memberof ShowNotificationEffectProps
      */
     notificationType: string;
     /**
      * The title of the notification.
-     * @type {string}
-     * @memberof ShowNotificationEffectProps
      */
     title: string;
     /**
      * The body of the notification.
-     * @type {string}
-     * @memberof ShowNotificationEffectProps
      */
     body: string;
 }

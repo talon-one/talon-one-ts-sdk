@@ -30,14 +30,10 @@ import {
 export interface LabelTargetAudience {
     /**
      * 
-     * @type {LabelTargetAudienceTypeEnum}
-     * @memberof LabelTargetAudience
      */
     type: LabelTargetAudienceTypeEnum;
     /**
      * 
-     * @type {AudienceReference}
-     * @memberof LabelTargetAudience
      */
     audience: AudienceReference;
 }
@@ -47,7 +43,7 @@ export interface LabelTargetAudience {
  * @export
  */
 export const LabelTargetAudienceTypeEnum = {
-    Audience: 'AUDIENCE'
+    Audience: 'AUDIENCE',
 } as const;
 export type LabelTargetAudienceTypeEnum = typeof LabelTargetAudienceTypeEnum[keyof typeof LabelTargetAudienceTypeEnum];
 

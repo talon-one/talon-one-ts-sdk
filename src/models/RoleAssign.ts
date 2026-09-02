@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface RoleAssign {
     /**
      * An array of user IDs.
-     * @type {Array<number>}
-     * @memberof RoleAssign
      */
     users: Array<number>;
     /**
      * An array of role IDs.
-     * @type {Array<number>}
-     * @memberof RoleAssign
      */
     roles: Array<number>;
 }

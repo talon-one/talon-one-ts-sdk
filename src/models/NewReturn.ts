@@ -29,8 +29,6 @@ import {
 export interface NewReturn {
     /**
      * List of cart items to be returned.
-     * @type {Array<ReturnedCartItem>}
-     * @memberof NewReturn
      */
     returnedCartItems: Array<ReturnedCartItem>;
 }

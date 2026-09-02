@@ -29,20 +29,14 @@ import {
 export interface CampaignEligibilityDetails {
     /**
      * Indicates whether the customer was eligible for the campaign in the current session.
-     * @type {boolean}
-     * @memberof CampaignEligibilityDetails
      */
     passed: boolean;
     /**
      * The coupon code used to check a customer's eligibility for the campaign in the current session, if applicable.
-     * @type {string}
-     * @memberof CampaignEligibilityDetails
      */
     couponCode?: string;
     /**
      * The details about why the customer was not eligible for the campaign in the current session. Only returned when `passed` is `false`.
-     * @type {CampaignEligibilityFailureDetails}
-     * @memberof CampaignEligibilityDetails
      */
     details?: CampaignEligibilityFailureDetails;
 }

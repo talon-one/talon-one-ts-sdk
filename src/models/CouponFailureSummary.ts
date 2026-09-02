@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * Summary of the reasons for coupon redemption failure.
  * @export
@@ -21,62 +21,42 @@ import { mapValues } from '../runtime';
 export interface CouponFailureSummary {
     /**
      * ID of the evaluation record.
-     * @type {number}
-     * @memberof CouponFailureSummary
      */
     id: number;
     /**
      * ID of the event.
-     * @type {number}
-     * @memberof CouponFailureSummary
      */
     eventID: number;
     /**
      * ID of the customer session set by your integration layer.
-     * @type {string}
-     * @memberof CouponFailureSummary
      */
     sessionID?: string;
     /**
      * ID of the customer profile set by your integration layer.
-     * @type {string}
-     * @memberof CouponFailureSummary
      */
     profileID?: string;
     /**
      * Status defines if the coupon code was applied or rejected.
-     * @type {string}
-     * @memberof CouponFailureSummary
      */
     status: string;
     /**
      * Coupon code passed for evaluation.
-     * @type {string}
-     * @memberof CouponFailureSummary
      */
     couponCode: string;
     /**
      * Language of the summary.
-     * @type {string}
-     * @memberof CouponFailureSummary
      */
     language: string;
     /**
      * A summary of the reasons for coupon redemption failure.
-     * @type {string}
-     * @memberof CouponFailureSummary
      */
     summary: string;
     /**
      * Timestamp when the request was made.
-     * @type {Date}
-     * @memberof CouponFailureSummary
      */
     createdAt: Date;
     /**
      * Timestamp when the request was last updated.
-     * @type {Date}
-     * @memberof CouponFailureSummary
      */
     updatedAt: Date;
 }
@@ -115,8 +95,8 @@ export function CouponFailureSummaryFromJSONTyped(json: any, ignoreDiscriminator
         'couponCode': json['couponCode'],
         'language': json['language'],
         'summary': json['summary'],
-        'createdAt': (json['createdAt'] == null ? undefined as any : new Date(json['createdAt'])),
-        'updatedAt': (json['updatedAt'] == null ? undefined as any : new Date(json['updatedAt'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : parseDateTime(json['createdAt'])),
+        'updatedAt': (json['updatedAt'] == null ? json['updatedAt'] : parseDateTime(json['updatedAt'])),
     };
 }
 
@@ -139,8 +119,8 @@ export function CouponFailureSummaryToJSONTyped(value?: CouponFailureSummary | n
         'couponCode': value['couponCode'],
         'language': value['language'],
         'summary': value['summary'],
-        'createdAt': value['createdAt'] == null ? undefined : value['createdAt'].toISOString(),
-        'updatedAt': value['updatedAt'] == null ? undefined : value['updatedAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? undefined : serializeDateTime(value['createdAt']),
+        'updatedAt': value['updatedAt'] == null ? undefined : serializeDateTime(value['updatedAt']),
     };
 }
 

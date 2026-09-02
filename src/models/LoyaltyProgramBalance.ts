@@ -21,35 +21,25 @@ import { mapValues } from '../runtime';
 export interface LoyaltyProgramBalance {
     /**
      * Sum of currently active points.
-     * @type {number}
-     * @memberof LoyaltyProgramBalance
      */
     currentBalance: number;
     /**
      * Sum of pending points.
-     * @type {number}
-     * @memberof LoyaltyProgramBalance
      */
     pendingBalance: number;
     /**
      * Sum of negative points. This implies that `currentBalance` is `0`.
-     * @type {number}
-     * @memberof LoyaltyProgramBalance
      */
     negativeBalance?: number;
     /**
      * **DEPRECATED** Value is shown as 0.
      * 
-     * @type {number}
-     * @memberof LoyaltyProgramBalance
      * @deprecated
      */
     expiredBalance: number;
     /**
      * **DEPRECATED** Value is shown as 0.
      * 
-     * @type {number}
-     * @memberof LoyaltyProgramBalance
      * @deprecated
      */
     spentBalance: number;
@@ -58,8 +48,6 @@ export interface LoyaltyProgramBalance {
      * 
      * **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.
      * 
-     * @type {number}
-     * @memberof LoyaltyProgramBalance
      */
     tentativeCurrentBalance: number;
     /**
@@ -67,8 +55,6 @@ export interface LoyaltyProgramBalance {
      * 
      * **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.
      * 
-     * @type {number}
-     * @memberof LoyaltyProgramBalance
      */
     tentativePendingBalance?: number;
     /**
@@ -76,8 +62,6 @@ export interface LoyaltyProgramBalance {
      * 
      * **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.
      * 
-     * @type {number}
-     * @memberof LoyaltyProgramBalance
      */
     tentativeNegativeBalance?: number;
 }

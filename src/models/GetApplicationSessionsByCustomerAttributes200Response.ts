@@ -29,20 +29,14 @@ import {
 export interface GetApplicationSessionsByCustomerAttributes200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetApplicationSessionsByCustomerAttributes200Response
      */
     hasMore?: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof GetApplicationSessionsByCustomerAttributes200Response
      */
     totalResultSize?: number;
     /**
      * 
-     * @type {Array<ApplicationSession>}
-     * @memberof GetApplicationSessionsByCustomerAttributes200Response
      */
     data: Array<ApplicationSession>;
 }

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface IntegrationStoreEntity {
     /**
      * The integration ID of the store. You choose this ID when you create a store.
-     * @type {string}
-     * @memberof IntegrationStoreEntity
      */
     storeIntegrationId?: string;
 }

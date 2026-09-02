@@ -29,8 +29,6 @@ import {
 export interface IntegrationRequest {
     /**
      * The customer session update details.
-     * @type {NewCustomerSessionV2}
-     * @memberof IntegrationRequest
      */
     customerSession: NewCustomerSessionV2;
     /**
@@ -39,8 +37,6 @@ export interface IntegrationRequest {
      * 
      * **Note:** To retrieve loyalty card details, your request must include a loyalty card ID.
      * 
-     * @type {Array<IntegrationRequestResponseContentEnum>}
-     * @memberof IntegrationRequest
      */
     responseContent?: Array<IntegrationRequestResponseContentEnum>;
 }
@@ -62,7 +58,7 @@ export const IntegrationRequestResponseContentEnum = {
     PreviousReturns: 'previousReturns',
     CampaignEligibility: 'campaignEligibility',
     Achievements: 'achievements',
-    UnlockedRewards: 'unlockedRewards'
+    UnlockedRewards: 'unlockedRewards',
 } as const;
 export type IntegrationRequestResponseContentEnum = typeof IntegrationRequestResponseContentEnum[keyof typeof IntegrationRequestResponseContentEnum];
 

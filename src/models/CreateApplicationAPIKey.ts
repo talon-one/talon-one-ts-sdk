@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,22 +21,16 @@ import { mapValues } from '../runtime';
 export interface CreateApplicationAPIKey {
     /**
      * Title of the API key.
-     * @type {string}
-     * @memberof CreateApplicationAPIKey
      */
     title: string;
     /**
      * The date the API key expires.
-     * @type {Date}
-     * @memberof CreateApplicationAPIKey
      */
     expires: Date;
     /**
      * The third-party platform the API key is valid for. Use `none` for a generic API key to be used
      * from your own integration layer.
      * 
-     * @type {CreateApplicationAPIKeyPlatformEnum}
-     * @memberof CreateApplicationAPIKey
      */
     platform?: CreateApplicationAPIKeyPlatformEnum;
     /**
@@ -46,15 +40,11 @@ export interface CreateApplicationAPIKey {
      * 
      * When using the _Update customer profile_ endpoint with a staging API key, the query parameter `runRuleEngine` must be `true`.
      * 
-     * @type {CreateApplicationAPIKeyTypeEnum}
-     * @memberof CreateApplicationAPIKey
      */
     type?: CreateApplicationAPIKeyTypeEnum;
     /**
      * A time offset in nanoseconds associated with the API key. When making a request using the API key, rule evaluation is based on a date that is calculated by adding the offset to the current date.
      * 
-     * @type {number}
-     * @memberof CreateApplicationAPIKey
      */
     timeOffset?: number;
 }
@@ -73,7 +63,7 @@ export const CreateApplicationAPIKeyPlatformEnum = {
     CustomerEngagement: 'customer_engagement',
     CustomerData: 'customer_data',
     Salesforce: 'salesforce',
-    Emarsys: 'emarsys'
+    Emarsys: 'emarsys',
 } as const;
 export type CreateApplicationAPIKeyPlatformEnum = typeof CreateApplicationAPIKeyPlatformEnum[keyof typeof CreateApplicationAPIKeyPlatformEnum];
 
@@ -81,7 +71,7 @@ export type CreateApplicationAPIKeyPlatformEnum = typeof CreateApplicationAPIKey
  * @export
  */
 export const CreateApplicationAPIKeyTypeEnum = {
-    Staging: 'staging'
+    Staging: 'staging',
 } as const;
 export type CreateApplicationAPIKeyTypeEnum = typeof CreateApplicationAPIKeyTypeEnum[keyof typeof CreateApplicationAPIKeyTypeEnum];
 
@@ -107,7 +97,7 @@ export function CreateApplicationAPIKeyFromJSONTyped(json: any, ignoreDiscrimina
     return {
         
         'title': json['title'],
-        'expires': (json['expires'] == null ? undefined as any : new Date(json['expires'])),
+        'expires': (json['expires'] == null ? json['expires'] : parseDateTime(json['expires'])),
         'platform': json['platform'] == null ? undefined : json['platform'],
         'type': json['type'] == null ? undefined : json['type'],
         'timeOffset': json['timeOffset'] == null ? undefined : json['timeOffset'],
@@ -126,7 +116,7 @@ export function CreateApplicationAPIKeyToJSONTyped(value?: CreateApplicationAPIK
     return {
         
         'title': value['title'],
-        'expires': value['expires'] == null ? undefined : value['expires'].toISOString(),
+        'expires': value['expires'] == null ? undefined : serializeDateTime(value['expires']),
         'platform': value['platform'],
         'type': value['type'],
         'timeOffset': value['timeOffset'],

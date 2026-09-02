@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface CouponsNotificationPolicy {
     /**
      * Notification name.
-     * @type {string}
-     * @memberof CouponsNotificationPolicy
      */
     name: string;
     /**
      * 
-     * @type {Array<CouponsNotificationPolicyScopesEnum>}
-     * @memberof CouponsNotificationPolicy
      */
     scopes: Array<CouponsNotificationPolicyScopesEnum>;
     /**
      * Indicates whether batching is activated.
-     * @type {boolean}
-     * @memberof CouponsNotificationPolicy
      */
     batchingEnabled?: boolean;
     /**
      * Indicates whether to include all generated coupons. If `false`, only the `batchId` of the generated coupons is included.
-     * @type {boolean}
-     * @memberof CouponsNotificationPolicy
      */
     includeData?: boolean;
     /**
      * The required size of each batch of data. This value applies only when `batchingEnabled` is `true`.
-     * @type {number}
-     * @memberof CouponsNotificationPolicy
      */
     batchSize?: number;
 }
@@ -59,7 +49,7 @@ export const CouponsNotificationPolicyScopesEnum = {
     All: 'all',
     CampaignManager: 'campaign_manager',
     ManagementApi: 'management_api',
-    RuleEngine: 'rule_engine'
+    RuleEngine: 'rule_engine',
 } as const;
 export type CouponsNotificationPolicyScopesEnum = typeof CouponsNotificationPolicyScopesEnum[keyof typeof CouponsNotificationPolicyScopesEnum];
 

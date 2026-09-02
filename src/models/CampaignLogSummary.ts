@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * Campaign Log Summary
  * @export
@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface CampaignLogSummary {
     /**
      * Name of the user that performed the change.
-     * @type {string}
-     * @memberof CampaignLogSummary
      */
     name: string;
     /**
      * E-mail of the user that performed the change.
-     * @type {string}
-     * @memberof CampaignLogSummary
      */
     email: string;
     /**
      * Date and time the change was performed.
-     * @type {Date}
-     * @memberof CampaignLogSummary
      */
     created: Date;
     /**
      * Action performed by the user.
-     * @type {CampaignLogSummaryActionEnum}
-     * @memberof CampaignLogSummary
      */
     action: CampaignLogSummaryActionEnum;
     /**
      * AI-generated summary of the action performed.
-     * @type {string}
-     * @memberof CampaignLogSummary
      */
     summary: string;
 }
@@ -58,7 +48,7 @@ export interface CampaignLogSummary {
 export const CampaignLogSummaryActionEnum = {
     Create: 'create',
     Delete: 'delete',
-    Update: 'update'
+    Update: 'update',
 } as const;
 export type CampaignLogSummaryActionEnum = typeof CampaignLogSummaryActionEnum[keyof typeof CampaignLogSummaryActionEnum];
 
@@ -88,7 +78,7 @@ export function CampaignLogSummaryFromJSONTyped(json: any, ignoreDiscriminator: 
         
         'name': json['name'],
         'email': json['email'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'action': json['action'],
         'summary': json['summary'],
     };
@@ -107,7 +97,7 @@ export function CampaignLogSummaryToJSONTyped(value?: CampaignLogSummary | null,
         
         'name': value['name'],
         'email': value['email'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'action': value['action'],
         'summary': value['summary'],
     };

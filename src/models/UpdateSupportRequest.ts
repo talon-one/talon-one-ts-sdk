@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface UpdateSupportRequest {
     /**
      * Current status of the support request.
-     * @type {UpdateSupportRequestRequestStatusEnum}
-     * @memberof UpdateSupportRequest
      */
     requestStatus: UpdateSupportRequestRequestStatusEnum;
     /**
      * Notes attached by the admin when rejecting or approving a request.
-     * @type {string}
-     * @memberof UpdateSupportRequest
      */
     processingNote?: string;
 }
@@ -40,7 +36,7 @@ export interface UpdateSupportRequest {
 export const UpdateSupportRequestRequestStatusEnum = {
     Approved: 'approved',
     Rejected: 'rejected',
-    Expired: 'expired'
+    Expired: 'expired',
 } as const;
 export type UpdateSupportRequestRequestStatusEnum = typeof UpdateSupportRequestRequestStatusEnum[keyof typeof UpdateSupportRequestRequestStatusEnum];
 

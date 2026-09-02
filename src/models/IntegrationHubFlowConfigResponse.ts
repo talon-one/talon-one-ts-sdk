@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface IntegrationHubFlowConfigResponse {
     /**
      * Number of IntegrationHub workers to run in parallel for this flow (maximum 500).
-     * @type {number}
-     * @memberof IntegrationHubFlowConfigResponse
      */
     workerCount?: number;
     /**
      * Maximum number of events to send in a single message to IntegrationHub.
-     * @type {number}
-     * @memberof IntegrationHubFlowConfigResponse
      */
     maxEventsPerMessage?: number;
     /**
      * Maximum number of retries for a IntegrationHub event before it is ignored.
-     * @type {number}
-     * @memberof IntegrationHubFlowConfigResponse
      */
     maxRetries?: number;
 }

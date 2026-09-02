@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CodeGeneratorSettings } from './CodeGeneratorSettings';
 import {
     CodeGeneratorSettingsFromJSON,
@@ -29,95 +29,65 @@ import {
 export interface CouponCreationJob {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof CouponCreationJob
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof CouponCreationJob
      */
     created: Date;
     /**
      * The ID of the campaign that owns this entity.
-     * @type {number}
-     * @memberof CouponCreationJob
      */
     campaignId: number;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof CouponCreationJob
      */
     applicationId: number;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof CouponCreationJob
      */
     accountId: number;
     /**
      * The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
      * 
-     * @type {number}
-     * @memberof CouponCreationJob
      */
     usageLimit: number;
     /**
      * The total discount value that the code can give. Typically used to represent a gift card value.
      * 
-     * @type {number}
-     * @memberof CouponCreationJob
      */
     discountLimit?: number;
     /**
      * The number of reservations that can be made with this coupon code.
      * 
-     * @type {number}
-     * @memberof CouponCreationJob
      */
     reservationLimit?: number;
     /**
      * Timestamp at which point the coupon becomes valid.
-     * @type {Date}
-     * @memberof CouponCreationJob
      */
     startDate?: Date;
     /**
      * Expiration date of the coupon. Coupon never expires if this is omitted.
-     * @type {Date}
-     * @memberof CouponCreationJob
      */
     expiryDate?: Date;
     /**
      * The number of new coupon codes to generate for the campaign.
-     * @type {number}
-     * @memberof CouponCreationJob
      */
     numberOfCoupons: number;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof CouponCreationJob
      */
     couponSettings?: CodeGeneratorSettings;
     /**
      * Arbitrary properties associated with coupons.
-     * @type {object}
-     * @memberof CouponCreationJob
      */
     attributes: object;
     /**
      * An indication of whether the code can be redeemed only if it has been reserved first.
-     * @type {boolean}
-     * @memberof CouponCreationJob
      */
     isReservationMandatory?: boolean;
     /**
      * The batch ID coupons created by this job will bear.
-     * @type {string}
-     * @memberof CouponCreationJob
      */
     batchId: string;
     /**
@@ -128,50 +98,34 @@ export interface CouponCreationJob {
      * - `failed`
      * - `coupon pattern full`
      * 
-     * @type {string}
-     * @memberof CouponCreationJob
      */
     status: string;
     /**
      * The number of coupon codes that were already created for this request.
-     * @type {number}
-     * @memberof CouponCreationJob
      */
     createdAmount: number;
     /**
      * The number of times this job failed.
-     * @type {number}
-     * @memberof CouponCreationJob
      */
     failCount: number;
     /**
      * An array of individual problems encountered during the request.
-     * @type {Array<string>}
-     * @memberof CouponCreationJob
      */
     errors: Array<string>;
     /**
      * ID of the user who created this effect.
-     * @type {number}
-     * @memberof CouponCreationJob
      */
     createdBy: number;
     /**
      * Whether or not the user that created this job was notified of its final state.
-     * @type {boolean}
-     * @memberof CouponCreationJob
      */
     communicated: boolean;
     /**
      * The number of times an attempt to create a chunk of coupons was made during the processing of the job.
-     * @type {number}
-     * @memberof CouponCreationJob
      */
     chunkExecutionCount: number;
     /**
      * The number of coupons that will be created in a single transactions. Coupons will be created in chunks until arriving at the requested amount.
-     * @type {number}
-     * @memberof CouponCreationJob
      */
     chunkSize?: number;
 }
@@ -211,15 +165,15 @@ export function CouponCreationJobFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'campaignId': json['campaignId'],
         'applicationId': json['applicationId'],
         'accountId': json['accountId'],
         'usageLimit': json['usageLimit'],
         'discountLimit': json['discountLimit'] == null ? undefined : json['discountLimit'],
         'reservationLimit': json['reservationLimit'] == null ? undefined : json['reservationLimit'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'numberOfCoupons': json['numberOfCoupons'],
         'couponSettings': json['couponSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['couponSettings']),
         'attributes': json['attributes'],
@@ -248,15 +202,15 @@ export function CouponCreationJobToJSONTyped(value?: CouponCreationJob | null, i
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'campaignId': value['campaignId'],
         'applicationId': value['applicationId'],
         'accountId': value['accountId'],
         'usageLimit': value['usageLimit'],
         'discountLimit': value['discountLimit'],
         'reservationLimit': value['reservationLimit'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'numberOfCoupons': value['numberOfCoupons'],
         'couponSettings': CodeGeneratorSettingsToJSON(value['couponSettings']),
         'attributes': value['attributes'],

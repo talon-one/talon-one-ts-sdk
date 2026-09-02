@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface DeactivateUserRequest {
     /**
      * The email address associated with the user profile.
-     * @type {string}
-     * @memberof DeactivateUserRequest
      */
     email: string;
 }

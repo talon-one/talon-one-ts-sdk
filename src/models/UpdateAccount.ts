@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface UpdateAccount {
     /**
      * Arbitrary properties associated with this campaign.
-     * @type {object}
-     * @memberof UpdateAccount
      */
     attributes?: object;
     /**
      * Name of your company.
-     * @type {string}
-     * @memberof UpdateAccount
      */
     companyName: string;
     /**
      * The billing email address associated with your company account.
-     * @type {string}
-     * @memberof UpdateAccount
      */
     billingEmail: string;
     /**
      * State of the account (active, deactivated).
-     * @type {UpdateAccountStateEnum}
-     * @memberof UpdateAccount
      */
     state?: UpdateAccountStateEnum;
     /**
      * The point in time at which your current plan expires.
-     * @type {Date}
-     * @memberof UpdateAccount
      */
     planExpires?: Date;
 }
@@ -57,7 +47,7 @@ export interface UpdateAccount {
  */
 export const UpdateAccountStateEnum = {
     Active: 'active',
-    Deactivated: 'deactivated'
+    Deactivated: 'deactivated',
 } as const;
 export type UpdateAccountStateEnum = typeof UpdateAccountStateEnum[keyof typeof UpdateAccountStateEnum];
 
@@ -86,7 +76,7 @@ export function UpdateAccountFromJSONTyped(json: any, ignoreDiscriminator: boole
         'companyName': json['companyName'],
         'billingEmail': json['billingEmail'],
         'state': json['state'] == null ? undefined : json['state'],
-        'planExpires': json['planExpires'] == null ? undefined : (new Date(json['planExpires'])),
+        'planExpires': json['planExpires'] == null ? undefined : (parseDateTime(json['planExpires'])),
     };
 }
 
@@ -105,7 +95,7 @@ export function UpdateAccountToJSONTyped(value?: UpdateAccount | null, ignoreDis
         'companyName': value['companyName'],
         'billingEmail': value['billingEmail'],
         'state': value['state'],
-        'planExpires': value['planExpires'] == null ? value['planExpires'] : value['planExpires'].toISOString(),
+        'planExpires': value['planExpires'] == null ? value['planExpires'] : serializeDateTime(value['planExpires']),
     };
 }
 

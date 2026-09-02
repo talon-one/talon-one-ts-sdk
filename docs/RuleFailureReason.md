@@ -14,6 +14,8 @@ Name | Type
 `couponValue` | string
 `referralID` | number
 `referralValue` | string
+`rewardId` | number
+`rewardIntegrationId` | string
 `ruleIndex` | number
 `ruleName` | string
 `conditionIndex` | number
@@ -36,6 +38,8 @@ const example = {
   "couponValue": null,
   "referralID": null,
   "referralValue": null,
+  "rewardId": 7,
+  "rewardIntegrationId": 5c0b5e6d-3f8a-4c2b-9f1e-2a7d6b4c8e90,
   "ruleIndex": null,
   "ruleName": null,
   "conditionIndex": null,

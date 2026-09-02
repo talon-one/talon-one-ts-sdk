@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface CouponDeletionFilters {
     /**
      * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
-     * @type {Date}
-     * @memberof CouponDeletionFilters
      */
     createdBefore?: Date;
     /**
      * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
-     * @type {Date}
-     * @memberof CouponDeletionFilters
      */
     createdAfter?: Date;
     /**
      * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
-     * @type {Date}
-     * @memberof CouponDeletionFilters
      */
     startsAfter?: Date;
     /**
      * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
-     * @type {Date}
-     * @memberof CouponDeletionFilters
      */
     startsBefore?: Date;
     /**
@@ -48,8 +40,6 @@ export interface CouponDeletionFilters {
      * - `validNow`: Matches coupons in which the start date is null or in the past and the expiration date is null or in the future.
      * - `validFuture`: Matches coupons in which the start date is set and in the future.
      * 
-     * @type {CouponDeletionFiltersValidEnum}
-     * @memberof CouponDeletionFilters
      */
     valid?: CouponDeletionFiltersValidEnum;
     /**
@@ -57,8 +47,6 @@ export interface CouponDeletionFilters {
      * - `false`: only coupons where `usageCounter >= usageLimit` will be returned.
      * - This field cannot be used in conjunction with the `usable` query parameter.
      * 
-     * @type {boolean}
-     * @memberof CouponDeletionFilters
      */
     usable?: boolean;
     /**
@@ -67,51 +55,35 @@ export interface CouponDeletionFilters {
      * 
      * **Note:** This field cannot be used in conjunction with the `usable` query parameter.
      * 
-     * @type {boolean}
-     * @memberof CouponDeletionFilters
      */
     redeemed?: boolean;
     /**
      * Filter results by match with a profile id specified in the coupon's `RecipientIntegrationId` field.
      * 
-     * @type {string}
-     * @memberof CouponDeletionFilters
      */
     recipientIntegrationId?: string;
     /**
      * Filter results to an exact case-insensitive matching against the coupon code
-     * @type {boolean}
-     * @memberof CouponDeletionFilters
      */
     exactMatch?: boolean;
     /**
      * Filter results by the coupon code
-     * @type {string}
-     * @memberof CouponDeletionFilters
      */
     value?: string;
     /**
      * Filter results by batches of coupons
-     * @type {string}
-     * @memberof CouponDeletionFilters
      */
     batchId?: string;
     /**
      * Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code.
-     * @type {number}
-     * @memberof CouponDeletionFilters
      */
     referralId?: number;
     /**
      * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
-     * @type {Date}
-     * @memberof CouponDeletionFilters
      */
     expiresAfter?: Date;
     /**
      * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
-     * @type {Date}
-     * @memberof CouponDeletionFilters
      */
     expiresBefore?: Date;
 }
@@ -123,7 +95,7 @@ export interface CouponDeletionFilters {
 export const CouponDeletionFiltersValidEnum = {
     Expired: 'expired',
     ValidNow: 'validNow',
-    ValidFuture: 'validFuture'
+    ValidFuture: 'validFuture',
 } as const;
 export type CouponDeletionFiltersValidEnum = typeof CouponDeletionFiltersValidEnum[keyof typeof CouponDeletionFiltersValidEnum];
 
@@ -146,10 +118,10 @@ export function CouponDeletionFiltersFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'createdBefore': json['createdBefore'] == null ? undefined : (new Date(json['createdBefore'])),
-        'createdAfter': json['createdAfter'] == null ? undefined : (new Date(json['createdAfter'])),
-        'startsAfter': json['startsAfter'] == null ? undefined : (new Date(json['startsAfter'])),
-        'startsBefore': json['startsBefore'] == null ? undefined : (new Date(json['startsBefore'])),
+        'createdBefore': json['createdBefore'] == null ? undefined : (parseDateTime(json['createdBefore'])),
+        'createdAfter': json['createdAfter'] == null ? undefined : (parseDateTime(json['createdAfter'])),
+        'startsAfter': json['startsAfter'] == null ? undefined : (parseDateTime(json['startsAfter'])),
+        'startsBefore': json['startsBefore'] == null ? undefined : (parseDateTime(json['startsBefore'])),
         'valid': json['valid'] == null ? undefined : json['valid'],
         'usable': json['usable'] == null ? undefined : json['usable'],
         'redeemed': json['redeemed'] == null ? undefined : json['redeemed'],
@@ -158,8 +130,8 @@ export function CouponDeletionFiltersFromJSONTyped(json: any, ignoreDiscriminato
         'value': json['value'] == null ? undefined : json['value'],
         'batchId': json['batchId'] == null ? undefined : json['batchId'],
         'referralId': json['referralId'] == null ? undefined : json['referralId'],
-        'expiresAfter': json['expiresAfter'] == null ? undefined : (new Date(json['expiresAfter'])),
-        'expiresBefore': json['expiresBefore'] == null ? undefined : (new Date(json['expiresBefore'])),
+        'expiresAfter': json['expiresAfter'] == null ? undefined : (parseDateTime(json['expiresAfter'])),
+        'expiresBefore': json['expiresBefore'] == null ? undefined : (parseDateTime(json['expiresBefore'])),
     };
 }
 
@@ -174,10 +146,10 @@ export function CouponDeletionFiltersToJSONTyped(value?: CouponDeletionFilters |
 
     return {
         
-        'createdBefore': value['createdBefore'] == null ? value['createdBefore'] : value['createdBefore'].toISOString(),
-        'createdAfter': value['createdAfter'] == null ? value['createdAfter'] : value['createdAfter'].toISOString(),
-        'startsAfter': value['startsAfter'] == null ? value['startsAfter'] : value['startsAfter'].toISOString(),
-        'startsBefore': value['startsBefore'] == null ? value['startsBefore'] : value['startsBefore'].toISOString(),
+        'createdBefore': value['createdBefore'] == null ? value['createdBefore'] : serializeDateTime(value['createdBefore']),
+        'createdAfter': value['createdAfter'] == null ? value['createdAfter'] : serializeDateTime(value['createdAfter']),
+        'startsAfter': value['startsAfter'] == null ? value['startsAfter'] : serializeDateTime(value['startsAfter']),
+        'startsBefore': value['startsBefore'] == null ? value['startsBefore'] : serializeDateTime(value['startsBefore']),
         'valid': value['valid'],
         'usable': value['usable'],
         'redeemed': value['redeemed'],
@@ -186,8 +158,8 @@ export function CouponDeletionFiltersToJSONTyped(value?: CouponDeletionFilters |
         'value': value['value'],
         'batchId': value['batchId'],
         'referralId': value['referralId'],
-        'expiresAfter': value['expiresAfter'] == null ? value['expiresAfter'] : value['expiresAfter'].toISOString(),
-        'expiresBefore': value['expiresBefore'] == null ? value['expiresBefore'] : value['expiresBefore'].toISOString(),
+        'expiresAfter': value['expiresAfter'] == null ? value['expiresAfter'] : serializeDateTime(value['expiresAfter']),
+        'expiresBefore': value['expiresBefore'] == null ? value['expiresBefore'] : serializeDateTime(value['expiresBefore']),
     };
 }
 

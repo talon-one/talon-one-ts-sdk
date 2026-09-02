@@ -30,8 +30,6 @@ import {
 export interface CustomerProfileUpdateV2Response {
     /**
      * 
-     * @type {CustomerProfile}
-     * @memberof CustomerProfileUpdateV2Response
      */
     customerProfile: CustomerProfile;
 }

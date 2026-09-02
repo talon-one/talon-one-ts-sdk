@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,22 +21,16 @@ import { mapValues } from '../runtime';
 export interface NewApplicationAPIKey {
     /**
      * Title of the API key.
-     * @type {string}
-     * @memberof NewApplicationAPIKey
      */
     title: string;
     /**
      * The date the API key expires.
-     * @type {Date}
-     * @memberof NewApplicationAPIKey
      */
     expires: Date;
     /**
      * The third-party platform the API key is valid for. Use `none` for a generic API key to be used
      * from your own integration layer.
      * 
-     * @type {NewApplicationAPIKeyPlatformEnum}
-     * @memberof NewApplicationAPIKey
      */
     platform?: NewApplicationAPIKeyPlatformEnum;
     /**
@@ -46,51 +40,35 @@ export interface NewApplicationAPIKey {
      * 
      * When using the _Update customer profile_ endpoint with a staging API key, the query parameter `runRuleEngine` must be `true`.
      * 
-     * @type {NewApplicationAPIKeyTypeEnum}
-     * @memberof NewApplicationAPIKey
      */
     type?: NewApplicationAPIKeyTypeEnum;
     /**
      * A time offset in nanoseconds associated with the API key. When making a request using the API key, rule evaluation is based on a date that is calculated by adding the offset to the current date.
      * 
-     * @type {number}
-     * @memberof NewApplicationAPIKey
      */
     timeOffset?: number;
     /**
      * ID of the API Key.
-     * @type {number}
-     * @memberof NewApplicationAPIKey
      */
     id: number;
     /**
      * ID of user who created.
-     * @type {number}
-     * @memberof NewApplicationAPIKey
      */
     createdBy: number;
     /**
      * ID of account the key is used for.
-     * @type {number}
-     * @memberof NewApplicationAPIKey
      */
     accountID: number;
     /**
      * ID of application the key is used for.
-     * @type {number}
-     * @memberof NewApplicationAPIKey
      */
     applicationID: number;
     /**
      * The date the API key was created.
-     * @type {Date}
-     * @memberof NewApplicationAPIKey
      */
     created: Date;
     /**
      * The API key.
-     * @type {string}
-     * @memberof NewApplicationAPIKey
      */
     key: string;
 }
@@ -109,7 +87,7 @@ export const NewApplicationAPIKeyPlatformEnum = {
     CustomerEngagement: 'customer_engagement',
     CustomerData: 'customer_data',
     Salesforce: 'salesforce',
-    Emarsys: 'emarsys'
+    Emarsys: 'emarsys',
 } as const;
 export type NewApplicationAPIKeyPlatformEnum = typeof NewApplicationAPIKeyPlatformEnum[keyof typeof NewApplicationAPIKeyPlatformEnum];
 
@@ -117,7 +95,7 @@ export type NewApplicationAPIKeyPlatformEnum = typeof NewApplicationAPIKeyPlatfo
  * @export
  */
 export const NewApplicationAPIKeyTypeEnum = {
-    Staging: 'staging'
+    Staging: 'staging',
 } as const;
 export type NewApplicationAPIKeyTypeEnum = typeof NewApplicationAPIKeyTypeEnum[keyof typeof NewApplicationAPIKeyTypeEnum];
 
@@ -149,7 +127,7 @@ export function NewApplicationAPIKeyFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'title': json['title'],
-        'expires': (json['expires'] == null ? undefined as any : new Date(json['expires'])),
+        'expires': (json['expires'] == null ? json['expires'] : parseDateTime(json['expires'])),
         'platform': json['platform'] == null ? undefined : json['platform'],
         'type': json['type'] == null ? undefined : json['type'],
         'timeOffset': json['timeOffset'] == null ? undefined : json['timeOffset'],
@@ -157,7 +135,7 @@ export function NewApplicationAPIKeyFromJSONTyped(json: any, ignoreDiscriminator
         'createdBy': json['createdBy'],
         'accountID': json['accountID'],
         'applicationID': json['applicationID'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'key': json['key'],
     };
 }
@@ -174,7 +152,7 @@ export function NewApplicationAPIKeyToJSONTyped(value?: NewApplicationAPIKey | n
     return {
         
         'title': value['title'],
-        'expires': value['expires'] == null ? undefined : value['expires'].toISOString(),
+        'expires': value['expires'] == null ? undefined : serializeDateTime(value['expires']),
         'platform': value['platform'],
         'type': value['type'],
         'timeOffset': value['timeOffset'],
@@ -182,7 +160,7 @@ export function NewApplicationAPIKeyToJSONTyped(value?: NewApplicationAPIKey | n
         'createdBy': value['createdBy'],
         'accountID': value['accountID'],
         'applicationID': value['applicationID'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'key': value['key'],
     };
 }

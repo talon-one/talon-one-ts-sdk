@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * The properties specific to the "unlockReward" effect. This gets triggered whenever a validated rule unlocks a reward for a customer profile.
  * @export
@@ -21,34 +21,32 @@ import { mapValues } from '../runtime';
 export interface UnlockRewardEffectProps {
     /**
      * The integration ID assigned to the customer reward unlock.
-     * @type {string}
-     * @memberof UnlockRewardEffectProps
      */
     integrationId: string;
     /**
      * The internal ID of the reward that was unlocked.
-     * @type {number}
-     * @memberof UnlockRewardEffectProps
      */
     rewardId: number;
     /**
      * The internal ID of the application the reward belongs to.
-     * @type {number}
-     * @memberof UnlockRewardEffectProps
      */
     applicationId: number;
     /**
      * The integration ID of the customer profile that unlocked the reward.
-     * @type {string}
-     * @memberof UnlockRewardEffectProps
      */
     profileIntegrationId: string;
     /**
      * The time the reward was unlocked.
-     * @type {Date}
-     * @memberof UnlockRewardEffectProps
      */
     unlockedAt: Date;
+    /**
+     * The identifier of the loyalty card that unlocked the reward. Only
+     * returned when the reward was unlocked with a loyalty card, in which case
+     * the reward belongs to the card and is available to all customer
+     * profiles linked to it.
+     * 
+     */
+    cardIdentifier?: string;
 }
 
 /**
@@ -78,7 +76,8 @@ export function UnlockRewardEffectPropsFromJSONTyped(json: any, ignoreDiscrimina
         'rewardId': json['rewardId'],
         'applicationId': json['applicationId'],
         'profileIntegrationId': json['profileIntegrationId'],
-        'unlockedAt': (json['unlockedAt'] == null ? undefined as any : new Date(json['unlockedAt'])),
+        'unlockedAt': (json['unlockedAt'] == null ? json['unlockedAt'] : parseDateTime(json['unlockedAt'])),
+        'cardIdentifier': json['cardIdentifier'] == null ? undefined : json['cardIdentifier'],
     };
 }
 
@@ -97,7 +96,8 @@ export function UnlockRewardEffectPropsToJSONTyped(value?: UnlockRewardEffectPro
         'rewardId': value['rewardId'],
         'applicationId': value['applicationId'],
         'profileIntegrationId': value['profileIntegrationId'],
-        'unlockedAt': value['unlockedAt'] == null ? undefined : value['unlockedAt'].toISOString(),
+        'unlockedAt': value['unlockedAt'] == null ? undefined : serializeDateTime(value['unlockedAt']),
+        'cardIdentifier': value['cardIdentifier'],
     };
 }
 

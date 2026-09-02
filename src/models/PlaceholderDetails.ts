@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface PlaceholderDetails {
     /**
      * The name of the placeholder.
-     * @type {string}
-     * @memberof PlaceholderDetails
      */
     name: string;
     /**
      * The type of the value assigned to the placeholder.
-     * @type {string}
-     * @memberof PlaceholderDetails
      */
     type: string;
     /**
      * The current value of the placeholder.
-     * @type {Array<any>}
-     * @memberof PlaceholderDetails
      */
     value: Array<any>;
 }

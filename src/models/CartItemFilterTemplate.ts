@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CartItemFilterTemplate {
     /**
      * The name of the Application cart item filter.
-     * @type {string}
-     * @memberof CartItemFilterTemplate
      */
     name: string;
     /**
      * The Talang expression for the cart item filter.
-     * @type {Array<any>}
-     * @memberof CartItemFilterTemplate
      */
     expression: Array<any>;
 }

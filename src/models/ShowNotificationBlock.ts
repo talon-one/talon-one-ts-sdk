@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PromotionBlock } from './PromotionBlock';
+import type { Block } from './Block';
 import {
-    PromotionBlockFromJSON,
-    PromotionBlockFromJSONTyped,
-    PromotionBlockToJSON,
-    PromotionBlockToJSONTyped,
-} from './PromotionBlock';
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
 
 /**
  * 
@@ -29,52 +29,36 @@ import {
 export interface ShowNotificationBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof ShowNotificationBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof ShowNotificationBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof ShowNotificationBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * The type of notification to display.
-     * @type {string}
-     * @memberof ShowNotificationBlock
      */
     notificationType: string;
     /**
      * The notification heading shown to the customer.
-     * @type {string}
-     * @memberof ShowNotificationBlock
      */
     title: string;
     /**
      * The notification body text. Supports template placeholders (e.g. "{{$Session.Total}}") evaluated at rule execution time.
-     * @type {string}
-     * @memberof ShowNotificationBlock
      */
     body?: string;
     /**
      * Blocks evaluated when this block fails or returns false.
-     * @type {Array<PromotionBlock>}
-     * @memberof ShowNotificationBlock
      */
-    onFailure?: Array<PromotionBlock>;
+    onFailure?: Array<Block>;
     /**
      * Named error handlers evaluated when a specific error occurs.
-     * @type {{ [key: string]: Array<PromotionBlock>; }}
-     * @memberof ShowNotificationBlock
      */
-    onError?: { [key: string]: Array<PromotionBlock>; };
+    onError?: { [key: string]: Array<Block>; };
 }
 
 /**
@@ -82,7 +66,6 @@ export interface ShowNotificationBlock {
  */
 export function instanceOfShowNotificationBlock(value: object): value is ShowNotificationBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('notificationType' in _v) || _v['notificationType'] === undefined) return false;
     if (!('title' in _v) || _v['title'] === undefined) return false;
@@ -99,13 +82,13 @@ export function ShowNotificationBlockFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'notificationType': json['notificationType'],
         'title': json['title'],
         'body': json['body'] == null ? undefined : json['body'],
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
         'onError': json['onError'] == null ? undefined : json['onError'],
     };
 }
@@ -114,20 +97,18 @@ export function ShowNotificationBlockToJSON(json: any): ShowNotificationBlock {
     return ShowNotificationBlockToJSONTyped(json, false);
 }
 
-export function ShowNotificationBlockToJSONTyped(value?: ShowNotificationBlock | null, ignoreDiscriminator: boolean = false): any {
+export function ShowNotificationBlockToJSONTyped(value?: Omit<ShowNotificationBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'notificationType': value['notificationType'],
         'title': value['title'],
         'body': value['body'],
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
         'onError': value['onError'],
     };
 }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * This effect is triggered in the following cases:
  * 
@@ -31,50 +31,34 @@ import { mapValues } from '../runtime';
 export interface RollbackDeductedLoyaltyPointsEffectProps {
     /**
      * The ID of the loyalty program where these points were reimbursed.
-     * @type {number}
-     * @memberof RollbackDeductedLoyaltyPointsEffectProps
      */
     programId: number;
     /**
      * The ID of the subledger within the loyalty program where these points were reimbursed.
-     * @type {string}
-     * @memberof RollbackDeductedLoyaltyPointsEffectProps
      */
     subLedgerId: string;
     /**
      * The amount of points that were reimbursed.
-     * @type {number}
-     * @memberof RollbackDeductedLoyaltyPointsEffectProps
      */
     value: number;
     /**
      * The user for whom these points were reimbursed.
-     * @type {string}
-     * @memberof RollbackDeductedLoyaltyPointsEffectProps
      */
     recipientIntegrationId: string;
     /**
      * The date after which the reimbursed points will be valid.
-     * @type {Date}
-     * @memberof RollbackDeductedLoyaltyPointsEffectProps
      */
     startDate?: Date;
     /**
      * The date after which the reimbursed points will expire.
-     * @type {Date}
-     * @memberof RollbackDeductedLoyaltyPointsEffectProps
      */
     expiryDate?: Date;
     /**
      * The identifier of this loyalty point transaction.
-     * @type {string}
-     * @memberof RollbackDeductedLoyaltyPointsEffectProps
      */
     transactionUUID: string;
     /**
      * The identifier of the card from which these points were originally deducted.
-     * @type {string}
-     * @memberof RollbackDeductedLoyaltyPointsEffectProps
      */
     cardIdentifier?: string;
 }
@@ -106,8 +90,8 @@ export function RollbackDeductedLoyaltyPointsEffectPropsFromJSONTyped(json: any,
         'subLedgerId': json['subLedgerId'],
         'value': json['value'],
         'recipientIntegrationId': json['recipientIntegrationId'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'transactionUUID': json['transactionUUID'],
         'cardIdentifier': json['cardIdentifier'] == null ? undefined : json['cardIdentifier'],
     };
@@ -128,8 +112,8 @@ export function RollbackDeductedLoyaltyPointsEffectPropsToJSONTyped(value?: Roll
         'subLedgerId': value['subLedgerId'],
         'value': value['value'],
         'recipientIntegrationId': value['recipientIntegrationId'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'transactionUUID': value['transactionUUID'],
         'cardIdentifier': value['cardIdentifier'],
     };

@@ -29,26 +29,18 @@ import {
 export interface RoleV2RolesGroup {
     /**
      * A map of the link between the Application, campaign, or draft campaign-related permission set and the Application ID the permissions apply to.
-     * @type {{ [key: string]: RoleV2ApplicationDetails; }}
-     * @memberof RoleV2RolesGroup
      */
     applications?: { [key: string]: RoleV2ApplicationDetails; };
     /**
      * A map of the link between the loyalty program-related permission set and the Application ID the permissions apply to.
-     * @type {{ [key: string]: string; }}
-     * @memberof RoleV2RolesGroup
      */
     loyaltyPrograms?: { [key: string]: string; };
     /**
      * A map of the link between the campaign access group-related permission set and the Application ID the permissions apply to.
-     * @type {{ [key: string]: string; }}
-     * @memberof RoleV2RolesGroup
      */
     campaignAccessGroups?: { [key: string]: string; };
     /**
      * Name of the account-level permission set
-     * @type {string}
-     * @memberof RoleV2RolesGroup
      */
     account?: string;
 }

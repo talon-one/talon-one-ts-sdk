@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { StrikethroughChangedItem } from './StrikethroughChangedItem';
 import {
     StrikethroughChangedItemFromJSON,
@@ -37,57 +37,39 @@ export interface StrikethroughLabelingNotification {
     /**
      * The version of the strikethrough pricing notification. Set for **scheduled** strikethrough pricing updates only.
      * 
-     * @type {StrikethroughLabelingNotificationVersionEnum}
-     * @memberof StrikethroughLabelingNotification
      */
     version?: StrikethroughLabelingNotificationVersionEnum;
     /**
      * Timestamp at which the strikethrough pricing update becomes valid. Set for **scheduled** strikethrough pricing updates (version: v2) only.
      * 
-     * @type {Date}
-     * @memberof StrikethroughLabelingNotification
      */
     validFrom?: Date;
     /**
      * The ID of the Application to which the catalog items labels belongs.
-     * @type {number}
-     * @memberof StrikethroughLabelingNotification
      */
     applicationId: number;
     /**
      * The batch number of the notification. Notifications might be sent in different batches.
-     * @type {number}
-     * @memberof StrikethroughLabelingNotification
      */
     currentBatch: number;
     /**
      * The total number of batches for the notification.
-     * @type {number}
-     * @memberof StrikethroughLabelingNotification
      */
     totalBatches: number;
     /**
      * 
-     * @type {StrikethroughTrigger}
-     * @memberof StrikethroughLabelingNotification
      */
     trigger: StrikethroughTrigger;
     /**
      * 
-     * @type {Array<StrikethroughChangedItem>}
-     * @memberof StrikethroughLabelingNotification
      */
     changedItems: Array<StrikethroughChangedItem>;
     /**
      * The type of notification.
-     * @type {StrikethroughLabelingNotificationNotificationTypeEnum}
-     * @memberof StrikethroughLabelingNotification
      */
     notificationType: StrikethroughLabelingNotificationNotificationTypeEnum;
     /**
      * Timestamp at which the notification was sent.
-     * @type {Date}
-     * @memberof StrikethroughLabelingNotification
      */
     sentAt: Date;
 }
@@ -97,7 +79,7 @@ export interface StrikethroughLabelingNotification {
  * @export
  */
 export const StrikethroughLabelingNotificationVersionEnum = {
-    V2: 'v2'
+    V2: 'v2',
 } as const;
 export type StrikethroughLabelingNotificationVersionEnum = typeof StrikethroughLabelingNotificationVersionEnum[keyof typeof StrikethroughLabelingNotificationVersionEnum];
 
@@ -105,7 +87,7 @@ export type StrikethroughLabelingNotificationVersionEnum = typeof StrikethroughL
  * @export
  */
 export const StrikethroughLabelingNotificationNotificationTypeEnum = {
-    StrikethroughPrice: 'StrikethroughPrice'
+    StrikethroughPrice: 'StrikethroughPrice',
 } as const;
 export type StrikethroughLabelingNotificationNotificationTypeEnum = typeof StrikethroughLabelingNotificationNotificationTypeEnum[keyof typeof StrikethroughLabelingNotificationNotificationTypeEnum];
 
@@ -138,14 +120,14 @@ export function StrikethroughLabelingNotificationFromJSONTyped(json: any, ignore
     return {
         
         'version': json['version'] == null ? undefined : json['version'],
-        'validFrom': json['validFrom'] == null ? undefined : (new Date(json['validFrom'])),
+        'validFrom': json['validFrom'] == null ? undefined : (parseDateTime(json['validFrom'])),
         'applicationId': json['applicationId'],
         'currentBatch': json['currentBatch'],
         'totalBatches': json['totalBatches'],
         'trigger': StrikethroughTriggerFromJSON(json['trigger']),
         'changedItems': (json['changedItems'] == null ? undefined as any : (json['changedItems'] as Array<any>).map(StrikethroughChangedItemFromJSON)),
         'notificationType': json['NotificationType'],
-        'sentAt': (json['sentAt'] == null ? undefined as any : new Date(json['sentAt'])),
+        'sentAt': (json['sentAt'] == null ? json['sentAt'] : parseDateTime(json['sentAt'])),
     };
 }
 
@@ -161,14 +143,14 @@ export function StrikethroughLabelingNotificationToJSONTyped(value?: Strikethrou
     return {
         
         'version': value['version'],
-        'validFrom': value['validFrom'] == null ? value['validFrom'] : value['validFrom'].toISOString(),
+        'validFrom': value['validFrom'] == null ? value['validFrom'] : serializeDateTime(value['validFrom']),
         'applicationId': value['applicationId'],
         'currentBatch': value['currentBatch'],
         'totalBatches': value['totalBatches'],
         'trigger': StrikethroughTriggerToJSON(value['trigger']),
         'changedItems': (value['changedItems'] == null ? undefined : (value['changedItems'] as Array<any>).map(StrikethroughChangedItemToJSON)),
         'NotificationType': value['notificationType'],
-        'sentAt': value['sentAt'] == null ? undefined : value['sentAt'].toISOString(),
+        'sentAt': value['sentAt'] == null ? undefined : serializeDateTime(value['sentAt']),
     };
 }
 

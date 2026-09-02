@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface UpdateCouponsData {
     /**
      * 
-     * @type {string}
-     * @memberof UpdateCouponsData
      */
     batchID: string;
     /**
      * 
-     * @type {number}
-     * @memberof UpdateCouponsData
      */
     applicationID: number;
     /**
      * 
-     * @type {number}
-     * @memberof UpdateCouponsData
      */
     campaignID: number;
     /**
      * 
-     * @type {string}
-     * @memberof UpdateCouponsData
      */
     typeOfChange: string;
     /**
      * 
-     * @type {string}
-     * @memberof UpdateCouponsData
      */
     operation: string;
     /**
      * 
-     * @type {string}
-     * @memberof UpdateCouponsData
      */
     employeeName: string;
     /**
      * The type of the notification
-     * @type {UpdateCouponsDataNotificationTypeEnum}
-     * @memberof UpdateCouponsData
      */
     notificationType: UpdateCouponsDataNotificationTypeEnum;
 }
@@ -68,7 +54,7 @@ export interface UpdateCouponsData {
  * @export
  */
 export const UpdateCouponsDataNotificationTypeEnum = {
-    CouponsUpdated: 'CouponsUpdated'
+    CouponsUpdated: 'CouponsUpdated',
 } as const;
 export type UpdateCouponsDataNotificationTypeEnum = typeof UpdateCouponsDataNotificationTypeEnum[keyof typeof UpdateCouponsDataNotificationTypeEnum];
 

@@ -43,20 +43,14 @@ import {
 export interface UpdateReward {
     /**
      * The name of the reward.
-     * @type {string}
-     * @memberof UpdateReward
      */
     name: string;
     /**
      * A description of the reward.
-     * @type {string}
-     * @memberof UpdateReward
      */
     description?: string;
     /**
      * The status of the reward.
-     * @type {UpdateRewardStatusEnum}
-     * @memberof UpdateReward
      */
     status: UpdateRewardStatusEnum;
     /**
@@ -66,8 +60,6 @@ export interface UpdateReward {
      * **Note:** Only the `condition` field is evaluated within this rule. The `effects` field must be an empty array,
      * and `bindings` are not supported.
      * 
-     * @type {Rule}
-     * @memberof UpdateReward
      */
     eligibilityConditions?: Rule;
     /**
@@ -77,14 +69,10 @@ export interface UpdateReward {
      * endpoint. All bindings should be defined at the reward level via the
      * top-level `bindings` field.
      * 
-     * @type {Rule}
-     * @memberof UpdateReward
      */
     rule?: Rule;
     /**
      * A list of named variables created before the reward's rules are evaluated.  Each binding pairs a name with a talang expression. The expression is evaluated once  and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.
-     * @type {Array<Binding>}
-     * @memberof UpdateReward
      */
     bindings?: Array<Binding>;
     /**
@@ -96,8 +84,6 @@ export interface UpdateReward {
      * - Objects without an `id` are created.
      * - Existing objects omitted from the payload are deleted.
      * 
-     * @type {Array<RewardPointsRequired>}
-     * @memberof UpdateReward
      */
     pointsRequired?: Array<RewardPointsRequired>;
 }
@@ -108,7 +94,7 @@ export interface UpdateReward {
  */
 export const UpdateRewardStatusEnum = {
     Active: 'active',
-    Inactive: 'inactive'
+    Inactive: 'inactive',
 } as const;
 export type UpdateRewardStatusEnum = typeof UpdateRewardStatusEnum[keyof typeof UpdateRewardStatusEnum];
 

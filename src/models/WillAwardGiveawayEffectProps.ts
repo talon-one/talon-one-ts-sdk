@@ -23,20 +23,14 @@ import { mapValues } from '../runtime';
 export interface WillAwardGiveawayEffectProps {
     /**
      * The internal ID of the giveaway pool.
-     * @type {number}
-     * @memberof WillAwardGiveawayEffectProps
      */
     poolId: number;
     /**
      * The name of the giveaway pool.
-     * @type {string}
-     * @memberof WillAwardGiveawayEffectProps
      */
     poolName: string;
     /**
      * The integration ID of the customer that receives the giveaway.
-     * @type {string}
-     * @memberof WillAwardGiveawayEffectProps
      */
     recipientIntegrationId: string;
 }

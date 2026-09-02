@@ -1,13 +1,14 @@
 
 # WebhookAuthenticationBase
 
+Definition of all the properties that are needed to create or update a webhook authentication. The `type` field selects the concrete authentication variant.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
 `name` | string
-`type` | any
+`type` | string
 `data` | [WebhookAuthenticationDataCustom](WebhookAuthenticationDataCustom.md)
 
 ## Example
@@ -17,7 +18,7 @@ import type { WebhookAuthenticationBase } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "name": My basic auth,
+  "name": My custom auth,
   "type": null,
   "data": null,
 } satisfies WebhookAuthenticationBase

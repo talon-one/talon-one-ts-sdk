@@ -12,7 +12,15 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
+import type { RuleMetadata } from './RuleMetadata';
+import {
+    RuleMetadataFromJSON,
+    RuleMetadataFromJSONTyped,
+    RuleMetadataToJSON,
+    RuleMetadataToJSONTyped,
+} from './RuleMetadata';
+
 /**
  * A reward instance held by a customer profile.
  * @export
@@ -21,41 +29,41 @@ import { mapValues } from '../runtime';
 export interface CustomerProfileReward {
     /**
      * The ID of the customer reward instance. A customer profile can have multiple instances of the same reward.
-     * @type {number}
-     * @memberof CustomerProfileReward
      */
     id: number;
     /**
-     * The integration ID of the reward.
-     * @type {string}
-     * @memberof CustomerProfileReward
+     * The integration ID of the customer reward instance.
      */
     integrationId: string;
     /**
      * The ID of the reward this instance belongs to.
-     * @type {number}
-     * @memberof CustomerProfileReward
      */
     rewardId: number;
     /**
+     * The integration ID of the reward this instance belongs to.
+     */
+    rewardIntegrationId: string;
+    /**
      * The name of the reward.
-     * @type {string}
-     * @memberof CustomerProfileReward
      */
     rewardName: string;
+    /**
+     * The customer-facing description of the reward.
+     */
+    description?: string;
+    /**
+     * Customer-facing rule metadata for the reward. Only returned when the reward defines a rule.
+     */
+    rule?: RuleMetadata;
     /**
      * The status of the customer reward:
      * - `unlocked`: The reward is available for use.
      * - `used`: The reward has been used.
      * 
-     * @type {CustomerProfileRewardStatusEnum}
-     * @memberof CustomerProfileReward
      */
     status: CustomerProfileRewardStatusEnum;
     /**
      * The date and time when the reward was unlocked.
-     * @type {Date}
-     * @memberof CustomerProfileReward
      */
     unlockedAt: Date;
     /**
@@ -64,14 +72,10 @@ export interface CustomerProfileReward {
      * For rewards unlocked with a loyalty card, this can be any customer profile 
      * linked to that loyalty card.
      * 
-     * @type {string}
-     * @memberof CustomerProfileReward
      */
     unlockedByProfileIntegrationId?: string;
     /**
      * The date and time when the reward was used.
-     * @type {Date}
-     * @memberof CustomerProfileReward
      */
     usedAt?: Date;
     /**
@@ -82,20 +86,14 @@ export interface CustomerProfileReward {
      * 
      * Only returned when the reward has been used.
      * 
-     * @type {string}
-     * @memberof CustomerProfileReward
      */
     usedByProfileIntegrationId?: string;
     /**
      * The ID of the loyalty program that the loyalty card belongs to. Only returned for rewards unlocked with a loyalty card.
-     * @type {number}
-     * @memberof CustomerProfileReward
      */
     loyaltyProgramId?: number;
     /**
      * The identifier of the loyalty card that the reward was unlocked with. Only returned for rewards unlocked with a loyalty card.
-     * @type {string}
-     * @memberof CustomerProfileReward
      */
     loyaltyCardIdentifier?: string;
 }
@@ -106,7 +104,7 @@ export interface CustomerProfileReward {
  */
 export const CustomerProfileRewardStatusEnum = {
     Unlocked: 'unlocked',
-    Used: 'used'
+    Used: 'used',
 } as const;
 export type CustomerProfileRewardStatusEnum = typeof CustomerProfileRewardStatusEnum[keyof typeof CustomerProfileRewardStatusEnum];
 
@@ -119,6 +117,7 @@ export function instanceOfCustomerProfileReward(value: object): value is Custome
     if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
     if (!('rewardId' in _v) || _v['rewardId'] === undefined) return false;
+    if (!('rewardIntegrationId' in _v) || _v['rewardIntegrationId'] === undefined) return false;
     if (!('rewardName' in _v) || _v['rewardName'] === undefined) return false;
     if (!('status' in _v) || _v['status'] === undefined) return false;
     if (!('unlockedAt' in _v) || _v['unlockedAt'] === undefined) return false;
@@ -138,11 +137,14 @@ export function CustomerProfileRewardFromJSONTyped(json: any, ignoreDiscriminato
         'id': json['id'],
         'integrationId': json['integrationId'],
         'rewardId': json['rewardId'],
+        'rewardIntegrationId': json['rewardIntegrationId'],
         'rewardName': json['rewardName'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'rule': json['rule'] == null ? undefined : RuleMetadataFromJSON(json['rule']),
         'status': json['status'],
-        'unlockedAt': (json['unlockedAt'] == null ? undefined as any : new Date(json['unlockedAt'])),
+        'unlockedAt': (json['unlockedAt'] == null ? json['unlockedAt'] : parseDateTime(json['unlockedAt'])),
         'unlockedByProfileIntegrationId': json['unlockedByProfileIntegrationId'] == null ? undefined : json['unlockedByProfileIntegrationId'],
-        'usedAt': json['usedAt'] == null ? undefined : (new Date(json['usedAt'])),
+        'usedAt': json['usedAt'] == null ? undefined : (parseDateTime(json['usedAt'])),
         'usedByProfileIntegrationId': json['usedByProfileIntegrationId'] == null ? undefined : json['usedByProfileIntegrationId'],
         'loyaltyProgramId': json['loyaltyProgramId'] == null ? undefined : json['loyaltyProgramId'],
         'loyaltyCardIdentifier': json['loyaltyCardIdentifier'] == null ? undefined : json['loyaltyCardIdentifier'],
@@ -163,11 +165,14 @@ export function CustomerProfileRewardToJSONTyped(value?: CustomerProfileReward |
         'id': value['id'],
         'integrationId': value['integrationId'],
         'rewardId': value['rewardId'],
+        'rewardIntegrationId': value['rewardIntegrationId'],
         'rewardName': value['rewardName'],
+        'description': value['description'],
+        'rule': RuleMetadataToJSON(value['rule']),
         'status': value['status'],
-        'unlockedAt': value['unlockedAt'] == null ? undefined : value['unlockedAt'].toISOString(),
+        'unlockedAt': value['unlockedAt'] == null ? undefined : serializeDateTime(value['unlockedAt']),
         'unlockedByProfileIntegrationId': value['unlockedByProfileIntegrationId'],
-        'usedAt': value['usedAt'] == null ? value['usedAt'] : value['usedAt'].toISOString(),
+        'usedAt': value['usedAt'] == null ? value['usedAt'] : serializeDateTime(value['usedAt']),
         'usedByProfileIntegrationId': value['usedByProfileIntegrationId'],
         'loyaltyProgramId': value['loyaltyProgramId'],
         'loyaltyCardIdentifier': value['loyaltyCardIdentifier'],

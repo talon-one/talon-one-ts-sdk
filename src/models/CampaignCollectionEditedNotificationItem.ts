@@ -51,32 +51,22 @@ export interface CampaignCollectionEditedNotificationItem {
     /**
      * The type of the event. Can be one of the following: ['campaign_state_changed', 'campaign_ruleset_changed', 'campaign_edited', 'campaign_created', 'campaign_deleted']
      * 
-     * @type {string}
-     * @memberof CampaignCollectionEditedNotificationItem
      */
     event: string;
     /**
      * The current campaign.
-     * @type {Campaign}
-     * @memberof CampaignCollectionEditedNotificationItem
      */
     campaign: Campaign;
     /**
      * The current ruleset.
-     * @type {Ruleset}
-     * @memberof CampaignCollectionEditedNotificationItem
      */
     ruleset?: Ruleset;
     /**
      * The current details of the [placeholders](https://docs.talon.one/docs/product/campaigns/templates/create-templates#use-placeholders) in the campaign.
-     * @type {Array<PlaceholderDetails>}
-     * @memberof CampaignCollectionEditedNotificationItem
      */
     placeholders?: Array<PlaceholderDetails>;
     /**
      * The collection that was edited.
-     * @type {CollectionWithoutPayload}
-     * @memberof CampaignCollectionEditedNotificationItem
      */
     collection: CollectionWithoutPayload;
 }

@@ -29,14 +29,10 @@ import {
 export interface LoyaltyLedger {
     /**
      * The balance of the main ledger in the loyalty program.
-     * @type {LoyaltySubLedger}
-     * @memberof LoyaltyLedger
      */
     ledger: LoyaltySubLedger;
     /**
      * A map containing a list of all loyalty subledger balances.
-     * @type {{ [key: string]: LoyaltySubLedger; }}
-     * @memberof LoyaltyLedger
      */
     subLedgers?: { [key: string]: LoyaltySubLedger; };
 }

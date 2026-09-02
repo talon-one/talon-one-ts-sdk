@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LabelTarget } from './LabelTarget';
 import {
     LabelTargetFromJSON,
@@ -29,74 +29,50 @@ import {
 export interface StrikethroughEffect {
     /**
      * The ID of the campaign that effect belongs to.
-     * @type {number}
-     * @memberof StrikethroughEffect
      */
     campaignId: number;
     /**
      * The ID of the ruleset containing the rule that triggered this effect.
-     * @type {number}
-     * @memberof StrikethroughEffect
      */
     rulesetId: number;
     /**
      * The position of the rule that triggered this effect within the ruleset.
-     * @type {number}
-     * @memberof StrikethroughEffect
      */
     ruleIndex: number;
     /**
      * The name of the rule that triggered this effect.
-     * @type {string}
-     * @memberof StrikethroughEffect
      */
     ruleName: string;
     /**
      * The type of this effect.
-     * @type {string}
-     * @memberof StrikethroughEffect
      */
     type: string;
     /**
      * Arbitrary properties associated with this effect type.
-     * @type {object}
-     * @memberof StrikethroughEffect
      */
     props: object;
     /**
      * The start of the time frame where the effect is active in UTC.
-     * @type {Date}
-     * @memberof StrikethroughEffect
      */
     startTime?: Date;
     /**
      * The end of the time frame where the effect is active in UTC.
-     * @type {Date}
-     * @memberof StrikethroughEffect
      */
     endTime?: Date;
     /**
      * The selected price type for this cart item (e.g. the price for members only).
-     * @type {string}
-     * @memberof StrikethroughEffect
      */
     selectedPriceType?: string;
     /**
      * The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.
-     * @type {number}
-     * @memberof StrikethroughEffect
      */
     selectedPrice?: number;
     /**
      * The reference identifier of the selected price adjustment for this cart item.
-     * @type {string}
-     * @memberof StrikethroughEffect
      */
     adjustmentReferenceId?: string;
     /**
      * A list of entities (e.g. audiences) targeted by this effect.
-     * @type {Array<LabelTarget>}
-     * @memberof StrikethroughEffect
      */
     targets?: Array<LabelTarget>;
 }
@@ -131,8 +107,8 @@ export function StrikethroughEffectFromJSONTyped(json: any, ignoreDiscriminator:
         'ruleName': json['ruleName'],
         'type': json['type'],
         'props': json['props'],
-        'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
-        'endTime': json['endTime'] == null ? undefined : (new Date(json['endTime'])),
+        'startTime': json['startTime'] == null ? undefined : (parseDateTime(json['startTime'])),
+        'endTime': json['endTime'] == null ? undefined : (parseDateTime(json['endTime'])),
         'selectedPriceType': json['selectedPriceType'] == null ? undefined : json['selectedPriceType'],
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
@@ -157,8 +133,8 @@ export function StrikethroughEffectToJSONTyped(value?: StrikethroughEffect | nul
         'ruleName': value['ruleName'],
         'type': value['type'],
         'props': value['props'],
-        'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
-        'endTime': value['endTime'] == null ? value['endTime'] : value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? value['startTime'] : serializeDateTime(value['startTime']),
+        'endTime': value['endTime'] == null ? value['endTime'] : serializeDateTime(value['endTime']),
         'selectedPriceType': value['selectedPriceType'],
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],

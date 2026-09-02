@@ -13,8 +13,8 @@ Name | Type
 `campaignId` | number
 `templateId` | number
 `activatedAt` | Date
-`promotionRules` | [Array&lt;PromotionRuleV2&gt;](PromotionRuleV2.md)
-`strikethroughRules` | [Array&lt;StrikethroughRuleV2&gt;](StrikethroughRuleV2.md)
+`promotionRules` | [Array&lt;RuleV2&gt;](RuleV2.md)
+`strikethroughRules` | [Array&lt;RuleV2&gt;](RuleV2.md)
 `selectors` | [Array&lt;Selector&gt;](Selector.md)
 `bundles` | [Array&lt;Bundle&gt;](Bundle.md)
 `parameters` | [Array&lt;TemplateParameter&gt;](TemplateParameter.md)

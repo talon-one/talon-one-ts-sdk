@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface IntegrationHubEventStatusUpdate {
     /**
      * The ID of the integration hub event.
-     * @type {number}
-     * @memberof IntegrationHubEventStatusUpdate
      */
     eventId: number;
     /**
      * The delivery outcome for the event.
-     * @type {IntegrationHubEventStatusUpdateStatusEnum}
-     * @memberof IntegrationHubEventStatusUpdate
      */
     status: IntegrationHubEventStatusUpdateStatusEnum;
 }
@@ -39,7 +35,7 @@ export interface IntegrationHubEventStatusUpdate {
  */
 export const IntegrationHubEventStatusUpdateStatusEnum = {
     Delivered: 'delivered',
-    Failed: 'failed'
+    Failed: 'failed',
 } as const;
 export type IntegrationHubEventStatusUpdateStatusEnum = typeof IntegrationHubEventStatusUpdateStatusEnum[keyof typeof IntegrationHubEventStatusUpdateStatusEnum];
 

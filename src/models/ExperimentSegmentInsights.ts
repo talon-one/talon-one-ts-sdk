@@ -30,29 +30,21 @@ export interface ExperimentSegmentInsights {
     /**
      * Segment insights grouped by metric. This array always contains exactly three metric objects. Each metric includes a segments array, which is empty if no significant results were found. The metrics array itself is empty if the `reason` property is populated.
      * 
-     * @type {Array<ExperimentSegmentInsightMetric>}
-     * @memberof ExperimentSegmentInsights
      */
     metrics: Array<ExperimentSegmentInsightMetric>;
     /**
      * Total number of segment-metric combinations that were tested for statistical significance.
      * 
-     * @type {number}
-     * @memberof ExperimentSegmentInsights
      */
     totalSegmentsTested: number;
     /**
      * Number of segmentation dimensions that had sufficient data variance to test. Dimensions where all sessions fall into a single bucket are excluded.
      * 
-     * @type {number}
-     * @memberof ExperimentSegmentInsights
      */
     dimensionsTested: number;
     /**
      * Empty string when segment insights are available. Contains a reason code when insights could not be computed (e.g., "insufficient_data" when the experiment has fewer than 100 sessions per variant).
      * 
-     * @type {string}
-     * @memberof ExperimentSegmentInsights
      */
     reason: string;
 }

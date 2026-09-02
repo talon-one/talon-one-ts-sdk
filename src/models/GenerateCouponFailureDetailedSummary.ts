@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface GenerateCouponFailureDetailedSummary {
     /**
      * The ID of the Application. It is displayed in your Talon.One deployment URL.
-     * @type {number}
-     * @memberof GenerateCouponFailureDetailedSummary
      */
     applicationID: number;
     /**
      * ID of the customer session where the coupon redemption failed.
-     * @type {string}
-     * @memberof GenerateCouponFailureDetailedSummary
      */
     sessionID: string;
     /**
      * The ID of the event for which the coupon redemption failed.
-     * @type {number}
-     * @memberof GenerateCouponFailureDetailedSummary
      */
     eventID: number;
     /**
      * The coupon code that could not be redeemed.
-     * @type {string}
-     * @memberof GenerateCouponFailureDetailedSummary
      */
     coupon: string;
     /**
      * The language of the summary.
-     * @type {string}
-     * @memberof GenerateCouponFailureDetailedSummary
      */
     language?: string;
 }

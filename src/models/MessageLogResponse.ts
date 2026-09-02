@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * Details of the response.
  * @export
@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface MessageLogResponse {
     /**
      * Timestamp when the response was received.
-     * @type {Date}
-     * @memberof MessageLogResponse
      */
     createdAt?: Date;
     /**
      * Raw response data.
-     * @type {string}
-     * @memberof MessageLogResponse
      */
     response?: string;
     /**
      * HTTP status code of the response.
-     * @type {number}
-     * @memberof MessageLogResponse
      */
     status?: number;
 }
@@ -57,7 +51,7 @@ export function MessageLogResponseFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'createdAt': json['createdAt'] == null ? undefined : (parseDateTime(json['createdAt'])),
         'response': json['response'] == null ? undefined : json['response'],
         'status': json['status'] == null ? undefined : json['status'],
     };
@@ -74,7 +68,7 @@ export function MessageLogResponseToJSONTyped(value?: MessageLogResponse | null,
 
     return {
         
-        'createdAt': value['createdAt'] == null ? value['createdAt'] : value['createdAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? value['createdAt'] : serializeDateTime(value['createdAt']),
         'response': value['response'],
         'status': value['status'],
     };

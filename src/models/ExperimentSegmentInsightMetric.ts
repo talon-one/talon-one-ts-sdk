@@ -29,15 +29,11 @@ import {
 export interface ExperimentSegmentInsightMetric {
     /**
      * The metric being measured.
-     * @type {ExperimentSegmentInsightMetricMetricEnum}
-     * @memberof ExperimentSegmentInsightMetric
      */
     metric: ExperimentSegmentInsightMetricMetricEnum;
     /**
      * Segments with statistically significant results for this metric. An empty array means no significant segments were found. Segments are sorted by confidence score from highest to lowest.
      * 
-     * @type {Array<ExperimentSegmentInsight>}
-     * @memberof ExperimentSegmentInsightMetric
      */
     segments: Array<ExperimentSegmentInsight>;
 }
@@ -49,7 +45,7 @@ export interface ExperimentSegmentInsightMetric {
 export const ExperimentSegmentInsightMetricMetricEnum = {
     AvgSessionValue: 'avg_session_value',
     AvgDiscountedSessionValue: 'avg_discounted_session_value',
-    AvgItemsPerSession: 'avg_items_per_session'
+    AvgItemsPerSession: 'avg_items_per_session',
 } as const;
 export type ExperimentSegmentInsightMetricMetricEnum = typeof ExperimentSegmentInsightMetricMetricEnum[keyof typeof ExperimentSegmentInsightMetricMetricEnum];
 

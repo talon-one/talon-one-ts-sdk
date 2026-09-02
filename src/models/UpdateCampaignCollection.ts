@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface UpdateCampaignCollection {
     /**
      * A short description of the purpose of this collection.
-     * @type {string}
-     * @memberof UpdateCampaignCollection
      */
     description?: string;
 }

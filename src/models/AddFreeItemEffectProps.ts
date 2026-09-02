@@ -23,20 +23,14 @@ import { mapValues } from '../runtime';
 export interface AddFreeItemEffectProps {
     /**
      * SKU of the item that needs to be added.
-     * @type {string}
-     * @memberof AddFreeItemEffectProps
      */
     sku: string;
     /**
      * Description of the effect.
-     * @type {string}
-     * @memberof AddFreeItemEffectProps
      */
     name: string;
     /**
      * The original quantity in case a partial reward was applied.
-     * @type {number}
-     * @memberof AddFreeItemEffectProps
      */
     desiredQuantity?: number;
 }

@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface ScimResource {
     /**
      * ID of the resource.
-     * @type {string}
-     * @memberof ScimResource
      */
     id?: string;
     /**
      * Name of the resource.
-     * @type {string}
-     * @memberof ScimResource
      */
     name?: string;
     /**
      * Human-readable description of the resource.
-     * @type {string}
-     * @memberof ScimResource
      */
     description?: string;
 }

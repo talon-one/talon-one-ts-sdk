@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface StrikethroughSetDiscountPerItemMemberEffectProps {
     /**
      * The effect name.
-     * @type {string}
-     * @memberof StrikethroughSetDiscountPerItemMemberEffectProps
      */
     name: string;
     /**
-     * 
-     * @type {any}
-     * @memberof StrikethroughSetDiscountPerItemMemberEffectProps
+     * The discount value.
      */
     value: any | null;
 }

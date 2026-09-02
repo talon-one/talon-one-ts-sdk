@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface SummaryCampaignStoreBudget {
     /**
      * 
-     * @type {SummaryCampaignStoreBudgetActionEnum}
-     * @memberof SummaryCampaignStoreBudget
      */
     action: SummaryCampaignStoreBudgetActionEnum;
     /**
      * 
-     * @type {SummaryCampaignStoreBudgetPeriodEnum}
-     * @memberof SummaryCampaignStoreBudget
      */
     period?: SummaryCampaignStoreBudgetPeriodEnum;
     /**
      * 
-     * @type {number}
-     * @memberof SummaryCampaignStoreBudget
      */
     storeCount: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof SummaryCampaignStoreBudget
      */
     imported: boolean;
 }
@@ -64,7 +56,7 @@ export const SummaryCampaignStoreBudgetActionEnum = {
     CallApi: 'callApi',
     AwardGiveaway: 'awardGiveaway',
     AddFreeItemEffect: 'addFreeItemEffect',
-    ReserveCoupon: 'reserveCoupon'
+    ReserveCoupon: 'reserveCoupon',
 } as const;
 export type SummaryCampaignStoreBudgetActionEnum = typeof SummaryCampaignStoreBudgetActionEnum[keyof typeof SummaryCampaignStoreBudgetActionEnum];
 
@@ -76,7 +68,7 @@ export const SummaryCampaignStoreBudgetPeriodEnum = {
     Daily: 'daily',
     Weekly: 'weekly',
     Monthly: 'monthly',
-    Yearly: 'yearly'
+    Yearly: 'yearly',
 } as const;
 export type SummaryCampaignStoreBudgetPeriodEnum = typeof SummaryCampaignStoreBudgetPeriodEnum[keyof typeof SummaryCampaignStoreBudgetPeriodEnum];
 

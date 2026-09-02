@@ -29,14 +29,10 @@ import {
 export interface CatalogActionAdd {
     /**
      * A catalog sync action discriminator of type `ADD`.
-     * @type {CatalogActionAddTypeEnum}
-     * @memberof CatalogActionAdd
      */
     type: CatalogActionAddTypeEnum;
     /**
      * The payload of sync action.
-     * @type {AddItemCatalogAction}
-     * @memberof CatalogActionAdd
      */
     payload: AddItemCatalogAction;
 }
@@ -46,7 +42,7 @@ export interface CatalogActionAdd {
  * @export
  */
 export const CatalogActionAddTypeEnum = {
-    Add: 'ADD'
+    Add: 'ADD',
 } as const;
 export type CatalogActionAddTypeEnum = typeof CatalogActionAddTypeEnum[keyof typeof CatalogActionAddTypeEnum];
 

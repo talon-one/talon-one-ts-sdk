@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction } from './IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction';
 import {
     IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionFromJSON,
@@ -29,80 +29,54 @@ import {
 export interface IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification {
     /**
      * The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
      */
     eventId: number;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
      */
     profileIntegrationID: string;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
      */
     loyaltyProgramID: number;
     /**
      * The name of the loyalty program.
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
      */
     loyaltyProgramName: string;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
      */
     subledgerID: string;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
      */
     sourceOfEvent: string;
     /**
      * The name of the customer's current tier.
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
      */
     currentTier: string;
     /**
      * The integration ID of the session through which the points were earned or lost. Only set when the change results from a rule engine execution; empty otherwise.
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
      */
     sessionIntegrationID?: string;
     /**
      * 
-     * @type {string}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
      */
     employeeName?: string;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
      */
     userID?: number;
     /**
      * 
-     * @type {number}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
      */
     currentPoints: number;
     /**
      * 
-     * @type {Array<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction>}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
      */
     actions?: Array<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction>;
     /**
      * Timestamp when the event was published.
-     * @type {Date}
-     * @memberof IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
      */
     publishedAt: Date;
 }
@@ -146,7 +120,7 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotifi
         'userID': json['UserID'] == null ? undefined : json['UserID'],
         'currentPoints': json['CurrentPoints'],
         'actions': json['Actions'] == null ? undefined : ((json['Actions'] as Array<any>).map(IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionFromJSON)),
-        'publishedAt': (json['PublishedAt'] == null ? undefined as any : new Date(json['PublishedAt'])),
+        'publishedAt': (json['PublishedAt'] == null ? json['PublishedAt'] : parseDateTime(json['PublishedAt'])),
     };
 }
 
@@ -173,7 +147,7 @@ export function IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotifi
         'UserID': value['userID'],
         'CurrentPoints': value['currentPoints'],
         'Actions': value['actions'] == null ? undefined : ((value['actions'] as Array<any>).map(IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionToJSON)),
-        'PublishedAt': value['publishedAt'] == null ? undefined : value['publishedAt'].toISOString(),
+        'PublishedAt': value['publishedAt'] == null ? undefined : serializeDateTime(value['publishedAt']),
     };
 }
 

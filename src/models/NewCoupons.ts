@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LimitConfig } from './LimitConfig';
 import {
     LimitConfigFromJSON,
@@ -30,34 +30,24 @@ export interface NewCoupons {
     /**
      * The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
      * 
-     * @type {number}
-     * @memberof NewCoupons
      */
     usageLimit?: number;
     /**
      * The total discount value that the code can give. Typically used to represent a gift card value.
      * 
-     * @type {number}
-     * @memberof NewCoupons
      */
     discountLimit?: number;
     /**
      * The number of reservations that can be made with this coupon code.
      * 
-     * @type {number}
-     * @memberof NewCoupons
      */
     reservationLimit?: number;
     /**
      * Timestamp at which point the coupon becomes valid.
-     * @type {Date}
-     * @memberof NewCoupons
      */
     startDate?: Date;
     /**
      * Expiration date of the coupon. Coupon never expires if this is omitted.
-     * @type {Date}
-     * @memberof NewCoupons
      */
     expiryDate?: Date;
     /**
@@ -67,74 +57,56 @@ export interface NewCoupons {
      * **Note:** Only usable when creating a single coupon which is not tied to a specific recipient.
      * Only per-profile limits are allowed to be configured.
      * 
-     * @type {Array<LimitConfig>}
-     * @memberof NewCoupons
      */
     limits?: Array<LimitConfig>;
     /**
      * The number of new coupon codes to generate for the campaign. Must be at least 1.
-     * @type {number}
-     * @memberof NewCoupons
      */
     numberOfCoupons: number;
     /**
+     * The batch ID that all coupons created by the request will bear. If omitted, a batch ID is generated automatically.
+     */
+    batchId?: string;
+    /**
      * **DEPRECATED** To create more than 20,000 coupons in one request, use [Create coupons asynchronously](https://docs.talon.one/management-api#tag/Coupons/operation/createCouponsAsync) endpoint.
      * 
-     * @type {string}
-     * @memberof NewCoupons
      * @deprecated
      */
     uniquePrefix?: string;
     /**
      * Arbitrary properties associated with this item.
-     * @type {object}
-     * @memberof NewCoupons
      */
     attributes?: object;
     /**
      * The integration ID for this coupon's beneficiary's profile.
-     * @type {string}
-     * @memberof NewCoupons
      */
     recipientIntegrationId?: string;
     /**
      * List of characters used to generate the random parts of a code. By default,
      * the list of characters is equivalent to the `[A-Z, 0-9]` regular expression.
      * 
-     * @type {Array<string>}
-     * @memberof NewCoupons
      */
     validCharacters?: Array<string>;
     /**
      * The pattern used to generate coupon codes.
      * The character `#` is a placeholder and is replaced by a random character from the `validCharacters` set.
      * 
-     * @type {string}
-     * @memberof NewCoupons
      */
     couponPattern?: string;
     /**
      * An indication of whether the code can be redeemed only if it has been reserved first.
-     * @type {boolean}
-     * @memberof NewCoupons
      */
     isReservationMandatory?: boolean;
     /**
      * An indication of whether the coupon is implicitly reserved for all customers.
-     * @type {boolean}
-     * @memberof NewCoupons
      */
     implicitlyReserved?: boolean;
     /**
      * The identifier of the support request to link to the coupon creation. The request must exist and not yet be processed.
-     * @type {number}
-     * @memberof NewCoupons
      */
     supportRequestId?: number;
     /**
      * A note recorded when the linked support request is approved or rejected. Applied when `supportRequestId` is provided.
-     * @type {string}
-     * @memberof NewCoupons
      */
     supportRequestNote?: string;
 }
@@ -161,10 +133,11 @@ export function NewCouponsFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
         'discountLimit': json['discountLimit'] == null ? undefined : json['discountLimit'],
         'reservationLimit': json['reservationLimit'] == null ? undefined : json['reservationLimit'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'limits': json['limits'] == null ? undefined : ((json['limits'] as Array<any>).map(LimitConfigFromJSON)),
         'numberOfCoupons': json['numberOfCoupons'],
+        'batchId': json['batchId'] == null ? undefined : json['batchId'],
         'uniquePrefix': json['uniquePrefix'] == null ? undefined : json['uniquePrefix'],
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'recipientIntegrationId': json['recipientIntegrationId'] == null ? undefined : json['recipientIntegrationId'],
@@ -191,10 +164,11 @@ export function NewCouponsToJSONTyped(value?: NewCoupons | null, ignoreDiscrimin
         'usageLimit': value['usageLimit'],
         'discountLimit': value['discountLimit'],
         'reservationLimit': value['reservationLimit'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'limits': value['limits'] == null ? undefined : ((value['limits'] as Array<any>).map(LimitConfigToJSON)),
         'numberOfCoupons': value['numberOfCoupons'],
+        'batchId': value['batchId'],
         'uniquePrefix': value['uniquePrefix'],
         'attributes': value['attributes'],
         'recipientIntegrationId': value['recipientIntegrationId'],

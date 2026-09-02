@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { BestPriorTarget } from './BestPriorTarget';
 import {
     BestPriorTargetFromJSON,
@@ -29,20 +29,14 @@ import {
 export interface BestPriorPriceRequest {
     /**
      * List of product SKUs to check when determining the best prior price.
-     * @type {Array<string>}
-     * @memberof BestPriorPriceRequest
      */
     skus: Array<string>;
     /**
      * The end date and time that defines the latest time for retrieving historical SKU prices.
-     * @type {Date}
-     * @memberof BestPriorPriceRequest
      */
     timeframeEndDate: Date;
     /**
      * The number of days prior to the timeframeEndDate. Only prices within this look back period are considered for the best prior price evaluation.
-     * @type {string}
-     * @memberof BestPriorPriceRequest
      */
     timeframe: string;
     /**
@@ -51,14 +45,10 @@ export interface BestPriorPriceRequest {
      * - `price`: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account.
      * - `sale`:  The timeframe ends at the start of current `contextId` and takes the prices prior to the start of the `contextId` into account.
      * 
-     * @type {BestPriorPriceRequestTimeframeEndDateTypeEnum}
-     * @memberof BestPriorPriceRequest
      */
     timeframeEndDateType: BestPriorPriceRequestTimeframeEndDateTypeEnum;
     /**
      * 
-     * @type {BestPriorTarget}
-     * @memberof BestPriorPriceRequest
      */
     target?: BestPriorTarget;
 }
@@ -70,7 +60,7 @@ export interface BestPriorPriceRequest {
 export const BestPriorPriceRequestTimeframeEndDateTypeEnum = {
     Strict: 'strict',
     Price: 'price',
-    Sale: 'sale'
+    Sale: 'sale',
 } as const;
 export type BestPriorPriceRequestTimeframeEndDateTypeEnum = typeof BestPriorPriceRequestTimeframeEndDateTypeEnum[keyof typeof BestPriorPriceRequestTimeframeEndDateTypeEnum];
 
@@ -98,7 +88,7 @@ export function BestPriorPriceRequestFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'skus': json['skus'],
-        'timeframeEndDate': (json['timeframeEndDate'] == null ? undefined as any : new Date(json['timeframeEndDate'])),
+        'timeframeEndDate': (json['timeframeEndDate'] == null ? json['timeframeEndDate'] : parseDateTime(json['timeframeEndDate'])),
         'timeframe': json['timeframe'],
         'timeframeEndDateType': json['timeframeEndDateType'],
         'target': json['target'] == null ? undefined : BestPriorTargetFromJSON(json['target']),
@@ -117,7 +107,7 @@ export function BestPriorPriceRequestToJSONTyped(value?: BestPriorPriceRequest |
     return {
         
         'skus': value['skus'],
-        'timeframeEndDate': value['timeframeEndDate'] == null ? undefined : value['timeframeEndDate'].toISOString(),
+        'timeframeEndDate': value['timeframeEndDate'] == null ? undefined : serializeDateTime(value['timeframeEndDate']),
         'timeframe': value['timeframe'],
         'timeframeEndDateType': value['timeframeEndDateType'],
         'target': BestPriorTargetToJSON(value['target']),

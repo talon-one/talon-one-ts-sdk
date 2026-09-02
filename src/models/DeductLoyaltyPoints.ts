@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface DeductLoyaltyPoints {
     /**
      * Amount of loyalty points.
-     * @type {number}
-     * @memberof DeductLoyaltyPoints
      */
     points: number;
     /**
      * Name / reason for the point deduction.
-     * @type {string}
-     * @memberof DeductLoyaltyPoints
      */
     name?: string;
     /**
      * ID of the subledger the points are deducted from.
-     * @type {string}
-     * @memberof DeductLoyaltyPoints
      */
     subledgerId?: string;
     /**
      * ID of the Application that is connected to the loyalty program.
-     * @type {number}
-     * @memberof DeductLoyaltyPoints
      */
     applicationId?: number;
 }

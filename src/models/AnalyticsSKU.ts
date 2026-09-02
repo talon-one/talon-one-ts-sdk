@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { AnalyticsDataPointWithTrend } from './AnalyticsDataPointWithTrend';
 import {
     AnalyticsDataPointWithTrendFromJSON,
@@ -29,38 +29,26 @@ import {
 export interface AnalyticsSKU {
     /**
      * The ID of the SKU linked to the Application.
-     * @type {number}
-     * @memberof AnalyticsSKU
      */
     id: number;
     /**
      * The SKU linked to the Application.
-     * @type {string}
-     * @memberof AnalyticsSKU
      */
     sku: string;
     /**
      * Values in UTC for the date the SKU linked to the product was last updated.
-     * @type {Date}
-     * @memberof AnalyticsSKU
      */
     lastUpdated?: Date;
     /**
      * The ID of the catalog that contains the SKU.
-     * @type {number}
-     * @memberof AnalyticsSKU
      */
     catalogId?: number;
     /**
      * The ID of the product that the SKU belongs to.
-     * @type {number}
-     * @memberof AnalyticsSKU
      */
     productId?: number;
     /**
      * The number of times the product or SKU was purchased.
-     * @type {AnalyticsDataPointWithTrend}
-     * @memberof AnalyticsSKU
      */
     unitsSold?: AnalyticsDataPointWithTrend;
 }
@@ -87,7 +75,7 @@ export function AnalyticsSKUFromJSONTyped(json: any, ignoreDiscriminator: boolea
         
         'id': json['id'],
         'sku': json['sku'],
-        'lastUpdated': json['lastUpdated'] == null ? undefined : (new Date(json['lastUpdated'])),
+        'lastUpdated': json['lastUpdated'] == null ? undefined : (parseDateTime(json['lastUpdated'])),
         'catalogId': json['catalogId'] == null ? undefined : json['catalogId'],
         'productId': json['productId'] == null ? undefined : json['productId'],
         'unitsSold': json['unitsSold'] == null ? undefined : AnalyticsDataPointWithTrendFromJSON(json['unitsSold']),
@@ -107,7 +95,7 @@ export function AnalyticsSKUToJSONTyped(value?: AnalyticsSKU | null, ignoreDiscr
         
         'id': value['id'],
         'sku': value['sku'],
-        'lastUpdated': value['lastUpdated'] == null ? value['lastUpdated'] : value['lastUpdated'].toISOString(),
+        'lastUpdated': value['lastUpdated'] == null ? value['lastUpdated'] : serializeDateTime(value['lastUpdated']),
         'catalogId': value['catalogId'],
         'productId': value['productId'],
         'unitsSold': AnalyticsDataPointWithTrendToJSON(value['unitsSold']),

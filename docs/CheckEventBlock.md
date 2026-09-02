@@ -10,8 +10,8 @@ Name | Type
 `type` | string
 `tags` | Array&lt;string&gt;
 `eventType` | string
-`matchers` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
-`onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
+`matchers` | [Array&lt;Block&gt;](Block.md)
+`onFailure` | [Array&lt;Block&gt;](Block.md)
 
 ## Example
 

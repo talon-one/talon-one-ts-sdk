@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { RuleMetadata } from './RuleMetadata';
 import {
     RuleMetadataFromJSON,
@@ -29,81 +29,55 @@ import {
 export interface IntegrationCampaign {
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof IntegrationCampaign
      */
     applicationId: number;
     /**
      * Unique ID of Campaign.
-     * @type {number}
-     * @memberof IntegrationCampaign
      */
     id: number;
     /**
      * The name of the campaign.
-     * @type {string}
-     * @memberof IntegrationCampaign
      */
     name: string;
     /**
      * A detailed description of the campaign.
-     * @type {string}
-     * @memberof IntegrationCampaign
      */
     description?: string;
     /**
      * Timestamp when the campaign will become active.
-     * @type {Date}
-     * @memberof IntegrationCampaign
      */
     startTime?: Date;
     /**
      * Timestamp when the campaign will become inactive.
-     * @type {Date}
-     * @memberof IntegrationCampaign
      */
     endTime?: Date;
     /**
      * Arbitrary properties associated with this campaign.
-     * @type {object}
-     * @memberof IntegrationCampaign
      */
     attributes?: object;
     /**
      * The state of the campaign.
      * 
-     * @type {IntegrationCampaignStateEnum}
-     * @memberof IntegrationCampaign
      */
     state: IntegrationCampaignStateEnum;
     /**
      * A list of tags for the campaign.
-     * @type {Array<string>}
-     * @memberof IntegrationCampaign
      */
     tags: Array<string>;
     /**
      * The features enabled in this campaign.
-     * @type {Array<IntegrationCampaignFeaturesEnum>}
-     * @memberof IntegrationCampaign
      */
     features: Array<IntegrationCampaignFeaturesEnum>;
     /**
      * A list of rules containing customer-facing details of the rewards defined in the campaign.
-     * @type {Array<RuleMetadata>}
-     * @memberof IntegrationCampaign
      */
     rules: Array<RuleMetadata>;
     /**
      * A list of store IDs linked to this campaign.
-     * @type {Array<number>}
-     * @memberof IntegrationCampaign
      */
     linkedStoreIds?: Array<number>;
     /**
      * A list of audience IDs linked to this campaign.
-     * @type {Array<number>}
-     * @memberof IntegrationCampaign
      */
     linkedAudienceIds?: Array<number>;
 }
@@ -113,7 +87,7 @@ export interface IntegrationCampaign {
  * @export
  */
 export const IntegrationCampaignStateEnum = {
-    Enabled: 'enabled'
+    Enabled: 'enabled',
 } as const;
 export type IntegrationCampaignStateEnum = typeof IntegrationCampaignStateEnum[keyof typeof IntegrationCampaignStateEnum];
 
@@ -126,7 +100,8 @@ export const IntegrationCampaignFeaturesEnum = {
     Loyalty: 'loyalty',
     Giveaways: 'giveaways',
     Strikethrough: 'strikethrough',
-    Achievements: 'achievements'
+    Achievements: 'achievements',
+    AdvancedEvents: 'advancedEvents',
 } as const;
 export type IntegrationCampaignFeaturesEnum = typeof IntegrationCampaignFeaturesEnum[keyof typeof IntegrationCampaignFeaturesEnum];
 
@@ -162,8 +137,8 @@ export function IntegrationCampaignFromJSONTyped(json: any, ignoreDiscriminator:
         'id': json['id'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
-        'endTime': json['endTime'] == null ? undefined : (new Date(json['endTime'])),
+        'startTime': json['startTime'] == null ? undefined : (parseDateTime(json['startTime'])),
+        'endTime': json['endTime'] == null ? undefined : (parseDateTime(json['endTime'])),
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'state': json['state'],
         'tags': json['tags'],
@@ -189,8 +164,8 @@ export function IntegrationCampaignToJSONTyped(value?: IntegrationCampaign | nul
         'id': value['id'],
         'name': value['name'],
         'description': value['description'],
-        'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
-        'endTime': value['endTime'] == null ? value['endTime'] : value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? value['startTime'] : serializeDateTime(value['startTime']),
+        'endTime': value['endTime'] == null ? value['endTime'] : serializeDateTime(value['endTime']),
         'attributes': value['attributes'],
         'state': value['state'],
         'tags': value['tags'],

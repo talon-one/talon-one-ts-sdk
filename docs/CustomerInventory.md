@@ -12,7 +12,7 @@ Name | Type
 `coupons` | [Array&lt;InventoryCoupon&gt;](InventoryCoupon.md)
 `giveaways` | [Array&lt;Giveaway&gt;](Giveaway.md)
 `achievements` | [Array&lt;AchievementProgressWithDefinition&gt;](AchievementProgressWithDefinition.md)
-`rewards` | Array&lt;any&gt;
+`rewards` | [Array&lt;RewardWithUnlocks&gt;](RewardWithUnlocks.md)
 
 ## Example
 

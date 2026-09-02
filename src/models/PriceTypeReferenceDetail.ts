@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface PriceTypeReferenceDetail {
     /**
      * The entity type that references the price type. For example, a campaign or an Application cart item filter.
-     * @type {PriceTypeReferenceDetailReferencingTypeEnum}
-     * @memberof PriceTypeReferenceDetail
      */
     referencingType: PriceTypeReferenceDetailReferencingTypeEnum;
     /**
      * The ID of the entity that references the price type.
-     * @type {number}
-     * @memberof PriceTypeReferenceDetail
      */
     referencingId: number;
     /**
      * The name of the entity that references the price type.
-     * @type {string}
-     * @memberof PriceTypeReferenceDetail
      */
     referencingName: string;
     /**
      * The ID of the Application that contains the entity that references the price type.
-     * @type {number}
-     * @memberof PriceTypeReferenceDetail
      */
     applicationId?: number;
 }
@@ -52,7 +44,7 @@ export interface PriceTypeReferenceDetail {
 export const PriceTypeReferenceDetailReferencingTypeEnum = {
     Campaign: 'Campaign',
     ApplicationCartItemFilter: 'ApplicationCartItemFilter',
-    Template: 'Template'
+    Template: 'Template',
 } as const;
 export type PriceTypeReferenceDetailReferencingTypeEnum = typeof PriceTypeReferenceDetailReferencingTypeEnum[keyof typeof PriceTypeReferenceDetailReferencingTypeEnum];
 

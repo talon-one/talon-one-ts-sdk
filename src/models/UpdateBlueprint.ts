@@ -36,32 +36,22 @@ import {
 export interface UpdateBlueprint {
     /**
      * The display name for the blueprint.
-     * @type {string}
-     * @memberof UpdateBlueprint
      */
     title?: string;
     /**
      * A longer, more detailed description of the blueprint.
-     * @type {string}
-     * @memberof UpdateBlueprint
      */
     description?: string;
     /**
      * Category used to group blueprints.
-     * @type {UpdateBlueprintCategoryEnum}
-     * @memberof UpdateBlueprint
      */
     category?: UpdateBlueprintCategoryEnum;
     /**
      * Replaces the stored rules. Rules should only contain title (no description, as description is at the blueprint level).
-     * @type {Array<CatalogRule>}
-     * @memberof UpdateBlueprint
      */
     rules?: Array<CatalogRule>;
     /**
      * Replaces the stored cart item filters. Cart item filters should only contain name (no description, as description is at the blueprint level).
-     * @type {Array<CartItemFilterTemplate>}
-     * @memberof UpdateBlueprint
      */
     cartItemFilters?: Array<CartItemFilterTemplate>;
 }
@@ -74,7 +64,7 @@ export const UpdateBlueprintCategoryEnum = {
     Promotions: 'promotions',
     Pricing: 'pricing',
     Loyalty: 'loyalty',
-    Custom: 'custom'
+    Custom: 'custom',
 } as const;
 export type UpdateBlueprintCategoryEnum = typeof UpdateBlueprintCategoryEnum[keyof typeof UpdateBlueprintCategoryEnum];
 

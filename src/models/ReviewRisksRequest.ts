@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ReviewRisksRequest {
     /**
      * The IDs of the risks to move to `In review` status.
-     * @type {Array<number>}
-     * @memberof ReviewRisksRequest
      */
     riskIds: Array<number>;
 }

@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface SamlLoginEndpoint {
     /**
      * ID of the SAML login endpoint.
-     * @type {number}
-     * @memberof SamlLoginEndpoint
      */
     id: number;
     /**
      * ID of the SAML service.
-     * @type {string}
-     * @memberof SamlLoginEndpoint
      */
     name: string;
     /**
      * The single sign-on URL.
-     * @type {string}
-     * @memberof SamlLoginEndpoint
      */
     loginURL: string;
 }

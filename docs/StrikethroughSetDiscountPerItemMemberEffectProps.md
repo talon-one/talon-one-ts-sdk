@@ -18,7 +18,7 @@ import type { StrikethroughSetDiscountPerItemMemberEffectProps } from 'talon_one
 // TODO: Update the object below with actual values
 const example = {
   "name": 10% off members only,
-  "value": null,
+  "value": 9,
 } satisfies StrikethroughSetDiscountPerItemMemberEffectProps
 
 console.log(example)

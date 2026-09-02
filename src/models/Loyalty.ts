@@ -36,14 +36,10 @@ import {
 export interface Loyalty {
     /**
      * Displays information about the balances of the loyalty cards.
-     * @type {Array<LoyaltyCard>}
-     * @memberof Loyalty
      */
     cards?: Array<LoyaltyCard>;
     /**
      * Displays information about point balances in profile-based programs.
-     * @type {{ [key: string]: LoyaltyProgramLedgers; }}
-     * @memberof Loyalty
      */
     programs: { [key: string]: LoyaltyProgramLedgers; };
 }

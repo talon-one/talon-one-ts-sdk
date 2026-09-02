@@ -23,7 +23,7 @@ export const IntegrationHubEventType = {
     LoyaltyTierUpgrade: 'LoyaltyTierUpgrade',
     CouponCreated: 'CouponCreated',
     CouponUpdated: 'CouponUpdated',
-    CouponDeleted: 'CouponDeleted'
+    CouponDeleted: 'CouponDeleted',
 } as const;
 export type IntegrationHubEventType = typeof IntegrationHubEventType[keyof typeof IntegrationHubEventType];
 

@@ -25,14 +25,10 @@ import { mapValues } from '../runtime';
 export interface CouponCreatedEffectProps {
     /**
      * The coupon code that was created.
-     * @type {string}
-     * @memberof CouponCreatedEffectProps
      */
     value: string;
     /**
      * The integration identifier of the customer for whom this coupon was created.
-     * @type {string}
-     * @memberof CouponCreatedEffectProps
      */
     profileId: string;
 }

@@ -36,50 +36,34 @@ import {
 export interface LoyaltyBalanceWithTier {
     /**
      * Total amount of points awarded to this customer and available to spend.
-     * @type {number}
-     * @memberof LoyaltyBalanceWithTier
      */
     activePoints?: number;
     /**
      * Total amount of points awarded to this customer but not available until their start date.
-     * @type {number}
-     * @memberof LoyaltyBalanceWithTier
      */
     pendingPoints?: number;
     /**
      * Total amount of points already spent by this customer.
-     * @type {number}
-     * @memberof LoyaltyBalanceWithTier
      */
     spentPoints?: number;
     /**
      * Total amount of points awarded but never redeemed. They cannot be used anymore.
-     * @type {number}
-     * @memberof LoyaltyBalanceWithTier
      */
     expiredPoints?: number;
     /**
      * Total amount of negative points. This implies that `activePoints` is `0`.
-     * @type {number}
-     * @memberof LoyaltyBalanceWithTier
      */
     negativePoints?: number;
     /**
      * Customer's current tier.
-     * @type {Tier}
-     * @memberof LoyaltyBalanceWithTier
      */
     currentTier?: Tier;
     /**
      * 
-     * @type {ProjectedTier}
-     * @memberof LoyaltyBalanceWithTier
      */
     projectedTier?: ProjectedTier;
     /**
      * The number of points required to move up a tier.
-     * @type {number}
-     * @memberof LoyaltyBalanceWithTier
      */
     pointsToNextTier?: number;
     /**
@@ -89,8 +73,6 @@ export interface LoyaltyBalanceWithTier {
      * - Returns `null` if the customer has reached the highest available tier.
      * - Returns the lowest level tier name if the customer is not currently assigned to any tier.
      * 
-     * @type {string}
-     * @memberof LoyaltyBalanceWithTier
      */
     nextTierName?: string;
 }

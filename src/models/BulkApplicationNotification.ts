@@ -29,14 +29,10 @@ import {
 export interface BulkApplicationNotification {
     /**
      * 
-     * @type {number}
-     * @memberof BulkApplicationNotification
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<CampaignEvaluationTreeChangedNotification>}
-     * @memberof BulkApplicationNotification
      */
     data: Array<CampaignEvaluationTreeChangedNotification>;
 }

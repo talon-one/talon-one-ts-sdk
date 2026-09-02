@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { ApplicationMembership } from './ApplicationMembership';
 import {
     ApplicationMembershipFromJSON,
@@ -29,32 +29,22 @@ import {
 export interface SupportCustomerProfile {
     /**
      * The internal ID of the customer profile.
-     * @type {number}
-     * @memberof SupportCustomerProfile
      */
     id: number;
     /**
      * The time the customer profile was created.
-     * @type {Date}
-     * @memberof SupportCustomerProfile
      */
     created: Date;
     /**
      * The integration ID set by your integration layer.
-     * @type {string}
-     * @memberof SupportCustomerProfile
      */
     integrationId: string;
     /**
      * Arbitrary properties associated with this item.
-     * @type {object}
-     * @memberof SupportCustomerProfile
      */
     attributes: object;
     /**
      * The applications the customer belongs to.
-     * @type {Array<ApplicationMembership>}
-     * @memberof SupportCustomerProfile
      */
     applicationMemberships: Array<ApplicationMembership>;
 }
@@ -83,7 +73,7 @@ export function SupportCustomerProfileFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'integrationId': json['integrationId'],
         'attributes': json['attributes'],
         'applicationMemberships': (json['applicationMemberships'] == null ? undefined as any : (json['applicationMemberships'] as Array<any>).map(ApplicationMembershipFromJSON)),
@@ -102,7 +92,7 @@ export function SupportCustomerProfileToJSONTyped(value?: SupportCustomerProfile
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'integrationId': value['integrationId'],
         'attributes': value['attributes'],
         'applicationMemberships': (value['applicationMemberships'] == null ? undefined : (value['applicationMemberships'] as Array<any>).map(ApplicationMembershipToJSON)),

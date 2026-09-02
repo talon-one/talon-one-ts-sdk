@@ -27,8 +27,6 @@ import { mapValues } from '../runtime';
 export interface AcceptReferralEffectProps {
     /**
      * The referral code provided in the session.
-     * @type {string}
-     * @memberof AcceptReferralEffectProps
      */
     value: string;
 }

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface CampaignGroupEntity {
     /**
      * The IDs of the campaign groups that own this entity.
-     * @type {Array<number>}
-     * @memberof CampaignGroupEntity
      */
     campaignGroups?: Array<number>;
 }

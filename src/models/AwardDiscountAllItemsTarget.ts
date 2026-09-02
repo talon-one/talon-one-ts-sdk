@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface AwardDiscountAllItemsTarget {
     /**
      * A target discriminator of type `allItems`.
-     * @type {AwardDiscountAllItemsTargetTypeEnum}
-     * @memberof AwardDiscountAllItemsTarget
      */
     type: AwardDiscountAllItemsTargetTypeEnum;
     /**
      * Whether to distribute the discount proportionally across the targeted items.
-     * @type {boolean}
-     * @memberof AwardDiscountAllItemsTarget
      */
     prorated?: boolean;
 }
@@ -38,7 +34,7 @@ export interface AwardDiscountAllItemsTarget {
  * @export
  */
 export const AwardDiscountAllItemsTargetTypeEnum = {
-    AllItems: 'allItems'
+    AllItems: 'allItems',
 } as const;
 export type AwardDiscountAllItemsTargetTypeEnum = typeof AwardDiscountAllItemsTargetTypeEnum[keyof typeof AwardDiscountAllItemsTargetTypeEnum];
 

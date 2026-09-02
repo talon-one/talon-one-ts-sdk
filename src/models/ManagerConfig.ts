@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ManagerConfig {
     /**
      * 
-     * @type {number}
-     * @memberof ManagerConfig
      */
     schemaVersion: number;
 }

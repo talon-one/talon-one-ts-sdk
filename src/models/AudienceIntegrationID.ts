@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AudienceIntegrationID {
     /**
      * The ID of this audience in the third-party integration.
-     * @type {string}
-     * @memberof AudienceIntegrationID
      */
     integrationId?: string;
 }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface RevisionActivationRequest {
     /**
      * The list of IDs of the users who will receive the activation request.
-     * @type {Array<number>}
-     * @memberof RevisionActivationRequest
      */
     userIds: Array<number>;
     /**
@@ -30,8 +28,6 @@ export interface RevisionActivationRequest {
      * 
      * **Note:** It must be an RFC3339 timestamp string.
      * 
-     * @type {Date}
-     * @memberof RevisionActivationRequest
      */
     activateAt?: Date;
 }
@@ -56,7 +52,7 @@ export function RevisionActivationRequestFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'userIds': json['userIds'],
-        'activateAt': json['activateAt'] == null ? undefined : (new Date(json['activateAt'])),
+        'activateAt': json['activateAt'] == null ? undefined : (parseDateTime(json['activateAt'])),
     };
 }
 
@@ -72,7 +68,7 @@ export function RevisionActivationRequestToJSONTyped(value?: RevisionActivationR
     return {
         
         'userIds': value['userIds'],
-        'activateAt': value['activateAt'] == null ? value['activateAt'] : value['activateAt'].toISOString(),
+        'activateAt': value['activateAt'] == null ? value['activateAt'] : serializeDateTime(value['activateAt']),
     };
 }
 

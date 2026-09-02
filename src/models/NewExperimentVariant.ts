@@ -29,26 +29,18 @@ import {
 export interface NewExperimentVariant {
     /**
      * The name of this variant.
-     * @type {string}
-     * @memberof NewExperimentVariant
      */
     name: string;
     /**
      * The percentage split of this variant. The sum of all variant percentages must be 100.
-     * @type {number}
-     * @memberof NewExperimentVariant
      */
     weight: number;
     /**
      * 
-     * @type {NewRuleset}
-     * @memberof NewExperimentVariant
      */
     ruleset: NewRuleset;
     /**
      * 
-     * @type {boolean}
-     * @memberof NewExperimentVariant
      */
     isPrimary: boolean;
 }

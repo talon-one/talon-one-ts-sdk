@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { Ruleset } from './Ruleset';
 import {
     RulesetFromJSON,
@@ -29,44 +29,30 @@ import {
 export interface ExperimentVariant {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof ExperimentVariant
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof ExperimentVariant
      */
     created: Date;
     /**
      * 
-     * @type {string}
-     * @memberof ExperimentVariant
      */
     name: string;
     /**
      * 
-     * @type {number}
-     * @memberof ExperimentVariant
      */
     experimentId?: number;
     /**
      * 
-     * @type {Ruleset}
-     * @memberof ExperimentVariant
      */
     ruleset?: Ruleset;
     /**
      * 
-     * @type {number}
-     * @memberof ExperimentVariant
      */
     weight?: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof ExperimentVariant
      */
     isPrimary: boolean;
 }
@@ -94,7 +80,7 @@ export function ExperimentVariantFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'name': json['name'],
         'experimentId': json['experimentId'] == null ? undefined : json['experimentId'],
         'ruleset': json['ruleset'] == null ? undefined : RulesetFromJSON(json['ruleset']),
@@ -115,7 +101,7 @@ export function ExperimentVariantToJSONTyped(value?: ExperimentVariant | null, i
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'name': value['name'],
         'experimentId': value['experimentId'],
         'ruleset': RulesetToJSON(value['ruleset']),

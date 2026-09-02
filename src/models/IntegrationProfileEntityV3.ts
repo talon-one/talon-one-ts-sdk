@@ -24,8 +24,6 @@ export interface IntegrationProfileEntityV3 {
      * 
      * **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
      * 
-     * @type {string}
-     * @memberof IntegrationProfileEntityV3
      */
     profileId: string;
 }

@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface Notification {
     /**
      * id of the notification.
-     * @type {number}
-     * @memberof Notification
      */
     id: number;
     /**
      * name of the notification.
-     * @type {string}
-     * @memberof Notification
      */
     name: string;
     /**
      * description of the notification.
-     * @type {string}
-     * @memberof Notification
      */
     description: string;
 }

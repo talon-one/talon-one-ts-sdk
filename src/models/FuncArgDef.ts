@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface FuncArgDef {
     /**
      * The type of value this argument expects.
-     * @type {FuncArgDefTypeEnum}
-     * @memberof FuncArgDef
      */
     type: FuncArgDefTypeEnum;
     /**
      * A campaigner-friendly description of the argument, this will also be shown in the rule editor.
-     * @type {string}
-     * @memberof FuncArgDef
      */
     description?: string;
 }
@@ -43,7 +39,7 @@ export const FuncArgDefTypeEnum = {
     Number: 'number',
     Time: 'time',
     ListString: '(list string)',
-    ListNumber: '(list number)'
+    ListNumber: '(list number)',
 } as const;
 export type FuncArgDefTypeEnum = typeof FuncArgDefTypeEnum[keyof typeof FuncArgDefTypeEnum];
 

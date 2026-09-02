@@ -43,95 +43,65 @@ import {
 export interface NewApplication {
     /**
      * The name of this application.
-     * @type {string}
-     * @memberof NewApplication
      */
     name: string;
     /**
      * A longer description of the application.
-     * @type {string}
-     * @memberof NewApplication
      */
     description?: string;
     /**
      * A string containing an IANA timezone descriptor.
-     * @type {string}
-     * @memberof NewApplication
      */
     timezone: string;
     /**
      * The default currency for new customer sessions.
-     * @type {string}
-     * @memberof NewApplication
      */
     currency: string;
     /**
      * The case sensitivity behavior to check coupon codes in the campaigns of this Application.
-     * @type {NewApplicationCaseSensitivityEnum}
-     * @memberof NewApplication
      */
     caseSensitivity?: NewApplicationCaseSensitivityEnum;
     /**
      * Arbitrary properties associated with this campaign.
-     * @type {object}
-     * @memberof NewApplication
      */
     attributes?: object;
     /**
      * Default limits for campaigns created in this application.
-     * @type {Array<LimitConfig>}
-     * @memberof NewApplication
      */
     limits?: Array<LimitConfig>;
     /**
      * The default scope to apply `setDiscount` effects on if no scope was provided with the effect.
      * 
-     * @type {NewApplicationDefaultDiscountScopeEnum}
-     * @memberof NewApplication
      */
     defaultDiscountScope?: NewApplicationDefaultDiscountScopeEnum;
     /**
      * Indicates if discounts should cascade for this Application.
-     * @type {boolean}
-     * @memberof NewApplication
      */
     enableCascadingDiscounts?: boolean;
     /**
      * Indicates if cart items of quantity larger than one should be separated into different items of quantity one.
      * 
-     * @type {boolean}
-     * @memberof NewApplication
      */
     enableFlattenedCartItems?: boolean;
     /**
      * 
-     * @type {AttributesSettings}
-     * @memberof NewApplication
      */
     attributesSettings?: AttributesSettings;
     /**
      * Indicates if this is a live or sandbox Application.
-     * @type {boolean}
-     * @memberof NewApplication
      */
     sandbox?: boolean;
     /**
      * Indicates if this Application supports partial discounts.
-     * @type {boolean}
-     * @memberof NewApplication
      */
     enablePartialDiscounts?: boolean;
     /**
      * The default scope to apply `setDiscountPerItem` effects on if no scope was provided with the effect.
      * 
-     * @type {NewApplicationDefaultDiscountAdditionalCostPerItemScopeEnum}
-     * @memberof NewApplication
      */
     defaultDiscountAdditionalCostPerItemScope?: NewApplicationDefaultDiscountAdditionalCostPerItemScopeEnum;
     /**
      * Hex key for HMAC-signing API calls as coming from this application (16 hex digits).
-     * @type {string}
-     * @memberof NewApplication
      */
     key?: string;
     /**
@@ -139,14 +109,10 @@ export interface NewApplication {
      * 
      * **Important:** After this feature is enabled, it cannot be disabled.
      * 
-     * @type {boolean}
-     * @memberof NewApplication
      */
     enableCampaignStateManagement?: boolean;
     /**
      * 
-     * @type {BestPriorPriceSettings}
-     * @memberof NewApplication
      */
     bestPriorPriceSettings?: BestPriorPriceSettings;
 }
@@ -158,7 +124,7 @@ export interface NewApplication {
 export const NewApplicationCaseSensitivityEnum = {
     Sensitive: 'sensitive',
     InsensitiveUppercase: 'insensitive-uppercase',
-    InsensitiveLowercase: 'insensitive-lowercase'
+    InsensitiveLowercase: 'insensitive-lowercase',
 } as const;
 export type NewApplicationCaseSensitivityEnum = typeof NewApplicationCaseSensitivityEnum[keyof typeof NewApplicationCaseSensitivityEnum];
 
@@ -168,7 +134,7 @@ export type NewApplicationCaseSensitivityEnum = typeof NewApplicationCaseSensiti
 export const NewApplicationDefaultDiscountScopeEnum = {
     SessionTotal: 'sessionTotal',
     CartItems: 'cartItems',
-    AdditionalCosts: 'additionalCosts'
+    AdditionalCosts: 'additionalCosts',
 } as const;
 export type NewApplicationDefaultDiscountScopeEnum = typeof NewApplicationDefaultDiscountScopeEnum[keyof typeof NewApplicationDefaultDiscountScopeEnum];
 
@@ -178,7 +144,7 @@ export type NewApplicationDefaultDiscountScopeEnum = typeof NewApplicationDefaul
 export const NewApplicationDefaultDiscountAdditionalCostPerItemScopeEnum = {
     Price: 'price',
     ItemTotal: 'itemTotal',
-    AdditionalCosts: 'additionalCosts'
+    AdditionalCosts: 'additionalCosts',
 } as const;
 export type NewApplicationDefaultDiscountAdditionalCostPerItemScopeEnum = typeof NewApplicationDefaultDiscountAdditionalCostPerItemScopeEnum[keyof typeof NewApplicationDefaultDiscountAdditionalCostPerItemScopeEnum];
 

@@ -21,50 +21,34 @@ import { mapValues } from '../runtime';
 export interface SupportRequestInput {
     /**
      * Identifier of the Application connected to the loyalty program or the campaign. It is displayed in your Talon.One deployment URL.
-     * @type {number}
-     * @memberof SupportRequestInput
      */
     applicationId: number;
     /**
      * Identifier of the campaign where the coupon or gift card is created.
-     * @type {number}
-     * @memberof SupportRequestInput
      */
     campaignId?: number;
     /**
      * Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
-     * @type {number}
-     * @memberof SupportRequestInput
      */
     loyaltyProgramId?: number;
     /**
      * Identifier of the subledger the points are added to or deducted from. If there is no existing subledger with this ID, the subledger is created automatically.
-     * @type {number}
-     * @memberof SupportRequestInput
      */
     subledgerId?: number;
     /**
      * Integration ID of the customer profile linked to the support request.
-     * @type {string}
-     * @memberof SupportRequestInput
      */
     customerProfileId: string;
     /**
      * Type of reward requested, including gift cards, personal coupons, and loyalty point additions or deductions.
-     * @type {SupportRequestInputRequestTypeEnum}
-     * @memberof SupportRequestInput
      */
     requestType: SupportRequestInputRequestTypeEnum;
     /**
      * Requested monetary balance of the gift card or the number of loyalty points to be added or deducted.
-     * @type {number}
-     * @memberof SupportRequestInput
      */
     requestValue?: number;
     /**
      * Notes attached to the support request.
-     * @type {string}
-     * @memberof SupportRequestInput
      */
     requestNote: string;
 }
@@ -77,7 +61,7 @@ export const SupportRequestInputRequestTypeEnum = {
     GiftCard: 'gift_card',
     PersonalCoupon: 'personal_coupon',
     LoyaltyPointsAdded: 'loyalty_points_added',
-    LoyaltyPointsDeducted: 'loyalty_points_deducted'
+    LoyaltyPointsDeducted: 'loyalty_points_deducted',
 } as const;
 export type SupportRequestInputRequestTypeEnum = typeof SupportRequestInputRequestTypeEnum[keyof typeof SupportRequestInputRequestTypeEnum];
 

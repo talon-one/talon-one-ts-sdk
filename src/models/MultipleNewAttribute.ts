@@ -29,8 +29,6 @@ import {
 export interface MultipleNewAttribute {
     /**
      * 
-     * @type {Array<NewAttribute>}
-     * @memberof MultipleNewAttribute
      */
     attributes?: Array<NewAttribute>;
 }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * Information about the event that triggered the strikethrough labeling.
  * @export
@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface StrikethroughTrigger {
     /**
      * The ID of the event that triggered the strikethrough labeling.
-     * @type {number}
-     * @memberof StrikethroughTrigger
      */
     id: number;
     /**
      * The type of event that triggered the strikethrough labeling.
-     * @type {string}
-     * @memberof StrikethroughTrigger
      */
     type: string;
     /**
      * The creation time of the event that triggered the strikethrough labeling.
-     * @type {Date}
-     * @memberof StrikethroughTrigger
      */
     triggeredAt: Date;
     /**
      * The total number of items affected by the event that triggered the strikethrough labeling.
-     * @type {number}
-     * @memberof StrikethroughTrigger
      */
     totalAffectedItems: number;
     /**
      * The arbitrary properties associated with this trigger type.
-     * @type {object}
-     * @memberof StrikethroughTrigger
      */
     payload: object;
 }
@@ -76,7 +66,7 @@ export function StrikethroughTriggerFromJSONTyped(json: any, ignoreDiscriminator
         
         'id': json['id'],
         'type': json['type'],
-        'triggeredAt': (json['triggeredAt'] == null ? undefined as any : new Date(json['triggeredAt'])),
+        'triggeredAt': (json['triggeredAt'] == null ? json['triggeredAt'] : parseDateTime(json['triggeredAt'])),
         'totalAffectedItems': json['totalAffectedItems'],
         'payload': json['payload'],
     };
@@ -95,7 +85,7 @@ export function StrikethroughTriggerToJSONTyped(value?: StrikethroughTrigger | n
         
         'id': value['id'],
         'type': value['type'],
-        'triggeredAt': value['triggeredAt'] == null ? undefined : value['triggeredAt'].toISOString(),
+        'triggeredAt': value['triggeredAt'] == null ? undefined : serializeDateTime(value['triggeredAt']),
         'totalAffectedItems': value['totalAffectedItems'],
         'payload': value['payload'],
     };

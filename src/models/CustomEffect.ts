@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { TemplateArgDef } from './TemplateArgDef';
 import {
     TemplateArgDefFromJSON,
@@ -29,86 +29,58 @@ import {
 export interface CustomEffect {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof CustomEffect
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof CustomEffect
      */
     created: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof CustomEffect
      */
     accountId: number;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof CustomEffect
      */
     modified: Date;
     /**
      * The IDs of the Applications that are related to this entity.
-     * @type {Array<number>}
-     * @memberof CustomEffect
      */
     applicationIds: Array<number>;
     /**
      * Indicates if this effect is per item or not.
-     * @type {boolean}
-     * @memberof CustomEffect
      */
     isPerItem?: boolean;
     /**
      * The name of this effect.
-     * @type {string}
-     * @memberof CustomEffect
      */
     name: string;
     /**
      * The title of this effect.
-     * @type {string}
-     * @memberof CustomEffect
      */
     title: string;
     /**
      * The JSON payload of this effect.
-     * @type {string}
-     * @memberof CustomEffect
      */
     payload: string;
     /**
      * The description of this effect.
-     * @type {string}
-     * @memberof CustomEffect
      */
     description?: string;
     /**
      * Determines if this effect is active.
-     * @type {boolean}
-     * @memberof CustomEffect
      */
     enabled: boolean;
     /**
      * Array of template argument definitions.
-     * @type {Array<TemplateArgDef>}
-     * @memberof CustomEffect
      */
     params?: Array<TemplateArgDef>;
     /**
      * ID of the user who last updated this effect if available.
-     * @type {number}
-     * @memberof CustomEffect
      */
     modifiedBy?: number;
     /**
      * ID of the user who created this effect.
-     * @type {number}
-     * @memberof CustomEffect
      */
     createdBy: number;
 }
@@ -142,9 +114,9 @@ export function CustomEffectFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'accountId': json['accountId'],
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'applicationIds': json['applicationIds'],
         'isPerItem': json['isPerItem'] == null ? undefined : json['isPerItem'],
         'name': json['name'],
@@ -170,9 +142,9 @@ export function CustomEffectToJSONTyped(value?: CustomEffect | null, ignoreDiscr
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'accountId': value['accountId'],
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'applicationIds': value['applicationIds'],
         'isPerItem': value['isPerItem'],
         'name': value['name'],

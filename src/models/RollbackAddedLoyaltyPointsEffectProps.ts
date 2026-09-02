@@ -30,50 +30,34 @@ import { mapValues } from '../runtime';
 export interface RollbackAddedLoyaltyPointsEffectProps {
     /**
      * The ID of the loyalty program where these points were rolled back.
-     * @type {number}
-     * @memberof RollbackAddedLoyaltyPointsEffectProps
      */
     programId: number;
     /**
      * The ID of the subledger within the loyalty program where these points were rolled back.
-     * @type {string}
-     * @memberof RollbackAddedLoyaltyPointsEffectProps
      */
     subLedgerId: string;
     /**
      * The amount of points that were rolled back.
-     * @type {number}
-     * @memberof RollbackAddedLoyaltyPointsEffectProps
      */
     value: number;
     /**
      * The user for whom these points were rolled back.
-     * @type {string}
-     * @memberof RollbackAddedLoyaltyPointsEffectProps
      */
     recipientIntegrationId: string;
     /**
      * The identifier of this loyalty point transaction.
-     * @type {string}
-     * @memberof RollbackAddedLoyaltyPointsEffectProps
      */
     transactionUUID: string;
     /**
      * (_Add points per cart item_ only.) The index of the item in the `cartItem` object for which these points were rolled back.
-     * @type {number}
-     * @memberof RollbackAddedLoyaltyPointsEffectProps
      */
     cartItemPosition?: number;
     /**
      * (_Add points per cart item_ ) The index of the item unit in its line item.
-     * @type {number}
-     * @memberof RollbackAddedLoyaltyPointsEffectProps
      */
     cartItemSubPosition?: number;
     /**
      * The identifier of the card on which these points were originally added.
-     * @type {string}
-     * @memberof RollbackAddedLoyaltyPointsEffectProps
      */
     cardIdentifier?: string;
 }

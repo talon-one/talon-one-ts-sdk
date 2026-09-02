@@ -29,14 +29,10 @@ import {
 export interface OktaEvent {
     /**
      * Event type defining an action.
-     * @type {string}
-     * @memberof OktaEvent
      */
     eventType: string;
     /**
      * 
-     * @type {Array<OktaEventTarget>}
-     * @memberof OktaEvent
      */
     target: Array<OktaEventTarget>;
 }

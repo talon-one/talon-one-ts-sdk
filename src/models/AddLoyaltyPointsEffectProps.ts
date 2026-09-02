@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * This effect indicates that a defined amount of loyalty points was successfully added to the customer's profile or to a loyalty card.
  * 
@@ -35,98 +35,66 @@ import { mapValues } from '../runtime';
 export interface AddLoyaltyPointsEffectProps {
     /**
      * The reason of this loyalty point addition.
-     * @type {string}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     name: string;
     /**
      * The ID of the loyalty program where these points were added.
-     * @type {number}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     programId: number;
     /**
      * The ID of the subledger within the loyalty program where these points were added.
-     * @type {string}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     subLedgerId: string;
     /**
      * The amount of points that were added.
-     * @type {number}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     value: number;
     /**
      * (Partial rewards enabled only) The amount of loyalty points to be awarded without considering budget limitations.
-     * @type {number}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     desiredValue?: number;
     /**
      * The user for whom these points were added.
-     * @type {string}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     recipientIntegrationId: string;
     /**
      * The date after which the added points will be valid.
-     * @type {Date}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     startDate?: Date;
     /**
      * The date after which the added points will expire.
-     * @type {Date}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     expiryDate?: Date;
     /**
      * The identifier of this loyalty point transaction.
-     * @type {string}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     transactionUUID: string;
     /**
      * (_Add points per cart item_ only.) The index of the item in the `cartItem` object for which these points were added.
-     * @type {number}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     cartItemPosition?: number;
     /**
      * (_Add points per cart item_ ) The index of the item unit in its line item.
-     * @type {number}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     cartItemSubPosition?: number;
     /**
      * The identifier of the card on which these points were added.
-     * @type {string}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     cardIdentifier?: string;
     /**
      * _(With bundles only)_ The position of the specific bundle in the list of bundles created from the same bundle definition.
-     * @type {number}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     bundleIndex?: number;
     /**
      * _(With bundles only)_ The name of the bundle definition.
-     * @type {string}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     bundleName?: string;
     /**
      * Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.
-     * @type {boolean}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     awaitsActivation?: boolean;
     /**
      * The duration for which the points remain active, calculated relative to their start date.
-     * @type {string}
-     * @memberof AddLoyaltyPointsEffectProps
      */
     validityDuration?: string;
 }
@@ -161,8 +129,8 @@ export function AddLoyaltyPointsEffectPropsFromJSONTyped(json: any, ignoreDiscri
         'value': json['value'],
         'desiredValue': json['desiredValue'] == null ? undefined : json['desiredValue'],
         'recipientIntegrationId': json['recipientIntegrationId'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'transactionUUID': json['transactionUUID'],
         'cartItemPosition': json['cartItemPosition'] == null ? undefined : json['cartItemPosition'],
         'cartItemSubPosition': json['cartItemSubPosition'] == null ? undefined : json['cartItemSubPosition'],
@@ -191,8 +159,8 @@ export function AddLoyaltyPointsEffectPropsToJSONTyped(value?: AddLoyaltyPointsE
         'value': value['value'],
         'desiredValue': value['desiredValue'],
         'recipientIntegrationId': value['recipientIntegrationId'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'transactionUUID': value['transactionUUID'],
         'cartItemPosition': value['cartItemPosition'],
         'cartItemSubPosition': value['cartItemSubPosition'],

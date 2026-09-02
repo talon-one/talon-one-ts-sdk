@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ScimServiceProviderConfigResponseChangePassword {
     /**
      * Indicates whether the service provider supports password changes via the SCIM API.
-     * @type {boolean}
-     * @memberof ScimServiceProviderConfigResponseChangePassword
      */
     supported?: boolean;
 }

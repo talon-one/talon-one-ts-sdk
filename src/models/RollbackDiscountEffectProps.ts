@@ -23,38 +23,26 @@ import { mapValues } from '../runtime';
 export interface RollbackDiscountEffectProps {
     /**
      * The name of the discount effect that was rolled back.
-     * @type {string}
-     * @memberof RollbackDiscountEffectProps
      */
     name: string;
     /**
      * The monetary value of the discount that was rolled back.
-     * @type {number}
-     * @memberof RollbackDiscountEffectProps
      */
     value: number;
     /**
      * The index of the item in the `cartItem` object whose discount was rolled back, or the unit containing the additional cost whose discount was rolled back.
-     * @type {number}
-     * @memberof RollbackDiscountEffectProps
      */
     cartItemPosition?: number;
     /**
      * The index of the item unit in its line item for which the discount was rolled back.
-     * @type {number}
-     * @memberof RollbackDiscountEffectProps
      */
     cartItemSubPosition?: number;
     /**
      * _Only when rolling back [setDiscountPerAdditionalCost](https://docs.talon.one/docs/dev/integration-api/api-effects#setdiscountperadditionalcost) and [setDiscountPerAdditionalCostPerItem](https://docs.talon.one/docs/dev/integration-api/api-effects#setdiscountperadditionalcostperitem)_ The ID of the additional cost to be discounted.
-     * @type {number}
-     * @memberof RollbackDiscountEffectProps
      */
     additionalCostId?: number;
     /**
      * The API name of the additional cost whose discount was rolled back.
-     * @type {string}
-     * @memberof RollbackDiscountEffectProps
      */
     additionalCost?: string;
     /**
@@ -62,8 +50,6 @@ export interface RollbackDiscountEffectProps {
      * 
      * - For a discount per session, it can be one of `cartItems`, `additionalCosts` or `sessionTotal`
      * - For a discount per item, it can be one of `price`, `additionalCosts` or `itemTotal`
-     * @type {string}
-     * @memberof RollbackDiscountEffectProps
      */
     scope?: string;
 }

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface ScalarCheckAttributeBlock {
     /**
      * The comparison operator applied to the attribute.
-     * @type {ScalarCheckAttributeBlockOperatorEnum}
-     * @memberof ScalarCheckAttributeBlock
      */
     operator?: ScalarCheckAttributeBlockOperatorEnum;
     /**
-     * 
-     * @type {any}
-     * @memberof ScalarCheckAttributeBlock
+     * The comparison value for this operator.
      */
     value: any | null;
 }
@@ -54,7 +50,7 @@ export const ScalarCheckAttributeBlockOperatorEnum = {
     InCollection: 'inCollection',
     NotInCollection: 'not(inCollection)',
     After: 'after',
-    Before: 'before'
+    Before: 'before',
 } as const;
 export type ScalarCheckAttributeBlockOperatorEnum = typeof ScalarCheckAttributeBlockOperatorEnum[keyof typeof ScalarCheckAttributeBlockOperatorEnum];
 

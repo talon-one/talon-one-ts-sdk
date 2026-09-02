@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PromotionBlock } from './PromotionBlock';
+import type { Block } from './Block';
 import {
-    PromotionBlockFromJSON,
-    PromotionBlockFromJSONTyped,
-    PromotionBlockToJSON,
-    PromotionBlockToJSONTyped,
-} from './PromotionBlock';
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
 
 /**
  * 
@@ -29,58 +29,40 @@ import {
 export interface AwardItemBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof AwardItemBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof AwardItemBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof AwardItemBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * The stock keeping unit of the item to award.
-     * @type {string}
-     * @memberof AwardItemBlock
      */
     sku: string;
     /**
      * The display name of the item to award.
-     * @type {string}
-     * @memberof AwardItemBlock
      */
     name: string;
     /**
      * The number of items to award. Supports template placeholders (e.g. "{{$Session.Total / 2}}") for dynamic quantities.
-     * @type {string}
-     * @memberof AwardItemBlock
      */
     quantity: string;
     /**
      * When set to `true`, applies a partial item reward if the remaining budget is insufficient to award the full reward.
-     * @type {boolean}
-     * @memberof AwardItemBlock
      */
     partial?: boolean;
     /**
      * Blocks evaluated when this block fails or returns false.
-     * @type {Array<PromotionBlock>}
-     * @memberof AwardItemBlock
      */
-    onFailure?: Array<PromotionBlock>;
+    onFailure?: Array<Block>;
     /**
      * Named error handlers evaluated when a specific error occurs.
-     * @type {{ [key: string]: Array<PromotionBlock>; }}
-     * @memberof AwardItemBlock
      */
-    onError?: { [key: string]: Array<PromotionBlock>; };
+    onError?: { [key: string]: Array<Block>; };
 }
 
 /**
@@ -88,7 +70,6 @@ export interface AwardItemBlock {
  */
 export function instanceOfAwardItemBlock(value: object): value is AwardItemBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('sku' in _v) || _v['sku'] === undefined) return false;
     if (!('name' in _v) || _v['name'] === undefined) return false;
@@ -106,14 +87,14 @@ export function AwardItemBlockFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'sku': json['sku'],
         'name': json['name'],
         'quantity': json['quantity'],
         'partial': json['partial'] == null ? undefined : json['partial'],
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
         'onError': json['onError'] == null ? undefined : json['onError'],
     };
 }
@@ -122,21 +103,19 @@ export function AwardItemBlockToJSON(json: any): AwardItemBlock {
     return AwardItemBlockToJSONTyped(json, false);
 }
 
-export function AwardItemBlockToJSONTyped(value?: AwardItemBlock | null, ignoreDiscriminator: boolean = false): any {
+export function AwardItemBlockToJSONTyped(value?: Omit<AwardItemBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'sku': value['sku'],
         'name': value['name'],
         'quantity': value['quantity'],
         'partial': value['partial'],
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
         'onError': value['onError'],
     };
 }

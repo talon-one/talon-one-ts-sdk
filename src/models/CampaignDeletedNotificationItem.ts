@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { Campaign } from './Campaign';
 import {
     CampaignFromJSON,
@@ -30,20 +30,14 @@ export interface CampaignDeletedNotificationItem {
     /**
      * The type of the event. Can be one of the following: ['campaign_state_changed', 'campaign_ruleset_changed', 'campaign_edited', 'campaign_created', 'campaign_deleted']
      * 
-     * @type {string}
-     * @memberof CampaignDeletedNotificationItem
      */
     event: string;
     /**
      * The campaign whose state changed.
-     * @type {Campaign}
-     * @memberof CampaignDeletedNotificationItem
      */
     campaign: Campaign;
     /**
      * Time when the campaign was deleted.
-     * @type {Date}
-     * @memberof CampaignDeletedNotificationItem
      */
     deletedAt: Date;
 }
@@ -71,7 +65,7 @@ export function CampaignDeletedNotificationItemFromJSONTyped(json: any, ignoreDi
         
         'event': json['Event'],
         'campaign': CampaignFromJSON(json['campaign']),
-        'deletedAt': (json['deletedAt'] == null ? undefined as any : new Date(json['deletedAt'])),
+        'deletedAt': (json['deletedAt'] == null ? json['deletedAt'] : parseDateTime(json['deletedAt'])),
     };
 }
 
@@ -88,7 +82,7 @@ export function CampaignDeletedNotificationItemToJSONTyped(value?: CampaignDelet
         
         'Event': value['event'],
         'campaign': CampaignToJSON(value['campaign']),
-        'deletedAt': value['deletedAt'] == null ? undefined : value['deletedAt'].toISOString(),
+        'deletedAt': value['deletedAt'] == null ? undefined : serializeDateTime(value['deletedAt']),
     };
 }
 

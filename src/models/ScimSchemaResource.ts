@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface ScimSchemaResource {
     /**
      * ID of the resource.
-     * @type {string}
-     * @memberof ScimSchemaResource
      */
     id?: string;
     /**
      * Name of the resource.
-     * @type {string}
-     * @memberof ScimSchemaResource
      */
     name?: string;
     /**
      * Human-readable description of the schema resource.
-     * @type {string}
-     * @memberof ScimSchemaResource
      */
     description?: string;
     /**
      * 
-     * @type {Array<object>}
-     * @memberof ScimSchemaResource
      */
     attributes?: Array<object>;
 }

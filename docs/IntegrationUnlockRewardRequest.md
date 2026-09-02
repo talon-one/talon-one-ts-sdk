@@ -1,7 +1,7 @@
 
 # IntegrationUnlockRewardRequest
 
-The request body for unlocking a reward for a customer profile.
+The request body for unlocking a reward for a customer profile, optionally using the balance of one of the customer\'s loyalty cards. 
 
 ## Properties
 
@@ -9,6 +9,7 @@ Name | Type
 ------------ | -------------
 `integrationId` | string
 `profileIntegrationId` | string
+`cardIdentifier` | string
 `loyaltyProgramId` | number
 `subledgerId` | string
 `responseContent` | Array&lt;string&gt;
@@ -22,9 +23,10 @@ import type { IntegrationUnlockRewardRequest } from 'talon_one_sdk'
 const example = {
   "integrationId": reward-unlock-123,
   "profileIntegrationId": customer1,
+  "cardIdentifier": summer-loyalty-card-0543,
   "loyaltyProgramId": 2,
   "subledgerId": sub1,
-  "responseContent": ["customerProfile","effects"],
+  "responseContent": [customerProfile, loyalty],
 } satisfies IntegrationUnlockRewardRequest
 
 console.log(example)

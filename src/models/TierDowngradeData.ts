@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,50 +21,34 @@ import { mapValues } from '../runtime';
 export interface TierDowngradeData {
     /**
      * The integration ID of the customer profile whose tier was downgraded.
-     * @type {string}
-     * @memberof TierDowngradeData
      */
     customerProfileID: string;
     /**
      * The ID of the loyalty program.
-     * @type {number}
-     * @memberof TierDowngradeData
      */
     loyaltyProgramID: number;
     /**
      * The ID of the subledger, when applicable. If this field is empty, the main ledger is used.
-     * @type {string}
-     * @memberof TierDowngradeData
      */
     subledgerID: string;
     /**
      * The name of the customer's current tier.
-     * @type {string}
-     * @memberof TierDowngradeData
      */
     currentTier?: string;
     /**
      * The number of points the customer had at the time of tier downgrade.
-     * @type {number}
-     * @memberof TierDowngradeData
      */
     currentPoints: number;
     /**
      * The name of the customer's previous tier.
-     * @type {string}
-     * @memberof TierDowngradeData
      */
     oldTier: string;
     /**
      * The exact date and time the tier expires.
-     * @type {Date}
-     * @memberof TierDowngradeData
      */
     tierExpirationDate?: Date;
     /**
      * The exact date and time the tier was changed.
-     * @type {Date}
-     * @memberof TierDowngradeData
      */
     timestampOfTierChange: Date;
 }
@@ -99,8 +83,8 @@ export function TierDowngradeDataFromJSONTyped(json: any, ignoreDiscriminator: b
         'currentTier': json['CurrentTier'] == null ? undefined : json['CurrentTier'],
         'currentPoints': json['CurrentPoints'],
         'oldTier': json['OldTier'],
-        'tierExpirationDate': json['TierExpirationDate'] == null ? undefined : (new Date(json['TierExpirationDate'])),
-        'timestampOfTierChange': (json['TimestampOfTierChange'] == null ? undefined as any : new Date(json['TimestampOfTierChange'])),
+        'tierExpirationDate': json['TierExpirationDate'] == null ? undefined : (parseDateTime(json['TierExpirationDate'])),
+        'timestampOfTierChange': (json['TimestampOfTierChange'] == null ? json['TimestampOfTierChange'] : parseDateTime(json['TimestampOfTierChange'])),
     };
 }
 
@@ -121,8 +105,8 @@ export function TierDowngradeDataToJSONTyped(value?: TierDowngradeData | null, i
         'CurrentTier': value['currentTier'],
         'CurrentPoints': value['currentPoints'],
         'OldTier': value['oldTier'],
-        'TierExpirationDate': value['tierExpirationDate'] == null ? value['tierExpirationDate'] : value['tierExpirationDate'].toISOString(),
-        'TimestampOfTierChange': value['timestampOfTierChange'] == null ? undefined : value['timestampOfTierChange'].toISOString(),
+        'TierExpirationDate': value['tierExpirationDate'] == null ? value['tierExpirationDate'] : serializeDateTime(value['tierExpirationDate']),
+        'TimestampOfTierChange': value['timestampOfTierChange'] == null ? undefined : serializeDateTime(value['timestampOfTierChange']),
     };
 }
 

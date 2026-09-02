@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,21 +21,15 @@ import { mapValues } from '../runtime';
 export interface ReferralConstraints {
     /**
      * Timestamp at which point the referral code becomes valid.
-     * @type {Date}
-     * @memberof ReferralConstraints
      */
     startDate?: Date;
     /**
      * Expiration date of the referral code. Referral never expires if this is omitted.
-     * @type {Date}
-     * @memberof ReferralConstraints
      */
     expiryDate?: Date;
     /**
      * The number of times a referral code can be used. `0` means no limit but any campaign usage limits will still apply.
      * 
-     * @type {number}
-     * @memberof ReferralConstraints
      */
     usageLimit?: number;
 }
@@ -58,8 +52,8 @@ export function ReferralConstraintsFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
     };
 }
@@ -75,8 +69,8 @@ export function ReferralConstraintsToJSONTyped(value?: ReferralConstraints | nul
 
     return {
         
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'usageLimit': value['usageLimit'],
     };
 }

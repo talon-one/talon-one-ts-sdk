@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,62 +21,42 @@ import { mapValues } from '../runtime';
 export interface TierUpgradeData {
     /**
      * The integration ID of the customer profile whose tier was upgraded.
-     * @type {string}
-     * @memberof TierUpgradeData
      */
     customerProfileID: string;
     /**
      * The ID of the loyalty program.
-     * @type {number}
-     * @memberof TierUpgradeData
      */
     loyaltyProgramID: number;
     /**
      * The ID of the subledger, when applicable. If this field is empty, the main ledger is used.
-     * @type {string}
-     * @memberof TierUpgradeData
      */
     subledgerID: string;
     /**
      * The name of the customer's current tier.
-     * @type {string}
-     * @memberof TierUpgradeData
      */
     currentTier: string;
     /**
      * The number of points the customer had at the time of tier upgrade.
-     * @type {number}
-     * @memberof TierUpgradeData
      */
     currentPoints: number;
     /**
      * The name of the customer's previous tier.
-     * @type {string}
-     * @memberof TierUpgradeData
      */
     oldTier?: string;
     /**
      * The number of points needed for a customer to reach the next tier.
-     * @type {number}
-     * @memberof TierUpgradeData
      */
     pointsRequiredToTheNextTier?: number;
     /**
      * The name of the customer's next tier.
-     * @type {string}
-     * @memberof TierUpgradeData
      */
     nextTier?: string;
     /**
      * The exact date and time the tier expires.
-     * @type {Date}
-     * @memberof TierUpgradeData
      */
     tierExpirationDate: Date;
     /**
      * The exact date and time the tier was changed.
-     * @type {Date}
-     * @memberof TierUpgradeData
      */
     timestampOfTierChange: Date;
 }
@@ -114,8 +94,8 @@ export function TierUpgradeDataFromJSONTyped(json: any, ignoreDiscriminator: boo
         'oldTier': json['OldTier'] == null ? undefined : json['OldTier'],
         'pointsRequiredToTheNextTier': json['PointsRequiredToTheNextTier'] == null ? undefined : json['PointsRequiredToTheNextTier'],
         'nextTier': json['NextTier'] == null ? undefined : json['NextTier'],
-        'tierExpirationDate': (json['TierExpirationDate'] == null ? undefined as any : new Date(json['TierExpirationDate'])),
-        'timestampOfTierChange': (json['TimestampOfTierChange'] == null ? undefined as any : new Date(json['TimestampOfTierChange'])),
+        'tierExpirationDate': (json['TierExpirationDate'] == null ? json['TierExpirationDate'] : parseDateTime(json['TierExpirationDate'])),
+        'timestampOfTierChange': (json['TimestampOfTierChange'] == null ? json['TimestampOfTierChange'] : parseDateTime(json['TimestampOfTierChange'])),
     };
 }
 
@@ -138,8 +118,8 @@ export function TierUpgradeDataToJSONTyped(value?: TierUpgradeData | null, ignor
         'OldTier': value['oldTier'],
         'PointsRequiredToTheNextTier': value['pointsRequiredToTheNextTier'],
         'NextTier': value['nextTier'],
-        'TierExpirationDate': value['tierExpirationDate'] == null ? undefined : value['tierExpirationDate'].toISOString(),
-        'TimestampOfTierChange': value['timestampOfTierChange'] == null ? undefined : value['timestampOfTierChange'].toISOString(),
+        'TierExpirationDate': value['tierExpirationDate'] == null ? undefined : serializeDateTime(value['tierExpirationDate']),
+        'TimestampOfTierChange': value['timestampOfTierChange'] == null ? undefined : serializeDateTime(value['timestampOfTierChange']),
     };
 }
 

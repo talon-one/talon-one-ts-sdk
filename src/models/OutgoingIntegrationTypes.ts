@@ -29,8 +29,6 @@ import {
 export interface OutgoingIntegrationTypes {
     /**
      * List of outgoing integrations.
-     * @type {Array<OutgoingIntegrationType>}
-     * @memberof OutgoingIntegrationTypes
      */
     data?: Array<OutgoingIntegrationType>;
 }

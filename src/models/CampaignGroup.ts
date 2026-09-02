@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,50 +21,34 @@ import { mapValues } from '../runtime';
 export interface CampaignGroup {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof CampaignGroup
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof CampaignGroup
      */
     created: Date;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof CampaignGroup
      */
     modified: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof CampaignGroup
      */
     accountId: number;
     /**
      * The name of the campaign access group.
-     * @type {string}
-     * @memberof CampaignGroup
      */
     name: string;
     /**
      * A longer description of the campaign access group.
-     * @type {string}
-     * @memberof CampaignGroup
      */
     description?: string;
     /**
      * A list of IDs of the Applications that this campaign access group is enabled for.
-     * @type {Array<number>}
-     * @memberof CampaignGroup
      */
     subscribedApplicationsIds?: Array<number>;
     /**
      * A list of IDs of the campaigns that are part of the campaign access group.
-     * @type {Array<number>}
-     * @memberof CampaignGroup
      */
     campaignIds?: Array<number>;
 }
@@ -93,8 +77,8 @@ export function CampaignGroupFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'accountId': json['accountId'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -115,8 +99,8 @@ export function CampaignGroupToJSONTyped(value?: CampaignGroup | null, ignoreDis
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'accountId': value['accountId'],
         'name': value['name'],
         'description': value['description'],

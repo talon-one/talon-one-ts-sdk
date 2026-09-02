@@ -16,52 +16,38 @@ import { mapValues } from '../runtime';
 /**
  * This effect indicates that the customer's progress in an achievement was updated during the current session. It is triggered when a rule using the [Update customer progress](https://docs.talon.one/docs/product/rules/effects/use-effects#update-customer-progress) effect is successfully validated.
  * 
- * For [on-completion achievements](https://docs.talon.one/docs/product/achievements/achievements-overview#recurring-on-completion-achievements), any customer progress exceeding the target automatically starts a new iteration. This generates a new `progressTrackerId` for each iteration, and there can be multiple progress updates for the same achievement from a single validation of this effect.
+ * For [on-completion achievements](https://docs.talon.one/docs/product/achievements/overview#recurring-on-completion-achievements), any customer progress exceeding the target automatically starts a new iteration. This generates a new `progressTrackerId` for each iteration, and there can be multiple progress updates for the same achievement from a single validation of this effect.
  * @export
  * @interface IncreaseAchievementProgressEffectProps
  */
 export interface IncreaseAchievementProgressEffectProps {
     /**
      * The internal ID of the achievement.
-     * @type {number}
-     * @memberof IncreaseAchievementProgressEffectProps
      */
     achievementId: number;
     /**
      * The name of the achievement.
-     * @type {string}
-     * @memberof IncreaseAchievementProgressEffectProps
      */
     achievementName: string;
     /**
      * The internal ID of the customer progress tracker.
-     * For [on-completion achievements](https://docs.talon.one/docs/product/achievements/achievements-overview#recurring-on-completion-achievements), this effect generates a unique ID for each iteration.
-     * @type {number}
-     * @memberof IncreaseAchievementProgressEffectProps
+     * For [on-completion achievements](https://docs.talon.one/docs/product/achievements/overview#recurring-on-completion-achievements), this effect generates a unique ID for each iteration.
      */
     progressTrackerId?: number;
     /**
      * The value by which the customer's current progress in the achievement has increased.
-     * @type {number}
-     * @memberof IncreaseAchievementProgressEffectProps
      */
     delta: number;
     /**
      * The current progress of the customer in the achievement.
-     * @type {number}
-     * @memberof IncreaseAchievementProgressEffectProps
      */
     value: number;
     /**
      * The target value to complete the achievement.
-     * @type {number}
-     * @memberof IncreaseAchievementProgressEffectProps
      */
     target: number;
     /**
      * Indicates if the customer has completed the achievement in the current session.
-     * @type {boolean}
-     * @memberof IncreaseAchievementProgressEffectProps
      */
     isJustCompleted: boolean;
 }

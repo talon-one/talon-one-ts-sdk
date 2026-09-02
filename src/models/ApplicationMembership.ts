@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface ApplicationMembership {
     /**
      * The ID of the Application the customer belongs to.
-     * @type {number}
-     * @memberof ApplicationMembership
      */
     applicationId: number;
     /**
      * The name of the Application the customer belongs to.
-     * @type {string}
-     * @memberof ApplicationMembership
      */
     applicationName: string;
 }

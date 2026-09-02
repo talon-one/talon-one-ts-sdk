@@ -37,75 +37,51 @@ export interface LoyaltySubLedger {
     /**
      * **DEPRECATED** Use `totalActivePoints` property instead. Total amount of currently active and available points in the customer's balance.
      * 
-     * @type {number}
-     * @memberof LoyaltySubLedger
      * @deprecated
      */
     total: number;
     /**
      * Total amount of currently active and available points in the customer's balance.
-     * @type {number}
-     * @memberof LoyaltySubLedger
      */
     totalActivePoints: number;
     /**
      * Total amount of pending points, which are not active yet but will become active in the future.
-     * @type {number}
-     * @memberof LoyaltySubLedger
      */
     totalPendingPoints: number;
     /**
      * Total amount of points already spent by this customer.
-     * @type {number}
-     * @memberof LoyaltySubLedger
      */
     totalSpentPoints: number;
     /**
      * Total amount of points, that expired without ever being spent.
-     * @type {number}
-     * @memberof LoyaltySubLedger
      */
     totalExpiredPoints: number;
     /**
      * Total amount of negative points. This implies that `totalActivePoints` is `0`.
-     * @type {number}
-     * @memberof LoyaltySubLedger
      */
     totalNegativePoints: number;
     /**
      * List of all events that have happened such as additions, subtractions and expiries.
-     * @type {Array<LoyaltyLedgerEntry>}
-     * @memberof LoyaltySubLedger
      */
     transactions?: Array<LoyaltyLedgerEntry>;
     /**
      * List of all points that will expire.
-     * @type {Array<LoyaltyLedgerEntry>}
-     * @memberof LoyaltySubLedger
      */
     expiringPoints?: Array<LoyaltyLedgerEntry>;
     /**
      * List of all currently active points.
-     * @type {Array<LoyaltyLedgerEntry>}
-     * @memberof LoyaltySubLedger
      */
     activePoints?: Array<LoyaltyLedgerEntry>;
     /**
      * List of all points pending activation.
-     * @type {Array<LoyaltyLedgerEntry>}
-     * @memberof LoyaltySubLedger
      */
     pendingPoints?: Array<LoyaltyLedgerEntry>;
     /**
      * List of expired points.
-     * @type {Array<LoyaltyLedgerEntry>}
-     * @memberof LoyaltySubLedger
      */
     expiredPoints?: Array<LoyaltyLedgerEntry>;
     /**
      * Tier for which the ledger is eligible.
-     * @type {Tier}
-     * @memberof LoyaltySubLedger
      */
     currentTier?: Tier;
 }

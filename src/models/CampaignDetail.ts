@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CampaignDetail {
     /**
      * The ID of the campaign that references the application cart item filter.
-     * @type {number}
-     * @memberof CampaignDetail
      */
     campaignId?: number;
     /**
      * A user-facing name for this campaign.
-     * @type {string}
-     * @memberof CampaignDetail
      */
     campaignName?: string;
 }

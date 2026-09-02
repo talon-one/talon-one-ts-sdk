@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ProjectedTier {
     /**
      * The active points of the customer when their current tier expires.
-     * @type {number}
-     * @memberof ProjectedTier
      */
     projectedActivePoints: number;
     /**
@@ -30,14 +28,10 @@ export interface ProjectedTier {
      * 
      * **Note**: This is included in the response when the customer is projected to be downgraded.
      * 
-     * @type {number}
-     * @memberof ProjectedTier
      */
     stayInTierPoints?: number;
     /**
      * The name of the tier the user will enter once their current tier expires.
-     * @type {string}
-     * @memberof ProjectedTier
      */
     projectedTierName?: string;
 }

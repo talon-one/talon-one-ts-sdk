@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { AdditionalCost } from './AdditionalCost';
 import {
     AdditionalCostFromJSON,
@@ -43,14 +43,10 @@ import {
 export interface CartItem {
     /**
      * Name of item.
-     * @type {string}
-     * @memberof CartItem
      */
     name?: string;
     /**
      * Stock keeping unit of item.
-     * @type {string}
-     * @memberof CartItem
      */
     sku: string;
     /**
@@ -58,69 +54,47 @@ export interface CartItem {
      * if you provide a quantity greater than 1, the item will be split in as many items as the provided quantity.
      * This will impact the number of **per-item** effects triggered from your campaigns.
      * 
-     * @type {number}
-     * @memberof CartItem
      */
     quantity: number;
     /**
      * Number of returned items, calculated internally based on returns of this item.
-     * @type {number}
-     * @memberof CartItem
      */
     readonly returnedQuantity?: number;
     /**
      * Remaining quantity of the item, calculated internally based on returns of this item.
-     * @type {number}
-     * @memberof CartItem
      */
     readonly remainingQuantity?: number;
     /**
      * Price of the item in the currency defined by your Application. This field is required if this item is not part of a [catalog](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs). If it is part of a catalog, setting a price here overrides the price from the catalog.
      * 
-     * @type {number}
-     * @memberof CartItem
      */
     price?: number;
     /**
      * Type, group or model of the item.
-     * @type {string}
-     * @memberof CartItem
      */
     category?: string;
     /**
      * 
-     * @type {Product}
-     * @memberof CartItem
      */
     product?: Product;
     /**
      * Weight of item in grams.
-     * @type {number}
-     * @memberof CartItem
      */
     weight?: number;
     /**
      * Height of item in mm.
-     * @type {number}
-     * @memberof CartItem
      */
     height?: number;
     /**
      * Width of item in mm.
-     * @type {number}
-     * @memberof CartItem
      */
     width?: number;
     /**
      * Length of item in mm.
-     * @type {number}
-     * @memberof CartItem
      */
     length?: number;
     /**
      * Position of the Cart Item in the Cart (calculated internally).
-     * @type {number}
-     * @memberof CartItem
      */
     readonly position?: number;
     /**
@@ -130,54 +104,38 @@ export interface CartItem {
      * 
      * **Note:** Any previously defined attributes that you do not include in the array will be removed.
      * 
-     * @type {object}
-     * @memberof CartItem
      */
     attributes?: object;
     /**
      * Use this property to set a value for the additional costs of this item, such as a shipping cost. They must be created in the Campaign Manager
      * before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).
      * 
-     * @type {{ [key: string]: AdditionalCost; }}
-     * @memberof CartItem
      */
     additionalCosts?: { [key: string]: AdditionalCost; };
     /**
      * The catalog item ID.
-     * @type {number}
-     * @memberof CartItem
      */
     readonly catalogItemID?: number;
     /**
      * The selected price type for this cart item (e.g. the price for members only).
-     * @type {string}
-     * @memberof CartItem
      */
     readonly selectedPriceType?: string;
     /**
      * The reference ID of the selected price adjustment for this cart item. Only returned if the selected price resulted from a price adjustment.
-     * @type {string}
-     * @memberof CartItem
      */
     readonly adjustmentReferenceId?: string;
     /**
      * The date and time from which the price adjustment is effective. Only returned if the selected price resulted from a price adjustment that contains this field.
-     * @type {Date}
-     * @memberof CartItem
      */
     readonly adjustmentEffectiveFrom?: Date;
     /**
      * The date and time until which the price adjustment is effective. Only returned if the selected price resulted from a price adjustment that contains this field.
-     * @type {Date}
-     * @memberof CartItem
      */
     readonly adjustmentEffectiveUntil?: Date;
     /**
      * A map of keys and values representing the price types and related price adjustment details for this cart item.
      * The keys correspond to the `priceType` names.
      * 
-     * @type {{ [key: string]: PriceDetail; }}
-     * @memberof CartItem
      */
     readonly prices?: { [key: string]: PriceDetail; };
 }
@@ -220,8 +178,8 @@ export function CartItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'catalogItemID': json['catalogItemID'] == null ? undefined : json['catalogItemID'],
         'selectedPriceType': json['selectedPriceType'] == null ? undefined : json['selectedPriceType'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
-        'adjustmentEffectiveFrom': json['adjustmentEffectiveFrom'] == null ? undefined : (new Date(json['adjustmentEffectiveFrom'])),
-        'adjustmentEffectiveUntil': json['adjustmentEffectiveUntil'] == null ? undefined : (new Date(json['adjustmentEffectiveUntil'])),
+        'adjustmentEffectiveFrom': json['adjustmentEffectiveFrom'] == null ? undefined : (parseDateTime(json['adjustmentEffectiveFrom'])),
+        'adjustmentEffectiveUntil': json['adjustmentEffectiveUntil'] == null ? undefined : (parseDateTime(json['adjustmentEffectiveUntil'])),
         'prices': json['prices'] == null ? undefined : (mapValues(json['prices'], PriceDetailFromJSON)),
     };
 }

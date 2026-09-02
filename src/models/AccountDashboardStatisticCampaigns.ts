@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface AccountDashboardStatisticCampaigns {
     /**
      * Number of campaigns that are active and live (across all Applications).
-     * @type {number}
-     * @memberof AccountDashboardStatisticCampaigns
      */
     live: number;
     /**
      * Campaigns scheduled to expire sometime in the next 7 days.
-     * @type {number}
-     * @memberof AccountDashboardStatisticCampaigns
      */
     endingSoon: number;
     /**
      * Campaigns with less than 10% of budget left.
-     * @type {number}
-     * @memberof AccountDashboardStatisticCampaigns
      */
     lowOnBudget: number;
 }

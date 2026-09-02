@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface UnaryCheckAttributeBlock {
     /**
      * The unary operator applied to the attribute. These operators require no comparison value.
-     * @type {UnaryCheckAttributeBlockOperatorEnum}
-     * @memberof UnaryCheckAttributeBlock
      */
     operator?: UnaryCheckAttributeBlockOperatorEnum;
 }
@@ -37,7 +35,7 @@ export const UnaryCheckAttributeBlockOperatorEnum = {
     Exists: 'exists',
     NotExists: 'not(exists)',
     IsTrue: 'isTrue',
-    IsFalse: 'isFalse'
+    IsFalse: 'isFalse',
 } as const;
 export type UnaryCheckAttributeBlockOperatorEnum = typeof UnaryCheckAttributeBlockOperatorEnum[keyof typeof UnaryCheckAttributeBlockOperatorEnum];
 

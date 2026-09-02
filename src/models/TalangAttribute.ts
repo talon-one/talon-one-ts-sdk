@@ -21,57 +21,39 @@ import { mapValues } from '../runtime';
 export interface TalangAttribute {
     /**
      * The name of the entity of the attribute.
-     * @type {TalangAttributeEntityEnum}
-     * @memberof TalangAttribute
      */
     entity?: TalangAttributeEntityEnum;
     /**
      * The attribute name that will be used in API requests and Talang. E.g. if `name == "region"` then you would set the region attribute by including an `attributes.region` property in your request payload.
      * 
-     * @type {string}
-     * @memberof TalangAttribute
      */
     name: string;
     /**
      * The name of the attribute that is displayed to the user in the Campaign Manager.
-     * @type {string}
-     * @memberof TalangAttribute
      */
     title?: string;
     /**
      * The talang type of the attribute.
-     * @type {string}
-     * @memberof TalangAttribute
      */
     type: string;
     /**
      * A description of the attribute.
-     * @type {string}
-     * @memberof TalangAttribute
      */
     description?: string;
     /**
      * Indicates whether the attribute is visible in the UI or not.
-     * @type {boolean}
-     * @memberof TalangAttribute
      */
     visible: boolean;
     /**
      * Indicate the kind of the attribute.
-     * @type {TalangAttributeKindEnum}
-     * @memberof TalangAttribute
      */
     kind: TalangAttributeKindEnum;
     /**
      * The number of campaigns that refer to the attribute.
-     * @type {number}
-     * @memberof TalangAttribute
      */
     campaignsCount: number;
     /**
      * Examples of values that can be assigned to the attribute.
-     * @type {Array<string>}
-     * @memberof TalangAttribute
      */
     exampleValue?: Array<string>;
 }
@@ -102,7 +84,7 @@ export const TalangAttributeEntityEnum = {
     Store: 'Store',
     Achievements: 'Achievements',
     AdvancedEvent: 'AdvancedEvent',
-    AdvancedEventConnectedSession: 'AdvancedEventConnectedSession'
+    AdvancedEventConnectedSession: 'AdvancedEventConnectedSession',
 } as const;
 export type TalangAttributeEntityEnum = typeof TalangAttributeEntityEnum[keyof typeof TalangAttributeEntityEnum];
 
@@ -111,7 +93,7 @@ export type TalangAttributeEntityEnum = typeof TalangAttributeEntityEnum[keyof t
  */
 export const TalangAttributeKindEnum = {
     BuiltIn: 'built-in',
-    Custom: 'custom'
+    Custom: 'custom',
 } as const;
 export type TalangAttributeKindEnum = typeof TalangAttributeKindEnum[keyof typeof TalangAttributeKindEnum];
 

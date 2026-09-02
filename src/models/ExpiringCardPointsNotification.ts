@@ -29,20 +29,14 @@ import {
 export interface ExpiringCardPointsNotification {
     /**
      * 
-     * @type {number}
-     * @memberof ExpiringCardPointsNotification
      */
     totalResultSize: number;
     /**
      * The array of expiring points.
-     * @type {Array<ExpiringCardPointsData>}
-     * @memberof ExpiringCardPointsNotification
      */
     data: Array<ExpiringCardPointsData>;
     /**
      * The type of notification.
-     * @type {ExpiringCardPointsNotificationNotificationTypeEnum}
-     * @memberof ExpiringCardPointsNotification
      */
     notificationType: ExpiringCardPointsNotificationNotificationTypeEnum;
 }
@@ -52,7 +46,7 @@ export interface ExpiringCardPointsNotification {
  * @export
  */
 export const ExpiringCardPointsNotificationNotificationTypeEnum = {
-    LoyaltyCardPointsExpiring: 'LoyaltyCardPointsExpiring'
+    LoyaltyCardPointsExpiring: 'LoyaltyCardPointsExpiring',
 } as const;
 export type ExpiringCardPointsNotificationNotificationTypeEnum = typeof ExpiringCardPointsNotificationNotificationTypeEnum[keyof typeof ExpiringCardPointsNotificationNotificationTypeEnum];
 

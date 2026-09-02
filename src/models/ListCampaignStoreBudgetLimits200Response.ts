@@ -29,8 +29,6 @@ import {
 export interface ListCampaignStoreBudgetLimits200Response {
     /**
      * 
-     * @type {Array<ListCampaignStoreBudgets>}
-     * @memberof ListCampaignStoreBudgetLimits200Response
      */
     data?: Array<ListCampaignStoreBudgets>;
 }

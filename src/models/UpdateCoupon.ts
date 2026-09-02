@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LimitConfig } from './LimitConfig';
 import {
     LimitConfigFromJSON,
@@ -30,34 +30,24 @@ export interface UpdateCoupon {
     /**
      * The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
      * 
-     * @type {number}
-     * @memberof UpdateCoupon
      */
     usageLimit?: number;
     /**
      * The total discount value that the code can give. Typically used to represent a gift card value.
      * 
-     * @type {number}
-     * @memberof UpdateCoupon
      */
     discountLimit?: number;
     /**
      * The number of reservations that can be made with this coupon code.
      * 
-     * @type {number}
-     * @memberof UpdateCoupon
      */
     reservationLimit?: number;
     /**
      * Timestamp at which point the coupon becomes valid.
-     * @type {Date}
-     * @memberof UpdateCoupon
      */
     startDate?: Date;
     /**
      * Expiration date of the coupon. Coupon never expires if this is omitted.
-     * @type {Date}
-     * @memberof UpdateCoupon
      */
     expiryDate?: Date;
     /**
@@ -67,32 +57,22 @@ export interface UpdateCoupon {
      * **Note:** Only usable when creating a single coupon which is not tied to a specific recipient.
      * Only per-profile limits are allowed to be configured.
      * 
-     * @type {Array<LimitConfig>}
-     * @memberof UpdateCoupon
      */
     limits?: Array<LimitConfig>;
     /**
      * The integration ID for this coupon's beneficiary's profile.
-     * @type {string}
-     * @memberof UpdateCoupon
      */
     recipientIntegrationId?: string;
     /**
      * Arbitrary properties associated with this item.
-     * @type {object}
-     * @memberof UpdateCoupon
      */
     attributes?: object;
     /**
      * An indication of whether the code can be redeemed only if it has been reserved first.
-     * @type {boolean}
-     * @memberof UpdateCoupon
      */
     isReservationMandatory?: boolean;
     /**
      * An indication of whether the coupon is implicitly reserved for all customers.
-     * @type {boolean}
-     * @memberof UpdateCoupon
      */
     implicitlyReserved?: boolean;
 }
@@ -118,8 +98,8 @@ export function UpdateCouponFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
         'discountLimit': json['discountLimit'] == null ? undefined : json['discountLimit'],
         'reservationLimit': json['reservationLimit'] == null ? undefined : json['reservationLimit'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'limits': json['limits'] == null ? undefined : ((json['limits'] as Array<any>).map(LimitConfigFromJSON)),
         'recipientIntegrationId': json['recipientIntegrationId'] == null ? undefined : json['recipientIntegrationId'],
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
@@ -142,8 +122,8 @@ export function UpdateCouponToJSONTyped(value?: UpdateCoupon | null, ignoreDiscr
         'usageLimit': value['usageLimit'],
         'discountLimit': value['discountLimit'],
         'reservationLimit': value['reservationLimit'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'limits': value['limits'] == null ? undefined : ((value['limits'] as Array<any>).map(LimitConfigToJSON)),
         'recipientIntegrationId': value['recipientIntegrationId'],
         'attributes': value['attributes'],

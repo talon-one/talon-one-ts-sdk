@@ -29,14 +29,10 @@ import {
 export interface GetReservedCustomers200Response {
     /**
      * 
-     * @type {number}
-     * @memberof GetReservedCustomers200Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<CustomerProfile>}
-     * @memberof GetReservedCustomers200Response
      */
     data: Array<CustomerProfile>;
 }

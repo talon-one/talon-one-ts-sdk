@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface PassthroughBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof PassthroughBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * The type discriminator for this block.
-     * @type {PassthroughBlockTypeEnum}
-     * @memberof PassthroughBlock
      */
     type: PassthroughBlockTypeEnum;
     /**
      * The raw Talang expression as an array. For a function call, the first element is the function name and subsequent elements are its arguments. For any other expression (for example a bare attribute path or a literal value), this is a single-element array containing that value.
-     * @type {Array<any>}
-     * @memberof PassthroughBlock
      */
     expression: Array<any>;
 }
@@ -44,7 +38,7 @@ export interface PassthroughBlock {
  * @export
  */
 export const PassthroughBlockTypeEnum = {
-    Passthrough: 'passthrough'
+    Passthrough: 'passthrough',
 } as const;
 export type PassthroughBlockTypeEnum = typeof PassthroughBlockTypeEnum[keyof typeof PassthroughBlockTypeEnum];
 
@@ -54,7 +48,6 @@ export type PassthroughBlockTypeEnum = typeof PassthroughBlockTypeEnum[keyof typ
  */
 export function instanceOfPassthroughBlock(value: object): value is PassthroughBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (_v['type'] !== 'passthrough') return false;
     
@@ -72,7 +65,7 @@ export function PassthroughBlockFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'expression': json['expression'],
     };
@@ -82,14 +75,13 @@ export function PassthroughBlockToJSON(json: any): PassthroughBlock {
     return PassthroughBlockToJSONTyped(json, false);
 }
 
-export function PassthroughBlockToJSONTyped(value?: PassthroughBlock | null, ignoreDiscriminator: boolean = false): any {
+export function PassthroughBlockToJSONTyped(value?: Omit<PassthroughBlock, 'id'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
         'expression': value['expression'],
     };

@@ -11,7 +11,7 @@ Name | Type
 `tags` | Array&lt;string&gt;
 `operator` | string
 `achievement` | [CheckAchievementBlock1Achievement](CheckAchievementBlock1Achievement.md)
-`onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
+`onFailure` | [Array&lt;Block&gt;](Block.md)
 
 ## Example
 

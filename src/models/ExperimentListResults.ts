@@ -29,8 +29,6 @@ import {
 export interface ExperimentListResults {
     /**
      * 
-     * @type {Array<ExperimentResult>}
-     * @memberof ExperimentListResults
      */
     results?: Array<ExperimentResult>;
 }

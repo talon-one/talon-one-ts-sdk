@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { IntegrationHubEventType } from './IntegrationHubEventType';
 import {
     IntegrationHubEventTypeFromJSON,
@@ -29,68 +29,46 @@ import {
 export interface IntegrationHubEventRecord {
     /**
      * ID of the event record.
-     * @type {number}
-     * @memberof IntegrationHubEventRecord
      */
     id: number;
     /**
      * ID of the integration hub flow.
-     * @type {number}
-     * @memberof IntegrationHubEventRecord
      */
     flowId: number;
     /**
      * Name of the integration.
-     * @type {string}
-     * @memberof IntegrationHubEventRecord
      */
     integrationName?: string;
     /**
      * Name of the integration instance.
-     * @type {string}
-     * @memberof IntegrationHubEventRecord
      */
     instanceName?: string;
     /**
      * 
-     * @type {IntegrationHubEventType}
-     * @memberof IntegrationHubEventRecord
      */
     eventType: IntegrationHubEventType;
     /**
      * Timestamp when the event was published.
-     * @type {Date}
-     * @memberof IntegrationHubEventRecord
      */
     publishedAt: Date;
     /**
      * Timestamp when the event was processed.
-     * @type {Date}
-     * @memberof IntegrationHubEventRecord
      */
     processedAt?: Date;
     /**
      * Timestamp when the event was delivered.
-     * @type {Date}
-     * @memberof IntegrationHubEventRecord
      */
     deliveredAt?: Date;
     /**
      * Timestamp after which the event is scheduled to be processed.
-     * @type {Date}
-     * @memberof IntegrationHubEventRecord
      */
     scheduledTo: Date;
     /**
      * Number of delivery retries attempted.
-     * @type {number}
-     * @memberof IntegrationHubEventRecord
      */
     retry: number;
     /**
      * The event payload as a formatted JSON string.
-     * @type {string}
-     * @memberof IntegrationHubEventRecord
      */
     payload: string;
 }
@@ -127,10 +105,10 @@ export function IntegrationHubEventRecordFromJSONTyped(json: any, ignoreDiscrimi
         'integrationName': json['integrationName'] == null ? undefined : json['integrationName'],
         'instanceName': json['instanceName'] == null ? undefined : json['instanceName'],
         'eventType': IntegrationHubEventTypeFromJSON(json['eventType']),
-        'publishedAt': (json['publishedAt'] == null ? undefined as any : new Date(json['publishedAt'])),
-        'processedAt': json['processedAt'] == null ? undefined : (new Date(json['processedAt'])),
-        'deliveredAt': json['deliveredAt'] == null ? undefined : (new Date(json['deliveredAt'])),
-        'scheduledTo': (json['scheduledTo'] == null ? undefined as any : new Date(json['scheduledTo'])),
+        'publishedAt': (json['publishedAt'] == null ? json['publishedAt'] : parseDateTime(json['publishedAt'])),
+        'processedAt': json['processedAt'] == null ? undefined : (parseDateTime(json['processedAt'])),
+        'deliveredAt': json['deliveredAt'] == null ? undefined : (parseDateTime(json['deliveredAt'])),
+        'scheduledTo': (json['scheduledTo'] == null ? json['scheduledTo'] : parseDateTime(json['scheduledTo'])),
         'retry': json['retry'],
         'payload': json['payload'],
     };
@@ -152,10 +130,10 @@ export function IntegrationHubEventRecordToJSONTyped(value?: IntegrationHubEvent
         'integrationName': value['integrationName'],
         'instanceName': value['instanceName'],
         'eventType': IntegrationHubEventTypeToJSON(value['eventType']),
-        'publishedAt': value['publishedAt'] == null ? undefined : value['publishedAt'].toISOString(),
-        'processedAt': value['processedAt'] == null ? value['processedAt'] : value['processedAt'].toISOString(),
-        'deliveredAt': value['deliveredAt'] == null ? value['deliveredAt'] : value['deliveredAt'].toISOString(),
-        'scheduledTo': value['scheduledTo'] == null ? undefined : value['scheduledTo'].toISOString(),
+        'publishedAt': value['publishedAt'] == null ? undefined : serializeDateTime(value['publishedAt']),
+        'processedAt': value['processedAt'] == null ? value['processedAt'] : serializeDateTime(value['processedAt']),
+        'deliveredAt': value['deliveredAt'] == null ? value['deliveredAt'] : serializeDateTime(value['deliveredAt']),
+        'scheduledTo': value['scheduledTo'] == null ? undefined : serializeDateTime(value['scheduledTo']),
         'retry': value['retry'],
         'payload': value['payload'],
     };

@@ -23,14 +23,10 @@ import { mapValues } from '../runtime';
 export interface CampaignEligibilityExperiment {
     /**
      * The ID of the experiment.
-     * @type {number}
-     * @memberof CampaignEligibilityExperiment
      */
     id: number;
     /**
      * The ID of the variant assigned to the customer profile.
-     * @type {number}
-     * @memberof CampaignEligibilityExperiment
      */
     variantId: number;
 }

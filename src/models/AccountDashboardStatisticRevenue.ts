@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface AccountDashboardStatisticRevenue {
     /**
      * All revenue that went through the client's shop (including purchases that didn’t trigger an effect).
-     * @type {number}
-     * @memberof AccountDashboardStatisticRevenue
      */
     total: number;
     /**
      * The revenue that was created by a purchase that triggered an effect (excluding web hooks, notifications).
-     * @type {number}
-     * @memberof AccountDashboardStatisticRevenue
      */
     influenced: number;
     /**
      * Values aggregated for the specified date.
-     * @type {Date}
-     * @memberof AccountDashboardStatisticRevenue
      */
     datetime: Date;
 }
@@ -62,7 +56,7 @@ export function AccountDashboardStatisticRevenueFromJSONTyped(json: any, ignoreD
         
         'total': json['total'],
         'influenced': json['influenced'],
-        'datetime': (json['datetime'] == null ? undefined as any : new Date(json['datetime'])),
+        'datetime': (json['datetime'] == null ? json['datetime'] : parseDateTime(json['datetime'])),
     };
 }
 
@@ -79,7 +73,7 @@ export function AccountDashboardStatisticRevenueToJSONTyped(value?: AccountDashb
         
         'total': value['total'],
         'influenced': value['influenced'],
-        'datetime': value['datetime'] == null ? undefined : value['datetime'].toISOString(),
+        'datetime': value['datetime'] == null ? undefined : serializeDateTime(value['datetime']),
     };
 }
 

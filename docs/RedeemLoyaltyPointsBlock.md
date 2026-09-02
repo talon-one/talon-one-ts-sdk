@@ -13,7 +13,7 @@ Name | Type
 `subledger` | string
 `value` | [RedeemLoyaltyPointsBlock1Value](RedeemLoyaltyPointsBlock1Value.md)
 `name` | string
-`onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
+`onFailure` | [Array&lt;Block&gt;](Block.md)
 
 ## Example
 

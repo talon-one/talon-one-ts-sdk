@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface MCPCompleteOAuthSession {
     /**
      * The pending authorization session ID to complete.
-     * @type {string}
-     * @memberof MCPCompleteOAuthSession
      */
     sessionId: string;
 }

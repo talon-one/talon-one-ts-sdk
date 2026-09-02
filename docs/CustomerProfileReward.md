@@ -10,7 +10,10 @@ Name | Type
 `id` | number
 `integrationId` | string
 `rewardId` | number
+`rewardIntegrationId` | string
 `rewardName` | string
+`description` | string
+`rule` | [RuleMetadata](RuleMetadata.md)
 `status` | string
 `unlockedAt` | Date
 `unlockedByProfileIntegrationId` | string
@@ -29,7 +32,10 @@ const example = {
   "id": 6,
   "integrationId": reward-unlock-123,
   "rewardId": 12,
+  "rewardIntegrationId": free-coffee,
   "rewardName": Free coffee,
+  "description": One free coffee of any size,
+  "rule": null,
   "status": unlocked,
   "unlockedAt": 2026-07-01T09:00:00Z,
   "unlockedByProfileIntegrationId": customer2839,

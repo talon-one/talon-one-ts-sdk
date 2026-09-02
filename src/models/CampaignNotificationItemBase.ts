@@ -22,8 +22,6 @@ export interface CampaignNotificationItemBase {
     /**
      * The type of the event. Can be one of the following: ['campaign_state_changed', 'campaign_ruleset_changed', 'campaign_edited', 'campaign_created', 'campaign_deleted']
      * 
-     * @type {string}
-     * @memberof CampaignNotificationItemBase
      */
     event: string;
 }

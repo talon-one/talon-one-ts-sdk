@@ -29,38 +29,26 @@ import {
 export interface CouponsNotificationData {
     /**
      * The type of change that occurred.
-     * @type {string}
-     * @memberof CouponsNotificationData
      */
     typeOfChange: string;
     /**
      * The operation performed.
-     * @type {string}
-     * @memberof CouponsNotificationData
      */
     operation: string;
     /**
      * The name of the employee associated with the operation.
-     * @type {string}
-     * @memberof CouponsNotificationData
      */
     employeeName: string;
     /**
      * A list of extended coupon data.
-     * @type {Array<ExtendedCoupon>}
-     * @memberof CouponsNotificationData
      */
     data?: Array<ExtendedCoupon>;
     /**
      * 
-     * @type {number}
-     * @memberof CouponsNotificationData
      */
     totalResultSize?: number;
     /**
      * The type of the notification
-     * @type {CouponsNotificationDataNotificationTypeEnum}
-     * @memberof CouponsNotificationData
      */
     notificationType: CouponsNotificationDataNotificationTypeEnum;
 }
@@ -71,7 +59,7 @@ export interface CouponsNotificationData {
  */
 export const CouponsNotificationDataNotificationTypeEnum = {
     CouponUpdated: 'CouponUpdated',
-    CouponDeleted: 'CouponDeleted'
+    CouponDeleted: 'CouponDeleted',
 } as const;
 export type CouponsNotificationDataNotificationTypeEnum = typeof CouponsNotificationDataNotificationTypeEnum[keyof typeof CouponsNotificationDataNotificationTypeEnum];
 

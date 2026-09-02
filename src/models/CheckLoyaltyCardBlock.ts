@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PromotionBlock } from './PromotionBlock';
+import type { Block } from './Block';
 import {
-    PromotionBlockFromJSON,
-    PromotionBlockFromJSONTyped,
-    PromotionBlockToJSON,
-    PromotionBlockToJSONTyped,
-} from './PromotionBlock';
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
 
 /**
  * 
@@ -29,34 +29,24 @@ import {
 export interface CheckLoyaltyCardBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof CheckLoyaltyCardBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof CheckLoyaltyCardBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof CheckLoyaltyCardBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * An indicator of how the block compares its elements.
-     * @type {CheckLoyaltyCardBlockOperatorEnum}
-     * @memberof CheckLoyaltyCardBlock
      */
     operator: CheckLoyaltyCardBlockOperatorEnum;
     /**
      * Promotion blocks evaluated when this block fails or returns false.
-     * @type {Array<PromotionBlock>}
-     * @memberof CheckLoyaltyCardBlock
      */
-    onFailure?: Array<PromotionBlock>;
+    onFailure?: Array<Block>;
 }
 
 
@@ -65,7 +55,7 @@ export interface CheckLoyaltyCardBlock {
  */
 export const CheckLoyaltyCardBlockOperatorEnum = {
     Linked: 'linked',
-    NotLinked: 'not(linked)'
+    NotLinked: 'not(linked)',
 } as const;
 export type CheckLoyaltyCardBlockOperatorEnum = typeof CheckLoyaltyCardBlockOperatorEnum[keyof typeof CheckLoyaltyCardBlockOperatorEnum];
 
@@ -75,7 +65,6 @@ export type CheckLoyaltyCardBlockOperatorEnum = typeof CheckLoyaltyCardBlockOper
  */
 export function instanceOfCheckLoyaltyCardBlock(value: object): value is CheckLoyaltyCardBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('operator' in _v) || _v['operator'] === undefined) return false;
     return true;
@@ -91,11 +80,11 @@ export function CheckLoyaltyCardBlockFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -103,18 +92,16 @@ export function CheckLoyaltyCardBlockToJSON(json: any): CheckLoyaltyCardBlock {
     return CheckLoyaltyCardBlockToJSONTyped(json, false);
 }
 
-export function CheckLoyaltyCardBlockToJSONTyped(value?: CheckLoyaltyCardBlock | null, ignoreDiscriminator: boolean = false): any {
+export function CheckLoyaltyCardBlockToJSONTyped(value?: Omit<CheckLoyaltyCardBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'operator': value['operator'],
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }
 

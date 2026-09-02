@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { ReturnedCartItem } from './ReturnedCartItem';
 import {
     ReturnedCartItemFromJSON,
@@ -29,68 +29,46 @@ import {
 export interface Return {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Return
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Return
      */
     created: Date;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof Return
      */
     applicationId: number;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof Return
      */
     accountId: number;
     /**
      * List of cart items to be returned.
-     * @type {Array<ReturnedCartItem>}
-     * @memberof Return
      */
     returnedCartItems: Array<ReturnedCartItem>;
     /**
      * The event ID of that was generated for this return.
-     * @type {number}
-     * @memberof Return
      */
     eventId: number;
     /**
      * The internal ID of the session this return was requested on.
-     * @type {number}
-     * @memberof Return
      */
     sessionId: number;
     /**
      * The integration ID of the session this return was requested on.
-     * @type {string}
-     * @memberof Return
      */
     sessionIntegrationId: string;
     /**
      * The internal ID of the profile this return was requested on.
-     * @type {number}
-     * @memberof Return
      */
     profileId?: number;
     /**
      * The integration ID of the profile this return was requested on.
-     * @type {string}
-     * @memberof Return
      */
     profileIntegrationId?: string;
     /**
      * ID of the user who requested this return.
-     * @type {number}
-     * @memberof Return
      */
     createdBy?: number;
 }
@@ -122,7 +100,7 @@ export function ReturnFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'applicationId': json['applicationId'],
         'accountId': json['accountId'],
         'returnedCartItems': (json['returnedCartItems'] == null ? undefined as any : (json['returnedCartItems'] as Array<any>).map(ReturnedCartItemFromJSON)),
@@ -147,7 +125,7 @@ export function ReturnToJSONTyped(value?: Return | null, ignoreDiscriminator: bo
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'applicationId': value['applicationId'],
         'accountId': value['accountId'],
         'returnedCartItems': (value['returnedCartItems'] == null ? undefined : (value['returnedCartItems'] as Array<any>).map(ReturnedCartItemToJSON)),

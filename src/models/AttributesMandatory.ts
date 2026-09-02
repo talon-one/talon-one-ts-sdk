@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface AttributesMandatory {
     /**
      * List of mandatory attributes for campaigns.
-     * @type {Array<string>}
-     * @memberof AttributesMandatory
      */
     campaigns?: Array<string>;
     /**
      * List of mandatory attributes for campaigns.
-     * @type {Array<string>}
-     * @memberof AttributesMandatory
      */
     coupons?: Array<string>;
 }

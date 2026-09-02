@@ -29,26 +29,18 @@ import {
 export interface LoyaltyCardBatch {
     /**
      * Number of loyalty cards in the batch.
-     * @type {number}
-     * @memberof LoyaltyCardBatch
      */
     numberOfCards: number;
     /**
      * ID of the loyalty card batch.
-     * @type {string}
-     * @memberof LoyaltyCardBatch
      */
     batchId?: string;
     /**
      * Status of the loyalty cards in the batch.
-     * @type {LoyaltyCardBatchStatusEnum}
-     * @memberof LoyaltyCardBatch
      */
     status?: LoyaltyCardBatchStatusEnum;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof LoyaltyCardBatch
      */
     cardCodeSettings?: CodeGeneratorSettings;
 }
@@ -59,7 +51,7 @@ export interface LoyaltyCardBatch {
  */
 export const LoyaltyCardBatchStatusEnum = {
     Active: 'active',
-    Inactive: 'inactive'
+    Inactive: 'inactive',
 } as const;
 export type LoyaltyCardBatchStatusEnum = typeof LoyaltyCardBatchStatusEnum[keyof typeof LoyaltyCardBatchStatusEnum];
 

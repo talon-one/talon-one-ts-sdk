@@ -57,110 +57,74 @@ import {
 export interface UpdateCampaignTemplate {
     /**
      * The campaign template name.
-     * @type {string}
-     * @memberof UpdateCampaignTemplate
      */
     name: string;
     /**
      * Customer-facing text that explains the objective of the template.
-     * @type {string}
-     * @memberof UpdateCampaignTemplate
      */
     description: string;
     /**
      * Customer-facing text that explains how to use the template. For example, you can use this property to explain the available attributes of this template, and how they can be modified when a user uses this template to create a new campaign.
-     * @type {string}
-     * @memberof UpdateCampaignTemplate
      */
     instructions: string;
     /**
      * The campaign attributes that campaigns created from this template will have by default.
-     * @type {object}
-     * @memberof UpdateCampaignTemplate
      */
     campaignAttributes?: object;
     /**
      * The campaign attributes that coupons created from this template will have by default.
-     * @type {object}
-     * @memberof UpdateCampaignTemplate
      */
     couponAttributes?: object;
     /**
      * Only campaign templates in 'available' state may be used to create campaigns.
-     * @type {UpdateCampaignTemplateStateEnum}
-     * @memberof UpdateCampaignTemplate
      */
     state: UpdateCampaignTemplateStateEnum;
     /**
      * The ID of the ruleset this campaign template will use.
-     * @type {number}
-     * @memberof UpdateCampaignTemplate
      */
     activeRulesetId?: number;
     /**
      * A list of tags for the campaign template.
-     * @type {Array<string>}
-     * @memberof UpdateCampaignTemplate
      */
     tags?: Array<string>;
     /**
      * Indicates whether campaigns created from this template should be reevaluated when a customer returns an item.
-     * @type {boolean}
-     * @memberof UpdateCampaignTemplate
      */
     reevaluateOnReturn?: boolean;
     /**
      * A list of features for the campaign template.
-     * @type {Array<UpdateCampaignTemplateFeaturesEnum>}
-     * @memberof UpdateCampaignTemplate
      */
     features?: Array<UpdateCampaignTemplateFeaturesEnum>;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof UpdateCampaignTemplate
      */
     couponSettings?: CodeGeneratorSettings;
     /**
      * 
-     * @type {CampaignTemplateCouponReservationSettings}
-     * @memberof UpdateCampaignTemplate
      */
     couponReservationSettings?: CampaignTemplateCouponReservationSettings;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof UpdateCampaignTemplate
      */
     referralSettings?: CodeGeneratorSettings;
     /**
      * The set of limits that operate for this campaign template.
-     * @type {Array<TemplateLimitConfig>}
-     * @memberof UpdateCampaignTemplate
      */
     limits?: Array<TemplateLimitConfig>;
     /**
      * Fields which can be used to replace values in a rule.
-     * @type {Array<CampaignTemplateParams>}
-     * @memberof UpdateCampaignTemplate
      */
     templateParams?: Array<CampaignTemplateParams>;
     /**
      * A list of IDs of the Applications that are subscribed to this campaign template.
-     * @type {Array<number>}
-     * @memberof UpdateCampaignTemplate
      */
     applicationsIds: Array<number>;
     /**
      * The campaign collections from the blueprint campaign for the template.
-     * @type {Array<CampaignTemplateCollection>}
-     * @memberof UpdateCampaignTemplate
      */
     campaignCollections?: Array<CampaignTemplateCollection>;
     /**
      * The default campaign group ID.
-     * @type {number}
-     * @memberof UpdateCampaignTemplate
      */
     defaultCampaignGroupId?: number;
     /**
@@ -168,8 +132,6 @@ export interface UpdateCampaignTemplate {
      *   - `cartItem`: Type of campaign that can apply effects only to cart items.
      *   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
      * 
-     * @type {UpdateCampaignTemplateCampaignTypeEnum}
-     * @memberof UpdateCampaignTemplate
      */
     campaignType?: UpdateCampaignTemplateCampaignTypeEnum;
 }
@@ -181,7 +143,7 @@ export interface UpdateCampaignTemplate {
 export const UpdateCampaignTemplateStateEnum = {
     Draft: 'draft',
     Enabled: 'enabled',
-    Disabled: 'disabled'
+    Disabled: 'disabled',
 } as const;
 export type UpdateCampaignTemplateStateEnum = typeof UpdateCampaignTemplateStateEnum[keyof typeof UpdateCampaignTemplateStateEnum];
 
@@ -195,7 +157,7 @@ export const UpdateCampaignTemplateFeaturesEnum = {
     Giveaways: 'giveaways',
     Strikethrough: 'strikethrough',
     Achievements: 'achievements',
-    AdvancedEvents: 'advancedEvents'
+    AdvancedEvents: 'advancedEvents',
 } as const;
 export type UpdateCampaignTemplateFeaturesEnum = typeof UpdateCampaignTemplateFeaturesEnum[keyof typeof UpdateCampaignTemplateFeaturesEnum];
 
@@ -204,7 +166,7 @@ export type UpdateCampaignTemplateFeaturesEnum = typeof UpdateCampaignTemplateFe
  */
 export const UpdateCampaignTemplateCampaignTypeEnum = {
     CartItem: 'cartItem',
-    Advanced: 'advanced'
+    Advanced: 'advanced',
 } as const;
 export type UpdateCampaignTemplateCampaignTypeEnum = typeof UpdateCampaignTemplateCampaignTypeEnum[keyof typeof UpdateCampaignTemplateCampaignTypeEnum];
 

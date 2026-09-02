@@ -36,20 +36,14 @@ import {
 export interface AwardDiscountAdditionalCostTarget {
     /**
      * A target discriminator of type `additionalCost`.
-     * @type {AwardDiscountAdditionalCostTargetTypeEnum}
-     * @memberof AwardDiscountAdditionalCostTarget
      */
     type: AwardDiscountAdditionalCostTargetTypeEnum;
     /**
      * 
-     * @type {AdditionalCostReference}
-     * @memberof AwardDiscountAdditionalCostTarget
      */
     additionalCost: AdditionalCostReference;
     /**
      * 
-     * @type {AwardDiscountAdditionalCostTargetTarget}
-     * @memberof AwardDiscountAdditionalCostTarget
      */
     target: AwardDiscountAdditionalCostTargetTarget;
 }
@@ -59,7 +53,7 @@ export interface AwardDiscountAdditionalCostTarget {
  * @export
  */
 export const AwardDiscountAdditionalCostTargetTypeEnum = {
-    AdditionalCost: 'additionalCost'
+    AdditionalCost: 'additionalCost',
 } as const;
 export type AwardDiscountAdditionalCostTargetTypeEnum = typeof AwardDiscountAdditionalCostTargetTypeEnum[keyof typeof AwardDiscountAdditionalCostTargetTypeEnum];
 

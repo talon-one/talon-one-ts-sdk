@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { RiskAffectedEntityItem } from './RiskAffectedEntityItem';
 import {
     RiskAffectedEntityItemFromJSON,
@@ -29,20 +29,14 @@ import {
 export interface RiskDetail {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof RiskDetail
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof RiskDetail
      */
     created: Date;
     /**
      * The ID of the risk notification rule that flagged this risk.
-     * @type {number}
-     * @memberof RiskDetail
      */
     notificationId: number;
     /**
@@ -50,108 +44,74 @@ export interface RiskDetail {
      * detection pipeline scores complete 24-hour cycles, so this is always the day
      * before the risk was reported, not the reporting date itself.
      * 
-     * @type {Date}
-     * @memberof RiskDetail
      */
     featureDate: Date;
     /**
      * The Application group this risk was detected in. Contains the Application ID,
      * or `__GLOBAL__` for metrics that are not grouped by Application.
      * 
-     * @type {string}
-     * @memberof RiskDetail
      */
     groupKey: string;
     /**
      * The ID of the Application this risk belongs to. Absent for global metrics.
-     * @type {number}
-     * @memberof RiskDetail
      */
     applicationId?: number;
     /**
      * The triage lifecycle status of this risk.
-     * @type {RiskDetailStatusEnum}
-     * @memberof RiskDetail
      */
     status: RiskDetailStatusEnum;
     /**
      * The critical classification bucket of this risk.
-     * @type {RiskDetailCriticalityEnum}
-     * @memberof RiskDetail
      */
     criticality: RiskDetailCriticalityEnum;
     /**
      * The entity type the risk was detected in.
-     * @type {RiskDetailEntityEnum}
-     * @memberof RiskDetail
      */
     entity: RiskDetailEntityEnum;
     /**
      * The activity metric the risk was detected in.
-     * @type {RiskDetailActivityEnum}
-     * @memberof RiskDetail
      */
     activity: RiskDetailActivityEnum;
     /**
      * The rolling time window of the risk evaluation.
-     * @type {RiskDetailTimeFrameEnum}
-     * @memberof RiskDetail
      */
     timeFrame: RiskDetailTimeFrameEnum;
     /**
      * The time the ML service reported this risk.
-     * @type {Date}
-     * @memberof RiskDetail
      */
     reportedDate: Date;
     /**
      * The total number of entities affected by this risk.
-     * @type {number}
-     * @memberof RiskDetail
      */
     affectedEntityCount: number;
     /**
      * Human-readable description of the detected anomaly.
-     * @type {string}
-     * @memberof RiskDetail
      */
     description?: string;
     /**
      * The reason this risk was discarded. Only present on discarded risks.
-     * @type {RiskDetailDiscardReasonEnum}
-     * @memberof RiskDetail
      */
     discardReason?: RiskDetailDiscardReasonEnum;
     /**
      * The free-text details of the latest reclassification action: the description
      * for resolving confirmed risks, or the details for discarding risks.
      * 
-     * @type {string}
-     * @memberof RiskDetail
      */
     statusComment?: string;
     /**
      * The ID of the user who performed the latest reclassification action.
-     * @type {number}
-     * @memberof RiskDetail
      */
     statusChangedBy?: number;
     /**
      * The time of the latest reclassification action.
-     * @type {Date}
-     * @memberof RiskDetail
      */
     statusChangedAt?: Date;
     /**
      * Timestamp of the most recent update.
-     * @type {Date}
-     * @memberof RiskDetail
      */
     modified: Date;
     /**
      * The affected entities with the highest severity ratios, in descending order.
-     * @type {Array<RiskAffectedEntityItem>}
-     * @memberof RiskDetail
      */
     affectedEntities: Array<RiskAffectedEntityItem>;
 }
@@ -164,7 +124,7 @@ export const RiskDetailStatusEnum = {
     Active: 'active',
     InReview: 'in_review',
     Confirmed: 'confirmed',
-    Discarded: 'discarded'
+    Discarded: 'discarded',
 } as const;
 export type RiskDetailStatusEnum = typeof RiskDetailStatusEnum[keyof typeof RiskDetailStatusEnum];
 
@@ -173,7 +133,7 @@ export type RiskDetailStatusEnum = typeof RiskDetailStatusEnum[keyof typeof Risk
  */
 export const RiskDetailCriticalityEnum = {
     Critical: 'critical',
-    NotCritical: 'not_critical'
+    NotCritical: 'not_critical',
 } as const;
 export type RiskDetailCriticalityEnum = typeof RiskDetailCriticalityEnum[keyof typeof RiskDetailCriticalityEnum];
 
@@ -182,7 +142,7 @@ export type RiskDetailCriticalityEnum = typeof RiskDetailCriticalityEnum[keyof t
  */
 export const RiskDetailEntityEnum = {
     CustomerProfile: 'customer_profile',
-    CustomerSession: 'customer_session'
+    CustomerSession: 'customer_session',
 } as const;
 export type RiskDetailEntityEnum = typeof RiskDetailEntityEnum[keyof typeof RiskDetailEntityEnum];
 
@@ -193,7 +153,7 @@ export const RiskDetailActivityEnum = {
     LoyaltyPointsEarned: 'loyalty_points_earned',
     DiscountedAmount: 'discounted_amount',
     CompletedOrders: 'completed_orders',
-    CouponAttempts: 'coupon_attempts'
+    CouponAttempts: 'coupon_attempts',
 } as const;
 export type RiskDetailActivityEnum = typeof RiskDetailActivityEnum[keyof typeof RiskDetailActivityEnum];
 
@@ -203,7 +163,7 @@ export type RiskDetailActivityEnum = typeof RiskDetailActivityEnum[keyof typeof 
 export const RiskDetailTimeFrameEnum = {
     _1D: '1D',
     _7D: '7D',
-    _30D: '30D'
+    _30D: '30D',
 } as const;
 export type RiskDetailTimeFrameEnum = typeof RiskDetailTimeFrameEnum[keyof typeof RiskDetailTimeFrameEnum];
 
@@ -212,7 +172,7 @@ export type RiskDetailTimeFrameEnum = typeof RiskDetailTimeFrameEnum[keyof typeo
  */
 export const RiskDetailDiscardReasonEnum = {
     ExpectedBehavior: 'expected_behavior',
-    Other: 'other'
+    Other: 'other',
 } as const;
 export type RiskDetailDiscardReasonEnum = typeof RiskDetailDiscardReasonEnum[keyof typeof RiskDetailDiscardReasonEnum];
 
@@ -250,9 +210,9 @@ export function RiskDetailFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'notificationId': json['notificationId'],
-        'featureDate': (json['featureDate'] == null ? undefined as any : new Date(json['featureDate'])),
+        'featureDate': (json['featureDate'] == null ? json['featureDate'] : parseDate(json['featureDate'])),
         'groupKey': json['groupKey'],
         'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
         'status': json['status'],
@@ -260,14 +220,14 @@ export function RiskDetailFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'entity': json['entity'],
         'activity': json['activity'],
         'timeFrame': json['timeFrame'],
-        'reportedDate': (json['reportedDate'] == null ? undefined as any : new Date(json['reportedDate'])),
+        'reportedDate': (json['reportedDate'] == null ? json['reportedDate'] : parseDateTime(json['reportedDate'])),
         'affectedEntityCount': json['affectedEntityCount'],
         'description': json['description'] == null ? undefined : json['description'],
         'discardReason': json['discardReason'] == null ? undefined : json['discardReason'],
         'statusComment': json['statusComment'] == null ? undefined : json['statusComment'],
         'statusChangedBy': json['statusChangedBy'] == null ? undefined : json['statusChangedBy'],
-        'statusChangedAt': json['statusChangedAt'] == null ? undefined : (new Date(json['statusChangedAt'])),
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'statusChangedAt': json['statusChangedAt'] == null ? undefined : (parseDateTime(json['statusChangedAt'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'affectedEntities': (json['affectedEntities'] == null ? undefined as any : (json['affectedEntities'] as Array<any>).map(RiskAffectedEntityItemFromJSON)),
     };
 }
@@ -284,9 +244,9 @@ export function RiskDetailToJSONTyped(value?: RiskDetail | null, ignoreDiscrimin
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'notificationId': value['notificationId'],
-        'featureDate': value['featureDate'] == null ? undefined : value['featureDate'].toISOString().substring(0,10),
+        'featureDate': value['featureDate'] == null ? undefined : serializeDate(value['featureDate']),
         'groupKey': value['groupKey'],
         'applicationId': value['applicationId'],
         'status': value['status'],
@@ -294,14 +254,14 @@ export function RiskDetailToJSONTyped(value?: RiskDetail | null, ignoreDiscrimin
         'entity': value['entity'],
         'activity': value['activity'],
         'timeFrame': value['timeFrame'],
-        'reportedDate': value['reportedDate'] == null ? undefined : value['reportedDate'].toISOString(),
+        'reportedDate': value['reportedDate'] == null ? undefined : serializeDateTime(value['reportedDate']),
         'affectedEntityCount': value['affectedEntityCount'],
         'description': value['description'],
         'discardReason': value['discardReason'],
         'statusComment': value['statusComment'],
         'statusChangedBy': value['statusChangedBy'],
-        'statusChangedAt': value['statusChangedAt'] == null ? value['statusChangedAt'] : value['statusChangedAt'].toISOString(),
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'statusChangedAt': value['statusChangedAt'] == null ? value['statusChangedAt'] : serializeDateTime(value['statusChangedAt']),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'affectedEntities': (value['affectedEntities'] == null ? undefined : (value['affectedEntities'] as Array<any>).map(RiskAffectedEntityItemToJSON)),
     };
 }

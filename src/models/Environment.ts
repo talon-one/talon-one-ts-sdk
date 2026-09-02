@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { GiveawaysPool } from './GiveawaysPool';
 import {
     GiveawaysPoolFromJSON,
@@ -106,98 +106,66 @@ import {
 export interface Environment {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Environment
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Environment
      */
     created: Date;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof Environment
      */
     applicationId: number;
     /**
      * The slots defined for this application.
-     * @type {Array<SlotDef>}
-     * @memberof Environment
      */
     slots: Array<SlotDef>;
     /**
      * The functions defined for this application.
-     * @type {Array<FunctionDef>}
-     * @memberof Environment
      */
     functions: Array<FunctionDef>;
     /**
      * The templates defined for this application.
-     * @type {Array<TemplateDef>}
-     * @memberof Environment
      */
     templates: Array<TemplateDef>;
     /**
      * A stringified version of the environment's Talang variables scope.
-     * @type {string}
-     * @memberof Environment
      */
     variables: string;
     /**
      * The giveaways pools that the application is subscribed to.
-     * @type {Array<GiveawaysPool>}
-     * @memberof Environment
      */
     giveawaysPools?: Array<GiveawaysPool>;
     /**
      * The loyalty programs that the application is subscribed to.
-     * @type {Array<LoyaltyProgram>}
-     * @memberof Environment
      */
     loyaltyPrograms?: Array<LoyaltyProgram>;
     /**
      * The achievements, linked to the campaigns, belonging to the application.
-     * @type {Array<Achievement>}
-     * @memberof Environment
      */
     achievements?: Array<Achievement>;
     /**
      * The attributes that the application is subscribed to.
-     * @type {Array<Attribute>}
-     * @memberof Environment
      */
     attributes?: Array<Attribute>;
     /**
      * The additional costs that the application is subscribed to.
-     * @type {Array<AccountAdditionalCost>}
-     * @memberof Environment
      */
     additionalCosts?: Array<AccountAdditionalCost>;
     /**
      * The audiences contained in the account which the application belongs to.
-     * @type {Array<Audience>}
-     * @memberof Environment
      */
     audiences?: Array<Audience>;
     /**
      * The account-level collections that the application is subscribed to.
-     * @type {Array<Collection>}
-     * @memberof Environment
      */
     collections?: Array<Collection>;
     /**
      * The cart item filters belonging to the Application.
-     * @type {Array<ApplicationCIF>}
-     * @memberof Environment
      */
     applicationCartItemFilters?: Array<ApplicationCIF>;
     /**
      * The price types that this Application can use.
-     * @type {Array<PriceType>}
-     * @memberof Environment
      */
     priceTypes?: Array<PriceType>;
 }
@@ -228,7 +196,7 @@ export function EnvironmentFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'applicationId': json['applicationId'],
         'slots': (json['slots'] == null ? undefined as any : (json['slots'] as Array<any>).map(SlotDefFromJSON)),
         'functions': (json['functions'] == null ? undefined as any : (json['functions'] as Array<any>).map(FunctionDefFromJSON)),
@@ -258,7 +226,7 @@ export function EnvironmentToJSONTyped(value?: Environment | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'applicationId': value['applicationId'],
         'slots': (value['slots'] == null ? undefined : (value['slots'] as Array<any>).map(SlotDefToJSON)),
         'functions': (value['functions'] == null ? undefined : (value['functions'] as Array<any>).map(FunctionDefToJSON)),

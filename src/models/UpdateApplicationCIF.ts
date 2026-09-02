@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface UpdateApplicationCIF {
     /**
      * A short description of the Application cart item filter.
-     * @type {string}
-     * @memberof UpdateApplicationCIF
      */
     description?: string;
     /**
      * The ID of the expression that the Application cart item filter uses.
-     * @type {number}
-     * @memberof UpdateApplicationCIF
      */
     activeExpressionId?: number;
     /**
      * The ID of the user who last updated the Application cart item filter.
-     * @type {number}
-     * @memberof UpdateApplicationCIF
      */
     modifiedBy?: number;
     /**
      * Timestamp of the most recent update to the Application cart item filter.
-     * @type {Date}
-     * @memberof UpdateApplicationCIF
      */
     modified?: Date;
 }
@@ -66,7 +58,7 @@ export function UpdateApplicationCIFFromJSONTyped(json: any, ignoreDiscriminator
         'description': json['description'] == null ? undefined : json['description'],
         'activeExpressionId': json['activeExpressionId'] == null ? undefined : json['activeExpressionId'],
         'modifiedBy': json['modifiedBy'] == null ? undefined : json['modifiedBy'],
-        'modified': json['modified'] == null ? undefined : (new Date(json['modified'])),
+        'modified': json['modified'] == null ? undefined : (parseDateTime(json['modified'])),
     };
 }
 
@@ -84,7 +76,7 @@ export function UpdateApplicationCIFToJSONTyped(value?: UpdateApplicationCIF | n
         'description': value['description'],
         'activeExpressionId': value['activeExpressionId'],
         'modifiedBy': value['modifiedBy'],
-        'modified': value['modified'] == null ? value['modified'] : value['modified'].toISOString(),
+        'modified': value['modified'] == null ? value['modified'] : serializeDateTime(value['modified']),
     };
 }
 

@@ -29,26 +29,18 @@ import {
 export interface RoleV2Base {
     /**
      * Name of the role.
-     * @type {string}
-     * @memberof RoleV2Base
      */
     name?: string;
     /**
      * Description of the role.
-     * @type {string}
-     * @memberof RoleV2Base
      */
     description?: string;
     /**
      * The permissions that this role gives.
-     * @type {RoleV2Permissions}
-     * @memberof RoleV2Base
      */
     permissions?: RoleV2Permissions;
     /**
      * A list of user IDs the role is assigned to.
-     * @type {Array<number>}
-     * @memberof RoleV2Base
      */
     members?: Array<number>;
 }

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface TriggerWebhookEffectProps {
     /**
      * The internal ID of the webhook.
-     * @type {number}
-     * @memberof TriggerWebhookEffectProps
      */
     webhookId: number;
     /**
      * The name of the webhook.
-     * @type {string}
-     * @memberof TriggerWebhookEffectProps
      */
     webhookName: string;
 }

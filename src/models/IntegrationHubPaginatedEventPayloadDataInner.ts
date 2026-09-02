@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import { type IntegrationHubEventPayloadCouponBasedNotifications, IntegrationHubEventPayloadCouponBasedNotificationsFromJSONTyped, IntegrationHubEventPayloadCouponBasedNotificationsToJSON } from './IntegrationHubEventPayloadCouponBasedNotifications';
 import { type IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification, IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationFromJSONTyped, IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationToJSON } from './IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification';
 import { type IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification, IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationFromJSONTyped, IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationToJSON } from './IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification';

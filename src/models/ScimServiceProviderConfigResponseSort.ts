@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ScimServiceProviderConfigResponseSort {
     /**
      * Indicates whether the service provider supports sorting operations for ordered query results.
-     * @type {boolean}
-     * @memberof ScimServiceProviderConfigResponseSort
      */
     supported?: boolean;
 }

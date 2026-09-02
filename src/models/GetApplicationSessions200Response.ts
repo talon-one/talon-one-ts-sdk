@@ -29,14 +29,10 @@ import {
 export interface GetApplicationSessions200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetApplicationSessions200Response
      */
     hasMore?: boolean;
     /**
      * 
-     * @type {Array<ApplicationSession>}
-     * @memberof GetApplicationSessions200Response
      */
     data: Array<ApplicationSession>;
 }

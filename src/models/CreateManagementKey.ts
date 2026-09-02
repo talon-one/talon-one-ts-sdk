@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { Endpoint } from './Endpoint';
 import {
     EndpointFromJSON,
@@ -29,28 +29,20 @@ import {
 export interface CreateManagementKey {
     /**
      * Name for management key.
-     * @type {string}
-     * @memberof CreateManagementKey
      */
     name: string;
     /**
      * The date the management key expires.
-     * @type {Date}
-     * @memberof CreateManagementKey
      */
     expiryDate: Date;
     /**
      * The list of endpoints that can be accessed with the key
-     * @type {Array<Endpoint>}
-     * @memberof CreateManagementKey
      */
     endpoints: Array<Endpoint>;
     /**
      * A list of Application IDs that you can access with the management key.
      * An empty or missing list means the management key can be used for all Applications in the account.
      * 
-     * @type {Array<number>}
-     * @memberof CreateManagementKey
      */
     allowedApplicationIds?: Array<number>;
 }
@@ -77,7 +69,7 @@ export function CreateManagementKeyFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'name': json['name'],
-        'expiryDate': (json['expiryDate'] == null ? undefined as any : new Date(json['expiryDate'])),
+        'expiryDate': (json['expiryDate'] == null ? json['expiryDate'] : parseDateTime(json['expiryDate'])),
         'endpoints': (json['endpoints'] == null ? undefined as any : (json['endpoints'] as Array<any>).map(EndpointFromJSON)),
         'allowedApplicationIds': json['allowedApplicationIds'] == null ? undefined : json['allowedApplicationIds'],
     };
@@ -95,7 +87,7 @@ export function CreateManagementKeyToJSONTyped(value?: CreateManagementKey | nul
     return {
         
         'name': value['name'],
-        'expiryDate': value['expiryDate'] == null ? undefined : value['expiryDate'].toISOString(),
+        'expiryDate': value['expiryDate'] == null ? undefined : serializeDateTime(value['expiryDate']),
         'endpoints': (value['endpoints'] == null ? undefined : (value['endpoints'] as Array<any>).map(EndpointToJSON)),
         'allowedApplicationIds': value['allowedApplicationIds'],
     };

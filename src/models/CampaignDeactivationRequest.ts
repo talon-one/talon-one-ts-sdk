@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface CampaignDeactivationRequest {
     /**
      * The list of IDs of the users receiving the deactivation request emails.
-     * @type {Array<number>}
-     * @memberof CampaignDeactivationRequest
      */
     userIds: Array<number>;
 }

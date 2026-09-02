@@ -29,14 +29,10 @@ import {
 export interface CreateCouponData {
     /**
      * The array of coupons codes. If 1000 or fewer coupons are requested, all coupon data is sent. If 1001 or more coupons are requested, only `BatchID` is sent.
-     * @type {Array<ExtendedCoupon>}
-     * @memberof CreateCouponData
      */
     data?: Array<ExtendedCoupon>;
     /**
      * 
-     * @type {number}
-     * @memberof CreateCouponData
      */
     totalResultSize?: number;
     /**
@@ -44,32 +40,22 @@ export interface CreateCouponData {
      * 
      * **Note:** The Batch ID is generated when coupons are created.
      * 
-     * @type {string}
-     * @memberof CreateCouponData
      */
     batchID?: string;
     /**
      * 
-     * @type {string}
-     * @memberof CreateCouponData
      */
     typeOfChange: string;
     /**
      * 
-     * @type {string}
-     * @memberof CreateCouponData
      */
     operation: string;
     /**
      * 
-     * @type {string}
-     * @memberof CreateCouponData
      */
     employeeName: string;
     /**
      * The type of the not
-     * @type {CreateCouponDataNotificationTypeEnum}
-     * @memberof CreateCouponData
      */
     notificationType: CreateCouponDataNotificationTypeEnum;
 }
@@ -79,7 +65,7 @@ export interface CreateCouponData {
  * @export
  */
 export const CreateCouponDataNotificationTypeEnum = {
-    CouponCreated: 'CouponCreated'
+    CouponCreated: 'CouponCreated',
 } as const;
 export type CreateCouponDataNotificationTypeEnum = typeof CreateCouponDataNotificationTypeEnum[keyof typeof CreateCouponDataNotificationTypeEnum];
 

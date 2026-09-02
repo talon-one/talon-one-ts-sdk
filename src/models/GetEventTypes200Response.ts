@@ -29,14 +29,10 @@ import {
 export interface GetEventTypes200Response {
     /**
      * 
-     * @type {number}
-     * @memberof GetEventTypes200Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<EventType>}
-     * @memberof GetEventTypes200Response
      */
     data: Array<EventType>;
 }

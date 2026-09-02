@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface UpdateCatalog {
     /**
      * A description of this cart item catalog.
-     * @type {string}
-     * @memberof UpdateCatalog
      */
     description?: string;
     /**
      * Name of this cart item catalog.
-     * @type {string}
-     * @memberof UpdateCatalog
      */
     name?: string;
     /**
      * A list of the IDs of the applications that are subscribed to this catalog.
-     * @type {Array<number>}
-     * @memberof UpdateCatalog
      */
     subscribedApplicationsIds?: Array<number>;
 }

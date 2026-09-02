@@ -13,20 +13,20 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PromotionBlock } from './PromotionBlock';
+import type { GiveawayPoolReference } from './GiveawayPoolReference';
 import {
-    PromotionBlockFromJSON,
-    PromotionBlockFromJSONTyped,
-    PromotionBlockToJSON,
-    PromotionBlockToJSONTyped,
-} from './PromotionBlock';
-import type { AwardGiveawayBlock1GiveawayPool } from './AwardGiveawayBlock1GiveawayPool';
+    GiveawayPoolReferenceFromJSON,
+    GiveawayPoolReferenceFromJSONTyped,
+    GiveawayPoolReferenceToJSON,
+    GiveawayPoolReferenceToJSONTyped,
+} from './GiveawayPoolReference';
+import type { Block } from './Block';
 import {
-    AwardGiveawayBlock1GiveawayPoolFromJSON,
-    AwardGiveawayBlock1GiveawayPoolFromJSONTyped,
-    AwardGiveawayBlock1GiveawayPoolToJSON,
-    AwardGiveawayBlock1GiveawayPoolToJSONTyped,
-} from './AwardGiveawayBlock1GiveawayPool';
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
 
 /**
  * 
@@ -36,46 +36,32 @@ import {
 export interface AwardGiveawayBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof AwardGiveawayBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof AwardGiveawayBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof AwardGiveawayBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
-     * 
-     * @type {AwardGiveawayBlock1GiveawayPool}
-     * @memberof AwardGiveawayBlock
+     * The giveaway pool from which an item is awarded.
      */
-    giveawayPool: AwardGiveawayBlock1GiveawayPool;
+    giveawayPool: GiveawayPoolReference;
     /**
      * The customer profile to award the giveaway to. `Current` targets the customer in the current session; `Advocate` targets the person who invited their friend via referral program.
-     * @type {AwardGiveawayBlockProfileEnum}
-     * @memberof AwardGiveawayBlock
      */
     profile: AwardGiveawayBlockProfileEnum;
     /**
      * Blocks evaluated when this block fails or returns false.
-     * @type {Array<PromotionBlock>}
-     * @memberof AwardGiveawayBlock
      */
-    onFailure?: Array<PromotionBlock>;
+    onFailure?: Array<Block>;
     /**
      * Named error handlers evaluated when a specific error occurs.
-     * @type {{ [key: string]: Array<PromotionBlock>; }}
-     * @memberof AwardGiveawayBlock
      */
-    onError?: { [key: string]: Array<PromotionBlock>; };
+    onError?: { [key: string]: Array<Block>; };
 }
 
 
@@ -84,7 +70,7 @@ export interface AwardGiveawayBlock {
  */
 export const AwardGiveawayBlockProfileEnum = {
     Current: 'Current',
-    Advocate: 'Advocate'
+    Advocate: 'Advocate',
 } as const;
 export type AwardGiveawayBlockProfileEnum = typeof AwardGiveawayBlockProfileEnum[keyof typeof AwardGiveawayBlockProfileEnum];
 
@@ -94,7 +80,6 @@ export type AwardGiveawayBlockProfileEnum = typeof AwardGiveawayBlockProfileEnum
  */
 export function instanceOfAwardGiveawayBlock(value: object): value is AwardGiveawayBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('giveawayPool' in _v) || _v['giveawayPool'] === undefined) return false;
     if (!('profile' in _v) || _v['profile'] === undefined) return false;
@@ -111,12 +96,12 @@ export function AwardGiveawayBlockFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
-        'giveawayPool': AwardGiveawayBlock1GiveawayPoolFromJSON(json['giveawayPool']),
+        'giveawayPool': GiveawayPoolReferenceFromJSON(json['giveawayPool']),
         'profile': json['profile'],
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
         'onError': json['onError'] == null ? undefined : json['onError'],
     };
 }
@@ -125,19 +110,17 @@ export function AwardGiveawayBlockToJSON(json: any): AwardGiveawayBlock {
     return AwardGiveawayBlockToJSONTyped(json, false);
 }
 
-export function AwardGiveawayBlockToJSONTyped(value?: AwardGiveawayBlock | null, ignoreDiscriminator: boolean = false): any {
+export function AwardGiveawayBlockToJSONTyped(value?: Omit<AwardGiveawayBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
-        'giveawayPool': AwardGiveawayBlock1GiveawayPoolToJSON(value['giveawayPool']),
+        'giveawayPool': GiveawayPoolReferenceToJSON(value['giveawayPool']),
         'profile': value['profile'],
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
         'onError': value['onError'],
     };
 }

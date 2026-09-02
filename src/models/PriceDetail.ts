@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface PriceDetail {
     /**
      * The value of this price type.
-     * @type {number}
-     * @memberof PriceDetail
      */
     price?: number;
     /**
      * The context identifier of the selected price adjustment.
-     * @type {string}
-     * @memberof PriceDetail
      */
     adjustmentContextId?: string;
     /**
      * The reference identifier of the selected price adjustment for this SKU.
-     * @type {string}
-     * @memberof PriceDetail
      */
     adjustmentReferenceId?: string;
     /**
      * The date and time from which the price adjustment is effective.
-     * @type {Date}
-     * @memberof PriceDetail
      */
     adjustmentEffectiveFrom?: Date;
     /**
      * The date and time until which the price adjustment is effective.
-     * @type {Date}
-     * @memberof PriceDetail
      */
     adjustmentEffectiveUntil?: Date;
 }
@@ -72,8 +62,8 @@ export function PriceDetailFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'price': json['price'] == null ? undefined : json['price'],
         'adjustmentContextId': json['adjustmentContextId'] == null ? undefined : json['adjustmentContextId'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
-        'adjustmentEffectiveFrom': json['adjustmentEffectiveFrom'] == null ? undefined : (new Date(json['adjustmentEffectiveFrom'])),
-        'adjustmentEffectiveUntil': json['adjustmentEffectiveUntil'] == null ? undefined : (new Date(json['adjustmentEffectiveUntil'])),
+        'adjustmentEffectiveFrom': json['adjustmentEffectiveFrom'] == null ? undefined : (parseDateTime(json['adjustmentEffectiveFrom'])),
+        'adjustmentEffectiveUntil': json['adjustmentEffectiveUntil'] == null ? undefined : (parseDateTime(json['adjustmentEffectiveUntil'])),
     };
 }
 
@@ -91,8 +81,8 @@ export function PriceDetailToJSONTyped(value?: PriceDetail | null, ignoreDiscrim
         'price': value['price'],
         'adjustmentContextId': value['adjustmentContextId'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
-        'adjustmentEffectiveFrom': value['adjustmentEffectiveFrom'] == null ? value['adjustmentEffectiveFrom'] : value['adjustmentEffectiveFrom'].toISOString(),
-        'adjustmentEffectiveUntil': value['adjustmentEffectiveUntil'] == null ? value['adjustmentEffectiveUntil'] : value['adjustmentEffectiveUntil'].toISOString(),
+        'adjustmentEffectiveFrom': value['adjustmentEffectiveFrom'] == null ? value['adjustmentEffectiveFrom'] : serializeDateTime(value['adjustmentEffectiveFrom']),
+        'adjustmentEffectiveUntil': value['adjustmentEffectiveUntil'] == null ? value['adjustmentEffectiveUntil'] : serializeDateTime(value['adjustmentEffectiveUntil']),
     };
 }
 

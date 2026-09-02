@@ -23,14 +23,10 @@ import { mapValues } from '../runtime';
 export interface RedeemReferralEffectProps {
     /**
      * The id of the referral code that was redeemed.
-     * @type {number}
-     * @memberof RedeemReferralEffectProps
      */
     id: number;
     /**
      * The referral code that was redeemed.
-     * @type {string}
-     * @memberof RedeemReferralEffectProps
      */
     value: string;
 }

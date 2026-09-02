@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface MCPOAuthTokenRequest {
     /**
      * OAuth2 grant type.
-     * @type {MCPOAuthTokenRequestGrantTypeEnum}
-     * @memberof MCPOAuthTokenRequest
      */
     grantType: MCPOAuthTokenRequestGrantTypeEnum;
     /**
      * Authorization code. Required for `authorization_code` grant.
-     * @type {string}
-     * @memberof MCPOAuthTokenRequest
      */
     code?: string;
     /**
      * Client ID. Required for `authorization_code` grant.
-     * @type {string}
-     * @memberof MCPOAuthTokenRequest
      */
     clientId?: string;
     /**
      * Redirect URI. Required for `authorization_code` grant.
-     * @type {string}
-     * @memberof MCPOAuthTokenRequest
      */
     redirectUri?: string;
     /**
      * PKCE code verifier. Required for `authorization_code` grant.
-     * @type {string}
-     * @memberof MCPOAuthTokenRequest
      */
     codeVerifier?: string;
     /**
      * Refresh token. Required for `refresh_token` grant.
-     * @type {string}
-     * @memberof MCPOAuthTokenRequest
      */
     refreshToken?: string;
 }
@@ -63,7 +51,7 @@ export interface MCPOAuthTokenRequest {
  */
 export const MCPOAuthTokenRequestGrantTypeEnum = {
     AuthorizationCode: 'authorization_code',
-    RefreshToken: 'refresh_token'
+    RefreshToken: 'refresh_token',
 } as const;
 export type MCPOAuthTokenRequestGrantTypeEnum = typeof MCPOAuthTokenRequestGrantTypeEnum[keyof typeof MCPOAuthTokenRequestGrantTypeEnum];
 

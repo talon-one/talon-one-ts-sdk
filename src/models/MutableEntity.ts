@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface MutableEntity {
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof MutableEntity
      */
     modified: Date;
 }
@@ -46,7 +44,7 @@ export function MutableEntityFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
     };
 }
 
@@ -61,7 +59,7 @@ export function MutableEntityToJSONTyped(value?: MutableEntity | null, ignoreDis
 
     return {
         
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
     };
 }
 

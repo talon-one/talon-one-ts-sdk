@@ -12,33 +12,28 @@
  * Do not edit the class manually.
  */
 
-import { selectOneOfBestMatch } from '../runtime';
-import type { WebhookAuthenticationBaseOneOf } from './WebhookAuthenticationBaseOneOf';
-import {
-    instanceOfWebhookAuthenticationBaseOneOf,
-    WebhookAuthenticationBaseOneOfFromJSON,
-    WebhookAuthenticationBaseOneOfFromJSONTyped,
-    WebhookAuthenticationBaseOneOfToJSON,
-} from './WebhookAuthenticationBaseOneOf';
-import type { WebhookAuthenticationBaseOneOf1 } from './WebhookAuthenticationBaseOneOf1';
-import {
-    instanceOfWebhookAuthenticationBaseOneOf1,
-    WebhookAuthenticationBaseOneOf1FromJSON,
-    WebhookAuthenticationBaseOneOf1FromJSONTyped,
-    WebhookAuthenticationBaseOneOf1ToJSON,
-} from './WebhookAuthenticationBaseOneOf1';
+import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
+import { type WebhookAuthenticationBaseBasic, WebhookAuthenticationBaseBasicFromJSONTyped, WebhookAuthenticationBaseBasicToJSON } from './WebhookAuthenticationBaseBasic';
+import { type WebhookAuthenticationBaseCustom, WebhookAuthenticationBaseCustomFromJSONTyped, WebhookAuthenticationBaseCustomToJSON } from './WebhookAuthenticationBaseCustom';
 
 /**
  * @type WebhookAuthenticationBase
- * 
+ * Definition of all the properties that are needed to create or update a webhook authentication. The `type` field selects the concrete authentication variant.
  * @export
  */
-export type WebhookAuthenticationBase = WebhookAuthenticationBaseOneOf | WebhookAuthenticationBaseOneOf1;
+export type WebhookAuthenticationBase = { type: 'basic' } & WebhookAuthenticationBaseBasic | { type: 'custom' } & WebhookAuthenticationBaseCustom;
 /**
  * Check if a given object implements the WebhookAuthenticationBase interface.
  */
 export function instanceOfWebhookAuthenticationBase(value: any): value is WebhookAuthenticationBase {
-    return typeof value === 'object' && value !== null && (instanceOfWebhookAuthenticationBaseOneOf(value) || instanceOfWebhookAuthenticationBaseOneOf1(value));
+    const _v = value as Record<PropertyKey, unknown>;
+    switch (_v['type']) {
+        case 'basic':
+        case 'custom':
+            return true;
+        default:
+            return false;
+    }
 }
 
 export function WebhookAuthenticationBaseFromJSON(json: any): WebhookAuthenticationBase {
@@ -49,17 +44,14 @@ export function WebhookAuthenticationBaseFromJSONTyped(json: any, ignoreDiscrimi
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
+    switch (json['type']) {
+        case 'basic':
+            return Object.assign({}, WebhookAuthenticationBaseBasicFromJSONTyped(json, true), { type: 'basic' } as const);
+        case 'custom':
+            return Object.assign({}, WebhookAuthenticationBaseCustomFromJSONTyped(json, true), { type: 'custom' } as const);
+        default:
+            return json;
     }
-    const matchedVariant = selectOneOfBestMatch(json, [
-        [instanceOfWebhookAuthenticationBaseOneOf, WebhookAuthenticationBaseOneOfFromJSONTyped],
-        [instanceOfWebhookAuthenticationBaseOneOf1, WebhookAuthenticationBaseOneOf1FromJSONTyped],
-    ], true);
-    if (matchedVariant !== undefined) {
-        return matchedVariant;
-    }
-    return {} as any;
 }
 
 export function WebhookAuthenticationBaseToJSON(json: any): any {
@@ -70,16 +62,13 @@ export function WebhookAuthenticationBaseToJSONTyped(value?: WebhookAuthenticati
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
+    switch (value['type']) {
+        case 'basic':
+            return Object.assign({}, WebhookAuthenticationBaseBasicToJSON(value), { 'type': 'basic' } as const);
+        case 'custom':
+            return Object.assign({}, WebhookAuthenticationBaseCustomToJSON(value), { 'type': 'custom' } as const);
+        default:
+            return value;
     }
-    const matchedVariant = selectOneOfBestMatch(value, [
-        [instanceOfWebhookAuthenticationBaseOneOf, WebhookAuthenticationBaseOneOfToJSON],
-        [instanceOfWebhookAuthenticationBaseOneOf1, WebhookAuthenticationBaseOneOf1ToJSON],
-    ]);
-    if (matchedVariant !== undefined) {
-        return matchedVariant;
-    }
-    return {};
 }
 

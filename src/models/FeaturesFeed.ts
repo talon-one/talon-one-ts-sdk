@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface FeaturesFeed {
     /**
      * 
-     * @type {string}
-     * @memberof FeaturesFeed
      */
     title?: string;
     /**
      * 
-     * @type {string}
-     * @memberof FeaturesFeed
      */
     pubDate?: string;
 }

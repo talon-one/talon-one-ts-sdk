@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,39 +21,27 @@ import { mapValues } from '../runtime';
 export interface Import {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Import
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Import
      */
     created: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof Import
      */
     accountId: number;
     /**
      * The ID of the user associated with this entity.
-     * @type {number}
-     * @memberof Import
      */
     userId: number;
     /**
      * The name of the entity that was imported.
      * 
-     * @type {string}
-     * @memberof Import
      */
     entity: string;
     /**
      * The number of values that were imported.
-     * @type {number}
-     * @memberof Import
      */
     amount: number;
 }
@@ -83,7 +71,7 @@ export function ImportFromJSONTyped(json: any, ignoreDiscriminator: boolean): Im
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'accountId': json['accountId'],
         'userId': json['userId'],
         'entity': json['entity'],
@@ -103,7 +91,7 @@ export function ImportToJSONTyped(value?: Import | null, ignoreDiscriminator: bo
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'accountId': value['accountId'],
         'userId': value['userId'],
         'entity': value['entity'],

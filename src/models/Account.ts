@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,110 +21,74 @@ import { mapValues } from '../runtime';
 export interface Account {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Account
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Account
      */
     created: Date;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof Account
      */
     modified: Date;
     /**
      * 
-     * @type {string}
-     * @memberof Account
      */
     companyName: string;
     /**
      * Subdomain Name for yourcompany.talon.one.
-     * @type {string}
-     * @memberof Account
      */
     domainName: string;
     /**
      * State of the account (active, deactivated).
-     * @type {AccountStateEnum}
-     * @memberof Account
      */
     state: AccountStateEnum;
     /**
      * The billing email address associated with your company account.
-     * @type {string}
-     * @memberof Account
      */
     billingEmail: string;
     /**
      * The name of your booked plan.
-     * @type {string}
-     * @memberof Account
      */
     planName?: string;
     /**
      * The point in time at which your current plan expires.
-     * @type {Date}
-     * @memberof Account
      */
     planExpires?: Date;
     /**
      * The maximum number of Applications covered by your plan.
-     * @type {number}
-     * @memberof Account
      */
     applicationLimit?: number;
     /**
      * The maximum number of Campaign Manager Users covered by your plan.
-     * @type {number}
-     * @memberof Account
      */
     userLimit?: number;
     /**
      * The maximum number of Campaigns covered by your plan.
-     * @type {number}
-     * @memberof Account
      */
     campaignLimit?: number;
     /**
      * The maximum number of Integration API calls covered by your plan per billing period.
-     * @type {number}
-     * @memberof Account
      */
     apiLimit?: number;
     /**
      * The current number of Applications in your account.
-     * @type {number}
-     * @memberof Account
      */
     applicationCount: number;
     /**
      * The current number of Campaign Manager Users in your account.
-     * @type {number}
-     * @memberof Account
      */
     userCount: number;
     /**
      * The current number of active Campaigns in your account.
-     * @type {number}
-     * @memberof Account
      */
     campaignsActiveCount: number;
     /**
      * The current number of inactive Campaigns in your account.
-     * @type {number}
-     * @memberof Account
      */
     campaignsInactiveCount: number;
     /**
      * Arbitrary properties associated with this campaign.
-     * @type {object}
-     * @memberof Account
      */
     attributes?: object;
 }
@@ -135,7 +99,7 @@ export interface Account {
  */
 export const AccountStateEnum = {
     Active: 'active',
-    Deactivated: 'deactivated'
+    Deactivated: 'deactivated',
 } as const;
 export type AccountStateEnum = typeof AccountStateEnum[keyof typeof AccountStateEnum];
 
@@ -170,14 +134,14 @@ export function AccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): A
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'companyName': json['companyName'],
         'domainName': json['domainName'],
         'state': json['state'],
         'billingEmail': json['billingEmail'],
         'planName': json['planName'] == null ? undefined : json['planName'],
-        'planExpires': json['planExpires'] == null ? undefined : (new Date(json['planExpires'])),
+        'planExpires': json['planExpires'] == null ? undefined : (parseDateTime(json['planExpires'])),
         'applicationLimit': json['applicationLimit'] == null ? undefined : json['applicationLimit'],
         'userLimit': json['userLimit'] == null ? undefined : json['userLimit'],
         'campaignLimit': json['campaignLimit'] == null ? undefined : json['campaignLimit'],
@@ -202,14 +166,14 @@ export function AccountToJSONTyped(value?: Account | null, ignoreDiscriminator: 
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'companyName': value['companyName'],
         'domainName': value['domainName'],
         'state': value['state'],
         'billingEmail': value['billingEmail'],
         'planName': value['planName'],
-        'planExpires': value['planExpires'] == null ? value['planExpires'] : value['planExpires'].toISOString(),
+        'planExpires': value['planExpires'] == null ? value['planExpires'] : serializeDateTime(value['planExpires']),
         'applicationLimit': value['applicationLimit'],
         'userLimit': value['userLimit'],
         'campaignLimit': value['campaignLimit'],

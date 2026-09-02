@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LedgerInfo } from './LedgerInfo';
 import {
     LedgerInfoFromJSON,
@@ -36,102 +36,70 @@ import {
 export interface LoyaltyCard {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof LoyaltyCard
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof LoyaltyCard
      */
     created: Date;
     /**
      * The ID of the loyalty program that owns this entity.
-     * @type {number}
-     * @memberof LoyaltyCard
      */
     programID: number;
     /**
      * The integration name of the loyalty program that owns this entity.
-     * @type {string}
-     * @memberof LoyaltyCard
      */
     programName?: string;
     /**
      * The Campaign Manager-displayed name of the loyalty program that owns this entity.
-     * @type {string}
-     * @memberof LoyaltyCard
      */
     programTitle?: string;
     /**
      * Status of the loyalty card. Can be `active` or `inactive`.
      * 
-     * @type {string}
-     * @memberof LoyaltyCard
      */
     status: string;
     /**
      * Reason for transferring and blocking the loyalty card.
      * 
-     * @type {string}
-     * @memberof LoyaltyCard
      */
     blockReason?: string;
     /**
      * The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`.
      * 
-     * @type {string}
-     * @memberof LoyaltyCard
      */
     identifier: string;
     /**
      * The max amount of customer profiles that can be linked to the card. 0 means unlimited.
      * 
-     * @type {number}
-     * @memberof LoyaltyCard
      */
     usersPerCardLimit: number;
     /**
      * Integration IDs of the customers profiles linked to the card.
-     * @type {Array<LoyaltyCardProfileRegistration>}
-     * @memberof LoyaltyCard
      */
     profiles?: Array<LoyaltyCardProfileRegistration>;
     /**
      * Displays point balances of the card in the main ledger of the loyalty program.
-     * @type {LedgerInfo}
-     * @memberof LoyaltyCard
      */
     ledger?: LedgerInfo;
     /**
      * Displays point balances of the card in the subledgers of the loyalty program.
-     * @type {{ [key: string]: LedgerInfo; }}
-     * @memberof LoyaltyCard
      */
     subledgers?: { [key: string]: LedgerInfo; };
     /**
      * Timestamp of the most recent update of the loyalty card.
-     * @type {Date}
-     * @memberof LoyaltyCard
      */
     modified?: Date;
     /**
      * The identifier of the card from which the points were transferred.
-     * @type {string}
-     * @memberof LoyaltyCard
      */
     oldCardIdentifier?: string;
     /**
      * The identifier of the card to which the points were transferred.
-     * @type {string}
-     * @memberof LoyaltyCard
      */
     newCardIdentifier?: string;
     /**
      * The ID of the batch in which the loyalty card was created.
-     * @type {string}
-     * @memberof LoyaltyCard
      */
     batchId?: string;
 }
@@ -161,7 +129,7 @@ export function LoyaltyCardFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'programID': json['programID'],
         'programName': json['programName'] == null ? undefined : json['programName'],
         'programTitle': json['programTitle'] == null ? undefined : json['programTitle'],
@@ -172,7 +140,7 @@ export function LoyaltyCardFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'profiles': json['profiles'] == null ? undefined : ((json['profiles'] as Array<any>).map(LoyaltyCardProfileRegistrationFromJSON)),
         'ledger': json['ledger'] == null ? undefined : LedgerInfoFromJSON(json['ledger']),
         'subledgers': json['subledgers'] == null ? undefined : (mapValues(json['subledgers'], LedgerInfoFromJSON)),
-        'modified': json['modified'] == null ? undefined : (new Date(json['modified'])),
+        'modified': json['modified'] == null ? undefined : (parseDateTime(json['modified'])),
         'oldCardIdentifier': json['oldCardIdentifier'] == null ? undefined : json['oldCardIdentifier'],
         'newCardIdentifier': json['newCardIdentifier'] == null ? undefined : json['newCardIdentifier'],
         'batchId': json['batchId'] == null ? undefined : json['batchId'],
@@ -191,7 +159,7 @@ export function LoyaltyCardToJSONTyped(value?: LoyaltyCard | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'programID': value['programID'],
         'programName': value['programName'],
         'programTitle': value['programTitle'],
@@ -202,7 +170,7 @@ export function LoyaltyCardToJSONTyped(value?: LoyaltyCard | null, ignoreDiscrim
         'profiles': value['profiles'] == null ? undefined : ((value['profiles'] as Array<any>).map(LoyaltyCardProfileRegistrationToJSON)),
         'ledger': LedgerInfoToJSON(value['ledger']),
         'subledgers': value['subledgers'] == null ? undefined : (mapValues(value['subledgers'], LedgerInfoToJSON)),
-        'modified': value['modified'] == null ? value['modified'] : value['modified'].toISOString(),
+        'modified': value['modified'] == null ? value['modified'] : serializeDateTime(value['modified']),
         'oldCardIdentifier': value['oldCardIdentifier'],
         'newCardIdentifier': value['newCardIdentifier'],
         'batchId': value['batchId'],

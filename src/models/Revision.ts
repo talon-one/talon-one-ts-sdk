@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { RevisionVersion } from './RevisionVersion';
 import {
     RevisionVersionFromJSON,
@@ -29,62 +29,42 @@ import {
 export interface Revision {
     /**
      * Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints.
-     * @type {number}
-     * @memberof Revision
      */
     id: number;
     /**
      * 
-     * @type {Date}
-     * @memberof Revision
      */
     activateAt?: Date;
     /**
      * 
-     * @type {number}
-     * @memberof Revision
      */
     accountId: number;
     /**
      * 
-     * @type {number}
-     * @memberof Revision
      */
     applicationId: number;
     /**
      * 
-     * @type {number}
-     * @memberof Revision
      */
     campaignId: number;
     /**
      * 
-     * @type {Date}
-     * @memberof Revision
      */
     created: Date;
     /**
      * 
-     * @type {number}
-     * @memberof Revision
      */
     createdBy: number;
     /**
      * 
-     * @type {Date}
-     * @memberof Revision
      */
     activatedAt?: Date;
     /**
      * 
-     * @type {number}
-     * @memberof Revision
      */
     activatedBy?: number;
     /**
      * 
-     * @type {RevisionVersion}
-     * @memberof Revision
      */
     currentVersion?: RevisionVersion;
 }
@@ -114,13 +94,13 @@ export function RevisionFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return {
         
         'id': json['id'],
-        'activateAt': json['activateAt'] == null ? undefined : (new Date(json['activateAt'])),
+        'activateAt': json['activateAt'] == null ? undefined : (parseDateTime(json['activateAt'])),
         'accountId': json['accountId'],
         'applicationId': json['applicationId'],
         'campaignId': json['campaignId'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'createdBy': json['createdBy'],
-        'activatedAt': json['activatedAt'] == null ? undefined : (new Date(json['activatedAt'])),
+        'activatedAt': json['activatedAt'] == null ? undefined : (parseDateTime(json['activatedAt'])),
         'activatedBy': json['activatedBy'] == null ? undefined : json['activatedBy'],
         'currentVersion': json['currentVersion'] == null ? undefined : RevisionVersionFromJSON(json['currentVersion']),
     };
@@ -138,13 +118,13 @@ export function RevisionToJSONTyped(value?: Revision | null, ignoreDiscriminator
     return {
         
         'id': value['id'],
-        'activateAt': value['activateAt'] == null ? value['activateAt'] : value['activateAt'].toISOString(),
+        'activateAt': value['activateAt'] == null ? value['activateAt'] : serializeDateTime(value['activateAt']),
         'accountId': value['accountId'],
         'applicationId': value['applicationId'],
         'campaignId': value['campaignId'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'createdBy': value['createdBy'],
-        'activatedAt': value['activatedAt'] == null ? value['activatedAt'] : value['activatedAt'].toISOString(),
+        'activatedAt': value['activatedAt'] == null ? value['activatedAt'] : serializeDateTime(value['activatedAt']),
         'activatedBy': value['activatedBy'],
         'currentVersion': RevisionVersionToJSON(value['currentVersion']),
     };

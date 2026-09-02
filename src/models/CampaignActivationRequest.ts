@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface CampaignActivationRequest {
     /**
      * The list of IDs of the users who will receive the activation request.
-     * @type {Array<number>}
-     * @memberof CampaignActivationRequest
      */
     userIds: Array<number>;
 }

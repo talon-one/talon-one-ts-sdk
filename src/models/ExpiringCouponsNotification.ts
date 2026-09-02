@@ -29,20 +29,14 @@ import {
 export interface ExpiringCouponsNotification {
     /**
      * 
-     * @type {number}
-     * @memberof ExpiringCouponsNotification
      */
     totalResultSize: number;
     /**
      * The array of expiring coupon notifications.
-     * @type {Array<ExpiringCouponsData>}
-     * @memberof ExpiringCouponsNotification
      */
     data: Array<ExpiringCouponsData>;
     /**
      * The type of notification.
-     * @type {ExpiringCouponsNotificationNotificationTypeEnum}
-     * @memberof ExpiringCouponsNotification
      */
     notificationType: ExpiringCouponsNotificationNotificationTypeEnum;
 }
@@ -52,7 +46,7 @@ export interface ExpiringCouponsNotification {
  * @export
  */
 export const ExpiringCouponsNotificationNotificationTypeEnum = {
-    CouponCodeExpiring: 'CouponCodeExpiring'
+    CouponCodeExpiring: 'CouponCodeExpiring',
 } as const;
 export type ExpiringCouponsNotificationNotificationTypeEnum = typeof ExpiringCouponsNotificationNotificationTypeEnum[keyof typeof ExpiringCouponsNotificationNotificationTypeEnum];
 

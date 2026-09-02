@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { Binding } from './Binding';
 import {
     BindingFromJSON,
@@ -43,38 +43,26 @@ import {
 export interface Reward {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Reward
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Reward
      */
     created: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof Reward
      */
     accountId: number;
     /**
      * The name of the reward.
-     * @type {string}
-     * @memberof Reward
      */
     name: string;
     /**
      * A unique identifier used to reference the reward in API integrations.
-     * @type {string}
-     * @memberof Reward
      */
     apiName: string;
     /**
      * A description of the reward.
-     * @type {string}
-     * @memberof Reward
      */
     description?: string;
     /**
@@ -82,14 +70,10 @@ export interface Reward {
      * 
      * **Note**: Currently, a reward can only be connected to one Application.
      * 
-     * @type {Array<number>}
-     * @memberof Reward
      */
     applicationIds: Array<number>;
     /**
      * Indicates if this is a live or sandbox reward. Rewards of a given type can only be connected to Applications of the same type.
-     * @type {boolean}
-     * @memberof Reward
      */
     sandbox: boolean;
     /**
@@ -99,8 +83,6 @@ export interface Reward {
      * **Note:** Only the `condition` field is evaluated within this rule. The `effects` field must be an empty array,
      * and `bindings` are not supported.
      * 
-     * @type {Rule}
-     * @memberof Reward
      */
     eligibilityConditions?: Rule;
     /**
@@ -110,14 +92,10 @@ export interface Reward {
      * endpoint. All bindings should be defined at the reward level via the
      * top-level `bindings` field.
      * 
-     * @type {Rule}
-     * @memberof Reward
      */
     rule?: Rule;
     /**
      * A list of named variables created before the reward's rules are evaluated. Each binding pairs a name with a talang expression. The expression is evaluated once and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.
-     * @type {Array<Binding>}
-     * @memberof Reward
      */
     bindings?: Array<Binding>;
     /**
@@ -127,20 +105,14 @@ export interface Reward {
      * **Note:** When creating a reward, the `id` of each entry is ignored and a new entry is
      * always created.
      * 
-     * @type {Array<RewardPointsRequired>}
-     * @memberof Reward
      */
     pointsRequired?: Array<RewardPointsRequired>;
     /**
      * The timestamp when the reward was last updated in RFC3339 format.
-     * @type {Date}
-     * @memberof Reward
      */
     modified?: Date;
     /**
      * The status of the reward.
-     * @type {RewardStatusEnum}
-     * @memberof Reward
      */
     status: RewardStatusEnum;
 }
@@ -151,7 +123,7 @@ export interface Reward {
  */
 export const RewardStatusEnum = {
     Active: 'active',
-    Inactive: 'inactive'
+    Inactive: 'inactive',
 } as const;
 export type RewardStatusEnum = typeof RewardStatusEnum[keyof typeof RewardStatusEnum];
 
@@ -183,7 +155,7 @@ export function RewardFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'accountId': json['accountId'],
         'name': json['name'],
         'apiName': json['apiName'],
@@ -194,7 +166,7 @@ export function RewardFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
         'rule': json['rule'] == null ? undefined : RuleFromJSON(json['rule']),
         'bindings': json['bindings'] == null ? undefined : ((json['bindings'] as Array<any>).map(BindingFromJSON)),
         'pointsRequired': json['pointsRequired'] == null ? undefined : ((json['pointsRequired'] as Array<any>).map(RewardPointsRequiredFromJSON)),
-        'modified': json['modified'] == null ? undefined : (new Date(json['modified'])),
+        'modified': json['modified'] == null ? undefined : (parseDateTime(json['modified'])),
         'status': json['status'],
     };
 }
@@ -211,7 +183,7 @@ export function RewardToJSONTyped(value?: Reward | null, ignoreDiscriminator: bo
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'accountId': value['accountId'],
         'name': value['name'],
         'apiName': value['apiName'],
@@ -222,7 +194,7 @@ export function RewardToJSONTyped(value?: Reward | null, ignoreDiscriminator: bo
         'rule': RuleToJSON(value['rule']),
         'bindings': value['bindings'] == null ? undefined : ((value['bindings'] as Array<any>).map(BindingToJSON)),
         'pointsRequired': value['pointsRequired'] == null ? undefined : ((value['pointsRequired'] as Array<any>).map(RewardPointsRequiredToJSON)),
-        'modified': value['modified'] == null ? value['modified'] : value['modified'].toISOString(),
+        'modified': value['modified'] == null ? value['modified'] : serializeDateTime(value['modified']),
         'status': value['status'],
     };
 }

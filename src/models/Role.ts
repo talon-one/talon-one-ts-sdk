@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,58 +21,40 @@ import { mapValues } from '../runtime';
 export interface Role {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Role
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Role
      */
     created: Date;
     /**
      * The time this entity was last modified.
-     * @type {Date}
-     * @memberof Role
      */
     modified: Date;
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof Role
      */
     accountId: number;
     /**
      * The ID of the [Campaign Group](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups)
      * this role was created for.
      * 
-     * @type {number}
-     * @memberof Role
      */
     campaignGroupID?: number;
     /**
      * Name of the role.
-     * @type {string}
-     * @memberof Role
      */
     name: string;
     /**
      * Description of the role.
-     * @type {string}
-     * @memberof Role
      */
     description?: string;
     /**
      * A list of user identifiers assigned to this role.
-     * @type {Array<number>}
-     * @memberof Role
      */
     members?: Array<number>;
     /**
      * The `Access Control List` json defining the role of the user. This represents the access control on the user level.
-     * @type {object}
-     * @memberof Role
      */
     acl: object;
 }
@@ -102,8 +84,8 @@ export function RoleFromJSONTyped(json: any, ignoreDiscriminator: boolean): Role
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'accountId': json['accountId'],
         'campaignGroupID': json['campaignGroupID'] == null ? undefined : json['campaignGroupID'],
         'name': json['name'],
@@ -125,8 +107,8 @@ export function RoleToJSONTyped(value?: Role | null, ignoreDiscriminator: boolea
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'accountId': value['accountId'],
         'campaignGroupID': value['campaignGroupID'],
         'name': value['name'],

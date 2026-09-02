@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface RewardEligibilityFailureDetails {
     /**
      * A code identifying why the customer is not eligible for the reward.
-     * @type {RewardEligibilityFailureDetailsFailureCodeEnum}
-     * @memberof RewardEligibilityFailureDetails
      */
     failureCode: RewardEligibilityFailureDetailsFailureCodeEnum;
     /**
-     * The index of the eligibility condition that the customer did not meet.
-     * @type {number}
-     * @memberof RewardEligibilityFailureDetails
+     * The index of the eligibility condition that the customer did not meet. Only applicable when `failureCode` is `CONDITION_NOT_MET`.
      */
     conditionIndex?: number;
 }
@@ -38,7 +34,10 @@ export interface RewardEligibilityFailureDetails {
  * @export
  */
 export const RewardEligibilityFailureDetailsFailureCodeEnum = {
-    ConditionNotMet: 'CONDITION_NOT_MET'
+    ConditionNotMet: 'CONDITION_NOT_MET',
+    InsufficientBalance: 'INSUFFICIENT_BALANCE',
+    CardRequired: 'CARD_REQUIRED',
+    ProfileRequired: 'PROFILE_REQUIRED',
 } as const;
 export type RewardEligibilityFailureDetailsFailureCodeEnum = typeof RewardEligibilityFailureDetailsFailureCodeEnum[keyof typeof RewardEligibilityFailureDetailsFailureCodeEnum];
 
@@ -49,8 +48,6 @@ export type RewardEligibilityFailureDetailsFailureCodeEnum = typeof RewardEligib
 export function instanceOfRewardEligibilityFailureDetails(value: object): value is RewardEligibilityFailureDetails {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('failureCode' in _v) || _v['failureCode'] === undefined) return false;
-    if (_v['failureCode'] !== 'CONDITION_NOT_MET') return false;
-    
     return true;
 }
 

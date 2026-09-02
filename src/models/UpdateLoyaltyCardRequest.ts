@@ -22,8 +22,6 @@ export interface UpdateLoyaltyCardRequest {
     /**
      * Status of the loyalty card. Can be `active` or `inactive`.
      * 
-     * @type {string}
-     * @memberof UpdateLoyaltyCardRequest
      */
     status?: string;
 }

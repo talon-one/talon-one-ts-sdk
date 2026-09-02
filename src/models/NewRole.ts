@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface NewRole {
     /**
      * Name of the role.
-     * @type {string}
-     * @memberof NewRole
      */
     name: string;
     /**
      * Description of the role.
-     * @type {string}
-     * @memberof NewRole
      */
     description?: string;
     /**
      * The `Access Control List` json defining the role of the user. This represents the access control on the user level.
-     * @type {string}
-     * @memberof NewRole
      */
     acl: string;
     /**
      * An array of user identifiers.
-     * @type {Array<number>}
-     * @memberof NewRole
      */
     members: Array<number>;
 }

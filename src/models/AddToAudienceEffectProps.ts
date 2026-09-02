@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface AddToAudienceEffectProps {
     /**
      * The internal ID of the audience.
-     * @type {number}
-     * @memberof AddToAudienceEffectProps
      */
     audienceId?: number;
     /**
      * The name of the audience.
-     * @type {string}
-     * @memberof AddToAudienceEffectProps
      */
     audienceName?: string;
     /**
      * The ID of the customer profile in the third-party integration platform.
-     * @type {string}
-     * @memberof AddToAudienceEffectProps
      */
     profileIntegrationId?: string;
     /**
      * The internal ID of the customer profile.
-     * @type {number}
-     * @memberof AddToAudienceEffectProps
      */
     profileId?: number;
 }

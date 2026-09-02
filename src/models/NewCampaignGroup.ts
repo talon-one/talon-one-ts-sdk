@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface NewCampaignGroup {
     /**
      * The name of the campaign access group.
-     * @type {string}
-     * @memberof NewCampaignGroup
      */
     name: string;
     /**
      * A longer description of the campaign access group.
-     * @type {string}
-     * @memberof NewCampaignGroup
      */
     description?: string;
     /**
      * A list of IDs of the Applications that this campaign access group is enabled for.
-     * @type {Array<number>}
-     * @memberof NewCampaignGroup
      */
     subscribedApplicationsIds?: Array<number>;
     /**
      * A list of IDs of the campaigns that are part of the campaign access group.
-     * @type {Array<number>}
-     * @memberof NewCampaignGroup
      */
     campaignIds?: Array<number>;
 }

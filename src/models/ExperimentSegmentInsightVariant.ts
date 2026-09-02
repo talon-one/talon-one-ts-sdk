@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface ExperimentSegmentInsightVariant {
     /**
      * The ID of the experiment variant.
-     * @type {number}
-     * @memberof ExperimentSegmentInsightVariant
      */
     variantId: number;
     /**
      * The name of the experiment variant.
-     * @type {string}
-     * @memberof ExperimentSegmentInsightVariant
      */
     variantName: string;
     /**
      * The number of sessions in this segment for this variant.
-     * @type {number}
-     * @memberof ExperimentSegmentInsightVariant
      */
     sessionsCount: number;
     /**
      * The metric value for this variant in the segment.
-     * @type {number}
-     * @memberof ExperimentSegmentInsightVariant
      */
     value: number;
 }

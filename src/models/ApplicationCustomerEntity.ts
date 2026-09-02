@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ApplicationCustomerEntity {
     /**
      * The globally unique Talon.One ID of the customer that created this entity.
-     * @type {number}
-     * @memberof ApplicationCustomerEntity
      */
     profileId?: number;
 }

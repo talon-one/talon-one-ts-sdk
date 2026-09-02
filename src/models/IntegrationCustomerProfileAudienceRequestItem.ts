@@ -27,20 +27,14 @@ export interface IntegrationCustomerProfileAudienceRequestItem {
      *   until a session or profile update is received for that profile.
      * - `delete`: Removes the customer profile from the audience.
      * 
-     * @type {IntegrationCustomerProfileAudienceRequestItemActionEnum}
-     * @memberof IntegrationCustomerProfileAudienceRequestItem
      */
     action: IntegrationCustomerProfileAudienceRequestItemActionEnum;
     /**
      * The ID of this customer profile in the third-party integration.
-     * @type {string}
-     * @memberof IntegrationCustomerProfileAudienceRequestItem
      */
     profileIntegrationId: string;
     /**
      * The ID of this audience in the third-party integration.
-     * @type {string}
-     * @memberof IntegrationCustomerProfileAudienceRequestItem
      */
     integrationId: string;
 }
@@ -51,7 +45,7 @@ export interface IntegrationCustomerProfileAudienceRequestItem {
  */
 export const IntegrationCustomerProfileAudienceRequestItemActionEnum = {
     Add: 'add',
-    Delete: 'delete'
+    Delete: 'delete',
 } as const;
 export type IntegrationCustomerProfileAudienceRequestItemActionEnum = typeof IntegrationCustomerProfileAudienceRequestItemActionEnum[keyof typeof IntegrationCustomerProfileAudienceRequestItemActionEnum];
 

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface NewPicklist {
     /**
      * The type of allowed values in the picklist. If the type `time` is chosen, it must be an RFC3339 timestamp string.
-     * @type {NewPicklistTypeEnum}
-     * @memberof NewPicklist
      */
     type: NewPicklistTypeEnum;
     /**
      * The list of allowed values provided by this picklist.
-     * @type {Array<string>}
-     * @memberof NewPicklist
      */
     values: Array<string>;
 }
@@ -41,7 +37,7 @@ export const NewPicklistTypeEnum = {
     String: 'string',
     Boolean: 'boolean',
     Number: 'number',
-    Time: 'time'
+    Time: 'time',
 } as const;
 export type NewPicklistTypeEnum = typeof NewPicklistTypeEnum[keyof typeof NewPicklistTypeEnum];
 

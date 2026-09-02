@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PromotionBlock } from './PromotionBlock';
+import type { Block } from './Block';
 import {
-    PromotionBlockFromJSON,
-    PromotionBlockFromJSONTyped,
-    PromotionBlockToJSON,
-    PromotionBlockToJSONTyped,
-} from './PromotionBlock';
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
 import type { CheckLoyaltyBalanceBlock1Program } from './CheckLoyaltyBalanceBlock1Program';
 import {
     CheckLoyaltyBalanceBlock1ProgramFromJSON,
@@ -36,38 +36,26 @@ import {
 export interface CheckLoyaltyBalanceBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof CheckLoyaltyBalanceBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof CheckLoyaltyBalanceBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof CheckLoyaltyBalanceBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * An indicator of how the block compares the balance to the value.
-     * @type {CheckLoyaltyBalanceBlockOperatorEnum}
-     * @memberof CheckLoyaltyBalanceBlock
      */
     operator: CheckLoyaltyBalanceBlockOperatorEnum;
     /**
      * 
-     * @type {CheckLoyaltyBalanceBlock1Program}
-     * @memberof CheckLoyaltyBalanceBlock
      */
     program: CheckLoyaltyBalanceBlock1Program;
     /**
      * The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program's main ledger balance instead of a subledger.
-     * @type {string}
-     * @memberof CheckLoyaltyBalanceBlock
      */
     subledger: string;
     /**
@@ -77,22 +65,16 @@ export interface CheckLoyaltyBalanceBlock {
      *  - `negative` is the sum of negative points.
      *  - `tentativeCurrent` is the tentative points balance
      * within the current open customer session.
-     * @type {CheckLoyaltyBalanceBlockBalanceEnum}
-     * @memberof CheckLoyaltyBalanceBlock
      */
     balance: CheckLoyaltyBalanceBlockBalanceEnum;
     /**
      * The numeric value to compare the balance against.
-     * @type {number}
-     * @memberof CheckLoyaltyBalanceBlock
      */
     value: number;
     /**
      * Promotion blocks evaluated when this block fails or returns false.
-     * @type {Array<PromotionBlock>}
-     * @memberof CheckLoyaltyBalanceBlock
      */
-    onFailure?: Array<PromotionBlock>;
+    onFailure?: Array<Block>;
 }
 
 
@@ -105,7 +87,7 @@ export const CheckLoyaltyBalanceBlockOperatorEnum = {
     LessThan: 'lessThan',
     LessThanOrEqual: 'lessThanOrEqual',
     GreaterThan: 'greaterThan',
-    GreaterThanOrEqual: 'greaterThanOrEqual'
+    GreaterThanOrEqual: 'greaterThanOrEqual',
 } as const;
 export type CheckLoyaltyBalanceBlockOperatorEnum = typeof CheckLoyaltyBalanceBlockOperatorEnum[keyof typeof CheckLoyaltyBalanceBlockOperatorEnum];
 
@@ -116,7 +98,7 @@ export const CheckLoyaltyBalanceBlockBalanceEnum = {
     Current: 'current',
     Pending: 'pending',
     Negative: 'negative',
-    TentativeCurrent: 'tentativeCurrent'
+    TentativeCurrent: 'tentativeCurrent',
 } as const;
 export type CheckLoyaltyBalanceBlockBalanceEnum = typeof CheckLoyaltyBalanceBlockBalanceEnum[keyof typeof CheckLoyaltyBalanceBlockBalanceEnum];
 
@@ -126,7 +108,6 @@ export type CheckLoyaltyBalanceBlockBalanceEnum = typeof CheckLoyaltyBalanceBloc
  */
 export function instanceOfCheckLoyaltyBalanceBlock(value: object): value is CheckLoyaltyBalanceBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('operator' in _v) || _v['operator'] === undefined) return false;
     if (!('program' in _v) || _v['program'] === undefined) return false;
@@ -146,7 +127,7 @@ export function CheckLoyaltyBalanceBlockFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
@@ -154,7 +135,7 @@ export function CheckLoyaltyBalanceBlockFromJSONTyped(json: any, ignoreDiscrimin
         'subledger': json['subledger'],
         'balance': json['balance'],
         'value': json['value'],
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -162,22 +143,20 @@ export function CheckLoyaltyBalanceBlockToJSON(json: any): CheckLoyaltyBalanceBl
     return CheckLoyaltyBalanceBlockToJSONTyped(json, false);
 }
 
-export function CheckLoyaltyBalanceBlockToJSONTyped(value?: CheckLoyaltyBalanceBlock | null, ignoreDiscriminator: boolean = false): any {
+export function CheckLoyaltyBalanceBlockToJSONTyped(value?: Omit<CheckLoyaltyBalanceBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'operator': value['operator'],
         'program': CheckLoyaltyBalanceBlock1ProgramToJSON(value['program']),
         'subledger': value['subledger'],
         'balance': value['balance'],
         'value': value['value'],
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }
 

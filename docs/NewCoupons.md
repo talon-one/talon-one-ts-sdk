@@ -13,6 +13,7 @@ Name | Type
 `expiryDate` | Date
 `limits` | [Array&lt;LimitConfig&gt;](LimitConfig.md)
 `numberOfCoupons` | number
+`batchId` | string
 `uniquePrefix` | string
 `attributes` | object
 `recipientIntegrationId` | string
@@ -37,6 +38,7 @@ const example = {
   "expiryDate": 2023-08-24T14:15:22Z,
   "limits": null,
   "numberOfCoupons": 1,
+  "batchId": 3rdparty_fjsieoaa,
   "uniquePrefix": ,
   "attributes": {venueId=12},
   "recipientIntegrationId": URNGV8294NV,

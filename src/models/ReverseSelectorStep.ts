@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ReverseSelectorStep {
     /**
      * A step discriminator of type `reverse`.
-     * @type {ReverseSelectorStepTypeEnum}
-     * @memberof ReverseSelectorStep
      */
     type: ReverseSelectorStepTypeEnum;
 }
@@ -32,7 +30,7 @@ export interface ReverseSelectorStep {
  * @export
  */
 export const ReverseSelectorStepTypeEnum = {
-    Reverse: 'reverse'
+    Reverse: 'reverse',
 } as const;
 export type ReverseSelectorStepTypeEnum = typeof ReverseSelectorStepTypeEnum[keyof typeof ReverseSelectorStepTypeEnum];
 

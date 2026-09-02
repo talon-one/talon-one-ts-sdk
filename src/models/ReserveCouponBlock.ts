@@ -21,22 +21,16 @@ import { mapValues } from '../runtime';
 export interface ReserveCouponBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof ReserveCouponBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof ReserveCouponBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof ReserveCouponBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
 }
 
 /**
@@ -44,7 +38,6 @@ export interface ReserveCouponBlock {
  */
 export function instanceOfReserveCouponBlock(value: object): value is ReserveCouponBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     return true;
 }
@@ -59,7 +52,7 @@ export function ReserveCouponBlockFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
     };
@@ -69,16 +62,14 @@ export function ReserveCouponBlockToJSON(json: any): ReserveCouponBlock {
     return ReserveCouponBlockToJSONTyped(json, false);
 }
 
-export function ReserveCouponBlockToJSONTyped(value?: ReserveCouponBlock | null, ignoreDiscriminator: boolean = false): any {
+export function ReserveCouponBlockToJSONTyped(value?: Omit<ReserveCouponBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
     };
 }
 

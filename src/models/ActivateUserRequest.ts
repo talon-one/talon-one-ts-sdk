@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ActivateUserRequest {
     /**
      * The email address associated with the user profile.
-     * @type {string}
-     * @memberof ActivateUserRequest
      */
     email: string;
 }

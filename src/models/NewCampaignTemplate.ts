@@ -57,98 +57,66 @@ import {
 export interface NewCampaignTemplate {
     /**
      * The campaign template name.
-     * @type {string}
-     * @memberof NewCampaignTemplate
      */
     name: string;
     /**
      * Customer-facing text that explains the objective of the template.
-     * @type {string}
-     * @memberof NewCampaignTemplate
      */
     description: string;
     /**
      * Customer-facing text that explains how to use the template. For example, you can use this property to explain the available attributes of this template, and how they can be modified when a user uses this template to create a new campaign.
-     * @type {string}
-     * @memberof NewCampaignTemplate
      */
     instructions: string;
     /**
      * The campaign attributes that campaigns created from this template will have by default.
-     * @type {object}
-     * @memberof NewCampaignTemplate
      */
     campaignAttributes?: object;
     /**
      * The campaign attributes that coupons created from this template will have by default.
-     * @type {object}
-     * @memberof NewCampaignTemplate
      */
     couponAttributes?: object;
     /**
      * Only Campaign Templates in 'available' state may be used to create Campaigns.
-     * @type {NewCampaignTemplateStateEnum}
-     * @memberof NewCampaignTemplate
      */
     state: NewCampaignTemplateStateEnum;
     /**
      * A list of tags for the campaign template.
-     * @type {Array<string>}
-     * @memberof NewCampaignTemplate
      */
     tags?: Array<string>;
     /**
      * Indicates whether campaigns created from this template should be reevaluated when a customer returns an item.
-     * @type {boolean}
-     * @memberof NewCampaignTemplate
      */
     reevaluateOnReturn?: boolean;
     /**
      * A list of features for the campaign template.
-     * @type {Array<NewCampaignTemplateFeaturesEnum>}
-     * @memberof NewCampaignTemplate
      */
     features?: Array<NewCampaignTemplateFeaturesEnum>;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof NewCampaignTemplate
      */
     couponSettings?: CodeGeneratorSettings;
     /**
      * 
-     * @type {CampaignTemplateCouponReservationSettings}
-     * @memberof NewCampaignTemplate
      */
     couponReservationSettings?: CampaignTemplateCouponReservationSettings;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof NewCampaignTemplate
      */
     referralSettings?: CodeGeneratorSettings;
     /**
      * The set of limits that will operate for this campaign template.
-     * @type {Array<TemplateLimitConfig>}
-     * @memberof NewCampaignTemplate
      */
     limits?: Array<TemplateLimitConfig>;
     /**
      * Fields which can be used to replace values in a rule.
-     * @type {Array<CampaignTemplateParams>}
-     * @memberof NewCampaignTemplate
      */
     templateParams?: Array<CampaignTemplateParams>;
     /**
      * The campaign collections from the blueprint campaign for the template.
-     * @type {Array<CampaignTemplateCollection>}
-     * @memberof NewCampaignTemplate
      */
     campaignCollections?: Array<CampaignTemplateCollection>;
     /**
      * The default campaign group ID.
-     * @type {number}
-     * @memberof NewCampaignTemplate
      */
     defaultCampaignGroupId?: number;
     /**
@@ -156,8 +124,6 @@ export interface NewCampaignTemplate {
      *   - `cartItem`: Type of campaign that can apply effects only to cart items.
      *   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
      * 
-     * @type {NewCampaignTemplateCampaignTypeEnum}
-     * @memberof NewCampaignTemplate
      */
     campaignType: NewCampaignTemplateCampaignTypeEnum;
 }
@@ -169,7 +135,7 @@ export interface NewCampaignTemplate {
 export const NewCampaignTemplateStateEnum = {
     Draft: 'draft',
     Enabled: 'enabled',
-    Disabled: 'disabled'
+    Disabled: 'disabled',
 } as const;
 export type NewCampaignTemplateStateEnum = typeof NewCampaignTemplateStateEnum[keyof typeof NewCampaignTemplateStateEnum];
 
@@ -183,7 +149,7 @@ export const NewCampaignTemplateFeaturesEnum = {
     Giveaways: 'giveaways',
     Strikethrough: 'strikethrough',
     Achievements: 'achievements',
-    AdvancedEvents: 'advancedEvents'
+    AdvancedEvents: 'advancedEvents',
 } as const;
 export type NewCampaignTemplateFeaturesEnum = typeof NewCampaignTemplateFeaturesEnum[keyof typeof NewCampaignTemplateFeaturesEnum];
 
@@ -192,7 +158,7 @@ export type NewCampaignTemplateFeaturesEnum = typeof NewCampaignTemplateFeatures
  */
 export const NewCampaignTemplateCampaignTypeEnum = {
     CartItem: 'cartItem',
-    Advanced: 'advanced'
+    Advanced: 'advanced',
 } as const;
 export type NewCampaignTemplateCampaignTypeEnum = typeof NewCampaignTemplateCampaignTypeEnum[keyof typeof NewCampaignTemplateCampaignTypeEnum];
 

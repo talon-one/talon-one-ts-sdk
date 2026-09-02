@@ -12,7 +12,7 @@ Name | Type
 `operator` | string
 `subledger` | string
 `tier` | [CheckTierBlock1Tier](CheckTierBlock1Tier.md)
-`onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
+`onFailure` | [Array&lt;Block&gt;](Block.md)
 
 ## Example
 

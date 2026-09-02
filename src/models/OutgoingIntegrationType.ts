@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface OutgoingIntegrationType {
     /**
      * Unique ID for this entity.
-     * @type {number}
-     * @memberof OutgoingIntegrationType
      */
     id: number;
     /**
      * Name of the outgoing integration.
-     * @type {string}
-     * @memberof OutgoingIntegrationType
      */
     name: string;
     /**
      * Description of the outgoing integration.
-     * @type {string}
-     * @memberof OutgoingIntegrationType
      */
     description?: string;
     /**
      * Category of the outgoing integration.
-     * @type {string}
-     * @memberof OutgoingIntegrationType
      */
     category?: string;
     /**
      * Http link to the outgoing integration's documentation.
-     * @type {string}
-     * @memberof OutgoingIntegrationType
      */
     documentationLink?: string;
 }

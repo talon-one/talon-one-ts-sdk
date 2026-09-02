@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CampaignSetLeafNode {
     /**
      * Indicates the node type.
-     * @type {CampaignSetLeafNodeTypeEnum}
-     * @memberof CampaignSetLeafNode
      */
     type: CampaignSetLeafNodeTypeEnum;
     /**
      * ID of the campaign
-     * @type {number}
-     * @memberof CampaignSetLeafNode
      */
     campaignId: number;
 }
@@ -38,7 +34,7 @@ export interface CampaignSetLeafNode {
  * @export
  */
 export const CampaignSetLeafNodeTypeEnum = {
-    Campaign: 'CAMPAIGN'
+    Campaign: 'CAMPAIGN',
 } as const;
 export type CampaignSetLeafNodeTypeEnum = typeof CampaignSetLeafNodeTypeEnum[keyof typeof CampaignSetLeafNodeTypeEnum];
 

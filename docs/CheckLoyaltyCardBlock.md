@@ -10,7 +10,7 @@ Name | Type
 `type` | string
 `tags` | Array&lt;string&gt;
 `operator` | string
-`onFailure` | [Array&lt;PromotionBlock&gt;](PromotionBlock.md)
+`onFailure` | [Array&lt;Block&gt;](Block.md)
 
 ## Example
 

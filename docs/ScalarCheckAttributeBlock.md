@@ -18,7 +18,7 @@ import type { ScalarCheckAttributeBlock } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "operator": null,
-  "value": null,
+  "value": 100,
 } satisfies ScalarCheckAttributeBlock
 
 console.log(example)

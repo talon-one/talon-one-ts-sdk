@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface RollbackUseRewardEffectProps {
     /**
      * The integration ID of the customer reward that was rolled back.
-     * @type {string}
-     * @memberof RollbackUseRewardEffectProps
      */
     integrationId: string;
     /**
      * The ID of the reward that was rolled back.
-     * @type {number}
-     * @memberof RollbackUseRewardEffectProps
      */
     rewardId: number;
     /**
      * The ID of the Application the reward belongs to.
-     * @type {number}
-     * @memberof RollbackUseRewardEffectProps
      */
     applicationId: number;
 }

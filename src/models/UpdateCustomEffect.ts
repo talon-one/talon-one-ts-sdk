@@ -29,50 +29,34 @@ import {
 export interface UpdateCustomEffect {
     /**
      * The IDs of the Applications that are related to this entity.
-     * @type {Array<number>}
-     * @memberof UpdateCustomEffect
      */
     applicationIds: Array<number>;
     /**
      * Indicates if this effect is per item or not.
-     * @type {boolean}
-     * @memberof UpdateCustomEffect
      */
     isPerItem?: boolean;
     /**
      * The name of this effect.
-     * @type {string}
-     * @memberof UpdateCustomEffect
      */
     name: string;
     /**
      * The title of this effect.
-     * @type {string}
-     * @memberof UpdateCustomEffect
      */
     title: string;
     /**
      * The JSON payload of this effect.
-     * @type {string}
-     * @memberof UpdateCustomEffect
      */
     payload: string;
     /**
      * The description of this effect.
-     * @type {string}
-     * @memberof UpdateCustomEffect
      */
     description?: string;
     /**
      * Determines if this effect is active.
-     * @type {boolean}
-     * @memberof UpdateCustomEffect
      */
     enabled: boolean;
     /**
      * Array of template argument definitions.
-     * @type {Array<TemplateArgDef>}
-     * @memberof UpdateCustomEffect
      */
     params?: Array<TemplateArgDef>;
 }

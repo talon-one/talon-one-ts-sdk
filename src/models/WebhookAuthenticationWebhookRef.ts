@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface WebhookAuthenticationWebhookRef {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof WebhookAuthenticationWebhookRef
      */
     id: number;
     /**
      * The title of the webhook authentication.
-     * @type {string}
-     * @memberof WebhookAuthenticationWebhookRef
      */
     title: string;
     /**
      * A description of the webhook authentication.
-     * @type {string}
-     * @memberof WebhookAuthenticationWebhookRef
      */
     description?: string;
 }

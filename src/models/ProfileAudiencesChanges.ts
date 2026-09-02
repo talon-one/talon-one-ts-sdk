@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface ProfileAudiencesChanges {
     /**
      * The IDs of the audiences for the customer to join.
-     * @type {Array<number>}
-     * @memberof ProfileAudiencesChanges
      */
     adds: Array<number>;
     /**
      * The IDs of the audiences for the customer to leave.
-     * @type {Array<number>}
-     * @memberof ProfileAudiencesChanges
      */
     deletes: Array<number>;
 }

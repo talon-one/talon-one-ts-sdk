@@ -23,20 +23,14 @@ export interface RewardPointsRequired {
      * The ID of the `pointsRequired` entry. When updating a reward,
      * include this property to update an existing entry. Omit it to create a new one.
      * 
-     * @type {number}
-     * @memberof RewardPointsRequired
      */
     id?: number;
     /**
      * The number of loyalty points required to activate the reward.
-     * @type {number}
-     * @memberof RewardPointsRequired
      */
     amount: number;
     /**
      * The ID of the associated loyalty program.
-     * @type {number}
-     * @memberof RewardPointsRequired
      */
     loyaltyProgramId: number;
     /**
@@ -44,8 +38,6 @@ export interface RewardPointsRequired {
      * 
      * To specify the main ledger, provide an empty string ("").
      * 
-     * @type {string}
-     * @memberof RewardPointsRequired
      */
     subledgerId: string;
 }

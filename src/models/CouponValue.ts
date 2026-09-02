@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface CouponValue {
     /**
      * The coupon code.
-     * @type {string}
-     * @memberof CouponValue
      */
     value?: string;
 }

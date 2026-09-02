@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,152 +21,102 @@ import { mapValues } from '../runtime';
 export interface CampaignAnalytics {
     /**
      * 
-     * @type {Date}
-     * @memberof CampaignAnalytics
      */
     date: Date;
     /**
      * Amount of revenue in this campaign (for coupon or discount sessions).
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     campaignRevenue: number;
     /**
      * Amount of revenue in this campaign since it began (for coupon or discount sessions).
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     totalCampaignRevenue: number;
     /**
      * Amount of refunds in this campaign (for coupon or discount sessions).
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     campaignRefund: number;
     /**
      * Amount of refunds in this campaign since it began (for coupon or discount sessions).
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     totalCampaignRefund: number;
     /**
      * Amount of cost caused by discounts given in the campaign.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     campaignDiscountCosts: number;
     /**
      * Amount of cost caused by discounts given in the campaign since it began.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     totalCampaignDiscountCosts: number;
     /**
      * Amount of discounts rolledback due to refund in the campaign.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     campaignRefundedDiscounts: number;
     /**
      * Amount of discounts rolledback due to refund in the campaign since it began.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     totalCampaignRefundedDiscounts: number;
     /**
      * Amount of free items given in the campaign.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     campaignFreeItems: number;
     /**
      * Amount of free items given in the campaign since it began.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     totalCampaignFreeItems: number;
     /**
      * Number of coupon redemptions in the campaign.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     couponRedemptions: number;
     /**
      * Number of coupon redemptions in the campaign since it began.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     totalCouponRedemptions: number;
     /**
      * Number of coupon redemptions that have been rolled back (due to canceling closed session) in the campaign.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     couponRolledbackRedemptions: number;
     /**
      * Number of coupon redemptions that have been rolled back (due to canceling closed session) in the campaign since it began.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     totalCouponRolledbackRedemptions: number;
     /**
      * Number of referral redemptions in the campaign.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     referralRedemptions: number;
     /**
      * Number of referral redemptions in the campaign since it began.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     totalReferralRedemptions: number;
     /**
      * Number of coupons created in the campaign by the rule engine.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     couponsCreated: number;
     /**
      * Number of coupons created in the campaign by the rule engine since it began.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     totalCouponsCreated: number;
     /**
      * Number of referrals created in the campaign by the rule engine.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     referralsCreated: number;
     /**
      * Number of referrals created in the campaign by the rule engine since it began.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     totalReferralsCreated: number;
     /**
      * Number of added loyalty points in the campaign in a specific interval.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     addedLoyaltyPoints: number;
     /**
      * Number of added loyalty points in the campaign since it began.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     totalAddedLoyaltyPoints: number;
     /**
      * Number of deducted loyalty points in the campaign in a specific interval.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     deductedLoyaltyPoints: number;
     /**
      * Number of deducted loyalty points in the campaign since it began.
-     * @type {number}
-     * @memberof CampaignAnalytics
      */
     totalDeductedLoyaltyPoints: number;
 }
@@ -214,7 +164,7 @@ export function CampaignAnalyticsFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'date': (json['date'] == null ? undefined as any : new Date(json['date'])),
+        'date': (json['date'] == null ? json['date'] : parseDateTime(json['date'])),
         'campaignRevenue': json['campaignRevenue'],
         'totalCampaignRevenue': json['totalCampaignRevenue'],
         'campaignRefund': json['campaignRefund'],
@@ -253,7 +203,7 @@ export function CampaignAnalyticsToJSONTyped(value?: CampaignAnalytics | null, i
 
     return {
         
-        'date': value['date'] == null ? undefined : value['date'].toISOString(),
+        'date': value['date'] == null ? undefined : serializeDateTime(value['date']),
         'campaignRevenue': value['campaignRevenue'],
         'totalCampaignRevenue': value['totalCampaignRevenue'],
         'campaignRefund': value['campaignRefund'],

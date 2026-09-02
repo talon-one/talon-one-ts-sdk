@@ -29,14 +29,10 @@ import {
 export interface RewardEligibility {
     /**
      * Indicates whether the customer is eligible for the reward.
-     * @type {boolean}
-     * @memberof RewardEligibility
      */
     passed: boolean;
     /**
      * The reasons the customer is not eligible for the reward. Empty when `passed` is `true`.
-     * @type {Array<RewardEligibilityFailureDetails>}
-     * @memberof RewardEligibility
      */
     details?: Array<RewardEligibilityFailureDetails>;
 }

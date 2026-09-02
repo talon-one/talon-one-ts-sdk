@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,76 +21,52 @@ import { mapValues } from '../runtime';
 export interface SamlConnection {
     /**
      * The ID of the account that owns this entity.
-     * @type {number}
-     * @memberof SamlConnection
      */
     accountId: number;
     /**
      * ID of the SAML service.
-     * @type {string}
-     * @memberof SamlConnection
      */
     name: string;
     /**
      * Determines if this SAML connection active.
-     * @type {boolean}
-     * @memberof SamlConnection
      */
     enabled: boolean;
     /**
      * Identity Provider Entity ID.
-     * @type {string}
-     * @memberof SamlConnection
      */
     issuer: string;
     /**
      * Single Sign-On URL.
-     * @type {string}
-     * @memberof SamlConnection
      */
     signOnURL: string;
     /**
      * Single Sign-Out URL.
-     * @type {string}
-     * @memberof SamlConnection
      */
     signOutURL?: string;
     /**
      * Metadata URL.
-     * @type {string}
-     * @memberof SamlConnection
      */
     metadataURL?: string;
     /**
      * The application-defined unique identifier that is the intended audience of the SAML assertion.
      * This is most often the SP Entity ID of your application. When not specified, the ACS URL will be used.
      * 
-     * @type {string}
-     * @memberof SamlConnection
      */
     audienceURI: string;
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof SamlConnection
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof SamlConnection
      */
     created: Date;
     /**
      * The location where the SAML assertion is sent with a HTTP POST.
-     * @type {string}
-     * @memberof SamlConnection
      */
     assertionConsumerServiceURL: string;
     /**
      * The expiry date of the X.509 certificate.
-     * @type {Date}
-     * @memberof SamlConnection
      */
     certificateExpiry?: Date;
 }
@@ -131,9 +107,9 @@ export function SamlConnectionFromJSONTyped(json: any, ignoreDiscriminator: bool
         'metadataURL': json['metadataURL'] == null ? undefined : json['metadataURL'],
         'audienceURI': json['audienceURI'],
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'assertionConsumerServiceURL': json['assertionConsumerServiceURL'],
-        'certificateExpiry': json['certificateExpiry'] == null ? undefined : (new Date(json['certificateExpiry'])),
+        'certificateExpiry': json['certificateExpiry'] == null ? undefined : (parseDateTime(json['certificateExpiry'])),
     };
 }
 
@@ -157,9 +133,9 @@ export function SamlConnectionToJSONTyped(value?: SamlConnection | null, ignoreD
         'metadataURL': value['metadataURL'],
         'audienceURI': value['audienceURI'],
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'assertionConsumerServiceURL': value['assertionConsumerServiceURL'],
-        'certificateExpiry': value['certificateExpiry'] == null ? value['certificateExpiry'] : value['certificateExpiry'].toISOString(),
+        'certificateExpiry': value['certificateExpiry'] == null ? value['certificateExpiry'] : serializeDateTime(value['certificateExpiry']),
     };
 }
 

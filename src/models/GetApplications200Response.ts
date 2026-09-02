@@ -29,14 +29,10 @@ import {
 export interface GetApplications200Response {
     /**
      * 
-     * @type {number}
-     * @memberof GetApplications200Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<Application>}
-     * @memberof GetApplications200Response
      */
     data: Array<Application>;
 }

@@ -31,44 +31,30 @@ import { mapValues } from '../runtime';
 export interface DeductLoyaltyPointsEffectProps {
     /**
      * The title of the rule that contained triggered this points deduction.
-     * @type {string}
-     * @memberof DeductLoyaltyPointsEffectProps
      */
     ruleTitle: string;
     /**
      * The ID of the loyalty program from which these points were deducted.
-     * @type {number}
-     * @memberof DeductLoyaltyPointsEffectProps
      */
     programId: number;
     /**
      * The ID of the subledger within the loyalty program from which these points were deducted.
-     * @type {string}
-     * @memberof DeductLoyaltyPointsEffectProps
      */
     subLedgerId: string;
     /**
      * The amount of points that were deducted.
-     * @type {number}
-     * @memberof DeductLoyaltyPointsEffectProps
      */
     value: number;
     /**
      * The identifier of this loyalty point transaction.
-     * @type {string}
-     * @memberof DeductLoyaltyPointsEffectProps
      */
     transactionUUID: string;
     /**
      * The reason of this loyalty points deduction.
-     * @type {string}
-     * @memberof DeductLoyaltyPointsEffectProps
      */
     name: string;
     /**
      * The identifier of the card from which these points were deducted.
-     * @type {string}
-     * @memberof DeductLoyaltyPointsEffectProps
      */
     cardIdentifier?: string;
 }

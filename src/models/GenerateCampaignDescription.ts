@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface GenerateCampaignDescription {
     /**
      * ID of a campaign.
-     * @type {number}
-     * @memberof GenerateCampaignDescription
      */
     campaignID: number;
     /**
      * ID of a ruleset.
-     * @type {number}
-     * @memberof GenerateCampaignDescription
      */
     rulesetID: number;
     /**
      * Currency for the campaign.
-     * @type {string}
-     * @memberof GenerateCampaignDescription
      */
     currency: string;
 }

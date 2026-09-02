@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CardAddedDeductedPointsNotificationPolicy {
     /**
      * Notification name.
-     * @type {string}
-     * @memberof CardAddedDeductedPointsNotificationPolicy
      */
     name: string;
     /**
      * 
-     * @type {Array<CardAddedDeductedPointsNotificationPolicyScopesEnum>}
-     * @memberof CardAddedDeductedPointsNotificationPolicy
      */
     scopes: Array<CardAddedDeductedPointsNotificationPolicyScopesEnum>;
 }
@@ -41,7 +37,7 @@ export const CardAddedDeductedPointsNotificationPolicyScopesEnum = {
     All: 'all',
     CampaignManager: 'campaign_manager',
     ManagementApi: 'management_api',
-    RuleEngine: 'rule_engine'
+    RuleEngine: 'rule_engine',
 } as const;
 export type CardAddedDeductedPointsNotificationPolicyScopesEnum = typeof CardAddedDeductedPointsNotificationPolicyScopesEnum[keyof typeof CardAddedDeductedPointsNotificationPolicyScopesEnum];
 

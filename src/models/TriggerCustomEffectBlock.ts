@@ -27,13 +27,13 @@ import {
     TriggerCustomEffectBlock1TargetToJSON,
     TriggerCustomEffectBlock1TargetToJSONTyped,
 } from './TriggerCustomEffectBlock1Target';
-import type { PromotionBlock } from './PromotionBlock';
+import type { Block } from './Block';
 import {
-    PromotionBlockFromJSON,
-    PromotionBlockFromJSONTyped,
-    PromotionBlockToJSON,
-    PromotionBlockToJSONTyped,
-} from './PromotionBlock';
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
 
 /**
  * 
@@ -43,46 +43,32 @@ import {
 export interface TriggerCustomEffectBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof TriggerCustomEffectBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof TriggerCustomEffectBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof TriggerCustomEffectBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * 
-     * @type {TriggerCustomEffectBlock1CustomEffect}
-     * @memberof TriggerCustomEffectBlock
      */
     customEffect: TriggerCustomEffectBlock1CustomEffect;
     /**
      * The custom effect's parameters, in configured order. Each property name is the parameter's title, lowercased with spaces replaced by underscores (for example, `Order ID` becomes `order_id`); falls back to `param_0`, `param_1`, and so on if a title is blank or collides with another.
-     * @type {{ [key: string]: any; }}
-     * @memberof TriggerCustomEffectBlock
      */
     params?: { [key: string]: any; };
     /**
      * 
-     * @type {TriggerCustomEffectBlock1Target}
-     * @memberof TriggerCustomEffectBlock
      */
     target: TriggerCustomEffectBlock1Target;
     /**
      * Named error handlers evaluated when a specific error occurs.
-     * @type {{ [key: string]: Array<PromotionBlock>; }}
-     * @memberof TriggerCustomEffectBlock
      */
-    onError?: { [key: string]: Array<PromotionBlock>; };
+    onError?: { [key: string]: Array<Block>; };
 }
 
 /**
@@ -90,7 +76,6 @@ export interface TriggerCustomEffectBlock {
  */
 export function instanceOfTriggerCustomEffectBlock(value: object): value is TriggerCustomEffectBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('customEffect' in _v) || _v['customEffect'] === undefined) return false;
     if (!('target' in _v) || _v['target'] === undefined) return false;
@@ -107,7 +92,7 @@ export function TriggerCustomEffectBlockFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'customEffect': TriggerCustomEffectBlock1CustomEffectFromJSON(json['customEffect']),
@@ -121,16 +106,14 @@ export function TriggerCustomEffectBlockToJSON(json: any): TriggerCustomEffectBl
     return TriggerCustomEffectBlockToJSONTyped(json, false);
 }
 
-export function TriggerCustomEffectBlockToJSONTyped(value?: TriggerCustomEffectBlock | null, ignoreDiscriminator: boolean = false): any {
+export function TriggerCustomEffectBlockToJSONTyped(value?: Omit<TriggerCustomEffectBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'customEffect': TriggerCustomEffectBlock1CustomEffectToJSON(value['customEffect']),
         'params': value['params'],
         'target': TriggerCustomEffectBlock1TargetToJSON(value['target']),

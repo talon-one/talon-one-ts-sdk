@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface MessageTest {
     /**
      * The returned http response.
-     * @type {string}
-     * @memberof MessageTest
      */
     httpResponse: string;
     /**
      * The returned http status code.
-     * @type {number}
-     * @memberof MessageTest
      */
     httpStatus: number;
 }

@@ -14,6 +14,7 @@ Name | Type
 `ruleFailureReasons` | [Array&lt;RuleFailureReason&gt;](RuleFailureReason.md)
 `campaignEligibility` | [Array&lt;CampaignEligibility&gt;](CampaignEligibility.md)
 `awardedGiveaways` | [Array&lt;Giveaway&gt;](Giveaway.md)
+`rewards` | [Array&lt;RewardWithUnlocks&gt;](RewardWithUnlocks.md)
 `effects` | [Array&lt;Effect&gt;](Effect.md)
 `createdCoupons` | [Array&lt;Coupon&gt;](Coupon.md)
 `createdReferrals` | [Array&lt;Referral&gt;](Referral.md)
@@ -32,6 +33,7 @@ const example = {
   "ruleFailureReasons": null,
   "campaignEligibility": null,
   "awardedGiveaways": null,
+  "rewards": null,
   "effects": null,
   "createdCoupons": null,
   "createdReferrals": null,

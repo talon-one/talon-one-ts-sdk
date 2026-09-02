@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,68 +21,46 @@ import { mapValues } from '../runtime';
 export interface Giveaway {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Giveaway
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Giveaway
      */
     created: Date;
     /**
      * The code value of this giveaway.
-     * @type {string}
-     * @memberof Giveaway
      */
     code: string;
     /**
      * The ID of the pool to return giveaway codes from.
-     * @type {number}
-     * @memberof Giveaway
      */
     poolId: number;
     /**
      * Timestamp at which point the giveaway becomes valid.
-     * @type {Date}
-     * @memberof Giveaway
      */
     startDate?: Date;
     /**
      * Timestamp at which point the giveaway becomes invalid.
-     * @type {Date}
-     * @memberof Giveaway
      */
     endDate?: Date;
     /**
      * Arbitrary properties associated with this giveaway.
-     * @type {object}
-     * @memberof Giveaway
      */
     attributes?: object;
     /**
      * Indicates whether this giveaway code was given before.
-     * @type {boolean}
-     * @memberof Giveaway
      */
     used?: boolean;
     /**
      * The ID of the Import which created this giveaway.
-     * @type {number}
-     * @memberof Giveaway
      */
     importId?: number;
     /**
      * The third-party integration ID of the customer profile that was awarded the giveaway, if the giveaway was awarded.
-     * @type {string}
-     * @memberof Giveaway
      */
     profileIntegrationId?: string;
     /**
      * The internal ID of the customer profile that was awarded the giveaway, if the giveaway was awarded and an internal ID exists.
-     * @type {number}
-     * @memberof Giveaway
      */
     profileId?: number;
 }
@@ -110,11 +88,11 @@ export function GiveawayFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'code': json['code'],
         'poolId': json['poolId'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'endDate': json['endDate'] == null ? undefined : (parseDateTime(json['endDate'])),
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'used': json['used'] == null ? undefined : json['used'],
         'importId': json['importId'] == null ? undefined : json['importId'],
@@ -135,11 +113,11 @@ export function GiveawayToJSONTyped(value?: Giveaway | null, ignoreDiscriminator
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'code': value['code'],
         'poolId': value['poolId'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'endDate': value['endDate'] == null ? value['endDate'] : value['endDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'endDate': value['endDate'] == null ? value['endDate'] : serializeDateTime(value['endDate']),
         'attributes': value['attributes'],
         'used': value['used'],
         'importId': value['importId'],

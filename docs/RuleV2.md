@@ -11,6 +11,7 @@ Name | Type
 `parentId` | string
 `title` | string
 `description` | string
+`blocks` | [Array&lt;Block&gt;](Block.md)
 
 ## Example
 
@@ -23,6 +24,7 @@ const example = {
   "parentId": null,
   "title": 10% off for loyalty members,
   "description": null,
+  "blocks": null,
 } satisfies RuleV2
 
 console.log(example)

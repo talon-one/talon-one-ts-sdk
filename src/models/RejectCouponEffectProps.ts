@@ -23,8 +23,6 @@ import { mapValues } from '../runtime';
 export interface RejectCouponEffectProps {
     /**
      * The coupon code that was rejected.
-     * @type {string}
-     * @memberof RejectCouponEffectProps
      */
     value: string;
     /**
@@ -43,26 +41,18 @@ export interface RejectCouponEffectProps {
      * - `CouponPartOfNotTriggeredCampaign`: The campaign the coupon belongs to was not triggered during evaluation (an exclusive or stackable campaign). The `campaignId` field contains the ID of that campaign.
      * - `CouponReservationRequired`: The coupon's `isReservationMandatory` property is `true`, but the profile does not have a reservation.
      * - `ProfileRequired`: The coupon's `isReservationMandatory` property is `true` or a [campaign profile budget](https://docs.talon.one/docs/product/campaigns/settings/manage-campaign-budgets) was set, but no profile exists in the session.
-     * @type {string}
-     * @memberof RejectCouponEffectProps
      */
     rejectionReason: string;
     /**
      * The index of the condition that caused the rejection of the coupon.
-     * @type {number}
-     * @memberof RejectCouponEffectProps
      */
     conditionIndex?: number;
     /**
      * The index of the effect that caused the rejection of the coupon.
-     * @type {number}
-     * @memberof RejectCouponEffectProps
      */
     effectIndex?: number;
     /**
      * More details about the failure.
-     * @type {string}
-     * @memberof RejectCouponEffectProps
      */
     details?: string;
     /**
@@ -72,8 +62,6 @@ export interface RejectCouponEffectProps {
      * - `CampaignGaveLowerDiscount`: The required campaign and coupon conditions were met, but another campaign in a [Highest discount value](https://docs.talon.one/docs/product/applications/manage-campaign-evaluation#set-campaign-evaluation-mode) group offered a higher discount value.
      * - `CampaignIsNotFirst`: The campaign was not evaluated because another campaign in a [First campaign](https://docs.talon.one/docs/product/applications/manage-campaign-evaluation#set-campaign-evaluation-mode) group was picked and evaluated first.
      * - `CampaignNotInEvaluationSet`: The campaign did not meet other evaluation requirements, for example, because the coupon is part of an archived campaign.
-     * @type {string}
-     * @memberof RejectCouponEffectProps
      */
     campaignExclusionReason?: string;
 }

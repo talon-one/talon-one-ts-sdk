@@ -29,14 +29,10 @@ import {
 export interface GetLoyaltyCardTransactionLogs200Response {
     /**
      * true means there is more data in the source collection to request..
-     * @type {boolean}
-     * @memberof GetLoyaltyCardTransactionLogs200Response
      */
     hasMore: boolean;
     /**
      * List of loyalty card transaction logs.
-     * @type {Array<CardLedgerTransactionLogEntry>}
-     * @memberof GetLoyaltyCardTransactionLogs200Response
      */
     data: Array<CardLedgerTransactionLogEntry>;
 }

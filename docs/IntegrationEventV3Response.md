@@ -16,6 +16,7 @@ Name | Type
 `createdReferrals` | [Array&lt;Referral&gt;](Referral.md)
 `awardedGiveaways` | [Array&lt;Giveaway&gt;](Giveaway.md)
 `achievements` | [Array&lt;CustomerAchievement&gt;](CustomerAchievement.md)
+`rewards` | [Array&lt;RewardWithUnlocks&gt;](RewardWithUnlocks.md)
 `advancedEvent` | [EventV3](EventV3.md)
 `referral` | [InventoryReferral](InventoryReferral.md)
 
@@ -36,6 +37,7 @@ const example = {
   "createdReferrals": null,
   "awardedGiveaways": null,
   "achievements": null,
+  "rewards": null,
   "advancedEvent": null,
   "referral": null,
 } satisfies IntegrationEventV3Response

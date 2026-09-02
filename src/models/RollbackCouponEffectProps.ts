@@ -23,8 +23,6 @@ import { mapValues } from '../runtime';
 export interface RollbackCouponEffectProps {
     /**
      * The coupon code whose redemption has been rolled back.
-     * @type {string}
-     * @memberof RollbackCouponEffectProps
      */
     value: string;
 }

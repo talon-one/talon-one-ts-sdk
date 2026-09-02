@@ -19,8 +19,8 @@ import type { BetweenCheckAttributeBlock } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "operator": null,
-  "min": null,
-  "max": null,
+  "min": 10,
+  "max": 100,
 } satisfies BetweenCheckAttributeBlock
 
 console.log(example)

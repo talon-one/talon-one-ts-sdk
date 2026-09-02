@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface AdditionalCostReference {
     /**
      * The internal identifier of the additional cost.
-     * @type {number}
-     * @memberof AdditionalCostReference
      */
     id: number;
     /**
      * The additional cost name as used in API requests.
-     * @type {string}
-     * @memberof AdditionalCostReference
      */
     name: string;
     /**
      * The human-readable title of the additional cost.
-     * @type {string}
-     * @memberof AdditionalCostReference
      */
     title?: string;
 }

@@ -29,35 +29,25 @@ import {
 export interface LedgerInfo {
     /**
      * Sum of currently active points.
-     * @type {number}
-     * @memberof LedgerInfo
      */
     currentBalance: number;
     /**
      * Sum of pending points.
-     * @type {number}
-     * @memberof LedgerInfo
      */
     pendingBalance: number;
     /**
      * Sum of negative points. This implies that `currentBalance` is `0`.
-     * @type {number}
-     * @memberof LedgerInfo
      */
     negativeBalance?: number;
     /**
      * **DEPRECATED** Value is shown as 0.
      * 
-     * @type {number}
-     * @memberof LedgerInfo
      * @deprecated
      */
     expiredBalance: number;
     /**
      * **DEPRECATED** Value is shown as 0.
      * 
-     * @type {number}
-     * @memberof LedgerInfo
      * @deprecated
      */
     spentBalance: number;
@@ -66,8 +56,6 @@ export interface LedgerInfo {
      * 
      * **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.
      * 
-     * @type {number}
-     * @memberof LedgerInfo
      */
     tentativeCurrentBalance: number;
     /**
@@ -75,8 +63,6 @@ export interface LedgerInfo {
      * 
      * **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.
      * 
-     * @type {number}
-     * @memberof LedgerInfo
      */
     tentativePendingBalance?: number;
     /**
@@ -84,20 +70,14 @@ export interface LedgerInfo {
      * 
      * **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.
      * 
-     * @type {number}
-     * @memberof LedgerInfo
      */
     tentativeNegativeBalance?: number;
     /**
      * Tier for which the ledger is eligible.
-     * @type {Tier}
-     * @memberof LedgerInfo
      */
     currentTier?: Tier;
     /**
      * Points required to move up a tier.
-     * @type {number}
-     * @memberof LedgerInfo
      */
     pointsToNextTier?: number;
     /**
@@ -107,8 +87,6 @@ export interface LedgerInfo {
      * - Returns `null` if the customer has reached the highest available tier.
      * - Returns the lowest level tier name if the customer is not currently assigned to any tier.
      * 
-     * @type {string}
-     * @memberof LedgerInfo
      */
     nextTierName?: string;
 }

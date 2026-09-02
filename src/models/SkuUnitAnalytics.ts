@@ -36,14 +36,10 @@ import {
 export interface SkuUnitAnalytics {
     /**
      * 
-     * @type {Array<SkuUnitAnalyticsDataPoint>}
-     * @memberof SkuUnitAnalytics
      */
     data: Array<SkuUnitAnalyticsDataPoint>;
     /**
      * 
-     * @type {ProductUnitAnalyticsTotals}
-     * @memberof SkuUnitAnalytics
      */
     totals: ProductUnitAnalyticsTotals;
 }

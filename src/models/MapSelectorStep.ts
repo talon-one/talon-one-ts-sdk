@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface MapSelectorStep {
     /**
      * A step discriminator of type `map`.
-     * @type {MapSelectorStepTypeEnum}
-     * @memberof MapSelectorStep
      */
     type: MapSelectorStepTypeEnum;
     /**
      * The attribute path each item is mapped to.
-     * @type {string}
-     * @memberof MapSelectorStep
      */
     expression: string;
 }
@@ -38,7 +34,7 @@ export interface MapSelectorStep {
  * @export
  */
 export const MapSelectorStepTypeEnum = {
-    Map: 'map'
+    Map: 'map',
 } as const;
 export type MapSelectorStepTypeEnum = typeof MapSelectorStepTypeEnum[keyof typeof MapSelectorStepTypeEnum];
 

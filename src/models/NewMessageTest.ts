@@ -29,46 +29,32 @@ import {
 export interface NewMessageTest {
     /**
      * List of API HTTP headers for the given message.
-     * @type {{ [key: string]: string; }}
-     * @memberof NewMessageTest
      */
     headers?: { [key: string]: string; };
     /**
      * API method for this message.
-     * @type {NewMessageTestVerbEnum}
-     * @memberof NewMessageTest
      */
     verb: NewMessageTestVerbEnum;
     /**
      * API URL for the given message.
-     * @type {string}
-     * @memberof NewMessageTest
      */
     url: string;
     /**
      * API payload of this message.
-     * @type {string}
-     * @memberof NewMessageTest
      */
     payload?: string;
     /**
      * Array of template argument definitions.
-     * @type {Array<TemplateArgDef>}
-     * @memberof NewMessageTest
      */
     params?: Array<TemplateArgDef>;
     /**
      * The IDs of the Applications in which this webhook is available.
      * An empty array means the webhook is available in `All Applications`.
      * 
-     * @type {Array<number>}
-     * @memberof NewMessageTest
      */
     applicationIds?: Array<number>;
     /**
      * The ID of the credential that this webhook is using.
-     * @type {number}
-     * @memberof NewMessageTest
      */
     authenticationId?: number;
 }
@@ -82,7 +68,7 @@ export const NewMessageTestVerbEnum = {
     Put: 'PUT',
     Get: 'GET',
     Delete: 'DELETE',
-    Patch: 'PATCH'
+    Patch: 'PATCH',
 } as const;
 export type NewMessageTestVerbEnum = typeof NewMessageTestVerbEnum[keyof typeof NewMessageTestVerbEnum];
 

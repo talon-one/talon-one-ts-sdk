@@ -23,44 +23,30 @@ import { mapValues } from '../runtime';
 export interface SetDiscountPerAdditionalCostPerItemEffectProps {
     /**
      * The description of this discount. `#number` is appended to the name. It is equal to the `position` property.
-     * @type {string}
-     * @memberof SetDiscountPerAdditionalCostPerItemEffectProps
      */
     name: string;
     /**
      * The identifier of the additional cost to be discounted.
-     * @type {number}
-     * @memberof SetDiscountPerAdditionalCostPerItemEffectProps
      */
     additionalCostId: number;
     /**
      * The monetary value of the effective discount applied to the item's additional cost.
-     * @type {number}
-     * @memberof SetDiscountPerAdditionalCostPerItemEffectProps
      */
     value: number;
     /**
      * The index of the item in the `cartItem` object containing the additional cost that this discount applies to.
-     * @type {number}
-     * @memberof SetDiscountPerAdditionalCostPerItemEffectProps
      */
     position: number;
     /**
      * The index of the item unit in its line item.
-     * @type {number}
-     * @memberof SetDiscountPerAdditionalCostPerItemEffectProps
      */
     subPosition?: number;
     /**
      * The API name of the additional cost to be discounted.
-     * @type {string}
-     * @memberof SetDiscountPerAdditionalCostPerItemEffectProps
      */
     additionalCost: string;
     /**
      * _[(Partial discounts enabled only)](https://docs.talon.one/docs/product/applications/manage-general-settings#partial-discounts)_. The monetary value of the discount to be applied to the additional cost without considering budget limitations.
-     * @type {number}
-     * @memberof SetDiscountPerAdditionalCostPerItemEffectProps
      */
     desiredValue?: number;
 }

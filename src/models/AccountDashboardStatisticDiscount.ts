@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface AccountDashboardStatisticDiscount {
     /**
      * Total discount value redeemed by users.
-     * @type {number}
-     * @memberof AccountDashboardStatisticDiscount
      */
     total: number;
     /**
      * Average discount percentage.
-     * @type {number}
-     * @memberof AccountDashboardStatisticDiscount
      */
     average: number;
     /**
      * Values aggregated for the specified date.
-     * @type {Date}
-     * @memberof AccountDashboardStatisticDiscount
      */
     datetime: Date;
 }
@@ -62,7 +56,7 @@ export function AccountDashboardStatisticDiscountFromJSONTyped(json: any, ignore
         
         'total': json['total'],
         'average': json['average'],
-        'datetime': (json['datetime'] == null ? undefined as any : new Date(json['datetime'])),
+        'datetime': (json['datetime'] == null ? json['datetime'] : parseDateTime(json['datetime'])),
     };
 }
 
@@ -79,7 +73,7 @@ export function AccountDashboardStatisticDiscountToJSONTyped(value?: AccountDash
         
         'total': value['total'],
         'average': value['average'],
-        'datetime': value['datetime'] == null ? undefined : value['datetime'].toISOString(),
+        'datetime': value['datetime'] == null ? undefined : serializeDateTime(value['datetime']),
     };
 }
 

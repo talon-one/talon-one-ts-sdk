@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface TriggerWebhookBlock1Webhook {
     /**
      * The unique identifier of the webhook.
-     * @type {number}
-     * @memberof TriggerWebhookBlock1Webhook
      */
     id: number;
     /**
      * The display name of the webhook.
-     * @type {string}
-     * @memberof TriggerWebhookBlock1Webhook
      */
     title: string;
 }

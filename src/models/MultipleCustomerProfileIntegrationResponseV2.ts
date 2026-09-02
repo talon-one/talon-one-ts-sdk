@@ -29,8 +29,6 @@ import {
 export interface MultipleCustomerProfileIntegrationResponseV2 {
     /**
      * 
-     * @type {Array<CustomerProfileUpdateV2Response>}
-     * @memberof MultipleCustomerProfileIntegrationResponseV2
      */
     integrationStates?: Array<CustomerProfileUpdateV2Response>;
 }

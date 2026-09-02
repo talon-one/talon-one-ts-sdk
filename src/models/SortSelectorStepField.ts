@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface SortSelectorStepField {
     /**
      * The attribute path the items are sorted by.
-     * @type {string}
-     * @memberof SortSelectorStepField
      */
     expression: string;
     /**
      * The sort direction for this field.
-     * @type {SortSelectorStepFieldDirectionEnum}
-     * @memberof SortSelectorStepField
      */
     direction: SortSelectorStepFieldDirectionEnum;
 }
@@ -39,7 +35,7 @@ export interface SortSelectorStepField {
  */
 export const SortSelectorStepFieldDirectionEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type SortSelectorStepFieldDirectionEnum = typeof SortSelectorStepFieldDirectionEnum[keyof typeof SortSelectorStepFieldDirectionEnum];
 

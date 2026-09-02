@@ -29,14 +29,10 @@ import {
 export interface ListExperiments200Response {
     /**
      * 
-     * @type {number}
-     * @memberof ListExperiments200Response
      */
     totalResultSize: number;
     /**
      * 
-     * @type {Array<Experiment>}
-     * @memberof ListExperiments200Response
      */
     data: Array<Experiment>;
 }

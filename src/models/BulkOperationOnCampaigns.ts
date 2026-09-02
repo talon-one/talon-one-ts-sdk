@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -22,14 +22,10 @@ export interface BulkOperationOnCampaigns {
     /**
      * The operation to perform on the specified campaign IDs.
      * 
-     * @type {BulkOperationOnCampaignsOperationEnum}
-     * @memberof BulkOperationOnCampaigns
      */
     operation: BulkOperationOnCampaignsOperationEnum;
     /**
      * The list of campaign IDs on which the operation will be performed.
-     * @type {Array<number>}
-     * @memberof BulkOperationOnCampaigns
      */
     campaignIds: Array<number>;
     /**
@@ -37,8 +33,6 @@ export interface BulkOperationOnCampaigns {
      * 
      * **Note:** It must be an RFC3339 timestamp string.
      * 
-     * @type {Date}
-     * @memberof BulkOperationOnCampaigns
      */
     activateAt?: Date;
 }
@@ -50,7 +44,7 @@ export interface BulkOperationOnCampaigns {
 export const BulkOperationOnCampaignsOperationEnum = {
     Disable: 'disable',
     Delete: 'delete',
-    ActivateRevision: 'activate_revision'
+    ActivateRevision: 'activate_revision',
 } as const;
 export type BulkOperationOnCampaignsOperationEnum = typeof BulkOperationOnCampaignsOperationEnum[keyof typeof BulkOperationOnCampaignsOperationEnum];
 
@@ -77,7 +71,7 @@ export function BulkOperationOnCampaignsFromJSONTyped(json: any, ignoreDiscrimin
         
         'operation': json['operation'],
         'campaignIds': json['campaignIds'],
-        'activateAt': json['activateAt'] == null ? undefined : (new Date(json['activateAt'])),
+        'activateAt': json['activateAt'] == null ? undefined : (parseDateTime(json['activateAt'])),
     };
 }
 
@@ -94,7 +88,7 @@ export function BulkOperationOnCampaignsToJSONTyped(value?: BulkOperationOnCampa
         
         'operation': value['operation'],
         'campaignIds': value['campaignIds'],
-        'activateAt': value['activateAt'] == null ? value['activateAt'] : value['activateAt'].toISOString(),
+        'activateAt': value['activateAt'] == null ? value['activateAt'] : serializeDateTime(value['activateAt']),
     };
 }
 

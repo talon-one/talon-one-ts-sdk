@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CodeGeneratorSettings } from './CodeGeneratorSettings';
 import {
     CodeGeneratorSettingsFromJSON,
@@ -36,96 +36,66 @@ import {
 export interface UpdateCampaign {
     /**
      * A user-facing name for this campaign.
-     * @type {string}
-     * @memberof UpdateCampaign
      */
     name: string;
     /**
      * A detailed description of the campaign.
-     * @type {string}
-     * @memberof UpdateCampaign
      */
     description?: string;
     /**
      * Timestamp when the campaign will become active.
-     * @type {Date}
-     * @memberof UpdateCampaign
      */
     startTime?: Date;
     /**
      * Timestamp when the campaign will become inactive.
-     * @type {Date}
-     * @memberof UpdateCampaign
      */
     endTime?: Date;
     /**
      * Arbitrary properties associated with this campaign.
-     * @type {object}
-     * @memberof UpdateCampaign
      */
     attributes?: object;
     /**
      * A disabled or archived campaign is not evaluated for rules or coupons.
      * 
-     * @type {UpdateCampaignStateEnum}
-     * @memberof UpdateCampaign
      */
     state?: UpdateCampaignStateEnum;
     /**
      * [ID of Ruleset](https://docs.talon.one/management-api#tag/Campaigns/operation/getRulesets) this
      * campaign applies on customer session evaluation.
      * 
-     * @type {number}
-     * @memberof UpdateCampaign
      */
     activeRulesetId?: number;
     /**
      * A list of tags for the campaign.
-     * @type {Array<string>}
-     * @memberof UpdateCampaign
      */
     tags: Array<string>;
     /**
      * Indicates whether this campaign should be reevaluated when a customer returns an item.
-     * @type {boolean}
-     * @memberof UpdateCampaign
      */
     reevaluateOnReturn?: boolean;
     /**
      * A list of features for the campaign.
-     * @type {Array<UpdateCampaignFeaturesEnum>}
-     * @memberof UpdateCampaign
      */
     features: Array<UpdateCampaignFeaturesEnum>;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof UpdateCampaign
      */
     couponSettings?: CodeGeneratorSettings;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof UpdateCampaign
      */
     referralSettings?: CodeGeneratorSettings;
     /**
      * The set of limits that will operate for this campaign.
-     * @type {Array<LimitConfig>}
-     * @memberof UpdateCampaign
      */
     limits: Array<LimitConfig>;
     /**
      * The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups) this campaign belongs to.
      * 
-     * @type {Array<number>}
-     * @memberof UpdateCampaign
      */
     campaignGroups?: Array<number>;
     /**
      * The ID of the campaign evaluation group the campaign belongs to.
-     * @type {number}
-     * @memberof UpdateCampaign
      */
     evaluationGroupId?: number;
     /**
@@ -133,8 +103,6 @@ export interface UpdateCampaign {
      *   - `cartItem`: Type of campaign that can apply effects only to cart items.
      *   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
      * 
-     * @type {UpdateCampaignTypeEnum}
-     * @memberof UpdateCampaign
      */
     type?: UpdateCampaignTypeEnum;
     /**
@@ -147,14 +115,10 @@ export interface UpdateCampaign {
      * > - If you linked stores to the campaign by uploading a CSV file, you cannot use this property and it should be empty.
      * > - Use of this property is limited to 50 stores. To link more than 50 stores, upload them via a CSV file.
      * 
-     * @type {Array<number>}
-     * @memberof UpdateCampaign
      */
     linkedStoreIds?: Array<number>;
     /**
      * Arbitrary properties associated with coupons in this campaign.
-     * @type {object}
-     * @memberof UpdateCampaign
      */
     couponAttributes?: object;
 }
@@ -166,7 +130,7 @@ export interface UpdateCampaign {
 export const UpdateCampaignStateEnum = {
     Enabled: 'enabled',
     Disabled: 'disabled',
-    Archived: 'archived'
+    Archived: 'archived',
 } as const;
 export type UpdateCampaignStateEnum = typeof UpdateCampaignStateEnum[keyof typeof UpdateCampaignStateEnum];
 
@@ -180,7 +144,7 @@ export const UpdateCampaignFeaturesEnum = {
     Giveaways: 'giveaways',
     Strikethrough: 'strikethrough',
     Achievements: 'achievements',
-    AdvancedEvents: 'advancedEvents'
+    AdvancedEvents: 'advancedEvents',
 } as const;
 export type UpdateCampaignFeaturesEnum = typeof UpdateCampaignFeaturesEnum[keyof typeof UpdateCampaignFeaturesEnum];
 
@@ -189,7 +153,7 @@ export type UpdateCampaignFeaturesEnum = typeof UpdateCampaignFeaturesEnum[keyof
  */
 export const UpdateCampaignTypeEnum = {
     CartItem: 'cartItem',
-    Advanced: 'advanced'
+    Advanced: 'advanced',
 } as const;
 export type UpdateCampaignTypeEnum = typeof UpdateCampaignTypeEnum[keyof typeof UpdateCampaignTypeEnum];
 
@@ -218,8 +182,8 @@ export function UpdateCampaignFromJSONTyped(json: any, ignoreDiscriminator: bool
         
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
-        'endTime': json['endTime'] == null ? undefined : (new Date(json['endTime'])),
+        'startTime': json['startTime'] == null ? undefined : (parseDateTime(json['startTime'])),
+        'endTime': json['endTime'] == null ? undefined : (parseDateTime(json['endTime'])),
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'state': json['state'] == null ? undefined : json['state'],
         'activeRulesetId': json['activeRulesetId'] == null ? undefined : json['activeRulesetId'],
@@ -250,8 +214,8 @@ export function UpdateCampaignToJSONTyped(value?: UpdateCampaign | null, ignoreD
         
         'name': value['name'],
         'description': value['description'],
-        'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
-        'endTime': value['endTime'] == null ? value['endTime'] : value['endTime'].toISOString(),
+        'startTime': value['startTime'] == null ? value['startTime'] : serializeDateTime(value['startTime']),
+        'endTime': value['endTime'] == null ? value['endTime'] : serializeDateTime(value['endTime']),
         'attributes': value['attributes'],
         'state': value['state'],
         'activeRulesetId': value['activeRulesetId'],

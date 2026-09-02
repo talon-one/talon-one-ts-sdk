@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface MultiApplicationEntity {
     /**
      * The IDs of the Applications that are related to this entity.
-     * @type {Array<number>}
-     * @memberof MultiApplicationEntity
      */
     applicationIds: Array<number>;
 }

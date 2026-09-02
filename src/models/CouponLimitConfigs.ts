@@ -34,8 +34,6 @@ export interface CouponLimitConfigs {
      * **Note:** Only usable when creating a single coupon which is not tied to a specific recipient.
      * Only per-profile limits are allowed to be configured.
      * 
-     * @type {Array<LimitConfig>}
-     * @memberof CouponLimitConfigs
      */
     limits?: Array<LimitConfig>;
 }

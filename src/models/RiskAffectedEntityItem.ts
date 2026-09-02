@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface RiskAffectedEntityItem {
     /**
      * The integration ID of the affected entity.
-     * @type {string}
-     * @memberof RiskAffectedEntityItem
      */
     entityId: string;
     /**
      * The observed value of the monitored activity metric for this entity.
-     * @type {number}
-     * @memberof RiskAffectedEntityItem
      */
     activityValue: number;
     /**
      * The anomaly threshold computed for the entity's Application group.
-     * @type {number}
-     * @memberof RiskAffectedEntityItem
      */
     threshold: number;
     /**
      * The ratio of the observed value to the threshold.
-     * @type {number}
-     * @memberof RiskAffectedEntityItem
      */
     severityRatio: number;
     /**
      * The critical classification bucket of this entity.
-     * @type {RiskAffectedEntityItemCriticalityEnum}
-     * @memberof RiskAffectedEntityItem
      */
     criticality: RiskAffectedEntityItemCriticalityEnum;
 }
@@ -57,7 +47,7 @@ export interface RiskAffectedEntityItem {
  */
 export const RiskAffectedEntityItemCriticalityEnum = {
     Critical: 'critical',
-    NotCritical: 'not_critical'
+    NotCritical: 'not_critical',
 } as const;
 export type RiskAffectedEntityItemCriticalityEnum = typeof RiskAffectedEntityItemCriticalityEnum[keyof typeof RiskAffectedEntityItemCriticalityEnum];
 

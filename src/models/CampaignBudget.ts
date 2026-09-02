@@ -26,20 +26,14 @@ export interface CampaignBudget {
      * - `redeemCoupon`
      * - `createCoupon`
      * 
-     * @type {string}
-     * @memberof CampaignBudget
      */
     action: string;
     /**
      * The value to set for the limit.
-     * @type {number}
-     * @memberof CampaignBudget
      */
     limit: number;
     /**
      * The number of occurrences of the limited action in the context of the campaign.
-     * @type {number}
-     * @memberof CampaignBudget
      */
     counter: number;
 }

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface LoyaltyCardRegistration {
     /**
      * The integrationId of the customer profile.
-     * @type {string}
-     * @memberof LoyaltyCardRegistration
      */
     integrationId: string;
 }

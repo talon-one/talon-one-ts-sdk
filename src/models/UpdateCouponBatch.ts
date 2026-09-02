@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -22,34 +22,24 @@ export interface UpdateCouponBatch {
     /**
      * The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
      * 
-     * @type {number}
-     * @memberof UpdateCouponBatch
      */
     usageLimit?: number;
     /**
      * The total discount value that the code can give. Typically used to represent a gift card value.
      * 
-     * @type {number}
-     * @memberof UpdateCouponBatch
      */
     discountLimit?: number;
     /**
      * The number of reservations that can be made with this coupon code.
      * 
-     * @type {number}
-     * @memberof UpdateCouponBatch
      */
     reservationLimit?: number;
     /**
      * Timestamp at which point the coupon becomes valid.
-     * @type {Date}
-     * @memberof UpdateCouponBatch
      */
     startDate?: Date;
     /**
      * Expiration date of the coupon. Coupon never expires if this is omitted.
-     * @type {Date}
-     * @memberof UpdateCouponBatch
      */
     expiryDate?: Date;
     /**
@@ -59,14 +49,10 @@ export interface UpdateCouponBatch {
      * Coupon attributes can also be set to _mandatory_ in your Application [settings](https://docs.talon.one/docs/product/applications/using-attributes#making-attributes-mandatory).
      * If your Application uses mandatory attributes, you must use this property to set their value.
      * 
-     * @type {object}
-     * @memberof UpdateCouponBatch
      */
     attributes?: object;
     /**
      * The ID of the batch the coupon(s) belong to.
-     * @type {string}
-     * @memberof UpdateCouponBatch
      */
     batchID?: string;
 }
@@ -92,8 +78,8 @@ export function UpdateCouponBatchFromJSONTyped(json: any, ignoreDiscriminator: b
         'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
         'discountLimit': json['discountLimit'] == null ? undefined : json['discountLimit'],
         'reservationLimit': json['reservationLimit'] == null ? undefined : json['reservationLimit'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'batchID': json['batchID'] == null ? undefined : json['batchID'],
     };
@@ -113,8 +99,8 @@ export function UpdateCouponBatchToJSONTyped(value?: UpdateCouponBatch | null, i
         'usageLimit': value['usageLimit'],
         'discountLimit': value['discountLimit'],
         'reservationLimit': value['reservationLimit'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'attributes': value['attributes'],
         'batchID': value['batchID'],
     };

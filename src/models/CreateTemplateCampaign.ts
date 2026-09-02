@@ -36,57 +36,39 @@ import {
 export interface CreateTemplateCampaign {
     /**
      * A user-facing name for this campaign.
-     * @type {string}
-     * @memberof CreateTemplateCampaign
      */
     name: string;
     /**
      * A detailed description of the campaign.
-     * @type {string}
-     * @memberof CreateTemplateCampaign
      */
     description?: string;
     /**
      * The ID of the Campaign Template which will be used in order to create the Campaign.
-     * @type {number}
-     * @memberof CreateTemplateCampaign
      */
     templateId: number;
     /**
      * Custom Campaign Attributes. If the Campaign Template defines the same values, they will be overridden.
-     * @type {object}
-     * @memberof CreateTemplateCampaign
      */
     campaignAttributesOverrides?: object;
     /**
      * Actual values to replace the template placeholder values in the Ruleset bindings. Values for all Template Parameters must be provided.
-     * @type {Array<Binding>}
-     * @memberof CreateTemplateCampaign
      */
     templateParamValues?: Array<Binding>;
     /**
      * Limits for this Campaign. If the Campaign Template or Application define default values for the same limits, they will be overridden.
-     * @type {Array<LimitConfig>}
-     * @memberof CreateTemplateCampaign
      */
     limitOverrides?: Array<LimitConfig>;
     /**
      * The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups) this campaign belongs to.
      * 
-     * @type {Array<number>}
-     * @memberof CreateTemplateCampaign
      */
     campaignGroups?: Array<number>;
     /**
      * A list of tags for the campaign. If the campaign template has tags, they will be overridden by this list.
-     * @type {Array<string>}
-     * @memberof CreateTemplateCampaign
      */
     tags?: Array<string>;
     /**
      * The ID of the campaign evaluation group the campaign belongs to.
-     * @type {number}
-     * @memberof CreateTemplateCampaign
      */
     evaluationGroupId?: number;
     /**
@@ -96,8 +78,6 @@ export interface CreateTemplateCampaign {
      * [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)
      * that references a linked store.
      * 
-     * @type {Array<number>}
-     * @memberof CreateTemplateCampaign
      */
     linkedStoreIds?: Array<number>;
 }

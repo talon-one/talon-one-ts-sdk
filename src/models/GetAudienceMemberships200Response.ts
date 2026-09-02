@@ -29,14 +29,10 @@ import {
 export interface GetAudienceMemberships200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof GetAudienceMemberships200Response
      */
     hasMore?: boolean;
     /**
      * 
-     * @type {Array<CustomerProfile>}
-     * @memberof GetAudienceMemberships200Response
      */
     data: Array<CustomerProfile>;
 }

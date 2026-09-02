@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface UpdateAttributeValueBlock1Target {
     /**
      * Identifies the target scope of the attribute update.
-     * @type {UpdateAttributeValueBlock1TargetTypeEnum}
-     * @memberof UpdateAttributeValueBlock1Target
      */
     type: UpdateAttributeValueBlock1TargetTypeEnum;
     /**
      * Identifies the name of the target when its type is set to `selector` or `globalFilter`.
-     * @type {string}
-     * @memberof UpdateAttributeValueBlock1Target
      */
     name?: string;
 }
@@ -43,9 +39,11 @@ export const UpdateAttributeValueBlock1TargetTypeEnum = {
     AdvocateProfile: 'advocateProfile',
     Coupon: 'coupon',
     Referral: 'referral',
+    Event: 'event',
+    LoyaltyCard: 'loyaltyCard',
     AllItems: 'allItems',
     Selector: 'selector',
-    GlobalFilter: 'globalFilter'
+    GlobalFilter: 'globalFilter',
 } as const;
 export type UpdateAttributeValueBlock1TargetTypeEnum = typeof UpdateAttributeValueBlock1TargetTypeEnum[keyof typeof UpdateAttributeValueBlock1TargetTypeEnum];
 

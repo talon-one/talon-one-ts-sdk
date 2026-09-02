@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface NewPasswordEmail {
     /**
      * 
-     * @type {string}
-     * @memberof NewPasswordEmail
      */
     email: string;
 }

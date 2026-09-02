@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * Summary of a support request created by a customer support agent.
  * @export
@@ -21,98 +21,66 @@ import { mapValues } from '../runtime';
 export interface SupportRequest {
     /**
      * Identifier of the support request.
-     * @type {number}
-     * @memberof SupportRequest
      */
     id: number;
     /**
      * Identifier of the Application connected to the loyalty program or the campaign. It is displayed in your Talon.One deployment URL.
-     * @type {number}
-     * @memberof SupportRequest
      */
     applicationId: number;
     /**
      * Identifier of the campaign where the coupon or gift card is created.
-     * @type {number}
-     * @memberof SupportRequest
      */
     campaignId?: number;
     /**
      * Identifier of the loyalty program where the points are added or deducted.
-     * @type {number}
-     * @memberof SupportRequest
      */
     loyaltyProgramId?: number;
     /**
      * Identifier of the subledger the points are added to or deducted from. If there is no existing subledger with this ID, the subledger is created automatically.
-     * @type {number}
-     * @memberof SupportRequest
      */
     subledgerId?: number;
     /**
      * Email address of the customer support agent who created the support request.
-     * @type {string}
-     * @memberof SupportRequest
      */
     createdByUser: string;
     /**
      * Timestamp when the request was made.
-     * @type {Date}
-     * @memberof SupportRequest
      */
     createdAt: Date;
     /**
      * Integration ID of the customer profile linked to the support request.
-     * @type {string}
-     * @memberof SupportRequest
      */
     customerProfileId: string;
     /**
      * Type of reward requested, including gift cards, personal coupons, and loyalty point additions or deductions.
-     * @type {SupportRequestRequestTypeEnum}
-     * @memberof SupportRequest
      */
     requestType: SupportRequestRequestTypeEnum;
     /**
      * Requested monetary balance of the gift card or the number of loyalty points to be added or deducted.
-     * @type {number}
-     * @memberof SupportRequest
      */
     requestValue?: number;
     /**
      * Notes attached to the support request.
-     * @type {string}
-     * @memberof SupportRequest
      */
     requestNote: string;
     /**
      * Current status of the support request.
-     * @type {SupportRequestRequestStatusEnum}
-     * @memberof SupportRequest
      */
     requestStatus: SupportRequestRequestStatusEnum;
     /**
      * Timestamp when the request was approved or rejected.
-     * @type {Date}
-     * @memberof SupportRequest
      */
     processedAt?: Date;
     /**
      * Notes attached by the admin when rejecting or approving a request.
-     * @type {string}
-     * @memberof SupportRequest
      */
     processingNote?: string;
     /**
      * Email address of the admin who approved or rejected the support request.
-     * @type {string}
-     * @memberof SupportRequest
      */
     processedByUser?: string;
     /**
      * Coupon code associated with the approved support request.
-     * @type {string}
-     * @memberof SupportRequest
      */
     couponCode?: string;
 }
@@ -125,7 +93,7 @@ export const SupportRequestRequestTypeEnum = {
     GiftCard: 'gift_card',
     PersonalCoupon: 'personal_coupon',
     LoyaltyPointsAdded: 'loyalty_points_added',
-    LoyaltyPointsDeducted: 'loyalty_points_deducted'
+    LoyaltyPointsDeducted: 'loyalty_points_deducted',
 } as const;
 export type SupportRequestRequestTypeEnum = typeof SupportRequestRequestTypeEnum[keyof typeof SupportRequestRequestTypeEnum];
 
@@ -136,7 +104,7 @@ export const SupportRequestRequestStatusEnum = {
     PendingApproval: 'pending_approval',
     Approved: 'approved',
     Rejected: 'rejected',
-    Expired: 'expired'
+    Expired: 'expired',
 } as const;
 export type SupportRequestRequestStatusEnum = typeof SupportRequestRequestStatusEnum[keyof typeof SupportRequestRequestStatusEnum];
 
@@ -173,13 +141,13 @@ export function SupportRequestFromJSONTyped(json: any, ignoreDiscriminator: bool
         'loyaltyProgramId': json['loyaltyProgramId'] == null ? undefined : json['loyaltyProgramId'],
         'subledgerId': json['subledgerId'] == null ? undefined : json['subledgerId'],
         'createdByUser': json['createdByUser'],
-        'createdAt': (json['createdAt'] == null ? undefined as any : new Date(json['createdAt'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : parseDateTime(json['createdAt'])),
         'customerProfileId': json['customerProfileId'],
         'requestType': json['requestType'],
         'requestValue': json['requestValue'] == null ? undefined : json['requestValue'],
         'requestNote': json['requestNote'],
         'requestStatus': json['requestStatus'],
-        'processedAt': json['processedAt'] == null ? undefined : (new Date(json['processedAt'])),
+        'processedAt': json['processedAt'] == null ? undefined : (parseDateTime(json['processedAt'])),
         'processingNote': json['processingNote'] == null ? undefined : json['processingNote'],
         'processedByUser': json['processedByUser'] == null ? undefined : json['processedByUser'],
         'couponCode': json['couponCode'] == null ? undefined : json['couponCode'],
@@ -203,13 +171,13 @@ export function SupportRequestToJSONTyped(value?: SupportRequest | null, ignoreD
         'loyaltyProgramId': value['loyaltyProgramId'],
         'subledgerId': value['subledgerId'],
         'createdByUser': value['createdByUser'],
-        'createdAt': value['createdAt'] == null ? undefined : value['createdAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? undefined : serializeDateTime(value['createdAt']),
         'customerProfileId': value['customerProfileId'],
         'requestType': value['requestType'],
         'requestValue': value['requestValue'],
         'requestNote': value['requestNote'],
         'requestStatus': value['requestStatus'],
-        'processedAt': value['processedAt'] == null ? value['processedAt'] : value['processedAt'].toISOString(),
+        'processedAt': value['processedAt'] == null ? value['processedAt'] : serializeDateTime(value['processedAt']),
         'processingNote': value['processingNote'],
         'processedByUser': value['processedByUser'],
         'couponCode': value['couponCode'],

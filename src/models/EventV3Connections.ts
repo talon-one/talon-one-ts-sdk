@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface EventV3Connections {
     /**
      * The ID of the session to reference. The session must be in `closed` state. Otherwise, the API call will fail.
-     * @type {string}
-     * @memberof EventV3Connections
      */
     connectedSessionId?: string;
 }

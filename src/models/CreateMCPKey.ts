@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CreateMCPKey {
     /**
      * Name for the MCP key.
-     * @type {string}
-     * @memberof CreateMCPKey
      */
     name: string;
     /**
      * The date the MCP key expires.
-     * @type {Date}
-     * @memberof CreateMCPKey
      */
     expiryDate: Date;
 }
@@ -54,7 +50,7 @@ export function CreateMCPKeyFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return {
         
         'name': json['name'],
-        'expiryDate': (json['expiryDate'] == null ? undefined as any : new Date(json['expiryDate'])),
+        'expiryDate': (json['expiryDate'] == null ? json['expiryDate'] : parseDateTime(json['expiryDate'])),
     };
 }
 
@@ -70,7 +66,7 @@ export function CreateMCPKeyToJSONTyped(value?: CreateMCPKey | null, ignoreDiscr
     return {
         
         'name': value['name'],
-        'expiryDate': value['expiryDate'] == null ? undefined : value['expiryDate'].toISOString(),
+        'expiryDate': value['expiryDate'] == null ? undefined : serializeDateTime(value['expiryDate']),
     };
 }
 

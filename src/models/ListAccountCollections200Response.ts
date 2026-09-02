@@ -29,20 +29,14 @@ import {
 export interface ListAccountCollections200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof ListAccountCollections200Response
      */
     hasMore?: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof ListAccountCollections200Response
      */
     totalResultSize?: number;
     /**
      * 
-     * @type {Array<CollectionWithoutPayload>}
-     * @memberof ListAccountCollections200Response
      */
     data: Array<CollectionWithoutPayload>;
 }

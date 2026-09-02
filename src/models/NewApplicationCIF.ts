@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface NewApplicationCIF {
     /**
      * The name of the Application cart item filter used in API requests.
-     * @type {string}
-     * @memberof NewApplicationCIF
      */
     name: string;
     /**
      * A short description of the Application cart item filter.
-     * @type {string}
-     * @memberof NewApplicationCIF
      */
     description?: string;
     /**
      * The ID of the expression that the Application cart item filter uses.
-     * @type {number}
-     * @memberof NewApplicationCIF
      */
     activeExpressionId?: number;
     /**
      * The ID of the user who last updated the Application cart item filter.
-     * @type {number}
-     * @memberof NewApplicationCIF
      */
     modifiedBy?: number;
     /**
      * The ID of the user who created the Application cart item filter.
-     * @type {number}
-     * @memberof NewApplicationCIF
      */
     createdBy?: number;
     /**
      * Timestamp of the most recent update to the Application cart item filter.
-     * @type {Date}
-     * @memberof NewApplicationCIF
      */
     modified?: Date;
 }
@@ -81,7 +69,7 @@ export function NewApplicationCIFFromJSONTyped(json: any, ignoreDiscriminator: b
         'activeExpressionId': json['activeExpressionId'] == null ? undefined : json['activeExpressionId'],
         'modifiedBy': json['modifiedBy'] == null ? undefined : json['modifiedBy'],
         'createdBy': json['createdBy'] == null ? undefined : json['createdBy'],
-        'modified': json['modified'] == null ? undefined : (new Date(json['modified'])),
+        'modified': json['modified'] == null ? undefined : (parseDateTime(json['modified'])),
     };
 }
 
@@ -101,7 +89,7 @@ export function NewApplicationCIFToJSONTyped(value?: NewApplicationCIF | null, i
         'activeExpressionId': value['activeExpressionId'],
         'modifiedBy': value['modifiedBy'],
         'createdBy': value['createdBy'],
-        'modified': value['modified'] == null ? value['modified'] : value['modified'].toISOString(),
+        'modified': value['modified'] == null ? value['modified'] : serializeDateTime(value['modified']),
     };
 }
 

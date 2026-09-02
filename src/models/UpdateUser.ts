@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface UpdateUser {
     /**
      * Name of the user.
-     * @type {string}
-     * @memberof UpdateUser
      */
     name?: string;
     /**
@@ -32,20 +30,14 @@ export interface UpdateUser {
      * 
      * **Note**: Only `admin` users can update the state of another user.
      * 
-     * @type {UpdateUserStateEnum}
-     * @memberof UpdateUser
      */
     state?: UpdateUserStateEnum;
     /**
      * Indicates whether the user is an `admin`.
-     * @type {boolean}
-     * @memberof UpdateUser
      */
     isAdmin?: boolean;
     /**
      * Indicates the access level of the user.
-     * @type {string}
-     * @memberof UpdateUser
      */
     policy?: string;
     /**
@@ -53,14 +45,10 @@ export interface UpdateUser {
      * 
      * **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.
      * 
-     * @type {Array<number>}
-     * @memberof UpdateUser
      */
     roles?: Array<number>;
     /**
      * Application notifications that the user is subscribed to.
-     * @type {object}
-     * @memberof UpdateUser
      */
     applicationNotificationSubscriptions?: object;
 }
@@ -71,7 +59,7 @@ export interface UpdateUser {
  */
 export const UpdateUserStateEnum = {
     Deactivated: 'deactivated',
-    Active: 'active'
+    Active: 'active',
 } as const;
 export type UpdateUserStateEnum = typeof UpdateUserStateEnum[keyof typeof UpdateUserStateEnum];
 

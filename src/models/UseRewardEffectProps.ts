@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface UseRewardEffectProps {
     /**
      * The integration ID of the customer reward that was used.
-     * @type {string}
-     * @memberof UseRewardEffectProps
      */
     integrationId: string;
     /**
      * The ID of the reward that was used.
-     * @type {number}
-     * @memberof UseRewardEffectProps
      */
     rewardId: number;
     /**
      * The ID of the Application the reward belongs to.
-     * @type {number}
-     * @memberof UseRewardEffectProps
      */
     applicationId: number;
 }

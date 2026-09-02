@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,56 +21,38 @@ import { mapValues } from '../runtime';
 export interface PriceType {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof PriceType
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof PriceType
      */
     created: Date;
     /**
      * The ID of the account that owns this price type.
-     * @type {number}
-     * @memberof PriceType
      */
     accountId?: number;
     /**
      * The API name of the price type. This is an immutable value.
-     * @type {string}
-     * @memberof PriceType
      */
     name: string;
     /**
      * The name displayed in the Campaign Manager for the price type.
-     * @type {string}
-     * @memberof PriceType
      */
     title: string;
     /**
      * A description of the price type.
-     * @type {string}
-     * @memberof PriceType
      */
     description?: string;
     /**
      * The date and time when the price type was last modified.
-     * @type {Date}
-     * @memberof PriceType
      */
     modified: Date;
     /**
      * A list of the IDs of the catalogs that are subscribed to this price type.
-     * @type {Array<number>}
-     * @memberof PriceType
      */
     subscribedCatalogsIds: Array<number>;
     /**
      * A list of the IDs of the audiences targeted by this price type.
-     * @type {Array<number>}
-     * @memberof PriceType
      */
     targetedAudiencesIds: Array<number>;
 }
@@ -101,12 +83,12 @@ export function PriceTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'accountId': json['accountId'] == null ? undefined : json['accountId'],
         'name': json['name'],
         'title': json['title'],
         'description': json['description'] == null ? undefined : json['description'],
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
         'subscribedCatalogsIds': json['subscribedCatalogsIds'],
         'targetedAudiencesIds': json['targetedAudiencesIds'],
     };
@@ -124,12 +106,12 @@ export function PriceTypeToJSONTyped(value?: PriceType | null, ignoreDiscriminat
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'accountId': value['accountId'],
         'name': value['name'],
         'title': value['title'],
         'description': value['description'],
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
         'subscribedCatalogsIds': value['subscribedCatalogsIds'],
         'targetedAudiencesIds': value['targetedAudiencesIds'],
     };

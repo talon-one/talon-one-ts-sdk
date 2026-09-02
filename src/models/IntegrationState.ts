@@ -58,32 +58,22 @@ import {
 export interface IntegrationState {
     /**
      * 
-     * @type {CustomerSession}
-     * @memberof IntegrationState
      */
     session: CustomerSession;
     /**
      * 
-     * @type {CustomerProfile}
-     * @memberof IntegrationState
      */
     profile: CustomerProfile;
     /**
      * 
-     * @type {Event}
-     * @memberof IntegrationState
      */
     event: Event;
     /**
      * 
-     * @type {Loyalty}
-     * @memberof IntegrationState
      */
     loyalty?: Loyalty;
     /**
      * 
-     * @type {Coupon}
-     * @memberof IntegrationState
      */
     coupon?: Coupon;
 }

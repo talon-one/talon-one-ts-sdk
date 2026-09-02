@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,50 +21,34 @@ import { mapValues } from '../runtime';
 export interface Change {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Change
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Change
      */
     created: Date;
     /**
      * The ID of the user associated with this entity.
-     * @type {number}
-     * @memberof Change
      */
     userId: number;
     /**
      * ID of application associated with change.
-     * @type {number}
-     * @memberof Change
      */
     applicationId?: number;
     /**
      * API endpoint on which the change was initiated.
-     * @type {string}
-     * @memberof Change
      */
     entity: string;
     /**
      * Resource before the change occurred.
-     * @type {object}
-     * @memberof Change
      */
     old?: object;
     /**
      * Resource after the change occurred.
-     * @type {object}
-     * @memberof Change
      */
     _new?: object;
     /**
      * ID of management key used to perform changes.
-     * @type {number}
-     * @memberof Change
      */
     managementKeyId?: number;
 }
@@ -92,7 +76,7 @@ export function ChangeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ch
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'userId': json['userId'],
         'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
         'entity': json['entity'],
@@ -114,7 +98,7 @@ export function ChangeToJSONTyped(value?: Change | null, ignoreDiscriminator: bo
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'userId': value['userId'],
         'applicationId': value['applicationId'],
         'entity': value['entity'],

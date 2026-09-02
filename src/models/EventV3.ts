@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface EventV3 {
     /**
      * The ID of the session to reference. The session must be in `closed` state. Otherwise, the API call will fail.
-     * @type {string}
-     * @memberof EventV3
      */
     connectedSessionId?: string;
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof EventV3
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof EventV3
      */
     created: Date;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof EventV3
      */
     applicationId: number;
     /**
@@ -48,40 +40,28 @@ export interface EventV3 {
      * 
      * **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
      * 
-     * @type {string}
-     * @memberof EventV3
      */
     profileId?: string;
     /**
      * The integration ID of the store. You choose this ID when you create a store.
-     * @type {string}
-     * @memberof EventV3
      */
     storeIntegrationId?: string;
     /**
      * The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.
-     * @type {string}
-     * @memberof EventV3
      */
     type: string;
     /**
      * Arbitrary additional JSON data associated with the event.
-     * @type {object}
-     * @memberof EventV3
      */
     attributes: object;
     /**
      * The unique ID of the event. Only one event with this ID can be registered.
      * 
-     * @type {string}
-     * @memberof EventV3
      */
     integrationId?: string;
     /**
      * The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the "Referral code is valid" condition in the Rule Builder to validate and redeem the code, or "Referral code is valid (without redemption)" to validate without redeeming.
      * 
-     * @type {string}
-     * @memberof EventV3
      */
     referralCode?: string;
     /**
@@ -89,8 +69,6 @@ export interface EventV3 {
      * 
      * You decide how to apply them in your system. See the list of [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
      * 
-     * @type {Array<object>}
-     * @memberof EventV3
      */
     effects: Array<object>;
 }
@@ -121,7 +99,7 @@ export function EventV3FromJSONTyped(json: any, ignoreDiscriminator: boolean): E
         
         'connectedSessionId': json['connectedSessionId'] == null ? undefined : json['connectedSessionId'],
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'applicationId': json['applicationId'],
         'profileId': json['profileId'] == null ? undefined : json['profileId'],
         'storeIntegrationId': json['storeIntegrationId'] == null ? undefined : json['storeIntegrationId'],
@@ -146,7 +124,7 @@ export function EventV3ToJSONTyped(value?: EventV3 | null, ignoreDiscriminator: 
         
         'connectedSessionId': value['connectedSessionId'],
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'applicationId': value['applicationId'],
         'profileId': value['profileId'],
         'storeIntegrationId': value['storeIntegrationId'],

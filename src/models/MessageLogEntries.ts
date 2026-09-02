@@ -32,14 +32,10 @@ export interface MessageLogEntries {
      * 
      * **Note:** If this value is not present, it means that there are no more values in the database for this combination of request parameters.
      * 
-     * @type {string}
-     * @memberof MessageLogEntries
      */
     nextCursor?: string;
     /**
      * List of message logs.
-     * @type {Array<MessageLogEntry>}
-     * @memberof MessageLogEntries
      */
     data: Array<MessageLogEntry>;
 }

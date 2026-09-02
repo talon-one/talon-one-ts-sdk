@@ -43,20 +43,14 @@ import {
 export interface NewReward {
     /**
      * The name of the reward.
-     * @type {string}
-     * @memberof NewReward
      */
     name: string;
     /**
      * A unique identifier used to reference the reward in API integrations.
-     * @type {string}
-     * @memberof NewReward
      */
     apiName: string;
     /**
      * A description of the reward.
-     * @type {string}
-     * @memberof NewReward
      */
     description?: string;
     /**
@@ -64,14 +58,10 @@ export interface NewReward {
      * 
      * **Note**: Currently, a reward can only be connected to one Application.
      * 
-     * @type {Array<number>}
-     * @memberof NewReward
      */
     applicationIds: Array<number>;
     /**
      * Indicates if this is a live or sandbox reward. Rewards of a given type can only be connected to Applications of the same type.
-     * @type {boolean}
-     * @memberof NewReward
      */
     sandbox: boolean;
     /**
@@ -81,8 +71,6 @@ export interface NewReward {
      * **Note:** Only the `condition` field is evaluated within this rule. The `effects` field must be an empty array,
      * and `bindings` are not supported.
      * 
-     * @type {Rule}
-     * @memberof NewReward
      */
     eligibilityConditions?: Rule;
     /**
@@ -92,14 +80,10 @@ export interface NewReward {
      * endpoint. All bindings should be defined at the reward level via the
      * top-level `bindings` field.
      * 
-     * @type {Rule}
-     * @memberof NewReward
      */
     rule?: Rule;
     /**
      * A list of named variables created before the reward's rules are evaluated. Each binding pairs a name with a talang expression. The expression is evaluated once and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.
-     * @type {Array<Binding>}
-     * @memberof NewReward
      */
     bindings?: Array<Binding>;
     /**
@@ -109,8 +93,6 @@ export interface NewReward {
      * **Note:** When creating a reward, the `id` of each entry is ignored and a new entry is
      * always created.
      * 
-     * @type {Array<RewardPointsRequired>}
-     * @memberof NewReward
      */
     pointsRequired?: Array<RewardPointsRequired>;
 }

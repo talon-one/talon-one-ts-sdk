@@ -21,21 +21,15 @@ import { mapValues } from '../runtime';
 export interface NewDigitalPass {
     /**
      * The ID of the associated loyalty program.
-     * @type {number}
-     * @memberof NewDigitalPass
      */
     loyaltyProgramId: number;
     /**
      * The ID of the digital pass template used to generate the pass.
      * 
-     * @type {string}
-     * @memberof NewDigitalPass
      */
     passTemplateId: string;
     /**
      * The integration ID of the customer profile the pass is issued for.
-     * @type {string}
-     * @memberof NewDigitalPass
      */
     profileId: string;
     /**
@@ -43,22 +37,16 @@ export interface NewDigitalPass {
      * 
      * **Note**: Only applicable for card-based loyalty programs.
      * 
-     * @type {string}
-     * @memberof NewDigitalPass
      */
     loyaltyCardId?: string;
     /**
      * The wallet platform the pass is generated for.
-     * @type {NewDigitalPassPlatformEnum}
-     * @memberof NewDigitalPass
      */
     platform: NewDigitalPassPlatformEnum;
     /**
      * A map of placeholder values that you provide to fill in the pass template.
      * These values are not validated against the template.
      * 
-     * @type {{ [key: string]: string; }}
-     * @memberof NewDigitalPass
      */
     attributes?: { [key: string]: string; };
 }
@@ -69,7 +57,7 @@ export interface NewDigitalPass {
  */
 export const NewDigitalPassPlatformEnum = {
     Apple: 'apple',
-    Google: 'google'
+    Google: 'google',
 } as const;
 export type NewDigitalPassPlatformEnum = typeof NewDigitalPassPlatformEnum[keyof typeof NewDigitalPassPlatformEnum];
 

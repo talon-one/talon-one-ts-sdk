@@ -21,50 +21,34 @@ import { mapValues } from '../runtime';
 export interface DeleteCouponsData {
     /**
      * 
-     * @type {string}
-     * @memberof DeleteCouponsData
      */
     typeOfChange: string;
     /**
      * 
-     * @type {string}
-     * @memberof DeleteCouponsData
      */
     operation: string;
     /**
      * 
-     * @type {string}
-     * @memberof DeleteCouponsData
      */
     employeeName: string;
     /**
      * 
-     * @type {string}
-     * @memberof DeleteCouponsData
      */
     batchID: string;
     /**
      * 
-     * @type {number}
-     * @memberof DeleteCouponsData
      */
     applicationID: number;
     /**
      * 
-     * @type {number}
-     * @memberof DeleteCouponsData
      */
     campaignID: number;
     /**
      * 
-     * @type {number}
-     * @memberof DeleteCouponsData
      */
     totalResultSize: number;
     /**
      * The type of the notification
-     * @type {DeleteCouponsDataNotificationTypeEnum}
-     * @memberof DeleteCouponsData
      */
     notificationType: DeleteCouponsDataNotificationTypeEnum;
 }
@@ -74,7 +58,7 @@ export interface DeleteCouponsData {
  * @export
  */
 export const DeleteCouponsDataNotificationTypeEnum = {
-    CouponsDeleted: 'CouponsDeleted'
+    CouponsDeleted: 'CouponsDeleted',
 } as const;
 export type DeleteCouponsDataNotificationTypeEnum = typeof DeleteCouponsDataNotificationTypeEnum[keyof typeof DeleteCouponsDataNotificationTypeEnum];
 

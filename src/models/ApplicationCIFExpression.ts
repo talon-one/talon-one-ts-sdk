@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface ApplicationCIFExpression {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof ApplicationCIFExpression
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof ApplicationCIFExpression
      */
     created: Date;
     /**
      * The ID of the Application cart item filter.
-     * @type {number}
-     * @memberof ApplicationCIFExpression
      */
     cartItemFilterId?: number;
     /**
      * The ID of the user who created the Application cart item filter.
-     * @type {number}
-     * @memberof ApplicationCIFExpression
      */
     createdBy?: number;
     /**
      * Arbitrary additional JSON data associated with the Application cart item filter.
-     * @type {Array<any>}
-     * @memberof ApplicationCIFExpression
      */
     expression?: Array<any>;
     /**
      * The ID of the Application that owns this entity.
-     * @type {number}
-     * @memberof ApplicationCIFExpression
      */
     applicationId: number;
 }
@@ -79,7 +67,7 @@ export function ApplicationCIFExpressionFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'cartItemFilterId': json['cartItemFilterId'] == null ? undefined : json['cartItemFilterId'],
         'createdBy': json['createdBy'] == null ? undefined : json['createdBy'],
         'expression': json['expression'] == null ? undefined : json['expression'],
@@ -99,7 +87,7 @@ export function ApplicationCIFExpressionToJSONTyped(value?: ApplicationCIFExpres
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'cartItemFilterId': value['cartItemFilterId'],
         'createdBy': value['createdBy'],
         'expression': value['expression'],

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface Binding {
     /**
      * A descriptive name for the value to be bound.
-     * @type {string}
-     * @memberof Binding
      */
     name: string;
     /**
@@ -32,8 +30,6 @@ export interface Binding {
      * - `subledgerBalance`
      * - `templateParameter`
      * 
-     * @type {string}
-     * @memberof Binding
      */
     type?: string;
     /**
@@ -44,8 +40,6 @@ export interface Binding {
      * - `["list", "10014", "10015"]` calls the `list` function to build a list of strings.
      * - `["+", 2, 0]` uses the `+` operator to add two numbers.
      * 
-     * @type {Array<any>}
-     * @memberof Binding
      */
     expression: Array<any>;
     /**
@@ -54,32 +48,22 @@ export interface Binding {
      * - `number`
      * - `boolean`
      * 
-     * @type {string}
-     * @memberof Binding
      */
     valueType?: string;
     /**
      * The minimum value allowed for this placeholder.
-     * @type {number}
-     * @memberof Binding
      */
     minValue?: number;
     /**
      * The maximum value allowed for this placeholder.
-     * @type {number}
-     * @memberof Binding
      */
     maxValue?: number;
     /**
      * Identifier of the attribute attached to the placeholder.
-     * @type {number}
-     * @memberof Binding
      */
     attributeId?: number;
     /**
      * Description of the placeholder field and its value in the template. This text can be shown when creating campaigns from this template.
-     * @type {string}
-     * @memberof Binding
      */
     description?: string;
 }

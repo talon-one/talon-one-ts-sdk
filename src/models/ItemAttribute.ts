@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface ItemAttribute {
     /**
      * The ID of the attribute of the item.
-     * @type {number}
-     * @memberof ItemAttribute
      */
     attributeid: number;
     /**
      * The name of the attribute.
-     * @type {string}
-     * @memberof ItemAttribute
      */
     name: string;
     /**
-     * 
-     * @type {any}
-     * @memberof ItemAttribute
+     * The value of the attribute.
      */
     value: any | null;
 }

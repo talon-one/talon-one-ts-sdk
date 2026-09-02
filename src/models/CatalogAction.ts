@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import { type CatalogActionAdd, CatalogActionAddFromJSONTyped, CatalogActionAddToJSON } from './CatalogActionAdd';
 import { type CatalogActionAddPriceAdjustment, CatalogActionAddPriceAdjustmentFromJSONTyped, CatalogActionAddPriceAdjustmentToJSON } from './CatalogActionAddPriceAdjustment';
 import { type CatalogActionPatch, CatalogActionPatchFromJSONTyped, CatalogActionPatchToJSON } from './CatalogActionPatch';

@@ -23,8 +23,6 @@ import { mapValues } from '../runtime';
 export interface RollbackReferralEffectProps {
     /**
      * The referral code to be rolled back.
-     * @type {string}
-     * @memberof RollbackReferralEffectProps
      */
     value: string;
 }

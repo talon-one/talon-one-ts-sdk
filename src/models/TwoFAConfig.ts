@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface TwoFAConfig {
     /**
      * An indication of whether two-factor authentication is enabled for the account.
-     * @type {boolean}
-     * @memberof TwoFAConfig
      */
     enabled: boolean;
     /**
@@ -30,8 +28,6 @@ export interface TwoFAConfig {
      * - `true`: Two-factor authentication is required each time a user signs in to their Talon.One account.
      * - `false`: Two-factor authentication is only required when a user signs in to their Talon.One account on a new device, and every 30 days after that.
      * 
-     * @type {boolean}
-     * @memberof TwoFAConfig
      */
     requireEverySignIn?: boolean;
 }

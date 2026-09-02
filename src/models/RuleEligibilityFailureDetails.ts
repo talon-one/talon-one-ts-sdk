@@ -21,54 +21,38 @@ import { mapValues } from '../runtime';
 export interface RuleEligibilityFailureDetails {
     /**
      * A code identifying why the customer was not eligible for the rule in the current session.
-     * @type {RuleEligibilityFailureDetailsFailureCodeEnum}
-     * @memberof RuleEligibilityFailureDetails
      */
     failureCode: RuleEligibilityFailureDetailsFailureCodeEnum;
     /**
      * The ID of the coupon that was being evaluated when the rule failed.
      * 
-     * @type {number}
-     * @memberof RuleEligibilityFailureDetails
      */
     couponID?: number;
     /**
      * The coupon code that was being evaluated when the rule failed.
      * 
-     * @type {string}
-     * @memberof RuleEligibilityFailureDetails
      */
     couponValue?: string;
     /**
      * The ID of the referral that was being evaluated when the rule failed.
      * 
-     * @type {number}
-     * @memberof RuleEligibilityFailureDetails
      */
     referralID?: number;
     /**
      * The referral code that was being evaluated when the rule failed.
      * 
-     * @type {string}
-     * @memberof RuleEligibilityFailureDetails
      */
     referralValue?: string;
     /**
      * The index of the condition that caused the rule to fail.
-     * @type {number}
-     * @memberof RuleEligibilityFailureDetails
      */
     conditionIndex?: number;
     /**
      * The index of the effect that caused the rule to fail.
-     * @type {number}
-     * @memberof RuleEligibilityFailureDetails
      */
     effectIndex?: number;
     /**
      * Additional details about the failure.
-     * @type {string}
-     * @memberof RuleEligibilityFailureDetails
      */
     details: string;
 }
@@ -79,7 +63,7 @@ export interface RuleEligibilityFailureDetails {
  */
 export const RuleEligibilityFailureDetailsFailureCodeEnum = {
     ConditionNotMet: 'CONDITION_NOT_MET',
-    EffectFailed: 'EFFECT_FAILED'
+    EffectFailed: 'EFFECT_FAILED',
 } as const;
 export type RuleEligibilityFailureDetailsFailureCodeEnum = typeof RuleEligibilityFailureDetailsFailureCodeEnum[keyof typeof RuleEligibilityFailureDetailsFailureCodeEnum];
 

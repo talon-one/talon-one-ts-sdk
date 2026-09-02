@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface NewOutgoingIntegrationWebhook {
     /**
      * Webhook title.
-     * @type {string}
-     * @memberof NewOutgoingIntegrationWebhook
      */
     title: string;
     /**
      * A description of the webhook.
-     * @type {string}
-     * @memberof NewOutgoingIntegrationWebhook
      */
     description?: string;
     /**
      * IDs of the Applications to which a webhook must be linked.
-     * @type {Array<number>}
-     * @memberof NewOutgoingIntegrationWebhook
      */
     applicationIds: Array<number>;
 }

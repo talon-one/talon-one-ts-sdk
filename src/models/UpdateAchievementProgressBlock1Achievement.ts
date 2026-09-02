@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface UpdateAchievementProgressBlock1Achievement {
     /**
      * The ID of the achievement.
-     * @type {number}
-     * @memberof UpdateAchievementProgressBlock1Achievement
      */
     id: number;
     /**
      * The internal name of the achievement used in API requests.
-     * @type {string}
-     * @memberof UpdateAchievementProgressBlock1Achievement
      */
     name: string;
     /**
      * The display name of the achievement in the Campaign Manager.
-     * @type {string}
-     * @memberof UpdateAchievementProgressBlock1Achievement
      */
     title: string;
     /**
      * The required number of actions or the transactional milestone to complete the achievement.
-     * @type {number}
-     * @memberof UpdateAchievementProgressBlock1Achievement
      */
     target: number;
 }

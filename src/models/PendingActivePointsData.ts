@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface PendingActivePointsData {
     /**
      * The ID of the loyalty program.
-     * @type {number}
-     * @memberof PendingActivePointsData
      */
     loyaltyProgramID: number;
     /**
      * The ID of the subledger, when applicable. If this field is empty, the main ledger is used.
-     * @type {string}
-     * @memberof PendingActivePointsData
      */
     subledgerID: string;
     /**
      * The integration ID of the customer profile whose loyalty points are becoming active.
-     * @type {string}
-     * @memberof PendingActivePointsData
      */
     customerProfileID: string;
     /**
      * The amount of pending loyalty points becoming active.
-     * @type {number}
-     * @memberof PendingActivePointsData
      */
     points: number;
     /**
      * The date and time the loyalty points become active.
-     * @type {Date}
-     * @memberof PendingActivePointsData
      */
     activeOn?: Date;
     /**
      * The date and time the loyalty points expire.
-     * @type {Date}
-     * @memberof PendingActivePointsData
      */
     expireOn?: Date;
     /**
      * The integration ID of the session through which the points were earned.
-     * @type {string}
-     * @memberof PendingActivePointsData
      */
     sessionIntegrationID?: string;
 }
@@ -89,8 +75,8 @@ export function PendingActivePointsDataFromJSONTyped(json: any, ignoreDiscrimina
         'subledgerID': json['SubledgerID'],
         'customerProfileID': json['CustomerProfileID'],
         'points': json['Points'],
-        'activeOn': json['ActiveOn'] == null ? undefined : (new Date(json['ActiveOn'])),
-        'expireOn': json['ExpireOn'] == null ? undefined : (new Date(json['ExpireOn'])),
+        'activeOn': json['ActiveOn'] == null ? undefined : (parseDateTime(json['ActiveOn'])),
+        'expireOn': json['ExpireOn'] == null ? undefined : (parseDateTime(json['ExpireOn'])),
         'sessionIntegrationID': json['SessionIntegrationID'] == null ? undefined : json['SessionIntegrationID'],
     };
 }
@@ -110,8 +96,8 @@ export function PendingActivePointsDataToJSONTyped(value?: PendingActivePointsDa
         'SubledgerID': value['subledgerID'],
         'CustomerProfileID': value['customerProfileID'],
         'Points': value['points'],
-        'ActiveOn': value['activeOn'] == null ? value['activeOn'] : value['activeOn'].toISOString(),
-        'ExpireOn': value['expireOn'] == null ? value['expireOn'] : value['expireOn'].toISOString(),
+        'ActiveOn': value['activeOn'] == null ? value['activeOn'] : serializeDateTime(value['activeOn']),
+        'ExpireOn': value['expireOn'] == null ? value['expireOn'] : serializeDateTime(value['expireOn']),
         'SessionIntegrationID': value['sessionIntegrationID'],
     };
 }

@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface OutgoingIntegrationMoEngagePolicy {
     /**
      * The base URL of your MoEngage deployment, containing the MoEngage data center number (represented by `0X`).
-     * @type {string}
-     * @memberof OutgoingIntegrationMoEngagePolicy
      */
     baseUrl: string;
     /**
      * MoEngage APP ID. See [MoEngage Developer Guide](https://developers.moengage.com/hc/en-us/articles/4404674776724-Overview).
-     * @type {string}
-     * @memberof OutgoingIntegrationMoEngagePolicy
      */
     appId: string;
     /**
      * MoEngage DATA API ID. See [MoEngage Developer Guide](https://developers.moengage.com/hc/en-us/articles/4404674776724-Overview).
-     * @type {string}
-     * @memberof OutgoingIntegrationMoEngagePolicy
      */
     dataApiId: string;
     /**
      * MoEngage DATA API Key. See [MoEngage Developer Guide](https://developers.moengage.com/hc/en-us/articles/4404674776724-Overview).
-     * @type {string}
-     * @memberof OutgoingIntegrationMoEngagePolicy
      */
     dataApiKey: string;
 }

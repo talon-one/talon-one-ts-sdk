@@ -29,20 +29,14 @@ import {
 export interface APIError {
     /**
      * Short description of the problem.
-     * @type {string}
-     * @memberof APIError
      */
     title: string;
     /**
      * Longer description of this specific instance of the problem.
-     * @type {string}
-     * @memberof APIError
      */
     details?: string;
     /**
      * 
-     * @type {ErrorSource}
-     * @memberof APIError
      */
     source: ErrorSource;
 }

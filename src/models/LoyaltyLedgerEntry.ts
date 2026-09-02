@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LoyaltyLedgerEntryFlags } from './LoyaltyLedgerEntryFlags';
 import {
     LoyaltyLedgerEntryFlagsFromJSON,
@@ -29,38 +29,26 @@ import {
 export interface LoyaltyLedgerEntry {
     /**
      * 
-     * @type {Date}
-     * @memberof LoyaltyLedgerEntry
      */
     created: Date;
     /**
      * 
-     * @type {number}
-     * @memberof LoyaltyLedgerEntry
      */
     programID: number;
     /**
      * 
-     * @type {string}
-     * @memberof LoyaltyLedgerEntry
      */
     customerProfileID?: string;
     /**
      * 
-     * @type {number}
-     * @memberof LoyaltyLedgerEntry
      */
     cardID?: number;
     /**
      * 
-     * @type {string}
-     * @memberof LoyaltyLedgerEntry
      */
     customerSessionID?: string;
     /**
      * 
-     * @type {number}
-     * @memberof LoyaltyLedgerEntry
      */
     eventID?: number;
     /**
@@ -70,56 +58,38 @@ export interface LoyaltyLedgerEntry {
      * - `expire`
      * - `expiring` (for expiring points ledgers)
      * 
-     * @type {string}
-     * @memberof LoyaltyLedgerEntry
      */
     type: string;
     /**
      * 
-     * @type {number}
-     * @memberof LoyaltyLedgerEntry
      */
     amount: number;
     /**
      * 
-     * @type {Date}
-     * @memberof LoyaltyLedgerEntry
      */
     startDate?: Date;
     /**
      * 
-     * @type {Date}
-     * @memberof LoyaltyLedgerEntry
      */
     expiryDate?: Date;
     /**
      * A name referencing the condition or effect that added this entry, or the specific name provided in an API call.
-     * @type {string}
-     * @memberof LoyaltyLedgerEntry
      */
     name: string;
     /**
      * This specifies if we are adding loyalty points to the main ledger or a subledger.
-     * @type {string}
-     * @memberof LoyaltyLedgerEntry
      */
     subLedgerID: string;
     /**
      * This is the ID of the user who created this entry, if the addition or subtraction was done manually.
-     * @type {number}
-     * @memberof LoyaltyLedgerEntry
      */
     userID?: number;
     /**
      * Indicates if the entry belongs to the archived session.
-     * @type {boolean}
-     * @memberof LoyaltyLedgerEntry
      */
     archived?: boolean;
     /**
      * A map of flags providing additional details about the entry.
-     * @type {LoyaltyLedgerEntryFlags}
-     * @memberof LoyaltyLedgerEntry
      */
     flags?: LoyaltyLedgerEntryFlags;
     /**
@@ -127,8 +97,6 @@ export interface LoyaltyLedgerEntry {
      * 
      * **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
      * 
-     * @type {string}
-     * @memberof LoyaltyLedgerEntry
      */
     validityDuration?: string;
 }
@@ -157,7 +125,7 @@ export function LoyaltyLedgerEntryFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'programID': json['programID'],
         'customerProfileID': json['customerProfileID'] == null ? undefined : json['customerProfileID'],
         'cardID': json['cardID'] == null ? undefined : json['cardID'],
@@ -165,8 +133,8 @@ export function LoyaltyLedgerEntryFromJSONTyped(json: any, ignoreDiscriminator: 
         'eventID': json['eventID'] == null ? undefined : json['eventID'],
         'type': json['type'],
         'amount': json['amount'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'name': json['name'],
         'subLedgerID': json['subLedgerID'],
         'userID': json['userID'] == null ? undefined : json['userID'],
@@ -187,7 +155,7 @@ export function LoyaltyLedgerEntryToJSONTyped(value?: LoyaltyLedgerEntry | null,
 
     return {
         
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'programID': value['programID'],
         'customerProfileID': value['customerProfileID'],
         'cardID': value['cardID'],
@@ -195,8 +163,8 @@ export function LoyaltyLedgerEntryToJSONTyped(value?: LoyaltyLedgerEntry | null,
         'eventID': value['eventID'],
         'type': value['type'],
         'amount': value['amount'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : value['expiryDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'name': value['name'],
         'subLedgerID': value['subLedgerID'],
         'userID': value['userID'],

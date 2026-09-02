@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CodeGeneratorSettings } from './CodeGeneratorSettings';
 import {
     CodeGeneratorSettingsFromJSON,
@@ -29,20 +29,14 @@ import {
 export interface BaseLoyaltyProgram {
     /**
      * The display title for the Loyalty Program.
-     * @type {string}
-     * @memberof BaseLoyaltyProgram
      */
     title?: string;
     /**
      * Description of our Loyalty Program.
-     * @type {string}
-     * @memberof BaseLoyaltyProgram
      */
     description?: string;
     /**
      * A list containing the IDs of all applications that are subscribed to this Loyalty Program.
-     * @type {Array<number>}
-     * @memberof BaseLoyaltyProgram
      */
     subscribedApplications?: Array<number>;
     /**
@@ -51,8 +45,6 @@ export interface BaseLoyaltyProgram {
      * - '_D' for rounding down. Can be used as a suffix after 'D', and signifies the start of the day.
      * - '_U' for rounding up. Can be used as a suffix after 'D', 'W', and 'M', and signifies the end of the day, week, and month.
      * 
-     * @type {string}
-     * @memberof BaseLoyaltyProgram
      */
     defaultValidity?: string;
     /**
@@ -61,28 +53,20 @@ export interface BaseLoyaltyProgram {
      * - '_D' for rounding down. Can be used as a suffix after 'D', and signifies the start of the day.
      * - '_U' for rounding up. Can be used as a suffix after 'D', 'W', and 'M', and signifies the end of the day, week, and month.
      * 
-     * @type {string}
-     * @memberof BaseLoyaltyProgram
      */
     defaultPending?: string;
     /**
      * Indicates if this program supports subledgers inside the program.
-     * @type {boolean}
-     * @memberof BaseLoyaltyProgram
      */
     allowSubledger?: boolean;
     /**
      * The max amount of user profiles with whom a card can be shared. This can be set to 0 for no limit.
      * This property is only used when `cardBased` is `true`.
      * 
-     * @type {number}
-     * @memberof BaseLoyaltyProgram
      */
     usersPerCardLimit?: number;
     /**
      * Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.
-     * @type {boolean}
-     * @memberof BaseLoyaltyProgram
      */
     sandbox?: boolean;
     /**
@@ -93,8 +77,6 @@ export interface BaseLoyaltyProgram {
      *   - `points_activated`: The customer joins the loyalty program only when their earned loyalty points become active for the first time.
      *   - `points_earned`: The customer joins the loyalty program when they earn loyalty points for the first time.
      * 
-     * @type {BaseLoyaltyProgramProgramJoinPolicyEnum}
-     * @memberof BaseLoyaltyProgram
      */
     programJoinPolicy?: BaseLoyaltyProgramProgramJoinPolicyEnum;
     /**
@@ -104,8 +86,6 @@ export interface BaseLoyaltyProgram {
      *  - `customer_attribute`: The tier expiration is determined by a custom customer attribute.
      *  - `absolute_expiration`: The tier is reevaluated at the start of each tier cycle. For this policy, it is required to provide a `tierCycleStartDate`.
      * 
-     * @type {BaseLoyaltyProgramTiersExpirationPolicyEnum}
-     * @memberof BaseLoyaltyProgram
      */
     tiersExpirationPolicy?: BaseLoyaltyProgramTiersExpirationPolicyEnum;
     /**
@@ -113,8 +93,6 @@ export interface BaseLoyaltyProgram {
      * 
      * **Note**: This is only required when the tier expiration policy is set to `absolute_expiration`.
      * 
-     * @type {Date}
-     * @memberof BaseLoyaltyProgram
      */
     tierCycleStartDate?: Date;
     /**
@@ -137,8 +115,6 @@ export interface BaseLoyaltyProgram {
      * - `_D` for rounding down days only. Signifies the start of the day.
      * - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.
      * 
-     * @type {string}
-     * @memberof BaseLoyaltyProgram
      */
     tiersExpireIn?: string;
     /**
@@ -146,14 +122,10 @@ export interface BaseLoyaltyProgram {
      *  - `one_down`: If the customer doesn't have enough points to stay in the current tier, they are downgraded by one tier.
      *  - `balance_based`: The customer's tier is reevaluated based on the amount of active points they have at the moment.
      * 
-     * @type {BaseLoyaltyProgramTiersDowngradePolicyEnum}
-     * @memberof BaseLoyaltyProgram
      */
     tiersDowngradePolicy?: BaseLoyaltyProgramTiersDowngradePolicyEnum;
     /**
      * 
-     * @type {CodeGeneratorSettings}
-     * @memberof BaseLoyaltyProgram
      */
     cardCodeSettings?: CodeGeneratorSettings;
     /**
@@ -162,8 +134,6 @@ export interface BaseLoyaltyProgram {
      * - `within_balance`: Available active points can be rolled back if there aren't enough pending points. The active balance of the customer cannot be negative.
      * - `unlimited`: Allows negative balance without any limit.
      * 
-     * @type {BaseLoyaltyProgramReturnPolicyEnum}
-     * @memberof BaseLoyaltyProgram
      */
     returnPolicy?: BaseLoyaltyProgramReturnPolicyEnum;
 }
@@ -175,7 +145,7 @@ export interface BaseLoyaltyProgram {
 export const BaseLoyaltyProgramProgramJoinPolicyEnum = {
     NotJoin: 'not_join',
     PointsActivated: 'points_activated',
-    PointsEarned: 'points_earned'
+    PointsEarned: 'points_earned',
 } as const;
 export type BaseLoyaltyProgramProgramJoinPolicyEnum = typeof BaseLoyaltyProgramProgramJoinPolicyEnum[keyof typeof BaseLoyaltyProgramProgramJoinPolicyEnum];
 
@@ -186,7 +156,7 @@ export const BaseLoyaltyProgramTiersExpirationPolicyEnum = {
     TierStartDate: 'tier_start_date',
     ProgramJoinDate: 'program_join_date',
     CustomerAttribute: 'customer_attribute',
-    AbsoluteExpiration: 'absolute_expiration'
+    AbsoluteExpiration: 'absolute_expiration',
 } as const;
 export type BaseLoyaltyProgramTiersExpirationPolicyEnum = typeof BaseLoyaltyProgramTiersExpirationPolicyEnum[keyof typeof BaseLoyaltyProgramTiersExpirationPolicyEnum];
 
@@ -195,7 +165,7 @@ export type BaseLoyaltyProgramTiersExpirationPolicyEnum = typeof BaseLoyaltyProg
  */
 export const BaseLoyaltyProgramTiersDowngradePolicyEnum = {
     OneDown: 'one_down',
-    BalanceBased: 'balance_based'
+    BalanceBased: 'balance_based',
 } as const;
 export type BaseLoyaltyProgramTiersDowngradePolicyEnum = typeof BaseLoyaltyProgramTiersDowngradePolicyEnum[keyof typeof BaseLoyaltyProgramTiersDowngradePolicyEnum];
 
@@ -205,7 +175,7 @@ export type BaseLoyaltyProgramTiersDowngradePolicyEnum = typeof BaseLoyaltyProgr
 export const BaseLoyaltyProgramReturnPolicyEnum = {
     OnlyPending: 'only_pending',
     WithinBalance: 'within_balance',
-    Unlimited: 'unlimited'
+    Unlimited: 'unlimited',
 } as const;
 export type BaseLoyaltyProgramReturnPolicyEnum = typeof BaseLoyaltyProgramReturnPolicyEnum[keyof typeof BaseLoyaltyProgramReturnPolicyEnum];
 
@@ -238,7 +208,7 @@ export function BaseLoyaltyProgramFromJSONTyped(json: any, ignoreDiscriminator: 
         'sandbox': json['sandbox'] == null ? undefined : json['sandbox'],
         'programJoinPolicy': json['programJoinPolicy'] == null ? undefined : json['programJoinPolicy'],
         'tiersExpirationPolicy': json['tiersExpirationPolicy'] == null ? undefined : json['tiersExpirationPolicy'],
-        'tierCycleStartDate': json['tierCycleStartDate'] == null ? undefined : (new Date(json['tierCycleStartDate'])),
+        'tierCycleStartDate': json['tierCycleStartDate'] == null ? undefined : (parseDateTime(json['tierCycleStartDate'])),
         'tiersExpireIn': json['tiersExpireIn'] == null ? undefined : json['tiersExpireIn'],
         'tiersDowngradePolicy': json['tiersDowngradePolicy'] == null ? undefined : json['tiersDowngradePolicy'],
         'cardCodeSettings': json['cardCodeSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['cardCodeSettings']),
@@ -267,7 +237,7 @@ export function BaseLoyaltyProgramToJSONTyped(value?: BaseLoyaltyProgram | null,
         'sandbox': value['sandbox'],
         'programJoinPolicy': value['programJoinPolicy'],
         'tiersExpirationPolicy': value['tiersExpirationPolicy'],
-        'tierCycleStartDate': value['tierCycleStartDate'] == null ? value['tierCycleStartDate'] : value['tierCycleStartDate'].toISOString(),
+        'tierCycleStartDate': value['tierCycleStartDate'] == null ? value['tierCycleStartDate'] : serializeDateTime(value['tierCycleStartDate']),
         'tiersExpireIn': value['tiersExpireIn'],
         'tiersDowngradePolicy': value['tiersDowngradePolicy'],
         'cardCodeSettings': CodeGeneratorSettingsToJSON(value['cardCodeSettings']),

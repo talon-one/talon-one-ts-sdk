@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface CheckTierBlock1Tier {
     /**
      * The ID of the tier.
-     * @type {number}
-     * @memberof CheckTierBlock1Tier
      */
     id: number;
     /**
      * The display name of the tier.
-     * @type {string}
-     * @memberof CheckTierBlock1Tier
      */
     name: string;
     /**
      * The minimum amount of points required to enter the tier.
-     * @type {number}
-     * @memberof CheckTierBlock1Tier
      */
     minPoints: number;
     /**
      * 
-     * @type {number}
-     * @memberof CheckTierBlock1Tier
      */
     upperLimit?: number;
 }

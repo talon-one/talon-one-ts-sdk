@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface BetweenCheckAttributeBlock {
     /**
      * The range comparison operator. Must be `between`.
-     * @type {BetweenCheckAttributeBlockOperatorEnum}
-     * @memberof BetweenCheckAttributeBlock
      */
     operator?: BetweenCheckAttributeBlockOperatorEnum;
     /**
-     * 
-     * @type {any}
-     * @memberof BetweenCheckAttributeBlock
+     * The minimum value allowed for the `between` operator.
      */
     min: any | null;
     /**
-     * 
-     * @type {any}
-     * @memberof BetweenCheckAttributeBlock
+     * The maximum value allowed for the `between` operator.
      */
     max: any | null;
 }
@@ -44,7 +38,7 @@ export interface BetweenCheckAttributeBlock {
  * @export
  */
 export const BetweenCheckAttributeBlockOperatorEnum = {
-    Between: 'between'
+    Between: 'between',
 } as const;
 export type BetweenCheckAttributeBlockOperatorEnum = typeof BetweenCheckAttributeBlockOperatorEnum[keyof typeof BetweenCheckAttributeBlockOperatorEnum];
 

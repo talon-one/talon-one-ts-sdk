@@ -29,20 +29,14 @@ import {
 export interface CampaignEvaluationTreeChangedMessage {
     /**
      * The type of the notification
-     * @type {CampaignEvaluationTreeChangedMessageNotificationTypeEnum}
-     * @memberof CampaignEvaluationTreeChangedMessage
      */
     notificationType: CampaignEvaluationTreeChangedMessageNotificationTypeEnum;
     /**
      * The total size of the result set.
-     * @type {number}
-     * @memberof CampaignEvaluationTreeChangedMessage
      */
     totalResultSize: number;
     /**
      * The array of changes.
-     * @type {Array<CampaignEvaluationTreeChangedNotification>}
-     * @memberof CampaignEvaluationTreeChangedMessage
      */
     data?: Array<CampaignEvaluationTreeChangedNotification>;
 }
@@ -52,7 +46,7 @@ export interface CampaignEvaluationTreeChangedMessage {
  * @export
  */
 export const CampaignEvaluationTreeChangedMessageNotificationTypeEnum = {
-    CampaignNotification: 'CampaignNotification'
+    CampaignNotification: 'CampaignNotification',
 } as const;
 export type CampaignEvaluationTreeChangedMessageNotificationTypeEnum = typeof CampaignEvaluationTreeChangedMessageNotificationTypeEnum[keyof typeof CampaignEvaluationTreeChangedMessageNotificationTypeEnum];
 

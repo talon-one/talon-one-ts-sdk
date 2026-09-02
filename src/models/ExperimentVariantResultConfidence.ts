@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface ExperimentVariantResultConfidence {
     /**
      * The calculated confidence value of the average customer session value.
-     * @type {number}
-     * @memberof ExperimentVariantResultConfidence
      */
     avgSessionValue: number;
     /**
      * The calculated confidence value of the average customer discounted session value.
-     * @type {number}
-     * @memberof ExperimentVariantResultConfidence
      */
     avgDiscountedSessionValue: number;
     /**
      * The calculated confidence value of the number of items from sessions value.
-     * @type {number}
-     * @memberof ExperimentVariantResultConfidence
      */
     avgItemsPerSession: number;
 }

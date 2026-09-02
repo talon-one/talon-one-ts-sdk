@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { SelectorBlock } from './SelectorBlock';
+import type { Block } from './Block';
 import {
-    SelectorBlockFromJSON,
-    SelectorBlockFromJSONTyped,
-    SelectorBlockToJSON,
-    SelectorBlockToJSONTyped,
-} from './SelectorBlock';
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
 
 /**
  * Filters only items that match a predicate block.
@@ -29,16 +29,12 @@ import {
 export interface FilterSelectorStep {
     /**
      * A step discriminator of type `filter`.
-     * @type {FilterSelectorStepTypeEnum}
-     * @memberof FilterSelectorStep
      */
     type: FilterSelectorStepTypeEnum;
     /**
      * 
-     * @type {SelectorBlock}
-     * @memberof FilterSelectorStep
      */
-    predicate: SelectorBlock;
+    predicate: Block;
 }
 
 
@@ -46,7 +42,7 @@ export interface FilterSelectorStep {
  * @export
  */
 export const FilterSelectorStepTypeEnum = {
-    Filter: 'filter'
+    Filter: 'filter',
 } as const;
 export type FilterSelectorStepTypeEnum = typeof FilterSelectorStepTypeEnum[keyof typeof FilterSelectorStepTypeEnum];
 
@@ -74,7 +70,7 @@ export function FilterSelectorStepFromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'type': json['type'],
-        'predicate': SelectorBlockFromJSON(json['predicate']),
+        'predicate': BlockFromJSON(json['predicate']),
     };
 }
 
@@ -90,7 +86,7 @@ export function FilterSelectorStepToJSONTyped(value?: FilterSelectorStep | null,
     return {
         
         'type': value['type'],
-        'predicate': SelectorBlockToJSON(value['predicate']),
+        'predicate': BlockToJSON(value['predicate']),
     };
 }
 

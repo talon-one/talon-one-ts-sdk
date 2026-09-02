@@ -21,21 +21,15 @@ import { mapValues } from '../runtime';
 export interface NewEventType {
     /**
      * The human-friendly name for this event type.
-     * @type {string}
-     * @memberof NewEventType
      */
     title: string;
     /**
      * The integration name for this event type. This will be used in URLs and cannot be changed after an event type has been created.
-     * @type {string}
-     * @memberof NewEventType
      */
     name: string;
     /**
      * A description of what the event represents.
      * 
-     * @type {string}
-     * @memberof NewEventType
      */
     description?: string;
 }

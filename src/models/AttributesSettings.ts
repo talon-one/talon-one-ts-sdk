@@ -29,8 +29,6 @@ import {
 export interface AttributesSettings {
     /**
      * 
-     * @type {AttributesMandatory}
-     * @memberof AttributesSettings
      */
     mandatory?: AttributesMandatory;
 }

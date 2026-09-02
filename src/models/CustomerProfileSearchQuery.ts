@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface CustomerProfileSearchQuery {
     /**
      * Properties to match against a customer profile. All provided attributes will be exactly matched against profile attributes.
-     * @type {object}
-     * @memberof CustomerProfileSearchQuery
      */
     attributes?: object;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof CustomerProfileSearchQuery
      */
     integrationIDs?: Array<string>;
     /**
      * 
-     * @type {Array<number>}
-     * @memberof CustomerProfileSearchQuery
      */
     profileIDs?: Array<number>;
 }

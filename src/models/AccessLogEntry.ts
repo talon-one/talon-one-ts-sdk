@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * Log of application accesses.
  * @export
@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface AccessLogEntry {
     /**
      * UUID reference of request.
-     * @type {string}
-     * @memberof AccessLogEntry
      */
     uuid: string;
     /**
      * HTTP status code of response.
-     * @type {number}
-     * @memberof AccessLogEntry
      */
     status: number;
     /**
      * HTTP method of request.
-     * @type {string}
-     * @memberof AccessLogEntry
      */
     method: string;
     /**
      * target URI of request
-     * @type {string}
-     * @memberof AccessLogEntry
      */
     requestUri: string;
     /**
      * timestamp of request
-     * @type {Date}
-     * @memberof AccessLogEntry
      */
     time: Date;
     /**
      * payload of request
-     * @type {string}
-     * @memberof AccessLogEntry
      */
     requestPayload: string;
     /**
      * payload of response
-     * @type {string}
-     * @memberof AccessLogEntry
      */
     responsePayload: string;
 }
@@ -92,7 +78,7 @@ export function AccessLogEntryFromJSONTyped(json: any, ignoreDiscriminator: bool
         'status': json['status'],
         'method': json['method'],
         'requestUri': json['requestUri'],
-        'time': (json['time'] == null ? undefined as any : new Date(json['time'])),
+        'time': (json['time'] == null ? json['time'] : parseDateTime(json['time'])),
         'requestPayload': json['requestPayload'],
         'responsePayload': json['responsePayload'],
     };
@@ -113,7 +99,7 @@ export function AccessLogEntryToJSONTyped(value?: AccessLogEntry | null, ignoreD
         'status': value['status'],
         'method': value['method'],
         'requestUri': value['requestUri'],
-        'time': value['time'] == null ? undefined : value['time'].toISOString(),
+        'time': value['time'] == null ? undefined : serializeDateTime(value['time']),
         'requestPayload': value['requestPayload'],
         'responsePayload': value['responsePayload'],
     };

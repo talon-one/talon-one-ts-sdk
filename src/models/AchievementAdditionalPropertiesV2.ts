@@ -29,8 +29,6 @@ import {
 export interface AchievementAdditionalPropertiesV2 {
     /**
      * The ID of the user that created this achievement.
-     * @type {number}
-     * @memberof AchievementAdditionalPropertiesV2
      */
     userId: number;
     /**
@@ -38,21 +36,15 @@ export interface AchievementAdditionalPropertiesV2 {
      * 
      * **Note**: This is not available if the user has been deleted.
      * 
-     * @type {string}
-     * @memberof AchievementAdditionalPropertiesV2
      */
     createdBy?: string;
     /**
      * 
-     * @type {TimePoint}
-     * @memberof AchievementAdditionalPropertiesV2
      * @deprecated
      */
     periodEndOverride?: TimePoint;
     /**
      * Indicates if a customer has made progress in the achievement.
-     * @type {boolean}
-     * @memberof AchievementAdditionalPropertiesV2
      */
     hasProgress?: boolean;
     /**
@@ -61,8 +53,6 @@ export interface AchievementAdditionalPropertiesV2 {
      * - `scheduled`: The achievement has a `fixedStartDate` set in the future.
      * - `expired`: The achievement's `endDate` is in the past.
      * 
-     * @type {AchievementAdditionalPropertiesV2StatusEnum}
-     * @memberof AchievementAdditionalPropertiesV2
      */
     status?: AchievementAdditionalPropertiesV2StatusEnum;
 }
@@ -74,7 +64,7 @@ export interface AchievementAdditionalPropertiesV2 {
 export const AchievementAdditionalPropertiesV2StatusEnum = {
     Active: 'active',
     Scheduled: 'scheduled',
-    Expired: 'expired'
+    Expired: 'expired',
 } as const;
 export type AchievementAdditionalPropertiesV2StatusEnum = typeof AchievementAdditionalPropertiesV2StatusEnum[keyof typeof AchievementAdditionalPropertiesV2StatusEnum];
 

@@ -12,13 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * This effect indicates that the customer's progress in an achievement was started during the current session. The progress value is set to 0. It is triggered when a rule using the [Start achievement progress](https://docs.talon.one/docs/product/rules/effects/use-effects#start-achievement-progress) effect is successfully validated.
  * 
  * This effect only marks the start of progress tracking. It can fire together with `increaseAchievementProgress` when progress starts and increases at the same time. In that case, both effects share the same `progressTrackerId`, `startDate`, and `endDate`.
  * 
- * For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/achievements-overview#recurring-on-completion-achievements), each iteration also gets its own `startDate` and `endDate`.
+ * For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/overview#recurring-on-completion-achievements), each iteration also gets its own `startDate` and `endDate`.
  * 
  * @export
  * @interface StartAchievementProgressEffectProps
@@ -26,42 +26,30 @@ import { mapValues } from '../runtime';
 export interface StartAchievementProgressEffectProps {
     /**
      * The ID of the achievement.
-     * @type {number}
-     * @memberof StartAchievementProgressEffectProps
      */
     achievementId: number;
     /**
      * The name of the achievement.
-     * @type {string}
-     * @memberof StartAchievementProgressEffectProps
      */
     achievementName: string;
     /**
      * The ID of the customer's progress tracker for this achievement.
      * 
-     * For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/achievements-overview#recurring-on-completion-achievements), this effect generates a unique ID for each iteration.
-     * @type {number}
-     * @memberof StartAchievementProgressEffectProps
+     * For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/overview#recurring-on-completion-achievements), this effect generates a unique ID for each iteration.
      */
-    progressTrackerId: number;
+    progressTrackerId?: number;
     /**
      * The target value to complete the achievement.
-     * @type {number}
-     * @memberof StartAchievementProgressEffectProps
      */
     target: number;
     /**
      * Timestamp at which the customer's progress started.
-     * @type {Date}
-     * @memberof StartAchievementProgressEffectProps
      */
     startDate: Date;
     /**
      * Timestamp at which this progress period ends.
      * 
-     * Only returned for achievements that have a fixed end date. [On-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/achievements-overview#recurring-on-completion-achievements) have no end date.
-     * @type {Date}
-     * @memberof StartAchievementProgressEffectProps
+     * Only returned for achievements that have a fixed end date. [On-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/overview#recurring-on-completion-achievements) have no end date.
      */
     endDate?: Date;
 }
@@ -73,7 +61,6 @@ export function instanceOfStartAchievementProgressEffectProps(value: object): va
     const _v = value as Record<PropertyKey, unknown>;
     if (!('achievementId' in _v) || _v['achievementId'] === undefined) return false;
     if (!('achievementName' in _v) || _v['achievementName'] === undefined) return false;
-    if (!('progressTrackerId' in _v) || _v['progressTrackerId'] === undefined) return false;
     if (!('target' in _v) || _v['target'] === undefined) return false;
     if (!('startDate' in _v) || _v['startDate'] === undefined) return false;
     return true;
@@ -91,10 +78,10 @@ export function StartAchievementProgressEffectPropsFromJSONTyped(json: any, igno
         
         'achievementId': json['achievementId'],
         'achievementName': json['achievementName'],
-        'progressTrackerId': json['progressTrackerId'],
+        'progressTrackerId': json['progressTrackerId'] == null ? undefined : json['progressTrackerId'],
         'target': json['target'],
-        'startDate': (json['startDate'] == null ? undefined as any : new Date(json['startDate'])),
-        'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
+        'startDate': (json['startDate'] == null ? json['startDate'] : parseDateTime(json['startDate'])),
+        'endDate': json['endDate'] == null ? undefined : (parseDateTime(json['endDate'])),
     };
 }
 
@@ -113,8 +100,8 @@ export function StartAchievementProgressEffectPropsToJSONTyped(value?: StartAchi
         'achievementName': value['achievementName'],
         'progressTrackerId': value['progressTrackerId'],
         'target': value['target'],
-        'startDate': value['startDate'] == null ? undefined : value['startDate'].toISOString(),
-        'endDate': value['endDate'] == null ? value['endDate'] : value['endDate'].toISOString(),
+        'startDate': value['startDate'] == null ? undefined : serializeDateTime(value['startDate']),
+        'endDate': value['endDate'] == null ? value['endDate'] : serializeDateTime(value['endDate']),
     };
 }
 

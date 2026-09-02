@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface GenerateCampaignTags {
     /**
      * ID of a ruleset.
-     * @type {number}
-     * @memberof GenerateCampaignTags
      */
     rulesetID: number;
 }

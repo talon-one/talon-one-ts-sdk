@@ -29,14 +29,10 @@ import {
 export interface NewAppWideCouponDeletionJob {
     /**
      * 
-     * @type {CouponDeletionFilters}
-     * @memberof NewAppWideCouponDeletionJob
      */
     filters: CouponDeletionFilters;
     /**
      * 
-     * @type {Array<number>}
-     * @memberof NewAppWideCouponDeletionJob
      */
     campaignids: Array<number>;
 }

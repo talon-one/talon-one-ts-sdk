@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LedgerInfo } from './LedgerInfo';
 import {
     LedgerInfoFromJSON,
@@ -29,20 +29,14 @@ import {
 export interface LoyaltyProgramLedgers {
     /**
      * The internal ID of loyalty program.
-     * @type {number}
-     * @memberof LoyaltyProgramLedgers
      */
     id: number;
     /**
      * Visible name of loyalty program.
-     * @type {string}
-     * @memberof LoyaltyProgramLedgers
      */
     title: string;
     /**
      * Internal name of loyalty program.
-     * @type {string}
-     * @memberof LoyaltyProgramLedgers
      */
     name: string;
     /**
@@ -50,20 +44,14 @@ export interface LoyaltyProgramLedgers {
      * 
      * **Note**: This is in the loyalty program's time zone.
      * 
-     * @type {Date}
-     * @memberof LoyaltyProgramLedgers
      */
     joinDate?: Date;
     /**
      * Information about the main ledger in the loyalty program.
-     * @type {LedgerInfo}
-     * @memberof LoyaltyProgramLedgers
      */
     ledger: LedgerInfo;
     /**
      * A map containing information about each loyalty subledger. Subledgers for which all balances are zero are excluded from the response.
-     * @type {{ [key: string]: LedgerInfo; }}
-     * @memberof LoyaltyProgramLedgers
      */
     subLedgers?: { [key: string]: LedgerInfo; };
 }
@@ -93,7 +81,7 @@ export function LoyaltyProgramLedgersFromJSONTyped(json: any, ignoreDiscriminato
         'id': json['id'],
         'title': json['title'],
         'name': json['name'],
-        'joinDate': json['joinDate'] == null ? undefined : (new Date(json['joinDate'])),
+        'joinDate': json['joinDate'] == null ? undefined : (parseDateTime(json['joinDate'])),
         'ledger': LedgerInfoFromJSON(json['ledger']),
         'subLedgers': json['subLedgers'] == null ? undefined : (mapValues(json['subLedgers'], LedgerInfoFromJSON)),
     };
@@ -113,7 +101,7 @@ export function LoyaltyProgramLedgersToJSONTyped(value?: LoyaltyProgramLedgers |
         'id': value['id'],
         'title': value['title'],
         'name': value['name'],
-        'joinDate': value['joinDate'] == null ? value['joinDate'] : value['joinDate'].toISOString(),
+        'joinDate': value['joinDate'] == null ? value['joinDate'] : serializeDateTime(value['joinDate']),
         'ledger': LedgerInfoToJSON(value['ledger']),
         'subLedgers': value['subLedgers'] == null ? undefined : (mapValues(value['subLedgers'], LedgerInfoToJSON)),
     };

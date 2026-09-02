@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CampaignStoreBudgetLimitConfig } from './CampaignStoreBudgetLimitConfig';
 import {
     CampaignStoreBudgetLimitConfigFromJSON,
@@ -29,32 +29,22 @@ import {
 export interface CampaignStoreBudget {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof CampaignStoreBudget
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof CampaignStoreBudget
      */
     created: Date;
     /**
      * The ID of the campaign that owns this entity.
-     * @type {number}
-     * @memberof CampaignStoreBudget
      */
     campaignId: number;
     /**
      * The ID of the store.
-     * @type {number}
-     * @memberof CampaignStoreBudget
      */
     storeId: number;
     /**
      * The set of budget limits for stores linked to the campaign.
-     * @type {Array<CampaignStoreBudgetLimitConfig>}
-     * @memberof CampaignStoreBudget
      */
     limits: Array<CampaignStoreBudgetLimitConfig>;
 }
@@ -83,7 +73,7 @@ export function CampaignStoreBudgetFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'campaignId': json['campaignId'],
         'storeId': json['storeId'],
         'limits': (json['limits'] == null ? undefined as any : (json['limits'] as Array<any>).map(CampaignStoreBudgetLimitConfigFromJSON)),
@@ -102,7 +92,7 @@ export function CampaignStoreBudgetToJSONTyped(value?: CampaignStoreBudget | nul
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'campaignId': value['campaignId'],
         'storeId': value['storeId'],
         'limits': (value['limits'] == null ? undefined : (value['limits'] as Array<any>).map(CampaignStoreBudgetLimitConfigToJSON)),

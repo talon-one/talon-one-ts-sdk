@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface NewNotificationWebhook {
     /**
      * API URL for the given webhook-based notification.
-     * @type {string}
-     * @memberof NewNotificationWebhook
      */
     url: string;
     /**
      * List of API HTTP headers for the given webhook-based notification.
-     * @type {Array<string>}
-     * @memberof NewNotificationWebhook
      */
     headers: Array<string>;
     /**
      * Indicates whether the notification is activated.
-     * @type {boolean}
-     * @memberof NewNotificationWebhook
      */
     enabled?: boolean;
 }

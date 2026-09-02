@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { Endpoint } from './Endpoint';
 import {
     EndpointFromJSON,
@@ -29,64 +29,44 @@ import {
 export interface ManagementKey {
     /**
      * Name for management key.
-     * @type {string}
-     * @memberof ManagementKey
      */
     name: string;
     /**
      * The date the management key expires.
-     * @type {Date}
-     * @memberof ManagementKey
      */
     expiryDate: Date;
     /**
      * The list of endpoints that can be accessed with the key
-     * @type {Array<Endpoint>}
-     * @memberof ManagementKey
      */
     endpoints: Array<Endpoint>;
     /**
      * A list of Application IDs that you can access with the management key.
      * An empty or missing list means the management key can be used for all Applications in the account.
      * 
-     * @type {Array<number>}
-     * @memberof ManagementKey
      */
     allowedApplicationIds?: Array<number>;
     /**
      * ID of the management key.
-     * @type {number}
-     * @memberof ManagementKey
      */
     id: number;
     /**
      * ID of the user who created it.
-     * @type {number}
-     * @memberof ManagementKey
      */
     createdBy: number;
     /**
      * ID of account the key is used for.
-     * @type {number}
-     * @memberof ManagementKey
      */
     accountID: number;
     /**
      * The date the management key was created.
-     * @type {Date}
-     * @memberof ManagementKey
      */
     created: Date;
     /**
      * The management key is disabled (this property is set to `true`) when the user who created the key is disabled or deleted.
-     * @type {boolean}
-     * @memberof ManagementKey
      */
     disabled?: boolean;
     /**
      * The last time the management key was used.
-     * @type {Date}
-     * @memberof ManagementKey
      */
     lastUsed?: Date;
 }
@@ -117,15 +97,15 @@ export function ManagementKeyFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'name': json['name'],
-        'expiryDate': (json['expiryDate'] == null ? undefined as any : new Date(json['expiryDate'])),
+        'expiryDate': (json['expiryDate'] == null ? json['expiryDate'] : parseDateTime(json['expiryDate'])),
         'endpoints': (json['endpoints'] == null ? undefined as any : (json['endpoints'] as Array<any>).map(EndpointFromJSON)),
         'allowedApplicationIds': json['allowedApplicationIds'] == null ? undefined : json['allowedApplicationIds'],
         'id': json['id'],
         'createdBy': json['createdBy'],
         'accountID': json['accountID'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'disabled': json['disabled'] == null ? undefined : json['disabled'],
-        'lastUsed': json['lastUsed'] == null ? undefined : (new Date(json['lastUsed'])),
+        'lastUsed': json['lastUsed'] == null ? undefined : (parseDateTime(json['lastUsed'])),
     };
 }
 
@@ -141,15 +121,15 @@ export function ManagementKeyToJSONTyped(value?: ManagementKey | null, ignoreDis
     return {
         
         'name': value['name'],
-        'expiryDate': value['expiryDate'] == null ? undefined : value['expiryDate'].toISOString(),
+        'expiryDate': value['expiryDate'] == null ? undefined : serializeDateTime(value['expiryDate']),
         'endpoints': (value['endpoints'] == null ? undefined : (value['endpoints'] as Array<any>).map(EndpointToJSON)),
         'allowedApplicationIds': value['allowedApplicationIds'],
         'id': value['id'],
         'createdBy': value['createdBy'],
         'accountID': value['accountID'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'disabled': value['disabled'],
-        'lastUsed': value['lastUsed'] == null ? value['lastUsed'] : value['lastUsed'].toISOString(),
+        'lastUsed': value['lastUsed'] == null ? value['lastUsed'] : serializeDateTime(value['lastUsed']),
     };
 }
 

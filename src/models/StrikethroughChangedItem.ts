@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { StrikethroughEffect } from './StrikethroughEffect';
 import {
     StrikethroughEffectFromJSON,
@@ -36,52 +36,36 @@ import {
 export interface StrikethroughChangedItem {
     /**
      * The ID of the event that triggered the strikethrough labeling.
-     * @type {number}
-     * @memberof StrikethroughChangedItem
      */
     id: number;
     /**
      * The ID of the catalog that the changed item belongs to.
-     * @type {number}
-     * @memberof StrikethroughChangedItem
      */
     catalogId: number;
     /**
      * The unique SKU of the changed item.
-     * @type {string}
-     * @memberof StrikethroughChangedItem
      */
     sku: string;
     /**
      * The version of the changed item.
-     * @type {number}
-     * @memberof StrikethroughChangedItem
      */
     version: number;
     /**
      * The price of the changed item.
-     * @type {number}
-     * @memberof StrikethroughChangedItem
      */
     price: number;
     /**
      * A map of keys and values representing the price types and related price adjustment details for this cart item.
      *       The keys correspond to the `priceType` names.
      * 
-     * @type {{ [key: string]: PriceDetail; }}
-     * @memberof StrikethroughChangedItem
      */
     prices?: { [key: string]: PriceDetail; };
     /**
      * The evaluation time of the changed item.
-     * @type {Date}
-     * @memberof StrikethroughChangedItem
      */
     evaluatedAt: Date;
     /**
      * 
-     * @type {Array<StrikethroughEffect>}
-     * @memberof StrikethroughChangedItem
      */
     effects?: Array<StrikethroughEffect>;
 }
@@ -116,7 +100,7 @@ export function StrikethroughChangedItemFromJSONTyped(json: any, ignoreDiscrimin
         'version': json['version'],
         'price': json['price'],
         'prices': json['prices'] == null ? undefined : (mapValues(json['prices'], PriceDetailFromJSON)),
-        'evaluatedAt': (json['evaluatedAt'] == null ? undefined as any : new Date(json['evaluatedAt'])),
+        'evaluatedAt': (json['evaluatedAt'] == null ? json['evaluatedAt'] : parseDateTime(json['evaluatedAt'])),
         'effects': json['effects'] == null ? undefined : ((json['effects'] as Array<any>).map(StrikethroughEffectFromJSON)),
     };
 }
@@ -138,7 +122,7 @@ export function StrikethroughChangedItemToJSONTyped(value?: StrikethroughChanged
         'version': value['version'],
         'price': value['price'],
         'prices': value['prices'] == null ? undefined : (mapValues(value['prices'], PriceDetailToJSON)),
-        'evaluatedAt': value['evaluatedAt'] == null ? undefined : value['evaluatedAt'].toISOString(),
+        'evaluatedAt': value['evaluatedAt'] == null ? undefined : serializeDateTime(value['evaluatedAt']),
         'effects': value['effects'] == null ? undefined : ((value['effects'] as Array<any>).map(StrikethroughEffectToJSON)),
     };
 }

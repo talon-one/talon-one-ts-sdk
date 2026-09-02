@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface PriceHistoryRequest {
     /**
      * The SKU of the item for which the historical prices are being retrieved.
-     * @type {string}
-     * @memberof PriceHistoryRequest
      */
     sku: string;
     /**
      * The start date of the period for which historical prices should be retrieved.
-     * @type {Date}
-     * @memberof PriceHistoryRequest
      */
     startDate: Date;
     /**
      * The end date of the period for which historical prices should be retrieved.
-     * @type {Date}
-     * @memberof PriceHistoryRequest
      */
     endDate: Date;
 }
@@ -61,8 +55,8 @@ export function PriceHistoryRequestFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'sku': json['sku'],
-        'startDate': (json['startDate'] == null ? undefined as any : new Date(json['startDate'])),
-        'endDate': (json['endDate'] == null ? undefined as any : new Date(json['endDate'])),
+        'startDate': (json['startDate'] == null ? json['startDate'] : parseDateTime(json['startDate'])),
+        'endDate': (json['endDate'] == null ? json['endDate'] : parseDateTime(json['endDate'])),
     };
 }
 
@@ -78,8 +72,8 @@ export function PriceHistoryRequestToJSONTyped(value?: PriceHistoryRequest | nul
     return {
         
         'sku': value['sku'],
-        'startDate': value['startDate'] == null ? undefined : value['startDate'].toISOString(),
-        'endDate': value['endDate'] == null ? undefined : value['endDate'].toISOString(),
+        'startDate': value['startDate'] == null ? undefined : serializeDateTime(value['startDate']),
+        'endDate': value['endDate'] == null ? undefined : serializeDateTime(value['endDate']),
     };
 }
 

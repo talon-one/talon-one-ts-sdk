@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface Product {
     /**
      * The product the item belongs to.
-     * @type {string}
-     * @memberof Product
      */
     name: string;
 }

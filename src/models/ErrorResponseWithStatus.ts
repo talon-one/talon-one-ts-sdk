@@ -29,20 +29,14 @@ import {
 export interface ErrorResponseWithStatus {
     /**
      * 
-     * @type {string}
-     * @memberof ErrorResponseWithStatus
      */
     message?: string;
     /**
      * An array of individual problems encountered during the request.
-     * @type {Array<APIError>}
-     * @memberof ErrorResponseWithStatus
      */
     errors?: Array<APIError>;
     /**
      * The error code
-     * @type {number}
-     * @memberof ErrorResponseWithStatus
      */
     statusCode?: number;
 }

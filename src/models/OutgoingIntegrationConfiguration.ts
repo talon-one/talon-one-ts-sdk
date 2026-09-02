@@ -29,26 +29,18 @@ import {
 export interface OutgoingIntegrationConfiguration {
     /**
      * Unique ID for this entity.
-     * @type {number}
-     * @memberof OutgoingIntegrationConfiguration
      */
     id: number;
     /**
      * The ID of the account to which this configuration belongs.
-     * @type {number}
-     * @memberof OutgoingIntegrationConfiguration
      */
     accountId: number;
     /**
      * The outgoing integration type ID.
-     * @type {number}
-     * @memberof OutgoingIntegrationConfiguration
      */
     typeId: number;
     /**
      * 
-     * @type {OutgoingIntegrationConfigurationPolicy}
-     * @memberof OutgoingIntegrationConfiguration
      */
     policy: OutgoingIntegrationConfigurationPolicy;
 }

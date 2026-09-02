@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface SamlConnectionInternal {
     /**
      * ID of the SAML service.
-     * @type {string}
-     * @memberof SamlConnectionInternal
      */
     name: string;
     /**
      * Identity Provider metadata XML document.
-     * @type {string}
-     * @memberof SamlConnectionInternal
      */
     metadataDocument: string;
 }

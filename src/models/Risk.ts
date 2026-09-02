@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * A risk detected by the anomaly detection service for one Application group.
  * @export
@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface Risk {
     /**
      * The internal ID of this entity.
-     * @type {number}
-     * @memberof Risk
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof Risk
      */
     created: Date;
     /**
      * The ID of the risk notification rule that flagged this risk.
-     * @type {number}
-     * @memberof Risk
      */
     notificationId: number;
     /**
@@ -42,102 +36,70 @@ export interface Risk {
      * detection pipeline scores complete 24-hour cycles, so this is always the day
      * before the risk was reported, not the reporting date itself.
      * 
-     * @type {Date}
-     * @memberof Risk
      */
     featureDate: Date;
     /**
      * The Application group this risk was detected in. Contains the Application ID,
      * or `__GLOBAL__` for metrics that are not grouped by Application.
      * 
-     * @type {string}
-     * @memberof Risk
      */
     groupKey: string;
     /**
      * The ID of the Application this risk belongs to. Absent for global metrics.
-     * @type {number}
-     * @memberof Risk
      */
     applicationId?: number;
     /**
      * The triage lifecycle status of this risk.
-     * @type {RiskStatusEnum}
-     * @memberof Risk
      */
     status: RiskStatusEnum;
     /**
      * The critical classification bucket of this risk.
-     * @type {RiskCriticalityEnum}
-     * @memberof Risk
      */
     criticality: RiskCriticalityEnum;
     /**
      * The entity type the risk was detected in.
-     * @type {RiskEntityEnum}
-     * @memberof Risk
      */
     entity: RiskEntityEnum;
     /**
      * The activity metric the risk was detected in.
-     * @type {RiskActivityEnum}
-     * @memberof Risk
      */
     activity: RiskActivityEnum;
     /**
      * The rolling time window of the risk evaluation.
-     * @type {RiskTimeFrameEnum}
-     * @memberof Risk
      */
     timeFrame: RiskTimeFrameEnum;
     /**
      * The time the ML service reported this risk.
-     * @type {Date}
-     * @memberof Risk
      */
     reportedDate: Date;
     /**
      * The total number of entities affected by this risk.
-     * @type {number}
-     * @memberof Risk
      */
     affectedEntityCount: number;
     /**
      * Human-readable description of the detected anomaly.
-     * @type {string}
-     * @memberof Risk
      */
     description?: string;
     /**
      * The reason this risk was discarded. Only present on discarded risks.
-     * @type {RiskDiscardReasonEnum}
-     * @memberof Risk
      */
     discardReason?: RiskDiscardReasonEnum;
     /**
      * The free-text details of the latest reclassification action: the description
      * for resolving confirmed risks, or the details for discarding risks.
      * 
-     * @type {string}
-     * @memberof Risk
      */
     statusComment?: string;
     /**
      * The ID of the user who performed the latest reclassification action.
-     * @type {number}
-     * @memberof Risk
      */
     statusChangedBy?: number;
     /**
      * The time of the latest reclassification action.
-     * @type {Date}
-     * @memberof Risk
      */
     statusChangedAt?: Date;
     /**
      * Timestamp of the most recent update.
-     * @type {Date}
-     * @memberof Risk
      */
     modified: Date;
 }
@@ -150,7 +112,7 @@ export const RiskStatusEnum = {
     Active: 'active',
     InReview: 'in_review',
     Confirmed: 'confirmed',
-    Discarded: 'discarded'
+    Discarded: 'discarded',
 } as const;
 export type RiskStatusEnum = typeof RiskStatusEnum[keyof typeof RiskStatusEnum];
 
@@ -159,7 +121,7 @@ export type RiskStatusEnum = typeof RiskStatusEnum[keyof typeof RiskStatusEnum];
  */
 export const RiskCriticalityEnum = {
     Critical: 'critical',
-    NotCritical: 'not_critical'
+    NotCritical: 'not_critical',
 } as const;
 export type RiskCriticalityEnum = typeof RiskCriticalityEnum[keyof typeof RiskCriticalityEnum];
 
@@ -168,7 +130,7 @@ export type RiskCriticalityEnum = typeof RiskCriticalityEnum[keyof typeof RiskCr
  */
 export const RiskEntityEnum = {
     CustomerProfile: 'customer_profile',
-    CustomerSession: 'customer_session'
+    CustomerSession: 'customer_session',
 } as const;
 export type RiskEntityEnum = typeof RiskEntityEnum[keyof typeof RiskEntityEnum];
 
@@ -179,7 +141,7 @@ export const RiskActivityEnum = {
     LoyaltyPointsEarned: 'loyalty_points_earned',
     DiscountedAmount: 'discounted_amount',
     CompletedOrders: 'completed_orders',
-    CouponAttempts: 'coupon_attempts'
+    CouponAttempts: 'coupon_attempts',
 } as const;
 export type RiskActivityEnum = typeof RiskActivityEnum[keyof typeof RiskActivityEnum];
 
@@ -189,7 +151,7 @@ export type RiskActivityEnum = typeof RiskActivityEnum[keyof typeof RiskActivity
 export const RiskTimeFrameEnum = {
     _1D: '1D',
     _7D: '7D',
-    _30D: '30D'
+    _30D: '30D',
 } as const;
 export type RiskTimeFrameEnum = typeof RiskTimeFrameEnum[keyof typeof RiskTimeFrameEnum];
 
@@ -198,7 +160,7 @@ export type RiskTimeFrameEnum = typeof RiskTimeFrameEnum[keyof typeof RiskTimeFr
  */
 export const RiskDiscardReasonEnum = {
     ExpectedBehavior: 'expected_behavior',
-    Other: 'other'
+    Other: 'other',
 } as const;
 export type RiskDiscardReasonEnum = typeof RiskDiscardReasonEnum[keyof typeof RiskDiscardReasonEnum];
 
@@ -235,9 +197,9 @@ export function RiskFromJSONTyped(json: any, ignoreDiscriminator: boolean): Risk
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'notificationId': json['notificationId'],
-        'featureDate': (json['featureDate'] == null ? undefined as any : new Date(json['featureDate'])),
+        'featureDate': (json['featureDate'] == null ? json['featureDate'] : parseDate(json['featureDate'])),
         'groupKey': json['groupKey'],
         'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
         'status': json['status'],
@@ -245,14 +207,14 @@ export function RiskFromJSONTyped(json: any, ignoreDiscriminator: boolean): Risk
         'entity': json['entity'],
         'activity': json['activity'],
         'timeFrame': json['timeFrame'],
-        'reportedDate': (json['reportedDate'] == null ? undefined as any : new Date(json['reportedDate'])),
+        'reportedDate': (json['reportedDate'] == null ? json['reportedDate'] : parseDateTime(json['reportedDate'])),
         'affectedEntityCount': json['affectedEntityCount'],
         'description': json['description'] == null ? undefined : json['description'],
         'discardReason': json['discardReason'] == null ? undefined : json['discardReason'],
         'statusComment': json['statusComment'] == null ? undefined : json['statusComment'],
         'statusChangedBy': json['statusChangedBy'] == null ? undefined : json['statusChangedBy'],
-        'statusChangedAt': json['statusChangedAt'] == null ? undefined : (new Date(json['statusChangedAt'])),
-        'modified': (json['modified'] == null ? undefined as any : new Date(json['modified'])),
+        'statusChangedAt': json['statusChangedAt'] == null ? undefined : (parseDateTime(json['statusChangedAt'])),
+        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
     };
 }
 
@@ -268,9 +230,9 @@ export function RiskToJSONTyped(value?: Risk | null, ignoreDiscriminator: boolea
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'notificationId': value['notificationId'],
-        'featureDate': value['featureDate'] == null ? undefined : value['featureDate'].toISOString().substring(0,10),
+        'featureDate': value['featureDate'] == null ? undefined : serializeDate(value['featureDate']),
         'groupKey': value['groupKey'],
         'applicationId': value['applicationId'],
         'status': value['status'],
@@ -278,14 +240,14 @@ export function RiskToJSONTyped(value?: Risk | null, ignoreDiscriminator: boolea
         'entity': value['entity'],
         'activity': value['activity'],
         'timeFrame': value['timeFrame'],
-        'reportedDate': value['reportedDate'] == null ? undefined : value['reportedDate'].toISOString(),
+        'reportedDate': value['reportedDate'] == null ? undefined : serializeDateTime(value['reportedDate']),
         'affectedEntityCount': value['affectedEntityCount'],
         'description': value['description'],
         'discardReason': value['discardReason'],
         'statusComment': value['statusComment'],
         'statusChangedBy': value['statusChangedBy'],
-        'statusChangedAt': value['statusChangedAt'] == null ? value['statusChangedAt'] : value['statusChangedAt'].toISOString(),
-        'modified': value['modified'] == null ? undefined : value['modified'].toISOString(),
+        'statusChangedAt': value['statusChangedAt'] == null ? value['statusChangedAt'] : serializeDateTime(value['statusChangedAt']),
+        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
     };
 }
 

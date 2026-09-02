@@ -36,32 +36,22 @@ import {
 export interface NewBlueprint {
     /**
      * The display name for the blueprint.
-     * @type {string}
-     * @memberof NewBlueprint
      */
     title: string;
     /**
      * A longer, more detailed description of the blueprint.
-     * @type {string}
-     * @memberof NewBlueprint
      */
     description?: string;
     /**
      * Category used to group blueprints.
-     * @type {NewBlueprintCategoryEnum}
-     * @memberof NewBlueprint
      */
     category?: NewBlueprintCategoryEnum;
     /**
      * Array of rules to store in this blueprint. Rules should only contain title (no description, as description is at the blueprint level). At least one rule or cart item filter is required.
-     * @type {Array<CatalogRule>}
-     * @memberof NewBlueprint
      */
     rules?: Array<CatalogRule>;
     /**
      * Array of cart item filters to store in this blueprint. If not provided, will be extracted from the rules. Cart item filters should only contain name (no description, as description is at the blueprint level).
-     * @type {Array<CartItemFilterTemplate>}
-     * @memberof NewBlueprint
      */
     cartItemFilters?: Array<CartItemFilterTemplate>;
 }
@@ -74,7 +64,7 @@ export const NewBlueprintCategoryEnum = {
     Promotions: 'promotions',
     Pricing: 'pricing',
     Loyalty: 'loyalty',
-    Custom: 'custom'
+    Custom: 'custom',
 } as const;
 export type NewBlueprintCategoryEnum = typeof NewBlueprintCategoryEnum[keyof typeof NewBlueprintCategoryEnum];
 

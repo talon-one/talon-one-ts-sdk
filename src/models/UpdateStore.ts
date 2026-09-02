@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface UpdateStore {
     /**
      * The name of the store.
-     * @type {string}
-     * @memberof UpdateStore
      */
     name: string;
     /**
      * The description of the store.
-     * @type {string}
-     * @memberof UpdateStore
      */
     description: string;
     /**
      * The attributes of the store.
-     * @type {object}
-     * @memberof UpdateStore
      */
     attributes?: object;
 }

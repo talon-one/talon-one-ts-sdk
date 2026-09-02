@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { CampaignReference } from './CampaignReference';
 import {
     CampaignReferenceFromJSON,
@@ -29,82 +29,56 @@ import {
 export interface AchievementProgressWithDefinition {
     /**
      * The status of the achievement.
-     * @type {AchievementProgressWithDefinitionStatusEnum}
-     * @memberof AchievementProgressWithDefinition
      */
     status: AchievementProgressWithDefinitionStatusEnum;
     /**
      * The current progress of the customer in the achievement.
-     * @type {number}
-     * @memberof AchievementProgressWithDefinition
      */
     progress: number;
     /**
      * Timestamp at which the customer started the achievement.
-     * @type {Date}
-     * @memberof AchievementProgressWithDefinition
      */
     startDate?: Date;
     /**
      * Timestamp at which point the customer completed the achievement.
-     * @type {Date}
-     * @memberof AchievementProgressWithDefinition
      */
     completionDate?: Date;
     /**
      * Timestamp at which point the achievement ends and resets for the customer.
-     * @type {Date}
-     * @memberof AchievementProgressWithDefinition
      */
     endDate?: Date;
     /**
      * The internal ID of the achievement.
-     * @type {number}
-     * @memberof AchievementProgressWithDefinition
      */
     achievementId: number;
     /**
      * The internal name of the achievement used in API requests.
      * 
-     * @type {string}
-     * @memberof AchievementProgressWithDefinition
      */
     name: string;
     /**
      * The display name of the achievement in the Campaign Manager.
-     * @type {string}
-     * @memberof AchievementProgressWithDefinition
      */
     title: string;
     /**
      * The description of the achievement in the Campaign Manager.
-     * @type {string}
-     * @memberof AchievementProgressWithDefinition
      */
     description: string;
     /**
-     * This property is **deprecated**. Use `campaignIds` (Integration API) or `referencedByCampaigns` (Management API) instead. The first campaign ID in `campaignIds`. Only returned when `campaignIds` is not empty.
-     * @type {number}
-     * @memberof AchievementProgressWithDefinition
+     * This property is **deprecated**. Use `campaignIds` (Integration API) or `referencedByCampaigns` (Management API) instead. This field contains the first campaign ID from the related `campaignIds`, and is omitted when `campaignIds` is empty.
      * @deprecated
      */
-    campaignId: number;
+    campaignId?: number;
     /**
      * The IDs of the campaigns that reference this achievement, in ascending order.
-     * @type {Array<number>}
-     * @memberof AchievementProgressWithDefinition
      */
     campaignIds: Array<number>;
     /**
      * The campaigns that reference this achievement, in ascending order of their `id`.
-     * @type {Array<CampaignReference>}
-     * @memberof AchievementProgressWithDefinition
      */
     referencedByCampaigns: Array<CampaignReference>;
     /**
      * The required number of actions or the transactional milestone to complete the achievement.
-     * @type {number}
-     * @memberof AchievementProgressWithDefinition
      */
     target?: number;
     /**
@@ -113,8 +87,6 @@ export interface AchievementProgressWithDefinition {
      * - `on_expiration`: The achievement resets after it expires and becomes available again.
      * - `on_completion`: When the customer progress status reaches `completed`, the achievement resets and becomes available again.
      * 
-     * @type {AchievementProgressWithDefinitionAchievementRecurrencePolicyEnum}
-     * @memberof AchievementProgressWithDefinition
      */
     achievementRecurrencePolicy: AchievementProgressWithDefinitionAchievementRecurrencePolicyEnum;
     /**
@@ -122,8 +94,6 @@ export interface AchievementProgressWithDefinition {
      * - `user_action`: The achievement ends or resets relative to when the customer started the achievement.
      * - `fixed_schedule`: The achievement starts, ends, or resets for all customers following a fixed schedule.
      * 
-     * @type {AchievementProgressWithDefinitionAchievementActivationPolicyEnum}
-     * @memberof AchievementProgressWithDefinition
      */
     achievementActivationPolicy: AchievementProgressWithDefinitionAchievementActivationPolicyEnum;
     /**
@@ -131,8 +101,6 @@ export interface AchievementProgressWithDefinition {
      * 
      * **Note:** It is an RFC3339 timestamp string.
      * 
-     * @type {Date}
-     * @memberof AchievementProgressWithDefinition
      */
     achievementFixedStartDate?: Date;
     /**
@@ -140,14 +108,10 @@ export interface AchievementProgressWithDefinition {
      * 
      * **Note:** It is an RFC3339 timestamp string.
      * 
-     * @type {Date}
-     * @memberof AchievementProgressWithDefinition
      */
     achievementEndDate?: Date;
     /**
      * When `true`, customer progress can be rolled back in completed achievements.
-     * @type {boolean}
-     * @memberof AchievementProgressWithDefinition
      */
     achievementAllowRollbackAfterCompletion?: boolean;
 }
@@ -160,7 +124,7 @@ export const AchievementProgressWithDefinitionStatusEnum = {
     Inprogress: 'inprogress',
     Completed: 'completed',
     Expired: 'expired',
-    NotStarted: 'not_started'
+    NotStarted: 'not_started',
 } as const;
 export type AchievementProgressWithDefinitionStatusEnum = typeof AchievementProgressWithDefinitionStatusEnum[keyof typeof AchievementProgressWithDefinitionStatusEnum];
 
@@ -170,7 +134,7 @@ export type AchievementProgressWithDefinitionStatusEnum = typeof AchievementProg
 export const AchievementProgressWithDefinitionAchievementRecurrencePolicyEnum = {
     NoRecurrence: 'no_recurrence',
     OnExpiration: 'on_expiration',
-    OnCompletion: 'on_completion'
+    OnCompletion: 'on_completion',
 } as const;
 export type AchievementProgressWithDefinitionAchievementRecurrencePolicyEnum = typeof AchievementProgressWithDefinitionAchievementRecurrencePolicyEnum[keyof typeof AchievementProgressWithDefinitionAchievementRecurrencePolicyEnum];
 
@@ -179,7 +143,7 @@ export type AchievementProgressWithDefinitionAchievementRecurrencePolicyEnum = t
  */
 export const AchievementProgressWithDefinitionAchievementActivationPolicyEnum = {
     UserAction: 'user_action',
-    FixedSchedule: 'fixed_schedule'
+    FixedSchedule: 'fixed_schedule',
 } as const;
 export type AchievementProgressWithDefinitionAchievementActivationPolicyEnum = typeof AchievementProgressWithDefinitionAchievementActivationPolicyEnum[keyof typeof AchievementProgressWithDefinitionAchievementActivationPolicyEnum];
 
@@ -195,7 +159,6 @@ export function instanceOfAchievementProgressWithDefinition(value: object): valu
     if (!('name' in _v) || _v['name'] === undefined) return false;
     if (!('title' in _v) || _v['title'] === undefined) return false;
     if (!('description' in _v) || _v['description'] === undefined) return false;
-    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
     if (!('campaignIds' in _v) || _v['campaignIds'] === undefined) return false;
     if (!('referencedByCampaigns' in _v) || _v['referencedByCampaigns'] === undefined) return false;
     if (!('achievementRecurrencePolicy' in _v) || _v['achievementRecurrencePolicy'] === undefined) return false;
@@ -215,21 +178,21 @@ export function AchievementProgressWithDefinitionFromJSONTyped(json: any, ignore
         
         'status': json['status'],
         'progress': json['progress'],
-        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
-        'completionDate': json['completionDate'] == null ? undefined : (new Date(json['completionDate'])),
-        'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
+        'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
+        'completionDate': json['completionDate'] == null ? undefined : (parseDateTime(json['completionDate'])),
+        'endDate': json['endDate'] == null ? undefined : (parseDateTime(json['endDate'])),
         'achievementId': json['achievementId'],
         'name': json['name'],
         'title': json['title'],
         'description': json['description'],
-        'campaignId': json['campaignId'],
+        'campaignId': json['campaignId'] == null ? undefined : json['campaignId'],
         'campaignIds': json['campaignIds'],
         'referencedByCampaigns': (json['referencedByCampaigns'] == null ? undefined as any : (json['referencedByCampaigns'] as Array<any>).map(CampaignReferenceFromJSON)),
         'target': json['target'] == null ? undefined : json['target'],
         'achievementRecurrencePolicy': json['achievementRecurrencePolicy'],
         'achievementActivationPolicy': json['achievementActivationPolicy'],
-        'achievementFixedStartDate': json['achievementFixedStartDate'] == null ? undefined : (new Date(json['achievementFixedStartDate'])),
-        'achievementEndDate': json['achievementEndDate'] == null ? undefined : (new Date(json['achievementEndDate'])),
+        'achievementFixedStartDate': json['achievementFixedStartDate'] == null ? undefined : (parseDateTime(json['achievementFixedStartDate'])),
+        'achievementEndDate': json['achievementEndDate'] == null ? undefined : (parseDateTime(json['achievementEndDate'])),
         'achievementAllowRollbackAfterCompletion': json['achievementAllowRollbackAfterCompletion'] == null ? undefined : json['achievementAllowRollbackAfterCompletion'],
     };
 }
@@ -247,9 +210,9 @@ export function AchievementProgressWithDefinitionToJSONTyped(value?: Achievement
         
         'status': value['status'],
         'progress': value['progress'],
-        'startDate': value['startDate'] == null ? value['startDate'] : value['startDate'].toISOString(),
-        'completionDate': value['completionDate'] == null ? value['completionDate'] : value['completionDate'].toISOString(),
-        'endDate': value['endDate'] == null ? value['endDate'] : value['endDate'].toISOString(),
+        'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
+        'completionDate': value['completionDate'] == null ? value['completionDate'] : serializeDateTime(value['completionDate']),
+        'endDate': value['endDate'] == null ? value['endDate'] : serializeDateTime(value['endDate']),
         'achievementId': value['achievementId'],
         'name': value['name'],
         'title': value['title'],
@@ -260,8 +223,8 @@ export function AchievementProgressWithDefinitionToJSONTyped(value?: Achievement
         'target': value['target'],
         'achievementRecurrencePolicy': value['achievementRecurrencePolicy'],
         'achievementActivationPolicy': value['achievementActivationPolicy'],
-        'achievementFixedStartDate': value['achievementFixedStartDate'] == null ? value['achievementFixedStartDate'] : value['achievementFixedStartDate'].toISOString(),
-        'achievementEndDate': value['achievementEndDate'] == null ? value['achievementEndDate'] : value['achievementEndDate'].toISOString(),
+        'achievementFixedStartDate': value['achievementFixedStartDate'] == null ? value['achievementFixedStartDate'] : serializeDateTime(value['achievementFixedStartDate']),
+        'achievementEndDate': value['achievementEndDate'] == null ? value['achievementEndDate'] : serializeDateTime(value['achievementEndDate']),
         'achievementAllowRollbackAfterCompletion': value['achievementAllowRollbackAfterCompletion'],
     };
 }

@@ -22,26 +22,18 @@ import { mapValues } from '../runtime';
 export interface ErrorSource {
     /**
      * Pointer to the path in the payload that caused this error.
-     * @type {string}
-     * @memberof ErrorSource
      */
     pointer?: string;
     /**
      * Query parameter that caused this error.
-     * @type {string}
-     * @memberof ErrorSource
      */
     parameter?: string;
     /**
      * Line number in uploaded multipart file that caused this error. 'N/A' if unknown.
-     * @type {string}
-     * @memberof ErrorSource
      */
     line?: string;
     /**
      * Pointer to the resource that caused this error.
-     * @type {string}
-     * @memberof ErrorSource
      */
     resource?: string;
 }

@@ -725,1271 +725,4144 @@ import {
 } from '../models/Webhook';
 
 export interface ActivateUserByEmailRequest {
+    /**
+     * 
+     */
     activateUserRequest: ActivateUserRequest;
 }
 
 export interface AddLoyaltyCardPointsRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty
+     * card. You can get the ID with the [List loyalty
+     * programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms)
+     * endpoint.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.
+     * 
+     */
     loyaltyCardId: string;
+    /**
+     * 
+     */
     addLoyaltyPoints: AddLoyaltyPoints;
 }
 
 export interface AddLoyaltyPointsRequest {
+    /**
+     * The identifier for the loyalty program.
+     */
     loyaltyProgramId: string;
+    /**
+     * The integration identifier for this customer profile. Must be:
+     * - Unique within the deployment.
+     * - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.
+     * 
+     * Once set, you cannot update this identifier.
+     * 
+     */
     integrationId: string;
+    /**
+     * 
+     */
     addLoyaltyPoints: AddLoyaltyPoints;
 }
 
 export interface CopyCampaignToApplicationsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * 
+     */
     campaignCopy: CampaignCopy;
 }
 
 export interface CreateAccountCollectionRequest {
+    /**
+     * 
+     */
     newCollection: NewCollection;
 }
 
 export interface CreateAchievementRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * 
+     */
     createAchievement: CreateAchievement;
 }
 
 export interface CreateAchievementV2Request {
+    /**
+     * 
+     */
     createAchievementV2: CreateAchievementV2;
 }
 
 export interface CreateAdditionalCostRequest {
+    /**
+     * 
+     */
     newAdditionalCost: NewAdditionalCost;
 }
 
 export interface CreateAttributeRequest {
+    /**
+     * 
+     */
     newAttribute: NewAttribute;
 }
 
 export interface CreateBatchLoyaltyCardsRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * 
+     */
     loyaltyCardBatch: LoyaltyCardBatch;
 }
 
 export interface CreateCampaignFromTemplateRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * 
+     */
     createTemplateCampaign: CreateTemplateCampaign;
 }
 
 export interface CreateCampaignStoreBudgetRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * 
+     */
     newCampaignStoreBudget: NewCampaignStoreBudget;
 }
 
 export interface CreateCollectionRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * 
+     */
     newCampaignCollection: NewCampaignCollection;
 }
 
 export interface CreateCouponsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * 
+     */
     newCoupons: NewCoupons;
+    /**
+     * Possible values: `yes` or `no`.
+     * - `yes`: Increases the performance of the API call by returning a 204 response.
+     * - `no`: Returns a 200 response that contains the updated customer profiles.
+     * 
+     */
     silent?: string;
 }
 
 export interface CreateCouponsAsynchronouslyRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * 
+     */
     newCouponCreationJob: NewCouponCreationJob;
 }
 
 export interface CreateCouponsDeletionJobRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * 
+     */
     newCouponDeletionJob: NewCouponDeletionJob;
 }
 
 export interface CreateCouponsForMultipleRecipientsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * 
+     */
     newCouponsForMultipleRecipients: NewCouponsForMultipleRecipients;
+    /**
+     * Possible values: `yes` or `no`.
+     * - `yes`: Increases the performance of the API call by returning a 204 response.
+     * - `no`: Returns a 200 response that contains the updated customer profiles.
+     * 
+     */
     silent?: string;
 }
 
 export interface CreateInviteEmailRequest {
+    /**
+     * 
+     */
     newInviteEmail: NewInviteEmail;
 }
 
 export interface CreateInviteV2Request {
+    /**
+     * 
+     */
     newInvitation: NewInvitation;
 }
 
 export interface CreatePasswordRecoveryEmailRequest {
+    /**
+     * 
+     */
     newPasswordEmail: NewPasswordEmail;
 }
 
+export interface CreateRulesetV2Request {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
+    applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
+    campaignId: number;
+    /**
+     * 
+     */
+    rulesetV2: Omit<RulesetV2, 'id'|'created'|'userId'|'campaignId'|'templateId'|'activatedAt'|'selectors'|'bundles'|'parameters'>;
+}
+
 export interface CreateSessionRequest {
+    /**
+     * 
+     */
     loginParams: LoginParams;
 }
 
 export interface CreateStoreRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * 
+     */
     newStore: NewStore;
 }
 
 export interface DeactivateUserByEmailRequest {
+    /**
+     * 
+     */
     deactivateUserRequest: DeactivateUserRequest;
 }
 
 export interface DeductLoyaltyCardPointsRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Identifier of the loyalty card. You can get the identifier with
+     * the [List loyalty
+     * cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards)
+     * endpoint.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
     loyaltyCardId: string;
+    /**
+     * 
+     */
     deductLoyaltyPoints: DeductLoyaltyPoints;
 }
 
 export interface DeleteAccountCollectionRequest {
+    /**
+     * The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.
+     */
     collectionId: number;
 }
 
 export interface DeleteAchievementRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint.
+     */
     achievementId: number;
 }
 
 export interface DeleteAchievementV2Request {
+    /**
+     * The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievementsV2) endpoint.
+     */
     achievementId: number;
 }
 
 export interface DeleteCampaignRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
 }
 
 export interface DeleteCampaignStoreBudgetsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The action that this budget is limiting.
+     */
     action?: DeleteCampaignStoreBudgetsActionEnum;
+    /**
+     * The period to which the limit applies.
+     * 
+     * **Note**: For budgets with no period, set this to `overall`.
+     * 
+     */
     period?: DeleteCampaignStoreBudgetsPeriodEnum;
 }
 
 export interface DeleteCollectionRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.
+     */
     collectionId: number;
 }
 
 export interface DeleteCouponRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The internal ID of the coupon code. You can find this value in the `id` property from the
+     * [List coupons](https://docs.talon.one/management-api#tag/Coupons/operation/getCouponsWithoutTotalCount) endpoint response.
+     * 
+     */
     couponId: string;
 }
 
 export interface DeleteCouponsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters.
+     */
     value?: string;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdAfter?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon start date timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     startsAfter?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon start date timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     startsBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon expiration date timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     expiresAfter?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon expiration date timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     expiresBefore?: Date;
+    /**
+     * - `expired`: Matches coupons in which the expiration date is set and in the past.
+     * - `validNow`: Matches coupons in which start date is null or in the past and expiration date is null or in the future.
+     * - `validFuture`: Matches coupons in which start date is set and in the future.
+     * 
+     */
     valid?: DeleteCouponsValidEnum;
+    /**
+     * Filter results by batches of coupons
+     */
     batchId?: string;
+    /**
+     * - `true`: only coupons where `usageCounter < usageLimit` will be returned.
+     * - `false`: only coupons where `usageCounter >= usageLimit` will be returned.
+     * 
+     */
     usable?: DeleteCouponsUsableEnum;
+    /**
+     * Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code.
+     */
     referralId?: number;
+    /**
+     * Filter results by match with a profile ID specified in the coupon's `RecipientIntegrationId` field.
+     * 
+     */
     recipientIntegrationId?: string;
+    /**
+     * Filter results to an exact case-insensitive matching against the coupon code
+     */
     exactMatch?: boolean;
 }
 
 export interface DeleteLoyaltyCardRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Identifier of the loyalty card. You can get the identifier with
+     * the [List loyalty
+     * cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards)
+     * endpoint.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
     loyaltyCardId: string;
 }
 
 export interface DeleteReferralRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The ID of the referral code.
+     */
     referralId: string;
 }
 
 export interface DeleteStoreRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the store.
+     * You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.
+     * 
+     */
     storeId: string;
 }
 
 export interface DeleteUserRequest {
+    /**
+     * The ID of the user.
+     */
     userId: number;
 }
 
 export interface DeleteUserByEmailOperationRequest {
+    /**
+     * 
+     */
     deleteUserByEmailRequest: DeleteUserByEmailRequest;
 }
 
 export interface DisconnectCampaignStoresRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
 }
 
 export interface ExcludePriceHistoryRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * 
+     */
     excludePriceObservationsRequest: ExcludePriceObservationsRequest;
 }
 
 export interface ExportAccountCollectionItemsRequest {
+    /**
+     * The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.
+     */
     collectionId: number;
 }
 
 export interface ExportAchievementV2Request {
+    /**
+     * The ID of the achievement. You can get this ID with the [List achievements](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievementsV2) endpoint.
+     */
     achievementId: number;
 }
 
 export interface ExportAchievementsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint.
+     */
     achievementId: number;
 }
 
 export interface ExportApplicationCampaignAnalyticsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * Only return results from after this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeStart: Date;
+    /**
+     * Only return results from before this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeEnd: Date;
+    /**
+     * Filter by one or more Campaign IDs, separated by a comma.
+     * 
+     * **Note:** If no campaigns are specified, data for all the campaigns in the Application is returned.
+     * 
+     */
     campaignIds?: Array<string>;
 }
 
 export interface ExportAudiencesMembershipsRequest {
+    /**
+     * The ID of the audience.
+     */
     audienceId: number;
 }
 
 export interface ExportCampaignStoreBudgetsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The action that this budget is limiting.
+     */
     action?: ExportCampaignStoreBudgetsActionEnum;
+    /**
+     * The period to which the limit applies.
+     * 
+     * **Note**: For budgets with no period, set this to `overall`.
+     * 
+     */
     period?: ExportCampaignStoreBudgetsPeriodEnum;
 }
 
 export interface ExportCampaignStoresRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
 }
 
 export interface ExportCampaignValueMapRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The ID of the value map.
+     * 
+     */
     valueMapId: number;
 }
 
 export interface ExportCollectionItemsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.
+     */
     collectionId: number;
 }
 
 export interface ExportCouponsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * Filter results by campaign ID.
+     */
     campaignId?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters.
+     */
     value?: string;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdAfter?: Date;
+    /**
+     * Either "expired", "validNow", or "validFuture". The first option matches coupons in which the expiration date is set and in the past. The second matches coupons in which start date is null or in the past and expiration date is null or in the future, the third matches coupons in which start date is set and in the future.
+     * 
+     */
     valid?: ExportCouponsValidEnum;
+    /**
+     * Either "true" or "false". If "true", only coupons where `usageCounter < usageLimit` will be returned, "false" will return only coupons where `usageCounter >= usageLimit`.
+     * 
+     */
     usable?: ExportCouponsUsableEnum;
+    /**
+     * Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code.
+     */
     referralId?: number;
+    /**
+     * Filter results by match with a profile id specified in the coupon's RecipientIntegrationId field.
+     */
     recipientIntegrationId?: string;
+    /**
+     * Filter results by batches of coupons
+     */
     batchId?: string;
+    /**
+     * Filter results to an exact case-insensitive matching against the coupon code.
+     */
     exactMatch?: boolean;
+    /**
+     * Determines the format of dates in the export document.
+     */
     dateFormat?: ExportCouponsDateFormatEnum;
+    /**
+     * Filter results by the state of the campaign.
+     * 
+     * - `enabled`: Campaigns that are scheduled, running (activated), or expired.
+     * - `running`: Campaigns that are running (activated).
+     * - `disabled`: Campaigns that are disabled.
+     * - `expired`: Campaigns that are expired.
+     * - `archived`: Campaigns that are archived.
+     * 
+     */
     campaignState?: ExportCouponsCampaignStateEnum;
+    /**
+     * Filter results to only return the coupon codes (`value` column) without the associated coupon data.
+     */
     valuesOnly?: boolean;
+    /**
+     * Timestamp that filters the results to only contain coupons deleted before this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.
+     * 
+     * **Note:** Only coupons deleted in the last 7 days will appear in the results.
+     */
     deletedBefore?: Date;
+    /**
+     * Timestamp that filters the results to only contain coupons deleted after this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.
+     * 
+     * **Note:** Only coupons deleted in the last 7 days will appear in the results.
+     */
     deletedAfter?: Date;
 }
 
 export interface ExportCustomerSessionsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string.
+     */
     createdBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string.
+     */
     createdAfter?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string.
+     */
     updatedBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string.
+     */
     updatedAfter?: Date;
+    /**
+     * Only return sessions for the customer that matches this customer integration ID.
+     */
     profileIntegrationId?: string;
+    /**
+     * Determines the format of dates in the export document.
+     */
     dateFormat?: ExportCustomerSessionsDateFormatEnum;
+    /**
+     * Filter results by state.
+     */
     customerSessionState?: ExportCustomerSessionsCustomerSessionStateEnum;
 }
 
 export interface ExportCustomersTiersRequest {
+    /**
+     * The identifier for the loyalty program.
+     */
     loyaltyProgramId: string;
+    /**
+     * An array of subledgers IDs to filter the export by.
+     */
     subledgerIds?: Array<string>;
+    /**
+     * An array of tier names to filter the export by.
+     */
     tierNames?: Array<string>;
 }
 
 export interface ExportEffectsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * Filter results by campaign ID.
+     */
     campaignId?: number;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdAfter?: Date;
+    /**
+     * Determines the format of dates in the export document.
+     */
     dateFormat?: ExportEffectsDateFormatEnum;
 }
 
 export interface ExportLoyaltyBalanceRequest {
+    /**
+     * The identifier for the loyalty program.
+     */
     loyaltyProgramId: string;
+    /**
+     * Used to return expired, active, and pending loyalty balances before this
+     * timestamp. You can enter any past, present, or future timestamp value.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     endDate?: Date;
+    /**
+     * Filters which balance fields are included in the CSV export. `currentBalance`
+     * is always returned.
+     * 
+     * By default, all balance fields are included. When this parameter is provided, only the
+     * listed fields contain values and the rest are returned empty.
+     * 
+     * Accepted values:
+     * - `currentBalance`
+     * - `pendingBalance`
+     * - `expiredBalance`
+     * - `spentBalance`
+     * - `negativeBalance`
+     * 
+     * Multiple values must be provided as a comma-separated list.
+     * 
+     */
     balances?: string;
 }
 
 export interface ExportLoyaltyBalancesRequest {
+    /**
+     * The identifier for the loyalty program.
+     */
     loyaltyProgramId: string;
+    /**
+     * Used to return expired, active, and pending loyalty balances before this
+     * timestamp. You can enter any past, present, or future timestamp value.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * > - This parameter does not affect the `currentTier` field in the CSV file, which shows the customer's tier at the time of export.
+     * 
+     */
     endDate?: Date;
+    /**
+     * Filters which balance fields are included in the CSV export. `currentBalance`
+     * is always returned.
+     * 
+     * By default, all balance fields are included. When this parameter is provided, only the
+     * listed fields contain values and the rest are returned empty.
+     * 
+     * Accepted values:
+     * - `currentBalance`
+     * - `pendingBalance`
+     * - `expiredBalance`
+     * - `spentBalance`
+     * - `negativeBalance`
+     * 
+     * Multiple values must be provided as a comma-separated list.
+     * 
+     */
     balances?: string;
 }
 
 export interface ExportLoyaltyCardBalancesRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Used to return expired, active, and pending loyalty balances before this
+     * timestamp. You can enter any past, present, or future timestamp value.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     endDate?: Date;
+    /**
+     * Filters which balance fields are included in the CSV export. By default,
+     * all balance fields are included. When this parameter is provided, only the
+     * listed fields contain values and the rest are returned empty.
+     * 
+     * Accepted values:
+     * - `currentBalance`
+     * - `pendingBalance`
+     * - `expiredBalance`
+     * - `spentBalance`
+     * - `negativeBalance`
+     * 
+     * Multiple values must be provided as a comma-separated list.
+     * 
+     * **Note:**
+     * - The `negativeBalance` value is not supported for card balance exports.
+     * - Providing an unsupported or invalid value returns a `400 Bad Request` error.
+     * 
+     */
     balances?: string;
 }
 
 export interface ExportLoyaltyCardLedgerRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Identifier of the loyalty card. You can get the identifier with
+     * the [List loyalty
+     * cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards)
+     * endpoint.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
     loyaltyCardId: string;
+    /**
+     * Only return results from after this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeStart: Date;
+    /**
+     * Only return results from before this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeEnd: Date;
+    /**
+     * Determines the format of dates in the export document.
+     */
     dateFormat?: ExportLoyaltyCardLedgerDateFormatEnum;
 }
 
 export interface ExportLoyaltyCardsRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Filter results by loyalty card batch ID.
+     */
     batchId?: string;
+    /**
+     * Only return loyalty cards created before this timestamp.
+     * 
+     * **Note:** This must be an RFC3339 timestamp string.
+     * 
+     */
     createdBefore?: Date;
+    /**
+     * Only return loyalty cards created after this timestamp.
+     * 
+     * **Note:** This must be an RFC3339 timestamp string.
+     * 
+     */
     createdAfter?: Date;
+    /**
+     * Determines the format of dates in the export document.
+     */
     dateFormat?: ExportLoyaltyCardsDateFormatEnum;
 }
 
 export interface ExportLoyaltyJoinDatesRequest {
+    /**
+     * The identifier of the loyalty program.
+     */
     loyaltyProgramId: string;
 }
 
 export interface ExportLoyaltyLedgerRequest {
+    /**
+     * Only return results from after this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeStart: Date;
+    /**
+     * Only return results from before this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeEnd: Date;
+    /**
+     * The identifier for the loyalty program.
+     */
     loyaltyProgramId: string;
+    /**
+     * The integration identifier for this customer profile. Must be:
+     * - Unique within the deployment.
+     * - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.
+     * 
+     * Once set, you cannot update this identifier.
+     * 
+     */
     integrationId: string;
+    /**
+     * Determines the format of dates in the export document.
+     */
     dateFormat?: ExportLoyaltyLedgerDateFormatEnum;
 }
 
 export interface ExportPoolGiveawaysRequest {
+    /**
+     * The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section.
+     */
     poolId: number;
+    /**
+     * Timestamp that filters the results to only contain giveaways created before this date. Must be an RFC3339 timestamp string.
+     */
     createdBefore?: Date;
+    /**
+     * Timestamp that filters the results to only contain giveaways created after this date. Must be an RFC3339 timestamp string.
+     */
     createdAfter?: Date;
 }
 
 export interface ExportReferralsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * Filter results by campaign ID.
+     */
     campaignId?: number;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdAfter?: Date;
+    /**
+     * - `expired`: Matches referrals in which the expiration date is set and in the past.
+     * - `validNow`: Matches referrals in which start date is null or in the past and expiration date is null or in the future.
+     * - `validFuture`: Matches referrals in which start date is set and in the future.
+     * 
+     */
     valid?: ExportReferralsValidEnum;
+    /**
+     * - `true`, only referrals where `usageCounter < usageLimit` will be returned.
+     * - `false`, only referrals where `usageCounter >= usageLimit` will be returned.
+     * 
+     */
     usable?: ExportReferralsUsableEnum;
+    /**
+     * Filter results by batches of referrals
+     */
     batchId?: string;
+    /**
+     * Determines the format of dates in the export document.
+     */
     dateFormat?: ExportReferralsDateFormatEnum;
 }
 
 export interface GenerateCouponRejectionsRequest {
+    /**
+     * The integration ID of the session to summarize.
+     */
     sessionIntegrationId: string;
+    /**
+     * Filter results by Application ID.
+     */
     applicationId?: number;
+    /**
+     * The [ISO-639](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) code of the language
+     * in which the summary will be generated.
+     * 
+     */
     language?: string;
+    /**
+     * The coupon code for which to get the rejection reason.
+     */
     couponCode?: string;
 }
 
 export interface GetAccessLogsWithoutTotalCountRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * Only return results from after this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeStart: Date;
+    /**
+     * Only return results from before this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeEnd: Date;
+    /**
+     * Only return results where the request path matches the given regular expression.
+     */
     path?: string;
+    /**
+     * Only return results where the request method matches the given regular expression.
+     */
     method?: GetAccessLogsWithoutTotalCountMethodEnum;
+    /**
+     * Filter results by HTTP status codes.
+     */
     status?: GetAccessLogsWithoutTotalCountStatusEnum;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
 }
 
 export interface GetAccountRequest {
+    /**
+     * The identifier of the account. Retrieve it via the
+     * [List users in account](https://docs.talon.one/management-api#tag/Accounts-and-users/operation/getUsers) endpoint in the `accountId`
+     * property.
+     * 
+     */
     accountId: number;
 }
 
 export interface GetAccountAnalyticsRequest {
+    /**
+     * The identifier of the account. Retrieve it via the
+     * [List users in account](https://docs.talon.one/management-api#tag/Accounts-and-users/operation/getUsers) endpoint in the `accountId`
+     * property.
+     * 
+     */
     accountId: number;
 }
 
 export interface GetAccountCollectionRequest {
+    /**
+     * The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.
+     */
     collectionId: number;
 }
 
 export interface GetAchievementRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint.
+     */
     achievementId: number;
 }
 
 export interface GetAchievementV2Request {
+    /**
+     * The ID of the achievement.  You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievementsV2) endpoint.
+     * 
+     */
     achievementId: number;
 }
 
 export interface GetAdditionalCostRequest {
+    /**
+     * The ID of the additional cost. You can find the ID the the Campaign Manager's URL when you display the details of the cost in **Account** > **Tools** > **Additional costs**.
+     * 
+     */
     additionalCostId: number;
 }
 
 export interface GetAdditionalCostsRequest {
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
 }
 
 export interface GetApplicationRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
 }
 
 export interface GetApplicationApiHealthRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
 }
 
 export interface GetApplicationCartItemFilterExpressionRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the Application cart item filter. You can get this ID with the [List Application cart item filters](https://docs.talon.one/management-api#tag/Applications/operation/listApplicationCartItemFilters) endpoint.
+     */
     cartItemFilterId: number;
+    /**
+     * The ID of the Application cart item filter expression.
+     */
     expressionId: number;
 }
 
 export interface GetApplicationCustomerRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The value of the `id` property of a customer profile. Get it with the
+     * [List Application's customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+     * 
+     */
     customerId: number;
 }
 
 export interface GetApplicationCustomerFriendsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The Integration ID of the Advocate's Profile.
+     */
     integrationId: string;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.
+     * 
+     * - When `true`: `totalResultSize` contains the total number of results for this query.
+     * - When `false`: Only `hasMore` is returned, and it is set to `true` when there are more results than shown on the page.
+     * 
+     */
     withTotalResultSize?: boolean;
 }
 
 export interface GetApplicationCustomersRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * Filter results performing an exact matching against the profile integration identifier.
+     */
     integrationId?: string;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.
+     * 
+     * - When `true`: `totalResultSize` contains the total number of results for this query.
+     * - When `false`: Only `hasMore` is returned, and it is set to `true` when there are more results than shown on the page.
+     * 
+     */
     withTotalResultSize?: boolean;
 }
 
 export interface GetApplicationCustomersByAttributesRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * 
+     */
     customerProfileSearchQuery: CustomerProfileSearchQuery;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.
+     * 
+     * - When `true`: `totalResultSize` contains the total number of results for this query.
+     * - When `false`: Only `hasMore` is returned, and it is set to `true` when there are more results than shown on the page.
+     * 
+     */
     withTotalResultSize?: boolean;
 }
 
 export interface GetApplicationEventTypesRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
 }
 
 export interface GetApplicationEventsWithoutTotalCountRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * Comma-separated list of types by which to filter events. Must be exact match(es).
+     */
     type?: string;
+    /**
+     * Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdBefore?: Date;
+    /**
+     * Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdAfter?: Date;
+    /**
+     * Session integration ID filter for events. Must be exact match.
+     */
     session?: string;
+    /**
+     * Profile integration ID filter for events. Must be exact match.
+     */
     profile?: string;
+    /**
+     * Customer name filter for events. Will match substrings case-insensitively.
+     */
     customerName?: string;
+    /**
+     * Customer e-mail address filter for events. Will match substrings case-insensitively.
+     */
     customerEmail?: string;
+    /**
+     * Coupon code
+     */
     couponCode?: string;
+    /**
+     * Referral code
+     */
     referralCode?: string;
+    /**
+     * Rule name filter for events
+     */
     ruleQuery?: string;
+    /**
+     * Campaign name filter for events
+     */
     campaignQuery?: string;
+    /**
+     * The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
+     */
     effectType?: string;
 }
 
 export interface GetApplicationSessionRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The **internal** ID of the session. You can get the ID with the [List Application sessions](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint.
+     * 
+     */
     sessionId: number;
 }
 
 export interface GetApplicationSessionsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * Enables partial matching for a single text search field. When enabled, the search term matches anywhere within the field value (case-insensitive). Minimum 3 characters required for partial matches; shorter inputs automatically fall back to exact match.
+     * 
+     * **Note:** Use with one of: `integrationId`, `profile`, `coupon`, `referral`, or `storeIntegrationId`.
+     */
     partialMatch?: boolean;
+    /**
+     * Filter by sessions with this profile integration ID. By default, requires exact match. Use `partialMatch=true` to search for partial matches (minimum 3 characters).
+     */
     profile?: string;
+    /**
+     * Filter by sessions with this state. Must be exact match.
+     */
     state?: GetApplicationSessionsStateEnum;
+    /**
+     * Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdBefore?: Date;
+    /**
+     * Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdAfter?: Date;
+    /**
+     * Filter by sessions with this coupon. By default, requires exact match. Use `partialMatch=true` to search for partial matches (minimum 3 characters).
+     */
     coupon?: string;
+    /**
+     * Filter by sessions with this referral. By default, requires exact match. Use `partialMatch=true` to search for partial matches (minimum 3 characters).
+     */
     referral?: string;
+    /**
+     * Filter by sessions with this integration ID. By default, requires exact match. Use `partialMatch=true` to search for partial matches (minimum 3 characters).
+     */
     integrationId?: string;
+    /**
+     * The integration ID of the store. You choose this ID when you create a store. By default, requires exact match. Use `partialMatch=true` to search for partial matches (minimum 3 characters).
+     */
     storeIntegrationId?: string;
 }
 
 export interface GetApplicationSessionsByCustomerAttributesRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * 
+     */
     customerProfileSearchQuery: CustomerProfileSearchQuery;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.
+     * - When `true`: `totalResultSize` contains the total number of results for this query.
+     * - When `false`: Only `hasMore` is returned, and it is set to `true` when there are more results than shown on the page.
+     * 
+     */
     withTotalResultSize?: boolean;
 }
 
 export interface GetApplicationsRequest {
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
 }
 
 export interface GetAttributeRequest {
+    /**
+     * The ID of the attribute. You can find the ID in the Campaign Manager's URL when you display the details of an attribute in **Account** > **Tools** > **Attributes**.
+     */
     attributeId: number;
 }
 
 export interface GetAttributesRequest {
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * Returned attributes will be filtered by supplied entity.
+     */
     entity?: string;
+    /**
+     * Returned attributes will be filtered by supplied application ids
+     */
     applicationIds?: string;
+    /**
+     * Returned attributes will be filtered by the specified loyalty program ids, separated by commas. You can only use this parameter when `entity` is `LoyaltyCard`.
+     */
     loyaltyProgramIds?: string;
+    /**
+     * Returned attributes will be filtered by supplied type
+     */
     type?: string;
+    /**
+     * Returned attributes will be filtered by supplied kind (builtin or custom)
+     */
     kind?: GetAttributesKindEnum;
+    /**
+     * Returned attributes will be filtered by searching case insensitive through Attribute name, description and type
+     */
     search?: string;
 }
 
 export interface GetAudienceMembershipsRequest {
+    /**
+     * The ID of the audience.
+     */
     audienceId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * The filter to select a profile.
+     */
     profileQuery?: string;
 }
 
 export interface GetAudiencesRequest {
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.
+     * 
+     * - When `true`: `totalResultSize` contains the total number of results for this query.
+     * - When `false`: Only `hasMore` is returned, and it is set to `true` when there are more results than shown on the page.
+     * 
+     */
     withTotalResultSize?: boolean;
 }
 
 export interface GetAudiencesAnalyticsRequest {
+    /**
+     * The IDs of one or more audiences, separated by commas, by which to filter results. Do not provide more than 1000 audience IDs.
+     */
     audienceIds: string;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
 }
 
 export interface GetCampaignRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
 }
 
 export interface GetCampaignAnalyticsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * Only return results from after this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeStart: Date;
+    /**
+     * Only return results from before this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeEnd: Date;
+    /**
+     * The time interval between the results in the returned time-series.
+     */
     granularity?: GetCampaignAnalyticsGranularityEnum;
 }
 
 export interface GetCampaignByAttributesRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * 
+     */
     campaignSearch: CampaignSearch;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * Filter results by the state of the campaign.
+     * 
+     * - `enabled`: Campaigns that are scheduled, running (activated), or expired.
+     * - `running`: Campaigns that are running (activated).
+     * - `disabled`: Campaigns that are disabled.
+     * - `expired`: Campaigns that are expired.
+     * - `archived`: Campaigns that are archived.
+     * 
+     */
     campaignState?: GetCampaignByAttributesCampaignStateEnum;
 }
 
 export interface GetCampaignGroupRequest {
+    /**
+     * The ID of the campaign access group.
+     */
     campaignGroupId: number;
 }
 
 export interface GetCampaignGroupsRequest {
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
 }
 
 export interface GetCampaignTemplatesRequest {
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * Filter results by the state of the campaign template.
+     */
     state?: GetCampaignTemplatesStateEnum;
+    /**
+     * Filter results performing case-insensitive matching against the name of the campaign template.
+     */
     name?: string;
+    /**
+     * Filter results performing case-insensitive matching against the tags of the campaign template. When used in conjunction with the "name" query parameter, a logical OR will be performed to search both tags and name for the provided values.
+     * 
+     */
     tags?: string;
+    /**
+     * Filter results by user ID.
+     */
     userId?: number;
 }
 
 export interface GetCampaignsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * Filter results by the state of the campaign.
+     * 
+     * - `enabled`: Campaigns that are scheduled, running (activated), or expired.
+     * - `running`: Campaigns that are running (activated).
+     * - `disabled`: Campaigns that are disabled.
+     * - `expired`: Campaigns that are expired.
+     * - `archived`: Campaigns that are archived.
+     * 
+     */
     campaignState?: GetCampaignsCampaignStateEnum;
+    /**
+     * Filter results performing case-insensitive matching against the name of the campaign.
+     */
     name?: string;
+    /**
+     * Filter results performing case-insensitive matching against the tags of the campaign.
+     * 
+     */
     tags?: Array<string>;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdAfter?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     startBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     startAfter?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign end time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     endBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign end time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     endAfter?: Date;
+    /**
+     * Filter results to campaigns owned by the specified campaign access group ID.
+     */
     campaignGroupId?: number;
+    /**
+     * The ID of the campaign template this campaign was created from.
+     */
     templateId?: number;
+    /**
+     * Filter results to campaigns linked to the specified store ID.
+     */
     storeId?: number;
 }
 
 export interface GetChangesRequest {
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * Filter results by Application ID.
+     */
     applicationId?: number;
+    /**
+     * Filter results on a case insensitive matching of the url path of the entity
+     */
     entityPath?: string;
+    /**
+     * Filter results by user ID.
+     */
     userId?: number;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdAfter?: Date;
+    /**
+     * When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.
+     * 
+     * - When `true`: `totalResultSize` contains the total number of results for this query.
+     * - When `false`: Only `hasMore` is returned, and it is set to `true` when there are more results than shown on the page.
+     * 
+     */
     withTotalResultSize?: boolean;
+    /**
+     * Filter results that match the given management key ID.
+     */
     managementKeyId?: number;
+    /**
+     * When this flag is set to false, the state without the change will not be returned. The default value is true.
+     */
     includeOld?: boolean;
 }
 
 export interface GetCollectionRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.
+     */
     collectionId: number;
 }
 
 export interface GetCollectionItemsRequest {
+    /**
+     * The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.
+     */
     collectionId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
 }
 
 export interface GetCouponsWithoutTotalCountRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters.
+     */
     value?: string;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdAfter?: Date;
+    /**
+     * Either "expired", "validNow", or "validFuture". The first option matches coupons in which the expiration date is set and in the past. The second matches coupons in which start date is null or in the past and expiration date is null or in the future, the third matches coupons in which start date is set and in the future.
+     * 
+     */
     valid?: GetCouponsWithoutTotalCountValidEnum;
+    /**
+     * Either "true" or "false". If "true", only coupons where `usageCounter < usageLimit` will be returned, "false" will return only coupons where `usageCounter >= usageLimit`.
+     * 
+     */
     usable?: GetCouponsWithoutTotalCountUsableEnum;
+    /**
+     * - `true`: only coupons where `usageCounter > 0` will be returned.
+     * - `false`: only coupons where `usageCounter = 0` will be returned.
+     * - This field cannot be used in conjunction with the `usable` query parameter.
+     * 
+     */
     redeemed?: GetCouponsWithoutTotalCountRedeemedEnum;
+    /**
+     * Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code.
+     */
     referralId?: number;
+    /**
+     * Filter results by match with a profile ID specified in the coupon's RecipientIntegrationId field.
+     */
     recipientIntegrationId?: string;
+    /**
+     * Filter results by batches of coupons
+     */
     batchId?: string;
+    /**
+     * Filter results to an exact case-insensitive matching against the coupon code.
+     */
     exactMatch?: boolean;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon expiration date timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     expiresBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon expiration date timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     expiresAfter?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon start date timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     startsBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon start date timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     startsAfter?: Date;
+    /**
+     * Filter results to only return the coupon codes (`value` column) without the associated coupon data.
+     */
     valuesOnly?: boolean;
 }
 
 export interface GetCustomerActivityReportRequest {
+    /**
+     * Only return results from after this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeStart: Date;
+    /**
+     * Only return results from before this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeEnd: Date;
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The value of the `id` property of a customer profile. Get it with the
+     * [List Application's customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+     * 
+     */
     customerId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
 }
 
 export interface GetCustomerActivityReportsWithoutTotalCountRequest {
+    /**
+     * Only return results from after this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeStart: Date;
+    /**
+     * Only return results from before this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeEnd: Date;
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * Only return reports matching the customer name.
+     */
     name?: string;
+    /**
+     * Filter results performing an exact matching against the profile integration identifier.
+     */
     integrationId?: string;
+    /**
+     * Only return reports matching the campaign name.
+     */
     campaignName?: string;
+    /**
+     * Only return reports matching the current customer referrer name.
+     */
     advocateName?: string;
 }
 
 export interface GetCustomerAnalyticsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The value of the `id` property of a customer profile. Get it with the
+     * [List Application's customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+     * 
+     */
     customerId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
 }
 
 export interface GetCustomerProfileRequest {
+    /**
+     * The value of the `id` property of a customer profile. Get it with the
+     * [List Application's customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+     * 
+     */
     customerId: number;
 }
 
 export interface GetCustomerProfileAchievementProgressRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The integration identifier for this customer profile. Must be:
+     * - Unique within the deployment.
+     * - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.
+     * 
+     * Once set, you cannot update this identifier.
+     * 
+     */
     integrationId: string;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint.
+     */
     achievementId?: number;
+    /**
+     * Filter results by the `title` of an achievement.
+     */
     title?: string;
 }
 
 export interface GetCustomerProfilesRequest {
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * Indicates whether you are pointing to a sandbox or live customer.
+     */
     sandbox?: boolean;
 }
 
 export interface GetCustomersByAttributesRequest {
+    /**
+     * 
+     */
     customerProfileSearchQuery: CustomerProfileSearchQuery;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * Indicates whether you are pointing to a sandbox or live customer.
+     */
     sandbox?: boolean;
 }
 
 export interface GetDashboardStatisticsRequest {
+    /**
+     * Identifier of the loyalty program. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Only return results from after this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeStart: Date;
+    /**
+     * Only return results from before this timestamp.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     rangeEnd: Date;
+    /**
+     * The ID of the subledger by which we filter the data.
+     */
     subledgerId?: string;
 }
 
 export interface GetEventTypesRequest {
+    /**
+     * Filter results to event types with the given name. This parameter implies `includeOldVersions`.
+     */
     name?: string;
+    /**
+     * Include all versions of every event type.
+     */
     includeOldVersions?: boolean;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
 }
 
 export interface GetExperimentRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the experiment.
+     */
     experimentId: number;
 }
 
 export interface GetExportsRequest {
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * Filter results by Application ID.
+     */
     applicationId?: number;
+    /**
+     * Filter by the campaign ID on which the limit counters are used.
+     */
     campaignId?: number;
+    /**
+     * The name of the entity type that was exported.
+     */
     entity?: GetExportsEntityEnum;
 }
 
 export interface GetLoyaltyCardRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Identifier of the loyalty card. You can get the identifier with
+     * the [List loyalty
+     * cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards)
+     * endpoint.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
     loyaltyCardId: string;
 }
 
 export interface GetLoyaltyCardTransactionLogsRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Identifier of the loyalty card. You can get the identifier with
+     * the [List loyalty
+     * cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards)
+     * endpoint.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
     loyaltyCardId: string;
+    /**
+     * Date and time from which results are returned. Results are filtered by
+     * transaction creation date.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     startDate?: Date;
+    /**
+     * Date and time by which results are returned. Results are filtered by
+     * transaction creation date.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     endDate?: Date;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The ID of the subledger by which we filter the data.
+     */
     subledgerId?: string;
+    /**
+     * Filter the results by a list of customer session IDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?customerSessionIDs=id1&customerSessionIDs=id2`.
+     * 
+     * The response contains only data associated with the specified sessions.
+     * 
+     */
     customerSessionIDs?: Array<string>;
+    /**
+     * Filter the results by a list of transaction UUIDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.
+     * 
+     * The response contains only data associated with the specified transactions.
+     * 
+     */
     transactionUUIDs?: Array<string>;
 }
 
 export interface GetLoyaltyCardsRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * The card code by which to filter loyalty cards in the response.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
     identifier?: string;
+    /**
+     * Filter results by customer profile ID.
+     */
     profileId?: number;
+    /**
+     * Filter results by loyalty card batch ID.
+     */
     batchId?: string;
 }
 
 export interface GetLoyaltyLedgerBalancesRequest {
+    /**
+     * Identifier of the profile-based loyalty program. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * The integration identifier for this customer profile. Must be:
+     * - Unique within the deployment.
+     * - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.
+     * 
+     * Once set, you cannot update this identifier.
+     * 
+     */
     integrationId: string;
+    /**
+     * Used to return expired, active, and pending loyalty balances before this
+     * timestamp. You can enter any past, present, or future timestamp value.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     endDate?: Date;
+    /**
+     * The ID of the subledger used to filter the data. Leave this value empty ("") to query the main ledger.
+     */
     subledgerId?: string;
+    /**
+     * Indicates whether tier information is included in the response.
+     * 
+     * When set to `true`, the response includes information about the current tier and the number of points required to move to next tier.
+     * 
+     */
     includeTiers?: boolean;
+    /**
+     * Indicates whether the customer's projected tier information is included in the response.
+     * 
+     * When set to `true`, the response includes information about the customer's active points and the name of the projected tier.
+     * 
+     * **Note** We recommend filtering by `subledgerId` for better performance.
+     * 
+     */
     includeProjectedTier?: boolean;
 }
 
 export interface GetLoyaltyPointsRequest {
+    /**
+     * The identifier for the loyalty program.
+     */
     loyaltyProgramId: string;
+    /**
+     * The integration identifier for this customer profile. Must be:
+     * - Unique within the deployment.
+     * - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.
+     * 
+     * Once set, you cannot update this identifier.
+     * 
+     */
     integrationId: string;
 }
 
 export interface GetLoyaltyProgramRequest {
+    /**
+     * Identifier of the loyalty program. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
 }
 
 export interface GetLoyaltyProgramProfileLedgerTransactionsRequest {
+    /**
+     * Identifier of the profile-based loyalty program. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * The integration identifier for this customer profile. Must be:
+     * - Unique within the deployment.
+     * - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.
+     * 
+     * Once set, you cannot update this identifier.
+     * 
+     */
     integrationId: string;
+    /**
+     * Filter the results by a list of customer session IDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?customerSessionIDs=id1&customerSessionIDs=id2`.
+     * 
+     * The response contains only data associated with the specified sessions.
+     * 
+     */
     customerSessionIDs?: Array<string>;
+    /**
+     * Filter the results by a list of transaction UUIDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.
+     * 
+     * The response contains only data associated with the specified transactions.
+     * 
+     */
     transactionUUIDs?: Array<string>;
+    /**
+     * The ID of the subledger used to filter the data. Leave this value empty ("") to query the main ledger.
+     */
     subledgerId?: string;
+    /**
+     * Filter results by loyalty transaction type:
+     * - `manual`: Loyalty transaction that was done manually.
+     * - `session`: Loyalty transaction that resulted from a customer session.
+     * - `import`: Loyalty transaction that was imported from a CSV file.
+     * 
+     */
     loyaltyTransactionType?: GetLoyaltyProgramProfileLedgerTransactionsLoyaltyTransactionTypeEnum;
+    /**
+     * Date and time from which results are returned. Results are filtered by
+     * transaction creation date.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     startDate?: Date;
+    /**
+     * Date and time by which results are returned. Results are filtered by
+     * transaction creation date.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     endDate?: Date;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * If `true`: Filters results to include only point transactions that have action-based activation and have not expired.
+     * 
+     * If `false`: Returns a `400` response.
+     * 
+     */
     awaitsActivation?: boolean;
 }
 
 export interface GetLoyaltyProgramTransactionsRequest {
+    /**
+     * Identifier of the loyalty program. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Filter results by loyalty transaction type:
+     * - `manual`: Loyalty transaction that was done manually.
+     * - `session`: Loyalty transaction that resulted from a customer session.
+     * - `import`: Loyalty transaction that was imported from a CSV file.
+     * 
+     */
     loyaltyTransactionType?: GetLoyaltyProgramTransactionsLoyaltyTransactionTypeEnum;
+    /**
+     * The ID of the subledger by which we filter the data.
+     */
     subledgerId?: string;
+    /**
+     * Filter the results by a list of customer session IDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?customerSessionIDs=id1&customerSessionIDs=id2`.
+     * 
+     * The response contains only data associated with the specified sessions.
+     * 
+     */
     customerSessionIDs?: Array<string>;
+    /**
+     * Filter the results by a list of transaction UUIDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,
+     * `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.
+     * 
+     * The response contains only data associated with the specified transactions.
+     * 
+     */
     transactionUUIDs?: Array<string>;
+    /**
+     * Date and time from which results are returned. Results are filtered by
+     * transaction creation date.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     startDate?: Date;
+    /**
+     * Date and time by which results are returned. Results are filtered by
+     * transaction creation date.
+     * 
+     * > [!note] **Note**
+     * > - This must be an RFC3339 timestamp string.
+     * > - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting
+     * >   considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.
+     * 
+     */
     endDate?: Date;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * If `true`: Filters results to include only point transactions that have action-based activation and have not expired.
+     * 
+     * If `false`: Returns a `400` response.
+     * 
+     */
     awaitsActivation?: boolean;
 }
 
 export interface GetLoyaltyStatisticsRequest {
+    /**
+     * Identifier of the loyalty program. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
 }
 
 export interface GetMessageLogsRequest {
+    /**
+     * The entity type the log is related to.
+     * 
+     */
     entityType: GetMessageLogsEntityTypeEnum;
+    /**
+     * Filter results by message ID.
+     */
     messageID?: string;
+    /**
+     * Filter results by change type.
+     */
     changeType?: GetMessageLogsChangeTypeEnum;
+    /**
+     * Filter results by notification ID (include up to 30 values, separated by a comma).
+     */
     notificationIDs?: string;
+    /**
+     * Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. Use UTC time.
+     */
     createdBefore?: Date;
+    /**
+     * Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. Use UTC time.
+     */
     createdAfter?: Date;
+    /**
+     * A specific unique value in the database. If this value is not given, the server fetches results starting with the first record.
+     * 
+     */
     cursor?: string;
+    /**
+     * The maximum number of message log entries to return.
+     */
+    pageSize?: number;
+    /**
+     * Filter results by time period. Choose between the available relative time frames.
+     * 
+     */
     period?: GetMessageLogsPeriodEnum;
+    /**
+     * Indicates whether to return log entries with either successful or unsuccessful HTTP response codes. When set to`true`, only log entries with `2xx` response codes are returned. When set to `false`, only log entries with `4xx` and `5xx` response codes are returned.
+     * 
+     */
     isSuccessful?: boolean;
+    /**
+     * Filter results by Application ID.
+     */
     applicationId?: number;
+    /**
+     * Filter results by campaign ID.
+     */
     campaignId?: number;
+    /**
+     * Identifier of the loyalty program.
+     */
     loyaltyProgramId?: number;
+    /**
+     * Filter results by response status code.
+     */
     responseCode?: number;
+    /**
+     * Filter results by webhook ID (include up to 30 values, separated by a comma).
+     */
     webhookIDs?: string;
 }
 
 export interface GetReferralsWithoutTotalCountRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * Filter results performing case-insensitive matching against the referral code. Both the code and the query are folded to remove all non-alpha-numeric characters.
+     */
     code?: string;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdAfter?: Date;
+    /**
+     * Either "expired", "validNow", or "validFuture". The first option matches referrals in which the expiration date is set and in the past. The second matches referrals in which start date is null or in the past and expiration date is null or in the future, the third matches referrals in which start date is set and in the future.
+     * 
+     */
     valid?: GetReferralsWithoutTotalCountValidEnum;
+    /**
+     * Either "true" or "false". If "true", only referrals where `usageCounter < usageLimit` will be returned, "false" will return only referrals where `usageCounter >= usageLimit`.
+     * 
+     */
     usable?: GetReferralsWithoutTotalCountUsableEnum;
+    /**
+     * Filter results by match with a profile ID specified in the referral's AdvocateProfileIntegrationId field.
+     */
     advocate?: string;
 }
 
 export interface GetRoleV2Request {
+    /**
+     * The ID of role.
+     * 
+     * **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.
+     * 
+     */
     roleId: number;
 }
 
 export interface GetRulesetRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The ID of the ruleset.
+     */
     rulesetId: number;
 }
 
 export interface GetRulesetV2Request {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The ID of the ruleset.
+     */
     rulesetId: number;
 }
 
 export interface GetRulesetsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
 }
 
 export interface GetStoreRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the store.
+     * You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.
+     * 
+     */
     storeId: string;
 }
 
 export interface GetUserRequest {
+    /**
+     * The ID of the user.
+     */
     userId: number;
 }
 
 export interface GetUsersRequest {
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
 }
 
 export interface GetWebhookRequest {
+    /**
+     * The ID of the webhook. You can find the ID in the Campaign Manager's URL when you display the details of the webhook in **Account** > **Webhooks**.
+     * 
+     */
     webhookId: number;
 }
 
 export interface GetWebhooksRequest {
+    /**
+     * Checks if the given catalog or its attributes are referenced in the specified Application ID.
+     * 
+     * **Note**: If no Application ID is provided, we check for all connected Applications.
+     * 
+     */
     applicationIds?: string;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * Filter results by creation type.
+     */
     creationType?: GetWebhooksCreationTypeEnum;
+    /**
+     * Filter results by visibility.
+     */
     visibility?: GetWebhooksVisibilityEnum;
+    /**
+     * Filter results by outgoing integration type ID.
+     */
     outgoingIntegrationsTypeId?: number;
+    /**
+     * Filter results performing case-insensitive matching against the webhook title.
+     */
     title?: string;
 }
 
 export interface ImportAccountCollectionRequest {
+    /**
+     * The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.
+     */
     collectionId: number;
+    /**
+     * The CSV file containing the data that is being imported.
+     */
     upFile?: Blob;
 }
 
 export interface ImportAllowedListRequest {
+    /**
+     * The ID of the attribute. You can find the ID in the Campaign Manager's URL when you display the details of an attribute in **Account** > **Tools** > **Attributes**.
+     */
     attributeId: number;
+    /**
+     * The CSV file containing the data that is being imported.
+     */
     upFile?: Blob;
 }
 
 export interface ImportAudiencesMembershipsRequest {
+    /**
+     * The ID of the audience.
+     */
     audienceId: number;
+    /**
+     * The CSV file containing the data that is being imported.
+     */
     upFile?: Blob;
 }
 
 export interface ImportCampaignStoreBudgetRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The action that this budget is limiting.
+     */
     action?: ImportCampaignStoreBudgetActionEnum;
+    /**
+     * The period to which the limit applies.
+     * 
+     * **Note**: For budgets with no period, set this to `overall`.
+     * 
+     */
     period?: ImportCampaignStoreBudgetPeriodEnum;
+    /**
+     * The CSV file containing the data that is being imported.
+     */
     upFile?: Blob;
 }
 
 export interface ImportCampaignStoresRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The CSV file containing the data that is being imported.
+     */
     upFile?: Blob;
 }
 
 export interface ImportCollectionRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.
+     */
     collectionId: number;
+    /**
+     * The CSV file containing the data that is being imported.
+     */
     upFile?: Blob;
 }
 
 export interface ImportCouponsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * An indicator of whether to skip duplicate coupon values instead of causing an error.
+     * Duplicate values are ignored when `skipDuplicates=true`.
+     * 
+     */
     skipDuplicates?: boolean;
+    /**
+     * The CSV file containing the data that is being imported.
+     */
     upFile?: Blob;
 }
 
 export interface ImportLoyaltyCardsRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * The CSV file containing the data that is being imported.
+     */
     upFile?: Blob;
 }
 
 export interface ImportLoyaltyCustomersTiersRequest {
+    /**
+     * Identifier of the loyalty program. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * The CSV file containing the data that is being imported.
+     */
     upFile?: Blob;
 }
 
 export interface ImportLoyaltyJoinDatesRequest {
+    /**
+     * Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * The CSV file containing the data that is being imported.
+     */
     upFile?: Blob;
 }
 
 export interface ImportLoyaltyPointsRequest {
+    /**
+     * Identifier of the loyalty program. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Indicates whether the points import triggers notifications about its effects. For example, a notification is sent if the import upgrades a customer's tier or offsets their negative points balance.
+     * 
+     * This parameter is optional and defaults to `true`.
+     * 
+     */
     notificationsEnabled?: boolean;
+    /**
+     * The CSV file containing the data that is being imported.
+     */
     upFile?: Blob;
 }
 
 export interface ImportPoolGiveawaysRequest {
+    /**
+     * The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section.
+     */
     poolId: number;
+    /**
+     * The CSV file containing the data that is being imported.
+     */
     upFile?: Blob;
 }
 
 export interface ImportReferralsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The CSV file containing the data that is being imported.
+     */
     upFile?: Blob;
 }
 
 export interface InviteUserExternalRequest {
+    /**
+     * 
+     */
     newExternalInvitation: NewExternalInvitation;
 }
 
 export interface ListAccountCollectionsRequest {
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.
+     * 
+     * - When `true`: `totalResultSize` contains the total number of results for this query.
+     * - When `false`: Only `hasMore` is returned, and it is set to `true` when there are more results than shown on the page.
+     * 
+     */
     withTotalResultSize?: boolean;
+    /**
+     * Filter by collection name.
+     */
     name?: string;
 }
 
 export interface ListAchievementsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * Filter by the display name for the achievement in the campaign manager.
+     * 
+     * **Note**: If no `title` is provided, all the achievements from the campaign are returned.
+     * 
+     */
     title?: string;
 }
 
 export interface ListAchievementsV2Request {
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * Filter by the display name of the achievement.
+     */
     title?: string;
+    /**
+     * Filter by the ID of an Application connected to the achievement.
+     */
     applicationId?: number;
 }
 
 export interface ListApplicationCartItemFiltersRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * Filter by the display name of the Application cart item filter in the Application.
+     * 
+     * **Note**: If no `name` is provided, all the Application cart item filters in the Application are returned.
+     * 
+     */
     name?: string;
 }
 
 export interface ListCampaignStoreBudgetLimitsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The action that this budget is limiting.
+     */
     action?: ListCampaignStoreBudgetLimitsActionEnum;
+    /**
+     * The period to which the limit applies.
+     * 
+     * **Note**: For budgets with no period, set this to `overall`.
+     * 
+     */
     period?: ListCampaignStoreBudgetLimitsPeriodEnum;
 }
 
 export interface ListCatalogItemsRequest {
+    /**
+     * The ID of the catalog. You can find the ID in the Campaign Manager in **Account** > **Tools** > **Cart item catalogs**.
+     */
     catalogId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.
+     * 
+     * - When `true`: `totalResultSize` contains the total number of results for this query.
+     * - When `false`: Only `hasMore` is returned, and it is set to `true` when there are more results than shown on the page.
+     * 
+     */
     withTotalResultSize?: boolean;
+    /**
+     * Filter results by one or more SKUs. Must be exact match.
+     */
     sku?: Array<string>;
+    /**
+     * Filter results by one or more product names. Must be exact match.
+     */
     productNames?: Array<string>;
 }
 
 export interface ListCollectionsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.
+     * 
+     * - When `true`: `totalResultSize` contains the total number of results for this query.
+     * - When `false`: Only `hasMore` is returned, and it is set to `true` when there are more results than shown on the page.
+     * 
+     */
     withTotalResultSize?: boolean;
+    /**
+     * Filter by collection name.
+     */
     name?: string;
 }
 
 export interface ListCollectionsInApplicationRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.
+     * 
+     * - When `true`: `totalResultSize` contains the total number of results for this query.
+     * - When `false`: Only `hasMore` is returned, and it is set to `true` when there are more results than shown on the page.
+     * 
+     */
     withTotalResultSize?: boolean;
+    /**
+     * Filter by collection name.
+     */
     name?: string;
 }
 
 export interface ListExperimentsRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
 }
 
 export interface ListStoresRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.
+     * 
+     * - When `true`: `totalResultSize` contains the total number of results for this query.
+     * - When `false`: Only `hasMore` is returned, and it is set to `true` when there are more results than shown on the page.
+     * 
+     */
     withTotalResultSize?: boolean;
+    /**
+     * Filter results by campaign ID.
+     */
     campaignId?: number;
+    /**
+     * The name of the store.
+     */
     name?: string;
+    /**
+     * The integration ID of the store.
+     */
     integrationId?: string;
+    /**
+     * Filter results by `name` or `integrationId`.
+     */
     query?: string;
 }
 
 export interface PriceHistoryOperationRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * 
+     */
     priceHistoryRequest: PriceHistoryRequest;
 }
 
 export interface RemoveLoyaltyPointsRequest {
+    /**
+     * The identifier for the loyalty program.
+     */
     loyaltyProgramId: string;
+    /**
+     * The integration identifier for this customer profile. Must be:
+     * - Unique within the deployment.
+     * - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.
+     * 
+     * Once set, you cannot update this identifier.
+     * 
+     */
     integrationId: string;
+    /**
+     * 
+     */
     deductLoyaltyPoints: DeductLoyaltyPoints;
 }
 
 export interface ResetPasswordRequest {
+    /**
+     * 
+     */
     newPassword: NewPassword;
 }
 
 export interface ScimCreateGroupRequest {
+    /**
+     * 
+     */
     scimBaseGroup: ScimBaseGroup;
 }
 
 export interface ScimCreateUserRequest {
+    /**
+     * 
+     */
     scimNewUser: ScimNewUser;
 }
 
 export interface ScimDeleteGroupRequest {
+    /**
+     * The ID of the group.
+     */
     groupId: number;
 }
 
 export interface ScimDeleteUserRequest {
+    /**
+     * The ID of the user.
+     */
     userId: number;
 }
 
 export interface ScimGetGroupRequest {
+    /**
+     * The ID of the group.
+     */
     groupId: number;
 }
 
 export interface ScimGetUserRequest {
+    /**
+     * The ID of the user.
+     */
     userId: number;
 }
 
 export interface ScimPatchGroupRequest {
+    /**
+     * The ID of the group.
+     */
     groupId: number;
+    /**
+     * 
+     */
     scimPatchRequest: ScimPatchRequest;
 }
 
 export interface ScimPatchUserRequest {
+    /**
+     * The ID of the user.
+     */
     userId: number;
+    /**
+     * 
+     */
     scimPatchRequest: ScimPatchRequest;
 }
 
 export interface ScimReplaceGroupAttributesRequest {
+    /**
+     * The ID of the group.
+     */
     groupId: number;
+    /**
+     * 
+     */
     scimBaseGroup: ScimBaseGroup;
 }
 
 export interface ScimReplaceUserAttributesRequest {
+    /**
+     * The ID of the user.
+     */
     userId: number;
+    /**
+     * 
+     */
     scimNewUser: ScimNewUser;
 }
 
 export interface SearchCouponsAdvancedApplicationWideWithoutTotalCountRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * 
+     */
     body: object;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters.
+     */
     value?: string;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdAfter?: Date;
+    /**
+     * Either "expired", "validNow", or "validFuture". The first option matches coupons in which the expiration date is set and in the past. The second matches coupons in which start date is null or in the past and expiration date is null or in the future, the third matches coupons in which start date is set and in the future.
+     * 
+     */
     valid?: SearchCouponsAdvancedApplicationWideWithoutTotalCountValidEnum;
+    /**
+     * Either "true" or "false". If "true", only coupons where `usageCounter < usageLimit` will be returned, "false" will return only coupons where `usageCounter >= usageLimit`.
+     * 
+     */
     usable?: SearchCouponsAdvancedApplicationWideWithoutTotalCountUsableEnum;
+    /**
+     * Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code.
+     */
     referralId?: number;
+    /**
+     * Filter results by match with a profile ID specified in the coupon's RecipientIntegrationId field.
+     */
     recipientIntegrationId?: string;
+    /**
+     * Filter results by batches of coupons
+     */
     batchId?: string;
+    /**
+     * Filter results to an exact case-insensitive matching against the coupon code.
+     */
     exactMatch?: boolean;
+    /**
+     * Filter results by the state of the campaign.
+     * 
+     * - `enabled`: Campaigns that are scheduled, running (activated), or expired.
+     * - `running`: Campaigns that are running (activated).
+     * - `disabled`: Campaigns that are disabled.
+     * - `expired`: Campaigns that are expired.
+     * - `archived`: Campaigns that are archived.
+     * 
+     */
     campaignState?: SearchCouponsAdvancedApplicationWideWithoutTotalCountCampaignStateEnum;
 }
 
 export interface SearchCouponsAdvancedWithoutTotalCountRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * 
+     */
     body: object;
+    /**
+     * The number of items in the response.
+     */
     pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
     skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
     sort?: string;
+    /**
+     * Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters.
+     */
     value?: string;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdBefore?: Date;
+    /**
+     * Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
+     */
     createdAfter?: Date;
+    /**
+     * Either "expired", "validNow", or "validFuture". The first option matches coupons in which the expiration date is set and in the past. The second matches coupons in which start date is null or in the past and expiration date is null or in the future, the third matches coupons in which start date is set and in the future.
+     * 
+     */
     valid?: SearchCouponsAdvancedWithoutTotalCountValidEnum;
+    /**
+     * Either "true" or "false". If "true", only coupons where `usageCounter < usageLimit` will be returned, "false" will return only coupons where `usageCounter >= usageLimit`.
+     * 
+     */
     usable?: SearchCouponsAdvancedWithoutTotalCountUsableEnum;
+    /**
+     * Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code.
+     */
     referralId?: number;
+    /**
+     * Filter results by match with a profile ID specified in the coupon's RecipientIntegrationId field.
+     */
     recipientIntegrationId?: string;
+    /**
+     * Filter results to an exact case-insensitive matching against the coupon code.
+     */
     exactMatch?: boolean;
+    /**
+     * Filter results by batches of coupons
+     */
     batchId?: string;
 }
 
 export interface SummarizeCampaignStoreBudgetRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
 }
 
 export interface TransferLoyaltyCardRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Identifier of the loyalty card. You can get the identifier with
+     * the [List loyalty
+     * cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards)
+     * endpoint.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
     loyaltyCardId: string;
+    /**
+     * 
+     */
     transferLoyaltyCard: TransferLoyaltyCard;
 }
 
 export interface UpdateAccountCollectionRequest {
+    /**
+     * The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.
+     */
     collectionId: number;
+    /**
+     * 
+     */
     updateCollection: UpdateCollection;
 }
 
 export interface UpdateAchievementRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint.
+     */
     achievementId: number;
+    /**
+     * 
+     */
     updateAchievement: UpdateAchievement;
 }
 
 export interface UpdateAchievementV2Request {
+    /**
+     * The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievementsV2) endpoint.
+     */
     achievementId: number;
+    /**
+     * 
+     */
     updateAchievementV2: UpdateAchievementV2;
 }
 
 export interface UpdateAdditionalCostRequest {
+    /**
+     * The ID of the additional cost. You can find the ID the the Campaign Manager's URL when you display the details of the cost in **Account** > **Tools** > **Additional costs**.
+     * 
+     */
     additionalCostId: number;
+    /**
+     * 
+     */
     newAdditionalCost: NewAdditionalCost;
 }
 
 export interface UpdateAttributeRequest {
+    /**
+     * The ID of the attribute. You can find the ID in the Campaign Manager's URL when you display the details of an attribute in **Account** > **Tools** > **Attributes**.
+     */
     attributeId: number;
+    /**
+     * 
+     */
     newAttribute: NewAttribute;
 }
 
 export interface UpdateCampaignRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * 
+     */
     updateCampaign: UpdateCampaign;
 }
 
 export interface UpdateCollectionRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.
+     */
     collectionId: number;
+    /**
+     * 
+     */
     updateCampaignCollection: UpdateCampaignCollection;
 }
 
 export interface UpdateCouponRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The internal ID of the coupon code. You can find this value in the `id` property from the
+     * [List coupons](https://docs.talon.one/management-api#tag/Coupons/operation/getCouponsWithoutTotalCount) endpoint response.
+     * 
+     */
     couponId: string;
+    /**
+     * 
+     */
     updateCoupon: UpdateCoupon;
 }
 
 export interface UpdateCouponBatchRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * 
+     */
     updateCouponBatch: UpdateCouponBatch;
 }
 
 export interface UpdateLoyaltyCardOperationRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
     loyaltyProgramId: number;
+    /**
+     * Identifier of the loyalty card. You can get the identifier with
+     * the [List loyalty
+     * cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards)
+     * endpoint.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
     loyaltyCardId: string;
+    /**
+     * 
+     */
     updateLoyaltyCardRequest: UpdateLoyaltyCardRequest;
 }
 
 export interface UpdateReferralRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
     campaignId: number;
+    /**
+     * The ID of the referral code.
+     */
     referralId: string;
+    /**
+     * 
+     */
     updateReferral: UpdateReferral;
 }
 
 export interface UpdateRoleV2Request {
+    /**
+     * The ID of role.
+     * 
+     * **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.
+     * 
+     */
     roleId: number;
+    /**
+     * 
+     */
     roleV2Base: RoleV2Base;
 }
 
 export interface UpdateStoreRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
     applicationId: number;
+    /**
+     * The ID of the store.
+     * You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.
+     * 
+     */
     storeId: string;
+    /**
+     * 
+     */
     newStore: NewStore;
 }
 
 export interface UpdateUserRequest {
+    /**
+     * The ID of the user.
+     */
     userId: number;
+    /**
+     * 
+     */
     updateUser: UpdateUser;
 }
 
@@ -3256,6 +6129,75 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createRulesetV2 without sending the request
+     */
+    async createRulesetV2RequestOpts(requestParameters: CreateRulesetV2Request): Promise<runtime.RequestOpts> {
+        if (requestParameters['applicationId'] == null) {
+            throw new runtime.RequiredError(
+                'applicationId',
+                'Required parameter "applicationId" was null or undefined when calling createRulesetV2().'
+            );
+        }
+
+        if (requestParameters['campaignId'] == null) {
+            throw new runtime.RequiredError(
+                'campaignId',
+                'Required parameter "campaignId" was null or undefined when calling createRulesetV2().'
+            );
+        }
+
+        if (requestParameters['rulesetV2'] == null) {
+            throw new runtime.RequiredError(
+                'rulesetV2',
+                'Required parameter "rulesetV2" was null or undefined when calling createRulesetV2().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v2/applications/{applicationId}/campaigns/{campaignId}/rulesets`;
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: RulesetV2ToJSON(requestParameters['rulesetV2']),
+        };
+    }
+
+    /**
+     * Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only `group` and `passthrough` blocks are currently writable, with optional `onFailure` blocks. A payload containing any other block type is rejected. Each rule\'s `blocks` array may contain at most one block.
+     * Create ruleset (V2)
+     */
+    async createRulesetV2Raw(requestParameters: CreateRulesetV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RulesetV2>> {
+        const requestOptions = await this.createRulesetV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RulesetV2FromJSON(jsonValue));
+    }
+
+    /**
+     * Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only `group` and `passthrough` blocks are currently writable, with optional `onFailure` blocks. A payload containing any other block type is rejected. Each rule\'s `blocks` array may contain at most one block.
+     * Create ruleset (V2)
+     */
+    async createRulesetV2(requestParameters: CreateRulesetV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RulesetV2> {
+        const response = await this.createRulesetV2Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for createSession without sending the request
      */
     async createSessionRequestOpts(requestParameters: CreateSessionRequest): Promise<runtime.RequestOpts> {
@@ -3939,27 +6881,27 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['startsAfter'] != null) {
-            queryParameters['startsAfter'] = (requestParameters['startsAfter'] as any).toISOString();
+            queryParameters['startsAfter'] = runtime.serializeDateTime(requestParameters['startsAfter'] as any);
         }
 
         if (requestParameters['startsBefore'] != null) {
-            queryParameters['startsBefore'] = (requestParameters['startsBefore'] as any).toISOString();
+            queryParameters['startsBefore'] = runtime.serializeDateTime(requestParameters['startsBefore'] as any);
         }
 
         if (requestParameters['expiresAfter'] != null) {
-            queryParameters['expiresAfter'] = (requestParameters['expiresAfter'] as any).toISOString();
+            queryParameters['expiresAfter'] = runtime.serializeDateTime(requestParameters['expiresAfter'] as any);
         }
 
         if (requestParameters['expiresBefore'] != null) {
-            queryParameters['expiresBefore'] = (requestParameters['expiresBefore'] as any).toISOString();
+            queryParameters['expiresBefore'] = runtime.serializeDateTime(requestParameters['expiresBefore'] as any);
         }
 
         if (requestParameters['valid'] != null) {
@@ -4684,11 +7626,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
+            queryParameters['rangeStart'] = runtime.serializeDateTime(requestParameters['rangeStart'] as any);
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
+            queryParameters['rangeEnd'] = runtime.serializeDateTime(requestParameters['rangeEnd'] as any);
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -5090,11 +8032,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['valid'] != null) {
@@ -5134,11 +8076,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['deletedBefore'] != null) {
-            queryParameters['deletedBefore'] = (requestParameters['deletedBefore'] as any).toISOString();
+            queryParameters['deletedBefore'] = runtime.serializeDateTime(requestParameters['deletedBefore'] as any);
         }
 
         if (requestParameters['deletedAfter'] != null) {
-            queryParameters['deletedAfter'] = (requestParameters['deletedAfter'] as any).toISOString();
+            queryParameters['deletedAfter'] = runtime.serializeDateTime(requestParameters['deletedAfter'] as any);
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -5197,19 +8139,19 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['updatedBefore'] != null) {
-            queryParameters['updatedBefore'] = (requestParameters['updatedBefore'] as any).toISOString();
+            queryParameters['updatedBefore'] = runtime.serializeDateTime(requestParameters['updatedBefore'] as any);
         }
 
         if (requestParameters['updatedAfter'] != null) {
-            queryParameters['updatedAfter'] = (requestParameters['updatedAfter'] as any).toISOString();
+            queryParameters['updatedAfter'] = runtime.serializeDateTime(requestParameters['updatedAfter'] as any);
         }
 
         if (requestParameters['profileIntegrationId'] != null) {
@@ -5347,11 +8289,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['dateFormat'] != null) {
@@ -5415,7 +8357,7 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+            queryParameters['endDate'] = runtime.serializeDateTime(requestParameters['endDate'] as any);
         }
 
         if (requestParameters['balances'] != null) {
@@ -5480,7 +8422,7 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+            queryParameters['endDate'] = runtime.serializeDateTime(requestParameters['endDate'] as any);
         }
 
         if (requestParameters['balances'] != null) {
@@ -5543,7 +8485,7 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+            queryParameters['endDate'] = runtime.serializeDateTime(requestParameters['endDate'] as any);
         }
 
         if (requestParameters['balances'] != null) {
@@ -5627,11 +8569,11 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
+            queryParameters['rangeStart'] = runtime.serializeDateTime(requestParameters['rangeStart'] as any);
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
+            queryParameters['rangeEnd'] = runtime.serializeDateTime(requestParameters['rangeEnd'] as any);
         }
 
         if (requestParameters['dateFormat'] != null) {
@@ -5699,11 +8641,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['dateFormat'] != null) {
@@ -5842,11 +8784,11 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
+            queryParameters['rangeStart'] = runtime.serializeDateTime(requestParameters['rangeStart'] as any);
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
+            queryParameters['rangeEnd'] = runtime.serializeDateTime(requestParameters['rangeEnd'] as any);
         }
 
         if (requestParameters['dateFormat'] != null) {
@@ -5910,11 +8852,11 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -5977,11 +8919,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['valid'] != null) {
@@ -6148,11 +9090,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
+            queryParameters['rangeStart'] = runtime.serializeDateTime(requestParameters['rangeStart'] as any);
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
+            queryParameters['rangeEnd'] = runtime.serializeDateTime(requestParameters['rangeEnd'] as any);
         }
 
         if (requestParameters['pageSize'] != null) {
@@ -7121,11 +10063,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['session'] != null) {
@@ -7299,11 +10241,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['coupon'] != null) {
@@ -7896,11 +10838,11 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
+            queryParameters['rangeStart'] = runtime.serializeDateTime(requestParameters['rangeStart'] as any);
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
+            queryParameters['rangeEnd'] = runtime.serializeDateTime(requestParameters['rangeEnd'] as any);
         }
 
         if (requestParameters['granularity'] != null) {
@@ -8238,27 +11180,27 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['startBefore'] != null) {
-            queryParameters['startBefore'] = (requestParameters['startBefore'] as any).toISOString();
+            queryParameters['startBefore'] = runtime.serializeDateTime(requestParameters['startBefore'] as any);
         }
 
         if (requestParameters['startAfter'] != null) {
-            queryParameters['startAfter'] = (requestParameters['startAfter'] as any).toISOString();
+            queryParameters['startAfter'] = runtime.serializeDateTime(requestParameters['startAfter'] as any);
         }
 
         if (requestParameters['endBefore'] != null) {
-            queryParameters['endBefore'] = (requestParameters['endBefore'] as any).toISOString();
+            queryParameters['endBefore'] = runtime.serializeDateTime(requestParameters['endBefore'] as any);
         }
 
         if (requestParameters['endAfter'] != null) {
-            queryParameters['endAfter'] = (requestParameters['endAfter'] as any).toISOString();
+            queryParameters['endAfter'] = runtime.serializeDateTime(requestParameters['endAfter'] as any);
         }
 
         if (requestParameters['campaignGroupId'] != null) {
@@ -8342,11 +11284,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['withTotalResultSize'] != null) {
@@ -8561,11 +11503,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['valid'] != null) {
@@ -8597,19 +11539,19 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['expiresBefore'] != null) {
-            queryParameters['expiresBefore'] = (requestParameters['expiresBefore'] as any).toISOString();
+            queryParameters['expiresBefore'] = runtime.serializeDateTime(requestParameters['expiresBefore'] as any);
         }
 
         if (requestParameters['expiresAfter'] != null) {
-            queryParameters['expiresAfter'] = (requestParameters['expiresAfter'] as any).toISOString();
+            queryParameters['expiresAfter'] = runtime.serializeDateTime(requestParameters['expiresAfter'] as any);
         }
 
         if (requestParameters['startsBefore'] != null) {
-            queryParameters['startsBefore'] = (requestParameters['startsBefore'] as any).toISOString();
+            queryParameters['startsBefore'] = runtime.serializeDateTime(requestParameters['startsBefore'] as any);
         }
 
         if (requestParameters['startsAfter'] != null) {
-            queryParameters['startsAfter'] = (requestParameters['startsAfter'] as any).toISOString();
+            queryParameters['startsAfter'] = runtime.serializeDateTime(requestParameters['startsAfter'] as any);
         }
 
         if (requestParameters['valuesOnly'] != null) {
@@ -8698,11 +11640,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
+            queryParameters['rangeStart'] = runtime.serializeDateTime(requestParameters['rangeStart'] as any);
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
+            queryParameters['rangeEnd'] = runtime.serializeDateTime(requestParameters['rangeEnd'] as any);
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -8784,11 +11726,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
+            queryParameters['rangeStart'] = runtime.serializeDateTime(requestParameters['rangeStart'] as any);
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
+            queryParameters['rangeEnd'] = runtime.serializeDateTime(requestParameters['rangeEnd'] as any);
         }
 
         if (requestParameters['name'] != null) {
@@ -9194,11 +12136,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['rangeStart'] != null) {
-            queryParameters['rangeStart'] = (requestParameters['rangeStart'] as any).toISOString();
+            queryParameters['rangeStart'] = runtime.serializeDateTime(requestParameters['rangeStart'] as any);
         }
 
         if (requestParameters['rangeEnd'] != null) {
-            queryParameters['rangeEnd'] = (requestParameters['rangeEnd'] as any).toISOString();
+            queryParameters['rangeEnd'] = runtime.serializeDateTime(requestParameters['rangeEnd'] as any);
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -9504,11 +12446,11 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['startDate'] != null) {
-            queryParameters['startDate'] = (requestParameters['startDate'] as any).toISOString();
+            queryParameters['startDate'] = runtime.serializeDateTime(requestParameters['startDate'] as any);
         }
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+            queryParameters['endDate'] = runtime.serializeDateTime(requestParameters['endDate'] as any);
         }
 
         if (requestParameters['pageSize'] != null) {
@@ -9666,7 +12608,7 @@ export class ManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+            queryParameters['endDate'] = runtime.serializeDateTime(requestParameters['endDate'] as any);
         }
 
         if (requestParameters['subledgerId'] != null) {
@@ -9870,11 +12812,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['startDate'] != null) {
-            queryParameters['startDate'] = (requestParameters['startDate'] as any).toISOString();
+            queryParameters['startDate'] = runtime.serializeDateTime(requestParameters['startDate'] as any);
         }
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+            queryParameters['endDate'] = runtime.serializeDateTime(requestParameters['endDate'] as any);
         }
 
         if (requestParameters['pageSize'] != null) {
@@ -9958,11 +12900,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['startDate'] != null) {
-            queryParameters['startDate'] = (requestParameters['startDate'] as any).toISOString();
+            queryParameters['startDate'] = runtime.serializeDateTime(requestParameters['startDate'] as any);
         }
 
         if (requestParameters['endDate'] != null) {
-            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
+            queryParameters['endDate'] = runtime.serializeDateTime(requestParameters['endDate'] as any);
         }
 
         if (requestParameters['pageSize'] != null) {
@@ -10138,15 +13080,19 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['cursor'] != null) {
             queryParameters['cursor'] = requestParameters['cursor'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
         if (requestParameters['period'] != null) {
@@ -10255,11 +13201,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['valid'] != null) {
@@ -13680,11 +16626,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['valid'] != null) {
@@ -13800,11 +16746,11 @@ export class ManagementApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['createdBefore'] != null) {
-            queryParameters['createdBefore'] = (requestParameters['createdBefore'] as any).toISOString();
+            queryParameters['createdBefore'] = runtime.serializeDateTime(requestParameters['createdBefore'] as any);
         }
 
         if (requestParameters['createdAfter'] != null) {
-            queryParameters['createdAfter'] = (requestParameters['createdAfter'] as any).toISOString();
+            queryParameters['createdAfter'] = runtime.serializeDateTime(requestParameters['createdAfter'] as any);
         }
 
         if (requestParameters['valid'] != null) {
@@ -14958,7 +17904,7 @@ export class ManagementApi extends runtime.BaseAPI {
  * @export
  */
 export const DeleteCampaignStoreBudgetsActionEnum = {
-    SetDiscount: 'setDiscount'
+    SetDiscount: 'setDiscount',
 } as const;
 export type DeleteCampaignStoreBudgetsActionEnum = typeof DeleteCampaignStoreBudgetsActionEnum[keyof typeof DeleteCampaignStoreBudgetsActionEnum];
 /**
@@ -14969,7 +17915,7 @@ export const DeleteCampaignStoreBudgetsPeriodEnum = {
     Daily: 'daily',
     Weekly: 'weekly',
     Monthly: 'monthly',
-    Yearly: 'yearly'
+    Yearly: 'yearly',
 } as const;
 export type DeleteCampaignStoreBudgetsPeriodEnum = typeof DeleteCampaignStoreBudgetsPeriodEnum[keyof typeof DeleteCampaignStoreBudgetsPeriodEnum];
 /**
@@ -14978,7 +17924,7 @@ export type DeleteCampaignStoreBudgetsPeriodEnum = typeof DeleteCampaignStoreBud
 export const DeleteCouponsValidEnum = {
     Expired: 'expired',
     ValidNow: 'validNow',
-    ValidFuture: 'validFuture'
+    ValidFuture: 'validFuture',
 } as const;
 export type DeleteCouponsValidEnum = typeof DeleteCouponsValidEnum[keyof typeof DeleteCouponsValidEnum];
 /**
@@ -14986,14 +17932,14 @@ export type DeleteCouponsValidEnum = typeof DeleteCouponsValidEnum[keyof typeof 
  */
 export const DeleteCouponsUsableEnum = {
     True: 'true',
-    False: 'false'
+    False: 'false',
 } as const;
 export type DeleteCouponsUsableEnum = typeof DeleteCouponsUsableEnum[keyof typeof DeleteCouponsUsableEnum];
 /**
  * @export
  */
 export const ExportCampaignStoreBudgetsActionEnum = {
-    SetDiscount: 'setDiscount'
+    SetDiscount: 'setDiscount',
 } as const;
 export type ExportCampaignStoreBudgetsActionEnum = typeof ExportCampaignStoreBudgetsActionEnum[keyof typeof ExportCampaignStoreBudgetsActionEnum];
 /**
@@ -15004,7 +17950,7 @@ export const ExportCampaignStoreBudgetsPeriodEnum = {
     Daily: 'daily',
     Weekly: 'weekly',
     Monthly: 'monthly',
-    Yearly: 'yearly'
+    Yearly: 'yearly',
 } as const;
 export type ExportCampaignStoreBudgetsPeriodEnum = typeof ExportCampaignStoreBudgetsPeriodEnum[keyof typeof ExportCampaignStoreBudgetsPeriodEnum];
 /**
@@ -15013,7 +17959,7 @@ export type ExportCampaignStoreBudgetsPeriodEnum = typeof ExportCampaignStoreBud
 export const ExportCouponsValidEnum = {
     Expired: 'expired',
     ValidNow: 'validNow',
-    ValidFuture: 'validFuture'
+    ValidFuture: 'validFuture',
 } as const;
 export type ExportCouponsValidEnum = typeof ExportCouponsValidEnum[keyof typeof ExportCouponsValidEnum];
 /**
@@ -15021,7 +17967,7 @@ export type ExportCouponsValidEnum = typeof ExportCouponsValidEnum[keyof typeof 
  */
 export const ExportCouponsUsableEnum = {
     True: 'true',
-    False: 'false'
+    False: 'false',
 } as const;
 export type ExportCouponsUsableEnum = typeof ExportCouponsUsableEnum[keyof typeof ExportCouponsUsableEnum];
 /**
@@ -15029,7 +17975,7 @@ export type ExportCouponsUsableEnum = typeof ExportCouponsUsableEnum[keyof typeo
  */
 export const ExportCouponsDateFormatEnum = {
     Excel: 'excel',
-    Iso8601: 'ISO8601'
+    Iso8601: 'ISO8601',
 } as const;
 export type ExportCouponsDateFormatEnum = typeof ExportCouponsDateFormatEnum[keyof typeof ExportCouponsDateFormatEnum];
 /**
@@ -15042,7 +17988,7 @@ export const ExportCouponsCampaignStateEnum = {
     Scheduled: 'scheduled',
     Running: 'running',
     Expired: 'expired',
-    Staged: 'staged'
+    Staged: 'staged',
 } as const;
 export type ExportCouponsCampaignStateEnum = typeof ExportCouponsCampaignStateEnum[keyof typeof ExportCouponsCampaignStateEnum];
 /**
@@ -15050,7 +17996,7 @@ export type ExportCouponsCampaignStateEnum = typeof ExportCouponsCampaignStateEn
  */
 export const ExportCustomerSessionsDateFormatEnum = {
     Excel: 'excel',
-    Iso8601: 'ISO8601'
+    Iso8601: 'ISO8601',
 } as const;
 export type ExportCustomerSessionsDateFormatEnum = typeof ExportCustomerSessionsDateFormatEnum[keyof typeof ExportCustomerSessionsDateFormatEnum];
 /**
@@ -15060,7 +18006,7 @@ export const ExportCustomerSessionsCustomerSessionStateEnum = {
     Open: 'open',
     Closed: 'closed',
     PartiallyReturned: 'partially_returned',
-    Cancelled: 'cancelled'
+    Cancelled: 'cancelled',
 } as const;
 export type ExportCustomerSessionsCustomerSessionStateEnum = typeof ExportCustomerSessionsCustomerSessionStateEnum[keyof typeof ExportCustomerSessionsCustomerSessionStateEnum];
 /**
@@ -15068,7 +18014,7 @@ export type ExportCustomerSessionsCustomerSessionStateEnum = typeof ExportCustom
  */
 export const ExportEffectsDateFormatEnum = {
     Excel: 'excel',
-    Iso8601: 'ISO8601'
+    Iso8601: 'ISO8601',
 } as const;
 export type ExportEffectsDateFormatEnum = typeof ExportEffectsDateFormatEnum[keyof typeof ExportEffectsDateFormatEnum];
 /**
@@ -15076,7 +18022,7 @@ export type ExportEffectsDateFormatEnum = typeof ExportEffectsDateFormatEnum[key
  */
 export const ExportLoyaltyCardLedgerDateFormatEnum = {
     Excel: 'excel',
-    Iso8601: 'ISO8601'
+    Iso8601: 'ISO8601',
 } as const;
 export type ExportLoyaltyCardLedgerDateFormatEnum = typeof ExportLoyaltyCardLedgerDateFormatEnum[keyof typeof ExportLoyaltyCardLedgerDateFormatEnum];
 /**
@@ -15084,7 +18030,7 @@ export type ExportLoyaltyCardLedgerDateFormatEnum = typeof ExportLoyaltyCardLedg
  */
 export const ExportLoyaltyCardsDateFormatEnum = {
     Excel: 'excel',
-    Iso8601: 'ISO8601'
+    Iso8601: 'ISO8601',
 } as const;
 export type ExportLoyaltyCardsDateFormatEnum = typeof ExportLoyaltyCardsDateFormatEnum[keyof typeof ExportLoyaltyCardsDateFormatEnum];
 /**
@@ -15092,7 +18038,7 @@ export type ExportLoyaltyCardsDateFormatEnum = typeof ExportLoyaltyCardsDateForm
  */
 export const ExportLoyaltyLedgerDateFormatEnum = {
     Excel: 'excel',
-    Iso8601: 'ISO8601'
+    Iso8601: 'ISO8601',
 } as const;
 export type ExportLoyaltyLedgerDateFormatEnum = typeof ExportLoyaltyLedgerDateFormatEnum[keyof typeof ExportLoyaltyLedgerDateFormatEnum];
 /**
@@ -15101,7 +18047,7 @@ export type ExportLoyaltyLedgerDateFormatEnum = typeof ExportLoyaltyLedgerDateFo
 export const ExportReferralsValidEnum = {
     Expired: 'expired',
     ValidNow: 'validNow',
-    ValidFuture: 'validFuture'
+    ValidFuture: 'validFuture',
 } as const;
 export type ExportReferralsValidEnum = typeof ExportReferralsValidEnum[keyof typeof ExportReferralsValidEnum];
 /**
@@ -15109,7 +18055,7 @@ export type ExportReferralsValidEnum = typeof ExportReferralsValidEnum[keyof typ
  */
 export const ExportReferralsUsableEnum = {
     True: 'true',
-    False: 'false'
+    False: 'false',
 } as const;
 export type ExportReferralsUsableEnum = typeof ExportReferralsUsableEnum[keyof typeof ExportReferralsUsableEnum];
 /**
@@ -15117,7 +18063,7 @@ export type ExportReferralsUsableEnum = typeof ExportReferralsUsableEnum[keyof t
  */
 export const ExportReferralsDateFormatEnum = {
     Excel: 'excel',
-    Iso8601: 'ISO8601'
+    Iso8601: 'ISO8601',
 } as const;
 export type ExportReferralsDateFormatEnum = typeof ExportReferralsDateFormatEnum[keyof typeof ExportReferralsDateFormatEnum];
 /**
@@ -15128,7 +18074,7 @@ export const GetAccessLogsWithoutTotalCountMethodEnum = {
     Put: 'put',
     Post: 'post',
     Delete: 'delete',
-    Patch: 'patch'
+    Patch: 'patch',
 } as const;
 export type GetAccessLogsWithoutTotalCountMethodEnum = typeof GetAccessLogsWithoutTotalCountMethodEnum[keyof typeof GetAccessLogsWithoutTotalCountMethodEnum];
 /**
@@ -15136,7 +18082,7 @@ export type GetAccessLogsWithoutTotalCountMethodEnum = typeof GetAccessLogsWitho
  */
 export const GetAccessLogsWithoutTotalCountStatusEnum = {
     Success: 'success',
-    Error: 'error'
+    Error: 'error',
 } as const;
 export type GetAccessLogsWithoutTotalCountStatusEnum = typeof GetAccessLogsWithoutTotalCountStatusEnum[keyof typeof GetAccessLogsWithoutTotalCountStatusEnum];
 /**
@@ -15146,7 +18092,7 @@ export const GetApplicationSessionsStateEnum = {
     Open: 'open',
     Closed: 'closed',
     PartiallyReturned: 'partially_returned',
-    Cancelled: 'cancelled'
+    Cancelled: 'cancelled',
 } as const;
 export type GetApplicationSessionsStateEnum = typeof GetApplicationSessionsStateEnum[keyof typeof GetApplicationSessionsStateEnum];
 /**
@@ -15154,7 +18100,7 @@ export type GetApplicationSessionsStateEnum = typeof GetApplicationSessionsState
  */
 export const GetAttributesKindEnum = {
     Builtin: 'builtin',
-    Custom: 'custom'
+    Custom: 'custom',
 } as const;
 export type GetAttributesKindEnum = typeof GetAttributesKindEnum[keyof typeof GetAttributesKindEnum];
 /**
@@ -15165,7 +18111,7 @@ export const GetCampaignAnalyticsGranularityEnum = {
     _1Day: '1 day',
     _1Week: '1 week',
     _1Month: '1 month',
-    _1Year: '1 year'
+    _1Year: '1 year',
 } as const;
 export type GetCampaignAnalyticsGranularityEnum = typeof GetCampaignAnalyticsGranularityEnum[keyof typeof GetCampaignAnalyticsGranularityEnum];
 /**
@@ -15178,7 +18124,7 @@ export const GetCampaignByAttributesCampaignStateEnum = {
     Scheduled: 'scheduled',
     Running: 'running',
     Expired: 'expired',
-    Staged: 'staged'
+    Staged: 'staged',
 } as const;
 export type GetCampaignByAttributesCampaignStateEnum = typeof GetCampaignByAttributesCampaignStateEnum[keyof typeof GetCampaignByAttributesCampaignStateEnum];
 /**
@@ -15187,7 +18133,7 @@ export type GetCampaignByAttributesCampaignStateEnum = typeof GetCampaignByAttri
 export const GetCampaignTemplatesStateEnum = {
     Draft: 'draft',
     Enabled: 'enabled',
-    Disabled: 'disabled'
+    Disabled: 'disabled',
 } as const;
 export type GetCampaignTemplatesStateEnum = typeof GetCampaignTemplatesStateEnum[keyof typeof GetCampaignTemplatesStateEnum];
 /**
@@ -15200,7 +18146,7 @@ export const GetCampaignsCampaignStateEnum = {
     Scheduled: 'scheduled',
     Running: 'running',
     Expired: 'expired',
-    Staged: 'staged'
+    Staged: 'staged',
 } as const;
 export type GetCampaignsCampaignStateEnum = typeof GetCampaignsCampaignStateEnum[keyof typeof GetCampaignsCampaignStateEnum];
 /**
@@ -15209,7 +18155,7 @@ export type GetCampaignsCampaignStateEnum = typeof GetCampaignsCampaignStateEnum
 export const GetCouponsWithoutTotalCountValidEnum = {
     Expired: 'expired',
     ValidNow: 'validNow',
-    ValidFuture: 'validFuture'
+    ValidFuture: 'validFuture',
 } as const;
 export type GetCouponsWithoutTotalCountValidEnum = typeof GetCouponsWithoutTotalCountValidEnum[keyof typeof GetCouponsWithoutTotalCountValidEnum];
 /**
@@ -15217,7 +18163,7 @@ export type GetCouponsWithoutTotalCountValidEnum = typeof GetCouponsWithoutTotal
  */
 export const GetCouponsWithoutTotalCountUsableEnum = {
     True: 'true',
-    False: 'false'
+    False: 'false',
 } as const;
 export type GetCouponsWithoutTotalCountUsableEnum = typeof GetCouponsWithoutTotalCountUsableEnum[keyof typeof GetCouponsWithoutTotalCountUsableEnum];
 /**
@@ -15225,7 +18171,7 @@ export type GetCouponsWithoutTotalCountUsableEnum = typeof GetCouponsWithoutTota
  */
 export const GetCouponsWithoutTotalCountRedeemedEnum = {
     True: 'true',
-    False: 'false'
+    False: 'false',
 } as const;
 export type GetCouponsWithoutTotalCountRedeemedEnum = typeof GetCouponsWithoutTotalCountRedeemedEnum[keyof typeof GetCouponsWithoutTotalCountRedeemedEnum];
 /**
@@ -15239,7 +18185,7 @@ export const GetExportsEntityEnum = {
     LoyaltyLedger: 'LoyaltyLedger',
     LoyaltyLedgerLog: 'LoyaltyLedgerLog',
     Collection: 'Collection',
-    AudienceMembership: 'AudienceMembership'
+    AudienceMembership: 'AudienceMembership',
 } as const;
 export type GetExportsEntityEnum = typeof GetExportsEntityEnum[keyof typeof GetExportsEntityEnum];
 /**
@@ -15248,7 +18194,7 @@ export type GetExportsEntityEnum = typeof GetExportsEntityEnum[keyof typeof GetE
 export const GetLoyaltyProgramProfileLedgerTransactionsLoyaltyTransactionTypeEnum = {
     Manual: 'manual',
     Session: 'session',
-    Import: 'import'
+    Import: 'import',
 } as const;
 export type GetLoyaltyProgramProfileLedgerTransactionsLoyaltyTransactionTypeEnum = typeof GetLoyaltyProgramProfileLedgerTransactionsLoyaltyTransactionTypeEnum[keyof typeof GetLoyaltyProgramProfileLedgerTransactionsLoyaltyTransactionTypeEnum];
 /**
@@ -15257,7 +18203,7 @@ export type GetLoyaltyProgramProfileLedgerTransactionsLoyaltyTransactionTypeEnum
 export const GetLoyaltyProgramTransactionsLoyaltyTransactionTypeEnum = {
     Manual: 'manual',
     Session: 'session',
-    Import: 'import'
+    Import: 'import',
 } as const;
 export type GetLoyaltyProgramTransactionsLoyaltyTransactionTypeEnum = typeof GetLoyaltyProgramTransactionsLoyaltyTransactionTypeEnum[keyof typeof GetLoyaltyProgramTransactionsLoyaltyTransactionTypeEnum];
 /**
@@ -15266,7 +18212,7 @@ export type GetLoyaltyProgramTransactionsLoyaltyTransactionTypeEnum = typeof Get
 export const GetMessageLogsEntityTypeEnum = {
     Application: 'application',
     LoyaltyProgram: 'loyalty_program',
-    Webhook: 'webhook'
+    Webhook: 'webhook',
 } as const;
 export type GetMessageLogsEntityTypeEnum = typeof GetMessageLogsEntityTypeEnum[keyof typeof GetMessageLogsEntityTypeEnum];
 /**
@@ -15294,7 +18240,7 @@ export const GetMessageLogsChangeTypeEnum = {
     TierDowngrade: 'TierDowngrade',
     LoyaltyCardPointsAdded: 'LoyaltyCardPointsAdded',
     LoyaltyCardPointsDeducted: 'LoyaltyCardPointsDeducted',
-    LoyaltyCardPointsExpiring: 'LoyaltyCardPointsExpiring'
+    LoyaltyCardPointsExpiring: 'LoyaltyCardPointsExpiring',
 } as const;
 export type GetMessageLogsChangeTypeEnum = typeof GetMessageLogsChangeTypeEnum[keyof typeof GetMessageLogsChangeTypeEnum];
 /**
@@ -15306,7 +18252,7 @@ export const GetMessageLogsPeriodEnum = {
     _1h: '1h',
     _4h: '4h',
     _1d: '1d',
-    _2d: '2d'
+    _2d: '2d',
 } as const;
 export type GetMessageLogsPeriodEnum = typeof GetMessageLogsPeriodEnum[keyof typeof GetMessageLogsPeriodEnum];
 /**
@@ -15315,7 +18261,7 @@ export type GetMessageLogsPeriodEnum = typeof GetMessageLogsPeriodEnum[keyof typ
 export const GetReferralsWithoutTotalCountValidEnum = {
     Expired: 'expired',
     ValidNow: 'validNow',
-    ValidFuture: 'validFuture'
+    ValidFuture: 'validFuture',
 } as const;
 export type GetReferralsWithoutTotalCountValidEnum = typeof GetReferralsWithoutTotalCountValidEnum[keyof typeof GetReferralsWithoutTotalCountValidEnum];
 /**
@@ -15323,7 +18269,7 @@ export type GetReferralsWithoutTotalCountValidEnum = typeof GetReferralsWithoutT
  */
 export const GetReferralsWithoutTotalCountUsableEnum = {
     True: 'true',
-    False: 'false'
+    False: 'false',
 } as const;
 export type GetReferralsWithoutTotalCountUsableEnum = typeof GetReferralsWithoutTotalCountUsableEnum[keyof typeof GetReferralsWithoutTotalCountUsableEnum];
 /**
@@ -15331,7 +18277,7 @@ export type GetReferralsWithoutTotalCountUsableEnum = typeof GetReferralsWithout
  */
 export const GetWebhooksCreationTypeEnum = {
     TemplateWebhooks: 'templateWebhooks',
-    Webhooks: 'webhooks'
+    Webhooks: 'webhooks',
 } as const;
 export type GetWebhooksCreationTypeEnum = typeof GetWebhooksCreationTypeEnum[keyof typeof GetWebhooksCreationTypeEnum];
 /**
@@ -15339,14 +18285,14 @@ export type GetWebhooksCreationTypeEnum = typeof GetWebhooksCreationTypeEnum[key
  */
 export const GetWebhooksVisibilityEnum = {
     Visible: 'visible',
-    Hidden: 'hidden'
+    Hidden: 'hidden',
 } as const;
 export type GetWebhooksVisibilityEnum = typeof GetWebhooksVisibilityEnum[keyof typeof GetWebhooksVisibilityEnum];
 /**
  * @export
  */
 export const ImportCampaignStoreBudgetActionEnum = {
-    SetDiscount: 'setDiscount'
+    SetDiscount: 'setDiscount',
 } as const;
 export type ImportCampaignStoreBudgetActionEnum = typeof ImportCampaignStoreBudgetActionEnum[keyof typeof ImportCampaignStoreBudgetActionEnum];
 /**
@@ -15357,14 +18303,14 @@ export const ImportCampaignStoreBudgetPeriodEnum = {
     Daily: 'daily',
     Weekly: 'weekly',
     Monthly: 'monthly',
-    Yearly: 'yearly'
+    Yearly: 'yearly',
 } as const;
 export type ImportCampaignStoreBudgetPeriodEnum = typeof ImportCampaignStoreBudgetPeriodEnum[keyof typeof ImportCampaignStoreBudgetPeriodEnum];
 /**
  * @export
  */
 export const ListCampaignStoreBudgetLimitsActionEnum = {
-    SetDiscount: 'setDiscount'
+    SetDiscount: 'setDiscount',
 } as const;
 export type ListCampaignStoreBudgetLimitsActionEnum = typeof ListCampaignStoreBudgetLimitsActionEnum[keyof typeof ListCampaignStoreBudgetLimitsActionEnum];
 /**
@@ -15375,7 +18321,7 @@ export const ListCampaignStoreBudgetLimitsPeriodEnum = {
     Daily: 'daily',
     Weekly: 'weekly',
     Monthly: 'monthly',
-    Yearly: 'yearly'
+    Yearly: 'yearly',
 } as const;
 export type ListCampaignStoreBudgetLimitsPeriodEnum = typeof ListCampaignStoreBudgetLimitsPeriodEnum[keyof typeof ListCampaignStoreBudgetLimitsPeriodEnum];
 /**
@@ -15384,7 +18330,7 @@ export type ListCampaignStoreBudgetLimitsPeriodEnum = typeof ListCampaignStoreBu
 export const SearchCouponsAdvancedApplicationWideWithoutTotalCountValidEnum = {
     Expired: 'expired',
     ValidNow: 'validNow',
-    ValidFuture: 'validFuture'
+    ValidFuture: 'validFuture',
 } as const;
 export type SearchCouponsAdvancedApplicationWideWithoutTotalCountValidEnum = typeof SearchCouponsAdvancedApplicationWideWithoutTotalCountValidEnum[keyof typeof SearchCouponsAdvancedApplicationWideWithoutTotalCountValidEnum];
 /**
@@ -15392,7 +18338,7 @@ export type SearchCouponsAdvancedApplicationWideWithoutTotalCountValidEnum = typ
  */
 export const SearchCouponsAdvancedApplicationWideWithoutTotalCountUsableEnum = {
     True: 'true',
-    False: 'false'
+    False: 'false',
 } as const;
 export type SearchCouponsAdvancedApplicationWideWithoutTotalCountUsableEnum = typeof SearchCouponsAdvancedApplicationWideWithoutTotalCountUsableEnum[keyof typeof SearchCouponsAdvancedApplicationWideWithoutTotalCountUsableEnum];
 /**
@@ -15405,7 +18351,7 @@ export const SearchCouponsAdvancedApplicationWideWithoutTotalCountCampaignStateE
     Scheduled: 'scheduled',
     Running: 'running',
     Expired: 'expired',
-    Staged: 'staged'
+    Staged: 'staged',
 } as const;
 export type SearchCouponsAdvancedApplicationWideWithoutTotalCountCampaignStateEnum = typeof SearchCouponsAdvancedApplicationWideWithoutTotalCountCampaignStateEnum[keyof typeof SearchCouponsAdvancedApplicationWideWithoutTotalCountCampaignStateEnum];
 /**
@@ -15414,7 +18360,7 @@ export type SearchCouponsAdvancedApplicationWideWithoutTotalCountCampaignStateEn
 export const SearchCouponsAdvancedWithoutTotalCountValidEnum = {
     Expired: 'expired',
     ValidNow: 'validNow',
-    ValidFuture: 'validFuture'
+    ValidFuture: 'validFuture',
 } as const;
 export type SearchCouponsAdvancedWithoutTotalCountValidEnum = typeof SearchCouponsAdvancedWithoutTotalCountValidEnum[keyof typeof SearchCouponsAdvancedWithoutTotalCountValidEnum];
 /**
@@ -15422,6 +18368,6 @@ export type SearchCouponsAdvancedWithoutTotalCountValidEnum = typeof SearchCoupo
  */
 export const SearchCouponsAdvancedWithoutTotalCountUsableEnum = {
     True: 'true',
-    False: 'false'
+    False: 'false',
 } as const;
 export type SearchCouponsAdvancedWithoutTotalCountUsableEnum = typeof SearchCouponsAdvancedWithoutTotalCountUsableEnum[keyof typeof SearchCouponsAdvancedWithoutTotalCountUsableEnum];

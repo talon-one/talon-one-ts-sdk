@@ -12,14 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { PromotionRuleV2 } from './PromotionRuleV2';
-import {
-    PromotionRuleV2FromJSON,
-    PromotionRuleV2FromJSONTyped,
-    PromotionRuleV2ToJSON,
-    PromotionRuleV2ToJSONTyped,
-} from './PromotionRuleV2';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { TemplateParameter } from './TemplateParameter';
 import {
     TemplateParameterFromJSON,
@@ -27,13 +20,6 @@ import {
     TemplateParameterToJSON,
     TemplateParameterToJSONTyped,
 } from './TemplateParameter';
-import type { StrikethroughRuleV2 } from './StrikethroughRuleV2';
-import {
-    StrikethroughRuleV2FromJSON,
-    StrikethroughRuleV2FromJSONTyped,
-    StrikethroughRuleV2ToJSON,
-    StrikethroughRuleV2ToJSONTyped,
-} from './StrikethroughRuleV2';
 import type { Bundle } from './Bundle';
 import {
     BundleFromJSON,
@@ -41,6 +27,13 @@ import {
     BundleToJSON,
     BundleToJSONTyped,
 } from './Bundle';
+import type { RuleV2 } from './RuleV2';
+import {
+    RuleV2FromJSON,
+    RuleV2FromJSONTyped,
+    RuleV2ToJSON,
+    RuleV2ToJSONTyped,
+} from './RuleV2';
 import type { Selector } from './Selector';
 import {
     SelectorFromJSON,
@@ -57,70 +50,48 @@ import {
 export interface RulesetV2 {
     /**
      * Internal ID of this entity.
-     * @type {number}
-     * @memberof RulesetV2
      */
-    id: number;
+    readonly id?: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof RulesetV2
      */
-    created: Date;
+    readonly created?: Date;
     /**
      * The ID of the user that created this ruleset.
-     * @type {number}
-     * @memberof RulesetV2
      */
-    userId: number;
+    readonly userId?: number;
     /**
      * The ID of the campaign that owns this entity.
-     * @type {number}
-     * @memberof RulesetV2
      */
-    campaignId?: number;
+    readonly campaignId?: number;
     /**
      * The ID of the campaign template that owns this entity.
-     * @type {number}
-     * @memberof RulesetV2
      */
-    templateId?: number;
+    readonly templateId?: number;
     /**
      * Timestamp indicating when this ruleset was activated.
-     * @type {Date}
-     * @memberof RulesetV2
      */
-    activatedAt?: Date;
+    readonly activatedAt?: Date;
     /**
      * Set of promotion rules.
-     * @type {Array<PromotionRuleV2>}
-     * @memberof RulesetV2
      */
-    promotionRules: Array<PromotionRuleV2>;
+    promotionRules: Array<RuleV2>;
     /**
      * Set of strikethrough rules.
-     * @type {Array<StrikethroughRuleV2>}
-     * @memberof RulesetV2
      */
-    strikethroughRules: Array<StrikethroughRuleV2>;
+    strikethroughRules?: Array<RuleV2>;
     /**
      * Variable bindings of type selector.
-     * @type {Array<Selector>}
-     * @memberof RulesetV2
      */
-    selectors?: Array<Selector>;
+    readonly selectors?: Array<Selector>;
     /**
      * Variable bindings of type bundle.
-     * @type {Array<Bundle>}
-     * @memberof RulesetV2
      */
-    bundles?: Array<Bundle>;
+    readonly bundles?: Array<Bundle>;
     /**
      * Variable bindings of type template parameter.
-     * @type {Array<TemplateParameter>}
-     * @memberof RulesetV2
      */
-    parameters?: Array<TemplateParameter>;
+    readonly parameters?: Array<TemplateParameter>;
 }
 
 /**
@@ -128,11 +99,7 @@ export interface RulesetV2 {
  */
 export function instanceOfRulesetV2(value: object): value is RulesetV2 {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
-    if (!('created' in _v) || _v['created'] === undefined) return false;
-    if (!('userId' in _v) || _v['userId'] === undefined) return false;
     if (!('promotionRules' in _v) || _v['promotionRules'] === undefined) return false;
-    if (!('strikethroughRules' in _v) || _v['strikethroughRules'] === undefined) return false;
     return true;
 }
 
@@ -146,14 +113,14 @@ export function RulesetV2FromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
-        'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
-        'userId': json['userId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'created': json['created'] == null ? undefined : (parseDateTime(json['created'])),
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'campaignId': json['campaignId'] == null ? undefined : json['campaignId'],
         'templateId': json['templateId'] == null ? undefined : json['templateId'],
-        'activatedAt': json['activatedAt'] == null ? undefined : (new Date(json['activatedAt'])),
-        'promotionRules': (json['promotionRules'] == null ? undefined as any : (json['promotionRules'] as Array<any>).map(PromotionRuleV2FromJSON)),
-        'strikethroughRules': (json['strikethroughRules'] == null ? undefined as any : (json['strikethroughRules'] as Array<any>).map(StrikethroughRuleV2FromJSON)),
+        'activatedAt': json['activatedAt'] == null ? undefined : (parseDateTime(json['activatedAt'])),
+        'promotionRules': (json['promotionRules'] == null ? undefined as any : (json['promotionRules'] as Array<any>).map(RuleV2FromJSON)),
+        'strikethroughRules': json['strikethroughRules'] == null ? undefined : ((json['strikethroughRules'] as Array<any>).map(RuleV2FromJSON)),
         'selectors': json['selectors'] == null ? undefined : ((json['selectors'] as Array<any>).map(SelectorFromJSON)),
         'bundles': json['bundles'] == null ? undefined : ((json['bundles'] as Array<any>).map(BundleFromJSON)),
         'parameters': json['parameters'] == null ? undefined : ((json['parameters'] as Array<any>).map(TemplateParameterFromJSON)),
@@ -164,24 +131,15 @@ export function RulesetV2ToJSON(json: any): RulesetV2 {
     return RulesetV2ToJSONTyped(json, false);
 }
 
-export function RulesetV2ToJSONTyped(value?: RulesetV2 | null, ignoreDiscriminator: boolean = false): any {
+export function RulesetV2ToJSONTyped(value?: Omit<RulesetV2, 'id'|'created'|'userId'|'campaignId'|'templateId'|'activatedAt'|'selectors'|'bundles'|'parameters'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
-        'userId': value['userId'],
-        'campaignId': value['campaignId'],
-        'templateId': value['templateId'],
-        'activatedAt': value['activatedAt'] == null ? value['activatedAt'] : value['activatedAt'].toISOString(),
-        'promotionRules': (value['promotionRules'] == null ? undefined : (value['promotionRules'] as Array<any>).map(PromotionRuleV2ToJSON)),
-        'strikethroughRules': (value['strikethroughRules'] == null ? undefined : (value['strikethroughRules'] as Array<any>).map(StrikethroughRuleV2ToJSON)),
-        'selectors': value['selectors'] == null ? undefined : ((value['selectors'] as Array<any>).map(SelectorToJSON)),
-        'bundles': value['bundles'] == null ? undefined : ((value['bundles'] as Array<any>).map(BundleToJSON)),
-        'parameters': value['parameters'] == null ? undefined : ((value['parameters'] as Array<any>).map(TemplateParameterToJSON)),
+        'promotionRules': (value['promotionRules'] == null ? undefined : (value['promotionRules'] as Array<any>).map(RuleV2ToJSON)),
+        'strikethroughRules': value['strikethroughRules'] == null ? undefined : ((value['strikethroughRules'] as Array<any>).map(RuleV2ToJSON)),
     };
 }
 

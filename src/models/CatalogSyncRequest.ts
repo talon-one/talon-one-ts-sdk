@@ -29,14 +29,10 @@ import {
 export interface CatalogSyncRequest {
     /**
      * 
-     * @type {Array<CatalogAction>}
-     * @memberof CatalogSyncRequest
      */
     actions: Array<CatalogAction>;
     /**
      * The version number of the catalog to apply the actions on.
-     * @type {number}
-     * @memberof CatalogSyncRequest
      */
     version?: number;
 }

@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface RoleV2ApplicationDetails {
     /**
      * Name of the Application-related permission set for the given Application.
-     * @type {string}
-     * @memberof RoleV2ApplicationDetails
      */
     application?: string;
     /**
      * Name of the campaign-related permission set for the given Application.
-     * @type {string}
-     * @memberof RoleV2ApplicationDetails
      */
     campaign?: string;
     /**
      * Name of the draft campaign-related permission set for the given Application.
-     * @type {string}
-     * @memberof RoleV2ApplicationDetails
      */
     draftCampaign?: string;
     /**
      * Name of the tools-related permission set.
-     * @type {string}
-     * @memberof RoleV2ApplicationDetails
      */
     tools?: string;
 }

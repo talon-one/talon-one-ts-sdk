@@ -57,44 +57,30 @@ import {
 export interface ScimServiceProviderConfigResponse {
     /**
      * 
-     * @type {ScimServiceProviderConfigResponseBulk}
-     * @memberof ScimServiceProviderConfigResponse
      */
     bulk?: ScimServiceProviderConfigResponseBulk;
     /**
      * 
-     * @type {ScimServiceProviderConfigResponseChangePassword}
-     * @memberof ScimServiceProviderConfigResponse
      */
     changePassword?: ScimServiceProviderConfigResponseChangePassword;
     /**
      * The URI that points to the SCIM service provider's documentation, providing further details about the service's capabilities and usage.
-     * @type {string}
-     * @memberof ScimServiceProviderConfigResponse
      */
     documentationUri?: string;
     /**
      * 
-     * @type {ScimServiceProviderConfigResponseFilter}
-     * @memberof ScimServiceProviderConfigResponse
      */
     filter?: ScimServiceProviderConfigResponseFilter;
     /**
      * 
-     * @type {ScimServiceProviderConfigResponsePatch}
-     * @memberof ScimServiceProviderConfigResponse
      */
     patch?: ScimServiceProviderConfigResponsePatch;
     /**
      * A list of SCIM schemas that define the structure and data types supported by the service provider.
-     * @type {Array<string>}
-     * @memberof ScimServiceProviderConfigResponse
      */
     schemas?: Array<string>;
     /**
      * 
-     * @type {ScimServiceProviderConfigResponseSort}
-     * @memberof ScimServiceProviderConfigResponse
      */
     sort?: ScimServiceProviderConfigResponseSort;
 }

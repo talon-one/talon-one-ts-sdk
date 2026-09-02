@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface ScimServiceProviderConfigResponseBulk {
     /**
      * The maximum number of individual operations that can be included in a single bulk request.
-     * @type {number}
-     * @memberof ScimServiceProviderConfigResponseBulk
      */
     maxOperations?: number;
     /**
      * The maximum size, in bytes, of the entire payload for a bulk operation request.
-     * @type {number}
-     * @memberof ScimServiceProviderConfigResponseBulk
      */
     maxPayloadSize?: number;
     /**
      * Indicates whether the SCIM service provider supports bulk operations.
-     * @type {boolean}
-     * @memberof ScimServiceProviderConfigResponseBulk
      */
     supported?: boolean;
 }

@@ -29,14 +29,10 @@ import {
 export interface PriceHistoryResponse {
     /**
      * The SKU of the item for which historical prices should be retrieved.
-     * @type {string}
-     * @memberof PriceHistoryResponse
      */
     sku: string;
     /**
      * 
-     * @type {Array<History>}
-     * @memberof PriceHistoryResponse
      */
     history: Array<History>;
 }

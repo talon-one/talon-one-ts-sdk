@@ -27,13 +27,13 @@ import {
     RedeemLoyaltyPointsBlock1ValueToJSON,
     RedeemLoyaltyPointsBlock1ValueToJSONTyped,
 } from './RedeemLoyaltyPointsBlock1Value';
-import type { PromotionBlock } from './PromotionBlock';
+import type { Block } from './Block';
 import {
-    PromotionBlockFromJSON,
-    PromotionBlockFromJSONTyped,
-    PromotionBlockToJSON,
-    PromotionBlockToJSONTyped,
-} from './PromotionBlock';
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
 
 /**
  * 
@@ -43,52 +43,36 @@ import {
 export interface RedeemLoyaltyPointsBlock {
     /**
      * Unique identifier for this block.
-     * @type {string}
-     * @memberof RedeemLoyaltyPointsBlock
      */
-    id: string;
+    readonly id?: string;
     /**
      * Identifies the block variant and determines which additional properties are present in it.
-     * @type {string}
-     * @memberof RedeemLoyaltyPointsBlock
      */
     type: string;
     /**
      * Semantic labels attached to this block.
-     * @type {Array<string>}
-     * @memberof RedeemLoyaltyPointsBlock
      */
-    tags?: Array<string>;
+    readonly tags?: Array<string>;
     /**
      * 
-     * @type {RedeemLoyaltyPointsBlock1Program}
-     * @memberof RedeemLoyaltyPointsBlock
      */
     program: RedeemLoyaltyPointsBlock1Program;
     /**
      * The name of the subledger to deduct points from. Can be empty if this block deducts from the loyalty program's main ledger instead of a subledger.
-     * @type {string}
-     * @memberof RedeemLoyaltyPointsBlock
      */
     subledger: string;
     /**
      * 
-     * @type {RedeemLoyaltyPointsBlock1Value}
-     * @memberof RedeemLoyaltyPointsBlock
      */
     value: RedeemLoyaltyPointsBlock1Value;
     /**
      * A custom description recorded as the reason for the point deduction.
-     * @type {string}
-     * @memberof RedeemLoyaltyPointsBlock
      */
     name?: string;
     /**
      * Promotion blocks evaluated when this block fails or returns false.
-     * @type {Array<PromotionBlock>}
-     * @memberof RedeemLoyaltyPointsBlock
      */
-    onFailure?: Array<PromotionBlock>;
+    onFailure?: Array<Block>;
 }
 
 /**
@@ -96,7 +80,6 @@ export interface RedeemLoyaltyPointsBlock {
  */
 export function instanceOfRedeemLoyaltyPointsBlock(value: object): value is RedeemLoyaltyPointsBlock {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('program' in _v) || _v['program'] === undefined) return false;
     if (!('subledger' in _v) || _v['subledger'] === undefined) return false;
@@ -114,14 +97,14 @@ export function RedeemLoyaltyPointsBlockFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'program': RedeemLoyaltyPointsBlock1ProgramFromJSON(json['program']),
         'subledger': json['subledger'],
         'value': RedeemLoyaltyPointsBlock1ValueFromJSON(json['value']),
         'name': json['name'] == null ? undefined : json['name'],
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(PromotionBlockFromJSON)),
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -129,21 +112,19 @@ export function RedeemLoyaltyPointsBlockToJSON(json: any): RedeemLoyaltyPointsBl
     return RedeemLoyaltyPointsBlockToJSONTyped(json, false);
 }
 
-export function RedeemLoyaltyPointsBlockToJSONTyped(value?: RedeemLoyaltyPointsBlock | null, ignoreDiscriminator: boolean = false): any {
+export function RedeemLoyaltyPointsBlockToJSONTyped(value?: Omit<RedeemLoyaltyPointsBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'type': value['type'],
-        'tags': value['tags'],
         'program': RedeemLoyaltyPointsBlock1ProgramToJSON(value['program']),
         'subledger': value['subledger'],
         'value': RedeemLoyaltyPointsBlock1ValueToJSON(value['value']),
         'name': value['name'],
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(PromotionBlockToJSON)),
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }
 

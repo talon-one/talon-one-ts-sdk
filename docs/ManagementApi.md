@@ -24,6 +24,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**createInviteEmail**](ManagementApi.md#createinviteemail) | **POST** /v1/invite_emails | Resend invitation email |
 | [**createInviteV2**](ManagementApi.md#createinvitev2) | **POST** /v2/invites | Invite user |
 | [**createPasswordRecoveryEmail**](ManagementApi.md#createpasswordrecoveryemail) | **POST** /v1/password_recovery_emails | Request a password reset |
+| [**createRulesetV2**](ManagementApi.md#createrulesetv2) | **POST** /v2/applications/{applicationId}/campaigns/{campaignId}/rulesets | Create ruleset (V2) |
 | [**createSession**](ManagementApi.md#createsession) | **POST** /v1/sessions | Create session |
 | [**createStore**](ManagementApi.md#createstore) | **POST** /v1/applications/{applicationId}/stores | Create store |
 | [**deactivateUserByEmail**](ManagementApi.md#deactivateuserbyemail) | **POST** /v1/users/deactivate | Disable user by email address |
@@ -1711,6 +1712,84 @@ example().catch(console.error);
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Created |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## createRulesetV2
+
+> RulesetV2 createRulesetV2(applicationId, campaignId, rulesetV2)
+
+Create ruleset (V2)
+
+Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only &#x60;group&#x60; and &#x60;passthrough&#x60; blocks are currently writable, with optional &#x60;onFailure&#x60; blocks. A payload containing any other block type is rejected. Each rule\&#39;s &#x60;blocks&#x60; array may contain at most one block.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ManagementApi,
+} from 'talon_one_sdk';
+import type { CreateRulesetV2Request } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new ManagementApi(config);
+
+  const body = {
+    // number | The ID of the Application. It is displayed in your Talon.One deployment URL.
+    applicationId: 789,
+    // number | The ID of the campaign. It is displayed in your Talon.One deployment URL.
+    campaignId: 789,
+    // RulesetV2 | body
+    rulesetV2: ...,
+  } satisfies CreateRulesetV2Request;
+
+  try {
+    const data = await api.createRulesetV2(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **applicationId** | `number` | The ID of the Application. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
+| **campaignId** | `number` | The ID of the campaign. It is displayed in your Talon.One deployment URL. | [Defaults to `undefined`] |
+| **rulesetV2** | [RulesetV2](RulesetV2.md) | body | |
+
+### Return type
+
+[**RulesetV2**](RulesetV2.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Created |  -  |
+| **400** | Bad request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -9948,7 +10027,7 @@ example().catch(console.error);
 
 ## getMessageLogs
 
-> MessageLogEntries getMessageLogs(entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs)
+> MessageLogEntries getMessageLogs(entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, pageSize, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs)
 
 List message log entries
 
@@ -9986,6 +10065,8 @@ async function example() {
     createdAfter: 2013-10-20T19:20:30+01:00,
     // string | A specific unique value in the database. If this value is not given, the server fetches results starting with the first record.  (optional)
     cursor: BYTE_ARRAY_DATA_HERE,
+    // number | The maximum number of message log entries to return. (optional)
+    pageSize: 789,
     // '15m' | '30m' | '1h' | '4h' | '1d' | '2d' | Filter results by time period. Choose between the available relative time frames.  (optional)
     period: period_example,
     // boolean | Indicates whether to return log entries with either successful or unsuccessful HTTP response codes. When set to`true`, only log entries with `2xx` response codes are returned. When set to `false`, only log entries with `4xx` and `5xx` response codes are returned.  (optional)
@@ -10026,6 +10107,7 @@ example().catch(console.error);
 | **createdBefore** | `Date` | Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. Use UTC time. | [Optional] [Defaults to `undefined`] |
 | **createdAfter** | `Date` | Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. Use UTC time. | [Optional] [Defaults to `undefined`] |
 | **cursor** | `string` | A specific unique value in the database. If this value is not given, the server fetches results starting with the first record.  | [Optional] [Defaults to `undefined`] |
+| **pageSize** | `number` | The maximum number of message log entries to return. | [Optional] [Defaults to `50`] |
 | **period** | `15m`, `30m`, `1h`, `4h`, `1d`, `2d` | Filter results by time period. Choose between the available relative time frames.  | [Optional] [Defaults to `undefined`] [Enum: 15m, 30m, 1h, 4h, 1d, 2d] |
 | **isSuccessful** | `boolean` | Indicates whether to return log entries with either successful or unsuccessful HTTP response codes. When set to&#x60;true&#x60;, only log entries with &#x60;2xx&#x60; response codes are returned. When set to &#x60;false&#x60;, only log entries with &#x60;4xx&#x60; and &#x60;5xx&#x60; response codes are returned.  | [Optional] [Defaults to `undefined`] |
 | **applicationId** | `number` | Filter results by Application ID. | [Optional] [Defaults to `undefined`] |

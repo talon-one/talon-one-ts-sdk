@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface MCPOAuthToken {
     /**
      * Bearer access token.
-     * @type {string}
-     * @memberof MCPOAuthToken
      */
     accessToken: string;
     /**
      * Token type. Always "Bearer".
-     * @type {MCPOAuthTokenTokenTypeEnum}
-     * @memberof MCPOAuthToken
      */
     tokenType: MCPOAuthTokenTokenTypeEnum;
     /**
      * Seconds until the access token expires.
-     * @type {number}
-     * @memberof MCPOAuthToken
      */
     expiresIn: number;
     /**
      * Refresh token for obtaining a new access token.
-     * @type {string}
-     * @memberof MCPOAuthToken
      */
     refreshToken: string;
     /**
      * Seconds until the refresh token expires.
-     * @type {number}
-     * @memberof MCPOAuthToken
      */
     refreshTokenExpiresIn: number;
 }
@@ -56,7 +46,7 @@ export interface MCPOAuthToken {
  * @export
  */
 export const MCPOAuthTokenTokenTypeEnum = {
-    Bearer: 'Bearer'
+    Bearer: 'Bearer',
 } as const;
 export type MCPOAuthTokenTokenTypeEnum = typeof MCPOAuthTokenTokenTypeEnum[keyof typeof MCPOAuthTokenTokenTypeEnum];
 

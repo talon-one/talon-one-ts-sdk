@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface UserEntity {
     /**
      * The ID of the user associated with this entity.
-     * @type {number}
-     * @memberof UserEntity
      */
     userId: number;
 }

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface OutgoingIntegrationIterablePolicy {
     /**
      * The base URL that is based on the region key of your Iterable account.
-     * @type {string}
-     * @memberof OutgoingIntegrationIterablePolicy
      */
     baseUrl: string;
     /**
      * The API key generated from your Iterable account. See [Iterable API Key Guide](https://support.iterable.com/hc/en-us/articles/360043464871-API-Keys-)
-     * @type {string}
-     * @memberof OutgoingIntegrationIterablePolicy
      */
     apiKey: string;
 }

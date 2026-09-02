@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface ExpiringPointsData {
     /**
      * The expiration date of loyalty points.
-     * @type {Date}
-     * @memberof ExpiringPointsData
      */
     expiryDate: Date;
     /**
      * The ID of the loyalty program.
-     * @type {number}
-     * @memberof ExpiringPointsData
      */
     loyaltyProgramID: number;
     /**
      * The integration ID of the customer profile that has expiring points.
-     * @type {string}
-     * @memberof ExpiringPointsData
      */
     customerProfileID: string;
     /**
      * The amount of loyalty points that will be expired soon.
-     * @type {number}
-     * @memberof ExpiringPointsData
      */
     amountOfExpiringPoints: number;
     /**
      * The ID of the subledger within the loyalty program where these points were added.
-     * @type {string}
-     * @memberof ExpiringPointsData
      */
     subledgerID: string;
 }
@@ -74,7 +64,7 @@ export function ExpiringPointsDataFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'expiryDate': (json['ExpiryDate'] == null ? undefined as any : new Date(json['ExpiryDate'])),
+        'expiryDate': (json['ExpiryDate'] == null ? json['ExpiryDate'] : parseDate(json['ExpiryDate'])),
         'loyaltyProgramID': json['LoyaltyProgramID'],
         'customerProfileID': json['CustomerProfileID'],
         'amountOfExpiringPoints': json['AmountOfExpiringPoints'],
@@ -93,7 +83,7 @@ export function ExpiringPointsDataToJSONTyped(value?: ExpiringPointsData | null,
 
     return {
         
-        'ExpiryDate': value['expiryDate'] == null ? undefined : value['expiryDate'].toISOString().substring(0,10),
+        'ExpiryDate': value['expiryDate'] == null ? undefined : serializeDate(value['expiryDate']),
         'LoyaltyProgramID': value['loyaltyProgramID'],
         'CustomerProfileID': value['customerProfileID'],
         'AmountOfExpiringPoints': value['amountOfExpiringPoints'],

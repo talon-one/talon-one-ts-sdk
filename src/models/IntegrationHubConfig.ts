@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface IntegrationHubConfig {
     /**
      * The url used to integrate the IntegrationHub Marketplace.
-     * @type {string}
-     * @memberof IntegrationHubConfig
      */
     integrationHubUrl: string;
     /**
      * Access token used to authenticate a user in Talon.One.
-     * @type {string}
-     * @memberof IntegrationHubConfig
      */
     accessToken: string;
 }

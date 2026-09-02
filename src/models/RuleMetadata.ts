@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface RuleMetadata {
     /**
      * A short description of the rule.
-     * @type {string}
-     * @memberof RuleMetadata
      */
     title: string;
     /**
      * A customer-facing name for the rule.
-     * @type {string}
-     * @memberof RuleMetadata
      */
     displayName?: string;
     /**
@@ -36,15 +32,11 @@ export interface RuleMetadata {
      * 
      * For example, this property can contain details about eligibility requirements, reward timelines, or terms and conditions.
      * 
-     * @type {string}
-     * @memberof RuleMetadata
      */
     displayDescription?: string;
     /**
      * Any additional data associated with the rule, such as an image URL, vendor name, or a content management system (CMS) ID.
      * 
-     * @type {string}
-     * @memberof RuleMetadata
      */
     relatedData?: string;
 }

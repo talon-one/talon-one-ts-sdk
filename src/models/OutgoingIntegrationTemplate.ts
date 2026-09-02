@@ -21,50 +21,34 @@ import { mapValues } from '../runtime';
 export interface OutgoingIntegrationTemplate {
     /**
      * Unique ID for this entity.
-     * @type {number}
-     * @memberof OutgoingIntegrationTemplate
      */
     id: number;
     /**
      * Unique ID of outgoing integration type.
-     * @type {number}
-     * @memberof OutgoingIntegrationTemplate
      */
     integrationType: number;
     /**
      * The title of the integration template.
-     * @type {string}
-     * @memberof OutgoingIntegrationTemplate
      */
     title: string;
     /**
      * The description of the specific outgoing integration template.
-     * @type {string}
-     * @memberof OutgoingIntegrationTemplate
      */
     description: string;
     /**
      * The API payload (supports templating using parameters) for this integration template.
-     * @type {string}
-     * @memberof OutgoingIntegrationTemplate
      */
     payload: string;
     /**
      * API method for this webhook.
-     * @type {OutgoingIntegrationTemplateMethodEnum}
-     * @memberof OutgoingIntegrationTemplate
      */
     method: OutgoingIntegrationTemplateMethodEnum;
     /**
      * The relative URL corresponding to each integration template.
-     * @type {string}
-     * @memberof OutgoingIntegrationTemplate
      */
     relativeUrl: string;
     /**
      * The list of HTTP headers for this integration template.
-     * @type {Array<string>}
-     * @memberof OutgoingIntegrationTemplate
      */
     headers: Array<string>;
 }
@@ -78,7 +62,7 @@ export const OutgoingIntegrationTemplateMethodEnum = {
     Put: 'PUT',
     Get: 'GET',
     Delete: 'DELETE',
-    Patch: 'PATCH'
+    Patch: 'PATCH',
 } as const;
 export type OutgoingIntegrationTemplateMethodEnum = typeof OutgoingIntegrationTemplateMethodEnum[keyof typeof OutgoingIntegrationTemplateMethodEnum];
 

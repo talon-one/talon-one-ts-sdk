@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface NewInternalAudience {
     /**
      * The human-friendly display name for this audience.
-     * @type {string}
-     * @memberof NewInternalAudience
      */
     name: string;
     /**
      * Indicates if this is a live or sandbox Application.
-     * @type {boolean}
-     * @memberof NewInternalAudience
      */
     sandbox?: boolean;
     /**
      * A description of the audience.
-     * @type {string}
-     * @memberof NewInternalAudience
      */
     description?: string;
     /**
      * A list of the IDs of the Applications that are connected to this audience.
-     * @type {Set<number>}
-     * @memberof NewInternalAudience
      */
     subscribedApplicationsIds?: Set<number>;
 }

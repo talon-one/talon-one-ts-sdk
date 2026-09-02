@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface ListCheckAttributeBlock {
     /**
      * The list membership operator applied to the attribute.
-     * @type {ListCheckAttributeBlockOperatorEnum}
-     * @memberof ListCheckAttributeBlock
      */
     operator?: ListCheckAttributeBlockOperatorEnum;
     /**
-     * 
-     * @type {any}
-     * @memberof ListCheckAttributeBlock
+     * The set of values to match against.
      */
     values: any | null;
 }
@@ -40,7 +36,7 @@ export interface ListCheckAttributeBlock {
 export const ListCheckAttributeBlockOperatorEnum = {
     ContainsOneOf: 'containsOneOf',
     ContainsNoneOf: 'containsNoneOf',
-    ContainsAllOf: 'containsAllOf'
+    ContainsAllOf: 'containsAllOf',
 } as const;
 export type ListCheckAttributeBlockOperatorEnum = typeof ListCheckAttributeBlockOperatorEnum[keyof typeof ListCheckAttributeBlockOperatorEnum];
 

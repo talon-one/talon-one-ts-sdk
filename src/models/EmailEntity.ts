@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface EmailEntity {
     /**
      * The email address associated with the user profile.
-     * @type {string}
-     * @memberof EmailEntity
      */
     email: string;
 }

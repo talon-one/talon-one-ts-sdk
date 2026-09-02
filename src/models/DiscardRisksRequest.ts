@@ -21,22 +21,16 @@ import { mapValues } from '../runtime';
 export interface DiscardRisksRequest {
     /**
      * The IDs of the risks to discard.
-     * @type {Array<number>}
-     * @memberof DiscardRisksRequest
      */
     riskIds: Array<number>;
     /**
      * The reason the risks are being discarded.
-     * @type {DiscardRisksRequestReasonEnum}
-     * @memberof DiscardRisksRequest
      */
     reason: DiscardRisksRequestReasonEnum;
     /**
      * Free-text description of why the risks are being discarded. Required when `reason` is `other`, optional for
      * `expected_behavior`.
      * 
-     * @type {string}
-     * @memberof DiscardRisksRequest
      */
     comment?: string;
 }
@@ -47,7 +41,7 @@ export interface DiscardRisksRequest {
  */
 export const DiscardRisksRequestReasonEnum = {
     ExpectedBehavior: 'expected_behavior',
-    Other: 'other'
+    Other: 'other',
 } as const;
 export type DiscardRisksRequestReasonEnum = typeof DiscardRisksRequestReasonEnum[keyof typeof DiscardRisksRequestReasonEnum];
 

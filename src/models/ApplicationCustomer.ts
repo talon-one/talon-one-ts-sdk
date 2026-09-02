@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { LoyaltyMembership } from './LoyaltyMembership';
 import {
     LoyaltyMembershipFromJSON,
@@ -36,38 +36,26 @@ import {
 export interface ApplicationCustomer {
     /**
      * The internal ID of the customer profile.
-     * @type {number}
-     * @memberof ApplicationCustomer
      */
     id: number;
     /**
      * The time this entity was created.
-     * @type {Date}
-     * @memberof ApplicationCustomer
      */
     created: Date;
     /**
      * The integration ID set by your integration layer.
-     * @type {string}
-     * @memberof ApplicationCustomer
      */
     integrationId: string;
     /**
      * Arbitrary properties associated with this item.
-     * @type {{ [key: string]: any; }}
-     * @memberof ApplicationCustomer
      */
     attributes?: { [key: string]: any; };
     /**
      * The ID of the Talon.One account that owns this profile.
-     * @type {number}
-     * @memberof ApplicationCustomer
      */
     accountId: number;
     /**
      * The total number of closed sessions. Does not include closed sessions that have been cancelled or reopened. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states).
-     * @type {number}
-     * @memberof ApplicationCustomer
      */
     closedSessions: number;
     /**
@@ -77,22 +65,16 @@ export interface ApplicationCustomer {
      * - Cancelled or reopened sessions.
      * - Returned items.
      * 
-     * @type {number}
-     * @memberof ApplicationCustomer
      */
     totalSales: number;
     /**
      * **DEPRECATED. Always returns `null`.** A list of loyalty programs joined by the customer.
      * 
-     * @type {Array<LoyaltyMembership>}
-     * @memberof ApplicationCustomer
      * @deprecated
      */
     loyaltyMemberships?: Array<LoyaltyMembership>;
     /**
      * The audiences the customer belongs to.
-     * @type {Array<AudienceMembership>}
-     * @memberof ApplicationCustomer
      */
     audienceMemberships?: Array<AudienceMembership>;
     /**
@@ -103,21 +85,15 @@ export interface ApplicationCustomer {
      * For example, [reserving a coupon](https://docs.talon.one/integration-api#tag/Coupons/operation/createCouponReservation)
      * for a customer doesn't impact this field.
      * 
-     * @type {Date}
-     * @memberof ApplicationCustomer
      */
     lastActivity: Date;
     /**
      * An indicator of whether the customer is part of a sandbox or live Application. See the [docs](https://docs.talon.one/docs/product/applications/overview#application-environments).
      * 
-     * @type {boolean}
-     * @memberof ApplicationCustomer
      */
     sandbox?: boolean;
     /**
      * The Integration ID of the Customer Profile that referred this Customer in the Application.
-     * @type {string}
-     * @memberof ApplicationCustomer
      */
     advocateIntegrationId?: string;
 }
@@ -148,7 +124,7 @@ export function ApplicationCustomerFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'integrationId': json['integrationId'],
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'accountId': json['accountId'],
@@ -156,7 +132,7 @@ export function ApplicationCustomerFromJSONTyped(json: any, ignoreDiscriminator:
         'totalSales': json['totalSales'],
         'loyaltyMemberships': json['loyaltyMemberships'] == null ? undefined : ((json['loyaltyMemberships'] as Array<any>).map(LoyaltyMembershipFromJSON)),
         'audienceMemberships': json['audienceMemberships'] == null ? undefined : ((json['audienceMemberships'] as Array<any>).map(AudienceMembershipFromJSON)),
-        'lastActivity': (json['lastActivity'] == null ? undefined as any : new Date(json['lastActivity'])),
+        'lastActivity': (json['lastActivity'] == null ? json['lastActivity'] : parseDateTime(json['lastActivity'])),
         'sandbox': json['sandbox'] == null ? undefined : json['sandbox'],
         'advocateIntegrationId': json['advocateIntegrationId'] == null ? undefined : json['advocateIntegrationId'],
     };
@@ -174,7 +150,7 @@ export function ApplicationCustomerToJSONTyped(value?: ApplicationCustomer | nul
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'integrationId': value['integrationId'],
         'attributes': value['attributes'],
         'accountId': value['accountId'],
@@ -182,7 +158,7 @@ export function ApplicationCustomerToJSONTyped(value?: ApplicationCustomer | nul
         'totalSales': value['totalSales'],
         'loyaltyMemberships': value['loyaltyMemberships'] == null ? undefined : ((value['loyaltyMemberships'] as Array<any>).map(LoyaltyMembershipToJSON)),
         'audienceMemberships': value['audienceMemberships'] == null ? undefined : ((value['audienceMemberships'] as Array<any>).map(AudienceMembershipToJSON)),
-        'lastActivity': value['lastActivity'] == null ? undefined : value['lastActivity'].toISOString(),
+        'lastActivity': value['lastActivity'] == null ? undefined : serializeDateTime(value['lastActivity']),
         'sandbox': value['sandbox'],
         'advocateIntegrationId': value['advocateIntegrationId'],
     };

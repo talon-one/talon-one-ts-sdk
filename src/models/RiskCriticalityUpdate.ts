@@ -21,16 +21,12 @@ import { mapValues } from '../runtime';
 export interface RiskCriticalityUpdate {
     /**
      * The IDs of the risks to reclassify.
-     * @type {Array<number>}
-     * @memberof RiskCriticalityUpdate
      */
     riskIds: Array<number>;
     /**
      * The criticality to assign to risks. Only `not_critical` is accepted: critical risks can be
      * reclassified as non-critical, but not the other way around.
      * 
-     * @type {RiskCriticalityUpdateCriticalityEnum}
-     * @memberof RiskCriticalityUpdate
      */
     criticality: RiskCriticalityUpdateCriticalityEnum;
 }
@@ -40,7 +36,7 @@ export interface RiskCriticalityUpdate {
  * @export
  */
 export const RiskCriticalityUpdateCriticalityEnum = {
-    NotCritical: 'not_critical'
+    NotCritical: 'not_critical',
 } as const;
 export type RiskCriticalityUpdateCriticalityEnum = typeof RiskCriticalityUpdateCriticalityEnum[keyof typeof RiskCriticalityUpdateCriticalityEnum];
 

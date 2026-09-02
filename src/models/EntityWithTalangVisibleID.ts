@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface EntityWithTalangVisibleID {
     /**
      * Unique ID for this entity.
-     * @type {number}
-     * @memberof EntityWithTalangVisibleID
      */
     id: number;
     /**
      * The exact moment this entity was created.
-     * @type {Date}
-     * @memberof EntityWithTalangVisibleID
      */
     created: Date;
 }
@@ -54,7 +50,7 @@ export function EntityWithTalangVisibleIDFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'id': json['id'],
-        'created': (json['created'] == null ? undefined as any : new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
     };
 }
 
@@ -70,7 +66,7 @@ export function EntityWithTalangVisibleIDToJSONTyped(value?: EntityWithTalangVis
     return {
         
         'id': value['id'],
-        'created': value['created'] == null ? undefined : value['created'].toISOString(),
+        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
     };
 }
 

@@ -26,26 +26,18 @@ export interface TemplateLimitConfig {
      * - `redeemCoupon`
      * - `createCoupon`
      * 
-     * @type {string}
-     * @memberof TemplateLimitConfig
      */
     action: string;
     /**
      * The value to set for the limit.
-     * @type {number}
-     * @memberof TemplateLimitConfig
      */
     limit: number;
     /**
      * The period on which the budget limit recurs.
-     * @type {TemplateLimitConfigPeriodEnum}
-     * @memberof TemplateLimitConfig
      */
     period?: TemplateLimitConfigPeriodEnum;
     /**
      * The entity that this limit applies to.
-     * @type {Array<TemplateLimitConfigEntitiesEnum>}
-     * @memberof TemplateLimitConfig
      */
     entities: Array<TemplateLimitConfigEntitiesEnum>;
 }
@@ -58,7 +50,7 @@ export const TemplateLimitConfigPeriodEnum = {
     Daily: 'daily',
     Weekly: 'weekly',
     Monthly: 'monthly',
-    Yearly: 'yearly'
+    Yearly: 'yearly',
 } as const;
 export type TemplateLimitConfigPeriodEnum = typeof TemplateLimitConfigPeriodEnum[keyof typeof TemplateLimitConfigPeriodEnum];
 
@@ -71,7 +63,7 @@ export const TemplateLimitConfigEntitiesEnum = {
     Profile: 'Profile',
     Identifier: 'Identifier',
     Store: 'Store',
-    Session: 'Session'
+    Session: 'Session',
 } as const;
 export type TemplateLimitConfigEntitiesEnum = typeof TemplateLimitConfigEntitiesEnum[keyof typeof TemplateLimitConfigEntitiesEnum];
 
