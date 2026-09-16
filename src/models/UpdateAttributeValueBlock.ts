@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UpdateAttributeValueBlock1Attribute } from './UpdateAttributeValueBlock1Attribute';
-import {
-    UpdateAttributeValueBlock1AttributeFromJSON,
-    UpdateAttributeValueBlock1AttributeFromJSONTyped,
-    UpdateAttributeValueBlock1AttributeToJSON,
-    UpdateAttributeValueBlock1AttributeToJSONTyped,
-} from './UpdateAttributeValueBlock1Attribute';
 import type { UpdateAttributeValueBlock1Target } from './UpdateAttributeValueBlock1Target';
 import {
     UpdateAttributeValueBlock1TargetFromJSON,
@@ -27,6 +20,13 @@ import {
     UpdateAttributeValueBlock1TargetToJSON,
     UpdateAttributeValueBlock1TargetToJSONTyped,
 } from './UpdateAttributeValueBlock1Target';
+import type { AttributeBlockReference } from './AttributeBlockReference';
+import {
+    AttributeBlockReferenceFromJSON,
+    AttributeBlockReferenceFromJSONTyped,
+    AttributeBlockReferenceToJSON,
+    AttributeBlockReferenceToJSONTyped,
+} from './AttributeBlockReference';
 
 /**
  * 
@@ -51,9 +51,9 @@ export interface UpdateAttributeValueBlock {
      */
     operator: UpdateAttributeValueBlockOperatorEnum;
     /**
-     * 
+     * The attribute being updated.
      */
-    attribute: UpdateAttributeValueBlock1Attribute;
+    attribute: AttributeBlockReference;
     /**
      * The value of the attribute. Omitted when operator is set to `toggle`.
      */
@@ -107,7 +107,7 @@ export function UpdateAttributeValueBlockFromJSONTyped(json: any, ignoreDiscrimi
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
-        'attribute': UpdateAttributeValueBlock1AttributeFromJSON(json['attribute']),
+        'attribute': AttributeBlockReferenceFromJSON(json['attribute']),
         'value': json['value'] === undefined ? undefined : json['value'] === null ? null : json['value'],
         'target': UpdateAttributeValueBlock1TargetFromJSON(json['target']),
     };
@@ -127,7 +127,7 @@ export function UpdateAttributeValueBlockToJSONTyped(value?: Omit<UpdateAttribut
         'type': value['type'],
         'tags': value['tags'],
         'operator': value['operator'],
-        'attribute': UpdateAttributeValueBlock1AttributeToJSON(value['attribute']),
+        'attribute': AttributeBlockReferenceToJSON(value['attribute']),
         'value': value['value'],
         'target': UpdateAttributeValueBlock1TargetToJSON(value['target']),
     };

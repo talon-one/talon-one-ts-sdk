@@ -9,7 +9,7 @@ Name | Type
 `id` | string
 `type` | string
 `tags` | Array&lt;string&gt;
-`giveawayPool` | [GiveawayPoolReference](GiveawayPoolReference.md)
+`giveawayPool` | [GiveawayPoolBlockReference](GiveawayPoolBlockReference.md)
 `profile` | string
 `onFailure` | [Array&lt;Block&gt;](Block.md)
 `onError` | { [key: string]: Array&lt;Block&gt;; }

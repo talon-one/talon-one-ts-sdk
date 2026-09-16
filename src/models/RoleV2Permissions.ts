@@ -36,7 +36,7 @@ import {
 } from './RoleV2RolesGroup';
 
 /**
- * 
+ * The permissions that this role gives.
  * @export
  * @interface RoleV2Permissions
  */

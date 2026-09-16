@@ -16,6 +16,7 @@ import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../r
 import { type AwardDiscountBlock, AwardDiscountBlockFromJSONTyped, AwardDiscountBlockToJSON } from './AwardDiscountBlock';
 import { type AwardGiveawayBlock, AwardGiveawayBlockFromJSONTyped, AwardGiveawayBlockToJSON } from './AwardGiveawayBlock';
 import { type AwardItemBlock, AwardItemBlockFromJSONTyped, AwardItemBlockToJSON } from './AwardItemBlock';
+import { type AwardLoyaltyPointsBlock, AwardLoyaltyPointsBlockFromJSONTyped, AwardLoyaltyPointsBlockToJSON } from './AwardLoyaltyPointsBlock';
 import { type CheckAchievementBlock, CheckAchievementBlockFromJSONTyped, CheckAchievementBlockToJSON } from './CheckAchievementBlock';
 import { type CheckAttributeBlock, CheckAttributeBlockFromJSONTyped, CheckAttributeBlockToJSON } from './CheckAttributeBlock';
 import { type CheckAudienceBlock, CheckAudienceBlockFromJSONTyped, CheckAudienceBlockToJSON } from './CheckAudienceBlock';
@@ -38,13 +39,14 @@ import { type TriggerWebhookBlock, TriggerWebhookBlockFromJSONTyped, TriggerWebh
 import { type UpdateAchievementProgressBlock, UpdateAchievementProgressBlockFromJSONTyped, UpdateAchievementProgressBlockToJSON } from './UpdateAchievementProgressBlock';
 import { type UpdateAttributeValueBlock, UpdateAttributeValueBlockFromJSONTyped, UpdateAttributeValueBlockToJSON } from './UpdateAttributeValueBlock';
 import { type UpdateAudienceMembershipBlock, UpdateAudienceMembershipBlockFromJSONTyped, UpdateAudienceMembershipBlockToJSON } from './UpdateAudienceMembershipBlock';
+import { type UpdateLoyaltyPointsExpiryBlock, UpdateLoyaltyPointsExpiryBlockFromJSONTyped, UpdateLoyaltyPointsExpiryBlockToJSON } from './UpdateLoyaltyPointsExpiryBlock';
 
 /**
  * @type Block
  * Describes a part of the logic of the rule.
  * @export
  */
-export type Block = { type: 'awardDiscount' } & AwardDiscountBlock | { type: 'awardGiveaway' } & AwardGiveawayBlock | { type: 'awardItem' } & AwardItemBlock | { type: 'checkAchievement' } & CheckAchievementBlock | { type: 'checkAttribute' } & CheckAttributeBlock | { type: 'checkAudience' } & CheckAudienceBlock | { type: 'checkBudget' } & CheckBudgetBlock | { type: 'checkCoupon' } & CheckCouponBlock | { type: 'checkEvent' } & CheckEventBlock | { type: 'checkLoyaltyBalance' } & CheckLoyaltyBalanceBlock | { type: 'checkLoyaltyCard' } & CheckLoyaltyCardBlock | { type: 'checkReferral' } & CheckReferralBlock | { type: 'checkTier' } & CheckTierBlock | { type: 'createCoupon' } & CreateCouponBlock | { type: 'createReferral' } & CreateReferralBlock | { type: 'group' } & GroupBlock | { type: 'passthrough' } & PassthroughBlock | { type: 'redeemLoyaltyPoints' } & RedeemLoyaltyPointsBlock | { type: 'reserveCoupon' } & ReserveCouponBlock | { type: 'showNotification' } & ShowNotificationBlock | { type: 'triggerCustomEffect' } & TriggerCustomEffectBlock | { type: 'triggerWebhook' } & TriggerWebhookBlock | { type: 'updateAchievementProgress' } & UpdateAchievementProgressBlock | { type: 'updateAttributeValue' } & UpdateAttributeValueBlock | { type: 'updateAudienceMembership' } & UpdateAudienceMembershipBlock;
+export type Block = { type: 'awardDiscount' } & AwardDiscountBlock | { type: 'awardGiveaway' } & AwardGiveawayBlock | { type: 'awardItem' } & AwardItemBlock | { type: 'awardLoyaltyPoints' } & AwardLoyaltyPointsBlock | { type: 'checkAchievement' } & CheckAchievementBlock | { type: 'checkAttribute' } & CheckAttributeBlock | { type: 'checkAudience' } & CheckAudienceBlock | { type: 'checkBudget' } & CheckBudgetBlock | { type: 'checkCoupon' } & CheckCouponBlock | { type: 'checkEvent' } & CheckEventBlock | { type: 'checkLoyaltyBalance' } & CheckLoyaltyBalanceBlock | { type: 'checkLoyaltyCard' } & CheckLoyaltyCardBlock | { type: 'checkReferral' } & CheckReferralBlock | { type: 'checkTier' } & CheckTierBlock | { type: 'createCoupon' } & CreateCouponBlock | { type: 'createReferral' } & CreateReferralBlock | { type: 'group' } & GroupBlock | { type: 'passthrough' } & PassthroughBlock | { type: 'redeemLoyaltyPoints' } & RedeemLoyaltyPointsBlock | { type: 'reserveCoupon' } & ReserveCouponBlock | { type: 'showNotification' } & ShowNotificationBlock | { type: 'triggerCustomEffect' } & TriggerCustomEffectBlock | { type: 'triggerWebhook' } & TriggerWebhookBlock | { type: 'updateAchievementProgress' } & UpdateAchievementProgressBlock | { type: 'updateAttributeValue' } & UpdateAttributeValueBlock | { type: 'updateAudienceMembership' } & UpdateAudienceMembershipBlock | { type: 'updateLoyaltyPointsExpiry' } & UpdateLoyaltyPointsExpiryBlock;
 /**
  * Check if a given object implements the Block interface.
  */
@@ -54,6 +56,7 @@ export function instanceOfBlock(value: any): value is Block {
         case 'awardDiscount':
         case 'awardGiveaway':
         case 'awardItem':
+        case 'awardLoyaltyPoints':
         case 'checkAchievement':
         case 'checkAttribute':
         case 'checkAudience':
@@ -76,6 +79,7 @@ export function instanceOfBlock(value: any): value is Block {
         case 'updateAchievementProgress':
         case 'updateAttributeValue':
         case 'updateAudienceMembership':
+        case 'updateLoyaltyPointsExpiry':
             return true;
         default:
             return false;
@@ -97,6 +101,8 @@ export function BlockFromJSONTyped(json: any, ignoreDiscriminator: boolean): Blo
             return Object.assign({}, AwardGiveawayBlockFromJSONTyped(json, true), { type: 'awardGiveaway' } as const);
         case 'awardItem':
             return Object.assign({}, AwardItemBlockFromJSONTyped(json, true), { type: 'awardItem' } as const);
+        case 'awardLoyaltyPoints':
+            return Object.assign({}, AwardLoyaltyPointsBlockFromJSONTyped(json, true), { type: 'awardLoyaltyPoints' } as const);
         case 'checkAchievement':
             return Object.assign({}, CheckAchievementBlockFromJSONTyped(json, true), { type: 'checkAchievement' } as const);
         case 'checkAttribute':
@@ -141,6 +147,8 @@ export function BlockFromJSONTyped(json: any, ignoreDiscriminator: boolean): Blo
             return Object.assign({}, UpdateAttributeValueBlockFromJSONTyped(json, true), { type: 'updateAttributeValue' } as const);
         case 'updateAudienceMembership':
             return Object.assign({}, UpdateAudienceMembershipBlockFromJSONTyped(json, true), { type: 'updateAudienceMembership' } as const);
+        case 'updateLoyaltyPointsExpiry':
+            return Object.assign({}, UpdateLoyaltyPointsExpiryBlockFromJSONTyped(json, true), { type: 'updateLoyaltyPointsExpiry' } as const);
         default:
             return json;
     }
@@ -161,6 +169,8 @@ export function BlockToJSONTyped(value?: Block | null, ignoreDiscriminator: bool
             return Object.assign({}, AwardGiveawayBlockToJSON(value), { 'type': 'awardGiveaway' } as const);
         case 'awardItem':
             return Object.assign({}, AwardItemBlockToJSON(value), { 'type': 'awardItem' } as const);
+        case 'awardLoyaltyPoints':
+            return Object.assign({}, AwardLoyaltyPointsBlockToJSON(value), { 'type': 'awardLoyaltyPoints' } as const);
         case 'checkAchievement':
             return Object.assign({}, CheckAchievementBlockToJSON(value), { 'type': 'checkAchievement' } as const);
         case 'checkAttribute':
@@ -205,6 +215,8 @@ export function BlockToJSONTyped(value?: Block | null, ignoreDiscriminator: bool
             return Object.assign({}, UpdateAttributeValueBlockToJSON(value), { 'type': 'updateAttributeValue' } as const);
         case 'updateAudienceMembership':
             return Object.assign({}, UpdateAudienceMembershipBlockToJSON(value), { 'type': 'updateAudienceMembership' } as const);
+        case 'updateLoyaltyPointsExpiry':
+            return Object.assign({}, UpdateLoyaltyPointsExpiryBlockToJSON(value), { 'type': 'updateLoyaltyPointsExpiry' } as const);
         default:
             return value;
     }

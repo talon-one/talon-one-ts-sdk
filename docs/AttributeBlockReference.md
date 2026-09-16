@@ -1,0 +1,42 @@
+
+# AttributeBlockReference
+
+
+## Properties
+
+Name | Type
+------------ | -------------
+`id` | number
+`entity` | string
+`name` | string
+`title` | string
+`type` | string
+
+## Example
+
+```typescript
+import type { AttributeBlockReference } from 'talon_one_sdk'
+
+// TODO: Update the object below with actual values
+const example = {
+  "id": 100,
+  "entity": profile,
+  "name": City,
+  "title": City,
+  "type": string,
+} satisfies AttributeBlockReference
+
+console.log(example)
+
+// Convert the instance to a JSON string
+const exampleJSON: string = JSON.stringify(example)
+console.log(exampleJSON)
+
+// Parse the JSON string back to an object
+const exampleParsed = JSON.parse(exampleJSON) as AttributeBlockReference
+console.log(exampleParsed)
+```
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+

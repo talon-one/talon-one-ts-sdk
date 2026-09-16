@@ -10,7 +10,7 @@ Name | Type
 `type` | string
 `tags` | Array&lt;string&gt;
 `operator` | string
-`attribute` | [UpdateAttributeValueBlock1Attribute](UpdateAttributeValueBlock1Attribute.md)
+`attribute` | [AttributeBlockReference](AttributeBlockReference.md)
 `value` | any
 `target` | [UpdateAttributeValueBlock1Target](UpdateAttributeValueBlock1Target.md)
 

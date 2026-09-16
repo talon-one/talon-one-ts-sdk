@@ -38,7 +38,7 @@ export interface CampaignEvaluationTreeChangedMessage {
     /**
      * The array of changes.
      */
-    data?: Array<CampaignEvaluationTreeChangedNotification>;
+    data: Array<CampaignEvaluationTreeChangedNotification>;
 }
 
 
@@ -46,7 +46,7 @@ export interface CampaignEvaluationTreeChangedMessage {
  * @export
  */
 export const CampaignEvaluationTreeChangedMessageNotificationTypeEnum = {
-    CampaignNotification: 'CampaignNotification',
+    CampaignEvaluationTreeChanged: 'CampaignEvaluationTreeChanged',
 } as const;
 export type CampaignEvaluationTreeChangedMessageNotificationTypeEnum = typeof CampaignEvaluationTreeChangedMessageNotificationTypeEnum[keyof typeof CampaignEvaluationTreeChangedMessageNotificationTypeEnum];
 
@@ -57,9 +57,10 @@ export type CampaignEvaluationTreeChangedMessageNotificationTypeEnum = typeof Ca
 export function instanceOfCampaignEvaluationTreeChangedMessage(value: object): value is CampaignEvaluationTreeChangedMessage {
     const _v = value as Record<PropertyKey, unknown>;
     if ((!('notificationType' in _v) && !('NotificationType' in _v)) || (_v['notificationType'] === undefined && _v['NotificationType'] === undefined)) return false;
-    if (_v['notificationType'] !== 'CampaignNotification' && _v['NotificationType'] !== 'CampaignNotification') return false;
+    if (_v['notificationType'] !== 'CampaignEvaluationTreeChanged' && _v['NotificationType'] !== 'CampaignEvaluationTreeChanged') return false;
     
     if ((!('totalResultSize' in _v) && !('TotalResultSize' in _v)) || (_v['totalResultSize'] === undefined && _v['TotalResultSize'] === undefined)) return false;
+    if ((!('data' in _v) && !('Data' in _v)) || (_v['data'] === undefined && _v['Data'] === undefined)) return false;
     return true;
 }
 
@@ -75,7 +76,7 @@ export function CampaignEvaluationTreeChangedMessageFromJSONTyped(json: any, ign
         
         'notificationType': json['NotificationType'],
         'totalResultSize': json['TotalResultSize'],
-        'data': json['Data'] == null ? undefined : ((json['Data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationFromJSON)),
+        'data': (json['Data'] == null ? undefined as any : (json['Data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationFromJSON)),
     };
 }
 
@@ -92,7 +93,7 @@ export function CampaignEvaluationTreeChangedMessageToJSONTyped(value?: Campaign
         
         'NotificationType': value['notificationType'],
         'TotalResultSize': value['totalResultSize'],
-        'Data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationToJSON)),
+        'Data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationToJSON)),
     };
 }
 

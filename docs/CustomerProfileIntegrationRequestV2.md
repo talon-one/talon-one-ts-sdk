@@ -10,6 +10,7 @@ Name | Type
 `evaluableCampaignIds` | Array&lt;number&gt;
 `responseContent` | Array&lt;string&gt;
 `audiencesChanges` | [ProfileAudiencesChanges](ProfileAudiencesChanges.md)
+`rewardIntegrationIds` | Array&lt;string&gt;
 
 ## Example
 
@@ -22,6 +23,7 @@ const example = {
   "evaluableCampaignIds": [10, 12],
   "responseContent": [triggeredCampaigns, customerProfile],
   "audiencesChanges": null,
+  "rewardIntegrationIds": [5c0b5e6d-3f8a-4c2b-9f1e-2a7d6b4c8e90],
 } satisfies CustomerProfileIntegrationRequestV2
 
 console.log(example)

@@ -11,7 +11,7 @@ Name | Type
 `tags` | Array&lt;string&gt;
 `operator` | string
 `profile` | string
-`audience` | [CheckAudienceBlock1Audience](CheckAudienceBlock1Audience.md)
+`audience` | [AudienceBlockReference](AudienceBlockReference.md)
 `onFailure` | [Array&lt;Block&gt;](Block.md)
 
 ## Example

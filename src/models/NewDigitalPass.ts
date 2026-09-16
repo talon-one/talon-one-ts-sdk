@@ -40,7 +40,11 @@ export interface NewDigitalPass {
      */
     loyaltyCardId?: string;
     /**
-     * The wallet platform the pass is generated for.
+     * The wallet platform the pass is generated for. Possible values:
+     * 
+     * - `apple`: The digital pass is generated for Apple Wallet.
+     * - `google`: The digital pass is generated for Google Wallet.
+     * 
      */
     platform: NewDigitalPassPlatformEnum;
     /**

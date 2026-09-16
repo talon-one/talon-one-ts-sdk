@@ -49,15 +49,15 @@ import {
     CatalogSyncRequestToJSON,
 } from '../models/CatalogSyncRequest';
 import {
-    type Coupon,
-    CouponFromJSON,
-    CouponToJSON,
-} from '../models/Coupon';
-import {
     type CouponReservations,
     CouponReservationsFromJSON,
     CouponReservationsToJSON,
 } from '../models/CouponReservations';
+import {
+    type CouponWithReservations,
+    CouponWithReservationsFromJSON,
+    CouponWithReservationsToJSON,
+} from '../models/CouponWithReservations';
 import {
     type CreateReferralsForMultipleAdvocates201Response,
     CreateReferralsForMultipleAdvocates201ResponseFromJSON,
@@ -118,6 +118,11 @@ import {
     GetCustomerAchievements200ResponseFromJSON,
     GetCustomerAchievements200ResponseToJSON,
 } from '../models/GetCustomerAchievements200Response';
+import {
+    type GetCustomerRewards200Response,
+    GetCustomerRewards200ResponseFromJSON,
+    GetCustomerRewards200ResponseToJSON,
+} from '../models/GetCustomerRewards200Response';
 import {
     type GetLoyaltyCardPoints200Response,
     GetLoyaltyCardPoints200ResponseFromJSON,
@@ -193,6 +198,11 @@ import {
     IntegrationUnlockRewardRequestFromJSON,
     IntegrationUnlockRewardRequestToJSON,
 } from '../models/IntegrationUnlockRewardRequest';
+import {
+    type IntegrationUnlockRewardResponse,
+    IntegrationUnlockRewardResponseFromJSON,
+    IntegrationUnlockRewardResponseToJSON,
+} from '../models/IntegrationUnlockRewardResponse';
 import {
     type LoyaltyBalancesWithTiers,
     LoyaltyBalancesWithTiersFromJSON,
@@ -532,6 +542,47 @@ export interface GetCustomerInventoryRequest {
      * Set to `true` to include `unlocked` rewards that have not been `used` in the response.
      */
     unlockedRewards?: boolean;
+}
+
+export interface GetCustomerRewardsRequest {
+    /**
+     * The integration identifier for this customer profile. Must be:
+     * 
+     * - Unique within the deployment.
+     * - Stable for the customer. Do not use an ID that the customer can update
+     * themselves. For example, you can use a database ID.
+     * 
+     */
+    integrationId: string;
+    /**
+     * Filter results by one or more customer reward statuses.
+     * 
+     * **Note:** If no status is specified, rewards of all statuses are
+     * returned.
+     * 
+     */
+    status?: Array<GetCustomerRewardsStatusEnum>;
+    /**
+     * The number of items in the response.
+     */
+    pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
+    skip?: number;
+    /**
+     * When this flag is set, the result includes the total number of results
+     * for this query. This might decrease performance on large data sets.
+     * 
+     * 
+     * - When `true`: `totalResultSize` contains the total number of results
+     * for this query.
+     * 
+     * - When `false`: Only `hasMore` is returned, and it is set to `true`
+     * when there are more results than shown on the page.
+     * 
+     */
+    withTotalResultSize?: boolean;
 }
 
 export interface GetCustomerSessionRequest {
@@ -1105,7 +1156,9 @@ export interface IntegrationRewardsCatalogRequest {
      * include in the response. Balances are returned only when
      * `loyaltyProgramId` is also provided.
      * 
-     * **Note:** `profileIntegrationId` and `loyaltyCardId` are mutually exclusive. Do not send both in the same request.
+     * For a reward with `pointsRequired` configured for a card-based loyalty program,
+     * eligibility can be evaluated based on both `profileIntegrationId` and `loyaltyCardId`,
+     * if both are provided. The required points are then checked against the card's balance.
      * 
      */
     profileIntegrationId?: string;
@@ -1114,7 +1167,13 @@ export interface IntegrationRewardsCatalogRequest {
      * in the response. Balances are returned only when `loyaltyProgramId`
      * is also provided.
      * 
-     * **Note:** `profileIntegrationId` and `loyaltyCardId` are mutually exclusive. Do not send both in the same request.
+     * For a reward with `pointsRequired` configured for a card-based loyalty program,
+     * eligibility can be evaluated based on both `profileIntegrationId` and `loyaltyCardId`,
+     * if both are provided. The card must also be linked to that customer profile.
+     * - If `loyaltyCardId` is not provided, the reward returns the `CARD_REQUIRED` failure
+     * code, because there is no card balance to compare `pointsRequired` against.
+     * - If `profileIntegrationId` is not provided, the reward returns the `PROFILE_REQUIRED`
+     * failure code, because its eligibility cannot be evaluated without a customer profile.
      * 
      */
     loyaltyCardId?: string;
@@ -1661,18 +1720,18 @@ export class IntegrationApi extends runtime.BaseAPI {
      * Create a coupon reservation for the specified customer profiles on the specified coupon.  You can also create a reservation via the Campaign Manager using the [Create coupon code reservation](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code) effect.  > [!note] **Note** > - If the **Reservation mandatory** option was selected when creating the >   specified coupon, the endpoint creates a **hard** reservation, meaning only users who have >   this coupon code reserved can redeem it. > >   Otherwise, the endpoint creates a **soft** reservation, meaning the coupon >   is associated with the specified customer profiles (they show up when using >   the [List customer data](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/getCustomerInventory) >   endpoint), but any user can redeem it. > >   This can be useful, for example, to display a _coupon wallet_ for customers >   when they visit your store. > - If the **Coupon visibility** option was selected when creating the >   specified coupon, the coupon code is implicitly soft-reserved for all customers, and the code >   will be returned for all customer profiles in the [List customer >   data](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/getCustomerInventory) endpoint. > - This endpoint overrides the coupon reservation limit set when >   [the coupon is created](https://docs.talon.one/docs/product/campaigns/coupons/creating-coupons).  To ensure that coupons cannot be reserved after the reservation limit is reached, use the [Create coupon code reservation](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code) effect in the Rule Builder and the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint.  To delete a reservation, use the [Delete reservation](https://docs.talon.one/integration-api#tag/Coupons/operation/deleteCouponReservation) endpoint. 
      * Create coupon reservation
      */
-    async createCouponReservationRaw(requestParameters: CreateCouponReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Coupon>> {
+    async createCouponReservationRaw(requestParameters: CreateCouponReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponWithReservations>> {
         const requestOptions = await this.createCouponReservationRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CouponFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CouponWithReservationsFromJSON(jsonValue));
     }
 
     /**
      * Create a coupon reservation for the specified customer profiles on the specified coupon.  You can also create a reservation via the Campaign Manager using the [Create coupon code reservation](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code) effect.  > [!note] **Note** > - If the **Reservation mandatory** option was selected when creating the >   specified coupon, the endpoint creates a **hard** reservation, meaning only users who have >   this coupon code reserved can redeem it. > >   Otherwise, the endpoint creates a **soft** reservation, meaning the coupon >   is associated with the specified customer profiles (they show up when using >   the [List customer data](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/getCustomerInventory) >   endpoint), but any user can redeem it. > >   This can be useful, for example, to display a _coupon wallet_ for customers >   when they visit your store. > - If the **Coupon visibility** option was selected when creating the >   specified coupon, the coupon code is implicitly soft-reserved for all customers, and the code >   will be returned for all customer profiles in the [List customer >   data](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/getCustomerInventory) endpoint. > - This endpoint overrides the coupon reservation limit set when >   [the coupon is created](https://docs.talon.one/docs/product/campaigns/coupons/creating-coupons).  To ensure that coupons cannot be reserved after the reservation limit is reached, use the [Create coupon code reservation](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code) effect in the Rule Builder and the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint.  To delete a reservation, use the [Delete reservation](https://docs.talon.one/integration-api#tag/Coupons/operation/deleteCouponReservation) endpoint. 
      * Create coupon reservation
      */
-    async createCouponReservation(requestParameters: CreateCouponReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Coupon> {
+    async createCouponReservation(requestParameters: CreateCouponReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponWithReservations> {
         const response = await this.createCouponReservationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2363,6 +2422,73 @@ export class IntegrationApi extends runtime.BaseAPI {
      */
     async getCustomerInventory(requestParameters: GetCustomerInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerInventory> {
         const response = await this.getCustomerInventoryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getCustomerRewards without sending the request
+     */
+    async getCustomerRewardsRequestOpts(requestParameters: GetCustomerRewardsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['integrationId'] == null) {
+            throw new runtime.RequiredError(
+                'integrationId',
+                'Required parameter "integrationId" was null or undefined when calling getCustomerRewards().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['status'] != null) {
+            queryParameters['status'] = requestParameters['status'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['withTotalResultSize'] != null) {
+            queryParameters['withTotalResultSize'] = requestParameters['withTotalResultSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/customer_profiles/{integrationId}/rewards`;
+        urlPath = urlPath.replace('{integrationId}', encodeURIComponent(String(requestParameters['integrationId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * List the rewards held by a given customer profile. This includes shared rewards unlocked with a loyalty card linked to the customer. 
+     * List customer\'s rewards
+     */
+    async getCustomerRewardsRaw(requestParameters: GetCustomerRewardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCustomerRewards200Response>> {
+        const requestOptions = await this.getCustomerRewardsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCustomerRewards200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List the rewards held by a given customer profile. This includes shared rewards unlocked with a loyalty card linked to the customer. 
+     * List customer\'s rewards
+     */
+    async getCustomerRewards(requestParameters: GetCustomerRewardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCustomerRewards200Response> {
+        const response = await this.getCustomerRewardsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3751,18 +3877,18 @@ export class IntegrationApi extends runtime.BaseAPI {
      * Unlock a reward for a customer. If the reward has `pointsRequired` configured, the corresponding loyalty points are deducted from the customer\'s balance.  To unlock a reward with the points of a loyalty card, provide the card in `cardIdentifier`. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
      * Unlock a reward
      */
-    async unlockRewardRaw(requestParameters: UnlockRewardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationStateV2>> {
+    async unlockRewardRaw(requestParameters: UnlockRewardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationUnlockRewardResponse>> {
         const requestOptions = await this.unlockRewardRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => IntegrationStateV2FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => IntegrationUnlockRewardResponseFromJSON(jsonValue));
     }
 
     /**
      * Unlock a reward for a customer. If the reward has `pointsRequired` configured, the corresponding loyalty points are deducted from the customer\'s balance.  To unlock a reward with the points of a loyalty card, provide the card in `cardIdentifier`. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
      * Unlock a reward
      */
-    async unlockReward(requestParameters: UnlockRewardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationStateV2> {
+    async unlockReward(requestParameters: UnlockRewardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationUnlockRewardResponse> {
         const response = await this.unlockRewardRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4175,6 +4301,14 @@ export const GetCustomerAchievementsCurrentProgressStatusEnum = {
     NotStarted: 'not_started',
 } as const;
 export type GetCustomerAchievementsCurrentProgressStatusEnum = typeof GetCustomerAchievementsCurrentProgressStatusEnum[keyof typeof GetCustomerAchievementsCurrentProgressStatusEnum];
+/**
+ * @export
+ */
+export const GetCustomerRewardsStatusEnum = {
+    Unlocked: 'unlocked',
+    Used: 'used',
+} as const;
+export type GetCustomerRewardsStatusEnum = typeof GetCustomerRewardsStatusEnum[keyof typeof GetCustomerRewardsStatusEnum];
 /**
  * @export
  */

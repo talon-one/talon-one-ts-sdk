@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TriggerCustomEffectBlock1CustomEffect } from './TriggerCustomEffectBlock1CustomEffect';
-import {
-    TriggerCustomEffectBlock1CustomEffectFromJSON,
-    TriggerCustomEffectBlock1CustomEffectFromJSONTyped,
-    TriggerCustomEffectBlock1CustomEffectToJSON,
-    TriggerCustomEffectBlock1CustomEffectToJSONTyped,
-} from './TriggerCustomEffectBlock1CustomEffect';
 import type { TriggerCustomEffectBlock1Target } from './TriggerCustomEffectBlock1Target';
 import {
     TriggerCustomEffectBlock1TargetFromJSON,
@@ -27,6 +20,13 @@ import {
     TriggerCustomEffectBlock1TargetToJSON,
     TriggerCustomEffectBlock1TargetToJSONTyped,
 } from './TriggerCustomEffectBlock1Target';
+import type { CustomEffectBlockReference } from './CustomEffectBlockReference';
+import {
+    CustomEffectBlockReferenceFromJSON,
+    CustomEffectBlockReferenceFromJSONTyped,
+    CustomEffectBlockReferenceToJSON,
+    CustomEffectBlockReferenceToJSONTyped,
+} from './CustomEffectBlockReference';
 import type { Block } from './Block';
 import {
     BlockFromJSON,
@@ -54,9 +54,9 @@ export interface TriggerCustomEffectBlock {
      */
     readonly tags?: Array<string>;
     /**
-     * 
+     * The custom effect to trigger.
      */
-    customEffect: TriggerCustomEffectBlock1CustomEffect;
+    customEffect: CustomEffectBlockReference;
     /**
      * The custom effect's parameters, in configured order. Each property name is the parameter's title, lowercased with spaces replaced by underscores (for example, `Order ID` becomes `order_id`); falls back to `param_0`, `param_1`, and so on if a title is blank or collides with another.
      */
@@ -95,7 +95,7 @@ export function TriggerCustomEffectBlockFromJSONTyped(json: any, ignoreDiscrimin
         'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
-        'customEffect': TriggerCustomEffectBlock1CustomEffectFromJSON(json['customEffect']),
+        'customEffect': CustomEffectBlockReferenceFromJSON(json['customEffect']),
         'params': json['params'] == null ? undefined : json['params'],
         'target': TriggerCustomEffectBlock1TargetFromJSON(json['target']),
         'onError': json['onError'] == null ? undefined : json['onError'],
@@ -114,7 +114,7 @@ export function TriggerCustomEffectBlockToJSONTyped(value?: Omit<TriggerCustomEf
     return {
         
         'type': value['type'],
-        'customEffect': TriggerCustomEffectBlock1CustomEffectToJSON(value['customEffect']),
+        'customEffect': CustomEffectBlockReferenceToJSON(value['customEffect']),
         'params': value['params'],
         'target': TriggerCustomEffectBlock1TargetToJSON(value['target']),
         'onError': value['onError'],

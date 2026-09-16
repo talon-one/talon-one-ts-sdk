@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { TierBlockReference } from './TierBlockReference';
+import {
+    TierBlockReferenceFromJSON,
+    TierBlockReferenceFromJSONTyped,
+    TierBlockReferenceToJSON,
+    TierBlockReferenceToJSONTyped,
+} from './TierBlockReference';
 import type { Block } from './Block';
 import {
     BlockFromJSON,
@@ -20,13 +27,6 @@ import {
     BlockToJSON,
     BlockToJSONTyped,
 } from './Block';
-import type { CheckTierBlock1Tier } from './CheckTierBlock1Tier';
-import {
-    CheckTierBlock1TierFromJSON,
-    CheckTierBlock1TierFromJSONTyped,
-    CheckTierBlock1TierToJSON,
-    CheckTierBlock1TierToJSONTyped,
-} from './CheckTierBlock1Tier';
 
 /**
  * 
@@ -55,9 +55,9 @@ export interface CheckTierBlock {
      */
     subledger: string;
     /**
-     * 
+     * The tier to check for.
      */
-    tier: CheckTierBlock1Tier;
+    tier: TierBlockReference;
     /**
      * Promotion blocks evaluated when this block fails or returns false.
      */
@@ -102,7 +102,7 @@ export function CheckTierBlockFromJSONTyped(json: any, ignoreDiscriminator: bool
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
         'subledger': json['subledger'],
-        'tier': CheckTierBlock1TierFromJSON(json['tier']),
+        'tier': TierBlockReferenceFromJSON(json['tier']),
         'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
@@ -121,7 +121,7 @@ export function CheckTierBlockToJSONTyped(value?: Omit<CheckTierBlock, 'id'|'tag
         'type': value['type'],
         'operator': value['operator'],
         'subledger': value['subledger'],
-        'tier': CheckTierBlock1TierToJSON(value['tier']),
+        'tier': TierBlockReferenceToJSON(value['tier']),
         'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }

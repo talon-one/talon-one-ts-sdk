@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CustomerProfile } from './CustomerProfile';
+import type { CustomerReservation } from './CustomerReservation';
 import {
-    CustomerProfileFromJSON,
-    CustomerProfileFromJSONTyped,
-    CustomerProfileToJSON,
-    CustomerProfileToJSONTyped,
-} from './CustomerProfile';
+    CustomerReservationFromJSON,
+    CustomerReservationFromJSONTyped,
+    CustomerReservationToJSON,
+    CustomerReservationToJSONTyped,
+} from './CustomerReservation';
 
 /**
  * 
@@ -34,7 +34,7 @@ export interface GetReservedCustomers200Response {
     /**
      * 
      */
-    data: Array<CustomerProfile>;
+    data: Array<CustomerReservation>;
 }
 
 /**
@@ -58,7 +58,7 @@ export function GetReservedCustomers200ResponseFromJSONTyped(json: any, ignoreDi
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CustomerProfileFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CustomerReservationFromJSON)),
     };
 }
 
@@ -74,7 +74,7 @@ export function GetReservedCustomers200ResponseToJSONTyped(value?: GetReservedCu
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CustomerProfileToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CustomerReservationToJSON)),
     };
 }
 

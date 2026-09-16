@@ -20,13 +20,13 @@ import {
     BlockToJSON,
     BlockToJSONTyped,
 } from './Block';
-import type { TriggerWebhookBlock1Webhook } from './TriggerWebhookBlock1Webhook';
+import type { WebhookBlockReference } from './WebhookBlockReference';
 import {
-    TriggerWebhookBlock1WebhookFromJSON,
-    TriggerWebhookBlock1WebhookFromJSONTyped,
-    TriggerWebhookBlock1WebhookToJSON,
-    TriggerWebhookBlock1WebhookToJSONTyped,
-} from './TriggerWebhookBlock1Webhook';
+    WebhookBlockReferenceFromJSON,
+    WebhookBlockReferenceFromJSONTyped,
+    WebhookBlockReferenceToJSON,
+    WebhookBlockReferenceToJSONTyped,
+} from './WebhookBlockReference';
 
 /**
  * 
@@ -47,9 +47,9 @@ export interface TriggerWebhookBlock {
      */
     readonly tags?: Array<string>;
     /**
-     * 
+     * The webhook to trigger.
      */
-    webhook: TriggerWebhookBlock1Webhook;
+    webhook: WebhookBlockReference;
     /**
      * The webhook's parameters, in configured order. Each property name is the parameter's title, lowercased with spaces replaced by underscores (for example, `Order ID` becomes `order_id`); falls back to `param_0`, `param_1`, and so on if a title is blank or collides with another.
      */
@@ -83,7 +83,7 @@ export function TriggerWebhookBlockFromJSONTyped(json: any, ignoreDiscriminator:
         'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
-        'webhook': TriggerWebhookBlock1WebhookFromJSON(json['webhook']),
+        'webhook': WebhookBlockReferenceFromJSON(json['webhook']),
         'params': json['params'] == null ? undefined : json['params'],
         'onError': json['onError'] == null ? undefined : json['onError'],
     };
@@ -101,7 +101,7 @@ export function TriggerWebhookBlockToJSONTyped(value?: Omit<TriggerWebhookBlock,
     return {
         
         'type': value['type'],
-        'webhook': TriggerWebhookBlock1WebhookToJSON(value['webhook']),
+        'webhook': WebhookBlockReferenceToJSON(value['webhook']),
         'params': value['params'],
         'onError': value['onError'],
     };

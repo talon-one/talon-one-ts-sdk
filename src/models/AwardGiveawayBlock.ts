@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { GiveawayPoolReference } from './GiveawayPoolReference';
+import type { GiveawayPoolBlockReference } from './GiveawayPoolBlockReference';
 import {
-    GiveawayPoolReferenceFromJSON,
-    GiveawayPoolReferenceFromJSONTyped,
-    GiveawayPoolReferenceToJSON,
-    GiveawayPoolReferenceToJSONTyped,
-} from './GiveawayPoolReference';
+    GiveawayPoolBlockReferenceFromJSON,
+    GiveawayPoolBlockReferenceFromJSONTyped,
+    GiveawayPoolBlockReferenceToJSON,
+    GiveawayPoolBlockReferenceToJSONTyped,
+} from './GiveawayPoolBlockReference';
 import type { Block } from './Block';
 import {
     BlockFromJSON,
@@ -49,7 +49,7 @@ export interface AwardGiveawayBlock {
     /**
      * The giveaway pool from which an item is awarded.
      */
-    giveawayPool: GiveawayPoolReference;
+    giveawayPool: GiveawayPoolBlockReference;
     /**
      * The customer profile to award the giveaway to. `Current` targets the customer in the current session; `Advocate` targets the person who invited their friend via referral program.
      */
@@ -99,7 +99,7 @@ export function AwardGiveawayBlockFromJSONTyped(json: any, ignoreDiscriminator: 
         'id': json['id'] == null ? undefined : json['id'],
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
-        'giveawayPool': GiveawayPoolReferenceFromJSON(json['giveawayPool']),
+        'giveawayPool': GiveawayPoolBlockReferenceFromJSON(json['giveawayPool']),
         'profile': json['profile'],
         'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
         'onError': json['onError'] == null ? undefined : json['onError'],
@@ -118,7 +118,7 @@ export function AwardGiveawayBlockToJSONTyped(value?: Omit<AwardGiveawayBlock, '
     return {
         
         'type': value['type'],
-        'giveawayPool': GiveawayPoolReferenceToJSON(value['giveawayPool']),
+        'giveawayPool': GiveawayPoolBlockReferenceToJSON(value['giveawayPool']),
         'profile': value['profile'],
         'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
         'onError': value['onError'],

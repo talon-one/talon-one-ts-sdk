@@ -40,7 +40,7 @@ export interface EffectEntity {
      */
     ruleName: string;
     /**
-     * The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
+     * See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
      */
     effectType: string;
     /**

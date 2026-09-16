@@ -17,25 +17,25 @@ Name | Type
 `name` | string
 `value` | [RedeemLoyaltyPointsBlock1Value](RedeemLoyaltyPointsBlock1Value.md)
 `partial` | boolean
-`target` | [TriggerCustomEffectBlock1Target](TriggerCustomEffectBlock1Target.md)
+`target` | [AwardLoyaltyPointsTarget](AwardLoyaltyPointsTarget.md)
 `expression` | Array&lt;any&gt;
 `notificationType` | string
 `title` | string
 `body` | string
 `sku` | string
 `quantity` | string
-`giveawayPool` | [GiveawayPoolReference](GiveawayPoolReference.md)
+`giveawayPool` | [GiveawayPoolBlockReference](GiveawayPoolBlockReference.md)
 `profile` | string
-`audience` | [UpdateAudienceMembershipBlock1Audience](UpdateAudienceMembershipBlock1Audience.md)
+`audience` | [AudienceBlockReference](AudienceBlockReference.md)
 `program` | [RedeemLoyaltyPointsBlock1Program](RedeemLoyaltyPointsBlock1Program.md)
 `subledger` | string
 `balance` | string
 `redeem` | boolean
-`achievement` | [CheckAchievementBlock1Achievement](CheckAchievementBlock1Achievement.md)
-`attribute` | [UpdateAttributeValueBlock1Attribute](UpdateAttributeValueBlock1Attribute.md)
-`webhook` | [TriggerWebhookBlock1Webhook](TriggerWebhookBlock1Webhook.md)
+`achievement` | [AchievementBlockReference](AchievementBlockReference.md)
+`attribute` | [AttributeBlockReference](AttributeBlockReference.md)
+`webhook` | [WebhookBlockReference](WebhookBlockReference.md)
 `params` | { [key: string]: any; }
-`customEffect` | [TriggerCustomEffectBlock1CustomEffect](TriggerCustomEffectBlock1CustomEffect.md)
+`customEffect` | [CustomEffectBlockReference](CustomEffectBlockReference.md)
 `eventType` | string
 `matchers` | [Array&lt;Block&gt;](Block.md)
 `action` | string
@@ -50,7 +50,11 @@ Name | Type
 `validCharacters` | string
 `pattern` | string
 `friendId` | string
-`tier` | [CheckTierBlock1Tier](CheckTierBlock1Tier.md)
+`recipient` | string
+`tier` | [TierBlockReference](TierBlockReference.md)
+`awaitsActivation` | boolean
+`validityDuration` | string
+`pendingDuration` | string
 
 ## Example
 
@@ -96,13 +100,17 @@ const example = {
   "storeInSession": true,
   "usageLimit": null,
   "discountLimit": null,
-  "startDate": 2024-12-24T14:15:22Z,
-  "expiryDate": 2024-12-24T14:15:22Z,
+  "startDate": 2026-12-24T14:15:22Z,
+  "expiryDate": 2026-12-31T00:00:00Z,
   "attributes": null,
   "validCharacters": ABC,
   "pattern": SUMMER-####-####,
   "friendId": {{$Profile.IntegrationId}},
+  "recipient": Current,
   "tier": null,
+  "awaitsActivation": false,
+  "validityDuration": 30D,
+  "pendingDuration": 3D,
 } satisfies Block
 
 console.log(example)

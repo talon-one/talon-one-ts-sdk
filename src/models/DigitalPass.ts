@@ -29,6 +29,9 @@ export interface DigitalPass {
     passTemplateId: string;
     /**
      * The status of the digital pass.
+     * 
+     * `created` indicates that the pass was generated and is ready to be added to a wallet.
+     * 
      */
     status: DigitalPassStatusEnum;
     /**

@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CheckAchievementBlock1Achievement } from './CheckAchievementBlock1Achievement';
+import type { AchievementBlockReference } from './AchievementBlockReference';
 import {
-    CheckAchievementBlock1AchievementFromJSON,
-    CheckAchievementBlock1AchievementFromJSONTyped,
-    CheckAchievementBlock1AchievementToJSON,
-    CheckAchievementBlock1AchievementToJSONTyped,
-} from './CheckAchievementBlock1Achievement';
+    AchievementBlockReferenceFromJSON,
+    AchievementBlockReferenceFromJSONTyped,
+    AchievementBlockReferenceToJSON,
+    AchievementBlockReferenceToJSONTyped,
+} from './AchievementBlockReference';
 import type { Block } from './Block';
 import {
     BlockFromJSON,
@@ -51,9 +51,9 @@ export interface CheckAchievementBlock {
      */
     operator: CheckAchievementBlockOperatorEnum;
     /**
-     * 
+     * The achievement to check for.
      */
-    achievement: CheckAchievementBlock1Achievement;
+    achievement: AchievementBlockReference;
     /**
      * Promotion blocks evaluated when this block fails or returns false.
      */
@@ -101,7 +101,7 @@ export function CheckAchievementBlockFromJSONTyped(json: any, ignoreDiscriminato
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
-        'achievement': CheckAchievementBlock1AchievementFromJSON(json['achievement']),
+        'achievement': AchievementBlockReferenceFromJSON(json['achievement']),
         'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
@@ -119,7 +119,7 @@ export function CheckAchievementBlockToJSONTyped(value?: Omit<CheckAchievementBl
         
         'type': value['type'],
         'operator': value['operator'],
-        'achievement': CheckAchievementBlock1AchievementToJSON(value['achievement']),
+        'achievement': AchievementBlockReferenceToJSON(value['achievement']),
         'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }

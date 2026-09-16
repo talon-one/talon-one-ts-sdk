@@ -32,9 +32,9 @@ export interface CheckCouponBlock {
      */
     readonly id?: string;
     /**
-     * Identifies the block variant and determines which additional properties are present in it.
+     * A block discriminator of type `checkCoupon`.
      */
-    type: string;
+    type: CheckCouponBlockTypeEnum;
     /**
      * Semantic labels attached to this block.
      */
@@ -49,12 +49,24 @@ export interface CheckCouponBlock {
     onFailure?: Array<Block>;
 }
 
+
+/**
+ * @export
+ */
+export const CheckCouponBlockTypeEnum = {
+    CheckCoupon: 'checkCoupon',
+} as const;
+export type CheckCouponBlockTypeEnum = typeof CheckCouponBlockTypeEnum[keyof typeof CheckCouponBlockTypeEnum];
+
+
 /**
  * Check if a given object implements the CheckCouponBlock interface.
  */
 export function instanceOfCheckCouponBlock(value: object): value is CheckCouponBlock {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'checkCoupon') return false;
+    
     if (!('redeem' in _v) || _v['redeem'] === undefined) return false;
     return true;
 }
