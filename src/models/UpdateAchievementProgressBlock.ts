@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UpdateAchievementProgressBlock1Achievement } from './UpdateAchievementProgressBlock1Achievement';
+import type { AchievementBlockReference } from './AchievementBlockReference';
 import {
-    UpdateAchievementProgressBlock1AchievementFromJSON,
-    UpdateAchievementProgressBlock1AchievementFromJSONTyped,
-    UpdateAchievementProgressBlock1AchievementToJSON,
-    UpdateAchievementProgressBlock1AchievementToJSONTyped,
-} from './UpdateAchievementProgressBlock1Achievement';
+    AchievementBlockReferenceFromJSON,
+    AchievementBlockReferenceFromJSONTyped,
+    AchievementBlockReferenceToJSON,
+    AchievementBlockReferenceToJSONTyped,
+} from './AchievementBlockReference';
 
 /**
  * 
@@ -48,9 +48,9 @@ export interface UpdateAchievementProgressBlock {
      */
     value: string;
     /**
-     * 
+     * The achievement to update.
      */
-    achievement: UpdateAchievementProgressBlock1Achievement;
+    achievement: AchievementBlockReference;
 }
 
 
@@ -92,7 +92,7 @@ export function UpdateAchievementProgressBlockFromJSONTyped(json: any, ignoreDis
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
         'value': json['value'],
-        'achievement': UpdateAchievementProgressBlock1AchievementFromJSON(json['achievement']),
+        'achievement': AchievementBlockReferenceFromJSON(json['achievement']),
     };
 }
 
@@ -110,7 +110,7 @@ export function UpdateAchievementProgressBlockToJSONTyped(value?: Omit<UpdateAch
         'type': value['type'],
         'operator': value['operator'],
         'value': value['value'],
-        'achievement': UpdateAchievementProgressBlock1AchievementToJSON(value['achievement']),
+        'achievement': AchievementBlockReferenceToJSON(value['achievement']),
     };
 }
 

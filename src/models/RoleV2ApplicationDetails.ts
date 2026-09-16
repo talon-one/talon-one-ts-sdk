@@ -14,7 +14,7 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ * Details of the permission sets configured for an Application.
  * @export
  * @interface RoleV2ApplicationDetails
  */

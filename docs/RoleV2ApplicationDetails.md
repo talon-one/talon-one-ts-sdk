@@ -1,6 +1,7 @@
 
 # RoleV2ApplicationDetails
 
+Details of the permission sets configured for an Application.
 
 ## Properties
 
@@ -18,9 +19,9 @@ import type { RoleV2ApplicationDetails } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "application": null,
-  "campaign": null,
-  "draftCampaign": null,
+  "application": Application permission set,
+  "campaign": Campaign manager permission set,
+  "draftCampaign": Campaign read-only permission set,
   "tools": Tools permission set,
 } satisfies RoleV2ApplicationDetails
 

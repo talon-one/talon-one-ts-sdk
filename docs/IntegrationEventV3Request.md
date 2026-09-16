@@ -15,6 +15,7 @@ Name | Type
 `connectedSessionId` | string
 `referralCode` | string
 `loyaltyCards` | Array&lt;string&gt;
+`rewardIntegrationIds` | Array&lt;string&gt;
 `responseContent` | Array&lt;string&gt;
 
 ## Example
@@ -33,6 +34,7 @@ const example = {
   "connectedSessionId": 175KJPS947296,
   "referralCode": NT2K54D9,
   "loyaltyCards": [loyalty-card-1],
+  "rewardIntegrationIds": [5c0b5e6d-3f8a-4c2b-9f1e-2a7d6b4c8e90],
   "responseContent": [triggeredCampaigns, customerProfile],
 } satisfies IntegrationEventV3Request
 

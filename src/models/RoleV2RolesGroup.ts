@@ -22,7 +22,7 @@ import {
 } from './RoleV2ApplicationDetails';
 
 /**
- * 
+ * A map of target entities to their permission sets.
  * @export
  * @interface RoleV2RolesGroup
  */
@@ -32,15 +32,15 @@ export interface RoleV2RolesGroup {
      */
     applications?: { [key: string]: RoleV2ApplicationDetails; };
     /**
-     * A map of the link between the loyalty program-related permission set and the Application ID the permissions apply to.
+     * A map of the link between the loyalty program-related permission set and the loyalty program ID the permissions apply to.
      */
     loyaltyPrograms?: { [key: string]: string; };
     /**
-     * A map of the link between the campaign access group-related permission set and the Application ID the permissions apply to.
+     * A map of the link between the campaign access group-related permission set and the campaign access group ID the permissions apply to.
      */
     campaignAccessGroups?: { [key: string]: string; };
     /**
-     * Name of the account-level permission set
+     * Name of the account-level permission set.
      */
     account?: string;
 }

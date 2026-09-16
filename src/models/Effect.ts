@@ -12,99 +12,108 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-/**
- * 
- * @export
- * @interface Effect
- */
-export interface Effect {
-    /**
-     * The ID of the experiment that campaign belongs to.
-     */
-    experimentId?: number;
-    /**
-     * The ID of the campaign that triggered this effect.
-     */
-    campaignId: number;
-    /**
-     * The ID of the ruleset that was active in the campaign when this effect was triggered.
-     */
-    rulesetId: number;
-    /**
-     * The position of the rule that triggered this effect within the ruleset.
-     */
-    ruleIndex: number;
-    /**
-     * The name of the rule that triggered this effect.
-     */
-    ruleName: string;
-    /**
-     * The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
-     */
-    effectType: string;
-    /**
-     * The ID of the coupon that was being evaluated when this effect was triggered.
-     */
-    triggeredByCoupon?: number;
-    /**
-     * The ID of the catalog item that was being evaluated when this effect was triggered.
-     */
-    triggeredForCatalogItem?: number;
-    /**
-     * The index of the condition that was triggered.
-     */
-    conditionIndex?: number;
-    /**
-     * The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
-     */
-    evaluationGroupID?: number;
-    /**
-     * The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
-     */
-    evaluationGroupMode?: string;
-    /**
-     * The revision ID of the campaign that was used when triggering the effect.
-     */
-    campaignRevisionId?: number;
-    /**
-     * The revision version ID of the campaign that was used when triggering the effect.
-     */
-    campaignRevisionVersionId?: number;
-    /**
-     * The selected price type for the SKU targeted by this effect.
-     */
-    selectedPriceType?: string;
-    /**
-     * The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.
-     */
-    selectedPrice?: number;
-    /**
-     * The reference identifier of the selected price adjustment for this SKU. This is only returned if the `selectedPrice` resulted from a price adjustment.
-     */
-    adjustmentReferenceId?: string;
-    /**
-     * The ID of the reward that was being evaluated when this effect was triggered.
-     */
-    rewardId?: number;
-    /**
-     * 
-     */
-    props: any | null;
-}
+import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
+import { type EffectAcceptCoupon, EffectAcceptCouponFromJSONTyped, EffectAcceptCouponToJSON } from './EffectAcceptCoupon';
+import { type EffectAcceptReferral, EffectAcceptReferralFromJSONTyped, EffectAcceptReferralToJSON } from './EffectAcceptReferral';
+import { type EffectAddFreeItem, EffectAddFreeItemFromJSONTyped, EffectAddFreeItemToJSON } from './EffectAddFreeItem';
+import { type EffectAddLoyaltyPoints, EffectAddLoyaltyPointsFromJSONTyped, EffectAddLoyaltyPointsToJSON } from './EffectAddLoyaltyPoints';
+import { type EffectAddNegativeLoyaltyPoints, EffectAddNegativeLoyaltyPointsFromJSONTyped, EffectAddNegativeLoyaltyPointsToJSON } from './EffectAddNegativeLoyaltyPoints';
+import { type EffectAddToAudience, EffectAddToAudienceFromJSONTyped, EffectAddToAudienceToJSON } from './EffectAddToAudience';
+import { type EffectAwardGiveaway, EffectAwardGiveawayFromJSONTyped, EffectAwardGiveawayToJSON } from './EffectAwardGiveaway';
+import { type EffectCallApi, EffectCallApiFromJSONTyped, EffectCallApiToJSON } from './EffectCallApi';
+import { type EffectChangeLoyaltyTierLevel, EffectChangeLoyaltyTierLevelFromJSONTyped, EffectChangeLoyaltyTierLevelToJSON } from './EffectChangeLoyaltyTierLevel';
+import { type EffectCouponCreated, EffectCouponCreatedFromJSONTyped, EffectCouponCreatedToJSON } from './EffectCouponCreated';
+import { type EffectCustomEffect, EffectCustomEffectFromJSONTyped, EffectCustomEffectToJSON } from './EffectCustomEffect';
+import { type EffectDeductLoyaltyPoints, EffectDeductLoyaltyPointsFromJSONTyped, EffectDeductLoyaltyPointsToJSON } from './EffectDeductLoyaltyPoints';
+import { type EffectError, EffectErrorFromJSONTyped, EffectErrorToJSON } from './EffectError';
+import { type EffectExtendLoyaltyPointsExpiryDate, EffectExtendLoyaltyPointsExpiryDateFromJSONTyped, EffectExtendLoyaltyPointsExpiryDateToJSON } from './EffectExtendLoyaltyPointsExpiryDate';
+import { type EffectIncreaseAchievementProgress, EffectIncreaseAchievementProgressFromJSONTyped, EffectIncreaseAchievementProgressToJSON } from './EffectIncreaseAchievementProgress';
+import { type EffectJoinLoyaltyProgram, EffectJoinLoyaltyProgramFromJSONTyped, EffectJoinLoyaltyProgramToJSON } from './EffectJoinLoyaltyProgram';
+import { type EffectOffsetNegativeLoyaltyPoints, EffectOffsetNegativeLoyaltyPointsFromJSONTyped, EffectOffsetNegativeLoyaltyPointsToJSON } from './EffectOffsetNegativeLoyaltyPoints';
+import { type EffectRedeemReferral, EffectRedeemReferralFromJSONTyped, EffectRedeemReferralToJSON } from './EffectRedeemReferral';
+import { type EffectReferralCreated, EffectReferralCreatedFromJSONTyped, EffectReferralCreatedToJSON } from './EffectReferralCreated';
+import { type EffectRejectCoupon, EffectRejectCouponFromJSONTyped, EffectRejectCouponToJSON } from './EffectRejectCoupon';
+import { type EffectRejectReferral, EffectRejectReferralFromJSONTyped, EffectRejectReferralToJSON } from './EffectRejectReferral';
+import { type EffectRemoveFromAudience, EffectRemoveFromAudienceFromJSONTyped, EffectRemoveFromAudienceToJSON } from './EffectRemoveFromAudience';
+import { type EffectReserveCoupon, EffectReserveCouponFromJSONTyped, EffectReserveCouponToJSON } from './EffectReserveCoupon';
+import { type EffectRollbackAddedLoyaltyPoints, EffectRollbackAddedLoyaltyPointsFromJSONTyped, EffectRollbackAddedLoyaltyPointsToJSON } from './EffectRollbackAddedLoyaltyPoints';
+import { type EffectRollbackCoupon, EffectRollbackCouponFromJSONTyped, EffectRollbackCouponToJSON } from './EffectRollbackCoupon';
+import { type EffectRollbackDeductedLoyaltyPoints, EffectRollbackDeductedLoyaltyPointsFromJSONTyped, EffectRollbackDeductedLoyaltyPointsToJSON } from './EffectRollbackDeductedLoyaltyPoints';
+import { type EffectRollbackDiscount, EffectRollbackDiscountFromJSONTyped, EffectRollbackDiscountToJSON } from './EffectRollbackDiscount';
+import { type EffectRollbackIncreasedAchievementProgress, EffectRollbackIncreasedAchievementProgressFromJSONTyped, EffectRollbackIncreasedAchievementProgressToJSON } from './EffectRollbackIncreasedAchievementProgress';
+import { type EffectRollbackReferral, EffectRollbackReferralFromJSONTyped, EffectRollbackReferralToJSON } from './EffectRollbackReferral';
+import { type EffectRollbackUseReward, EffectRollbackUseRewardFromJSONTyped, EffectRollbackUseRewardToJSON } from './EffectRollbackUseReward';
+import { type EffectSet, EffectSetFromJSONTyped, EffectSetToJSON } from './EffectSet';
+import { type EffectSetDiscount, EffectSetDiscountFromJSONTyped, EffectSetDiscountToJSON } from './EffectSetDiscount';
+import { type EffectSetDiscountPerAdditionalCost, EffectSetDiscountPerAdditionalCostFromJSONTyped, EffectSetDiscountPerAdditionalCostToJSON } from './EffectSetDiscountPerAdditionalCost';
+import { type EffectSetDiscountPerAdditionalCostPerItem, EffectSetDiscountPerAdditionalCostPerItemFromJSONTyped, EffectSetDiscountPerAdditionalCostPerItemToJSON } from './EffectSetDiscountPerAdditionalCostPerItem';
+import { type EffectSetDiscountPerItem, EffectSetDiscountPerItemFromJSONTyped, EffectSetDiscountPerItemToJSON } from './EffectSetDiscountPerItem';
+import { type EffectSetLoyaltyPointsExpiryDate, EffectSetLoyaltyPointsExpiryDateFromJSONTyped, EffectSetLoyaltyPointsExpiryDateToJSON } from './EffectSetLoyaltyPointsExpiryDate';
+import { type EffectShowBundleMetadata, EffectShowBundleMetadataFromJSONTyped, EffectShowBundleMetadataToJSON } from './EffectShowBundleMetadata';
+import { type EffectShowNotification, EffectShowNotificationFromJSONTyped, EffectShowNotificationToJSON } from './EffectShowNotification';
+import { type EffectStartAchievementProgress, EffectStartAchievementProgressFromJSONTyped, EffectStartAchievementProgressToJSON } from './EffectStartAchievementProgress';
+import { type EffectUnlockReward, EffectUnlockRewardFromJSONTyped, EffectUnlockRewardToJSON } from './EffectUnlockReward';
+import { type EffectUseReward, EffectUseRewardFromJSONTyped, EffectUseRewardToJSON } from './EffectUseReward';
+import { type EffectWillAwardGiveaway, EffectWillAwardGiveawayFromJSONTyped, EffectWillAwardGiveawayToJSON } from './EffectWillAwardGiveaway';
 
+/**
+ * @type Effect
+ * A generic effect that is fired by a triggered campaign. The `effectType` field selects the concrete effect variant and the shape of `props`.
+ * @export
+ */
+export type Effect = { effectType: 'acceptCoupon' } & EffectAcceptCoupon | { effectType: 'acceptReferral' } & EffectAcceptReferral | { effectType: 'addFreeItem' } & EffectAddFreeItem | { effectType: 'addLoyaltyPoints' } & EffectAddLoyaltyPoints | { effectType: 'addNegativeLoyaltyPoints' } & EffectAddNegativeLoyaltyPoints | { effectType: 'addToAudience' } & EffectAddToAudience | { effectType: 'awardGiveaway' } & EffectAwardGiveaway | { effectType: 'callApi' } & EffectCallApi | { effectType: 'changeLoyaltyTierLevel' } & EffectChangeLoyaltyTierLevel | { effectType: 'couponCreated' } & EffectCouponCreated | { effectType: 'customEffect' } & EffectCustomEffect | { effectType: 'deductLoyaltyPoints' } & EffectDeductLoyaltyPoints | { effectType: 'error' } & EffectError | { effectType: 'extendLoyaltyPointsExpiryDate' } & EffectExtendLoyaltyPointsExpiryDate | { effectType: 'increaseAchievementProgress' } & EffectIncreaseAchievementProgress | { effectType: 'joinLoyaltyProgram' } & EffectJoinLoyaltyProgram | { effectType: 'offsetNegativeLoyaltyPoints' } & EffectOffsetNegativeLoyaltyPoints | { effectType: 'redeemReferral' } & EffectRedeemReferral | { effectType: 'referralCreated' } & EffectReferralCreated | { effectType: 'rejectCoupon' } & EffectRejectCoupon | { effectType: 'rejectReferral' } & EffectRejectReferral | { effectType: 'removeFromAudience' } & EffectRemoveFromAudience | { effectType: 'reserveCoupon' } & EffectReserveCoupon | { effectType: 'rollbackAddedLoyaltyPoints' } & EffectRollbackAddedLoyaltyPoints | { effectType: 'rollbackCoupon' } & EffectRollbackCoupon | { effectType: 'rollbackDeductedLoyaltyPoints' } & EffectRollbackDeductedLoyaltyPoints | { effectType: 'rollbackDiscount' } & EffectRollbackDiscount | { effectType: 'rollbackIncreasedAchievementProgress' } & EffectRollbackIncreasedAchievementProgress | { effectType: 'rollbackReferral' } & EffectRollbackReferral | { effectType: 'rollbackUseReward' } & EffectRollbackUseReward | { effectType: 'set' } & EffectSet | { effectType: 'setDiscount' } & EffectSetDiscount | { effectType: 'setDiscountPerAdditionalCost' } & EffectSetDiscountPerAdditionalCost | { effectType: 'setDiscountPerAdditionalCostPerItem' } & EffectSetDiscountPerAdditionalCostPerItem | { effectType: 'setDiscountPerItem' } & EffectSetDiscountPerItem | { effectType: 'setLoyaltyPointsExpiryDate' } & EffectSetLoyaltyPointsExpiryDate | { effectType: 'showBundleMetadata' } & EffectShowBundleMetadata | { effectType: 'showNotification' } & EffectShowNotification | { effectType: 'startAchievementProgress' } & EffectStartAchievementProgress | { effectType: 'unlockReward' } & EffectUnlockReward | { effectType: 'useReward' } & EffectUseReward | { effectType: 'willAwardGiveaway' } & EffectWillAwardGiveaway;
 /**
  * Check if a given object implements the Effect interface.
  */
-export function instanceOfEffect(value: object): value is Effect {
+export function instanceOfEffect(value: any): value is Effect {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
-    if (!('rulesetId' in _v) || _v['rulesetId'] === undefined) return false;
-    if (!('ruleIndex' in _v) || _v['ruleIndex'] === undefined) return false;
-    if (!('ruleName' in _v) || _v['ruleName'] === undefined) return false;
-    if (!('effectType' in _v) || _v['effectType'] === undefined) return false;
-    if (!('props' in _v) || _v['props'] === undefined) return false;
-    return true;
+    switch (_v['effectType']) {
+        case 'acceptCoupon':
+        case 'acceptReferral':
+        case 'addFreeItem':
+        case 'addLoyaltyPoints':
+        case 'addNegativeLoyaltyPoints':
+        case 'addToAudience':
+        case 'awardGiveaway':
+        case 'callApi':
+        case 'changeLoyaltyTierLevel':
+        case 'couponCreated':
+        case 'customEffect':
+        case 'deductLoyaltyPoints':
+        case 'error':
+        case 'extendLoyaltyPointsExpiryDate':
+        case 'increaseAchievementProgress':
+        case 'joinLoyaltyProgram':
+        case 'offsetNegativeLoyaltyPoints':
+        case 'redeemReferral':
+        case 'referralCreated':
+        case 'rejectCoupon':
+        case 'rejectReferral':
+        case 'removeFromAudience':
+        case 'reserveCoupon':
+        case 'rollbackAddedLoyaltyPoints':
+        case 'rollbackCoupon':
+        case 'rollbackDeductedLoyaltyPoints':
+        case 'rollbackDiscount':
+        case 'rollbackIncreasedAchievementProgress':
+        case 'rollbackReferral':
+        case 'rollbackUseReward':
+        case 'set':
+        case 'setDiscount':
+        case 'setDiscountPerAdditionalCost':
+        case 'setDiscountPerAdditionalCostPerItem':
+        case 'setDiscountPerItem':
+        case 'setLoyaltyPointsExpiryDate':
+        case 'showBundleMetadata':
+        case 'showNotification':
+        case 'startAchievementProgress':
+        case 'unlockReward':
+        case 'useReward':
+        case 'willAwardGiveaway':
+            return true;
+        default:
+            return false;
+    }
 }
 
 export function EffectFromJSON(json: any): Effect {
@@ -115,30 +124,97 @@ export function EffectFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ef
     if (json == null) {
         return json;
     }
-    return {
-        
-        'experimentId': json['experimentId'] == null ? undefined : json['experimentId'],
-        'campaignId': json['campaignId'],
-        'rulesetId': json['rulesetId'],
-        'ruleIndex': json['ruleIndex'],
-        'ruleName': json['ruleName'],
-        'effectType': json['effectType'],
-        'triggeredByCoupon': json['triggeredByCoupon'] == null ? undefined : json['triggeredByCoupon'],
-        'triggeredForCatalogItem': json['triggeredForCatalogItem'] == null ? undefined : json['triggeredForCatalogItem'],
-        'conditionIndex': json['conditionIndex'] == null ? undefined : json['conditionIndex'],
-        'evaluationGroupID': json['evaluationGroupID'] == null ? undefined : json['evaluationGroupID'],
-        'evaluationGroupMode': json['evaluationGroupMode'] == null ? undefined : json['evaluationGroupMode'],
-        'campaignRevisionId': json['campaignRevisionId'] == null ? undefined : json['campaignRevisionId'],
-        'campaignRevisionVersionId': json['campaignRevisionVersionId'] == null ? undefined : json['campaignRevisionVersionId'],
-        'selectedPriceType': json['selectedPriceType'] == null ? undefined : json['selectedPriceType'],
-        'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
-        'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
-        'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
-        'props': json['props'],
-    };
+    switch (json['effectType']) {
+        case 'acceptCoupon':
+            return Object.assign({}, EffectAcceptCouponFromJSONTyped(json, true), { effectType: 'acceptCoupon' } as const);
+        case 'acceptReferral':
+            return Object.assign({}, EffectAcceptReferralFromJSONTyped(json, true), { effectType: 'acceptReferral' } as const);
+        case 'addFreeItem':
+            return Object.assign({}, EffectAddFreeItemFromJSONTyped(json, true), { effectType: 'addFreeItem' } as const);
+        case 'addLoyaltyPoints':
+            return Object.assign({}, EffectAddLoyaltyPointsFromJSONTyped(json, true), { effectType: 'addLoyaltyPoints' } as const);
+        case 'addNegativeLoyaltyPoints':
+            return Object.assign({}, EffectAddNegativeLoyaltyPointsFromJSONTyped(json, true), { effectType: 'addNegativeLoyaltyPoints' } as const);
+        case 'addToAudience':
+            return Object.assign({}, EffectAddToAudienceFromJSONTyped(json, true), { effectType: 'addToAudience' } as const);
+        case 'awardGiveaway':
+            return Object.assign({}, EffectAwardGiveawayFromJSONTyped(json, true), { effectType: 'awardGiveaway' } as const);
+        case 'callApi':
+            return Object.assign({}, EffectCallApiFromJSONTyped(json, true), { effectType: 'callApi' } as const);
+        case 'changeLoyaltyTierLevel':
+            return Object.assign({}, EffectChangeLoyaltyTierLevelFromJSONTyped(json, true), { effectType: 'changeLoyaltyTierLevel' } as const);
+        case 'couponCreated':
+            return Object.assign({}, EffectCouponCreatedFromJSONTyped(json, true), { effectType: 'couponCreated' } as const);
+        case 'customEffect':
+            return Object.assign({}, EffectCustomEffectFromJSONTyped(json, true), { effectType: 'customEffect' } as const);
+        case 'deductLoyaltyPoints':
+            return Object.assign({}, EffectDeductLoyaltyPointsFromJSONTyped(json, true), { effectType: 'deductLoyaltyPoints' } as const);
+        case 'error':
+            return Object.assign({}, EffectErrorFromJSONTyped(json, true), { effectType: 'error' } as const);
+        case 'extendLoyaltyPointsExpiryDate':
+            return Object.assign({}, EffectExtendLoyaltyPointsExpiryDateFromJSONTyped(json, true), { effectType: 'extendLoyaltyPointsExpiryDate' } as const);
+        case 'increaseAchievementProgress':
+            return Object.assign({}, EffectIncreaseAchievementProgressFromJSONTyped(json, true), { effectType: 'increaseAchievementProgress' } as const);
+        case 'joinLoyaltyProgram':
+            return Object.assign({}, EffectJoinLoyaltyProgramFromJSONTyped(json, true), { effectType: 'joinLoyaltyProgram' } as const);
+        case 'offsetNegativeLoyaltyPoints':
+            return Object.assign({}, EffectOffsetNegativeLoyaltyPointsFromJSONTyped(json, true), { effectType: 'offsetNegativeLoyaltyPoints' } as const);
+        case 'redeemReferral':
+            return Object.assign({}, EffectRedeemReferralFromJSONTyped(json, true), { effectType: 'redeemReferral' } as const);
+        case 'referralCreated':
+            return Object.assign({}, EffectReferralCreatedFromJSONTyped(json, true), { effectType: 'referralCreated' } as const);
+        case 'rejectCoupon':
+            return Object.assign({}, EffectRejectCouponFromJSONTyped(json, true), { effectType: 'rejectCoupon' } as const);
+        case 'rejectReferral':
+            return Object.assign({}, EffectRejectReferralFromJSONTyped(json, true), { effectType: 'rejectReferral' } as const);
+        case 'removeFromAudience':
+            return Object.assign({}, EffectRemoveFromAudienceFromJSONTyped(json, true), { effectType: 'removeFromAudience' } as const);
+        case 'reserveCoupon':
+            return Object.assign({}, EffectReserveCouponFromJSONTyped(json, true), { effectType: 'reserveCoupon' } as const);
+        case 'rollbackAddedLoyaltyPoints':
+            return Object.assign({}, EffectRollbackAddedLoyaltyPointsFromJSONTyped(json, true), { effectType: 'rollbackAddedLoyaltyPoints' } as const);
+        case 'rollbackCoupon':
+            return Object.assign({}, EffectRollbackCouponFromJSONTyped(json, true), { effectType: 'rollbackCoupon' } as const);
+        case 'rollbackDeductedLoyaltyPoints':
+            return Object.assign({}, EffectRollbackDeductedLoyaltyPointsFromJSONTyped(json, true), { effectType: 'rollbackDeductedLoyaltyPoints' } as const);
+        case 'rollbackDiscount':
+            return Object.assign({}, EffectRollbackDiscountFromJSONTyped(json, true), { effectType: 'rollbackDiscount' } as const);
+        case 'rollbackIncreasedAchievementProgress':
+            return Object.assign({}, EffectRollbackIncreasedAchievementProgressFromJSONTyped(json, true), { effectType: 'rollbackIncreasedAchievementProgress' } as const);
+        case 'rollbackReferral':
+            return Object.assign({}, EffectRollbackReferralFromJSONTyped(json, true), { effectType: 'rollbackReferral' } as const);
+        case 'rollbackUseReward':
+            return Object.assign({}, EffectRollbackUseRewardFromJSONTyped(json, true), { effectType: 'rollbackUseReward' } as const);
+        case 'set':
+            return Object.assign({}, EffectSetFromJSONTyped(json, true), { effectType: 'set' } as const);
+        case 'setDiscount':
+            return Object.assign({}, EffectSetDiscountFromJSONTyped(json, true), { effectType: 'setDiscount' } as const);
+        case 'setDiscountPerAdditionalCost':
+            return Object.assign({}, EffectSetDiscountPerAdditionalCostFromJSONTyped(json, true), { effectType: 'setDiscountPerAdditionalCost' } as const);
+        case 'setDiscountPerAdditionalCostPerItem':
+            return Object.assign({}, EffectSetDiscountPerAdditionalCostPerItemFromJSONTyped(json, true), { effectType: 'setDiscountPerAdditionalCostPerItem' } as const);
+        case 'setDiscountPerItem':
+            return Object.assign({}, EffectSetDiscountPerItemFromJSONTyped(json, true), { effectType: 'setDiscountPerItem' } as const);
+        case 'setLoyaltyPointsExpiryDate':
+            return Object.assign({}, EffectSetLoyaltyPointsExpiryDateFromJSONTyped(json, true), { effectType: 'setLoyaltyPointsExpiryDate' } as const);
+        case 'showBundleMetadata':
+            return Object.assign({}, EffectShowBundleMetadataFromJSONTyped(json, true), { effectType: 'showBundleMetadata' } as const);
+        case 'showNotification':
+            return Object.assign({}, EffectShowNotificationFromJSONTyped(json, true), { effectType: 'showNotification' } as const);
+        case 'startAchievementProgress':
+            return Object.assign({}, EffectStartAchievementProgressFromJSONTyped(json, true), { effectType: 'startAchievementProgress' } as const);
+        case 'unlockReward':
+            return Object.assign({}, EffectUnlockRewardFromJSONTyped(json, true), { effectType: 'unlockReward' } as const);
+        case 'useReward':
+            return Object.assign({}, EffectUseRewardFromJSONTyped(json, true), { effectType: 'useReward' } as const);
+        case 'willAwardGiveaway':
+            return Object.assign({}, EffectWillAwardGiveawayFromJSONTyped(json, true), { effectType: 'willAwardGiveaway' } as const);
+        default:
+            return json;
+    }
 }
 
-export function EffectToJSON(json: any): Effect {
+export function EffectToJSON(json: any): any {
     return EffectToJSONTyped(json, false);
 }
 
@@ -146,27 +222,93 @@ export function EffectToJSONTyped(value?: Effect | null, ignoreDiscriminator: bo
     if (value == null) {
         return value;
     }
-
-    return {
-        
-        'experimentId': value['experimentId'],
-        'campaignId': value['campaignId'],
-        'rulesetId': value['rulesetId'],
-        'ruleIndex': value['ruleIndex'],
-        'ruleName': value['ruleName'],
-        'effectType': value['effectType'],
-        'triggeredByCoupon': value['triggeredByCoupon'],
-        'triggeredForCatalogItem': value['triggeredForCatalogItem'],
-        'conditionIndex': value['conditionIndex'],
-        'evaluationGroupID': value['evaluationGroupID'],
-        'evaluationGroupMode': value['evaluationGroupMode'],
-        'campaignRevisionId': value['campaignRevisionId'],
-        'campaignRevisionVersionId': value['campaignRevisionVersionId'],
-        'selectedPriceType': value['selectedPriceType'],
-        'selectedPrice': value['selectedPrice'],
-        'adjustmentReferenceId': value['adjustmentReferenceId'],
-        'rewardId': value['rewardId'],
-        'props': value['props'],
-    };
+    switch (value['effectType']) {
+        case 'acceptCoupon':
+            return Object.assign({}, EffectAcceptCouponToJSON(value), { 'effectType': 'acceptCoupon' } as const);
+        case 'acceptReferral':
+            return Object.assign({}, EffectAcceptReferralToJSON(value), { 'effectType': 'acceptReferral' } as const);
+        case 'addFreeItem':
+            return Object.assign({}, EffectAddFreeItemToJSON(value), { 'effectType': 'addFreeItem' } as const);
+        case 'addLoyaltyPoints':
+            return Object.assign({}, EffectAddLoyaltyPointsToJSON(value), { 'effectType': 'addLoyaltyPoints' } as const);
+        case 'addNegativeLoyaltyPoints':
+            return Object.assign({}, EffectAddNegativeLoyaltyPointsToJSON(value), { 'effectType': 'addNegativeLoyaltyPoints' } as const);
+        case 'addToAudience':
+            return Object.assign({}, EffectAddToAudienceToJSON(value), { 'effectType': 'addToAudience' } as const);
+        case 'awardGiveaway':
+            return Object.assign({}, EffectAwardGiveawayToJSON(value), { 'effectType': 'awardGiveaway' } as const);
+        case 'callApi':
+            return Object.assign({}, EffectCallApiToJSON(value), { 'effectType': 'callApi' } as const);
+        case 'changeLoyaltyTierLevel':
+            return Object.assign({}, EffectChangeLoyaltyTierLevelToJSON(value), { 'effectType': 'changeLoyaltyTierLevel' } as const);
+        case 'couponCreated':
+            return Object.assign({}, EffectCouponCreatedToJSON(value), { 'effectType': 'couponCreated' } as const);
+        case 'customEffect':
+            return Object.assign({}, EffectCustomEffectToJSON(value), { 'effectType': 'customEffect' } as const);
+        case 'deductLoyaltyPoints':
+            return Object.assign({}, EffectDeductLoyaltyPointsToJSON(value), { 'effectType': 'deductLoyaltyPoints' } as const);
+        case 'error':
+            return Object.assign({}, EffectErrorToJSON(value), { 'effectType': 'error' } as const);
+        case 'extendLoyaltyPointsExpiryDate':
+            return Object.assign({}, EffectExtendLoyaltyPointsExpiryDateToJSON(value), { 'effectType': 'extendLoyaltyPointsExpiryDate' } as const);
+        case 'increaseAchievementProgress':
+            return Object.assign({}, EffectIncreaseAchievementProgressToJSON(value), { 'effectType': 'increaseAchievementProgress' } as const);
+        case 'joinLoyaltyProgram':
+            return Object.assign({}, EffectJoinLoyaltyProgramToJSON(value), { 'effectType': 'joinLoyaltyProgram' } as const);
+        case 'offsetNegativeLoyaltyPoints':
+            return Object.assign({}, EffectOffsetNegativeLoyaltyPointsToJSON(value), { 'effectType': 'offsetNegativeLoyaltyPoints' } as const);
+        case 'redeemReferral':
+            return Object.assign({}, EffectRedeemReferralToJSON(value), { 'effectType': 'redeemReferral' } as const);
+        case 'referralCreated':
+            return Object.assign({}, EffectReferralCreatedToJSON(value), { 'effectType': 'referralCreated' } as const);
+        case 'rejectCoupon':
+            return Object.assign({}, EffectRejectCouponToJSON(value), { 'effectType': 'rejectCoupon' } as const);
+        case 'rejectReferral':
+            return Object.assign({}, EffectRejectReferralToJSON(value), { 'effectType': 'rejectReferral' } as const);
+        case 'removeFromAudience':
+            return Object.assign({}, EffectRemoveFromAudienceToJSON(value), { 'effectType': 'removeFromAudience' } as const);
+        case 'reserveCoupon':
+            return Object.assign({}, EffectReserveCouponToJSON(value), { 'effectType': 'reserveCoupon' } as const);
+        case 'rollbackAddedLoyaltyPoints':
+            return Object.assign({}, EffectRollbackAddedLoyaltyPointsToJSON(value), { 'effectType': 'rollbackAddedLoyaltyPoints' } as const);
+        case 'rollbackCoupon':
+            return Object.assign({}, EffectRollbackCouponToJSON(value), { 'effectType': 'rollbackCoupon' } as const);
+        case 'rollbackDeductedLoyaltyPoints':
+            return Object.assign({}, EffectRollbackDeductedLoyaltyPointsToJSON(value), { 'effectType': 'rollbackDeductedLoyaltyPoints' } as const);
+        case 'rollbackDiscount':
+            return Object.assign({}, EffectRollbackDiscountToJSON(value), { 'effectType': 'rollbackDiscount' } as const);
+        case 'rollbackIncreasedAchievementProgress':
+            return Object.assign({}, EffectRollbackIncreasedAchievementProgressToJSON(value), { 'effectType': 'rollbackIncreasedAchievementProgress' } as const);
+        case 'rollbackReferral':
+            return Object.assign({}, EffectRollbackReferralToJSON(value), { 'effectType': 'rollbackReferral' } as const);
+        case 'rollbackUseReward':
+            return Object.assign({}, EffectRollbackUseRewardToJSON(value), { 'effectType': 'rollbackUseReward' } as const);
+        case 'set':
+            return Object.assign({}, EffectSetToJSON(value), { 'effectType': 'set' } as const);
+        case 'setDiscount':
+            return Object.assign({}, EffectSetDiscountToJSON(value), { 'effectType': 'setDiscount' } as const);
+        case 'setDiscountPerAdditionalCost':
+            return Object.assign({}, EffectSetDiscountPerAdditionalCostToJSON(value), { 'effectType': 'setDiscountPerAdditionalCost' } as const);
+        case 'setDiscountPerAdditionalCostPerItem':
+            return Object.assign({}, EffectSetDiscountPerAdditionalCostPerItemToJSON(value), { 'effectType': 'setDiscountPerAdditionalCostPerItem' } as const);
+        case 'setDiscountPerItem':
+            return Object.assign({}, EffectSetDiscountPerItemToJSON(value), { 'effectType': 'setDiscountPerItem' } as const);
+        case 'setLoyaltyPointsExpiryDate':
+            return Object.assign({}, EffectSetLoyaltyPointsExpiryDateToJSON(value), { 'effectType': 'setLoyaltyPointsExpiryDate' } as const);
+        case 'showBundleMetadata':
+            return Object.assign({}, EffectShowBundleMetadataToJSON(value), { 'effectType': 'showBundleMetadata' } as const);
+        case 'showNotification':
+            return Object.assign({}, EffectShowNotificationToJSON(value), { 'effectType': 'showNotification' } as const);
+        case 'startAchievementProgress':
+            return Object.assign({}, EffectStartAchievementProgressToJSON(value), { 'effectType': 'startAchievementProgress' } as const);
+        case 'unlockReward':
+            return Object.assign({}, EffectUnlockRewardToJSON(value), { 'effectType': 'unlockReward' } as const);
+        case 'useReward':
+            return Object.assign({}, EffectUseRewardToJSON(value), { 'effectType': 'useReward' } as const);
+        case 'willAwardGiveaway':
+            return Object.assign({}, EffectWillAwardGiveawayToJSON(value), { 'effectType': 'willAwardGiveaway' } as const);
+        default:
+            return value;
+    }
 }
 

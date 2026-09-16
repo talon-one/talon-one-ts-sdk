@@ -11,7 +11,7 @@ Name | Type
 `tags` | Array&lt;string&gt;
 `operator` | string
 `profile` | string
-`audience` | [UpdateAudienceMembershipBlock1Audience](UpdateAudienceMembershipBlock1Audience.md)
+`audience` | [AudienceBlockReference](AudienceBlockReference.md)
 
 ## Example
 

@@ -14,7 +14,7 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ * Support user limits for actions that require admin approval within the given loyalty program.
  * @export
  * @interface RolesV2Thresholds
  */

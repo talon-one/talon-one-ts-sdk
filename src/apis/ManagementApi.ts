@@ -494,6 +494,11 @@ import {
     NewAttributeToJSON,
 } from '../models/NewAttribute';
 import {
+    type NewCampaign,
+    NewCampaignFromJSON,
+    NewCampaignToJSON,
+} from '../models/NewCampaign';
+import {
     type NewCampaignCollection,
     NewCampaignCollectionFromJSON,
     NewCampaignCollectionToJSON,
@@ -845,6 +850,17 @@ export interface CreateBatchLoyaltyCardsRequest {
      * 
      */
     loyaltyCardBatch: LoyaltyCardBatch;
+}
+
+export interface CreateCampaignRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
+    applicationId: number;
+    /**
+     * 
+     */
+    newCampaign: NewCampaign;
 }
 
 export interface CreateCampaignFromTemplateRequest {
@@ -1663,6 +1679,13 @@ export interface ExportLoyaltyBalancesRequest {
      * 
      */
     balances?: string;
+    /**
+     * Filter results by an array of subledger IDs. If no value is provided, the export includes all subledgers and main ledger data for the specified loyalty program.
+     * 
+     * To specify the main ledger, provide an empty string ("").
+     * 
+     */
+    subledgerIds?: Array<string>;
 }
 
 export interface ExportLoyaltyCardBalancesRequest {
@@ -4106,6 +4129,14 @@ export interface ListAchievementsV2Request {
      */
     pageSize?: number;
     /**
+     * Filter results by one or more campaign IDs.
+     * 
+     * To include multiple IDs, repeat the parameter for each one, for example,`?campaignId=123&campaignId=456`.
+     * The response contains only achievements associated with the specified campaigns.
+     * 
+     */
+    campaignId?: Array<number>;
+    /**
      * The number of items to skip when paging through large result sets.
      */
     skip?: number;
@@ -5470,6 +5501,67 @@ export class ManagementApi extends runtime.BaseAPI {
      */
     async createBatchLoyaltyCards(requestParameters: CreateBatchLoyaltyCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoyaltyCardBatchResponse> {
         const response = await this.createBatchLoyaltyCardsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for createCampaign without sending the request
+     */
+    async createCampaignRequestOpts(requestParameters: CreateCampaignRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['applicationId'] == null) {
+            throw new runtime.RequiredError(
+                'applicationId',
+                'Required parameter "applicationId" was null or undefined when calling createCampaign().'
+            );
+        }
+
+        if (requestParameters['newCampaign'] == null) {
+            throw new runtime.RequiredError(
+                'newCampaign',
+                'Required parameter "newCampaign" was null or undefined when calling createCampaign().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/applications/{applicationId}/campaigns`;
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: NewCampaignToJSON(requestParameters['newCampaign']),
+        };
+    }
+
+    /**
+     * Create a campaign. A campaign is part of an Application and contains a set of rules. 
+     * Create campaign
+     */
+    async createCampaignRaw(requestParameters: CreateCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Campaign>> {
+        const requestOptions = await this.createCampaignRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CampaignFromJSON(jsonValue));
+    }
+
+    /**
+     * Create a campaign. A campaign is part of an Application and contains a set of rules. 
+     * Create campaign
+     */
+    async createCampaign(requestParameters: CreateCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Campaign> {
+        const response = await this.createCampaignRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -8427,6 +8519,10 @@ export class ManagementApi extends runtime.BaseAPI {
 
         if (requestParameters['balances'] != null) {
             queryParameters['balances'] = requestParameters['balances'];
+        }
+
+        if (requestParameters['subledgerIds'] != null) {
+            queryParameters['subledgerIds'] = requestParameters['subledgerIds']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -14559,7 +14655,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `newjoindate`: The new join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
+     * Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `joindate`: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
      * Import join dates for a loyalty program
      */
     async importLoyaltyJoinDatesRaw(requestParameters: ImportLoyaltyJoinDatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
@@ -14570,7 +14666,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `newjoindate`: The new join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
+     * Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `joindate`: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
      * Import join dates for a loyalty program
      */
     async importLoyaltyJoinDates(requestParameters: ImportLoyaltyJoinDatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Import> {
@@ -15005,6 +15101,10 @@ export class ManagementApi extends runtime.BaseAPI {
             queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
+        if (requestParameters['campaignId'] != null) {
+            queryParameters['campaignId'] = requestParameters['campaignId'];
+        }
+
         if (requestParameters['skip'] != null) {
             queryParameters['skip'] = requestParameters['skip'];
         }
@@ -15082,7 +15182,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all roles.
+     * List the roles defined in the deployment.  The roles returned depend on the role of the user calling this endpoint: - If the user has an admin role, all roles defined in the deployment are returned. - If the user does not have an admin role, only the roles currently assigned to this user are returned.  If your identity provider provisions roles through SCIM, any admin roles it defines are not included in this list.  To view the details of a specific role, use the [Get role](https://docs.talon.one/management-api#tag/Roles/operation/getRoleV2) endpoint. 
      * List roles
      */
     async listAllRolesV2Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAllRolesV2200Response>> {
@@ -15093,7 +15193,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all roles.
+     * List the roles defined in the deployment.  The roles returned depend on the role of the user calling this endpoint: - If the user has an admin role, all roles defined in the deployment are returned. - If the user does not have an admin role, only the roles currently assigned to this user are returned.  If your identity provider provisions roles through SCIM, any admin roles it defines are not included in this list.  To view the details of a specific role, use the [Get role](https://docs.talon.one/management-api#tag/Roles/operation/getRoleV2) endpoint. 
      * List roles
      */
     async listAllRolesV2(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListAllRolesV2200Response> {

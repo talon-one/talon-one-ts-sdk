@@ -19,6 +19,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**getCustomerAchievementHistory**](IntegrationApi.md#getcustomerachievementhistory) | **GET** /v1/customer_profiles/{integrationId}/achievements/{achievementId} | List customer\&#39;s achievement history |
 | [**getCustomerAchievements**](IntegrationApi.md#getcustomerachievements) | **GET** /v1/customer_profiles/{integrationId}/achievements | List customer\&#39;s available achievements |
 | [**getCustomerInventory**](IntegrationApi.md#getcustomerinventory) | **GET** /v1/customer_profiles/{integrationId}/inventory | List customer data |
+| [**getCustomerRewards**](IntegrationApi.md#getcustomerrewards) | **GET** /v1/customer_profiles/{integrationId}/rewards | List customer\&#39;s rewards |
 | [**getCustomerSession**](IntegrationApi.md#getcustomersession) | **GET** /v2/customer_sessions/{customerSessionId} | Get customer session |
 | [**getEventV3**](IntegrationApi.md#geteventv3) | **GET** /v3/events/{integrationId} | Get advanced event |
 | [**getLoyaltyBalances**](IntegrationApi.md#getloyaltybalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances | Get customer\&#39;s loyalty balances |
@@ -272,7 +273,7 @@ example().catch(console.error);
 
 ## createCouponReservation
 
-> Coupon createCouponReservation(couponValue, couponReservations)
+> CouponWithReservations createCouponReservation(couponValue, couponReservations)
 
 Create coupon reservation
 
@@ -324,7 +325,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**Coupon**](Coupon.md)
+[**CouponWithReservations**](CouponWithReservations.md)
 
 ### Authorization
 
@@ -1224,6 +1225,92 @@ example().catch(console.error);
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **401** | Unauthorized - Invalid API key |  -  |
+| **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## getCustomerRewards
+
+> GetCustomerRewards200Response getCustomerRewards(integrationId, status, pageSize, skip, withTotalResultSize)
+
+List customer\&#39;s rewards
+
+List the rewards held by a given customer profile. This includes shared rewards unlocked with a loyalty card linked to the customer. 
+
+### Example
+
+```ts
+import {
+  Configuration,
+  IntegrationApi,
+} from 'talon_one_sdk';
+import type { GetCustomerRewardsRequest } from 'talon_one_sdk';
+
+async function example() {
+  console.log("🚀 Testing talon_one_sdk SDK...");
+  const config = new Configuration({ 
+    // To configure API key authorization: api_key_v1
+    apiKey: "YOUR API KEY",
+  });
+  const api = new IntegrationApi(config);
+
+  const body = {
+    // string | The integration identifier for this customer profile. Must be:  - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID. 
+    integrationId: integrationId_example,
+    // Array<'unlocked' | 'used'> | Filter results by one or more customer reward statuses.  **Note:** If no status is specified, rewards of all statuses are returned.  (optional)
+    status: ...,
+    // number | The number of items in the response. (optional)
+    pageSize: 789,
+    // number | The number of items to skip when paging through large result sets. (optional)
+    skip: 789,
+    // boolean | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.   - When `true`: `totalResultSize` contains the total number of results for this query.  - When `false`: Only `hasMore` is returned, and it is set to `true` when there are more results than shown on the page.  (optional)
+    withTotalResultSize: true,
+  } satisfies GetCustomerRewardsRequest;
+
+  try {
+    const data = await api.getCustomerRewards(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **integrationId** | `string` | The integration identifier for this customer profile. Must be:  - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  | [Defaults to `undefined`] |
+| **status** | `unlocked`, `used` | Filter results by one or more customer reward statuses.  **Note:** If no status is specified, rewards of all statuses are returned.  | [Optional] [Enum: unlocked, used] |
+| **pageSize** | `number` | The number of items in the response. | [Optional] [Defaults to `1000`] |
+| **skip** | `number` | The number of items to skip when paging through large result sets. | [Optional] [Defaults to `undefined`] |
+| **withTotalResultSize** | `boolean` | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.   - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query.  - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [Optional] [Defaults to `undefined`] |
+
+### Return type
+
+[**GetCustomerRewards200Response**](GetCustomerRewards200Response.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
 | **404** | Not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
@@ -2162,9 +2249,9 @@ async function example() {
     loyaltyProgramId: 789,
     // string | Return only rewards available in this subledger. Must be combined with `loyaltyProgramId`. To specify the main ledger, provide an empty string (\"\").  (optional)
     subledgerId: subledgerId_example,
-    // string | The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when `loyaltyProgramId` is also provided.  **Note:** `profileIntegrationId` and `loyaltyCardId` are mutually exclusive. Do not send both in the same request.  (optional)
+    // string | The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when `loyaltyProgramId` is also provided.  For a reward with `pointsRequired` configured for a card-based loyalty program, eligibility can be evaluated based on both `profileIntegrationId` and `loyaltyCardId`, if both are provided. The required points are then checked against the card\'s balance.  (optional)
     profileIntegrationId: profileIntegrationId_example,
-    // string | The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when `loyaltyProgramId` is also provided.  **Note:** `profileIntegrationId` and `loyaltyCardId` are mutually exclusive. Do not send both in the same request.  (optional)
+    // string | The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when `loyaltyProgramId` is also provided.  For a reward with `pointsRequired` configured for a card-based loyalty program, eligibility can be evaluated based on both `profileIntegrationId` and `loyaltyCardId`, if both are provided. The card must also be linked to that customer profile. - If `loyaltyCardId` is not provided, the reward returns the `CARD_REQUIRED` failure code, because there is no card balance to compare `pointsRequired` against. - If `profileIntegrationId` is not provided, the reward returns the `PROFILE_REQUIRED` failure code, because its eligibility cannot be evaluated without a customer profile.  (optional)
     loyaltyCardId: loyaltyCardId_example,
   } satisfies IntegrationRewardsCatalogRequest;
 
@@ -2192,8 +2279,8 @@ example().catch(console.error);
 | **includeFree** | `boolean` | Whether to include rewards that have no &#x60;pointsRequired&#x60;. These rewards are treated as free and available to all customers.  | [Optional] [Defaults to `true`] |
 | **loyaltyProgramId** | `number` | Return only rewards available in this loyalty program.  | [Optional] [Defaults to `undefined`] |
 | **subledgerId** | `string` | Return only rewards available in this subledger. Must be combined with &#x60;loyaltyProgramId&#x60;. To specify the main ledger, provide an empty string (\&quot;\&quot;).  | [Optional] [Defaults to `undefined`] |
-| **profileIntegrationId** | `string` | The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  | [Optional] [Defaults to `undefined`] |
-| **loyaltyCardId** | `string` | The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  | [Optional] [Defaults to `undefined`] |
+| **profileIntegrationId** | `string` | The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  For a reward with &#x60;pointsRequired&#x60; configured for a card-based loyalty program, eligibility can be evaluated based on both &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60;, if both are provided. The required points are then checked against the card\&#39;s balance.  | [Optional] [Defaults to `undefined`] |
+| **loyaltyCardId** | `string` | The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  For a reward with &#x60;pointsRequired&#x60; configured for a card-based loyalty program, eligibility can be evaluated based on both &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60;, if both are provided. The card must also be linked to that customer profile. - If &#x60;loyaltyCardId&#x60; is not provided, the reward returns the &#x60;CARD_REQUIRED&#x60; failure code, because there is no card balance to compare &#x60;pointsRequired&#x60; against. - If &#x60;profileIntegrationId&#x60; is not provided, the reward returns the &#x60;PROFILE_REQUIRED&#x60; failure code, because its eligibility cannot be evaluated without a customer profile.  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -2867,7 +2954,7 @@ example().catch(console.error);
 
 ## unlockReward
 
-> IntegrationStateV2 unlockReward(rewardId, integrationUnlockRewardRequest, dry)
+> IntegrationUnlockRewardResponse unlockReward(rewardId, integrationUnlockRewardRequest, dry)
 
 Unlock a reward
 
@@ -2922,7 +3009,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**IntegrationStateV2**](IntegrationStateV2.md)
+[**IntegrationUnlockRewardResponse**](IntegrationUnlockRewardResponse.md)
 
 ### Authorization
 

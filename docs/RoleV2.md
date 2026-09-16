@@ -1,6 +1,7 @@
 
 # RoleV2
 
+Represents a role with its associated permissions and members.
 
 ## Properties
 

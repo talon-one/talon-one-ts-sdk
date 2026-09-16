@@ -64,6 +64,11 @@ export interface IntegrationEventV3Request {
      */
     loyaltyCards?: Array<string>;
     /**
+     * The integration IDs of the unlocked rewards that can be used in this event.
+     * 
+     */
+    rewardIntegrationIds?: Array<string>;
+    /**
      * Optional list of requested information to be present on the response related to the tracking custom event.
      * 
      */
@@ -82,6 +87,7 @@ export const IntegrationEventV3RequestResponseContentEnum = {
     Referral: 'referral',
     RuleFailureReasons: 'ruleFailureReasons',
     TriggeredCampaigns: 'triggeredCampaigns',
+    UnlockedRewards: 'unlockedRewards',
 } as const;
 export type IntegrationEventV3RequestResponseContentEnum = typeof IntegrationEventV3RequestResponseContentEnum[keyof typeof IntegrationEventV3RequestResponseContentEnum];
 
@@ -116,6 +122,7 @@ export function IntegrationEventV3RequestFromJSONTyped(json: any, ignoreDiscrimi
         'connectedSessionId': json['connectedSessionId'] == null ? undefined : json['connectedSessionId'],
         'referralCode': json['referralCode'] == null ? undefined : json['referralCode'],
         'loyaltyCards': json['loyaltyCards'] == null ? undefined : json['loyaltyCards'],
+        'rewardIntegrationIds': json['rewardIntegrationIds'] == null ? undefined : json['rewardIntegrationIds'],
         'responseContent': json['responseContent'] == null ? undefined : json['responseContent'],
     };
 }
@@ -140,6 +147,7 @@ export function IntegrationEventV3RequestToJSONTyped(value?: IntegrationEventV3R
         'connectedSessionId': value['connectedSessionId'],
         'referralCode': value['referralCode'],
         'loyaltyCards': value['loyaltyCards'],
+        'rewardIntegrationIds': value['rewardIntegrationIds'],
         'responseContent': value['responseContent'],
     };
 }

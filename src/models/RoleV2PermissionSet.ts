@@ -25,7 +25,6 @@ export interface RoleV2PermissionSet {
     name: string;
     /**
      * List of logical operations in the permission set.
-     * Each logical operation must be shown under the `x-permission` tag on an endpoint level.
      * 
      */
     logicalOperations: Array<string>;

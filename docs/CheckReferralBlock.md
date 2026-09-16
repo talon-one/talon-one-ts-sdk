@@ -20,7 +20,7 @@ import type { CheckReferralBlock } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "id": a1b2c3d4-e5f6-7890-abcd-ef1234567890,
-  "type": null,
+  "type": checkReferral,
   "tags": null,
   "redeem": true,
   "onFailure": null,

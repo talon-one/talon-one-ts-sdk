@@ -11,7 +11,7 @@ Name | Type
 `tags` | Array&lt;string&gt;
 `operator` | string
 `value` | string
-`achievement` | [UpdateAchievementProgressBlock1Achievement](UpdateAchievementProgressBlock1Achievement.md)
+`achievement` | [AchievementBlockReference](AchievementBlockReference.md)
 
 ## Example
 

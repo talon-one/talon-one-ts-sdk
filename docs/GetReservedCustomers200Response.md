@@ -7,7 +7,7 @@
 Name | Type
 ------------ | -------------
 `totalResultSize` | number
-`data` | [Array&lt;CustomerProfile&gt;](CustomerProfile.md)
+`data` | [Array&lt;CustomerReservation&gt;](CustomerReservation.md)
 
 ## Example
 

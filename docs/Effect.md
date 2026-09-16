@@ -1,6 +1,7 @@
 
 # Effect
 
+A generic effect that is fired by a triggered campaign. The `effectType` field selects the concrete effect variant and the shape of `props`.
 
 ## Properties
 
@@ -23,7 +24,7 @@ Name | Type
 `selectedPrice` | number
 `adjustmentReferenceId` | string
 `rewardId` | number
-`props` | any
+`props` | [WillAwardGiveawayEffectProps](WillAwardGiveawayEffectProps.md)
 
 ## Example
 
@@ -37,7 +38,7 @@ const example = {
   "rulesetId": 73,
   "ruleIndex": 2,
   "ruleName": Give 20% discount,
-  "effectType": rejectCoupon,
+  "effectType": null,
   "triggeredByCoupon": 4928,
   "triggeredForCatalogItem": 786,
   "conditionIndex": 786,

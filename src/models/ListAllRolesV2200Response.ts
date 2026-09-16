@@ -28,11 +28,11 @@ import {
  */
 export interface ListAllRolesV2200Response {
     /**
-     * 
+     * The total number of roles returned.
      */
     totalResultSize: number;
     /**
-     * 
+     * The list of roles.
      */
     data: Array<RoleV2>;
 }

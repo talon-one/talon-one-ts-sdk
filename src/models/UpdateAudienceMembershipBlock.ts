@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UpdateAudienceMembershipBlock1Audience } from './UpdateAudienceMembershipBlock1Audience';
+import type { AudienceBlockReference } from './AudienceBlockReference';
 import {
-    UpdateAudienceMembershipBlock1AudienceFromJSON,
-    UpdateAudienceMembershipBlock1AudienceFromJSONTyped,
-    UpdateAudienceMembershipBlock1AudienceToJSON,
-    UpdateAudienceMembershipBlock1AudienceToJSONTyped,
-} from './UpdateAudienceMembershipBlock1Audience';
+    AudienceBlockReferenceFromJSON,
+    AudienceBlockReferenceFromJSONTyped,
+    AudienceBlockReferenceToJSON,
+    AudienceBlockReferenceToJSONTyped,
+} from './AudienceBlockReference';
 
 /**
  * 
@@ -48,9 +48,9 @@ export interface UpdateAudienceMembershipBlock {
      */
     profile: UpdateAudienceMembershipBlockProfileEnum;
     /**
-     * 
+     * The audience to add the customer to or remove them from.
      */
-    audience: UpdateAudienceMembershipBlock1Audience;
+    audience: AudienceBlockReference;
 }
 
 
@@ -100,7 +100,7 @@ export function UpdateAudienceMembershipBlockFromJSONTyped(json: any, ignoreDisc
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
         'profile': json['profile'],
-        'audience': UpdateAudienceMembershipBlock1AudienceFromJSON(json['audience']),
+        'audience': AudienceBlockReferenceFromJSON(json['audience']),
     };
 }
 
@@ -118,7 +118,7 @@ export function UpdateAudienceMembershipBlockToJSONTyped(value?: Omit<UpdateAudi
         'type': value['type'],
         'operator': value['operator'],
         'profile': value['profile'],
-        'audience': UpdateAudienceMembershipBlock1AudienceToJSON(value['audience']),
+        'audience': AudienceBlockReferenceToJSON(value['audience']),
     };
 }
 

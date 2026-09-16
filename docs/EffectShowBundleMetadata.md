@@ -1,0 +1,68 @@
+
+# EffectShowBundleMetadata
+
+
+## Properties
+
+Name | Type
+------------ | -------------
+`experimentId` | number
+`campaignId` | number
+`rulesetId` | number
+`ruleIndex` | number
+`ruleName` | string
+`effectType` | string
+`triggeredByCoupon` | number
+`triggeredForCatalogItem` | number
+`conditionIndex` | number
+`evaluationGroupID` | number
+`evaluationGroupMode` | string
+`campaignRevisionId` | number
+`campaignRevisionVersionId` | number
+`selectedPriceType` | string
+`selectedPrice` | number
+`adjustmentReferenceId` | string
+`rewardId` | number
+`props` | [ShowBundleMetadataEffectProps](ShowBundleMetadataEffectProps.md)
+
+## Example
+
+```typescript
+import type { EffectShowBundleMetadata } from 'talon_one_sdk'
+
+// TODO: Update the object below with actual values
+const example = {
+  "experimentId": 12,
+  "campaignId": 244,
+  "rulesetId": 73,
+  "ruleIndex": 2,
+  "ruleName": Give 20% discount,
+  "effectType": null,
+  "triggeredByCoupon": 4928,
+  "triggeredForCatalogItem": 786,
+  "conditionIndex": 786,
+  "evaluationGroupID": 3,
+  "evaluationGroupMode": stackable,
+  "campaignRevisionId": 1,
+  "campaignRevisionVersionId": 5,
+  "selectedPriceType": member,
+  "selectedPrice": 100,
+  "adjustmentReferenceId": 68851723-e6fa-488f-ace9-112581e6c19b,
+  "rewardId": 7,
+  "props": null,
+} satisfies EffectShowBundleMetadata
+
+console.log(example)
+
+// Convert the instance to a JSON string
+const exampleJSON: string = JSON.stringify(example)
+console.log(exampleJSON)
+
+// Parse the JSON string back to an object
+const exampleParsed = JSON.parse(exampleJSON) as EffectShowBundleMetadata
+console.log(exampleParsed)
+```
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+

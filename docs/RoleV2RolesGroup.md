@@ -1,6 +1,7 @@
 
 # RoleV2RolesGroup
 
+A map of target entities to their permission sets.
 
 ## Properties
 
@@ -21,7 +22,7 @@ const example = {
   "applications": {1={application=Application permission set}, 3={campaign=Campaign manager permission set}, 4={draftCampaign=Campaign read-only permission set}, 5={tools=Tools permission set}},
   "loyaltyPrograms": {10=Loyalty program manager permission set},
   "campaignAccessGroups": {5=Campaign access group manager permission set},
-  "account": null,
+  "account": Account administration permission set,
 } satisfies RoleV2RolesGroup
 
 console.log(example)

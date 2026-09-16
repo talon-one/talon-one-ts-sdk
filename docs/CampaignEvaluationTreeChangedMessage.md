@@ -17,7 +17,7 @@ import type { CampaignEvaluationTreeChangedMessage } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "notificationType": CampaignNotification,
+  "notificationType": CampaignEvaluationTreeChanged,
   "totalResultSize": null,
   "data": null,
 } satisfies CampaignEvaluationTreeChangedMessage

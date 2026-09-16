@@ -13,6 +13,7 @@ Name | Type
 `attributes` | object
 `responseContent` | Array&lt;string&gt;
 `loyaltyCards` | Array&lt;string&gt;
+`rewardIntegrationIds` | Array&lt;string&gt;
 
 ## Example
 
@@ -28,6 +29,7 @@ const example = {
   "attributes": {myAttribute=myValue},
   "responseContent": [triggeredCampaigns, customerProfile],
   "loyaltyCards": [loyalty-card-1],
+  "rewardIntegrationIds": [5c0b5e6d-3f8a-4c2b-9f1e-2a7d6b4c8e90],
 } satisfies IntegrationEventV2Request
 
 console.log(example)

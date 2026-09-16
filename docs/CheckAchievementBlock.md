@@ -10,7 +10,7 @@ Name | Type
 `type` | string
 `tags` | Array&lt;string&gt;
 `operator` | string
-`achievement` | [CheckAchievementBlock1Achievement](CheckAchievementBlock1Achievement.md)
+`achievement` | [AchievementBlockReference](AchievementBlockReference.md)
 `onFailure` | [Array&lt;Block&gt;](Block.md)
 
 ## Example

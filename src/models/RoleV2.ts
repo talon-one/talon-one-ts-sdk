@@ -22,7 +22,7 @@ import {
 } from './RoleV2Permissions';
 
 /**
- * 
+ * Represents a role with its associated permissions and members.
  * @export
  * @interface RoleV2
  */
@@ -60,7 +60,7 @@ export interface RoleV2 {
      */
     members?: Array<number>;
     /**
-     * Identifies if the role is read-only. For read-only roles, you can only assign or unassign users. You cannot edit any other properties, such as the name, description, or permissions. The 'isReadonly' property cannot be set for new or existing roles. It is reserved for predefined roles, such as the Talon.One support role.
+     * Identifies if the role is read-only. For read-only roles, you can only assign or unassign users. You cannot edit any other properties, such as the name, description, or permissions. This property cannot be set for new or existing roles. It is reserved for predefined roles, such as the Talon.One support role.
      */
     isReadonly?: boolean;
 }

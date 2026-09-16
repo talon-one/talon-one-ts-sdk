@@ -9,7 +9,7 @@ Name | Type
 `id` | string
 `type` | string
 `tags` | Array&lt;string&gt;
-`customEffect` | [TriggerCustomEffectBlock1CustomEffect](TriggerCustomEffectBlock1CustomEffect.md)
+`customEffect` | [CustomEffectBlockReference](CustomEffectBlockReference.md)
 `params` | { [key: string]: any; }
 `target` | [TriggerCustomEffectBlock1Target](TriggerCustomEffectBlock1Target.md)
 `onError` | { [key: string]: Array&lt;Block&gt;; }

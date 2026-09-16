@@ -11,7 +11,7 @@ Name | Type
 `tags` | Array&lt;string&gt;
 `operator` | string
 `subledger` | string
-`tier` | [CheckTierBlock1Tier](CheckTierBlock1Tier.md)
+`tier` | [TierBlockReference](TierBlockReference.md)
 `onFailure` | [Array&lt;Block&gt;](Block.md)
 
 ## Example

@@ -47,6 +47,11 @@ export interface CustomerProfileIntegrationRequestV2 {
      * Audiences memberships changes for this profile.
      */
     audiencesChanges?: ProfileAudiencesChanges;
+    /**
+     * The integration IDs of the unlocked rewards that can be used in this request.
+     * 
+     */
+    rewardIntegrationIds?: Array<string>;
 }
 
 
@@ -89,6 +94,7 @@ export function CustomerProfileIntegrationRequestV2FromJSONTyped(json: any, igno
         'evaluableCampaignIds': json['evaluableCampaignIds'] == null ? undefined : json['evaluableCampaignIds'],
         'responseContent': json['responseContent'] == null ? undefined : json['responseContent'],
         'audiencesChanges': json['audiencesChanges'] == null ? undefined : ProfileAudiencesChangesFromJSON(json['audiencesChanges']),
+        'rewardIntegrationIds': json['rewardIntegrationIds'] == null ? undefined : json['rewardIntegrationIds'],
     };
 }
 
@@ -107,6 +113,7 @@ export function CustomerProfileIntegrationRequestV2ToJSONTyped(value?: CustomerP
         'evaluableCampaignIds': value['evaluableCampaignIds'],
         'responseContent': value['responseContent'],
         'audiencesChanges': ProfileAudiencesChangesToJSON(value['audiencesChanges']),
+        'rewardIntegrationIds': value['rewardIntegrationIds'],
     };
 }
 

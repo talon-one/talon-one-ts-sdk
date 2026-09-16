@@ -54,6 +54,11 @@ export interface IntegrationEventV2Request {
      * Identifiers of the loyalty cards used during this event.
      */
     loyaltyCards?: Array<string>;
+    /**
+     * The integration IDs of the unlocked rewards that can be used in this event.
+     * 
+     */
+    rewardIntegrationIds?: Array<string>;
 }
 
 
@@ -100,6 +105,7 @@ export function IntegrationEventV2RequestFromJSONTyped(json: any, ignoreDiscrimi
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'responseContent': json['responseContent'] == null ? undefined : json['responseContent'],
         'loyaltyCards': json['loyaltyCards'] == null ? undefined : json['loyaltyCards'],
+        'rewardIntegrationIds': json['rewardIntegrationIds'] == null ? undefined : json['rewardIntegrationIds'],
     };
 }
 
@@ -121,6 +127,7 @@ export function IntegrationEventV2RequestToJSONTyped(value?: IntegrationEventV2R
         'attributes': value['attributes'],
         'responseContent': value['responseContent'],
         'loyaltyCards': value['loyaltyCards'],
+        'rewardIntegrationIds': value['rewardIntegrationIds'],
     };
 }
 

@@ -32,9 +32,9 @@ export interface CheckReferralBlock {
      */
     readonly id?: string;
     /**
-     * Identifies the block variant and determines which additional properties are present in it.
+     * A block discriminator of type `checkReferral`.
      */
-    type: string;
+    type: CheckReferralBlockTypeEnum;
     /**
      * Semantic labels attached to this block.
      */
@@ -49,12 +49,24 @@ export interface CheckReferralBlock {
     onFailure?: Array<Block>;
 }
 
+
+/**
+ * @export
+ */
+export const CheckReferralBlockTypeEnum = {
+    CheckReferral: 'checkReferral',
+} as const;
+export type CheckReferralBlockTypeEnum = typeof CheckReferralBlockTypeEnum[keyof typeof CheckReferralBlockTypeEnum];
+
+
 /**
  * Check if a given object implements the CheckReferralBlock interface.
  */
 export function instanceOfCheckReferralBlock(value: object): value is CheckReferralBlock {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'checkReferral') return false;
+    
     if (!('redeem' in _v) || _v['redeem'] === undefined) return false;
     return true;
 }

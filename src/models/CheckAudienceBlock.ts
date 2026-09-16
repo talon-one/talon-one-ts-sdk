@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { AudienceBlockReference } from './AudienceBlockReference';
+import {
+    AudienceBlockReferenceFromJSON,
+    AudienceBlockReferenceFromJSONTyped,
+    AudienceBlockReferenceToJSON,
+    AudienceBlockReferenceToJSONTyped,
+} from './AudienceBlockReference';
 import type { Block } from './Block';
 import {
     BlockFromJSON,
@@ -20,13 +27,6 @@ import {
     BlockToJSON,
     BlockToJSONTyped,
 } from './Block';
-import type { CheckAudienceBlock1Audience } from './CheckAudienceBlock1Audience';
-import {
-    CheckAudienceBlock1AudienceFromJSON,
-    CheckAudienceBlock1AudienceFromJSONTyped,
-    CheckAudienceBlock1AudienceToJSON,
-    CheckAudienceBlock1AudienceToJSONTyped,
-} from './CheckAudienceBlock1Audience';
 
 /**
  * 
@@ -55,9 +55,9 @@ export interface CheckAudienceBlock {
      */
     profile: CheckAudienceBlockProfileEnum;
     /**
-     * 
+     * The audience to check the profile against.
      */
-    audience: CheckAudienceBlock1Audience;
+    audience: AudienceBlockReference;
     /**
      * Promotion blocks evaluated when this block fails or returns false.
      */
@@ -113,7 +113,7 @@ export function CheckAudienceBlockFromJSONTyped(json: any, ignoreDiscriminator: 
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
         'profile': json['profile'],
-        'audience': CheckAudienceBlock1AudienceFromJSON(json['audience']),
+        'audience': AudienceBlockReferenceFromJSON(json['audience']),
         'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
@@ -132,7 +132,7 @@ export function CheckAudienceBlockToJSONTyped(value?: Omit<CheckAudienceBlock, '
         'type': value['type'],
         'operator': value['operator'],
         'profile': value['profile'],
-        'audience': CheckAudienceBlock1AudienceToJSON(value['audience']),
+        'audience': AudienceBlockReferenceToJSON(value['audience']),
         'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }

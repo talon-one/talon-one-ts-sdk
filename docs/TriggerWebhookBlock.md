@@ -9,7 +9,7 @@ Name | Type
 `id` | string
 `type` | string
 `tags` | Array&lt;string&gt;
-`webhook` | [TriggerWebhookBlock1Webhook](TriggerWebhookBlock1Webhook.md)
+`webhook` | [WebhookBlockReference](WebhookBlockReference.md)
 `params` | { [key: string]: any; }
 `onError` | { [key: string]: Array&lt;Block&gt;; }
 
