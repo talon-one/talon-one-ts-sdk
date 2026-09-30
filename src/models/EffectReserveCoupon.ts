@@ -96,6 +96,10 @@ export interface EffectReserveCoupon {
      */
     rewardId?: number;
     /**
+     * The integration ID of the specific customer reward whose usage produced this effect.
+     */
+    rewardIntegrationId?: string;
+    /**
      * The properties of the `reserveCoupon` effect.
      */
     props: ReserveCouponEffectProps;
@@ -154,6 +158,7 @@ export function EffectReserveCouponFromJSONTyped(json: any, ignoreDiscriminator:
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
         'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
+        'rewardIntegrationId': json['rewardIntegrationId'] == null ? undefined : json['rewardIntegrationId'],
         'props': ReserveCouponEffectPropsFromJSON(json['props']),
     };
 }
@@ -186,6 +191,7 @@ export function EffectReserveCouponToJSONTyped(value?: EffectReserveCoupon | nul
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
         'rewardId': value['rewardId'],
+        'rewardIntegrationId': value['rewardIntegrationId'],
         'props': ReserveCouponEffectPropsToJSON(value['props']),
     };
 }

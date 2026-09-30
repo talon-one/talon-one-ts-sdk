@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`assignmentType` | string
 `isVariantAssignmentExternal` | boolean
 `campaign` | [NewCampaign](NewCampaign.md)
 `goalType` | string
@@ -18,6 +19,7 @@ import type { NewExperiment } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
+  "assignmentType": random,
   "isVariantAssignmentExternal": null,
   "campaign": null,
   "goalType": null,

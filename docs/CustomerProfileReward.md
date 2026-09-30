@@ -20,7 +20,7 @@ Name | Type
 `usedAt` | Date
 `usedByProfileIntegrationId` | string
 `loyaltyProgramId` | number
-`loyaltyCardIdentifier` | string
+`loyaltyCardId` | string
 
 ## Example
 
@@ -42,7 +42,7 @@ const example = {
   "usedAt": 2026-07-02T10:30:00Z,
   "usedByProfileIntegrationId": customer2840,
   "loyaltyProgramId": 9,
-  "loyaltyCardIdentifier": summer-loyalty-card-0543,
+  "loyaltyCardId": summer-loyalty-card-0543,
 } satisfies CustomerProfileReward
 
 console.log(example)

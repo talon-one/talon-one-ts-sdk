@@ -32,7 +32,8 @@ export interface NewExperimentVariant {
      */
     name: string;
     /**
-     * The percentage split of this variant. The sum of all variant percentages must be 100.
+     * The percentage split of this variant. For `random` assignment, the split must be between 1 and 99 and the sum across all variants must equal 100. Ignored for `audience` and `external` assignment.
+     * 
      */
     weight: number;
     /**
@@ -43,6 +44,11 @@ export interface NewExperimentVariant {
      * 
      */
     isPrimary: boolean;
+    /**
+     * The ID of the audience this variant targets. Only used when the experiment `assignmentType` is `audience`.
+     * 
+     */
+    audienceId?: number;
 }
 
 /**
@@ -71,6 +77,7 @@ export function NewExperimentVariantFromJSONTyped(json: any, ignoreDiscriminator
         'weight': json['weight'],
         'ruleset': NewRulesetFromJSON(json['ruleset']),
         'isPrimary': json['isPrimary'],
+        'audienceId': json['audienceId'] == null ? undefined : json['audienceId'],
     };
 }
 
@@ -89,6 +96,7 @@ export function NewExperimentVariantToJSONTyped(value?: NewExperimentVariant | n
         'weight': value['weight'],
         'ruleset': NewRulesetToJSON(value['ruleset']),
         'isPrimary': value['isPrimary'],
+        'audienceId': value['audienceId'],
     };
 }
 

@@ -10,6 +10,7 @@ Name | Type
 `weight` | number
 `ruleset` | [NewRuleset](NewRuleset.md)
 `isPrimary` | boolean
+`audienceId` | number
 
 ## Example
 
@@ -22,6 +23,7 @@ const example = {
   "weight": 13,
   "ruleset": null,
   "isPrimary": true,
+  "audienceId": 55,
 } satisfies NewExperimentVariant
 
 console.log(example)

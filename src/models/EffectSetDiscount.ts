@@ -96,6 +96,10 @@ export interface EffectSetDiscount {
      */
     rewardId?: number;
     /**
+     * The integration ID of the specific customer reward whose usage produced this effect.
+     */
+    rewardIntegrationId?: string;
+    /**
      * The properties of the `setDiscount` effect.
      */
     props: SetDiscountEffectProps;
@@ -154,6 +158,7 @@ export function EffectSetDiscountFromJSONTyped(json: any, ignoreDiscriminator: b
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
         'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
+        'rewardIntegrationId': json['rewardIntegrationId'] == null ? undefined : json['rewardIntegrationId'],
         'props': SetDiscountEffectPropsFromJSON(json['props']),
     };
 }
@@ -186,6 +191,7 @@ export function EffectSetDiscountToJSONTyped(value?: EffectSetDiscount | null, i
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
         'rewardId': value['rewardId'],
+        'rewardIntegrationId': value['rewardIntegrationId'],
         'props': SetDiscountEffectPropsToJSON(value['props']),
     };
 }

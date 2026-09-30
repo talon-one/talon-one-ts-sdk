@@ -28,10 +28,17 @@ import {
  */
 export interface NewExperiment {
     /**
-     * The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.
+     * Controls how customers are assigned to experiment variants. Either `assignmentType` or `isVariantAssignmentExternal` must be provided; `assignmentType` takes priority when both are present. - `random`: Talon.One assigns customers randomly based on variant weights. - `external`: Variant assignment is handled externally. - `audience`: Each variant targets a specific audience; customers are
+     *   assigned based on audience membership.
      * 
      */
-    isVariantAssignmentExternal: boolean;
+    assignmentType?: NewExperimentAssignmentTypeEnum;
+    /**
+     * Deprecated. Use `assignmentType` instead. Either `assignmentType` or `isVariantAssignmentExternal` must be provided. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.
+     * 
+     * @deprecated
+     */
+    isVariantAssignmentExternal?: boolean;
     /**
      * 
      */
@@ -52,6 +59,16 @@ export interface NewExperiment {
 /**
  * @export
  */
+export const NewExperimentAssignmentTypeEnum = {
+    Random: 'random',
+    External: 'external',
+    Audience: 'audience',
+} as const;
+export type NewExperimentAssignmentTypeEnum = typeof NewExperimentAssignmentTypeEnum[keyof typeof NewExperimentAssignmentTypeEnum];
+
+/**
+ * @export
+ */
 export const NewExperimentGoalTypeEnum = {
     Other: 'other',
     MaximizeRevenue: 'maximize_revenue',
@@ -66,7 +83,6 @@ export type NewExperimentGoalTypeEnum = typeof NewExperimentGoalTypeEnum[keyof t
  */
 export function instanceOfNewExperiment(value: object): value is NewExperiment {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('isVariantAssignmentExternal' in _v) || _v['isVariantAssignmentExternal'] === undefined) return false;
     if (!('campaign' in _v) || _v['campaign'] === undefined) return false;
     if (!('goalType' in _v) || _v['goalType'] === undefined) return false;
     return true;
@@ -82,7 +98,8 @@ export function NewExperimentFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'isVariantAssignmentExternal': json['isVariantAssignmentExternal'],
+        'assignmentType': json['assignmentType'] == null ? undefined : json['assignmentType'],
+        'isVariantAssignmentExternal': json['isVariantAssignmentExternal'] == null ? undefined : json['isVariantAssignmentExternal'],
         'campaign': NewCampaignFromJSON(json['campaign']),
         'goalType': json['goalType'],
         'goalDescription': json['goalDescription'] == null ? undefined : json['goalDescription'],
@@ -100,6 +117,7 @@ export function NewExperimentToJSONTyped(value?: NewExperiment | null, ignoreDis
 
     return {
         
+        'assignmentType': value['assignmentType'],
         'isVariantAssignmentExternal': value['isVariantAssignmentExternal'],
         'campaign': NewCampaignToJSON(value['campaign']),
         'goalType': value['goalType'],

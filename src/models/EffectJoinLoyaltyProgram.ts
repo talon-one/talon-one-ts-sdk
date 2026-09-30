@@ -96,6 +96,10 @@ export interface EffectJoinLoyaltyProgram {
      */
     rewardId?: number;
     /**
+     * The integration ID of the specific customer reward whose usage produced this effect.
+     */
+    rewardIntegrationId?: string;
+    /**
      * The properties of the `joinLoyaltyProgram` effect.
      */
     props: JoinLoyaltyProgramEffectProps;
@@ -154,6 +158,7 @@ export function EffectJoinLoyaltyProgramFromJSONTyped(json: any, ignoreDiscrimin
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
         'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
+        'rewardIntegrationId': json['rewardIntegrationId'] == null ? undefined : json['rewardIntegrationId'],
         'props': JoinLoyaltyProgramEffectPropsFromJSON(json['props']),
     };
 }
@@ -186,6 +191,7 @@ export function EffectJoinLoyaltyProgramToJSONTyped(value?: EffectJoinLoyaltyPro
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
         'rewardId': value['rewardId'],
+        'rewardIntegrationId': value['rewardIntegrationId'],
         'props': JoinLoyaltyProgramEffectPropsToJSON(value['props']),
     };
 }

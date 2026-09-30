@@ -28,10 +28,11 @@ import {
  */
 export interface UpdateExperiment {
     /**
-     * The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.
+     * Deprecated and ignored. The assignment type is set at experiment creation and cannot be changed. Use `assignmentType` when creating an experiment instead.
      * 
+     * @deprecated
      */
-    isVariantAssignmentExternal: boolean;
+    isVariantAssignmentExternal?: boolean;
     /**
      * 
      */
@@ -66,7 +67,6 @@ export type UpdateExperimentGoalTypeEnum = typeof UpdateExperimentGoalTypeEnum[k
  */
 export function instanceOfUpdateExperiment(value: object): value is UpdateExperiment {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('isVariantAssignmentExternal' in _v) || _v['isVariantAssignmentExternal'] === undefined) return false;
     if (!('campaign' in _v) || _v['campaign'] === undefined) return false;
     return true;
 }
@@ -81,7 +81,7 @@ export function UpdateExperimentFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'isVariantAssignmentExternal': json['isVariantAssignmentExternal'],
+        'isVariantAssignmentExternal': json['isVariantAssignmentExternal'] == null ? undefined : json['isVariantAssignmentExternal'],
         'campaign': UpdateCampaignFromJSON(json['campaign']),
         'goalType': json['goalType'] == null ? undefined : json['goalType'],
         'goalDescription': json['goalDescription'] == null ? undefined : json['goalDescription'],

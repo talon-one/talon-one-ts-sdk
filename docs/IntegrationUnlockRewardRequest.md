@@ -9,7 +9,7 @@ Name | Type
 ------------ | -------------
 `integrationId` | string
 `profileIntegrationId` | string
-`cardIdentifier` | string
+`loyaltyCardId` | string
 `loyaltyProgramId` | number
 `subledgerId` | string
 `responseContent` | Array&lt;string&gt;
@@ -23,7 +23,7 @@ import type { IntegrationUnlockRewardRequest } from 'talon_one_sdk'
 const example = {
   "integrationId": reward-unlock-123,
   "profileIntegrationId": customer1,
-  "cardIdentifier": summer-loyalty-card-0543,
+  "loyaltyCardId": summer-loyalty-card-0543,
   "loyaltyProgramId": 2,
   "subledgerId": sub1,
   "responseContent": [customerProfile, loyalty],

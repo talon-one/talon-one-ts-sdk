@@ -96,6 +96,10 @@ export interface EffectReferralCreated {
      */
     rewardId?: number;
     /**
+     * The integration ID of the specific customer reward whose usage produced this effect.
+     */
+    rewardIntegrationId?: string;
+    /**
      * The properties of the `referralCreated` effect.
      */
     props: ReferralCreatedEffectProps;
@@ -154,6 +158,7 @@ export function EffectReferralCreatedFromJSONTyped(json: any, ignoreDiscriminato
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
         'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
+        'rewardIntegrationId': json['rewardIntegrationId'] == null ? undefined : json['rewardIntegrationId'],
         'props': ReferralCreatedEffectPropsFromJSON(json['props']),
     };
 }
@@ -186,6 +191,7 @@ export function EffectReferralCreatedToJSONTyped(value?: EffectReferralCreated |
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
         'rewardId': value['rewardId'],
+        'rewardIntegrationId': value['rewardIntegrationId'],
         'props': ReferralCreatedEffectPropsToJSON(value['props']),
     };
 }

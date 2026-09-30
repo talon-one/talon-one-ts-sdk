@@ -47,8 +47,14 @@ export interface Experiment {
      */
     applicationId: number;
     /**
-     * The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.
+     * Controls how customers are assigned to experiment variants. - `random`: Talon.One assigns customers randomly based on variant weights. - `external`: Variant assignment is handled externally. - `audience`: Each variant targets a specific audience; customers are assigned based on audience membership.
      * 
+     */
+    assignmentType?: ExperimentAssignmentTypeEnum;
+    /**
+     * Deprecated. Use `assignmentType` instead. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.
+     * 
+     * @deprecated
      */
     isVariantAssignmentExternal?: boolean;
     /**
@@ -86,6 +92,16 @@ export interface Experiment {
     deletedat?: Date;
 }
 
+
+/**
+ * @export
+ */
+export const ExperimentAssignmentTypeEnum = {
+    Random: 'random',
+    External: 'external',
+    Audience: 'audience',
+} as const;
+export type ExperimentAssignmentTypeEnum = typeof ExperimentAssignmentTypeEnum[keyof typeof ExperimentAssignmentTypeEnum];
 
 /**
  * @export
@@ -135,6 +151,7 @@ export function ExperimentFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'id': json['id'],
         'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'applicationId': json['applicationId'],
+        'assignmentType': json['assignmentType'] == null ? undefined : json['assignmentType'],
         'isVariantAssignmentExternal': json['isVariantAssignmentExternal'] == null ? undefined : json['isVariantAssignmentExternal'],
         'campaign': json['campaign'] == null ? undefined : CampaignFromJSON(json['campaign']),
         'activated': json['activated'] == null ? undefined : (parseDateTime(json['activated'])),
@@ -160,6 +177,7 @@ export function ExperimentToJSONTyped(value?: Experiment | null, ignoreDiscrimin
         'id': value['id'],
         'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
         'applicationId': value['applicationId'],
+        'assignmentType': value['assignmentType'],
         'isVariantAssignmentExternal': value['isVariantAssignmentExternal'],
         'campaign': CampaignToJSON(value['campaign']),
         'activated': value['activated'] == null ? value['activated'] : serializeDateTime(value['activated']),

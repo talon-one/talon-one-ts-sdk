@@ -55,6 +55,11 @@ export interface ExperimentVariant {
      * 
      */
     isPrimary: boolean;
+    /**
+     * The ID of the audience this variant targets. Only used when the experiment `assignmentType` is `audience`.
+     * 
+     */
+    audienceId?: number;
 }
 
 /**
@@ -86,6 +91,7 @@ export function ExperimentVariantFromJSONTyped(json: any, ignoreDiscriminator: b
         'ruleset': json['ruleset'] == null ? undefined : RulesetFromJSON(json['ruleset']),
         'weight': json['weight'] == null ? undefined : json['weight'],
         'isPrimary': json['isPrimary'],
+        'audienceId': json['audienceId'] == null ? undefined : json['audienceId'],
     };
 }
 
@@ -107,6 +113,7 @@ export function ExperimentVariantToJSONTyped(value?: ExperimentVariant | null, i
         'ruleset': RulesetToJSON(value['ruleset']),
         'weight': value['weight'],
         'isPrimary': value['isPrimary'],
+        'audienceId': value['audienceId'],
     };
 }
 

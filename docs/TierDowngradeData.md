@@ -14,6 +14,8 @@ Name | Type
 `oldTier` | string
 `tierExpirationDate` | Date
 `timestampOfTierChange` | Date
+`source` | string
+`reason` | string
 
 ## Example
 
@@ -30,6 +32,8 @@ const example = {
   "oldTier": Gold,
   "tierExpirationDate": 2023-12-01T12:23:00+02:00,
   "timestampOfTierChange": 2023-10-26T12:23:00+02:00,
+  "source": null,
+  "reason": null,
 } satisfies TierDowngradeData
 
 console.log(example)

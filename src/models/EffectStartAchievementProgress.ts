@@ -96,6 +96,10 @@ export interface EffectStartAchievementProgress {
      */
     rewardId?: number;
     /**
+     * The integration ID of the specific customer reward whose usage produced this effect.
+     */
+    rewardIntegrationId?: string;
+    /**
      * The properties of the `startAchievementProgress` effect.
      */
     props: StartAchievementProgressEffectProps;
@@ -154,6 +158,7 @@ export function EffectStartAchievementProgressFromJSONTyped(json: any, ignoreDis
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
         'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
+        'rewardIntegrationId': json['rewardIntegrationId'] == null ? undefined : json['rewardIntegrationId'],
         'props': StartAchievementProgressEffectPropsFromJSON(json['props']),
     };
 }
@@ -186,6 +191,7 @@ export function EffectStartAchievementProgressToJSONTyped(value?: EffectStartAch
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
         'rewardId': value['rewardId'],
+        'rewardIntegrationId': value['rewardIntegrationId'],
         'props': StartAchievementProgressEffectPropsToJSON(value['props']),
     };
 }

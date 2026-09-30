@@ -3874,7 +3874,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Unlock a reward for a customer. If the reward has `pointsRequired` configured, the corresponding loyalty points are deducted from the customer\'s balance.  To unlock a reward with the points of a loyalty card, provide the card in `cardIdentifier`. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
+     * Unlock a reward for a customer. If the reward has `pointsRequired` configured, the corresponding loyalty points are deducted from the customer\'s balance.  To unlock a reward with the points of a loyalty card, provide the card in `loyaltyCardId`. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
      * Unlock a reward
      */
     async unlockRewardRaw(requestParameters: UnlockRewardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationUnlockRewardResponse>> {
@@ -3885,7 +3885,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Unlock a reward for a customer. If the reward has `pointsRequired` configured, the corresponding loyalty points are deducted from the customer\'s balance.  To unlock a reward with the points of a loyalty card, provide the card in `cardIdentifier`. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
+     * Unlock a reward for a customer. If the reward has `pointsRequired` configured, the corresponding loyalty points are deducted from the customer\'s balance.  To unlock a reward with the points of a loyalty card, provide the card in `loyaltyCardId`. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
      * Unlock a reward
      */
     async unlockReward(requestParameters: UnlockRewardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationUnlockRewardResponse> {

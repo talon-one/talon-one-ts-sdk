@@ -96,6 +96,10 @@ export interface EffectSetLoyaltyPointsExpiryDate {
      */
     rewardId?: number;
     /**
+     * The integration ID of the specific customer reward whose usage produced this effect.
+     */
+    rewardIntegrationId?: string;
+    /**
      * The properties of the `setLoyaltyPointsExpiryDate` effect.
      */
     props: SetLoyaltyPointsExpiryDateEffectProps;
@@ -154,6 +158,7 @@ export function EffectSetLoyaltyPointsExpiryDateFromJSONTyped(json: any, ignoreD
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
         'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
+        'rewardIntegrationId': json['rewardIntegrationId'] == null ? undefined : json['rewardIntegrationId'],
         'props': SetLoyaltyPointsExpiryDateEffectPropsFromJSON(json['props']),
     };
 }
@@ -186,6 +191,7 @@ export function EffectSetLoyaltyPointsExpiryDateToJSONTyped(value?: EffectSetLoy
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
         'rewardId': value['rewardId'],
+        'rewardIntegrationId': value['rewardIntegrationId'],
         'props': SetLoyaltyPointsExpiryDateEffectPropsToJSON(value['props']),
     };
 }

@@ -96,6 +96,10 @@ export interface EffectShowNotification {
      */
     rewardId?: number;
     /**
+     * The integration ID of the specific customer reward whose usage produced this effect.
+     */
+    rewardIntegrationId?: string;
+    /**
      * The properties of the `showNotification` effect.
      */
     props: ShowNotificationEffectProps;
@@ -154,6 +158,7 @@ export function EffectShowNotificationFromJSONTyped(json: any, ignoreDiscriminat
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
         'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
+        'rewardIntegrationId': json['rewardIntegrationId'] == null ? undefined : json['rewardIntegrationId'],
         'props': ShowNotificationEffectPropsFromJSON(json['props']),
     };
 }
@@ -186,6 +191,7 @@ export function EffectShowNotificationToJSONTyped(value?: EffectShowNotification
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
         'rewardId': value['rewardId'],
+        'rewardIntegrationId': value['rewardIntegrationId'],
         'props': ShowNotificationEffectPropsToJSON(value['props']),
     };
 }

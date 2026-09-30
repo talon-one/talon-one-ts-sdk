@@ -52,6 +52,14 @@ export interface RuleEligibilityFailureDetails {
      */
     effectIndex?: number;
     /**
+     * The index of the rule that failed within the ruleset.
+     */
+    ruleIndex?: number;
+    /**
+     * The ID of the ruleset containing the rule that failed.
+     */
+    rulesetId?: number;
+    /**
      * Additional details about the failure.
      */
     details: string;
@@ -95,6 +103,8 @@ export function RuleEligibilityFailureDetailsFromJSONTyped(json: any, ignoreDisc
         'referralValue': json['referralValue'] == null ? undefined : json['referralValue'],
         'conditionIndex': json['conditionIndex'] == null ? undefined : json['conditionIndex'],
         'effectIndex': json['effectIndex'] == null ? undefined : json['effectIndex'],
+        'ruleIndex': json['ruleIndex'] == null ? undefined : json['ruleIndex'],
+        'rulesetId': json['rulesetId'] == null ? undefined : json['rulesetId'],
         'details': json['details'],
     };
 }
@@ -117,6 +127,8 @@ export function RuleEligibilityFailureDetailsToJSONTyped(value?: RuleEligibility
         'referralValue': value['referralValue'],
         'conditionIndex': value['conditionIndex'],
         'effectIndex': value['effectIndex'],
+        'ruleIndex': value['ruleIndex'],
+        'rulesetId': value['rulesetId'],
         'details': value['details'],
     };
 }

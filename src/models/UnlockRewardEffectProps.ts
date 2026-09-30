@@ -46,7 +46,7 @@ export interface UnlockRewardEffectProps {
      * profiles linked to it.
      * 
      */
-    cardIdentifier?: string;
+    loyaltyCardId?: string;
 }
 
 /**
@@ -77,7 +77,7 @@ export function UnlockRewardEffectPropsFromJSONTyped(json: any, ignoreDiscrimina
         'applicationId': json['applicationId'],
         'profileIntegrationId': json['profileIntegrationId'],
         'unlockedAt': (json['unlockedAt'] == null ? json['unlockedAt'] : parseDateTime(json['unlockedAt'])),
-        'cardIdentifier': json['cardIdentifier'] == null ? undefined : json['cardIdentifier'],
+        'loyaltyCardId': json['loyaltyCardId'] == null ? undefined : json['loyaltyCardId'],
     };
 }
 
@@ -97,7 +97,7 @@ export function UnlockRewardEffectPropsToJSONTyped(value?: UnlockRewardEffectPro
         'applicationId': value['applicationId'],
         'profileIntegrationId': value['profileIntegrationId'],
         'unlockedAt': value['unlockedAt'] == null ? undefined : serializeDateTime(value['unlockedAt']),
-        'cardIdentifier': value['cardIdentifier'],
+        'loyaltyCardId': value['loyaltyCardId'],
     };
 }
 

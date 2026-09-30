@@ -354,10 +354,10 @@ import {
     GetLoyaltyCards200ResponseToJSON,
 } from '../models/GetLoyaltyCards200Response';
 import {
-    type GetLoyaltyProgramProfileTransactions200Response,
-    GetLoyaltyProgramProfileTransactions200ResponseFromJSON,
-    GetLoyaltyProgramProfileTransactions200ResponseToJSON,
-} from '../models/GetLoyaltyProgramProfileTransactions200Response';
+    type GetLoyaltyProgramProfileLedgerTransactions200Response,
+    GetLoyaltyProgramProfileLedgerTransactions200ResponseFromJSON,
+    GetLoyaltyProgramProfileLedgerTransactions200ResponseToJSON,
+} from '../models/GetLoyaltyProgramProfileLedgerTransactions200Response';
 import {
     type GetLoyaltyProgramTransactions200Response,
     GetLoyaltyProgramTransactions200ResponseFromJSON,
@@ -388,6 +388,11 @@ import {
     GetWebhooks200ResponseFromJSON,
     GetWebhooks200ResponseToJSON,
 } from '../models/GetWebhooks200Response';
+import {
+    type GiveawaysPool,
+    GiveawaysPoolFromJSON,
+    GiveawaysPoolToJSON,
+} from '../models/GiveawaysPool';
 import {
     type Import,
     ImportFromJSON,
@@ -1011,7 +1016,7 @@ export interface CreateRulesetV2Request {
     /**
      * 
      */
-    rulesetV2: Omit<RulesetV2, 'id'|'created'|'userId'|'campaignId'|'templateId'|'activatedAt'|'selectors'|'bundles'|'parameters'>;
+    rulesetV2: Omit<RulesetV2, 'id'|'created'|'userId'|'campaignId'|'templateId'|'activatedAt'|'selectors'>;
 }
 
 export interface CreateSessionRequest {
@@ -3202,6 +3207,13 @@ export interface GetExportsRequest {
     entity?: GetExportsEntityEnum;
 }
 
+export interface GetGiveawaysPoolRequest {
+    /**
+     * The ID of the pool. You can find it in the Campaign Manager, in the **Incentives** section.
+     */
+    poolId: number;
+}
+
 export interface GetLoyaltyCardRequest {
     /**
      * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
@@ -3494,6 +3506,14 @@ export interface GetLoyaltyProgramProfileLedgerTransactionsRequest {
      * The number of items to skip when paging through large result sets.
      */
     skip?: number;
+    /**
+     * Whether to include the UUIDs of transactions referenced by deductions.
+     * 
+     * **Note:** Enabling this can decrease query performance, especially
+     * when no date filter is applied to a large transaction history.
+     * 
+     */
+    includeReferences?: boolean;
     /**
      * If `true`: Filters results to include only point transactions that have action-based activation and have not expired.
      * 
@@ -8411,7 +8431,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the triggered effects that match the given attributes.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `applicationid`: The ID of the Application. - `campaignid`: The ID of the campaign. - `couponid`: The ID of the coupon, when applicable to the effect. - `created`: The timestamp of the effect. - `event_type`: The name of the event. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/events). - `eventid`: The internal ID of the effect. - `name`: The effect name. See the [docs](https://docs.talon.one/docs/dev/integration-api/api-effects). - `profileintegrationid`: The ID of the customer profile, when applicable. - `props`: The [properties](https://docs.talon.one/docs/dev/integration-api/api-effects) of the effect. - `ruleindex`: The index of the rule. - `rulesetid`: The ID of the rule set. - `sessionid`: The internal ID of the session that triggered the effect. - `profileid`: The internal ID of the customer profile. - `sessionintegrationid`: The integration ID of the session. - `total_revenue`: The total revenue. - `store_integration_id`: The integration ID of the store. You choose this ID when you create a store. 
+     * Download a CSV file containing the triggered effects that match the given attributes.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `applicationid`: The ID of the Application. - `campaignid`: The ID of the campaign. - `couponid`: The ID of the coupon, when applicable to the effect. - `created`: The timestamp of the effect. - `event_type`: The name of the event. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/events). - `eventid`: The internal ID of the effect. - `name`: The effect name. See the [docs](https://docs.talon.one/docs/dev/integration-api/api-effects). - `profileintegrationid`: The ID of the customer profile, when applicable. - `props`: The [properties](https://docs.talon.one/docs/dev/integration-api/api-effects) of the effect. - `ruleindex`: The index of the rule. - `rulesetid`: The ID of the rule set. - `sessionid`: The internal ID of the session that triggered the effect. - `profileid`: The internal ID of the customer profile. - `sessionintegrationid`: The integration ID of the session. - `total_revenue`: The total revenue. - `store_integration_id`: The integration ID of the store. You choose this ID when you create a store. - `reward_id`: The ID of the reward whose rule generated this effect, when applicable. - `reward_integration_id`: The integration ID of the specific customer reward whose usage produced this effect, when applicable. 
      * Export triggered effects
      */
     async exportEffectsRaw(requestParameters: ExportEffectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
@@ -8426,7 +8446,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the triggered effects that match the given attributes.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `applicationid`: The ID of the Application. - `campaignid`: The ID of the campaign. - `couponid`: The ID of the coupon, when applicable to the effect. - `created`: The timestamp of the effect. - `event_type`: The name of the event. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/events). - `eventid`: The internal ID of the effect. - `name`: The effect name. See the [docs](https://docs.talon.one/docs/dev/integration-api/api-effects). - `profileintegrationid`: The ID of the customer profile, when applicable. - `props`: The [properties](https://docs.talon.one/docs/dev/integration-api/api-effects) of the effect. - `ruleindex`: The index of the rule. - `rulesetid`: The ID of the rule set. - `sessionid`: The internal ID of the session that triggered the effect. - `profileid`: The internal ID of the customer profile. - `sessionintegrationid`: The integration ID of the session. - `total_revenue`: The total revenue. - `store_integration_id`: The integration ID of the store. You choose this ID when you create a store. 
+     * Download a CSV file containing the triggered effects that match the given attributes.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `applicationid`: The ID of the Application. - `campaignid`: The ID of the campaign. - `couponid`: The ID of the coupon, when applicable to the effect. - `created`: The timestamp of the effect. - `event_type`: The name of the event. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/events). - `eventid`: The internal ID of the effect. - `name`: The effect name. See the [docs](https://docs.talon.one/docs/dev/integration-api/api-effects). - `profileintegrationid`: The ID of the customer profile, when applicable. - `props`: The [properties](https://docs.talon.one/docs/dev/integration-api/api-effects) of the effect. - `ruleindex`: The index of the rule. - `rulesetid`: The ID of the rule set. - `sessionid`: The internal ID of the session that triggered the effect. - `profileid`: The internal ID of the customer profile. - `sessionintegrationid`: The integration ID of the session. - `total_revenue`: The total revenue. - `store_integration_id`: The integration ID of the store. You choose this ID when you create a store. - `reward_id`: The ID of the reward whose rule generated this effect, when applicable. - `reward_integration_id`: The integration ID of the specific customer reward whose usage produced this effect, when applicable. 
      * Export triggered effects
      */
     async exportEffects(requestParameters: ExportEffectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
@@ -8696,7 +8716,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing a loyalty card ledger log of the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files). 
+     * Download a CSV file containing a loyalty card ledger log of the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `cardidentifier`: The identifier of the loyalty card. - `applicationid`: The ID of the Application. - `sessionid`: The ID of the session. - `customersessionid`: The integration ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the points. - `expirydate`: The expiration date of the points. - `id`: The ID of the transaction. - `created`: The timestamp of the transaction creation. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `transactionUUID`: Unique identifier of the transaction in the UUID format. - `validityDuration`: The duration for which the points remain active, relative to the activation date. - `remainingAmount`: The current unused amount of points, when applicable to `addition` transactions. 
      * Export card\'s ledger log
      */
     async exportLoyaltyCardLedgerRaw(requestParameters: ExportLoyaltyCardLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
@@ -8711,7 +8731,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing a loyalty card ledger log of the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files). 
+     * Download a CSV file containing a loyalty card ledger log of the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `cardidentifier`: The identifier of the loyalty card. - `applicationid`: The ID of the Application. - `sessionid`: The ID of the session. - `customersessionid`: The integration ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the points. - `expirydate`: The expiration date of the points. - `id`: The ID of the transaction. - `created`: The timestamp of the transaction creation. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `transactionUUID`: Unique identifier of the transaction in the UUID format. - `validityDuration`: The duration for which the points remain active, relative to the activation date. - `remainingAmount`: The current unused amount of points, when applicable to `addition` transactions. 
      * Export card\'s ledger log
      */
     async exportLoyaltyCardLedger(requestParameters: ExportLoyaltyCardLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
@@ -8911,7 +8931,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing a customer\'s transaction logs in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. - `transactionUUID`: Unique identifier of the transaction in the UUID format. 
+     * Download a CSV file containing a customer\'s transaction logs in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. - `transactionUUID`: Unique identifier of the transaction in the UUID format. - `validityDuration`: The duration for which the points remain active, relative to the activation date. - `remainingAmount`: The current unused amount of points, when applicable to `addition` transactions. 
      * Export customer\'s transaction logs
      */
     async exportLoyaltyLedgerRaw(requestParameters: ExportLoyaltyLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
@@ -8926,7 +8946,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing a customer\'s transaction logs in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. - `transactionUUID`: Unique identifier of the transaction in the UUID format. 
+     * Download a CSV file containing a customer\'s transaction logs in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. - `transactionUUID`: Unique identifier of the transaction in the UUID format. - `validityDuration`: The duration for which the points remain active, relative to the activation date. - `remainingAmount`: The current unused amount of points, when applicable to `addition` transactions. 
      * Export customer\'s transaction logs
      */
     async exportLoyaltyLedger(requestParameters: ExportLoyaltyLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
@@ -12463,6 +12483,57 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getGiveawaysPool without sending the request
+     */
+    async getGiveawaysPoolRequestOpts(requestParameters: GetGiveawaysPoolRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['poolId'] == null) {
+            throw new runtime.RequiredError(
+                'poolId',
+                'Required parameter "poolId" was null or undefined when calling getGiveawaysPool().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/giveaways/pools/{poolId}`;
+        urlPath = urlPath.replace('{poolId}', encodeURIComponent(String(requestParameters['poolId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Retrieve the details of a specified giveaway pool.
+     * Get giveaway pool
+     */
+    async getGiveawaysPoolRaw(requestParameters: GetGiveawaysPoolRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GiveawaysPool>> {
+        const requestOptions = await this.getGiveawaysPoolRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GiveawaysPoolFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve the details of a specified giveaway pool.
+     * Get giveaway pool
+     */
+    async getGiveawaysPool(requestParameters: GetGiveawaysPoolRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GiveawaysPool> {
+        const response = await this.getGiveawaysPoolRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for getLoyaltyCard without sending the request
      */
     async getLoyaltyCardRequestOpts(requestParameters: GetLoyaltyCardRequest): Promise<runtime.RequestOpts> {
@@ -12923,6 +12994,10 @@ export class ManagementApi extends runtime.BaseAPI {
             queryParameters['skip'] = requestParameters['skip'];
         }
 
+        if (requestParameters['includeReferences'] != null) {
+            queryParameters['includeReferences'] = requestParameters['includeReferences'];
+        }
+
         if (requestParameters['awaitsActivation'] != null) {
             queryParameters['awaitsActivation'] = requestParameters['awaitsActivation'];
         }
@@ -12947,21 +13022,21 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  > [!note] **Note** > - For most use cases, especially real-time integrations, use the Integration API endpoint: >   [List customer\'s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). > - To retrieve all loyalty program transaction logs in a given loyalty program, use the >   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+     * Retrieve paginated results of loyalty transaction logs for the given integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger), and include the UUIDs of transactions referenced by deductions. If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  > [!note] **Note** > - For most use cases, especially real-time integrations, use the Integration API endpoint: >   [List customer\'s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). > - To retrieve all loyalty program transaction logs in a given loyalty program, use the >   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
      * List customer\'s loyalty transactions (Management API)
      */
-    async getLoyaltyProgramProfileLedgerTransactionsRaw(requestParameters: GetLoyaltyProgramProfileLedgerTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyProgramProfileTransactions200Response>> {
+    async getLoyaltyProgramProfileLedgerTransactionsRaw(requestParameters: GetLoyaltyProgramProfileLedgerTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLoyaltyProgramProfileLedgerTransactions200Response>> {
         const requestOptions = await this.getLoyaltyProgramProfileLedgerTransactionsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetLoyaltyProgramProfileTransactions200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetLoyaltyProgramProfileLedgerTransactions200ResponseFromJSON(jsonValue));
     }
 
     /**
-     * Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  > [!note] **Note** > - For most use cases, especially real-time integrations, use the Integration API endpoint: >   [List customer\'s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). > - To retrieve all loyalty program transaction logs in a given loyalty program, use the >   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+     * Retrieve paginated results of loyalty transaction logs for the given integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger), and include the UUIDs of transactions referenced by deductions. If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  > [!note] **Note** > - For most use cases, especially real-time integrations, use the Integration API endpoint: >   [List customer\'s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). > - To retrieve all loyalty program transaction logs in a given loyalty program, use the >   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
      * List customer\'s loyalty transactions (Management API)
      */
-    async getLoyaltyProgramProfileLedgerTransactions(requestParameters: GetLoyaltyProgramProfileLedgerTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetLoyaltyProgramProfileTransactions200Response> {
+    async getLoyaltyProgramProfileLedgerTransactions(requestParameters: GetLoyaltyProgramProfileLedgerTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetLoyaltyProgramProfileLedgerTransactions200Response> {
         const response = await this.getLoyaltyProgramProfileLedgerTransactionsRaw(requestParameters, initOverrides);
         return await response.value();
     }

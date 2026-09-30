@@ -133,7 +133,7 @@ export interface Environment {
      */
     variables: string;
     /**
-     * The giveaways pools that the application is subscribed to.
+     * The giveaway pools that the Application is subscribed to.
      */
     giveawaysPools?: Array<GiveawaysPool>;
     /**

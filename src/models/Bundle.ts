@@ -22,7 +22,7 @@ export interface Bundle {
     /**
      * An identifier derived from the bundle content.
      */
-    id: string;
+    readonly id?: string;
     /**
      * The name of the bundle.
      */
@@ -60,7 +60,6 @@ export type BundleTypeEnum = typeof BundleTypeEnum[keyof typeof BundleTypeEnum];
  */
 export function instanceOfBundle(value: object): value is Bundle {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('name' in _v) || _v['name'] === undefined) return false;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (_v['type'] !== 'bundle') return false;
@@ -80,7 +79,7 @@ export function BundleFromJSONTyped(json: any, ignoreDiscriminator: boolean): Bu
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'name': json['name'],
         'type': json['type'],
         'sources': json['sources'],
@@ -93,14 +92,13 @@ export function BundleToJSON(json: any): Bundle {
     return BundleToJSONTyped(json, false);
 }
 
-export function BundleToJSONTyped(value?: Bundle | null, ignoreDiscriminator: boolean = false): any {
+export function BundleToJSONTyped(value?: Omit<Bundle, 'id'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'id': value['id'],
         'name': value['name'],
         'type': value['type'],
         'sources': value['sources'],

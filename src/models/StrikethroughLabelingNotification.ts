@@ -69,7 +69,7 @@ export interface StrikethroughLabelingNotification {
      */
     notificationType: StrikethroughLabelingNotificationNotificationTypeEnum;
     /**
-     * Timestamp at which the notification was sent.
+     * Timestamp when the notification was sent by Talon.One. There may be a delay before the notification is delivered to the user.
      */
     sentAt: Date;
 }

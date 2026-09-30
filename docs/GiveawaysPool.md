@@ -1,7 +1,7 @@
 
 # GiveawaysPool
 
-Giveaways pools is an entity for managing multiple similar giveaways.
+A giveaway pool is an entity for managing multiple similar giveaways.
 
 ## Properties
 

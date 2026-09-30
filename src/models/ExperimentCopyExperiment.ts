@@ -28,10 +28,16 @@ import {
  */
 export interface ExperimentCopyExperiment {
     /**
-     * The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.
+     * Controls how customers are assigned to experiment variants in the copied experiment. - `random`: Talon.One assigns customers randomly based on variant weights. - `external`: The variant assignment is handled externally. - `audience`: Each variant targets a specific audience; customers are assigned based on audience membership. This is the source of truth. When omitted, it is derived from the deprecated `isVariantAssignmentExternal` flag (`true` maps to `external`, otherwise `random`).
      * 
      */
-    isVariantAssignmentExternal: boolean;
+    assignmentType?: ExperimentCopyExperimentAssignmentTypeEnum;
+    /**
+     * The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. Deprecated: use `assignmentType` instead. Kept for backwards compatibility with older clients; when set and `assignmentType` is omitted, `true` maps to `external`.
+     * 
+     * @deprecated
+     */
+    isVariantAssignmentExternal?: boolean;
     /**
      * 
      */
@@ -52,6 +58,16 @@ export interface ExperimentCopyExperiment {
 /**
  * @export
  */
+export const ExperimentCopyExperimentAssignmentTypeEnum = {
+    Random: 'random',
+    External: 'external',
+    Audience: 'audience',
+} as const;
+export type ExperimentCopyExperimentAssignmentTypeEnum = typeof ExperimentCopyExperimentAssignmentTypeEnum[keyof typeof ExperimentCopyExperimentAssignmentTypeEnum];
+
+/**
+ * @export
+ */
 export const ExperimentCopyExperimentGoalTypeEnum = {
     Other: 'other',
     MaximizeRevenue: 'maximize_revenue',
@@ -66,7 +82,6 @@ export type ExperimentCopyExperimentGoalTypeEnum = typeof ExperimentCopyExperime
  */
 export function instanceOfExperimentCopyExperiment(value: object): value is ExperimentCopyExperiment {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('isVariantAssignmentExternal' in _v) || _v['isVariantAssignmentExternal'] === undefined) return false;
     if (!('campaign' in _v) || _v['campaign'] === undefined) return false;
     return true;
 }
@@ -81,7 +96,8 @@ export function ExperimentCopyExperimentFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'isVariantAssignmentExternal': json['isVariantAssignmentExternal'],
+        'assignmentType': json['assignmentType'] == null ? undefined : json['assignmentType'],
+        'isVariantAssignmentExternal': json['isVariantAssignmentExternal'] == null ? undefined : json['isVariantAssignmentExternal'],
         'campaign': ExperimentCampaignCopyFromJSON(json['campaign']),
         'goalType': json['goalType'] == null ? undefined : json['goalType'],
         'goalDescription': json['goalDescription'] == null ? undefined : json['goalDescription'],
@@ -99,6 +115,7 @@ export function ExperimentCopyExperimentToJSONTyped(value?: ExperimentCopyExperi
 
     return {
         
+        'assignmentType': value['assignmentType'],
         'isVariantAssignmentExternal': value['isVariantAssignmentExternal'],
         'campaign': ExperimentCampaignCopyToJSON(value['campaign']),
         'goalType': value['goalType'],

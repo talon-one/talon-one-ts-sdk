@@ -96,6 +96,10 @@ export interface EffectIncreaseAchievementProgress {
      */
     rewardId?: number;
     /**
+     * The integration ID of the specific customer reward whose usage produced this effect.
+     */
+    rewardIntegrationId?: string;
+    /**
      * The properties of the `increaseAchievementProgress` effect.
      */
     props: IncreaseAchievementProgressEffectProps;
@@ -154,6 +158,7 @@ export function EffectIncreaseAchievementProgressFromJSONTyped(json: any, ignore
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
         'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
+        'rewardIntegrationId': json['rewardIntegrationId'] == null ? undefined : json['rewardIntegrationId'],
         'props': IncreaseAchievementProgressEffectPropsFromJSON(json['props']),
     };
 }
@@ -186,6 +191,7 @@ export function EffectIncreaseAchievementProgressToJSONTyped(value?: EffectIncre
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
         'rewardId': value['rewardId'],
+        'rewardIntegrationId': value['rewardIntegrationId'],
         'props': IncreaseAchievementProgressEffectPropsToJSON(value['props']),
     };
 }
