@@ -59,7 +59,28 @@ export interface TierUpgradeData {
      * The exact date and time the tier was changed.
      */
     timestampOfTierChange: Date;
+    /**
+     * The source of the tier change, whether from a points change or boost.
+     * 
+     */
+    source?: TierUpgradeDataSourceEnum;
+    /**
+     * The reason for the tier change.
+     * 
+     */
+    reason?: string;
 }
+
+
+/**
+ * @export
+ */
+export const TierUpgradeDataSourceEnum = {
+    Boost: 'boost',
+    Points: 'points',
+} as const;
+export type TierUpgradeDataSourceEnum = typeof TierUpgradeDataSourceEnum[keyof typeof TierUpgradeDataSourceEnum];
+
 
 /**
  * Check if a given object implements the TierUpgradeData interface.
@@ -96,6 +117,8 @@ export function TierUpgradeDataFromJSONTyped(json: any, ignoreDiscriminator: boo
         'nextTier': json['NextTier'] == null ? undefined : json['NextTier'],
         'tierExpirationDate': (json['TierExpirationDate'] == null ? json['TierExpirationDate'] : parseDateTime(json['TierExpirationDate'])),
         'timestampOfTierChange': (json['TimestampOfTierChange'] == null ? json['TimestampOfTierChange'] : parseDateTime(json['TimestampOfTierChange'])),
+        'source': json['Source'] == null ? undefined : json['Source'],
+        'reason': json['Reason'] == null ? undefined : json['Reason'],
     };
 }
 
@@ -120,6 +143,8 @@ export function TierUpgradeDataToJSONTyped(value?: TierUpgradeData | null, ignor
         'NextTier': value['nextTier'],
         'TierExpirationDate': value['tierExpirationDate'] == null ? undefined : serializeDateTime(value['tierExpirationDate']),
         'TimestampOfTierChange': value['timestampOfTierChange'] == null ? undefined : serializeDateTime(value['timestampOfTierChange']),
+        'Source': value['source'],
+        'Reason': value['reason'],
     };
 }
 

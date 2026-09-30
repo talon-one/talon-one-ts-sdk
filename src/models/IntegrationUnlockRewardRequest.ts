@@ -33,7 +33,7 @@ export interface IntegrationUnlockRewardRequest {
      * The identifier of the loyalty card unlocking the reward. When provided, the required points are deducted from the card's balance and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card.
      * The customer profile given in `profileIntegrationId` must be linked to the card, and the card must be active.
      */
-    cardIdentifier?: string;
+    loyaltyCardId?: string;
     /**
      * The ID of the loyalty program from which points will be deducted. Required when the reward has `pointsRequired` configured.
      */
@@ -87,7 +87,7 @@ export function IntegrationUnlockRewardRequestFromJSONTyped(json: any, ignoreDis
         
         'integrationId': json['integrationId'],
         'profileIntegrationId': json['profileIntegrationId'],
-        'cardIdentifier': json['cardIdentifier'] == null ? undefined : json['cardIdentifier'],
+        'loyaltyCardId': json['loyaltyCardId'] == null ? undefined : json['loyaltyCardId'],
         'loyaltyProgramId': json['loyaltyProgramId'] == null ? undefined : json['loyaltyProgramId'],
         'subledgerId': json['subledgerId'] == null ? undefined : json['subledgerId'],
         'responseContent': json['responseContent'] == null ? undefined : json['responseContent'],
@@ -107,7 +107,7 @@ export function IntegrationUnlockRewardRequestToJSONTyped(value?: IntegrationUnl
         
         'integrationId': value['integrationId'],
         'profileIntegrationId': value['profileIntegrationId'],
-        'cardIdentifier': value['cardIdentifier'],
+        'loyaltyCardId': value['loyaltyCardId'],
         'loyaltyProgramId': value['loyaltyProgramId'],
         'subledgerId': value['subledgerId'],
         'responseContent': value['responseContent'],

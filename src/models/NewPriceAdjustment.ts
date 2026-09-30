@@ -44,7 +44,7 @@ export interface NewPriceAdjustment {
      */
     effectiveUntil?: Date;
     /**
-     * Identifier of the context of this price adjustment (e.g. summer sale).
+     * Identifier of the context of this price adjustment (the sales event, e.g. "Summer Sale").
      */
     contextId?: string;
 }

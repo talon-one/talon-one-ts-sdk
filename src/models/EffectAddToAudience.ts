@@ -96,6 +96,10 @@ export interface EffectAddToAudience {
      */
     rewardId?: number;
     /**
+     * The integration ID of the specific customer reward whose usage produced this effect.
+     */
+    rewardIntegrationId?: string;
+    /**
      * The properties of the `addToAudience` effect.
      */
     props: AddToAudienceEffectProps;
@@ -154,6 +158,7 @@ export function EffectAddToAudienceFromJSONTyped(json: any, ignoreDiscriminator:
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
         'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
+        'rewardIntegrationId': json['rewardIntegrationId'] == null ? undefined : json['rewardIntegrationId'],
         'props': AddToAudienceEffectPropsFromJSON(json['props']),
     };
 }
@@ -186,6 +191,7 @@ export function EffectAddToAudienceToJSONTyped(value?: EffectAddToAudience | nul
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
         'rewardId': value['rewardId'],
+        'rewardIntegrationId': value['rewardIntegrationId'],
         'props': AddToAudienceEffectPropsToJSON(value['props']),
     };
 }

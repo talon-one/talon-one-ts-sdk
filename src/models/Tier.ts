@@ -42,6 +42,20 @@ export interface Tier {
      * 
      */
     downgradePolicy?: TierDowngradePolicyEnum;
+    /**
+     * Indicates whether the customer's current tier was determined based on their
+     * points balance or a temporary boost.
+     * 
+     * - `points`: The tier reflects the customer's current point balance.
+     * - `boost`: A temporary tier boost is in effect where the customer is in a higher tier than their points-based tier. The boost expires after a set duration and the customer returns to their points-based tier.
+     * 
+     */
+    source?: TierSourceEnum;
+    /**
+     * The reason for the tier assignment.
+     * 
+     */
+    reason?: string;
 }
 
 
@@ -53,6 +67,15 @@ export const TierDowngradePolicyEnum = {
     BalanceBased: 'balance_based',
 } as const;
 export type TierDowngradePolicyEnum = typeof TierDowngradePolicyEnum[keyof typeof TierDowngradePolicyEnum];
+
+/**
+ * @export
+ */
+export const TierSourceEnum = {
+    Boost: 'boost',
+    Points: 'points',
+} as const;
+export type TierSourceEnum = typeof TierSourceEnum[keyof typeof TierSourceEnum];
 
 
 /**
@@ -80,6 +103,8 @@ export function TierFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tier
         'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
         'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'downgradePolicy': json['downgradePolicy'] == null ? undefined : json['downgradePolicy'],
+        'source': json['source'] == null ? undefined : json['source'],
+        'reason': json['reason'] == null ? undefined : json['reason'],
     };
 }
 
@@ -99,6 +124,8 @@ export function TierToJSONTyped(value?: Tier | null, ignoreDiscriminator: boolea
         'startDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
         'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'downgradePolicy': value['downgradePolicy'],
+        'source': value['source'],
+        'reason': value['reason'],
     };
 }
 

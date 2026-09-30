@@ -14,6 +14,8 @@ Name | Type
 `referralValue` | string
 `conditionIndex` | number
 `effectIndex` | number
+`ruleIndex` | number
+`rulesetId` | number
 `details` | string
 
 ## Example
@@ -30,6 +32,8 @@ const example = {
   "referralValue": null,
   "conditionIndex": null,
   "effectIndex": null,
+  "ruleIndex": 0,
+  "rulesetId": 123,
   "details": null,
 } satisfies RuleEligibilityFailureDetails
 

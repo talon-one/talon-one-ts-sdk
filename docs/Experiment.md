@@ -9,6 +9,7 @@ Name | Type
 `id` | number
 `created` | Date
 `applicationId` | number
+`assignmentType` | string
 `isVariantAssignmentExternal` | boolean
 `campaign` | [Campaign](Campaign.md)
 `activated` | Date
@@ -28,6 +29,7 @@ const example = {
   "id": 6,
   "created": 2020-06-10T09:05:27.993483Z,
   "applicationId": 322,
+  "assignmentType": random,
   "isVariantAssignmentExternal": null,
   "campaign": null,
   "activated": null,

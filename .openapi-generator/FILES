@@ -135,6 +135,7 @@ docs/BetweenCheckAttributeBlock.md
 docs/Binding.md
 docs/Block.md
 docs/Blueprint.md
+docs/BoostLoyaltyTierEffectProps.md
 docs/BulkApplicationNotification.md
 docs/BulkOperationOnCampaigns.md
 docs/Bundle.md
@@ -305,6 +306,7 @@ docs/EffectAddLoyaltyPoints.md
 docs/EffectAddNegativeLoyaltyPoints.md
 docs/EffectAddToAudience.md
 docs/EffectAwardGiveaway.md
+docs/EffectBoostLoyaltyTier.md
 docs/EffectCallApi.md
 docs/EffectChangeLoyaltyTierLevel.md
 docs/EffectCouponCreated.md
@@ -457,6 +459,7 @@ docs/GetLoyaltyCardPoints200Response.md
 docs/GetLoyaltyCardTransactionLogs200Response.md
 docs/GetLoyaltyCardTransactions200Response.md
 docs/GetLoyaltyCards200Response.md
+docs/GetLoyaltyProgramProfileLedgerTransactions200Response.md
 docs/GetLoyaltyProgramProfilePoints200Response.md
 docs/GetLoyaltyProgramProfileTransactions200Response.md
 docs/GetLoyaltyProgramTransactions200Response.md
@@ -533,6 +536,7 @@ docs/LedgerEntry.md
 docs/LedgerInfo.md
 docs/LedgerPointsEntryIntegrationAPI.md
 docs/LedgerTransactionLogEntryIntegrationAPI.md
+docs/LedgerTransactionLogEntryManagementAPI.md
 docs/LibraryAttribute.md
 docs/LimitConfig.md
 docs/LimitCounter.md
@@ -689,6 +693,14 @@ docs/OktaEventPayload.md
 docs/OktaEventPayloadData.md
 docs/OktaEventTarget.md
 docs/OneTimeCode.md
+docs/OutboundLog.md
+docs/OutboundLogBase.md
+docs/OutboundLogRequest.md
+docs/OutboundLogResponse.md
+docs/OutboundLogs.md
+docs/OutboundMessage.md
+docs/OutboundMessageResponse.md
+docs/OutboundMessages.md
 docs/OutgoingIntegrationBrazePolicy.md
 docs/OutgoingIntegrationCleverTapPolicy.md
 docs/OutgoingIntegrationConfiguration.md
@@ -779,6 +791,7 @@ docs/RollbackDeductedLoyaltyPointsEffectProps.md
 docs/RollbackDiscountEffectProps.md
 docs/RollbackIncreasedAchievementProgressEffectProps.md
 docs/RollbackReferralEffectProps.md
+docs/RollbackTierBoostEffectProps.md
 docs/RollbackUseRewardEffectProps.md
 docs/Rule.md
 docs/RuleEligibility.md
@@ -1074,6 +1087,7 @@ src/models/BetweenCheckAttributeBlock.ts
 src/models/Binding.ts
 src/models/Block.ts
 src/models/Blueprint.ts
+src/models/BoostLoyaltyTierEffectProps.ts
 src/models/BulkApplicationNotification.ts
 src/models/BulkOperationOnCampaigns.ts
 src/models/Bundle.ts
@@ -1244,6 +1258,7 @@ src/models/EffectAddLoyaltyPoints.ts
 src/models/EffectAddNegativeLoyaltyPoints.ts
 src/models/EffectAddToAudience.ts
 src/models/EffectAwardGiveaway.ts
+src/models/EffectBoostLoyaltyTier.ts
 src/models/EffectCallApi.ts
 src/models/EffectChangeLoyaltyTierLevel.ts
 src/models/EffectCouponCreated.ts
@@ -1396,6 +1411,7 @@ src/models/GetLoyaltyCardPoints200Response.ts
 src/models/GetLoyaltyCardTransactionLogs200Response.ts
 src/models/GetLoyaltyCardTransactions200Response.ts
 src/models/GetLoyaltyCards200Response.ts
+src/models/GetLoyaltyProgramProfileLedgerTransactions200Response.ts
 src/models/GetLoyaltyProgramProfilePoints200Response.ts
 src/models/GetLoyaltyProgramProfileTransactions200Response.ts
 src/models/GetLoyaltyProgramTransactions200Response.ts
@@ -1471,6 +1487,7 @@ src/models/LedgerEntry.ts
 src/models/LedgerInfo.ts
 src/models/LedgerPointsEntryIntegrationAPI.ts
 src/models/LedgerTransactionLogEntryIntegrationAPI.ts
+src/models/LedgerTransactionLogEntryManagementAPI.ts
 src/models/LibraryAttribute.ts
 src/models/LimitConfig.ts
 src/models/LimitCounter.ts
@@ -1626,6 +1643,14 @@ src/models/OktaEventPayload.ts
 src/models/OktaEventPayloadData.ts
 src/models/OktaEventTarget.ts
 src/models/OneTimeCode.ts
+src/models/OutboundLog.ts
+src/models/OutboundLogBase.ts
+src/models/OutboundLogRequest.ts
+src/models/OutboundLogResponse.ts
+src/models/OutboundLogs.ts
+src/models/OutboundMessage.ts
+src/models/OutboundMessageResponse.ts
+src/models/OutboundMessages.ts
 src/models/OutgoingIntegrationBrazePolicy.ts
 src/models/OutgoingIntegrationCleverTapPolicy.ts
 src/models/OutgoingIntegrationConfiguration.ts
@@ -1716,6 +1741,7 @@ src/models/RollbackDeductedLoyaltyPointsEffectProps.ts
 src/models/RollbackDiscountEffectProps.ts
 src/models/RollbackIncreasedAchievementProgressEffectProps.ts
 src/models/RollbackReferralEffectProps.ts
+src/models/RollbackTierBoostEffectProps.ts
 src/models/RollbackUseRewardEffectProps.ts
 src/models/Rule.ts
 src/models/RuleEligibility.ts

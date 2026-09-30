@@ -95,7 +95,7 @@ export interface CustomerProfileReward {
     /**
      * The identifier of the loyalty card that the reward was unlocked with. Only returned for rewards unlocked with a loyalty card.
      */
-    loyaltyCardIdentifier?: string;
+    loyaltyCardId?: string;
 }
 
 
@@ -147,7 +147,7 @@ export function CustomerProfileRewardFromJSONTyped(json: any, ignoreDiscriminato
         'usedAt': json['usedAt'] == null ? undefined : (parseDateTime(json['usedAt'])),
         'usedByProfileIntegrationId': json['usedByProfileIntegrationId'] == null ? undefined : json['usedByProfileIntegrationId'],
         'loyaltyProgramId': json['loyaltyProgramId'] == null ? undefined : json['loyaltyProgramId'],
-        'loyaltyCardIdentifier': json['loyaltyCardIdentifier'] == null ? undefined : json['loyaltyCardIdentifier'],
+        'loyaltyCardId': json['loyaltyCardId'] == null ? undefined : json['loyaltyCardId'],
     };
 }
 
@@ -175,7 +175,7 @@ export function CustomerProfileRewardToJSONTyped(value?: CustomerProfileReward |
         'usedAt': value['usedAt'] == null ? value['usedAt'] : serializeDateTime(value['usedAt']),
         'usedByProfileIntegrationId': value['usedByProfileIntegrationId'],
         'loyaltyProgramId': value['loyaltyProgramId'],
-        'loyaltyCardIdentifier': value['loyaltyCardIdentifier'],
+        'loyaltyCardId': value['loyaltyCardId'],
     };
 }
 

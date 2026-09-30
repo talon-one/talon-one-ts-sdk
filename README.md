@@ -352,6 +352,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**getEventTypes**](docs/ManagementApi.md#geteventtypes) | **GET** /v1/event_types | List event types
 *ManagementApi* | [**getExperiment**](docs/ManagementApi.md#getexperiment) | **GET** /v1/applications/{applicationId}/experiments/{experimentId} | Get experiment in Application
 *ManagementApi* | [**getExports**](docs/ManagementApi.md#getexports) | **GET** /v1/exports | Get exports
+*ManagementApi* | [**getGiveawaysPool**](docs/ManagementApi.md#getgiveawayspool) | **GET** /v1/giveaways/pools/{poolId} | Get giveaway pool
 *ManagementApi* | [**getLoyaltyCard**](docs/ManagementApi.md#getloyaltycard) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Get loyalty card
 *ManagementApi* | [**getLoyaltyCardTransactionLogs**](docs/ManagementApi.md#getloyaltycardtransactionlogs) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card\&#39;s transactions (Management API)
 *ManagementApi* | [**getLoyaltyCards**](docs/ManagementApi.md#getloyaltycards) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards | List loyalty cards
@@ -565,6 +566,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [Binding](docs/Binding.md)
 - [Block](docs/Block.md)
 - [Blueprint](docs/Blueprint.md)
+- [BoostLoyaltyTierEffectProps](docs/BoostLoyaltyTierEffectProps.md)
 - [BulkApplicationNotification](docs/BulkApplicationNotification.md)
 - [BulkOperationOnCampaigns](docs/BulkOperationOnCampaigns.md)
 - [Bundle](docs/Bundle.md)
@@ -735,6 +737,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [EffectAddNegativeLoyaltyPoints](docs/EffectAddNegativeLoyaltyPoints.md)
 - [EffectAddToAudience](docs/EffectAddToAudience.md)
 - [EffectAwardGiveaway](docs/EffectAwardGiveaway.md)
+- [EffectBoostLoyaltyTier](docs/EffectBoostLoyaltyTier.md)
 - [EffectCallApi](docs/EffectCallApi.md)
 - [EffectChangeLoyaltyTierLevel](docs/EffectChangeLoyaltyTierLevel.md)
 - [EffectCouponCreated](docs/EffectCouponCreated.md)
@@ -887,6 +890,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [GetLoyaltyCardTransactionLogs200Response](docs/GetLoyaltyCardTransactionLogs200Response.md)
 - [GetLoyaltyCardTransactions200Response](docs/GetLoyaltyCardTransactions200Response.md)
 - [GetLoyaltyCards200Response](docs/GetLoyaltyCards200Response.md)
+- [GetLoyaltyProgramProfileLedgerTransactions200Response](docs/GetLoyaltyProgramProfileLedgerTransactions200Response.md)
 - [GetLoyaltyProgramProfilePoints200Response](docs/GetLoyaltyProgramProfilePoints200Response.md)
 - [GetLoyaltyProgramProfileTransactions200Response](docs/GetLoyaltyProgramProfileTransactions200Response.md)
 - [GetLoyaltyProgramTransactions200Response](docs/GetLoyaltyProgramTransactions200Response.md)
@@ -962,6 +966,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [LedgerInfo](docs/LedgerInfo.md)
 - [LedgerPointsEntryIntegrationAPI](docs/LedgerPointsEntryIntegrationAPI.md)
 - [LedgerTransactionLogEntryIntegrationAPI](docs/LedgerTransactionLogEntryIntegrationAPI.md)
+- [LedgerTransactionLogEntryManagementAPI](docs/LedgerTransactionLogEntryManagementAPI.md)
 - [LibraryAttribute](docs/LibraryAttribute.md)
 - [LimitConfig](docs/LimitConfig.md)
 - [LimitCounter](docs/LimitCounter.md)
@@ -1117,6 +1122,14 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [OktaEventPayloadData](docs/OktaEventPayloadData.md)
 - [OktaEventTarget](docs/OktaEventTarget.md)
 - [OneTimeCode](docs/OneTimeCode.md)
+- [OutboundLog](docs/OutboundLog.md)
+- [OutboundLogBase](docs/OutboundLogBase.md)
+- [OutboundLogRequest](docs/OutboundLogRequest.md)
+- [OutboundLogResponse](docs/OutboundLogResponse.md)
+- [OutboundLogs](docs/OutboundLogs.md)
+- [OutboundMessage](docs/OutboundMessage.md)
+- [OutboundMessageResponse](docs/OutboundMessageResponse.md)
+- [OutboundMessages](docs/OutboundMessages.md)
 - [OutgoingIntegrationBrazePolicy](docs/OutgoingIntegrationBrazePolicy.md)
 - [OutgoingIntegrationCleverTapPolicy](docs/OutgoingIntegrationCleverTapPolicy.md)
 - [OutgoingIntegrationConfiguration](docs/OutgoingIntegrationConfiguration.md)
@@ -1207,6 +1220,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [RollbackDiscountEffectProps](docs/RollbackDiscountEffectProps.md)
 - [RollbackIncreasedAchievementProgressEffectProps](docs/RollbackIncreasedAchievementProgressEffectProps.md)
 - [RollbackReferralEffectProps](docs/RollbackReferralEffectProps.md)
+- [RollbackTierBoostEffectProps](docs/RollbackTierBoostEffectProps.md)
 - [RollbackUseRewardEffectProps](docs/RollbackUseRewardEffectProps.md)
 - [Rule](docs/Rule.md)
 - [RuleEligibility](docs/RuleEligibility.md)

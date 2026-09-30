@@ -14,7 +14,7 @@
 
 import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
- * Giveaways pools is an entity for managing multiple similar giveaways.
+ * A giveaway pool is an entity for managing multiple similar giveaways.
  * @export
  * @interface GiveawaysPool
  */
@@ -32,15 +32,15 @@ export interface GiveawaysPool {
      */
     accountId: number;
     /**
-     * The name of this giveaways pool.
+     * The name of this giveaway pool.
      */
     name: string;
     /**
-     * The description of this giveaways pool.
+     * The description of this giveaway pool.
      */
     description?: string;
     /**
-     * A list of the IDs of the applications that this giveaways pool is enabled for.
+     * A list of the IDs of the Applications that this giveaway pool is enabled for.
      */
     subscribedApplicationsIds?: Array<number>;
     /**
@@ -48,15 +48,15 @@ export interface GiveawaysPool {
      */
     sandbox: boolean;
     /**
-     * Timestamp of the most recent update to the giveaways pool.
+     * Timestamp of the most recent update to the giveaway pool.
      */
     modified?: Date;
     /**
-     * ID of the user who created this giveaways pool.
+     * ID of the user who created this giveaway pool.
      */
     createdBy: number;
     /**
-     * ID of the user who last updated this giveaways pool if available.
+     * ID of the user who last updated this giveaway pool if available.
      */
     modifiedBy?: number;
 }

@@ -23,6 +23,7 @@ Name | Type
 `selectedPrice` | number
 `adjustmentReferenceId` | string
 `rewardId` | number
+`rewardIntegrationId` | string
 `props` | [ShowNotificationEffectProps](ShowNotificationEffectProps.md)
 
 ## Example
@@ -49,6 +50,7 @@ const example = {
   "selectedPrice": 100,
   "adjustmentReferenceId": 68851723-e6fa-488f-ace9-112581e6c19b,
   "rewardId": 7,
+  "rewardIntegrationId": reward-unlock-123,
   "props": null,
 } satisfies EffectShowNotification
 

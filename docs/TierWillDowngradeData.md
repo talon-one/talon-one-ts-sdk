@@ -14,6 +14,8 @@ Name | Type
 `pointsRequiredToRemain` | number
 `nextTier` | string
 `tierExpirationDate` | Date
+`source` | string
+`reason` | string
 
 ## Example
 
@@ -30,6 +32,8 @@ const example = {
   "pointsRequiredToRemain": 23.51,
   "nextTier": Bronze,
   "tierExpirationDate": 2023-12-01T12:23:00+02:00,
+  "source": null,
+  "reason": null,
 } satisfies TierWillDowngradeData
 
 console.log(example)

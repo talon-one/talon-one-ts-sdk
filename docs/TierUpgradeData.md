@@ -16,6 +16,8 @@ Name | Type
 `nextTier` | string
 `tierExpirationDate` | Date
 `timestampOfTierChange` | Date
+`source` | string
+`reason` | string
 
 ## Example
 
@@ -34,6 +36,8 @@ const example = {
   "nextTier": Gold,
   "tierExpirationDate": 2023-12-01T12:23:00+02:00,
   "timestampOfTierChange": 2023-10-26T12:23:00+02:00,
+  "source": null,
+  "reason": null,
 } satisfies TierUpgradeData
 
 console.log(example)

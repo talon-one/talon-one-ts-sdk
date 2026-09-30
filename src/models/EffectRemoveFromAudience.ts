@@ -96,6 +96,10 @@ export interface EffectRemoveFromAudience {
      */
     rewardId?: number;
     /**
+     * The integration ID of the specific customer reward whose usage produced this effect.
+     */
+    rewardIntegrationId?: string;
+    /**
      * The properties of the `removeFromAudience` effect.
      */
     props: RemoveFromAudienceEffectProps;
@@ -154,6 +158,7 @@ export function EffectRemoveFromAudienceFromJSONTyped(json: any, ignoreDiscrimin
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
         'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
+        'rewardIntegrationId': json['rewardIntegrationId'] == null ? undefined : json['rewardIntegrationId'],
         'props': RemoveFromAudienceEffectPropsFromJSON(json['props']),
     };
 }
@@ -186,6 +191,7 @@ export function EffectRemoveFromAudienceToJSONTyped(value?: EffectRemoveFromAudi
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
         'rewardId': value['rewardId'],
+        'rewardIntegrationId': value['rewardIntegrationId'],
         'props': RemoveFromAudienceEffectPropsToJSON(value['props']),
     };
 }

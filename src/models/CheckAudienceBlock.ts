@@ -51,9 +51,9 @@ export interface CheckAudienceBlock {
      */
     operator: CheckAudienceBlockOperatorEnum;
     /**
-     * The customer profile to check against the audience. `Current` targets the customer in the current session; `Advocate` targets the person who invited their friend via referral program.
+     * The customer profile to check against the audience. `Current` targets the customer in the current session; `Advocate` targets the person who invited their friend via referral program. Only applies to the `member` and `not(member)` operators; ignored for `justJoined` and `justLeft`.
      */
-    profile: CheckAudienceBlockProfileEnum;
+    profile?: CheckAudienceBlockProfileEnum;
     /**
      * The audience to check the profile against.
      */
@@ -93,7 +93,6 @@ export function instanceOfCheckAudienceBlock(value: object): value is CheckAudie
     const _v = value as Record<PropertyKey, unknown>;
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('operator' in _v) || _v['operator'] === undefined) return false;
-    if (!('profile' in _v) || _v['profile'] === undefined) return false;
     if (!('audience' in _v) || _v['audience'] === undefined) return false;
     return true;
 }
@@ -112,7 +111,7 @@ export function CheckAudienceBlockFromJSONTyped(json: any, ignoreDiscriminator: 
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
-        'profile': json['profile'],
+        'profile': json['profile'] == null ? undefined : json['profile'],
         'audience': AudienceBlockReferenceFromJSON(json['audience']),
         'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };

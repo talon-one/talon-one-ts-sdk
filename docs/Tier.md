@@ -11,6 +11,8 @@ Name | Type
 `startDate` | Date
 `expiryDate` | Date
 `downgradePolicy` | string
+`source` | string
+`reason` | string
 
 ## Example
 
@@ -21,9 +23,11 @@ import type { Tier } from 'talon_one_sdk'
 const example = {
   "id": 11,
   "name": bronze,
-  "startDate": 2021-05-03T12:32:00Z07:00,
-  "expiryDate": 2022-08-02T15:04:05Z07:00,
-  "downgradePolicy": null,
+  "startDate": 2025-05-03T12:32:00Z07:00,
+  "expiryDate": 2026-08-02T15:04:05+07:00,
+  "downgradePolicy": one_down,
+  "source": points,
+  "reason": Subscription to newsletter,
 } satisfies Tier
 
 console.log(example)

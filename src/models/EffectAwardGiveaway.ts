@@ -96,6 +96,10 @@ export interface EffectAwardGiveaway {
      */
     rewardId?: number;
     /**
+     * The integration ID of the specific customer reward whose usage produced this effect.
+     */
+    rewardIntegrationId?: string;
+    /**
      * The properties of the `awardGiveaway` effect.
      */
     props: AwardGiveawayEffectProps;
@@ -154,6 +158,7 @@ export function EffectAwardGiveawayFromJSONTyped(json: any, ignoreDiscriminator:
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
         'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
+        'rewardIntegrationId': json['rewardIntegrationId'] == null ? undefined : json['rewardIntegrationId'],
         'props': AwardGiveawayEffectPropsFromJSON(json['props']),
     };
 }
@@ -186,6 +191,7 @@ export function EffectAwardGiveawayToJSONTyped(value?: EffectAwardGiveaway | nul
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
         'rewardId': value['rewardId'],
+        'rewardIntegrationId': value['rewardIntegrationId'],
         'props': AwardGiveawayEffectPropsToJSON(value['props']),
     };
 }

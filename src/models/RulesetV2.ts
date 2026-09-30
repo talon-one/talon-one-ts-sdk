@@ -87,11 +87,11 @@ export interface RulesetV2 {
     /**
      * Variable bindings of type bundle.
      */
-    readonly bundles?: Array<Bundle>;
+    bundles?: Array<Bundle>;
     /**
      * Variable bindings of type template parameter.
      */
-    readonly parameters?: Array<TemplateParameter>;
+    parameters?: Array<TemplateParameter>;
 }
 
 /**
@@ -131,7 +131,7 @@ export function RulesetV2ToJSON(json: any): RulesetV2 {
     return RulesetV2ToJSONTyped(json, false);
 }
 
-export function RulesetV2ToJSONTyped(value?: Omit<RulesetV2, 'id'|'created'|'userId'|'campaignId'|'templateId'|'activatedAt'|'selectors'|'bundles'|'parameters'> | null, ignoreDiscriminator: boolean = false): any {
+export function RulesetV2ToJSONTyped(value?: Omit<RulesetV2, 'id'|'created'|'userId'|'campaignId'|'templateId'|'activatedAt'|'selectors'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -140,6 +140,8 @@ export function RulesetV2ToJSONTyped(value?: Omit<RulesetV2, 'id'|'created'|'use
         
         'promotionRules': (value['promotionRules'] == null ? undefined : (value['promotionRules'] as Array<any>).map(RuleV2ToJSON)),
         'strikethroughRules': value['strikethroughRules'] == null ? undefined : ((value['strikethroughRules'] as Array<any>).map(RuleV2ToJSON)),
+        'bundles': value['bundles'] == null ? undefined : ((value['bundles'] as Array<any>).map(BundleToJSON)),
+        'parameters': value['parameters'] == null ? undefined : ((value['parameters'] as Array<any>).map(TemplateParameterToJSON)),
     };
 }
 

@@ -96,6 +96,10 @@ export interface EffectCallApi {
      */
     rewardId?: number;
     /**
+     * The integration ID of the specific customer reward whose usage produced this effect.
+     */
+    rewardIntegrationId?: string;
+    /**
      * The properties of the `callApi` effect.
      */
     props: TriggerWebhookEffectProps;
@@ -154,6 +158,7 @@ export function EffectCallApiFromJSONTyped(json: any, ignoreDiscriminator: boole
         'selectedPrice': json['selectedPrice'] == null ? undefined : json['selectedPrice'],
         'adjustmentReferenceId': json['adjustmentReferenceId'] == null ? undefined : json['adjustmentReferenceId'],
         'rewardId': json['rewardId'] == null ? undefined : json['rewardId'],
+        'rewardIntegrationId': json['rewardIntegrationId'] == null ? undefined : json['rewardIntegrationId'],
         'props': TriggerWebhookEffectPropsFromJSON(json['props']),
     };
 }
@@ -186,6 +191,7 @@ export function EffectCallApiToJSONTyped(value?: EffectCallApi | null, ignoreDis
         'selectedPrice': value['selectedPrice'],
         'adjustmentReferenceId': value['adjustmentReferenceId'],
         'rewardId': value['rewardId'],
+        'rewardIntegrationId': value['rewardIntegrationId'],
         'props': TriggerWebhookEffectPropsToJSON(value['props']),
     };
 }
