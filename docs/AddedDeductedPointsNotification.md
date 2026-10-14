@@ -20,6 +20,9 @@ Name | Type
 `reason` | string
 `startDate` | Date
 `transactionUUID` | string
+`created` | Date
+`awaitsActivation` | boolean
+`validityDuration` | string
 
 ## Example
 
@@ -42,6 +45,9 @@ const example = {
   "reason": Compensation,
   "startDate": 2023-01-24T14:15:22Z,
   "transactionUUID": null,
+  "created": 2023-01-24T14:15:22Z,
+  "awaitsActivation": false,
+  "validityDuration": 30D,
 } satisfies AddedDeductedPointsNotification
 
 console.log(example)

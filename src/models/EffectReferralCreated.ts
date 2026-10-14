@@ -100,7 +100,7 @@ export interface EffectReferralCreated {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `referralCreated` effect.
+     * 
      */
     props: ReferralCreatedEffectProps;
 }

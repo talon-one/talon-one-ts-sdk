@@ -100,7 +100,7 @@ export interface EffectUseReward {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `useReward` effect.
+     * 
      */
     props: UseRewardEffectProps;
 }

@@ -11,6 +11,9 @@ Name | Type
 `customerProfileID` | string
 `amountOfExpiringPoints` | number
 `subledgerID` | string
+`created` | Date
+`awaitsActivation` | boolean
+`validityDuration` | string
 
 ## Example
 
@@ -24,6 +27,9 @@ const example = {
   "customerProfileID": URNGV8294NV,
   "amountOfExpiringPoints": 10.99,
   "subledgerID": sub-123,
+  "created": 2023-01-24T14:15:22Z,
+  "awaitsActivation": false,
+  "validityDuration": 30D,
 } satisfies ExpiringPointsData
 
 console.log(example)

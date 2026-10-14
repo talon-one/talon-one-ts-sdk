@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { Binding } from './Binding';
 import {
     BindingFromJSON,
@@ -95,6 +95,38 @@ export interface NewReward {
      * 
      */
     pointsRequired?: Array<RewardPointsRequired>;
+    /**
+     * The duration for which the customer rewards unlocked from this reward remain active, relative to when the customer reward was unlocked.
+     * 
+     * The time format is an **integer** followed by one letter indicating the time unit.
+     * 
+     * Examples: `5D`, `7W`, `10M`, `15Y`.
+     * 
+     * Available units:
+     * 
+     * - `D`: days
+     * - `W`: weeks
+     * - `M`: months
+     * - `Y`: years
+     * 
+     * You can round certain units up or down:
+     * - `_D` for rounding down days only. Signifies the start of the day.
+     * - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.
+     * 
+     * This field cannot be used in combination with `expiryDate`. If both `validityDuration` and `expiryDate` are not set, customer rewards have unlimited validity.
+     * 
+     */
+    validityDuration?: string;
+    /**
+     * Expiry date of the customer rewards unlocked from this reward. Customer
+     * rewards never expire if this is omitted and `validityDuration` is not set.
+     * 
+     * **Note:**
+     * - The date must be in the future.
+     * - This field cannot be used in combination with `validityDuration`.
+     * 
+     */
+    expiryDate?: Date;
 }
 
 /**
@@ -128,6 +160,8 @@ export function NewRewardFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'rule': json['rule'] == null ? undefined : RuleFromJSON(json['rule']),
         'bindings': json['bindings'] == null ? undefined : ((json['bindings'] as Array<any>).map(BindingFromJSON)),
         'pointsRequired': json['pointsRequired'] == null ? undefined : ((json['pointsRequired'] as Array<any>).map(RewardPointsRequiredFromJSON)),
+        'validityDuration': json['validityDuration'] == null ? undefined : json['validityDuration'],
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
     };
 }
 
@@ -151,6 +185,8 @@ export function NewRewardToJSONTyped(value?: NewReward | null, ignoreDiscriminat
         'rule': RuleToJSON(value['rule']),
         'bindings': value['bindings'] == null ? undefined : ((value['bindings'] as Array<any>).map(BindingToJSON)),
         'pointsRequired': value['pointsRequired'] == null ? undefined : ((value['pointsRequired'] as Array<any>).map(RewardPointsRequiredToJSON)),
+        'validityDuration': value['validityDuration'],
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
     };
 }
 

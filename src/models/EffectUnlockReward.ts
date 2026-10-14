@@ -100,7 +100,7 @@ export interface EffectUnlockReward {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `unlockReward` effect.
+     * 
      */
     props: UnlockRewardEffectProps;
 }

@@ -23,6 +23,7 @@ Name | Type
 `archived` | boolean
 `flags` | [LoyaltyLedgerEntryFlags](LoyaltyLedgerEntryFlags.md)
 `validityDuration` | string
+`awaitsActivation` | boolean
 
 ## Example
 
@@ -47,6 +48,7 @@ const example = {
   "archived": false,
   "flags": null,
   "validityDuration": 30D,
+  "awaitsActivation": false,
 } satisfies LoyaltyLedgerEntry
 
 console.log(example)

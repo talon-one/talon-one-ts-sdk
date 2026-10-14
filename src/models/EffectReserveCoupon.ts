@@ -100,7 +100,7 @@ export interface EffectReserveCoupon {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `reserveCoupon` effect.
+     * 
      */
     props: ReserveCouponEffectProps;
 }

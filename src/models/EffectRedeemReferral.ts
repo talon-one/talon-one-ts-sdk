@@ -100,7 +100,7 @@ export interface EffectRedeemReferral {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `redeemReferral` effect.
+     * 
      * @deprecated
      */
     props: RedeemReferralEffectProps;

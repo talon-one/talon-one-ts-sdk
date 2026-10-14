@@ -1,7 +1,6 @@
 
 # Effect
 
-A generic effect that is fired by a triggered campaign. The `effectType` field selects the concrete effect variant and the shape of `props`.
 
 ## Properties
 

@@ -100,7 +100,7 @@ export interface EffectAddToAudience {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `addToAudience` effect.
+     * 
      */
     props: AddToAudienceEffectProps;
 }

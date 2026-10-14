@@ -13,6 +13,9 @@ Name | Type
 `activeOn` | Date
 `expireOn` | Date
 `sessionIntegrationID` | string
+`created` | Date
+`awaitsActivation` | boolean
+`validityDuration` | string
 
 ## Example
 
@@ -28,6 +31,9 @@ const example = {
   "activeOn": 2023-08-20T12:22:00+02:00,
   "expireOn": 2023-09-01T12:23:00+02:00,
   "sessionIntegrationID": cc53e4fa-547f-4f5e-8333-76e05c381f67,
+  "created": 2023-08-20T12:22:00+02:00,
+  "awaitsActivation": false,
+  "validityDuration": 30D,
 } satisfies PendingActivePointsData
 
 console.log(example)

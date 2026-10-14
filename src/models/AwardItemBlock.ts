@@ -52,7 +52,7 @@ export interface AwardItemBlock {
      */
     quantity: string;
     /**
-     * When set to `true`, applies a partial item reward if the remaining budget is insufficient to award the full reward.
+     * When set to `true`, applies a partial item reward if the remaining budget is insufficient to award the full reward. When omitted, the Application's partial discounts setting applies.
      */
     partial?: boolean;
     /**

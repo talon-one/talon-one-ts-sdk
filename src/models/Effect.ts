@@ -29,6 +29,7 @@ import { type EffectDeductLoyaltyPoints, EffectDeductLoyaltyPointsFromJSONTyped,
 import { type EffectError, EffectErrorFromJSONTyped, EffectErrorToJSON } from './EffectError';
 import { type EffectExtendLoyaltyPointsExpiryDate, EffectExtendLoyaltyPointsExpiryDateFromJSONTyped, EffectExtendLoyaltyPointsExpiryDateToJSON } from './EffectExtendLoyaltyPointsExpiryDate';
 import { type EffectIncreaseAchievementProgress, EffectIncreaseAchievementProgressFromJSONTyped, EffectIncreaseAchievementProgressToJSON } from './EffectIncreaseAchievementProgress';
+import { type EffectIncreaseAchievementProgressPerItem, EffectIncreaseAchievementProgressPerItemFromJSONTyped, EffectIncreaseAchievementProgressPerItemToJSON } from './EffectIncreaseAchievementProgressPerItem';
 import { type EffectJoinLoyaltyProgram, EffectJoinLoyaltyProgramFromJSONTyped, EffectJoinLoyaltyProgramToJSON } from './EffectJoinLoyaltyProgram';
 import { type EffectOffsetNegativeLoyaltyPoints, EffectOffsetNegativeLoyaltyPointsFromJSONTyped, EffectOffsetNegativeLoyaltyPointsToJSON } from './EffectOffsetNegativeLoyaltyPoints';
 import { type EffectRedeemReferral, EffectRedeemReferralFromJSONTyped, EffectRedeemReferralToJSON } from './EffectRedeemReferral';
@@ -42,7 +43,9 @@ import { type EffectRollbackCoupon, EffectRollbackCouponFromJSONTyped, EffectRol
 import { type EffectRollbackDeductedLoyaltyPoints, EffectRollbackDeductedLoyaltyPointsFromJSONTyped, EffectRollbackDeductedLoyaltyPointsToJSON } from './EffectRollbackDeductedLoyaltyPoints';
 import { type EffectRollbackDiscount, EffectRollbackDiscountFromJSONTyped, EffectRollbackDiscountToJSON } from './EffectRollbackDiscount';
 import { type EffectRollbackIncreasedAchievementProgress, EffectRollbackIncreasedAchievementProgressFromJSONTyped, EffectRollbackIncreasedAchievementProgressToJSON } from './EffectRollbackIncreasedAchievementProgress';
+import { type EffectRollbackIncreasedAchievementProgressPerItem, EffectRollbackIncreasedAchievementProgressPerItemFromJSONTyped, EffectRollbackIncreasedAchievementProgressPerItemToJSON } from './EffectRollbackIncreasedAchievementProgressPerItem';
 import { type EffectRollbackReferral, EffectRollbackReferralFromJSONTyped, EffectRollbackReferralToJSON } from './EffectRollbackReferral';
+import { type EffectRollbackTierBoost, EffectRollbackTierBoostFromJSONTyped, EffectRollbackTierBoostToJSON } from './EffectRollbackTierBoost';
 import { type EffectRollbackUseReward, EffectRollbackUseRewardFromJSONTyped, EffectRollbackUseRewardToJSON } from './EffectRollbackUseReward';
 import { type EffectSet, EffectSetFromJSONTyped, EffectSetToJSON } from './EffectSet';
 import { type EffectSetDiscount, EffectSetDiscountFromJSONTyped, EffectSetDiscountToJSON } from './EffectSetDiscount';
@@ -59,10 +62,10 @@ import { type EffectWillAwardGiveaway, EffectWillAwardGiveawayFromJSONTyped, Eff
 
 /**
  * @type Effect
- * A generic effect that is fired by a triggered campaign. The `effectType` field selects the concrete effect variant and the shape of `props`.
+ * 
  * @export
  */
-export type Effect = { effectType: 'acceptCoupon' } & EffectAcceptCoupon | { effectType: 'acceptReferral' } & EffectAcceptReferral | { effectType: 'addFreeItem' } & EffectAddFreeItem | { effectType: 'addLoyaltyPoints' } & EffectAddLoyaltyPoints | { effectType: 'addNegativeLoyaltyPoints' } & EffectAddNegativeLoyaltyPoints | { effectType: 'addToAudience' } & EffectAddToAudience | { effectType: 'awardGiveaway' } & EffectAwardGiveaway | { effectType: 'boostLoyaltyTier' } & EffectBoostLoyaltyTier | { effectType: 'callApi' } & EffectCallApi | { effectType: 'changeLoyaltyTierLevel' } & EffectChangeLoyaltyTierLevel | { effectType: 'couponCreated' } & EffectCouponCreated | { effectType: 'customEffect' } & EffectCustomEffect | { effectType: 'deductLoyaltyPoints' } & EffectDeductLoyaltyPoints | { effectType: 'error' } & EffectError | { effectType: 'extendLoyaltyPointsExpiryDate' } & EffectExtendLoyaltyPointsExpiryDate | { effectType: 'increaseAchievementProgress' } & EffectIncreaseAchievementProgress | { effectType: 'joinLoyaltyProgram' } & EffectJoinLoyaltyProgram | { effectType: 'offsetNegativeLoyaltyPoints' } & EffectOffsetNegativeLoyaltyPoints | { effectType: 'redeemReferral' } & EffectRedeemReferral | { effectType: 'referralCreated' } & EffectReferralCreated | { effectType: 'rejectCoupon' } & EffectRejectCoupon | { effectType: 'rejectReferral' } & EffectRejectReferral | { effectType: 'removeFromAudience' } & EffectRemoveFromAudience | { effectType: 'reserveCoupon' } & EffectReserveCoupon | { effectType: 'rollbackAddedLoyaltyPoints' } & EffectRollbackAddedLoyaltyPoints | { effectType: 'rollbackCoupon' } & EffectRollbackCoupon | { effectType: 'rollbackDeductedLoyaltyPoints' } & EffectRollbackDeductedLoyaltyPoints | { effectType: 'rollbackDiscount' } & EffectRollbackDiscount | { effectType: 'rollbackIncreasedAchievementProgress' } & EffectRollbackIncreasedAchievementProgress | { effectType: 'rollbackReferral' } & EffectRollbackReferral | { effectType: 'rollbackUseReward' } & EffectRollbackUseReward | { effectType: 'set' } & EffectSet | { effectType: 'setDiscount' } & EffectSetDiscount | { effectType: 'setDiscountPerAdditionalCost' } & EffectSetDiscountPerAdditionalCost | { effectType: 'setDiscountPerAdditionalCostPerItem' } & EffectSetDiscountPerAdditionalCostPerItem | { effectType: 'setDiscountPerItem' } & EffectSetDiscountPerItem | { effectType: 'setLoyaltyPointsExpiryDate' } & EffectSetLoyaltyPointsExpiryDate | { effectType: 'showBundleMetadata' } & EffectShowBundleMetadata | { effectType: 'showNotification' } & EffectShowNotification | { effectType: 'startAchievementProgress' } & EffectStartAchievementProgress | { effectType: 'unlockReward' } & EffectUnlockReward | { effectType: 'useReward' } & EffectUseReward | { effectType: 'willAwardGiveaway' } & EffectWillAwardGiveaway;
+export type Effect = { effectType: 'acceptCoupon' } & EffectAcceptCoupon | { effectType: 'acceptReferral' } & EffectAcceptReferral | { effectType: 'addFreeItem' } & EffectAddFreeItem | { effectType: 'addLoyaltyPoints' } & EffectAddLoyaltyPoints | { effectType: 'addNegativeLoyaltyPoints' } & EffectAddNegativeLoyaltyPoints | { effectType: 'addToAudience' } & EffectAddToAudience | { effectType: 'awardGiveaway' } & EffectAwardGiveaway | { effectType: 'boostLoyaltyTier' } & EffectBoostLoyaltyTier | { effectType: 'callApi' } & EffectCallApi | { effectType: 'changeLoyaltyTierLevel' } & EffectChangeLoyaltyTierLevel | { effectType: 'couponCreated' } & EffectCouponCreated | { effectType: 'customEffect' } & EffectCustomEffect | { effectType: 'deductLoyaltyPoints' } & EffectDeductLoyaltyPoints | { effectType: 'error' } & EffectError | { effectType: 'extendLoyaltyPointsExpiryDate' } & EffectExtendLoyaltyPointsExpiryDate | { effectType: 'increaseAchievementProgress' } & EffectIncreaseAchievementProgress | { effectType: 'increaseAchievementProgressPerItem' } & EffectIncreaseAchievementProgressPerItem | { effectType: 'joinLoyaltyProgram' } & EffectJoinLoyaltyProgram | { effectType: 'offsetNegativeLoyaltyPoints' } & EffectOffsetNegativeLoyaltyPoints | { effectType: 'redeemReferral' } & EffectRedeemReferral | { effectType: 'referralCreated' } & EffectReferralCreated | { effectType: 'rejectCoupon' } & EffectRejectCoupon | { effectType: 'rejectReferral' } & EffectRejectReferral | { effectType: 'removeFromAudience' } & EffectRemoveFromAudience | { effectType: 'reserveCoupon' } & EffectReserveCoupon | { effectType: 'rollbackAddedLoyaltyPoints' } & EffectRollbackAddedLoyaltyPoints | { effectType: 'rollbackCoupon' } & EffectRollbackCoupon | { effectType: 'rollbackDeductedLoyaltyPoints' } & EffectRollbackDeductedLoyaltyPoints | { effectType: 'rollbackDiscount' } & EffectRollbackDiscount | { effectType: 'rollbackIncreasedAchievementProgress' } & EffectRollbackIncreasedAchievementProgress | { effectType: 'rollbackIncreasedAchievementProgressPerItem' } & EffectRollbackIncreasedAchievementProgressPerItem | { effectType: 'rollbackReferral' } & EffectRollbackReferral | { effectType: 'rollbackTierBoost' } & EffectRollbackTierBoost | { effectType: 'rollbackUseReward' } & EffectRollbackUseReward | { effectType: 'set' } & EffectSet | { effectType: 'setDiscount' } & EffectSetDiscount | { effectType: 'setDiscountPerAdditionalCost' } & EffectSetDiscountPerAdditionalCost | { effectType: 'setDiscountPerAdditionalCostPerItem' } & EffectSetDiscountPerAdditionalCostPerItem | { effectType: 'setDiscountPerItem' } & EffectSetDiscountPerItem | { effectType: 'setLoyaltyPointsExpiryDate' } & EffectSetLoyaltyPointsExpiryDate | { effectType: 'showBundleMetadata' } & EffectShowBundleMetadata | { effectType: 'showNotification' } & EffectShowNotification | { effectType: 'startAchievementProgress' } & EffectStartAchievementProgress | { effectType: 'unlockReward' } & EffectUnlockReward | { effectType: 'useReward' } & EffectUseReward | { effectType: 'willAwardGiveaway' } & EffectWillAwardGiveaway;
 /**
  * Check if a given object implements the Effect interface.
  */
@@ -85,6 +88,7 @@ export function instanceOfEffect(value: any): value is Effect {
         case 'error':
         case 'extendLoyaltyPointsExpiryDate':
         case 'increaseAchievementProgress':
+        case 'increaseAchievementProgressPerItem':
         case 'joinLoyaltyProgram':
         case 'offsetNegativeLoyaltyPoints':
         case 'redeemReferral':
@@ -98,7 +102,9 @@ export function instanceOfEffect(value: any): value is Effect {
         case 'rollbackDeductedLoyaltyPoints':
         case 'rollbackDiscount':
         case 'rollbackIncreasedAchievementProgress':
+        case 'rollbackIncreasedAchievementProgressPerItem':
         case 'rollbackReferral':
+        case 'rollbackTierBoost':
         case 'rollbackUseReward':
         case 'set':
         case 'setDiscount':
@@ -159,6 +165,8 @@ export function EffectFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ef
             return Object.assign({}, EffectExtendLoyaltyPointsExpiryDateFromJSONTyped(json, true), { effectType: 'extendLoyaltyPointsExpiryDate' } as const);
         case 'increaseAchievementProgress':
             return Object.assign({}, EffectIncreaseAchievementProgressFromJSONTyped(json, true), { effectType: 'increaseAchievementProgress' } as const);
+        case 'increaseAchievementProgressPerItem':
+            return Object.assign({}, EffectIncreaseAchievementProgressPerItemFromJSONTyped(json, true), { effectType: 'increaseAchievementProgressPerItem' } as const);
         case 'joinLoyaltyProgram':
             return Object.assign({}, EffectJoinLoyaltyProgramFromJSONTyped(json, true), { effectType: 'joinLoyaltyProgram' } as const);
         case 'offsetNegativeLoyaltyPoints':
@@ -185,8 +193,12 @@ export function EffectFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ef
             return Object.assign({}, EffectRollbackDiscountFromJSONTyped(json, true), { effectType: 'rollbackDiscount' } as const);
         case 'rollbackIncreasedAchievementProgress':
             return Object.assign({}, EffectRollbackIncreasedAchievementProgressFromJSONTyped(json, true), { effectType: 'rollbackIncreasedAchievementProgress' } as const);
+        case 'rollbackIncreasedAchievementProgressPerItem':
+            return Object.assign({}, EffectRollbackIncreasedAchievementProgressPerItemFromJSONTyped(json, true), { effectType: 'rollbackIncreasedAchievementProgressPerItem' } as const);
         case 'rollbackReferral':
             return Object.assign({}, EffectRollbackReferralFromJSONTyped(json, true), { effectType: 'rollbackReferral' } as const);
+        case 'rollbackTierBoost':
+            return Object.assign({}, EffectRollbackTierBoostFromJSONTyped(json, true), { effectType: 'rollbackTierBoost' } as const);
         case 'rollbackUseReward':
             return Object.assign({}, EffectRollbackUseRewardFromJSONTyped(json, true), { effectType: 'rollbackUseReward' } as const);
         case 'set':
@@ -259,6 +271,8 @@ export function EffectToJSONTyped(value?: Effect | null, ignoreDiscriminator: bo
             return Object.assign({}, EffectExtendLoyaltyPointsExpiryDateToJSON(value), { 'effectType': 'extendLoyaltyPointsExpiryDate' } as const);
         case 'increaseAchievementProgress':
             return Object.assign({}, EffectIncreaseAchievementProgressToJSON(value), { 'effectType': 'increaseAchievementProgress' } as const);
+        case 'increaseAchievementProgressPerItem':
+            return Object.assign({}, EffectIncreaseAchievementProgressPerItemToJSON(value), { 'effectType': 'increaseAchievementProgressPerItem' } as const);
         case 'joinLoyaltyProgram':
             return Object.assign({}, EffectJoinLoyaltyProgramToJSON(value), { 'effectType': 'joinLoyaltyProgram' } as const);
         case 'offsetNegativeLoyaltyPoints':
@@ -285,8 +299,12 @@ export function EffectToJSONTyped(value?: Effect | null, ignoreDiscriminator: bo
             return Object.assign({}, EffectRollbackDiscountToJSON(value), { 'effectType': 'rollbackDiscount' } as const);
         case 'rollbackIncreasedAchievementProgress':
             return Object.assign({}, EffectRollbackIncreasedAchievementProgressToJSON(value), { 'effectType': 'rollbackIncreasedAchievementProgress' } as const);
+        case 'rollbackIncreasedAchievementProgressPerItem':
+            return Object.assign({}, EffectRollbackIncreasedAchievementProgressPerItemToJSON(value), { 'effectType': 'rollbackIncreasedAchievementProgressPerItem' } as const);
         case 'rollbackReferral':
             return Object.assign({}, EffectRollbackReferralToJSON(value), { 'effectType': 'rollbackReferral' } as const);
+        case 'rollbackTierBoost':
+            return Object.assign({}, EffectRollbackTierBoostToJSON(value), { 'effectType': 'rollbackTierBoost' } as const);
         case 'rollbackUseReward':
             return Object.assign({}, EffectRollbackUseRewardToJSON(value), { 'effectType': 'rollbackUseReward' } as const);
         case 'set':

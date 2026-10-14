@@ -26,15 +26,15 @@ export interface AchievementBlockReference {
     /**
      * The display name for the achievement in the Campaign Manager.
      */
-    title: string;
+    readonly title?: string;
     /**
      * The internal name of the achievement used in API requests.
      */
-    name: string;
+    readonly name?: string;
     /**
      * The required number of actions or the transactional milestone to complete the achievement.
      */
-    target: number;
+    readonly target?: number;
 }
 
 /**
@@ -43,9 +43,6 @@ export interface AchievementBlockReference {
 export function instanceOfAchievementBlockReference(value: object): value is AchievementBlockReference {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('id' in _v) || _v['id'] === undefined) return false;
-    if (!('title' in _v) || _v['title'] === undefined) return false;
-    if (!('name' in _v) || _v['name'] === undefined) return false;
-    if (!('target' in _v) || _v['target'] === undefined) return false;
     return true;
 }
 
@@ -60,9 +57,9 @@ export function AchievementBlockReferenceFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'id': json['id'],
-        'title': json['title'],
-        'name': json['name'],
-        'target': json['target'],
+        'title': json['title'] == null ? undefined : json['title'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'target': json['target'] == null ? undefined : json['target'],
     };
 }
 
@@ -70,7 +67,7 @@ export function AchievementBlockReferenceToJSON(json: any): AchievementBlockRefe
     return AchievementBlockReferenceToJSONTyped(json, false);
 }
 
-export function AchievementBlockReferenceToJSONTyped(value?: AchievementBlockReference | null, ignoreDiscriminator: boolean = false): any {
+export function AchievementBlockReferenceToJSONTyped(value?: Omit<AchievementBlockReference, 'title'|'name'|'target'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -78,9 +75,6 @@ export function AchievementBlockReferenceToJSONTyped(value?: AchievementBlockRef
     return {
         
         'id': value['id'],
-        'title': value['title'],
-        'name': value['name'],
-        'target': value['target'],
     };
 }
 

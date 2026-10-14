@@ -100,7 +100,7 @@ export interface EffectSet {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `set` effect.
+     * 
      */
     props: UpdateAttributeEffectProps;
 }

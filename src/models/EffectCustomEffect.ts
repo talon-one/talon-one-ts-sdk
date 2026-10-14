@@ -100,7 +100,7 @@ export interface EffectCustomEffect {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `customEffect` effect.
+     * 
      */
     props: CustomEffectProps;
 }

@@ -17,8 +17,8 @@ import type { CampaignEligibilityDetails } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "passed": null,
-  "couponCode": null,
+  "passed": false,
+  "couponCode": XMAS-20-2021,
   "details": null,
 } satisfies CampaignEligibilityDetails
 

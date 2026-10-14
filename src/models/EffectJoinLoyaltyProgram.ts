@@ -100,7 +100,7 @@ export interface EffectJoinLoyaltyProgram {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `joinLoyaltyProgram` effect.
+     * 
      */
     props: JoinLoyaltyProgramEffectProps;
 }

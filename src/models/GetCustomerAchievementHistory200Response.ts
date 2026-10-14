@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { AchievementProgress } from './AchievementProgress';
+import type { CustomerAchievementHistoryEntry } from './CustomerAchievementHistoryEntry';
 import {
-    AchievementProgressFromJSON,
-    AchievementProgressFromJSONTyped,
-    AchievementProgressToJSON,
-    AchievementProgressToJSONTyped,
-} from './AchievementProgress';
+    CustomerAchievementHistoryEntryFromJSON,
+    CustomerAchievementHistoryEntryFromJSONTyped,
+    CustomerAchievementHistoryEntryToJSON,
+    CustomerAchievementHistoryEntryToJSONTyped,
+} from './CustomerAchievementHistoryEntry';
 
 /**
  * 
@@ -34,7 +34,7 @@ export interface GetCustomerAchievementHistory200Response {
     /**
      * 
      */
-    data: Array<AchievementProgress>;
+    data: Array<CustomerAchievementHistoryEntry>;
 }
 
 /**
@@ -58,7 +58,7 @@ export function GetCustomerAchievementHistory200ResponseFromJSONTyped(json: any,
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(AchievementProgressFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CustomerAchievementHistoryEntryFromJSON)),
     };
 }
 
@@ -74,7 +74,7 @@ export function GetCustomerAchievementHistory200ResponseToJSONTyped(value?: GetC
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(AchievementProgressToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CustomerAchievementHistoryEntryToJSON)),
     };
 }
 

@@ -20,6 +20,13 @@ import {
     AchievementBlockReferenceToJSON,
     AchievementBlockReferenceToJSONTyped,
 } from './AchievementBlockReference';
+import type { UpdateAchievementProgressBlock1Value } from './UpdateAchievementProgressBlock1Value';
+import {
+    UpdateAchievementProgressBlock1ValueFromJSON,
+    UpdateAchievementProgressBlock1ValueFromJSONTyped,
+    UpdateAchievementProgressBlock1ValueToJSON,
+    UpdateAchievementProgressBlock1ValueToJSONTyped,
+} from './UpdateAchievementProgressBlock1Value';
 
 /**
  * 
@@ -44,9 +51,9 @@ export interface UpdateAchievementProgressBlock {
      */
     operator: UpdateAchievementProgressBlockOperatorEnum;
     /**
-     * The value to update the progress by. Supports template placeholders (e.g. "{{$Session.Total / 2}}") for dynamic quantities.
+     * 
      */
-    value: string;
+    value: UpdateAchievementProgressBlock1Value;
     /**
      * The achievement to update.
      */
@@ -91,7 +98,7 @@ export function UpdateAchievementProgressBlockFromJSONTyped(json: any, ignoreDis
         'type': json['type'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'operator': json['operator'],
-        'value': json['value'],
+        'value': UpdateAchievementProgressBlock1ValueFromJSON(json['value']),
         'achievement': AchievementBlockReferenceFromJSON(json['achievement']),
     };
 }
@@ -109,7 +116,7 @@ export function UpdateAchievementProgressBlockToJSONTyped(value?: Omit<UpdateAch
         
         'type': value['type'],
         'operator': value['operator'],
-        'value': value['value'],
+        'value': UpdateAchievementProgressBlock1ValueToJSON(value['value']),
         'achievement': AchievementBlockReferenceToJSON(value['achievement']),
     };
 }

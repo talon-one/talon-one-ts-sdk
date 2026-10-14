@@ -13,6 +13,9 @@ Name | Type
 `cardIdentifier` | string
 `usersPerCardLimit` | number
 `profiles` | Array&lt;string&gt;
+`created` | Date
+`awaitsActivation` | boolean
+`validityDuration` | string
 
 ## Example
 
@@ -28,6 +31,9 @@ const example = {
   "cardIdentifier": summer-loyalty-card-0543,
   "usersPerCardLimit": 5,
   "profiles": null,
+  "created": 2023-01-24T14:15:22Z,
+  "awaitsActivation": false,
+  "validityDuration": 30D,
 } satisfies ExpiringCardPointsData
 
 console.log(example)

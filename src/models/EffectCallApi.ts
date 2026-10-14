@@ -100,7 +100,7 @@ export interface EffectCallApi {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `callApi` effect.
+     * 
      */
     props: TriggerWebhookEffectProps;
 }

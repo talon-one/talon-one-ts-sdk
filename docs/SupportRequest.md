@@ -11,7 +11,7 @@ Name | Type
 `applicationId` | number
 `campaignId` | number
 `loyaltyProgramId` | number
-`subledgerId` | number
+`subledgerId` | string
 `createdByUser` | string
 `createdAt` | Date
 `customerProfileId` | string
@@ -35,7 +35,7 @@ const example = {
   "applicationId": 322,
   "campaignId": 100,
   "loyaltyProgramId": 8,
-  "subledgerId": 123,
+  "subledgerId": sub-123,
   "createdByUser": support.agent.name@company.com,
   "createdAt": 2025-07-20T22:00:00Z,
   "customerProfileId": URNGV8294NV,

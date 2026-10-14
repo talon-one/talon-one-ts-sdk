@@ -10,7 +10,7 @@ Name | Type
 `type` | string
 `tags` | Array&lt;string&gt;
 `operator` | string
-`value` | string
+`value` | [UpdateAchievementProgressBlock1Value](UpdateAchievementProgressBlock1Value.md)
 `achievement` | [AchievementBlockReference](AchievementBlockReference.md)
 
 ## Example
@@ -24,7 +24,7 @@ const example = {
   "type": null,
   "tags": null,
   "operator": increaseBy,
-  "value": 10,
+  "value": null,
   "achievement": null,
 } satisfies UpdateAchievementProgressBlock
 

@@ -17,7 +17,7 @@ import type { RewardEligibility } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "passed": true,
+  "passed": false,
   "details": null,
 } satisfies RewardEligibility
 

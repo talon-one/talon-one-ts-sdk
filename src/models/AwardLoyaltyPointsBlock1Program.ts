@@ -26,11 +26,11 @@ export interface AwardLoyaltyPointsBlock1Program {
     /**
      * The internal name of the loyalty program.
      */
-    name: string;
+    readonly name?: string;
     /**
      * The display name of the loyalty program.
      */
-    title: string;
+    readonly title?: string;
 }
 
 /**
@@ -39,8 +39,6 @@ export interface AwardLoyaltyPointsBlock1Program {
 export function instanceOfAwardLoyaltyPointsBlock1Program(value: object): value is AwardLoyaltyPointsBlock1Program {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('id' in _v) || _v['id'] === undefined) return false;
-    if (!('name' in _v) || _v['name'] === undefined) return false;
-    if (!('title' in _v) || _v['title'] === undefined) return false;
     return true;
 }
 
@@ -55,8 +53,8 @@ export function AwardLoyaltyPointsBlock1ProgramFromJSONTyped(json: any, ignoreDi
     return {
         
         'id': json['id'],
-        'name': json['name'],
-        'title': json['title'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'title': json['title'] == null ? undefined : json['title'],
     };
 }
 
@@ -64,7 +62,7 @@ export function AwardLoyaltyPointsBlock1ProgramToJSON(json: any): AwardLoyaltyPo
     return AwardLoyaltyPointsBlock1ProgramToJSONTyped(json, false);
 }
 
-export function AwardLoyaltyPointsBlock1ProgramToJSONTyped(value?: AwardLoyaltyPointsBlock1Program | null, ignoreDiscriminator: boolean = false): any {
+export function AwardLoyaltyPointsBlock1ProgramToJSONTyped(value?: Omit<AwardLoyaltyPointsBlock1Program, 'name'|'title'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -72,8 +70,6 @@ export function AwardLoyaltyPointsBlock1ProgramToJSONTyped(value?: AwardLoyaltyP
     return {
         
         'id': value['id'],
-        'name': value['name'],
-        'title': value['title'],
     };
 }
 

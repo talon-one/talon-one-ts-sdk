@@ -26,11 +26,11 @@ export interface CustomEffectBlockReference {
     /**
      * The name of the custom effect, as used in API requests.
      */
-    name: string;
+    readonly name?: string;
     /**
      * The display name of the custom effect.
      */
-    title: string;
+    readonly title?: string;
 }
 
 /**
@@ -39,8 +39,6 @@ export interface CustomEffectBlockReference {
 export function instanceOfCustomEffectBlockReference(value: object): value is CustomEffectBlockReference {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('id' in _v) || _v['id'] === undefined) return false;
-    if (!('name' in _v) || _v['name'] === undefined) return false;
-    if (!('title' in _v) || _v['title'] === undefined) return false;
     return true;
 }
 
@@ -55,8 +53,8 @@ export function CustomEffectBlockReferenceFromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'id': json['id'],
-        'name': json['name'],
-        'title': json['title'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'title': json['title'] == null ? undefined : json['title'],
     };
 }
 
@@ -64,7 +62,7 @@ export function CustomEffectBlockReferenceToJSON(json: any): CustomEffectBlockRe
     return CustomEffectBlockReferenceToJSONTyped(json, false);
 }
 
-export function CustomEffectBlockReferenceToJSONTyped(value?: CustomEffectBlockReference | null, ignoreDiscriminator: boolean = false): any {
+export function CustomEffectBlockReferenceToJSONTyped(value?: Omit<CustomEffectBlockReference, 'name'|'title'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -72,8 +70,6 @@ export function CustomEffectBlockReferenceToJSONTyped(value?: CustomEffectBlockR
     return {
         
         'id': value['id'],
-        'name': value['name'],
-        'title': value['title'],
     };
 }
 

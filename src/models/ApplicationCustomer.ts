@@ -96,6 +96,10 @@ export interface ApplicationCustomer {
      * The Integration ID of the Customer Profile that referred this Customer in the Application.
      */
     advocateIntegrationId?: string;
+    /**
+     * The dates on which the customer joined the profile-based loyalty programs they are part of. Returned only when the `withLoyaltyMemberships` query parameter is `true`.
+     */
+    loyaltyProgramJoinDates?: Array<LoyaltyMembership>;
 }
 
 /**
@@ -135,6 +139,7 @@ export function ApplicationCustomerFromJSONTyped(json: any, ignoreDiscriminator:
         'lastActivity': (json['lastActivity'] == null ? json['lastActivity'] : parseDateTime(json['lastActivity'])),
         'sandbox': json['sandbox'] == null ? undefined : json['sandbox'],
         'advocateIntegrationId': json['advocateIntegrationId'] == null ? undefined : json['advocateIntegrationId'],
+        'loyaltyProgramJoinDates': json['loyaltyProgramJoinDates'] == null ? undefined : ((json['loyaltyProgramJoinDates'] as Array<any>).map(LoyaltyMembershipFromJSON)),
     };
 }
 
@@ -161,6 +166,7 @@ export function ApplicationCustomerToJSONTyped(value?: ApplicationCustomer | nul
         'lastActivity': value['lastActivity'] == null ? undefined : serializeDateTime(value['lastActivity']),
         'sandbox': value['sandbox'],
         'advocateIntegrationId': value['advocateIntegrationId'],
+        'loyaltyProgramJoinDates': value['loyaltyProgramJoinDates'] == null ? undefined : ((value['loyaltyProgramJoinDates'] as Array<any>).map(LoyaltyMembershipToJSON)),
     };
 }
 

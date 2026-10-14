@@ -80,7 +80,7 @@ export interface RuleFailureReason {
      */
     evaluationGroupID?: number;
     /**
-     * The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-
+     * The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
      */
     evaluationGroupMode?: string;
 }

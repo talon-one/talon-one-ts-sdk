@@ -9,7 +9,7 @@ Name | Type
 `applicationId` | number
 `campaignId` | number
 `loyaltyProgramId` | number
-`subledgerId` | number
+`subledgerId` | string
 `customerProfileId` | string
 `requestType` | string
 `requestValue` | number
@@ -25,7 +25,7 @@ const example = {
   "applicationId": 322,
   "campaignId": 100,
   "loyaltyProgramId": 8,
-  "subledgerId": 123,
+  "subledgerId": sub-123,
   "customerProfileId": URNGV8294NV,
   "requestType": personal_coupon,
   "requestValue": 20.5,

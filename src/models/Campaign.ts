@@ -304,7 +304,7 @@ export interface Campaign {
      */
     activeRevisionVersionId?: number;
     /**
-     * Incrementing number representing how many revisions have been activated on this campaign, starts from 0 for a new campaign.
+     * Incrementing number representing how many revisions have been activated on this campaign. Starts from `0` for a new campaign.
      * 
      */
     version?: number;

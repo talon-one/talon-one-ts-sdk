@@ -100,7 +100,7 @@ export interface EffectAwardGiveaway {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `awardGiveaway` effect.
+     * 
      */
     props: AwardGiveawayEffectProps;
 }

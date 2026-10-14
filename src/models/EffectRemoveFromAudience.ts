@@ -100,7 +100,7 @@ export interface EffectRemoveFromAudience {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `removeFromAudience` effect.
+     * 
      */
     props: RemoveFromAudienceEffectProps;
 }

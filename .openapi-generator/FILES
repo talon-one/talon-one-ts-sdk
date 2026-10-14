@@ -212,6 +212,7 @@ docs/CatalogActionRemove.md
 docs/CatalogActionRemoveMany.md
 docs/CatalogItem.md
 docs/CatalogRule.md
+docs/CatalogRuleset.md
 docs/CatalogSyncRequest.md
 docs/CatalogsStrikethroughNotificationPolicy.md
 docs/Change.md
@@ -274,6 +275,7 @@ docs/CustomEffect.md
 docs/CustomEffectBlockReference.md
 docs/CustomEffectProps.md
 docs/CustomerAchievement.md
+docs/CustomerAchievementHistoryEntry.md
 docs/CustomerActivityReport.md
 docs/CustomerAnalytics.md
 docs/CustomerInventory.md
@@ -316,6 +318,7 @@ docs/EffectEntity.md
 docs/EffectError.md
 docs/EffectExtendLoyaltyPointsExpiryDate.md
 docs/EffectIncreaseAchievementProgress.md
+docs/EffectIncreaseAchievementProgressPerItem.md
 docs/EffectJoinLoyaltyProgram.md
 docs/EffectOffsetNegativeLoyaltyPoints.md
 docs/EffectRedeemReferral.md
@@ -329,7 +332,9 @@ docs/EffectRollbackCoupon.md
 docs/EffectRollbackDeductedLoyaltyPoints.md
 docs/EffectRollbackDiscount.md
 docs/EffectRollbackIncreasedAchievementProgress.md
+docs/EffectRollbackIncreasedAchievementProgressPerItem.md
 docs/EffectRollbackReferral.md
+docs/EffectRollbackTierBoost.md
 docs/EffectRollbackUseReward.md
 docs/EffectSet.md
 docs/EffectSetDiscount.md
@@ -367,6 +372,8 @@ docs/EventV3ReferralEntity.md
 docs/EventV3RequestEntity.md
 docs/ExcludePriceObservationsRequest.md
 docs/Experiment.md
+docs/ExperimentBlueprint.md
+docs/ExperimentBlueprintVariant.md
 docs/ExperimentCampaignCopy.md
 docs/ExperimentConfidenceTimeline.md
 docs/ExperimentConfidenceTimelineDataPoint.md
@@ -481,6 +488,7 @@ docs/IdentifiableEntity.md
 docs/Import.md
 docs/ImportEntity.md
 docs/IncreaseAchievementProgressEffectProps.md
+docs/IncreaseAchievementProgressPerItemEffectProps.md
 docs/InfluencingCampaignDetails.md
 docs/IntegrationApi.md
 docs/IntegrationCampaign.md
@@ -551,6 +559,7 @@ docs/ListCampaignStoreBudgetsStore.md
 docs/ListCatalogItems200Response.md
 docs/ListCheckAttributeBlock.md
 docs/ListExperiments200Response.md
+docs/ListGiveawaysPool200Response.md
 docs/ListStores200Response.md
 docs/ListWithCountCheckAttributeBlock.md
 docs/LocationCheckAttributeBlock.md
@@ -648,6 +657,7 @@ docs/NewEvent.md
 docs/NewEventType.md
 docs/NewEventV3Entity.md
 docs/NewExperiment.md
+docs/NewExperimentBlueprint.md
 docs/NewExperimentVariant.md
 docs/NewExperimentVariantArray.md
 docs/NewExternalInvitation.md
@@ -790,6 +800,7 @@ docs/RollbackCouponEffectProps.md
 docs/RollbackDeductedLoyaltyPointsEffectProps.md
 docs/RollbackDiscountEffectProps.md
 docs/RollbackIncreasedAchievementProgressEffectProps.md
+docs/RollbackIncreasedAchievementProgressPerItemEffectProps.md
 docs/RollbackReferralEffectProps.md
 docs/RollbackTierBoostEffectProps.md
 docs/RollbackUseRewardEffectProps.md
@@ -895,6 +906,7 @@ docs/UnlockRewardEffectProps.md
 docs/UpdateAccount.md
 docs/UpdateAchievement.md
 docs/UpdateAchievementProgressBlock.md
+docs/UpdateAchievementProgressBlock1Value.md
 docs/UpdateAchievementV2.md
 docs/UpdateApplication.md
 docs/UpdateApplicationAPIKey.md
@@ -919,6 +931,7 @@ docs/UpdateCustomEffect.md
 docs/UpdateCustomerProfileV2409Response.md
 docs/UpdateCustomerSessionV2409Response.md
 docs/UpdateExperiment.md
+docs/UpdateExperimentBlueprint.md
 docs/UpdateExperimentVariant.md
 docs/UpdateExperimentVariantArray.md
 docs/UpdateExperimentVariantName.md
@@ -1164,6 +1177,7 @@ src/models/CatalogActionRemove.ts
 src/models/CatalogActionRemoveMany.ts
 src/models/CatalogItem.ts
 src/models/CatalogRule.ts
+src/models/CatalogRuleset.ts
 src/models/CatalogSyncRequest.ts
 src/models/CatalogsStrikethroughNotificationPolicy.ts
 src/models/Change.ts
@@ -1226,6 +1240,7 @@ src/models/CustomEffect.ts
 src/models/CustomEffectBlockReference.ts
 src/models/CustomEffectProps.ts
 src/models/CustomerAchievement.ts
+src/models/CustomerAchievementHistoryEntry.ts
 src/models/CustomerActivityReport.ts
 src/models/CustomerAnalytics.ts
 src/models/CustomerInventory.ts
@@ -1268,6 +1283,7 @@ src/models/EffectEntity.ts
 src/models/EffectError.ts
 src/models/EffectExtendLoyaltyPointsExpiryDate.ts
 src/models/EffectIncreaseAchievementProgress.ts
+src/models/EffectIncreaseAchievementProgressPerItem.ts
 src/models/EffectJoinLoyaltyProgram.ts
 src/models/EffectOffsetNegativeLoyaltyPoints.ts
 src/models/EffectRedeemReferral.ts
@@ -1281,7 +1297,9 @@ src/models/EffectRollbackCoupon.ts
 src/models/EffectRollbackDeductedLoyaltyPoints.ts
 src/models/EffectRollbackDiscount.ts
 src/models/EffectRollbackIncreasedAchievementProgress.ts
+src/models/EffectRollbackIncreasedAchievementProgressPerItem.ts
 src/models/EffectRollbackReferral.ts
+src/models/EffectRollbackTierBoost.ts
 src/models/EffectRollbackUseReward.ts
 src/models/EffectSet.ts
 src/models/EffectSetDiscount.ts
@@ -1319,6 +1337,8 @@ src/models/EventV3ReferralEntity.ts
 src/models/EventV3RequestEntity.ts
 src/models/ExcludePriceObservationsRequest.ts
 src/models/Experiment.ts
+src/models/ExperimentBlueprint.ts
+src/models/ExperimentBlueprintVariant.ts
 src/models/ExperimentCampaignCopy.ts
 src/models/ExperimentConfidenceTimeline.ts
 src/models/ExperimentConfidenceTimelineDataPoint.ts
@@ -1433,6 +1453,7 @@ src/models/IdentifiableEntity.ts
 src/models/Import.ts
 src/models/ImportEntity.ts
 src/models/IncreaseAchievementProgressEffectProps.ts
+src/models/IncreaseAchievementProgressPerItemEffectProps.ts
 src/models/InfluencingCampaignDetails.ts
 src/models/IntegrationCampaign.ts
 src/models/IntegrationCampaignBase.ts
@@ -1502,6 +1523,7 @@ src/models/ListCampaignStoreBudgetsStore.ts
 src/models/ListCatalogItems200Response.ts
 src/models/ListCheckAttributeBlock.ts
 src/models/ListExperiments200Response.ts
+src/models/ListGiveawaysPool200Response.ts
 src/models/ListStores200Response.ts
 src/models/ListWithCountCheckAttributeBlock.ts
 src/models/LocationCheckAttributeBlock.ts
@@ -1598,6 +1620,7 @@ src/models/NewEvent.ts
 src/models/NewEventType.ts
 src/models/NewEventV3Entity.ts
 src/models/NewExperiment.ts
+src/models/NewExperimentBlueprint.ts
 src/models/NewExperimentVariant.ts
 src/models/NewExperimentVariantArray.ts
 src/models/NewExternalInvitation.ts
@@ -1740,6 +1763,7 @@ src/models/RollbackCouponEffectProps.ts
 src/models/RollbackDeductedLoyaltyPointsEffectProps.ts
 src/models/RollbackDiscountEffectProps.ts
 src/models/RollbackIncreasedAchievementProgressEffectProps.ts
+src/models/RollbackIncreasedAchievementProgressPerItemEffectProps.ts
 src/models/RollbackReferralEffectProps.ts
 src/models/RollbackTierBoostEffectProps.ts
 src/models/RollbackUseRewardEffectProps.ts
@@ -1845,6 +1869,7 @@ src/models/UnlockRewardEffectProps.ts
 src/models/UpdateAccount.ts
 src/models/UpdateAchievement.ts
 src/models/UpdateAchievementProgressBlock.ts
+src/models/UpdateAchievementProgressBlock1Value.ts
 src/models/UpdateAchievementV2.ts
 src/models/UpdateApplication.ts
 src/models/UpdateApplicationAPIKey.ts
@@ -1869,6 +1894,7 @@ src/models/UpdateCustomEffect.ts
 src/models/UpdateCustomerProfileV2409Response.ts
 src/models/UpdateCustomerSessionV2409Response.ts
 src/models/UpdateExperiment.ts
+src/models/UpdateExperimentBlueprint.ts
 src/models/UpdateExperimentVariant.ts
 src/models/UpdateExperimentVariantArray.ts
 src/models/UpdateExperimentVariantName.ts

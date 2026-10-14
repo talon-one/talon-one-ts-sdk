@@ -100,7 +100,7 @@ export interface EffectSetDiscountPerAdditionalCost {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `setDiscountPerAdditionalCost` effect.
+     * 
      */
     props: SetDiscountPerAdditionalCostEffectProps;
 }

@@ -26,7 +26,7 @@ export interface WebhookBlockReference {
     /**
      * The display name of the webhook.
      */
-    title: string;
+    readonly title?: string;
 }
 
 /**
@@ -35,7 +35,6 @@ export interface WebhookBlockReference {
 export function instanceOfWebhookBlockReference(value: object): value is WebhookBlockReference {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('id' in _v) || _v['id'] === undefined) return false;
-    if (!('title' in _v) || _v['title'] === undefined) return false;
     return true;
 }
 
@@ -50,7 +49,7 @@ export function WebhookBlockReferenceFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'id': json['id'],
-        'title': json['title'],
+        'title': json['title'] == null ? undefined : json['title'],
     };
 }
 
@@ -58,7 +57,7 @@ export function WebhookBlockReferenceToJSON(json: any): WebhookBlockReference {
     return WebhookBlockReferenceToJSONTyped(json, false);
 }
 
-export function WebhookBlockReferenceToJSONTyped(value?: WebhookBlockReference | null, ignoreDiscriminator: boolean = false): any {
+export function WebhookBlockReferenceToJSONTyped(value?: Omit<WebhookBlockReference, 'title'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -66,7 +65,6 @@ export function WebhookBlockReferenceToJSONTyped(value?: WebhookBlockReference |
     return {
         
         'id': value['id'],
-        'title': value['title'],
     };
 }
 

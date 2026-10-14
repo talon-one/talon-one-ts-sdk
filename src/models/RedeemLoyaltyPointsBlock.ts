@@ -27,13 +27,6 @@ import {
     RedeemLoyaltyPointsBlock1ValueToJSON,
     RedeemLoyaltyPointsBlock1ValueToJSONTyped,
 } from './RedeemLoyaltyPointsBlock1Value';
-import type { Block } from './Block';
-import {
-    BlockFromJSON,
-    BlockFromJSONTyped,
-    BlockToJSON,
-    BlockToJSONTyped,
-} from './Block';
 
 /**
  * 
@@ -69,10 +62,6 @@ export interface RedeemLoyaltyPointsBlock {
      * A custom description recorded as the reason for the point deduction.
      */
     name?: string;
-    /**
-     * Promotion blocks evaluated when this block fails or returns false.
-     */
-    onFailure?: Array<Block>;
 }
 
 /**
@@ -104,7 +93,6 @@ export function RedeemLoyaltyPointsBlockFromJSONTyped(json: any, ignoreDiscrimin
         'subledger': json['subledger'],
         'value': RedeemLoyaltyPointsBlock1ValueFromJSON(json['value']),
         'name': json['name'] == null ? undefined : json['name'],
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -124,7 +112,6 @@ export function RedeemLoyaltyPointsBlockToJSONTyped(value?: Omit<RedeemLoyaltyPo
         'subledger': value['subledger'],
         'value': RedeemLoyaltyPointsBlock1ValueToJSON(value['value']),
         'name': value['name'],
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }
 
