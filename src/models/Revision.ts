@@ -32,39 +32,39 @@ export interface Revision {
      */
     id: number;
     /**
-     * 
+     * Timestamp when the revision will be activated.
      */
     activateAt?: Date;
     /**
-     * 
+     * The ID of the account that owns this entity.
      */
     accountId: number;
     /**
-     * 
+     * The ID of the Application that owns this entity.
      */
     applicationId: number;
     /**
-     * 
+     * The ID of the campaign that the revision was created from.
      */
     campaignId: number;
     /**
-     * 
+     * Timestamp when the revision was created.
      */
     created: Date;
     /**
-     * 
+     * The ID of the user who created this revision.
      */
     createdBy: number;
     /**
-     * 
+     * Timestamp when this revision was activated.
      */
     activatedAt?: Date;
     /**
-     * 
+     * The ID of the user who activated this revision.
      */
     activatedBy?: number;
     /**
-     * 
+     * The current version of this revision.
      */
     currentVersion?: RevisionVersion;
 }

@@ -100,7 +100,7 @@ export interface EffectIncreaseAchievementProgress {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `increaseAchievementProgress` effect.
+     * 
      */
     props: IncreaseAchievementProgressEffectProps;
 }

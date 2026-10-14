@@ -439,6 +439,11 @@ import {
     ListExperiments200ResponseToJSON,
 } from '../models/ListExperiments200Response';
 import {
+    type ListGiveawaysPool200Response,
+    ListGiveawaysPool200ResponseFromJSON,
+    ListGiveawaysPool200ResponseToJSON,
+} from '../models/ListGiveawaysPool200Response';
+import {
     type ListStores200Response,
     ListStores200ResponseFromJSON,
     ListStores200ResponseToJSON,
@@ -583,6 +588,11 @@ import {
     ReferralFromJSON,
     ReferralToJSON,
 } from '../models/Referral';
+import {
+    type Revision,
+    RevisionFromJSON,
+    RevisionToJSON,
+} from '../models/Revision';
 import {
     type RoleV2,
     RoleV2FromJSON,
@@ -1685,9 +1695,11 @@ export interface ExportLoyaltyBalancesRequest {
      */
     balances?: string;
     /**
-     * Filter results by an array of subledger IDs. If no value is provided, the export includes all subledgers and main ledger data for the specified loyalty program.
+     * Filters the results to specific subledgers.
      * 
-     * To specify the main ledger, provide an empty string ("").
+     * **Note:**
+     * - When this parameter is not provided, the export includes all subledgers
+     *   and main ledger data for the specified loyalty program.
      * 
      */
     subledgerIds?: Array<string>;
@@ -2164,6 +2176,10 @@ export interface GetApplicationCustomersRequest {
      * 
      */
     withTotalResultSize?: boolean;
+    /**
+     * When set to `true`, the `loyaltyProgramJoinDates` property returns the dates on which each customer joined the profile-based loyalty programs they are part of. This might decrease performance on large data sets.
+     */
+    withLoyaltyMemberships?: boolean;
 }
 
 export interface GetApplicationCustomersByAttributesRequest {
@@ -2191,6 +2207,10 @@ export interface GetApplicationCustomersByAttributesRequest {
      * 
      */
     withTotalResultSize?: boolean;
+    /**
+     * When set to `true`, the `loyaltyProgramJoinDates` property returns the dates on which each customer joined the profile-based loyalty programs they are part of. This might decrease performance on large data sets.
+     */
+    withLoyaltyMemberships?: boolean;
 }
 
 export interface GetApplicationEventTypesRequest {
@@ -2910,6 +2930,17 @@ export interface GetCouponsWithoutTotalCountRequest {
      * Filter results to only return the coupon codes (`value` column) without the associated coupon data.
      */
     valuesOnly?: boolean;
+}
+
+export interface GetCurrentRevisionRequest {
+    /**
+     * The ID of the Application. It is displayed in your Talon.One deployment URL.
+     */
+    applicationId: number;
+    /**
+     * The ID of the campaign. It is displayed in your Talon.One deployment URL.
+     */
+    campaignId: number;
 }
 
 export interface GetCustomerActivityReportRequest {
@@ -4344,6 +4375,36 @@ export interface ListExperimentsRequest {
      * 
      */
     sort?: string;
+}
+
+export interface ListGiveawaysPoolRequest {
+    /**
+     * The number of items in the response.
+     */
+    pageSize?: number;
+    /**
+     * The number of items to skip when paging through large result sets.
+     */
+    skip?: number;
+    /**
+     * The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+     * 
+     * **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.
+     * 
+     */
+    sort?: string;
+    /**
+     * When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.
+     * 
+     * - When `true`: `totalResultSize` contains the total number of results for this query.
+     * - When `false`: Only `hasMore` is returned, and it is set to `true` when there are more results than shown on the page.
+     * 
+     */
+    withTotalResultSize?: boolean;
+    /**
+     * Filter by one or more Application IDs, separated by a comma.
+     */
+    applicationIds?: string;
 }
 
 export interface ListStoresRequest {
@@ -6290,7 +6351,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only `group` and `passthrough` blocks are currently writable, with optional `onFailure` blocks. A payload containing any other block type is rejected. Each rule\'s `blocks` array may contain at most one block.
+     * Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only the first block of a rule can be a condition. Every other block must be an effect.
      * Create ruleset (V2)
      */
     async createRulesetV2Raw(requestParameters: CreateRulesetV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RulesetV2>> {
@@ -6301,7 +6362,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only `group` and `passthrough` blocks are currently writable, with optional `onFailure` blocks. A payload containing any other block type is rejected. Each rule\'s `blocks` array may contain at most one block.
+     * Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only the first block of a rule can be a condition. Every other block must be an effect.
      * Create ruleset (V2)
      */
     async createRulesetV2(requestParameters: CreateRulesetV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RulesetV2> {
@@ -8564,7 +8625,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the balance of each customer in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subledger, when applicable. - `profileIntegrationID`: The integration ID of the customer profile. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. - `currentTier`: The tier that the customer is in at the time of the export. 
+     * Download a CSV file containing the balance of each customer in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file contains the following columns:  - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subledger, when applicable. - `profileIntegrationID`: The integration ID of the customer profile. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. - `currentTier`: The tier that the customer is in at the time of the export. - `negativeBalance`: The number of negative points. Only contains a value when requested via `balances` and the program uses negative points. 
      * Export customer loyalty balances
      */
     async exportLoyaltyBalancesRaw(requestParameters: ExportLoyaltyBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
@@ -8579,7 +8640,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing the balance of each customer in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subledger, when applicable. - `profileIntegrationID`: The integration ID of the customer profile. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. - `currentTier`: The tier that the customer is in at the time of the export. 
+     * Download a CSV file containing the balance of each customer in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file contains the following columns:  - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subledger, when applicable. - `profileIntegrationID`: The integration ID of the customer profile. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. - `currentTier`: The tier that the customer is in at the time of the export. - `negativeBalance`: The number of negative points. Only contains a value when requested via `balances` and the program uses negative points. 
      * Export customer loyalty balances
      */
     async exportLoyaltyBalances(requestParameters: ExportLoyaltyBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
@@ -9975,6 +10036,10 @@ export class ManagementApi extends runtime.BaseAPI {
             queryParameters['withTotalResultSize'] = requestParameters['withTotalResultSize'];
         }
 
+        if (requestParameters['withLoyaltyMemberships'] != null) {
+            queryParameters['withLoyaltyMemberships'] = requestParameters['withLoyaltyMemberships'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
@@ -10043,6 +10108,10 @@ export class ManagementApi extends runtime.BaseAPI {
 
         if (requestParameters['withTotalResultSize'] != null) {
             queryParameters['withTotalResultSize'] = requestParameters['withTotalResultSize'];
+        }
+
+        if (requestParameters['withLoyaltyMemberships'] != null) {
+            queryParameters['withLoyaltyMemberships'] = requestParameters['withLoyaltyMemberships'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -11710,6 +11779,65 @@ export class ManagementApi extends runtime.BaseAPI {
      */
     async getCouponsWithoutTotalCount(requestParameters: GetCouponsWithoutTotalCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCouponsWithoutTotalCount200Response> {
         const response = await this.getCouponsWithoutTotalCountRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getCurrentRevision without sending the request
+     */
+    async getCurrentRevisionRequestOpts(requestParameters: GetCurrentRevisionRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['applicationId'] == null) {
+            throw new runtime.RequiredError(
+                'applicationId',
+                'Required parameter "applicationId" was null or undefined when calling getCurrentRevision().'
+            );
+        }
+
+        if (requestParameters['campaignId'] == null) {
+            throw new runtime.RequiredError(
+                'campaignId',
+                'Required parameter "campaignId" was null or undefined when calling getCurrentRevision().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/applications/{applicationId}/campaigns/{campaignId}/revisions/current`;
+        urlPath = urlPath.replace('{applicationId}', encodeURIComponent(String(requestParameters['applicationId'])));
+        urlPath = urlPath.replace('{campaignId}', encodeURIComponent(String(requestParameters['campaignId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Get the current revision version for the given campaign.  **Note:** The [Campaign staging and revisions](https://docs.talon.one/docs/product/applications/manage-general-settings#campaign-staging-and-revisions) feature must be enabled for your Application. For more information, see [Revise campaigns](https://docs.talon.one/docs/product/campaigns/revise-campaigns). 
+     * Get current revision version
+     */
+    async getCurrentRevisionRaw(requestParameters: GetCurrentRevisionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Revision>> {
+        const requestOptions = await this.getCurrentRevisionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RevisionFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the current revision version for the given campaign.  **Note:** The [Campaign staging and revisions](https://docs.talon.one/docs/product/applications/manage-general-settings#campaign-staging-and-revisions) feature must be enabled for your Application. For more information, see [Revise campaigns](https://docs.talon.one/docs/product/campaigns/revise-campaigns). 
+     * Get current revision version
+     */
+    async getCurrentRevision(requestParameters: GetCurrentRevisionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Revision> {
+        const response = await this.getCurrentRevisionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -14730,7 +14858,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `joindate`: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
+     * Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `joindate`: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it. - If a join date is in the future at the time of the import, the import fails with a `400` error.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
      * Import join dates for a loyalty program
      */
     async importLoyaltyJoinDatesRaw(requestParameters: ImportLoyaltyJoinDatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Import>> {
@@ -14741,7 +14869,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `joindate`: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
+     * Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `joindate`: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it. - If a join date is in the future at the time of the import, the import fails with a `400` error.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
      * Import join dates for a loyalty program
      */
     async importLoyaltyJoinDates(requestParameters: ImportLoyaltyJoinDatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Import> {
@@ -15687,6 +15815,69 @@ export class ManagementApi extends runtime.BaseAPI {
      */
     async listExperiments(requestParameters: ListExperimentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListExperiments200Response> {
         const response = await this.listExperimentsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listGiveawaysPool without sending the request
+     */
+    async listGiveawaysPoolRequestOpts(requestParameters: ListGiveawaysPoolRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['sort'] != null) {
+            queryParameters['sort'] = requestParameters['sort'];
+        }
+
+        if (requestParameters['withTotalResultSize'] != null) {
+            queryParameters['withTotalResultSize'] = requestParameters['withTotalResultSize'];
+        }
+
+        if (requestParameters['applicationIds'] != null) {
+            queryParameters['applicationIds'] = requestParameters['applicationIds'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/giveaways/pools`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Retrieve all the giveaway pools for an account.
+     * List giveaway pools
+     */
+    async listGiveawaysPoolRaw(requestParameters: ListGiveawaysPoolRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListGiveawaysPool200Response>> {
+        const requestOptions = await this.listGiveawaysPoolRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListGiveawaysPool200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve all the giveaway pools for an account.
+     * List giveaway pools
+     */
+    async listGiveawaysPool(requestParameters: ListGiveawaysPoolRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListGiveawaysPool200Response> {
+        const response = await this.listGiveawaysPoolRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

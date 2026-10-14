@@ -25,15 +25,15 @@ import type { Revision } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "id": 6,
-  "activateAt": null,
-  "accountId": null,
-  "applicationId": null,
-  "campaignId": null,
-  "created": null,
-  "createdBy": null,
-  "activatedAt": null,
-  "activatedBy": null,
-  "currentVersion": null,
+  "activateAt": 2026-10-08T09:30:00Z,
+  "accountId": 3886,
+  "applicationId": 42,
+  "campaignId": 18,
+  "created": 2026-10-01T08:00:00Z,
+  "createdBy": 134,
+  "activatedAt": 2026-10-08T09:30:00Z,
+  "activatedBy": 334,
+  "currentVersion": {id=6, accountId=3886, applicationId=42, campaignId=18, created=2026-10-01T08:00:00Z, createdBy=134, revisionId=6, version=1, name=Summer promotions},
 } satisfies Revision
 
 console.log(example)

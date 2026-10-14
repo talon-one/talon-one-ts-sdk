@@ -100,7 +100,7 @@ export interface EffectSetLoyaltyPointsExpiryDate {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `setLoyaltyPointsExpiryDate` effect.
+     * 
      */
     props: SetLoyaltyPointsExpiryDateEffectProps;
 }

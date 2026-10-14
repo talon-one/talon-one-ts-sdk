@@ -341,6 +341,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**getCollection**](docs/ManagementApi.md#getcollection) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Get campaign-level collection
 *ManagementApi* | [**getCollectionItems**](docs/ManagementApi.md#getcollectionitems) | **GET** /v1/collections/{collectionId}/items | Get collection items
 *ManagementApi* | [**getCouponsWithoutTotalCount**](docs/ManagementApi.md#getcouponswithouttotalcount) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/no_total | List coupons
+*ManagementApi* | [**getCurrentRevision**](docs/ManagementApi.md#getcurrentrevision) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/revisions/current | Get current revision version
 *ManagementApi* | [**getCustomerActivityReport**](docs/ManagementApi.md#getcustomeractivityreport) | **GET** /v1/applications/{applicationId}/customer_activity_reports/{customerId} | Get customer\&#39;s activity report
 *ManagementApi* | [**getCustomerActivityReportsWithoutTotalCount**](docs/ManagementApi.md#getcustomeractivityreportswithouttotalcount) | **GET** /v1/applications/{applicationId}/customer_activity_reports/no_total | Get Activity Reports for Application Customers
 *ManagementApi* | [**getCustomerAnalytics**](docs/ManagementApi.md#getcustomeranalytics) | **GET** /v1/applications/{applicationId}/customers/{customerId}/analytics | Get customer\&#39;s analytics report
@@ -398,6 +399,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *ManagementApi* | [**listCollections**](docs/ManagementApi.md#listcollections) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections in campaign
 *ManagementApi* | [**listCollectionsInApplication**](docs/ManagementApi.md#listcollectionsinapplication) | **GET** /v1/applications/{applicationId}/collections | List collections in Application
 *ManagementApi* | [**listExperiments**](docs/ManagementApi.md#listexperiments) | **GET** /v1/applications/{applicationId}/experiments | List experiments
+*ManagementApi* | [**listGiveawaysPool**](docs/ManagementApi.md#listgiveawayspool) | **GET** /v1/giveaways/pools | List giveaway pools
 *ManagementApi* | [**listStores**](docs/ManagementApi.md#liststores) | **GET** /v1/applications/{applicationId}/stores | List stores
 *ManagementApi* | [**oktaEventHandlerChallenge**](docs/ManagementApi.md#oktaeventhandlerchallenge) | **GET** /v1/provisioning/okta | Validate Okta API ownership
 *ManagementApi* | [**priceHistory**](docs/ManagementApi.md#pricehistoryoperation) | **POST** /v1/applications/{applicationId}/price_history | Get summary of price history
@@ -643,6 +645,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [CatalogActionRemoveMany](docs/CatalogActionRemoveMany.md)
 - [CatalogItem](docs/CatalogItem.md)
 - [CatalogRule](docs/CatalogRule.md)
+- [CatalogRuleset](docs/CatalogRuleset.md)
 - [CatalogSyncRequest](docs/CatalogSyncRequest.md)
 - [CatalogsStrikethroughNotificationPolicy](docs/CatalogsStrikethroughNotificationPolicy.md)
 - [Change](docs/Change.md)
@@ -705,6 +708,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [CustomEffectBlockReference](docs/CustomEffectBlockReference.md)
 - [CustomEffectProps](docs/CustomEffectProps.md)
 - [CustomerAchievement](docs/CustomerAchievement.md)
+- [CustomerAchievementHistoryEntry](docs/CustomerAchievementHistoryEntry.md)
 - [CustomerActivityReport](docs/CustomerActivityReport.md)
 - [CustomerAnalytics](docs/CustomerAnalytics.md)
 - [CustomerInventory](docs/CustomerInventory.md)
@@ -747,6 +751,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [EffectError](docs/EffectError.md)
 - [EffectExtendLoyaltyPointsExpiryDate](docs/EffectExtendLoyaltyPointsExpiryDate.md)
 - [EffectIncreaseAchievementProgress](docs/EffectIncreaseAchievementProgress.md)
+- [EffectIncreaseAchievementProgressPerItem](docs/EffectIncreaseAchievementProgressPerItem.md)
 - [EffectJoinLoyaltyProgram](docs/EffectJoinLoyaltyProgram.md)
 - [EffectOffsetNegativeLoyaltyPoints](docs/EffectOffsetNegativeLoyaltyPoints.md)
 - [EffectRedeemReferral](docs/EffectRedeemReferral.md)
@@ -760,7 +765,9 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [EffectRollbackDeductedLoyaltyPoints](docs/EffectRollbackDeductedLoyaltyPoints.md)
 - [EffectRollbackDiscount](docs/EffectRollbackDiscount.md)
 - [EffectRollbackIncreasedAchievementProgress](docs/EffectRollbackIncreasedAchievementProgress.md)
+- [EffectRollbackIncreasedAchievementProgressPerItem](docs/EffectRollbackIncreasedAchievementProgressPerItem.md)
 - [EffectRollbackReferral](docs/EffectRollbackReferral.md)
+- [EffectRollbackTierBoost](docs/EffectRollbackTierBoost.md)
 - [EffectRollbackUseReward](docs/EffectRollbackUseReward.md)
 - [EffectSet](docs/EffectSet.md)
 - [EffectSetDiscount](docs/EffectSetDiscount.md)
@@ -798,6 +805,8 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [EventV3RequestEntity](docs/EventV3RequestEntity.md)
 - [ExcludePriceObservationsRequest](docs/ExcludePriceObservationsRequest.md)
 - [Experiment](docs/Experiment.md)
+- [ExperimentBlueprint](docs/ExperimentBlueprint.md)
+- [ExperimentBlueprintVariant](docs/ExperimentBlueprintVariant.md)
 - [ExperimentCampaignCopy](docs/ExperimentCampaignCopy.md)
 - [ExperimentConfidenceTimeline](docs/ExperimentConfidenceTimeline.md)
 - [ExperimentConfidenceTimelineDataPoint](docs/ExperimentConfidenceTimelineDataPoint.md)
@@ -912,6 +921,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [Import](docs/Import.md)
 - [ImportEntity](docs/ImportEntity.md)
 - [IncreaseAchievementProgressEffectProps](docs/IncreaseAchievementProgressEffectProps.md)
+- [IncreaseAchievementProgressPerItemEffectProps](docs/IncreaseAchievementProgressPerItemEffectProps.md)
 - [InfluencingCampaignDetails](docs/InfluencingCampaignDetails.md)
 - [IntegrationCampaign](docs/IntegrationCampaign.md)
 - [IntegrationCampaignBase](docs/IntegrationCampaignBase.md)
@@ -981,6 +991,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [ListCatalogItems200Response](docs/ListCatalogItems200Response.md)
 - [ListCheckAttributeBlock](docs/ListCheckAttributeBlock.md)
 - [ListExperiments200Response](docs/ListExperiments200Response.md)
+- [ListGiveawaysPool200Response](docs/ListGiveawaysPool200Response.md)
 - [ListStores200Response](docs/ListStores200Response.md)
 - [ListWithCountCheckAttributeBlock](docs/ListWithCountCheckAttributeBlock.md)
 - [LocationCheckAttributeBlock](docs/LocationCheckAttributeBlock.md)
@@ -1077,6 +1088,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [NewEventType](docs/NewEventType.md)
 - [NewEventV3Entity](docs/NewEventV3Entity.md)
 - [NewExperiment](docs/NewExperiment.md)
+- [NewExperimentBlueprint](docs/NewExperimentBlueprint.md)
 - [NewExperimentVariant](docs/NewExperimentVariant.md)
 - [NewExperimentVariantArray](docs/NewExperimentVariantArray.md)
 - [NewExternalInvitation](docs/NewExternalInvitation.md)
@@ -1219,6 +1231,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [RollbackDeductedLoyaltyPointsEffectProps](docs/RollbackDeductedLoyaltyPointsEffectProps.md)
 - [RollbackDiscountEffectProps](docs/RollbackDiscountEffectProps.md)
 - [RollbackIncreasedAchievementProgressEffectProps](docs/RollbackIncreasedAchievementProgressEffectProps.md)
+- [RollbackIncreasedAchievementProgressPerItemEffectProps](docs/RollbackIncreasedAchievementProgressPerItemEffectProps.md)
 - [RollbackReferralEffectProps](docs/RollbackReferralEffectProps.md)
 - [RollbackTierBoostEffectProps](docs/RollbackTierBoostEffectProps.md)
 - [RollbackUseRewardEffectProps](docs/RollbackUseRewardEffectProps.md)
@@ -1324,6 +1337,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [UpdateAccount](docs/UpdateAccount.md)
 - [UpdateAchievement](docs/UpdateAchievement.md)
 - [UpdateAchievementProgressBlock](docs/UpdateAchievementProgressBlock.md)
+- [UpdateAchievementProgressBlock1Value](docs/UpdateAchievementProgressBlock1Value.md)
 - [UpdateAchievementV2](docs/UpdateAchievementV2.md)
 - [UpdateApplication](docs/UpdateApplication.md)
 - [UpdateApplicationAPIKey](docs/UpdateApplicationAPIKey.md)
@@ -1348,6 +1362,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [UpdateCustomerProfileV2409Response](docs/UpdateCustomerProfileV2409Response.md)
 - [UpdateCustomerSessionV2409Response](docs/UpdateCustomerSessionV2409Response.md)
 - [UpdateExperiment](docs/UpdateExperiment.md)
+- [UpdateExperimentBlueprint](docs/UpdateExperimentBlueprint.md)
 - [UpdateExperimentVariant](docs/UpdateExperimentVariant.md)
 - [UpdateExperimentVariantArray](docs/UpdateExperimentVariantArray.md)
 - [UpdateExperimentVariantName](docs/UpdateExperimentVariantName.md)

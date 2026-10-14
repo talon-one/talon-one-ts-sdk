@@ -47,6 +47,21 @@ export interface PendingActivePointsData {
      * The integration ID of the session through which the points were earned.
      */
     sessionIntegrationID?: string;
+    /**
+     * The timestamp when the loyalty transaction occurred.
+     */
+    created?: Date;
+    /**
+     * Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.
+     */
+    awaitsActivation?: boolean;
+    /**
+     * The duration for which the points remain active, relative to the activation date.
+     * 
+     * **Note**: This only applies to points for which `AwaitsActivation` is `true` and `ExpireOn` is not set.
+     * 
+     */
+    validityDuration?: string;
 }
 
 /**
@@ -78,6 +93,9 @@ export function PendingActivePointsDataFromJSONTyped(json: any, ignoreDiscrimina
         'activeOn': json['ActiveOn'] == null ? undefined : (parseDateTime(json['ActiveOn'])),
         'expireOn': json['ExpireOn'] == null ? undefined : (parseDateTime(json['ExpireOn'])),
         'sessionIntegrationID': json['SessionIntegrationID'] == null ? undefined : json['SessionIntegrationID'],
+        'created': json['Created'] == null ? undefined : (parseDateTime(json['Created'])),
+        'awaitsActivation': json['AwaitsActivation'] == null ? undefined : json['AwaitsActivation'],
+        'validityDuration': json['ValidityDuration'] == null ? undefined : json['ValidityDuration'],
     };
 }
 
@@ -99,6 +117,9 @@ export function PendingActivePointsDataToJSONTyped(value?: PendingActivePointsDa
         'ActiveOn': value['activeOn'] == null ? value['activeOn'] : serializeDateTime(value['activeOn']),
         'ExpireOn': value['expireOn'] == null ? value['expireOn'] : serializeDateTime(value['expireOn']),
         'SessionIntegrationID': value['sessionIntegrationID'],
+        'Created': value['created'] == null ? value['created'] : serializeDateTime(value['created']),
+        'AwaitsActivation': value['awaitsActivation'],
+        'ValidityDuration': value['validityDuration'],
     };
 }
 

@@ -15,7 +15,7 @@ import type { RevisionActivation } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "activateAt": null,
+  "activateAt": 2026-10-08T09:30:00Z,
 } satisfies RevisionActivation
 
 console.log(example)

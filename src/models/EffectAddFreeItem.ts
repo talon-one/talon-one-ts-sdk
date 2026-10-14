@@ -100,7 +100,7 @@ export interface EffectAddFreeItem {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `addFreeItem` effect.
+     * 
      */
     props: AddFreeItemEffectProps;
 }

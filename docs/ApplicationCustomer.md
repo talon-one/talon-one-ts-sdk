@@ -18,6 +18,7 @@ Name | Type
 `lastActivity` | Date
 `sandbox` | boolean
 `advocateIntegrationId` | string
+`loyaltyProgramJoinDates` | [Array&lt;LoyaltyMembership&gt;](LoyaltyMembership.md)
 
 ## Example
 
@@ -38,6 +39,7 @@ const example = {
   "lastActivity": 2020-02-08T14:15:20Z,
   "sandbox": false,
   "advocateIntegrationId": null,
+  "loyaltyProgramJoinDates": null,
 } satisfies ApplicationCustomer
 
 console.log(example)

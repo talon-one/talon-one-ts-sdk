@@ -45,11 +45,11 @@ export interface RevisionVersion {
     /**
      * Timestamp when the campaign will become active.
      */
-    startTime?: Date;
+    startTime?: Date | null;
     /**
      * Timestamp when the campaign will become inactive.
      */
-    endTime?: Date;
+    endTime?: Date | null;
     /**
      * Arbitrary properties associated with this campaign.
      */
@@ -57,11 +57,11 @@ export interface RevisionVersion {
     /**
      * A detailed description of the campaign.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The ID of the ruleset this campaign will use.
      */
-    activeRulesetId?: number;
+    activeRulesetId?: number | null;
     /**
      * A list of tags for the campaign.
      */
@@ -91,30 +91,31 @@ export interface RevisionVersion {
      */
     couponAttributes?: object;
     /**
-     * 
+     * The ID of the account that owns this entity.
      */
     accountId: number;
     /**
-     * 
+     * The ID of the Application that owns this entity.
      */
     applicationId: number;
     /**
-     * 
+     * The ID of the campaign that the revision was created from.
      */
     campaignId: number;
     /**
-     * 
+     * Timestamp when the revision was created.
      */
     created: Date;
     /**
-     * 
+     * The ID of the user who created this revision.
      */
     createdBy: number;
     /**
-     * 
+     * The ID of the revision.
      */
     revisionId: number;
     /**
+     * Incrementing number representing how many revisions have been activated on this campaign. Starts from `0` for a new campaign.
      * 
      */
     version: number;
@@ -164,11 +165,11 @@ export function RevisionVersionFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'id': json['id'],
         'name': json['name'] == null ? undefined : json['name'],
-        'startTime': json['startTime'] == null ? undefined : (parseDateTime(json['startTime'])),
-        'endTime': json['endTime'] == null ? undefined : (parseDateTime(json['endTime'])),
+        'startTime': json['startTime'] === undefined ? undefined : json['startTime'] === null ? null : (parseDateTime(json['startTime'])),
+        'endTime': json['endTime'] === undefined ? undefined : json['endTime'] === null ? null : (parseDateTime(json['endTime'])),
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
-        'description': json['description'] == null ? undefined : json['description'],
-        'activeRulesetId': json['activeRulesetId'] == null ? undefined : json['activeRulesetId'],
+        'description': json['description'] === undefined ? undefined : json['description'] === null ? null : json['description'],
+        'activeRulesetId': json['activeRulesetId'] === undefined ? undefined : json['activeRulesetId'] === null ? null : json['activeRulesetId'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'couponSettings': json['couponSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['couponSettings']),
         'referralSettings': json['referralSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['referralSettings']),

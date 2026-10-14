@@ -7,7 +7,7 @@
 Name | Type
 ------------ | -------------
 `totalResultSize` | number
-`data` | [Array&lt;AchievementProgress&gt;](AchievementProgress.md)
+`data` | [Array&lt;CustomerAchievementHistoryEntry&gt;](CustomerAchievementHistoryEntry.md)
 
 ## Example
 

@@ -100,7 +100,7 @@ export interface EffectRollbackDeductedLoyaltyPoints {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `rollbackDeductedLoyaltyPoints` effect.
+     * 
      */
     props: RollbackDeductedLoyaltyPointsEffectProps;
 }

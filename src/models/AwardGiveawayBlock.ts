@@ -55,10 +55,6 @@ export interface AwardGiveawayBlock {
      */
     profile: AwardGiveawayBlockProfileEnum;
     /**
-     * Blocks evaluated when this block fails or returns false.
-     */
-    onFailure?: Array<Block>;
-    /**
      * Named error handlers evaluated when a specific error occurs.
      */
     onError?: { [key: string]: Array<Block>; };
@@ -101,7 +97,6 @@ export function AwardGiveawayBlockFromJSONTyped(json: any, ignoreDiscriminator: 
         'tags': json['tags'] == null ? undefined : json['tags'],
         'giveawayPool': GiveawayPoolBlockReferenceFromJSON(json['giveawayPool']),
         'profile': json['profile'],
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
         'onError': json['onError'] == null ? undefined : json['onError'],
     };
 }
@@ -120,7 +115,6 @@ export function AwardGiveawayBlockToJSONTyped(value?: Omit<AwardGiveawayBlock, '
         'type': value['type'],
         'giveawayPool': GiveawayPoolBlockReferenceToJSON(value['giveawayPool']),
         'profile': value['profile'],
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
         'onError': value['onError'],
     };
 }

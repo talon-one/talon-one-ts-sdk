@@ -11,7 +11,6 @@ Name | Type
 `tags` | Array&lt;string&gt;
 `giveawayPool` | [GiveawayPoolBlockReference](GiveawayPoolBlockReference.md)
 `profile` | string
-`onFailure` | [Array&lt;Block&gt;](Block.md)
 `onError` | { [key: string]: Array&lt;Block&gt;; }
 
 ## Example
@@ -26,7 +25,6 @@ const example = {
   "tags": null,
   "giveawayPool": null,
   "profile": Current,
-  "onFailure": null,
   "onError": null,
 } satisfies AwardGiveawayBlock
 

@@ -100,7 +100,7 @@ export interface EffectRollbackDiscount {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `rollbackDiscount` effect.
+     * 
      */
     props: RollbackDiscountEffectProps;
 }

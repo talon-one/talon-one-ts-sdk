@@ -13,7 +13,6 @@ Name | Type
 `subledger` | string
 `value` | [RedeemLoyaltyPointsBlock1Value](RedeemLoyaltyPointsBlock1Value.md)
 `name` | string
-`onFailure` | [Array&lt;Block&gt;](Block.md)
 
 ## Example
 
@@ -29,7 +28,6 @@ const example = {
   "subledger": main,
   "value": null,
   "name": Purchase Deduction,
-  "onFailure": null,
 } satisfies RedeemLoyaltyPointsBlock
 
 console.log(example)

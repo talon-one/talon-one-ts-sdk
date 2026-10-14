@@ -12,7 +12,6 @@ Name | Type
 `notificationType` | string
 `title` | string
 `body` | string
-`onFailure` | [Array&lt;Block&gt;](Block.md)
 `onError` | { [key: string]: Array&lt;Block&gt;; }
 
 ## Example
@@ -28,7 +27,6 @@ const example = {
   "notificationType": Info,
   "title": You earned a reward!,
   "body": You saved $10 on your order.,
-  "onFailure": null,
   "onError": null,
 } satisfies ShowNotificationBlock
 

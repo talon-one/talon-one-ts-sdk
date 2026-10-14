@@ -100,7 +100,7 @@ export interface EffectRejectReferral {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `rejectReferral` effect.
+     * 
      */
     props: RejectReferralEffectProps;
 }

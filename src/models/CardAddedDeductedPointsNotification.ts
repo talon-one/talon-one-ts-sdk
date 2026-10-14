@@ -91,6 +91,21 @@ export interface CardAddedDeductedPointsNotification {
      * The identifier of the transaction in the loyalty ledger.
      */
     transactionUUID: string;
+    /**
+     * The timestamp when the loyalty transaction occurred.
+     */
+    created?: Date;
+    /**
+     * Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.
+     */
+    awaitsActivation?: boolean;
+    /**
+     * The duration for which the points remain active, relative to the activation date.
+     * 
+     * **Note**: This only applies to points for which `AwaitsActivation` is `true` and `ExpiryDate` is not set.
+     * 
+     */
+    validityDuration?: string;
 }
 
 
@@ -171,6 +186,9 @@ export function CardAddedDeductedPointsNotificationFromJSONTyped(json: any, igno
         'reason': json['Reason'],
         'startDate': json['StartDate'] == null ? undefined : (parseDateTime(json['StartDate'])),
         'transactionUUID': json['TransactionUUID'],
+        'created': json['Created'] == null ? undefined : (parseDateTime(json['Created'])),
+        'awaitsActivation': json['AwaitsActivation'] == null ? undefined : json['AwaitsActivation'],
+        'validityDuration': json['ValidityDuration'] == null ? undefined : json['ValidityDuration'],
     };
 }
 
@@ -201,6 +219,9 @@ export function CardAddedDeductedPointsNotificationToJSONTyped(value?: CardAdded
         'Reason': value['reason'],
         'StartDate': value['startDate'] == null ? value['startDate'] : serializeDateTime(value['startDate']),
         'TransactionUUID': value['transactionUUID'],
+        'Created': value['created'] == null ? value['created'] : serializeDateTime(value['created']),
+        'AwaitsActivation': value['awaitsActivation'],
+        'ValidityDuration': value['validityDuration'],
     };
 }
 

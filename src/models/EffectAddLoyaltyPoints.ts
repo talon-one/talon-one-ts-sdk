@@ -100,7 +100,7 @@ export interface EffectAddLoyaltyPoints {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `addLoyaltyPoints` effect.
+     * 
      */
     props: AddLoyaltyPointsEffectProps;
 }

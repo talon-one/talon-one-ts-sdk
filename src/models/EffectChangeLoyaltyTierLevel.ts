@@ -100,7 +100,7 @@ export interface EffectChangeLoyaltyTierLevel {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `changeLoyaltyTierLevel` effect.
+     * 
      */
     props: ChangeLoyaltyTierLevelEffectProps;
 }

@@ -100,7 +100,7 @@ export interface EffectBoostLoyaltyTier {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `boostLoyaltyTier` effect.
+     * 
      */
     props: BoostLoyaltyTierEffectProps;
 }

@@ -100,7 +100,7 @@ export interface EffectRollbackReferral {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `rollbackReferral` effect.
+     * 
      */
     props: RollbackReferralEffectProps;
 }

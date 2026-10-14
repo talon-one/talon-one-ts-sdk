@@ -100,7 +100,7 @@ export interface EffectSetDiscount {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `setDiscount` effect.
+     * 
      */
     props: SetDiscountEffectProps;
 }

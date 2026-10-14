@@ -100,7 +100,7 @@ export interface EffectRejectCoupon {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `rejectCoupon` effect.
+     * 
      */
     props: RejectCouponEffectProps;
 }

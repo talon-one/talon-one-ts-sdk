@@ -34,11 +34,11 @@ export interface AttributeBlockReference {
     /**
      * The human-readable name of the attribute.
      */
-    title: string;
+    readonly title?: string;
     /**
      * The data type of the attribute.
      */
-    type: string;
+    readonly type?: string;
 }
 
 /**
@@ -49,8 +49,6 @@ export function instanceOfAttributeBlockReference(value: object): value is Attri
     if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('entity' in _v) || _v['entity'] === undefined) return false;
     if (!('name' in _v) || _v['name'] === undefined) return false;
-    if (!('title' in _v) || _v['title'] === undefined) return false;
-    if (!('type' in _v) || _v['type'] === undefined) return false;
     return true;
 }
 
@@ -67,8 +65,8 @@ export function AttributeBlockReferenceFromJSONTyped(json: any, ignoreDiscrimina
         'id': json['id'],
         'entity': json['entity'],
         'name': json['name'],
-        'title': json['title'],
-        'type': json['type'],
+        'title': json['title'] == null ? undefined : json['title'],
+        'type': json['type'] == null ? undefined : json['type'],
     };
 }
 
@@ -76,7 +74,7 @@ export function AttributeBlockReferenceToJSON(json: any): AttributeBlockReferenc
     return AttributeBlockReferenceToJSONTyped(json, false);
 }
 
-export function AttributeBlockReferenceToJSONTyped(value?: AttributeBlockReference | null, ignoreDiscriminator: boolean = false): any {
+export function AttributeBlockReferenceToJSONTyped(value?: Omit<AttributeBlockReference, 'title'|'type'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -86,8 +84,6 @@ export function AttributeBlockReferenceToJSONTyped(value?: AttributeBlockReferen
         'id': value['id'],
         'entity': value['entity'],
         'name': value['name'],
-        'title': value['title'],
-        'type': value['type'],
     };
 }
 

@@ -100,7 +100,7 @@ export interface EffectShowBundleMetadata {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `showBundleMetadata` effect.
+     * 
      * @deprecated
      */
     props: ShowBundleMetadataEffectProps;

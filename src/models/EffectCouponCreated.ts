@@ -100,7 +100,7 @@ export interface EffectCouponCreated {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `couponCreated` effect.
+     * 
      */
     props: CouponCreatedEffectProps;
 }

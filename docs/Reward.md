@@ -18,6 +18,8 @@ Name | Type
 `rule` | [Rule](Rule.md)
 `bindings` | [Array&lt;Binding&gt;](Binding.md)
 `pointsRequired` | [Array&lt;RewardPointsRequired&gt;](RewardPointsRequired.md)
+`validityDuration` | string
+`expiryDate` | Date
 `modified` | Date
 `status` | string
 
@@ -40,6 +42,8 @@ const example = {
   "rule": null,
   "bindings": [],
   "pointsRequired": null,
+  "validityDuration": 3M_U,
+  "expiryDate": 2026-12-31T00:00:00Z,
   "modified": null,
   "status": active,
 } satisfies Reward

@@ -26,7 +26,7 @@ export interface GiveawayPoolBlockReference {
     /**
      * The display name of the giveaway pool.
      */
-    readonly name: string;
+    readonly name?: string;
 }
 
 /**
@@ -35,7 +35,6 @@ export interface GiveawayPoolBlockReference {
 export function instanceOfGiveawayPoolBlockReference(value: object): value is GiveawayPoolBlockReference {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('id' in _v) || _v['id'] === undefined) return false;
-    if (!('name' in _v) || _v['name'] === undefined) return false;
     return true;
 }
 
@@ -50,7 +49,7 @@ export function GiveawayPoolBlockReferenceFromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'id': json['id'],
-        'name': json['name'],
+        'name': json['name'] == null ? undefined : json['name'],
     };
 }
 

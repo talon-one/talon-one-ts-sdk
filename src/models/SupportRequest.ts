@@ -36,9 +36,9 @@ export interface SupportRequest {
      */
     loyaltyProgramId?: number;
     /**
-     * Identifier of the subledger the points are added to or deducted from. If there is no existing subledger with this ID, the subledger is created automatically.
+     * ID of the subledger the points are added to or deducted from. Must be combined with `loyaltyProgramId`. The subledger must already exist in the given loyalty program.
      */
-    subledgerId?: number;
+    subledgerId?: string;
     /**
      * Email address of the customer support agent who created the support request.
      */

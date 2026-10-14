@@ -51,7 +51,8 @@ export interface CheckTierBlock {
      */
     operator: CheckTierBlockOperatorEnum;
     /**
-     * The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program's main ledger balance instead of a subledger.
+     * The name of the subledger to check a customer's tier in. Can be empty if this block checks the loyalty program's main ledger instead of a subledger. A subledger can only be used when the loyalty program that the tier is in has subledgers enabled.
+     * To specify the main ledger, provide an empty string ("").
      */
     subledger: string;
     /**

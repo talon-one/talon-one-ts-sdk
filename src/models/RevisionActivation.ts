@@ -20,7 +20,7 @@ import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime }
  */
 export interface RevisionActivation {
     /**
-     * 
+     * Timestamp when the revision will be activated.
      */
     activateAt?: Date;
 }

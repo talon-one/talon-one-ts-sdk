@@ -100,7 +100,7 @@ export interface EffectError {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `error` effect.
+     * 
      */
     props: ErrorEffectProps;
 }

@@ -100,7 +100,7 @@ export interface EffectWillAwardGiveaway {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `willAwardGiveaway` effect.
+     * 
      */
     props: WillAwardGiveawayEffectProps;
 }

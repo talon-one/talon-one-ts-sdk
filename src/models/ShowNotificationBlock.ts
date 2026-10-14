@@ -50,11 +50,7 @@ export interface ShowNotificationBlock {
     /**
      * The notification body text. Supports template placeholders (e.g. "{{$Session.Total}}") evaluated at rule execution time.
      */
-    body?: string;
-    /**
-     * Blocks evaluated when this block fails or returns false.
-     */
-    onFailure?: Array<Block>;
+    body: string;
     /**
      * Named error handlers evaluated when a specific error occurs.
      */
@@ -69,6 +65,7 @@ export function instanceOfShowNotificationBlock(value: object): value is ShowNot
     if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('notificationType' in _v) || _v['notificationType'] === undefined) return false;
     if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('body' in _v) || _v['body'] === undefined) return false;
     return true;
 }
 
@@ -87,8 +84,7 @@ export function ShowNotificationBlockFromJSONTyped(json: any, ignoreDiscriminato
         'tags': json['tags'] == null ? undefined : json['tags'],
         'notificationType': json['notificationType'],
         'title': json['title'],
-        'body': json['body'] == null ? undefined : json['body'],
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
+        'body': json['body'],
         'onError': json['onError'] == null ? undefined : json['onError'],
     };
 }
@@ -108,7 +104,6 @@ export function ShowNotificationBlockToJSONTyped(value?: Omit<ShowNotificationBl
         'notificationType': value['notificationType'],
         'title': value['title'],
         'body': value['body'],
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
         'onError': value['onError'],
     };
 }

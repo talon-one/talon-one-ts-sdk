@@ -99,6 +99,10 @@ export interface LoyaltyLedgerEntry {
      * 
      */
     validityDuration?: string;
+    /**
+     * Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.
+     */
+    awaitsActivation?: boolean;
 }
 
 /**
@@ -141,6 +145,7 @@ export function LoyaltyLedgerEntryFromJSONTyped(json: any, ignoreDiscriminator: 
         'archived': json['archived'] == null ? undefined : json['archived'],
         'flags': json['flags'] == null ? undefined : LoyaltyLedgerEntryFlagsFromJSON(json['flags']),
         'validityDuration': json['validityDuration'] == null ? undefined : json['validityDuration'],
+        'awaitsActivation': json['awaitsActivation'] == null ? undefined : json['awaitsActivation'],
     };
 }
 
@@ -171,6 +176,7 @@ export function LoyaltyLedgerEntryToJSONTyped(value?: LoyaltyLedgerEntry | null,
         'archived': value['archived'],
         'flags': LoyaltyLedgerEntryFlagsToJSON(value['flags']),
         'validityDuration': value['validityDuration'],
+        'awaitsActivation': value['awaitsActivation'],
     };
 }
 

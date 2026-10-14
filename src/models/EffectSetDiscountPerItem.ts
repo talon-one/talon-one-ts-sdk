@@ -100,7 +100,7 @@ export interface EffectSetDiscountPerItem {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `setDiscountPerItem` effect.
+     * 
      */
     props: SetDiscountPerItemEffectProps;
 }

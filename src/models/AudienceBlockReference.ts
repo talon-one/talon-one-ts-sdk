@@ -26,7 +26,7 @@ export interface AudienceBlockReference {
     /**
      * The display name of the audience.
      */
-    name: string;
+    readonly name?: string;
     /**
      * The Talon.One-supported [3rd-party platform](https://docs.talon.one/docs/dev/technology-partners/overview) that this audience was created in.
      * 
@@ -51,7 +51,6 @@ export interface AudienceBlockReference {
 export function instanceOfAudienceBlockReference(value: object): value is AudienceBlockReference {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('id' in _v) || _v['id'] === undefined) return false;
-    if (!('name' in _v) || _v['name'] === undefined) return false;
     return true;
 }
 
@@ -66,7 +65,7 @@ export function AudienceBlockReferenceFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'id': json['id'],
-        'name': json['name'],
+        'name': json['name'] == null ? undefined : json['name'],
         'integration': json['integration'] == null ? undefined : json['integration'],
         'integrationId': json['integrationId'] == null ? undefined : json['integrationId'],
     };
@@ -76,7 +75,7 @@ export function AudienceBlockReferenceToJSON(json: any): AudienceBlockReference 
     return AudienceBlockReferenceToJSONTyped(json, false);
 }
 
-export function AudienceBlockReferenceToJSONTyped(value?: AudienceBlockReference | null, ignoreDiscriminator: boolean = false): any {
+export function AudienceBlockReferenceToJSONTyped(value?: Omit<AudienceBlockReference, 'name'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -84,7 +83,6 @@ export function AudienceBlockReferenceToJSONTyped(value?: AudienceBlockReference
     return {
         
         'id': value['id'],
-        'name': value['name'],
         'integration': value['integration'],
         'integrationId': value['integrationId'],
     };

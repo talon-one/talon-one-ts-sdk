@@ -49,12 +49,12 @@ const example = {
   "reevaluateOnReturn": true,
   "features": null,
   "couponAttributes": null,
-  "accountId": null,
-  "applicationId": null,
-  "campaignId": null,
-  "created": null,
-  "createdBy": null,
-  "revisionId": null,
+  "accountId": 3886,
+  "applicationId": 42,
+  "campaignId": 18,
+  "created": 2026-10-01T08:00:00Z,
+  "createdBy": 134,
+  "revisionId": 6,
   "version": null,
 } satisfies RevisionVersion
 

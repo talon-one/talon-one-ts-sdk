@@ -21,7 +21,6 @@ Name | Type
 `validityDuration` | string
 `expiryDate` | any
 `pendingDuration` | string
-`onFailure` | [Array&lt;Block&gt;](Block.md)
 
 ## Example
 
@@ -45,7 +44,6 @@ const example = {
   "validityDuration": 30D,
   "expiryDate": 2026-12-31T00:00:00Z,
   "pendingDuration": 3D,
-  "onFailure": null,
 } satisfies AwardLoyaltyPointsBlock
 
 console.log(example)

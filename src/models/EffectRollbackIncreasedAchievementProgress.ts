@@ -100,7 +100,7 @@ export interface EffectRollbackIncreasedAchievementProgress {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `rollbackIncreasedAchievementProgress` effect.
+     * 
      */
     props: RollbackIncreasedAchievementProgressEffectProps;
 }

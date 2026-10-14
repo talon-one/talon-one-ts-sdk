@@ -12,6 +12,9 @@ Name | Type
 `startDate` | Date
 `expiryDate` | Date
 `transactionUUID` | string
+`created` | Date
+`awaitsActivation` | boolean
+`validityDuration` | string
 
 ## Example
 
@@ -26,6 +29,9 @@ const example = {
   "startDate": 2023-01-24T14:15:22Z,
   "expiryDate": 2024-01-24T14:15:22Z,
   "transactionUUID": null,
+  "created": 2023-01-24T14:15:22Z,
+  "awaitsActivation": false,
+  "validityDuration": 30D,
 } satisfies AddedDeductedPointsBalancesAction
 
 console.log(example)

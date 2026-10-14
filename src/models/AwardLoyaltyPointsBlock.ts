@@ -34,13 +34,6 @@ import {
     AwardLoyaltyPointsTargetToJSON,
     AwardLoyaltyPointsTargetToJSONTyped,
 } from './AwardLoyaltyPointsTarget';
-import type { Block } from './Block';
-import {
-    BlockFromJSON,
-    BlockFromJSONTyped,
-    BlockToJSON,
-    BlockToJSONTyped,
-} from './Block';
 
 /**
  * 
@@ -108,10 +101,6 @@ export interface AwardLoyaltyPointsBlock {
      * Relative duration (e.g. `3D`) the awarded points remain pending before activation.
      */
     pendingDuration?: string;
-    /**
-     * Promotion blocks evaluated when this block fails or returns false.
-     */
-    onFailure?: Array<Block>;
 }
 
 
@@ -165,7 +154,6 @@ export function AwardLoyaltyPointsBlockFromJSONTyped(json: any, ignoreDiscrimina
         'validityDuration': json['validityDuration'] == null ? undefined : json['validityDuration'],
         'expiryDate': json['expiryDate'] === undefined ? undefined : json['expiryDate'] === null ? null : json['expiryDate'],
         'pendingDuration': json['pendingDuration'] == null ? undefined : json['pendingDuration'],
-        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -193,7 +181,6 @@ export function AwardLoyaltyPointsBlockToJSONTyped(value?: Omit<AwardLoyaltyPoin
         'validityDuration': value['validityDuration'],
         'expiryDate': value['expiryDate'],
         'pendingDuration': value['pendingDuration'],
-        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }
 

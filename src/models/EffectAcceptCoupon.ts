@@ -100,7 +100,7 @@ export interface EffectAcceptCoupon {
      */
     rewardIntegrationId?: string;
     /**
-     * The properties of the `acceptCoupon` effect.
+     * 
      */
     props: AcceptCouponEffectProps;
 }
