@@ -1,7 +1,6 @@
 
 # OutboundMessage
 
-Outbound notification or webhook message with its shared request details.
 
 ## Properties
 

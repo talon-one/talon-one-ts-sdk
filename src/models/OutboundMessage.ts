@@ -29,7 +29,7 @@ import {
 } from './OutboundLogRequest';
 
 /**
- * Outbound notification or webhook message with its shared request details.
+ * 
  * @export
  * @interface OutboundMessage
  */
@@ -39,31 +39,31 @@ export interface OutboundMessage {
      */
     uuid: string;
     /**
-     * ID of the notification that produced the outbound request.
+     * ID of the notification that triggered the outbound message.
      */
     notificationId?: number;
     /**
-     * Name of the notification that produced the outbound request.
+     * Name of the notification that triggered the outbound message.
      */
     notificationName?: string;
     /**
-     * ID of the webhook that produced the outbound request.
+     * ID of the webhook that triggered the outbound message.
      */
     webhookId?: number;
     /**
-     * The name of the webhook that produced the outbound request.
+     * Name of the webhook that triggered the outbound message.
      */
     webhookName?: string;
     /**
-     * Type of notification that produced the outbound request.
+     * Type of notification that triggered the outbound message.
      */
     notificationType: string;
     /**
-     * ID of the Application associated with the outbound request.
+     * ID of the Application associated with the outbound message.
      */
     applicationId?: number;
     /**
-     * ID of the loyalty program associated with the outbound request.
+     * ID of the loyalty program associated with the outbound message.
      */
     loyaltyProgramId?: number;
     /**
@@ -91,7 +91,7 @@ export interface OutboundMessage {
      */
     retryCount?: number;
     /**
-     * Log entries for this message. Omitted when `includeLogs=false`.
+     * Log entries for this message. One entry per delivery attempt. Empty when `includeLogs=false`.
      */
     responses?: Array<OutboundMessageResponse>;
 }

@@ -40,6 +40,12 @@ export interface LoyaltyCardBatch {
      */
     status?: LoyaltyCardBatchStatusEnum;
     /**
+     * Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card.
+     * These attributes must be created in the Campaign Manager before their values can be updated through this endpoint.
+     * 
+     */
+    attributes?: object;
+    /**
      * 
      */
     cardCodeSettings?: CodeGeneratorSettings;
@@ -78,6 +84,7 @@ export function LoyaltyCardBatchFromJSONTyped(json: any, ignoreDiscriminator: bo
         'numberOfCards': json['numberOfCards'],
         'batchId': json['batchId'] == null ? undefined : json['batchId'],
         'status': json['status'] == null ? undefined : json['status'],
+        'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'cardCodeSettings': json['cardCodeSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['cardCodeSettings']),
     };
 }
@@ -96,6 +103,7 @@ export function LoyaltyCardBatchToJSONTyped(value?: LoyaltyCardBatch | null, ign
         'numberOfCards': value['numberOfCards'],
         'batchId': value['batchId'],
         'status': value['status'],
+        'attributes': value['attributes'],
         'cardCodeSettings': CodeGeneratorSettingsToJSON(value['cardCodeSettings']),
     };
 }

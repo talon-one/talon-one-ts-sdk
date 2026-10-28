@@ -24,6 +24,12 @@ export interface UpdateLoyaltyCardRequest {
      * 
      */
     status?: string;
+    /**
+     * Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card.
+     * These attributes must be created in the Campaign Manager before their values can be updated through this endpoint.
+     * 
+     */
+    attributes?: object;
 }
 
 /**
@@ -45,6 +51,7 @@ export function UpdateLoyaltyCardRequestFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'status': json['status'] == null ? undefined : json['status'],
+        'attributes': json['attributes'] == null ? undefined : json['attributes'],
     };
 }
 
@@ -60,6 +67,7 @@ export function UpdateLoyaltyCardRequestToJSONTyped(value?: UpdateLoyaltyCardReq
     return {
         
         'status': value['status'],
+        'attributes': value['attributes'],
     };
 }
 

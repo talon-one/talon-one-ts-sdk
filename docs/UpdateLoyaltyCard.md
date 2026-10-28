@@ -8,6 +8,7 @@ Name | Type
 ------------ | -------------
 `status` | string
 `blockReason` | string
+`attributes` | object
 
 ## Example
 
@@ -18,6 +19,7 @@ import type { UpdateLoyaltyCard } from 'talon_one_sdk'
 const example = {
   "status": active,
   "blockReason": Current card lost. Customer needs a new card.,
+  "attributes": {PIN=1234, Language=DE},
 } satisfies UpdateLoyaltyCard
 
 console.log(example)

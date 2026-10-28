@@ -13,6 +13,7 @@ Name | Type
 `programTitle` | string
 `status` | string
 `blockReason` | string
+`attributes` | object
 `identifier` | string
 `usersPerCardLimit` | number
 `profiles` | [Array&lt;LoyaltyCardProfileRegistration&gt;](LoyaltyCardProfileRegistration.md)
@@ -37,6 +38,7 @@ const example = {
   "programTitle": Loyalty program,
   "status": active,
   "blockReason": Current card lost. Customer needs a new card.,
+  "attributes": {PIN=1234, Language=DE},
   "identifier": summer-loyalty-card-0543,
   "usersPerCardLimit": 111,
   "profiles": null,

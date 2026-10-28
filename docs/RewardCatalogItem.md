@@ -13,6 +13,8 @@ Name | Type
 `pointsRequired` | [Array&lt;RewardPointsRequired&gt;](RewardPointsRequired.md)
 `rule` | [RuleMetadata](RuleMetadata.md)
 `eligibility` | [RewardEligibility](RewardEligibility.md)
+`validityDuration` | string
+`expiryDate` | Date
 
 ## Example
 
@@ -27,6 +29,8 @@ const example = {
   "pointsRequired": null,
   "rule": null,
   "eligibility": null,
+  "validityDuration": 3M_U,
+  "expiryDate": 2026-12-31T00:00:00Z,
 } satisfies RewardCatalogItem
 
 console.log(example)

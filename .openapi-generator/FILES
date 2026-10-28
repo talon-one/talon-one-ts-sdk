@@ -351,6 +351,7 @@ docs/EffectWillAwardGiveaway.md
 docs/EmailEntity.md
 docs/EmbeddedAnalyticsConfiguration.md
 docs/EmbeddedAnalyticsConfigurationDashboards.md
+docs/EmbeddedAnalyticsToken.md
 docs/EmbeddedDashboardConfiguration.md
 docs/Endpoint.md
 docs/Entity.md
@@ -1316,6 +1317,7 @@ src/models/EffectWillAwardGiveaway.ts
 src/models/EmailEntity.ts
 src/models/EmbeddedAnalyticsConfiguration.ts
 src/models/EmbeddedAnalyticsConfigurationDashboards.ts
+src/models/EmbeddedAnalyticsToken.ts
 src/models/EmbeddedDashboardConfiguration.ts
 src/models/Endpoint.ts
 src/models/Entity.ts

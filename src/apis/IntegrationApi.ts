@@ -283,6 +283,11 @@ import {
     UpdateCustomerSessionV2409ResponseFromJSON,
     UpdateCustomerSessionV2409ResponseToJSON,
 } from '../models/UpdateCustomerSessionV2409Response';
+import {
+    type UpdateLoyaltyCardRequest,
+    UpdateLoyaltyCardRequestFromJSON,
+    UpdateLoyaltyCardRequestToJSON,
+} from '../models/UpdateLoyaltyCardRequest';
 
 export interface ActivateLoyaltyPointsRequest {
     /**
@@ -1177,6 +1182,32 @@ export interface IntegrationRewardsCatalogRequest {
      * 
      */
     loyaltyCardId?: string;
+}
+
+export interface IntegrationUpdateLoyaltyCardRequest {
+    /**
+     * Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with
+     * the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+     * 
+     */
+    loyaltyProgramId: number;
+    /**
+     * Identifier of the loyalty card. You can get the identifier with
+     * the [List loyalty
+     * cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards)
+     * endpoint.
+     * 
+     * **Important**: The loyalty card ID requires [URL
+     * encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it
+     * contains special characters. For example, you must encode `NewCard2026%`
+     * as `NewCard2026%25`.
+     * 
+     */
+    loyaltyCardId: string;
+    /**
+     * 
+     */
+    updateLoyaltyCardRequest: UpdateLoyaltyCardRequest;
 }
 
 export interface JoinLoyaltyProgramRequest {
@@ -3306,6 +3337,75 @@ export class IntegrationApi extends runtime.BaseAPI {
      */
     async integrationRewardsCatalog(requestParameters: IntegrationRewardsCatalogRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationRewardsCatalog200Response> {
         const response = await this.integrationRewardsCatalogRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for integrationUpdateLoyaltyCard without sending the request
+     */
+    async integrationUpdateLoyaltyCardRequestOpts(requestParameters: IntegrationUpdateLoyaltyCardRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['loyaltyProgramId'] == null) {
+            throw new runtime.RequiredError(
+                'loyaltyProgramId',
+                'Required parameter "loyaltyProgramId" was null or undefined when calling integrationUpdateLoyaltyCard().'
+            );
+        }
+
+        if (requestParameters['loyaltyCardId'] == null) {
+            throw new runtime.RequiredError(
+                'loyaltyCardId',
+                'Required parameter "loyaltyCardId" was null or undefined when calling integrationUpdateLoyaltyCard().'
+            );
+        }
+
+        if (requestParameters['updateLoyaltyCardRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateLoyaltyCardRequest',
+                'Required parameter "updateLoyaltyCardRequest" was null or undefined when calling integrationUpdateLoyaltyCard().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // api_key_v1 authentication
+        }
+
+
+        let urlPath = `/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/update`;
+        urlPath = urlPath.replace('{loyaltyProgramId}', encodeURIComponent(String(requestParameters['loyaltyProgramId'])));
+        urlPath = urlPath.replace('{loyaltyCardId}', encodeURIComponent(String(requestParameters['loyaltyCardId'])));
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateLoyaltyCardRequestToJSON(requestParameters['updateLoyaltyCardRequest']),
+        };
+    }
+
+    /**
+     * Updates the details of a specific loyalty card. Use this endpoint to modify the card\'s status and custom attribute values.  You must provide at least one of the following parameters: -   `status` -  `attributes` 
+     * Update loyalty card
+     */
+    async integrationUpdateLoyaltyCardRaw(requestParameters: IntegrationUpdateLoyaltyCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoyaltyCard>> {
+        const requestOptions = await this.integrationUpdateLoyaltyCardRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => LoyaltyCardFromJSON(jsonValue));
+    }
+
+    /**
+     * Updates the details of a specific loyalty card. Use this endpoint to modify the card\'s status and custom attribute values.  You must provide at least one of the following parameters: -   `status` -  `attributes` 
+     * Update loyalty card
+     */
+    async integrationUpdateLoyaltyCard(requestParameters: IntegrationUpdateLoyaltyCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoyaltyCard> {
+        const response = await this.integrationUpdateLoyaltyCardRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -9,6 +9,7 @@ Name | Type
 `numberOfCards` | number
 `batchId` | string
 `status` | string
+`attributes` | object
 `cardCodeSettings` | [CodeGeneratorSettings](CodeGeneratorSettings.md)
 
 ## Example
@@ -21,6 +22,7 @@ const example = {
   "numberOfCards": 5000,
   "batchId": hwernpjz,
   "status": active,
+  "attributes": {PIN=1234, Language=DE},
   "cardCodeSettings": null,
 } satisfies LoyaltyCardBatch
 

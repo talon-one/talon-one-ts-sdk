@@ -36,7 +36,7 @@ export interface ErrorResponseWithStatus {
      */
     errors?: Array<APIError>;
     /**
-     * The error code
+     * The error code.
      */
     statusCode?: number;
 }

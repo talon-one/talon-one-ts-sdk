@@ -32,6 +32,11 @@ export interface GenerateLoyaltyCard {
      * 
      */
     cardIdentifier?: string;
+    /**
+     * Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card. These attributes must be created in the Campaign Manager before their values can be updated through this endpoint.
+     * 
+     */
+    attributes?: object;
 }
 
 
@@ -66,6 +71,7 @@ export function GenerateLoyaltyCardFromJSONTyped(json: any, ignoreDiscriminator:
         'status': json['status'] == null ? undefined : json['status'],
         'customerProfileIds': json['customerProfileIds'] == null ? undefined : json['customerProfileIds'],
         'cardIdentifier': json['cardIdentifier'] == null ? undefined : json['cardIdentifier'],
+        'attributes': json['attributes'] == null ? undefined : json['attributes'],
     };
 }
 
@@ -83,6 +89,7 @@ export function GenerateLoyaltyCardToJSONTyped(value?: GenerateLoyaltyCard | nul
         'status': value['status'],
         'customerProfileIds': value['customerProfileIds'],
         'cardIdentifier': value['cardIdentifier'],
+        'attributes': value['attributes'],
     };
 }
 

@@ -22,7 +22,7 @@ import {
 } from './OutboundLog';
 
 /**
- * Paginated list of outbound logs.
+ * 
  * @export
  * @interface OutboundLogs
  */

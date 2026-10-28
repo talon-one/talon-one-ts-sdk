@@ -65,6 +65,12 @@ export interface LoyaltyCard {
      */
     blockReason?: string;
     /**
+     * Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card.
+     * These attributes must be created in the Campaign Manager before their values can be updated through this endpoint.
+     * 
+     */
+    attributes?: object;
+    /**
      * The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`.
      * 
      */
@@ -135,6 +141,7 @@ export function LoyaltyCardFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'programTitle': json['programTitle'] == null ? undefined : json['programTitle'],
         'status': json['status'],
         'blockReason': json['blockReason'] == null ? undefined : json['blockReason'],
+        'attributes': json['attributes'] == null ? undefined : json['attributes'],
         'identifier': json['identifier'],
         'usersPerCardLimit': json['usersPerCardLimit'],
         'profiles': json['profiles'] == null ? undefined : ((json['profiles'] as Array<any>).map(LoyaltyCardProfileRegistrationFromJSON)),
@@ -165,6 +172,7 @@ export function LoyaltyCardToJSONTyped(value?: LoyaltyCard | null, ignoreDiscrim
         'programTitle': value['programTitle'],
         'status': value['status'],
         'blockReason': value['blockReason'],
+        'attributes': value['attributes'],
         'identifier': value['identifier'],
         'usersPerCardLimit': value['usersPerCardLimit'],
         'profiles': value['profiles'] == null ? undefined : ((value['profiles'] as Array<any>).map(LoyaltyCardProfileRegistrationToJSON)),
