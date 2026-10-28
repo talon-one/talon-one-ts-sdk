@@ -1,7 +1,6 @@
 
 # OutboundLogs
 
-Paginated list of outbound logs.
 
 ## Properties
 

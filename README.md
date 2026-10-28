@@ -224,6 +224,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 *IntegrationApi* | [**getReservedCustomers**](docs/IntegrationApi.md#getreservedcustomers) | **GET** /v1/coupon_reservations/customerprofiles/{couponValue} | List customers that have this coupon reserved
 *IntegrationApi* | [**integrationGetAllCampaigns**](docs/IntegrationApi.md#integrationgetallcampaigns) | **GET** /v1/integration/campaigns | List all running campaigns
 *IntegrationApi* | [**integrationRewardsCatalog**](docs/IntegrationApi.md#integrationrewardscatalog) | **GET** /v1/rewards/catalog | List rewards in the catalog
+*IntegrationApi* | [**integrationUpdateLoyaltyCard**](docs/IntegrationApi.md#integrationupdateloyaltycard) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/update | Update loyalty card
 *IntegrationApi* | [**joinLoyaltyProgram**](docs/IntegrationApi.md#joinloyaltyprogram) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/join | Join customer profile to loyalty program
 *IntegrationApi* | [**linkLoyaltyCardToProfile**](docs/IntegrationApi.md#linkloyaltycardtoprofile) | **POST** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile | Link customer profile to card
 *IntegrationApi* | [**reopenCustomerSession**](docs/IntegrationApi.md#reopencustomersession) | **PUT** /v2/customer_sessions/{customerSessionId}/reopen | Reopen customer session
@@ -784,6 +785,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 - [EmailEntity](docs/EmailEntity.md)
 - [EmbeddedAnalyticsConfiguration](docs/EmbeddedAnalyticsConfiguration.md)
 - [EmbeddedAnalyticsConfigurationDashboards](docs/EmbeddedAnalyticsConfigurationDashboards.md)
+- [EmbeddedAnalyticsToken](docs/EmbeddedAnalyticsToken.md)
 - [EmbeddedDashboardConfiguration](docs/EmbeddedDashboardConfiguration.md)
 - [Endpoint](docs/Endpoint.md)
 - [Entity](docs/Entity.md)

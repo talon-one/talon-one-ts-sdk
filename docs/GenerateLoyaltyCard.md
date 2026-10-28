@@ -10,6 +10,7 @@ Name | Type
 `status` | string
 `customerProfileIds` | Array&lt;string&gt;
 `cardIdentifier` | string
+`attributes` | object
 
 ## Example
 
@@ -21,6 +22,7 @@ const example = {
   "status": active,
   "customerProfileIds": [R195412, G244519],
   "cardIdentifier": summer-loyalty-card-0543,
+  "attributes": {preferredReward=discount},
 } satisfies GenerateLoyaltyCard
 
 console.log(example)

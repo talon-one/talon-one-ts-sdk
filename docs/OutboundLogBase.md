@@ -1,7 +1,6 @@
 
 # OutboundLogBase
 
-Shared details of an outbound notification or webhook message.
 
 ## Properties
 

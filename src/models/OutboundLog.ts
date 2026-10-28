@@ -29,7 +29,7 @@ import {
 } from './OutboundLogResponse';
 
 /**
- * Log of an outbound notification or webhook request.
+ * 
  * @export
  * @interface OutboundLog
  */
@@ -39,31 +39,31 @@ export interface OutboundLog {
      */
     uuid: string;
     /**
-     * ID of the notification that produced the outbound request.
+     * ID of the notification that triggered the outbound message.
      */
     notificationId?: number;
     /**
-     * Name of the notification that produced the outbound request.
+     * Name of the notification that triggered the outbound message.
      */
     notificationName?: string;
     /**
-     * ID of the webhook that produced the outbound request.
+     * ID of the webhook that triggered the outbound message.
      */
     webhookId?: number;
     /**
-     * The name of the webhook that produced the outbound request.
+     * Name of the webhook that triggered the outbound message.
      */
     webhookName?: string;
     /**
-     * Type of notification that produced the outbound request.
+     * Type of notification that triggered the outbound message.
      */
     notificationType: string;
     /**
-     * ID of the Application associated with the outbound request.
+     * ID of the Application associated with the outbound message.
      */
     applicationId?: number;
     /**
-     * ID of the loyalty program associated with the outbound request.
+     * ID of the loyalty program associated with the outbound message.
      */
     loyaltyProgramId?: number;
     /**
@@ -71,11 +71,11 @@ export interface OutboundLog {
      */
     request?: OutboundLogRequest;
     /**
-     * Timestamp when the log entry was created.
+     * Timestamp when the log was created.
      */
     createdAt: Date;
     /**
-     * Processing time of the outbound request in milliseconds.
+     * Time in milliseconds between sending the outbound request and receiving the response.
      */
     processingTimeMs: number;
     /**

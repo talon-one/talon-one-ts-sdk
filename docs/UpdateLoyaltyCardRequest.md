@@ -7,6 +7,7 @@
 Name | Type
 ------------ | -------------
 `status` | string
+`attributes` | object
 
 ## Example
 
@@ -16,6 +17,7 @@ import type { UpdateLoyaltyCardRequest } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "status": active,
+  "attributes": {PIN=1234, Language=DE},
 } satisfies UpdateLoyaltyCardRequest
 
 console.log(example)

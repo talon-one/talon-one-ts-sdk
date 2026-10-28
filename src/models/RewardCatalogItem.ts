@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { RewardEligibility } from './RewardEligibility';
 import {
     RewardEligibilityFromJSON,
@@ -67,6 +67,39 @@ export interface RewardCatalogItem {
      * 
      */
     eligibility?: RewardEligibility;
+    /**
+     * The duration for which the customer rewards unlocked from this reward remain active, relative to when the customer reward was unlocked.
+     * 
+     * The time format is an **integer** followed by one letter indicating the time unit.
+     * 
+     * Examples: `30m`, `1h`, `5D`, `7W`, `10M`, `15Y`.
+     * 
+     * Available units:
+     * 
+     * - `m`: minutes
+     * - `h`: hours
+     * - `D`: days
+     * - `W`: weeks
+     * - `M`: months
+     * - `Y`: years
+     * 
+     * Certain units can be rounded up or down:
+     * - `_D` for rounding down days only. Signifies the start of the day.
+     * - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.
+     * 
+     * This field is not returned in combination with `expiryDate`. If both `validityDuration` and `expiryDate` are not returned, customer rewards have unlimited validity.
+     * 
+     */
+    validityDuration?: string;
+    /**
+     * Expiry date of the customer rewards unlocked from this reward. Customer
+     * rewards never expire if this is omitted and `validityDuration` is not set.
+     * 
+     * **Note:**
+     * - This field is not returned in combination with `validityDuration`.
+     * 
+     */
+    expiryDate?: Date;
 }
 
 /**
@@ -96,6 +129,8 @@ export function RewardCatalogItemFromJSONTyped(json: any, ignoreDiscriminator: b
         'pointsRequired': json['pointsRequired'] == null ? undefined : ((json['pointsRequired'] as Array<any>).map(RewardPointsRequiredFromJSON)),
         'rule': RuleMetadataFromJSON(json['rule']),
         'eligibility': json['eligibility'] == null ? undefined : RewardEligibilityFromJSON(json['eligibility']),
+        'validityDuration': json['validityDuration'] == null ? undefined : json['validityDuration'],
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
     };
 }
 
@@ -116,6 +151,8 @@ export function RewardCatalogItemToJSONTyped(value?: RewardCatalogItem | null, i
         'pointsRequired': value['pointsRequired'] == null ? undefined : ((value['pointsRequired'] as Array<any>).map(RewardPointsRequiredToJSON)),
         'rule': RuleMetadataToJSON(value['rule']),
         'eligibility': RewardEligibilityToJSON(value['eligibility']),
+        'validityDuration': value['validityDuration'],
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
     };
 }
 

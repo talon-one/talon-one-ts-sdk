@@ -1,7 +1,6 @@
 
 # OutboundLog
 
-Log of an outbound notification or webhook request.
 
 ## Properties
 

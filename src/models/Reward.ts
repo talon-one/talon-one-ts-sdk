@@ -112,10 +112,12 @@ export interface Reward {
      * 
      * The time format is an **integer** followed by one letter indicating the time unit.
      * 
-     * Examples: `5D`, `7W`, `10M`, `15Y`.
+     * Examples: `30m`, `1h`, `5D`, `7W`, `10M`, `15Y`.
      * 
      * Available units:
      * 
+     * - `m`: minutes
+     * - `h`: hours
      * - `D`: days
      * - `W`: weeks
      * - `M`: months

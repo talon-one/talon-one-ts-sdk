@@ -342,6 +342,7 @@ export * from './EffectWillAwardGiveaway';
 export * from './EmailEntity';
 export * from './EmbeddedAnalyticsConfiguration';
 export * from './EmbeddedAnalyticsConfigurationDashboards';
+export * from './EmbeddedAnalyticsToken';
 export * from './EmbeddedDashboardConfiguration';
 export * from './Endpoint';
 export * from './Entity';
