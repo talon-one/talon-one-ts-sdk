@@ -1,15 +1,14 @@
 
 # CampaignEvaluationTreeChangedNotification
 
-Notification about an Application whose campaign evaluation tree changed.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`applicationId` | number
-`oldEvaluationTree` | [CampaignSet](CampaignSet.md)
-`evaluationTree` | [CampaignSet](CampaignSet.md)
+`notificationType` | string
+`totalResultSize` | number
+`data` | [Array&lt;CampaignEvaluationTreeChangedNotificationData&gt;](CampaignEvaluationTreeChangedNotificationData.md)
 
 ## Example
 
@@ -18,9 +17,9 @@ import type { CampaignEvaluationTreeChangedNotification } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "applicationId": 78,
-  "oldEvaluationTree": null,
-  "evaluationTree": null,
+  "notificationType": CampaignEvaluationTreeChanged,
+  "totalResultSize": null,
+  "data": null,
 } satisfies CampaignEvaluationTreeChangedNotification
 
 console.log(example)

@@ -1,7 +1,7 @@
 
 # BestPriorPriceMetadata
 
-Auxiliary data for found price observation.
+Auxiliary data for the found price record.
 
 ## Properties
 

@@ -7,7 +7,7 @@
 Name | Type
 ------------ | -------------
 `totalResultSize` | number
-`data` | [Array&lt;CampaignEvaluationTreeChangedNotification&gt;](CampaignEvaluationTreeChangedNotification.md)
+`data` | [Array&lt;CampaignEvaluationTreeChangedNotificationData&gt;](CampaignEvaluationTreeChangedNotificationData.md)
 
 ## Example
 

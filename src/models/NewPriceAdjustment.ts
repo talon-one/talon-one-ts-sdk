@@ -37,10 +37,16 @@ export interface NewPriceAdjustment {
     calculatedAt?: Date;
     /**
      * The date and time from which the price adjustment is effective.
+     * 
+     * **Note**: If no timeframe is defined, the price adjustment is applied immediately and is effective until another, more recent, price adjustment is synced with the catalog.
+     * 
      */
     effectiveFrom?: Date;
     /**
      * The date and time until which the price adjustment is effective.
+     * 
+     * **Note**: If no timeframe is defined, the price adjustment is applied immediately and is effective until another, more recent, price adjustment is synced with the catalog.
+     * 
      */
     effectiveUntil?: Date;
     /**
