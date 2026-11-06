@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CampaignEvaluationTreeChangedNotification } from './CampaignEvaluationTreeChangedNotification';
+import type { CampaignEvaluationTreeChangedNotificationData } from './CampaignEvaluationTreeChangedNotificationData';
 import {
-    CampaignEvaluationTreeChangedNotificationFromJSON,
-    CampaignEvaluationTreeChangedNotificationFromJSONTyped,
-    CampaignEvaluationTreeChangedNotificationToJSON,
-    CampaignEvaluationTreeChangedNotificationToJSONTyped,
-} from './CampaignEvaluationTreeChangedNotification';
+    CampaignEvaluationTreeChangedNotificationDataFromJSON,
+    CampaignEvaluationTreeChangedNotificationDataFromJSONTyped,
+    CampaignEvaluationTreeChangedNotificationDataToJSON,
+    CampaignEvaluationTreeChangedNotificationDataToJSONTyped,
+} from './CampaignEvaluationTreeChangedNotificationData';
 
 /**
  * 
@@ -34,7 +34,7 @@ export interface BulkApplicationNotification {
     /**
      * 
      */
-    data: Array<CampaignEvaluationTreeChangedNotification>;
+    data: Array<CampaignEvaluationTreeChangedNotificationData>;
 }
 
 /**
@@ -58,7 +58,7 @@ export function BulkApplicationNotificationFromJSONTyped(json: any, ignoreDiscri
     return {
         
         'totalResultSize': json['totalResultSize'],
-        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationDataFromJSON)),
     };
 }
 
@@ -74,7 +74,7 @@ export function BulkApplicationNotificationToJSONTyped(value?: BulkApplicationNo
     return {
         
         'totalResultSize': value['totalResultSize'],
-        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationDataToJSON)),
     };
 }
 

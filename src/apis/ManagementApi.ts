@@ -746,7 +746,7 @@ import {
 
 export interface ActivateUserByEmailRequest {
     /**
-     * 
+     * body
      */
     activateUserRequest: ActivateUserRequest;
 }
@@ -771,7 +771,7 @@ export interface AddLoyaltyCardPointsRequest {
      */
     loyaltyCardId: string;
     /**
-     * 
+     * body
      */
     addLoyaltyPoints: AddLoyaltyPoints;
 }
@@ -791,7 +791,7 @@ export interface AddLoyaltyPointsRequest {
      */
     integrationId: string;
     /**
-     * 
+     * body
      */
     addLoyaltyPoints: AddLoyaltyPoints;
 }
@@ -806,14 +806,14 @@ export interface CopyCampaignToApplicationsRequest {
      */
     campaignId: number;
     /**
-     * 
+     * body
      */
     campaignCopy: CampaignCopy;
 }
 
 export interface CreateAccountCollectionRequest {
     /**
-     * 
+     * body
      */
     newCollection: NewCollection;
 }
@@ -828,28 +828,28 @@ export interface CreateAchievementRequest {
      */
     campaignId: number;
     /**
-     * 
+     * body
      */
     createAchievement: CreateAchievement;
 }
 
 export interface CreateAchievementV2Request {
     /**
-     * 
+     * body
      */
     createAchievementV2: CreateAchievementV2;
 }
 
 export interface CreateAdditionalCostRequest {
     /**
-     * 
+     * body
      */
     newAdditionalCost: NewAdditionalCost;
 }
 
 export interface CreateAttributeRequest {
     /**
-     * 
+     * body
      */
     newAttribute: NewAttribute;
 }
@@ -862,7 +862,7 @@ export interface CreateBatchLoyaltyCardsRequest {
      */
     loyaltyProgramId: number;
     /**
-     * 
+     * body
      */
     loyaltyCardBatch: LoyaltyCardBatch;
 }
@@ -873,7 +873,7 @@ export interface CreateCampaignRequest {
      */
     applicationId: number;
     /**
-     * 
+     * body
      */
     newCampaign: NewCampaign;
 }
@@ -884,7 +884,7 @@ export interface CreateCampaignFromTemplateRequest {
      */
     applicationId: number;
     /**
-     * 
+     * body
      */
     createTemplateCampaign: CreateTemplateCampaign;
 }
@@ -899,7 +899,7 @@ export interface CreateCampaignStoreBudgetRequest {
      */
     campaignId: number;
     /**
-     * 
+     * body
      */
     newCampaignStoreBudget: NewCampaignStoreBudget;
 }
@@ -914,7 +914,7 @@ export interface CreateCollectionRequest {
      */
     campaignId: number;
     /**
-     * 
+     * body
      */
     newCampaignCollection: NewCampaignCollection;
 }
@@ -929,7 +929,7 @@ export interface CreateCouponsRequest {
      */
     campaignId: number;
     /**
-     * 
+     * body
      */
     newCoupons: NewCoupons;
     /**
@@ -951,7 +951,7 @@ export interface CreateCouponsAsynchronouslyRequest {
      */
     campaignId: number;
     /**
-     * 
+     * body
      */
     newCouponCreationJob: NewCouponCreationJob;
 }
@@ -966,7 +966,7 @@ export interface CreateCouponsDeletionJobRequest {
      */
     campaignId: number;
     /**
-     * 
+     * body
      */
     newCouponDeletionJob: NewCouponDeletionJob;
 }
@@ -981,7 +981,7 @@ export interface CreateCouponsForMultipleRecipientsRequest {
      */
     campaignId: number;
     /**
-     * 
+     * body
      */
     newCouponsForMultipleRecipients: NewCouponsForMultipleRecipients;
     /**
@@ -995,21 +995,21 @@ export interface CreateCouponsForMultipleRecipientsRequest {
 
 export interface CreateInviteEmailRequest {
     /**
-     * 
+     * body
      */
     newInviteEmail: NewInviteEmail;
 }
 
 export interface CreateInviteV2Request {
     /**
-     * 
+     * body
      */
     newInvitation: NewInvitation;
 }
 
 export interface CreatePasswordRecoveryEmailRequest {
     /**
-     * 
+     * body
      */
     newPasswordEmail: NewPasswordEmail;
 }
@@ -1024,14 +1024,14 @@ export interface CreateRulesetV2Request {
      */
     campaignId: number;
     /**
-     * 
+     * body
      */
     rulesetV2: Omit<RulesetV2, 'id'|'created'|'userId'|'campaignId'|'templateId'|'activatedAt'|'selectors'>;
 }
 
 export interface CreateSessionRequest {
     /**
-     * 
+     * body
      */
     loginParams: LoginParams;
 }
@@ -1042,14 +1042,14 @@ export interface CreateStoreRequest {
      */
     applicationId: number;
     /**
-     * 
+     * body
      */
     newStore: NewStore;
 }
 
 export interface DeactivateUserByEmailRequest {
     /**
-     * 
+     * body
      */
     deactivateUserRequest: DeactivateUserRequest;
 }
@@ -1075,7 +1075,7 @@ export interface DeductLoyaltyCardPointsRequest {
      */
     loyaltyCardId: string;
     /**
-     * 
+     * body
      */
     deductLoyaltyPoints: DeductLoyaltyPoints;
 }
@@ -1302,7 +1302,7 @@ export interface DeleteUserRequest {
 
 export interface DeleteUserByEmailOperationRequest {
     /**
-     * 
+     * body
      */
     deleteUserByEmailRequest: DeleteUserByEmailRequest;
 }
@@ -1324,7 +1324,7 @@ export interface ExcludePriceHistoryRequest {
      */
     applicationId: number;
     /**
-     * 
+     * body
      */
     excludePriceObservationsRequest: ExcludePriceObservationsRequest;
 }
@@ -1524,8 +1524,8 @@ export interface ExportCouponsRequest {
     /**
      * Filter results by the state of the campaign.
      * 
-     * - `enabled`: Campaigns that are scheduled, running (activated), or expired.
-     * - `running`: Campaigns that are running (activated).
+     * - `enabled`: Campaigns that are scheduled, running (active), or expired.
+     * - `running`: Campaigns that are running (active).
      * - `disabled`: Campaigns that are disabled.
      * - `expired`: Campaigns that are expired.
      * - `archived`: Campaigns that are archived.
@@ -2208,7 +2208,7 @@ export interface GetApplicationCustomersByAttributesRequest {
      */
     applicationId: number;
     /**
-     * 
+     * body
      */
     customerProfileSearchQuery: CustomerProfileSearchQuery;
     /**
@@ -2403,7 +2403,7 @@ export interface GetApplicationSessionsByCustomerAttributesRequest {
      */
     applicationId: number;
     /**
-     * 
+     * body
      */
     customerProfileSearchQuery: CustomerProfileSearchQuery;
     /**
@@ -2608,7 +2608,7 @@ export interface GetCampaignByAttributesRequest {
      */
     applicationId: number;
     /**
-     * 
+     * body
      */
     campaignSearch: CampaignSearch;
     /**
@@ -2629,8 +2629,8 @@ export interface GetCampaignByAttributesRequest {
     /**
      * Filter results by the state of the campaign.
      * 
-     * - `enabled`: Campaigns that are scheduled, running (activated), or expired.
-     * - `running`: Campaigns that are running (activated).
+     * - `enabled`: Campaigns that are scheduled, running (active), or expired.
+     * - `running`: Campaigns that are running (active).
      * - `disabled`: Campaigns that are disabled.
      * - `expired`: Campaigns that are expired.
      * - `archived`: Campaigns that are archived.
@@ -2722,8 +2722,8 @@ export interface GetCampaignsRequest {
     /**
      * Filter results by the state of the campaign.
      * 
-     * - `enabled`: Campaigns that are scheduled, running (activated), or expired.
-     * - `running`: Campaigns that are running (activated).
+     * - `enabled`: Campaigns that are scheduled, running (active), or expired.
+     * - `running`: Campaigns that are running (active).
      * - `disabled`: Campaigns that are disabled.
      * - `expired`: Campaigns that are expired.
      * - `archived`: Campaigns that are archived.
@@ -3148,7 +3148,7 @@ export interface GetCustomerProfilesRequest {
 
 export interface GetCustomersByAttributesRequest {
     /**
-     * 
+     * body
      */
     customerProfileSearchQuery: CustomerProfileSearchQuery;
     /**
@@ -4133,7 +4133,7 @@ export interface ImportReferralsRequest {
 
 export interface InviteUserExternalRequest {
     /**
-     * 
+     * body
      */
     newExternalInvitation: NewExternalInvitation;
 }
@@ -4479,7 +4479,7 @@ export interface PriceHistoryOperationRequest {
      */
     applicationId: number;
     /**
-     * 
+     * body
      */
     priceHistoryRequest: PriceHistoryRequest;
 }
@@ -4499,28 +4499,28 @@ export interface RemoveLoyaltyPointsRequest {
      */
     integrationId: string;
     /**
-     * 
+     * body
      */
     deductLoyaltyPoints: DeductLoyaltyPoints;
 }
 
 export interface ResetPasswordRequest {
     /**
-     * 
+     * body
      */
     newPassword: NewPassword;
 }
 
 export interface ScimCreateGroupRequest {
     /**
-     * 
+     * body
      */
     scimBaseGroup: ScimBaseGroup;
 }
 
 export interface ScimCreateUserRequest {
     /**
-     * 
+     * body
      */
     scimNewUser: ScimNewUser;
 }
@@ -4559,7 +4559,7 @@ export interface ScimPatchGroupRequest {
      */
     groupId: number;
     /**
-     * 
+     * body
      */
     scimPatchRequest: ScimPatchRequest;
 }
@@ -4570,7 +4570,7 @@ export interface ScimPatchUserRequest {
      */
     userId: number;
     /**
-     * 
+     * body
      */
     scimPatchRequest: ScimPatchRequest;
 }
@@ -4581,7 +4581,7 @@ export interface ScimReplaceGroupAttributesRequest {
      */
     groupId: number;
     /**
-     * 
+     * body
      */
     scimBaseGroup: ScimBaseGroup;
 }
@@ -4592,7 +4592,7 @@ export interface ScimReplaceUserAttributesRequest {
      */
     userId: number;
     /**
-     * 
+     * body
      */
     scimNewUser: ScimNewUser;
 }
@@ -4603,7 +4603,7 @@ export interface SearchCouponsAdvancedApplicationWideWithoutTotalCountRequest {
      */
     applicationId: number;
     /**
-     * 
+     * body
      */
     body: object;
     /**
@@ -4662,8 +4662,8 @@ export interface SearchCouponsAdvancedApplicationWideWithoutTotalCountRequest {
     /**
      * Filter results by the state of the campaign.
      * 
-     * - `enabled`: Campaigns that are scheduled, running (activated), or expired.
-     * - `running`: Campaigns that are running (activated).
+     * - `enabled`: Campaigns that are scheduled, running (active), or expired.
+     * - `running`: Campaigns that are running (active).
      * - `disabled`: Campaigns that are disabled.
      * - `expired`: Campaigns that are expired.
      * - `archived`: Campaigns that are archived.
@@ -4682,7 +4682,7 @@ export interface SearchCouponsAdvancedWithoutTotalCountRequest {
      */
     campaignId: number;
     /**
-     * 
+     * body
      */
     body: object;
     /**
@@ -4772,7 +4772,7 @@ export interface TransferLoyaltyCardRequest {
      */
     loyaltyCardId: string;
     /**
-     * 
+     * body
      */
     transferLoyaltyCard: TransferLoyaltyCard;
 }
@@ -4783,7 +4783,7 @@ export interface UpdateAccountCollectionRequest {
      */
     collectionId: number;
     /**
-     * 
+     * body
      */
     updateCollection: UpdateCollection;
 }
@@ -4802,7 +4802,7 @@ export interface UpdateAchievementRequest {
      */
     achievementId: number;
     /**
-     * 
+     * body
      */
     updateAchievement: UpdateAchievement;
 }
@@ -4813,7 +4813,7 @@ export interface UpdateAchievementV2Request {
      */
     achievementId: number;
     /**
-     * 
+     * body
      */
     updateAchievementV2: UpdateAchievementV2;
 }
@@ -4825,7 +4825,7 @@ export interface UpdateAdditionalCostRequest {
      */
     additionalCostId: number;
     /**
-     * 
+     * body
      */
     newAdditionalCost: NewAdditionalCost;
 }
@@ -4836,7 +4836,7 @@ export interface UpdateAttributeRequest {
      */
     attributeId: number;
     /**
-     * 
+     * body
      */
     newAttribute: NewAttribute;
 }
@@ -4851,7 +4851,7 @@ export interface UpdateCampaignRequest {
      */
     campaignId: number;
     /**
-     * 
+     * body
      */
     updateCampaign: UpdateCampaign;
 }
@@ -4870,7 +4870,7 @@ export interface UpdateCollectionRequest {
      */
     collectionId: number;
     /**
-     * 
+     * body
      */
     updateCampaignCollection: UpdateCampaignCollection;
 }
@@ -4891,7 +4891,7 @@ export interface UpdateCouponRequest {
      */
     couponId: string;
     /**
-     * 
+     * body
      */
     updateCoupon: UpdateCoupon;
 }
@@ -4906,7 +4906,7 @@ export interface UpdateCouponBatchRequest {
      */
     campaignId: number;
     /**
-     * 
+     * body
      */
     updateCouponBatch: UpdateCouponBatch;
 }
@@ -4932,7 +4932,7 @@ export interface UpdateLoyaltyCardOperationRequest {
      */
     loyaltyCardId: string;
     /**
-     * 
+     * body
      */
     updateLoyaltyCardRequest: UpdateLoyaltyCardRequest;
 }
@@ -4951,7 +4951,7 @@ export interface UpdateReferralRequest {
      */
     referralId: string;
     /**
-     * 
+     * body
      */
     updateReferral: UpdateReferral;
 }
@@ -4965,7 +4965,7 @@ export interface UpdateRoleV2Request {
      */
     roleId: number;
     /**
-     * 
+     * body
      */
     roleV2Base: RoleV2Base;
 }
@@ -4982,7 +4982,7 @@ export interface UpdateStoreRequest {
      */
     storeId: string;
     /**
-     * 
+     * body
      */
     newStore: NewStore;
 }
@@ -4993,7 +4993,7 @@ export interface UpdateUserRequest {
      */
     userId: number;
     /**
-     * 
+     * body
      */
     updateUser: UpdateUser;
 }
@@ -7585,7 +7585,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Select a batch of historical price IDs to exclude from [best prior price calculation](https://docs.talon.one/integration-api#tag/Catalogs/operation/bestPriorPrice). All IDs in the batch must be valid `id` values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, must not already be excluded from best prior price calculation, and must not be associated with a scheduled strikethrough pricing notification. 
+     * Select a batch of price records (historical price data) to exclude from [best prior price calculation](https://docs.talon.one/integration-api#tag/Catalogs/operation/bestPriorPrice).  All IDs in the batch must be valid `id` values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, must not already be excluded from best prior price calculation, and must not be associated with a scheduled strikethrough pricing notification.  For more information, see [Best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price). 
      * Exclude price records from price history
      */
     async excludePriceHistoryRaw(requestParameters: ExcludePriceHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -7596,7 +7596,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Select a batch of historical price IDs to exclude from [best prior price calculation](https://docs.talon.one/integration-api#tag/Catalogs/operation/bestPriorPrice). All IDs in the batch must be valid `id` values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, must not already be excluded from best prior price calculation, and must not be associated with a scheduled strikethrough pricing notification. 
+     * Select a batch of price records (historical price data) to exclude from [best prior price calculation](https://docs.talon.one/integration-api#tag/Catalogs/operation/bestPriorPrice).  All IDs in the batch must be valid `id` values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, must not already be excluded from best prior price calculation, and must not be associated with a scheduled strikethrough pricing notification.  For more information, see [Best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price). 
      * Exclude price records from price history
      */
     async excludePriceHistory(requestParameters: ExcludePriceHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
@@ -8801,7 +8801,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing a loyalty card ledger log of the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files). The file contains the following columns:  - `cardidentifier`: The identifier of the loyalty card. - `applicationid`: The ID of the Application. - `sessionid`: The ID of the session. - `customersessionid`: The integration ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the points. - `expirydate`: The expiration date of the points. - `id`: The ID of the transaction. - `created`: The timestamp of the transaction creation. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `transactionUUID`: Unique identifier of the transaction in the UUID format. - `validityduration`: The duration for which the points remain active, relative to the activation date. - `remainingamount`: The current unused amount of points, when applicable to `addition` transactions. - `referencetransactionuuids`: The UUIDs of the addition transactions from which points were deducted by the subtraction, separated by semicolons. Included only when `includeReferences` is `true`. 
+     * Download a CSV file containing a loyalty card ledger log of the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files). The file contains the following columns:  - `cardidentifier`: The identifier of the loyalty card. - `applicationid`: The ID of the Application. - `sessionid`: The ID of the session. - `customersessionid`: The integration ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the points. - `expirydate`: The expiration date of the points. - `id`: The ID of the transaction. - `created`: The timestamp of the transaction creation. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `transactionUUID`: Unique identifier of the transaction in the UUID format. - `validityDuration`: The duration for which the points remain active, relative to the activation date. - `remainingAmount`: The current unused amount of points, when applicable to `addition` transactions. - `referencetransactionuuids`: The UUIDs of the addition transactions from which points were deducted by the subtraction, separated by semicolons. Included only when `includeReferences` is `true`. 
      * Export card\'s ledger log
      */
     async exportLoyaltyCardLedgerRaw(requestParameters: ExportLoyaltyCardLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
@@ -8816,7 +8816,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing a loyalty card ledger log of the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files). The file contains the following columns:  - `cardidentifier`: The identifier of the loyalty card. - `applicationid`: The ID of the Application. - `sessionid`: The ID of the session. - `customersessionid`: The integration ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the points. - `expirydate`: The expiration date of the points. - `id`: The ID of the transaction. - `created`: The timestamp of the transaction creation. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `transactionUUID`: Unique identifier of the transaction in the UUID format. - `validityduration`: The duration for which the points remain active, relative to the activation date. - `remainingamount`: The current unused amount of points, when applicable to `addition` transactions. - `referencetransactionuuids`: The UUIDs of the addition transactions from which points were deducted by the subtraction, separated by semicolons. Included only when `includeReferences` is `true`. 
+     * Download a CSV file containing a loyalty card ledger log of the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files). The file contains the following columns:  - `cardidentifier`: The identifier of the loyalty card. - `applicationid`: The ID of the Application. - `sessionid`: The ID of the session. - `customersessionid`: The integration ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the points. - `expirydate`: The expiration date of the points. - `id`: The ID of the transaction. - `created`: The timestamp of the transaction creation. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `transactionUUID`: Unique identifier of the transaction in the UUID format. - `validityDuration`: The duration for which the points remain active, relative to the activation date. - `remainingAmount`: The current unused amount of points, when applicable to `addition` transactions. - `referencetransactionuuids`: The UUIDs of the addition transactions from which points were deducted by the subtraction, separated by semicolons. Included only when `includeReferences` is `true`. 
      * Export card\'s ledger log
      */
     async exportLoyaltyCardLedger(requestParameters: ExportLoyaltyCardLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
@@ -9020,7 +9020,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing a customer\'s transaction logs in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The file contains the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. - `transactionUUID`: Unique identifier of the transaction in the UUID format. - `validityduration`: The duration for which the points remain active, relative to the activation date. - `remainingamount`: The current unused amount of points, when applicable to `addition` transactions. - `referencetransactionuuids`: The UUIDs of the addition transactions from which points were deducted by the subtraction, separated by semicolons. Included only when `includeReferences` is `true`. 
+     * Download a CSV file containing a customer\'s transaction logs in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The file contains the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. - `transactionUUID`: Unique identifier of the transaction in the UUID format. - `validityDuration`: The duration for which the points remain active, relative to the activation date. - `remainingAmount`: The current unused amount of points, when applicable to `addition` transactions. - `referencetransactionuuids`: The UUIDs of the addition transactions from which points were deducted by the subtraction, separated by semicolons. Included only when `includeReferences` is `true`. 
      * Export customer\'s transaction logs
      */
     async exportLoyaltyLedgerRaw(requestParameters: ExportLoyaltyLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
@@ -9035,7 +9035,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Download a CSV file containing a customer\'s transaction logs in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The file contains the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. - `transactionUUID`: Unique identifier of the transaction in the UUID format. - `validityduration`: The duration for which the points remain active, relative to the activation date. - `remainingamount`: The current unused amount of points, when applicable to `addition` transactions. - `referencetransactionuuids`: The UUIDs of the addition transactions from which points were deducted by the subtraction, separated by semicolons. Included only when `includeReferences` is `true`. 
+     * Download a CSV file containing a customer\'s transaction logs in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The file contains the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. - `transactionUUID`: Unique identifier of the transaction in the UUID format. - `validityDuration`: The duration for which the points remain active, relative to the activation date. - `remainingAmount`: The current unused amount of points, when applicable to `addition` transactions. - `referencetransactionuuids`: The UUIDs of the addition transactions from which points were deducted by the subtraction, separated by semicolons. Included only when `includeReferences` is `true`. 
      * Export customer\'s transaction logs
      */
     async exportLoyaltyLedger(requestParameters: ExportLoyaltyLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
@@ -16076,7 +16076,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Fetch the historical price data for a given SKU within a defined timeframe. 
+     * Fetch the price records (historical price data) for a given SKU within a defined timeframe.  You can use this endpoint for auditing purposes and for ensuring that evaluation produced correct price records.  For more information, see [Best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price). 
      * Get summary of price history
      */
     async priceHistoryRaw(requestParameters: PriceHistoryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceHistoryResponse>> {
@@ -16087,7 +16087,7 @@ export class ManagementApi extends runtime.BaseAPI {
     }
 
     /**
-     * Fetch the historical price data for a given SKU within a defined timeframe. 
+     * Fetch the price records (historical price data) for a given SKU within a defined timeframe.  You can use this endpoint for auditing purposes and for ensuring that evaluation produced correct price records.  For more information, see [Best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price). 
      * Get summary of price history
      */
     async priceHistory(requestParameters: PriceHistoryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceHistoryResponse> {

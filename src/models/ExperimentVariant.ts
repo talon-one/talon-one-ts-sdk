@@ -52,9 +52,17 @@ export interface ExperimentVariant {
      */
     weight?: number;
     /**
+     * **Deprecated.** Use `order` instead.
+     * Indicates whether this is the primary variant. This is computed as `order == 0`.
+     * 
+     * @deprecated
+     */
+    isPrimary?: boolean;
+    /**
+     * The position of this variant in the experiment. The variant with `order: 0` is the primary variant.
      * 
      */
-    isPrimary: boolean;
+    order?: number;
     /**
      * The ID of the audience this variant targets. Only used when the experiment `assignmentType` is `audience`.
      * 
@@ -70,7 +78,6 @@ export function instanceOfExperimentVariant(value: object): value is ExperimentV
     if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('created' in _v) || _v['created'] === undefined) return false;
     if (!('name' in _v) || _v['name'] === undefined) return false;
-    if (!('isPrimary' in _v) || _v['isPrimary'] === undefined) return false;
     return true;
 }
 
@@ -90,7 +97,8 @@ export function ExperimentVariantFromJSONTyped(json: any, ignoreDiscriminator: b
         'experimentId': json['experimentId'] == null ? undefined : json['experimentId'],
         'ruleset': json['ruleset'] == null ? undefined : RulesetFromJSON(json['ruleset']),
         'weight': json['weight'] == null ? undefined : json['weight'],
-        'isPrimary': json['isPrimary'],
+        'isPrimary': json['isPrimary'] == null ? undefined : json['isPrimary'],
+        'order': json['order'] == null ? undefined : json['order'],
         'audienceId': json['audienceId'] == null ? undefined : json['audienceId'],
     };
 }
@@ -113,6 +121,7 @@ export function ExperimentVariantToJSONTyped(value?: ExperimentVariant | null, i
         'ruleset': RulesetToJSON(value['ruleset']),
         'weight': value['weight'],
         'isPrimary': value['isPrimary'],
+        'order': value['order'],
         'audienceId': value['audienceId'],
     };
 }

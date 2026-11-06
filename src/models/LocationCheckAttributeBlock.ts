@@ -13,30 +13,101 @@
  */
 
 import { mapValues } from '../runtime';
-import type { LocationCheckAttributeBlockValues } from './LocationCheckAttributeBlockValues';
+import type { Block } from './Block';
 import {
-    LocationCheckAttributeBlockValuesFromJSON,
-    LocationCheckAttributeBlockValuesFromJSONTyped,
-    LocationCheckAttributeBlockValuesToJSON,
-    LocationCheckAttributeBlockValuesToJSONTyped,
-} from './LocationCheckAttributeBlockValues';
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
+import type { LocationCheckAttributeBlock1Values } from './LocationCheckAttributeBlock1Values';
+import {
+    LocationCheckAttributeBlock1ValuesFromJSON,
+    LocationCheckAttributeBlock1ValuesFromJSONTyped,
+    LocationCheckAttributeBlock1ValuesToJSON,
+    LocationCheckAttributeBlock1ValuesToJSONTyped,
+} from './LocationCheckAttributeBlock1Values';
 
 /**
- * A block variant of `CheckAttributeBlock` for operators that check whether a geographical location is inside a set of geometric areas.
+ * 
  * @export
  * @interface LocationCheckAttributeBlock
  */
 export interface LocationCheckAttributeBlock {
     /**
+     * Unique identifier for this block.
+     */
+    readonly id?: string;
+    /**
+     * A block discriminator of type `checkAttribute`.
+     */
+    type: LocationCheckAttributeBlockTypeEnum;
+    /**
+     * Semantic labels attached to this block.
+     */
+    readonly tags?: Array<string>;
+    /**
      * The location membership operator applied to the attribute.
      */
-    operator?: LocationCheckAttributeBlockOperatorEnum;
+    operator: LocationCheckAttributeBlockOperatorEnum;
+    /**
+     * The attribute path identifier (e.g. "$Session.Total").
+     */
+    attribute: any | null;
+    /**
+     * The comparison value for scalar operators.
+     */
+    value?: any | null;
+    /**
+     * The minimum value allowed for the `between` operator.
+     */
+    min?: any | null;
+    /**
+     * The maximum value allowed for the `between` operator.
+     */
+    max?: any | null;
+    /**
+     * The start value for the `within` operator.
+     */
+    start?: any | null;
+    /**
+     * The end value for the `within` operator.
+     */
+    end?: any | null;
+    /**
+     * When `true`, the `start` value is included in the range for the `within` operator.
+     */
+    startInclusive?: boolean;
+    /**
+     * When `true`, the `end` value is included in the range for the `within` operator.
+     */
+    endInclusive?: boolean;
+    /**
+     * Indicates whether the `within` operator ignores time zones and compares the wall-clock time only. When `false`, time zones are taken into account.
+     */
+    timezoneInsensitive?: boolean;
     /**
      * 
      */
-    values: LocationCheckAttributeBlockValues;
+    values: LocationCheckAttributeBlock1Values;
+    /**
+     * The count threshold for `containsAtLeast` and `containsExactly` operators.
+     */
+    count?: any | null;
+    /**
+     * Promotion blocks evaluated when this block fails or returns false.
+     */
+    onFailure?: Array<Block>;
 }
 
+
+/**
+ * @export
+ */
+export const LocationCheckAttributeBlockTypeEnum = {
+    CheckAttribute: 'checkAttribute',
+} as const;
+export type LocationCheckAttributeBlockTypeEnum = typeof LocationCheckAttributeBlockTypeEnum[keyof typeof LocationCheckAttributeBlockTypeEnum];
 
 /**
  * @export
@@ -53,6 +124,11 @@ export type LocationCheckAttributeBlockOperatorEnum = typeof LocationCheckAttrib
  */
 export function instanceOfLocationCheckAttributeBlock(value: object): value is LocationCheckAttributeBlock {
     const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'checkAttribute') return false;
+    
+    if (!('operator' in _v) || _v['operator'] === undefined) return false;
+    if (!('attribute' in _v) || _v['attribute'] === undefined) return false;
     if (!('values' in _v) || _v['values'] === undefined) return false;
     return true;
 }
@@ -67,8 +143,22 @@ export function LocationCheckAttributeBlockFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'operator': json['operator'] == null ? undefined : json['operator'],
-        'values': LocationCheckAttributeBlockValuesFromJSON(json['values']),
+        'id': json['id'] == null ? undefined : json['id'],
+        'type': json['type'],
+        'tags': json['tags'] == null ? undefined : json['tags'],
+        'operator': json['operator'],
+        'attribute': json['attribute'],
+        'value': json['value'] === undefined ? undefined : json['value'] === null ? null : json['value'],
+        'min': json['min'] === undefined ? undefined : json['min'] === null ? null : json['min'],
+        'max': json['max'] === undefined ? undefined : json['max'] === null ? null : json['max'],
+        'start': json['start'] === undefined ? undefined : json['start'] === null ? null : json['start'],
+        'end': json['end'] === undefined ? undefined : json['end'] === null ? null : json['end'],
+        'startInclusive': json['startInclusive'] == null ? undefined : json['startInclusive'],
+        'endInclusive': json['endInclusive'] == null ? undefined : json['endInclusive'],
+        'timezoneInsensitive': json['timezoneInsensitive'] == null ? undefined : json['timezoneInsensitive'],
+        'values': LocationCheckAttributeBlock1ValuesFromJSON(json['values']),
+        'count': json['count'] === undefined ? undefined : json['count'] === null ? null : json['count'],
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -76,15 +166,27 @@ export function LocationCheckAttributeBlockToJSON(json: any): LocationCheckAttri
     return LocationCheckAttributeBlockToJSONTyped(json, false);
 }
 
-export function LocationCheckAttributeBlockToJSONTyped(value?: LocationCheckAttributeBlock | null, ignoreDiscriminator: boolean = false): any {
+export function LocationCheckAttributeBlockToJSONTyped(value?: Omit<LocationCheckAttributeBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
+        'type': value['type'],
         'operator': value['operator'],
-        'values': LocationCheckAttributeBlockValuesToJSON(value['values']),
+        'attribute': value['attribute'],
+        'value': value['value'],
+        'min': value['min'],
+        'max': value['max'],
+        'start': value['start'],
+        'end': value['end'],
+        'startInclusive': value['startInclusive'],
+        'endInclusive': value['endInclusive'],
+        'timezoneInsensitive': value['timezoneInsensitive'],
+        'values': LocationCheckAttributeBlock1ValuesToJSON(value['values']),
+        'count': value['count'],
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }
 

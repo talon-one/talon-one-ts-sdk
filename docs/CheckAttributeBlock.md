@@ -19,7 +19,7 @@ Name | Type
 `startInclusive` | boolean
 `endInclusive` | boolean
 `timezoneInsensitive` | boolean
-`values` | any
+`values` | [LocationCheckAttributeBlock1Values](LocationCheckAttributeBlock1Values.md)
 `count` | any
 `onFailure` | [Array&lt;Block&gt;](Block.md)
 
@@ -33,7 +33,7 @@ const example = {
   "id": a1b2c3d4-e5f6-7890-abcd-ef1234567890,
   "type": checkAttribute,
   "tags": null,
-  "operator": greaterThan,
+  "operator": null,
   "attribute": $Session.Total,
   "value": 100,
   "min": 10,
@@ -43,7 +43,7 @@ const example = {
   "startInclusive": true,
   "endInclusive": true,
   "timezoneInsensitive": false,
-  "values": [{name=Berlin district, geometry={type=Point, coordinates=[13.405, 52.52]}}],
+  "values": null,
   "count": 2,
   "onFailure": null,
 } satisfies CheckAttributeBlock

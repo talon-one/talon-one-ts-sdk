@@ -36,7 +36,7 @@ const example = {
   "campaignId": 100,
   "loyaltyProgramId": 8,
   "subledgerId": sub-123,
-  "createdByUser": support.agent.name@company.com,
+  "createdByUser": jane.smith@example.com,
   "createdAt": 2025-07-20T22:00:00Z,
   "customerProfileId": URNGV8294NV,
   "requestType": personal_coupon,
@@ -45,7 +45,7 @@ const example = {
   "requestStatus": approved,
   "processedAt": 2025-07-20T22:10:00Z,
   "processingNote": Rejected as the customer was awarded points already.,
-  "processedByUser": admin.name@company.com,
+  "processedByUser": john.doe@example.com,
   "couponCode": SUMMER-2025-XYZ,
 } satisfies SupportRequest
 

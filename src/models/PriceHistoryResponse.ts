@@ -28,7 +28,7 @@ import {
  */
 export interface PriceHistoryResponse {
     /**
-     * The SKU of the item for which historical prices should be retrieved.
+     * The SKU of the item for which price records should be retrieved.
      */
     sku: string;
     /**

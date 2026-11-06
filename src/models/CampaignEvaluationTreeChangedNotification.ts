@@ -13,41 +13,54 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CampaignSet } from './CampaignSet';
+import type { CampaignEvaluationTreeChangedNotificationData } from './CampaignEvaluationTreeChangedNotificationData';
 import {
-    CampaignSetFromJSON,
-    CampaignSetFromJSONTyped,
-    CampaignSetToJSON,
-    CampaignSetToJSONTyped,
-} from './CampaignSet';
+    CampaignEvaluationTreeChangedNotificationDataFromJSON,
+    CampaignEvaluationTreeChangedNotificationDataFromJSONTyped,
+    CampaignEvaluationTreeChangedNotificationDataToJSON,
+    CampaignEvaluationTreeChangedNotificationDataToJSONTyped,
+} from './CampaignEvaluationTreeChangedNotificationData';
 
 /**
- * Notification about an Application whose campaign evaluation tree changed.
+ * 
  * @export
  * @interface CampaignEvaluationTreeChangedNotification
  */
 export interface CampaignEvaluationTreeChangedNotification {
     /**
-     * The ID of the Application whose campaign evaluation tree changed.
+     * The type of the notification
      */
-    applicationId: number;
+    notificationType: CampaignEvaluationTreeChangedNotificationNotificationTypeEnum;
     /**
-     * The previous campaign evaluation tree.
+     * The total size of the result set.
      */
-    oldEvaluationTree?: CampaignSet;
+    totalResultSize: number;
     /**
-     * The new campaign evaluation tree.
+     * The array of changes.
      */
-    evaluationTree: CampaignSet;
+    data: Array<CampaignEvaluationTreeChangedNotificationData>;
 }
+
+
+/**
+ * @export
+ */
+export const CampaignEvaluationTreeChangedNotificationNotificationTypeEnum = {
+    CampaignEvaluationTreeChanged: 'CampaignEvaluationTreeChanged',
+} as const;
+export type CampaignEvaluationTreeChangedNotificationNotificationTypeEnum = typeof CampaignEvaluationTreeChangedNotificationNotificationTypeEnum[keyof typeof CampaignEvaluationTreeChangedNotificationNotificationTypeEnum];
+
 
 /**
  * Check if a given object implements the CampaignEvaluationTreeChangedNotification interface.
  */
 export function instanceOfCampaignEvaluationTreeChangedNotification(value: object): value is CampaignEvaluationTreeChangedNotification {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
-    if (!('evaluationTree' in _v) || _v['evaluationTree'] === undefined) return false;
+    if ((!('notificationType' in _v) && !('NotificationType' in _v)) || (_v['notificationType'] === undefined && _v['NotificationType'] === undefined)) return false;
+    if (_v['notificationType'] !== 'CampaignEvaluationTreeChanged' && _v['NotificationType'] !== 'CampaignEvaluationTreeChanged') return false;
+    
+    if ((!('totalResultSize' in _v) && !('TotalResultSize' in _v)) || (_v['totalResultSize'] === undefined && _v['TotalResultSize'] === undefined)) return false;
+    if ((!('data' in _v) && !('Data' in _v)) || (_v['data'] === undefined && _v['Data'] === undefined)) return false;
     return true;
 }
 
@@ -61,9 +74,9 @@ export function CampaignEvaluationTreeChangedNotificationFromJSONTyped(json: any
     }
     return {
         
-        'applicationId': json['applicationId'],
-        'oldEvaluationTree': json['oldEvaluationTree'] == null ? undefined : CampaignSetFromJSON(json['oldEvaluationTree']),
-        'evaluationTree': CampaignSetFromJSON(json['evaluationTree']),
+        'notificationType': json['NotificationType'],
+        'totalResultSize': json['TotalResultSize'],
+        'data': (json['Data'] == null ? undefined as any : (json['Data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationDataFromJSON)),
     };
 }
 
@@ -78,9 +91,9 @@ export function CampaignEvaluationTreeChangedNotificationToJSONTyped(value?: Cam
 
     return {
         
-        'applicationId': value['applicationId'],
-        'oldEvaluationTree': CampaignSetToJSON(value['oldEvaluationTree']),
-        'evaluationTree': CampaignSetToJSON(value['evaluationTree']),
+        'NotificationType': value['notificationType'],
+        'TotalResultSize': value['totalResultSize'],
+        'Data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(CampaignEvaluationTreeChangedNotificationDataToJSON)),
     };
 }
 

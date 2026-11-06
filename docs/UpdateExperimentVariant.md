@@ -10,6 +10,7 @@ Name | Type
 `name` | string
 `ruleset` | [NewRuleset](NewRuleset.md)
 `weight` | number
+`order` | number
 `audienceId` | number
 
 ## Example
@@ -23,6 +24,7 @@ const example = {
   "name": Variant A,
   "ruleset": null,
   "weight": 13,
+  "order": 0,
   "audienceId": 55,
 } satisfies UpdateExperimentVariant
 

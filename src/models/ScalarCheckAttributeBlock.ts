@@ -13,22 +13,94 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Block } from './Block';
+import {
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
+
 /**
- * Variant of `CheckAttributeBlock` for operators that compare an attribute against a single value.
+ * 
  * @export
  * @interface ScalarCheckAttributeBlock
  */
 export interface ScalarCheckAttributeBlock {
     /**
+     * Unique identifier for this block.
+     */
+    readonly id?: string;
+    /**
+     * A block discriminator of type `checkAttribute`.
+     */
+    type: ScalarCheckAttributeBlockTypeEnum;
+    /**
+     * Semantic labels attached to this block.
+     */
+    readonly tags?: Array<string>;
+    /**
      * The comparison operator applied to the attribute.
      */
-    operator?: ScalarCheckAttributeBlockOperatorEnum;
+    operator: ScalarCheckAttributeBlockOperatorEnum;
+    /**
+     * The attribute path identifier (e.g. "$Session.Total").
+     */
+    attribute: any | null;
     /**
      * The comparison value for this operator.
      */
     value: any | null;
+    /**
+     * The minimum value allowed for the `between` operator.
+     */
+    min?: any | null;
+    /**
+     * The maximum value allowed for the `between` operator.
+     */
+    max?: any | null;
+    /**
+     * The start value for the `within` operator.
+     */
+    start?: any | null;
+    /**
+     * The end value for the `within` operator.
+     */
+    end?: any | null;
+    /**
+     * When `true`, the `start` value is included in the range for the `within` operator.
+     */
+    startInclusive?: boolean;
+    /**
+     * When `true`, the `end` value is included in the range for the `within` operator.
+     */
+    endInclusive?: boolean;
+    /**
+     * Indicates whether the `within` operator ignores time zones and compares the wall-clock time only. When `false`, time zones are taken into account.
+     */
+    timezoneInsensitive?: boolean;
+    /**
+     * The set of values to match against for list operators. For location operators (`in`, `not(in)`), an array of objects with a `geometry` (see `GeoJSONGeometry`) and an optional `name`, or a string reference to a list attribute.
+     */
+    values?: any | null;
+    /**
+     * The count threshold for `containsAtLeast` and `containsExactly` operators.
+     */
+    count?: any | null;
+    /**
+     * Promotion blocks evaluated when this block fails or returns false.
+     */
+    onFailure?: Array<Block>;
 }
 
+
+/**
+ * @export
+ */
+export const ScalarCheckAttributeBlockTypeEnum = {
+    CheckAttribute: 'checkAttribute',
+} as const;
+export type ScalarCheckAttributeBlockTypeEnum = typeof ScalarCheckAttributeBlockTypeEnum[keyof typeof ScalarCheckAttributeBlockTypeEnum];
 
 /**
  * @export
@@ -60,6 +132,11 @@ export type ScalarCheckAttributeBlockOperatorEnum = typeof ScalarCheckAttributeB
  */
 export function instanceOfScalarCheckAttributeBlock(value: object): value is ScalarCheckAttributeBlock {
     const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'checkAttribute') return false;
+    
+    if (!('operator' in _v) || _v['operator'] === undefined) return false;
+    if (!('attribute' in _v) || _v['attribute'] === undefined) return false;
     if (!('value' in _v) || _v['value'] === undefined) return false;
     return true;
 }
@@ -74,8 +151,22 @@ export function ScalarCheckAttributeBlockFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'operator': json['operator'] == null ? undefined : json['operator'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'type': json['type'],
+        'tags': json['tags'] == null ? undefined : json['tags'],
+        'operator': json['operator'],
+        'attribute': json['attribute'],
         'value': json['value'],
+        'min': json['min'] === undefined ? undefined : json['min'] === null ? null : json['min'],
+        'max': json['max'] === undefined ? undefined : json['max'] === null ? null : json['max'],
+        'start': json['start'] === undefined ? undefined : json['start'] === null ? null : json['start'],
+        'end': json['end'] === undefined ? undefined : json['end'] === null ? null : json['end'],
+        'startInclusive': json['startInclusive'] == null ? undefined : json['startInclusive'],
+        'endInclusive': json['endInclusive'] == null ? undefined : json['endInclusive'],
+        'timezoneInsensitive': json['timezoneInsensitive'] == null ? undefined : json['timezoneInsensitive'],
+        'values': json['values'] === undefined ? undefined : json['values'] === null ? null : json['values'],
+        'count': json['count'] === undefined ? undefined : json['count'] === null ? null : json['count'],
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -83,15 +174,27 @@ export function ScalarCheckAttributeBlockToJSON(json: any): ScalarCheckAttribute
     return ScalarCheckAttributeBlockToJSONTyped(json, false);
 }
 
-export function ScalarCheckAttributeBlockToJSONTyped(value?: ScalarCheckAttributeBlock | null, ignoreDiscriminator: boolean = false): any {
+export function ScalarCheckAttributeBlockToJSONTyped(value?: Omit<ScalarCheckAttributeBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
+        'type': value['type'],
         'operator': value['operator'],
+        'attribute': value['attribute'],
         'value': value['value'],
+        'min': value['min'],
+        'max': value['max'],
+        'start': value['start'],
+        'end': value['end'],
+        'startInclusive': value['startInclusive'],
+        'endInclusive': value['endInclusive'],
+        'timezoneInsensitive': value['timezoneInsensitive'],
+        'values': value['values'],
+        'count': value['count'],
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }
 

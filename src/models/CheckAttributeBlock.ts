@@ -20,6 +20,7 @@ import { type ListWithCountCheckAttributeBlock, ListWithCountCheckAttributeBlock
 import { type UnaryCheckAttributeBlock, UnaryCheckAttributeBlockFromJSONTyped, UnaryCheckAttributeBlockToJSON } from './UnaryCheckAttributeBlock';
 import { type LocationCheckAttributeBlock, LocationCheckAttributeBlockFromJSONTyped, LocationCheckAttributeBlockToJSON } from './LocationCheckAttributeBlock';
 import { type WithinCheckAttributeBlock, WithinCheckAttributeBlockFromJSONTyped, WithinCheckAttributeBlockToJSON } from './WithinCheckAttributeBlock';
+
 /**
  * @type CheckAttributeBlock
  * 
