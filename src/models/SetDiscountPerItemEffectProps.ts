@@ -80,7 +80,7 @@ export interface SetDiscountPerItemEffectProps {
      */
     targetedItemSubPosition?: number;
     /**
-     * When set to `true`, the applied discount is excluded from the item's price history.
+     * When set to `true`, the applied discount is excluded from the item's price history. When set to `false`, the applied discount is included in the item's price history. This property is only returned if the [best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price) setting is enabled for the Application.
      */
     excludedFromPriceHistory?: boolean;
 }

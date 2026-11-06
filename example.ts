@@ -75,7 +75,10 @@ integrationApi
             console.log(JSON.stringify(data, null, 2));
 
             // Parsing the returned effects list, please consult https://developers.talon.one/Integration-API/handling-effects-v2 for the full list of effects and their corresponding properties
-            data.effects?.forEach(effect => {
+            if (!data.effects?.some(effect => effect.effectType === 'rejectCoupon')) {
+                throw new Error('Expected a rejectCoupon effect for the invalid coupon');
+            }
+            data.effects.forEach(effect => {
                 switch (effect.effectType) {
                     case 'setDiscount':
                         // Access the specific effect's properties
@@ -87,8 +90,9 @@ integrationApi
                         break
                 }
             })
-        },
-        err => {
-            console.error(err);
         }
-    );
+    )
+    .catch(err => {
+        console.error(err);
+        process.exitCode = 1;
+    });

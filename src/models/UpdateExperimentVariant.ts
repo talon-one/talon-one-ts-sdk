@@ -45,6 +45,11 @@ export interface UpdateExperimentVariant {
      */
     weight: number;
     /**
+     * The position of this variant in the experiment. The variant with `order: 0` is the primary variant.
+     * 
+     */
+    order?: number;
+    /**
      * The ID of the audience this variant targets. Only used when the experiment `assignmentType` is `audience`.
      * 
      */
@@ -77,6 +82,7 @@ export function UpdateExperimentVariantFromJSONTyped(json: any, ignoreDiscrimina
         'name': json['name'],
         'ruleset': NewRulesetFromJSON(json['ruleset']),
         'weight': json['weight'],
+        'order': json['order'] == null ? undefined : json['order'],
         'audienceId': json['audienceId'] == null ? undefined : json['audienceId'],
     };
 }
@@ -96,6 +102,7 @@ export function UpdateExperimentVariantToJSONTyped(value?: UpdateExperimentVaria
         'name': value['name'],
         'ruleset': NewRulesetToJSON(value['ruleset']),
         'weight': value['weight'],
+        'order': value['order'],
         'audienceId': value['audienceId'],
     };
 }

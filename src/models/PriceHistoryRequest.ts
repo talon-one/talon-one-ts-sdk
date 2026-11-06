@@ -20,15 +20,15 @@ import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime }
  */
 export interface PriceHistoryRequest {
     /**
-     * The SKU of the item for which the historical prices are being retrieved.
+     * The SKU of the item for which the price records are being retrieved.
      */
     sku: string;
     /**
-     * The start date of the period for which historical prices should be retrieved.
+     * The start date of the period for which price records should be retrieved.
      */
     startDate: Date;
     /**
-     * The end date of the period for which historical prices should be retrieved.
+     * The end date of the period for which price records should be retrieved.
      */
     endDate: Date;
 }

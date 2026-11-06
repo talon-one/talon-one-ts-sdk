@@ -13,16 +13,52 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Block } from './Block';
+import {
+    BlockFromJSON,
+    BlockFromJSONTyped,
+    BlockToJSON,
+    BlockToJSONTyped,
+} from './Block';
+
 /**
- * Variant of `CheckAttributeBlock` for the `within` and `not(within)` operators, which require both a start and end value.
+ * 
  * @export
  * @interface WithinCheckAttributeBlock
  */
 export interface WithinCheckAttributeBlock {
     /**
+     * Unique identifier for this block.
+     */
+    readonly id?: string;
+    /**
+     * A block discriminator of type `checkAttribute`.
+     */
+    type: WithinCheckAttributeBlockTypeEnum;
+    /**
+     * Semantic labels attached to this block.
+     */
+    readonly tags?: Array<string>;
+    /**
      * The range comparison operator. Must be `within` or `not(within)`.
      */
-    operator?: WithinCheckAttributeBlockOperatorEnum;
+    operator: WithinCheckAttributeBlockOperatorEnum;
+    /**
+     * The attribute path identifier (e.g. "$Session.Total").
+     */
+    attribute: any | null;
+    /**
+     * The comparison value for scalar operators.
+     */
+    value?: any | null;
+    /**
+     * The minimum value allowed for the `between` operator.
+     */
+    min?: any | null;
+    /**
+     * The maximum value allowed for the `between` operator.
+     */
+    max?: any | null;
     /**
      * The start value for the `within` operator.
      */
@@ -43,8 +79,28 @@ export interface WithinCheckAttributeBlock {
      * Indicates whether the `within` operator ignores time zones and compares the wall-clock time only. When `false`, time zones are taken into account.
      */
     timezoneInsensitive?: boolean;
+    /**
+     * The set of values to match against for list operators. For location operators (`in`, `not(in)`), an array of objects with a `geometry` (see `GeoJSONGeometry`) and an optional `name`, or a string reference to a list attribute.
+     */
+    values?: any | null;
+    /**
+     * The count threshold for `containsAtLeast` and `containsExactly` operators.
+     */
+    count?: any | null;
+    /**
+     * Promotion blocks evaluated when this block fails or returns false.
+     */
+    onFailure?: Array<Block>;
 }
 
+
+/**
+ * @export
+ */
+export const WithinCheckAttributeBlockTypeEnum = {
+    CheckAttribute: 'checkAttribute',
+} as const;
+export type WithinCheckAttributeBlockTypeEnum = typeof WithinCheckAttributeBlockTypeEnum[keyof typeof WithinCheckAttributeBlockTypeEnum];
 
 /**
  * @export
@@ -61,6 +117,11 @@ export type WithinCheckAttributeBlockOperatorEnum = typeof WithinCheckAttributeB
  */
 export function instanceOfWithinCheckAttributeBlock(value: object): value is WithinCheckAttributeBlock {
     const _v = value as Record<PropertyKey, unknown>;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
+    if (_v['type'] !== 'checkAttribute') return false;
+    
+    if (!('operator' in _v) || _v['operator'] === undefined) return false;
+    if (!('attribute' in _v) || _v['attribute'] === undefined) return false;
     if (!('start' in _v) || _v['start'] === undefined) return false;
     if (!('end' in _v) || _v['end'] === undefined) return false;
     return true;
@@ -76,12 +137,22 @@ export function WithinCheckAttributeBlockFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'operator': json['operator'] == null ? undefined : json['operator'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'type': json['type'],
+        'tags': json['tags'] == null ? undefined : json['tags'],
+        'operator': json['operator'],
+        'attribute': json['attribute'],
+        'value': json['value'] === undefined ? undefined : json['value'] === null ? null : json['value'],
+        'min': json['min'] === undefined ? undefined : json['min'] === null ? null : json['min'],
+        'max': json['max'] === undefined ? undefined : json['max'] === null ? null : json['max'],
         'start': json['start'],
         'end': json['end'],
         'startInclusive': json['startInclusive'] == null ? undefined : json['startInclusive'],
         'endInclusive': json['endInclusive'] == null ? undefined : json['endInclusive'],
         'timezoneInsensitive': json['timezoneInsensitive'] == null ? undefined : json['timezoneInsensitive'],
+        'values': json['values'] === undefined ? undefined : json['values'] === null ? null : json['values'],
+        'count': json['count'] === undefined ? undefined : json['count'] === null ? null : json['count'],
+        'onFailure': json['onFailure'] == null ? undefined : ((json['onFailure'] as Array<any>).map(BlockFromJSON)),
     };
 }
 
@@ -89,19 +160,27 @@ export function WithinCheckAttributeBlockToJSON(json: any): WithinCheckAttribute
     return WithinCheckAttributeBlockToJSONTyped(json, false);
 }
 
-export function WithinCheckAttributeBlockToJSONTyped(value?: WithinCheckAttributeBlock | null, ignoreDiscriminator: boolean = false): any {
+export function WithinCheckAttributeBlockToJSONTyped(value?: Omit<WithinCheckAttributeBlock, 'id'|'tags'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
+        'type': value['type'],
         'operator': value['operator'],
+        'attribute': value['attribute'],
+        'value': value['value'],
+        'min': value['min'],
+        'max': value['max'],
         'start': value['start'],
         'end': value['end'],
         'startInclusive': value['startInclusive'],
         'endInclusive': value['endInclusive'],
         'timezoneInsensitive': value['timezoneInsensitive'],
+        'values': value['values'],
+        'count': value['count'],
+        'onFailure': value['onFailure'] == null ? undefined : ((value['onFailure'] as Array<any>).map(BlockToJSON)),
     };
 }
 

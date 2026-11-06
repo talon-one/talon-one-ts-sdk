@@ -35,7 +35,7 @@ import {
  */
 export interface BestPriorPrice {
     /**
-     * The ID of the historical price.
+     * The ID of the price record.
      */
     id: number;
     /**
@@ -43,11 +43,11 @@ export interface BestPriorPrice {
      */
     sku: string;
     /**
-     * The date and time when the price was observed.
+     * The date and time when the price change was recorded.
      */
     observedAt: Date;
     /**
-     * The identifiers of the relevant context (the sales events, e.g. "Spring Sale", "Summer Sale") at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
+     * The identifiers of the relevant context (the sales events, e.g. "Spring Sale", "Summer Sale") at the time the price change was recorded. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
      * 
      */
     contextIds: Array<string>;

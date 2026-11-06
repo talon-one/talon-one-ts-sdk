@@ -298,21 +298,21 @@ export interface ActivateLoyaltyPointsRequest {
      */
     loyaltyProgramId: number;
     /**
-     * 
+     * body
      */
     activateLoyaltyPoints: ActivateLoyaltyPoints;
 }
 
 export interface BestPriorPriceOperationRequest {
     /**
-     * 
+     * body
      */
     bestPriorPriceRequest: BestPriorPriceRequest;
 }
 
 export interface CreateAudienceV2Request {
     /**
-     * 
+     * body
      */
     newAudience: NewAudience;
 }
@@ -328,21 +328,21 @@ export interface CreateCouponReservationRequest {
      */
     couponValue: string;
     /**
-     * 
+     * body
      */
     couponReservations: CouponReservations;
 }
 
 export interface CreateReferralRequest {
     /**
-     * 
+     * body
      */
     newReferral: NewReferral;
 }
 
 export interface CreateReferralsForMultipleAdvocatesRequest {
     /**
-     * 
+     * body
      */
     newReferralsForMultipleAdvocates: NewReferralsForMultipleAdvocates;
     /**
@@ -379,7 +379,7 @@ export interface DeleteCouponReservationRequest {
      */
     couponValue: string;
     /**
-     * 
+     * body
      */
     couponReservations: CouponReservations;
 }
@@ -422,7 +422,7 @@ export interface GenerateLoyaltyCardRequest {
      */
     loyaltyProgramId: number;
     /**
-     * 
+     * body
      */
     generateLoyaltyCard: GenerateLoyaltyCard;
 }
@@ -1205,7 +1205,7 @@ export interface IntegrationUpdateLoyaltyCardRequest {
      */
     loyaltyCardId: string;
     /**
-     * 
+     * body
      */
     updateLoyaltyCardRequest: UpdateLoyaltyCardRequest;
 }
@@ -1247,7 +1247,7 @@ export interface LinkLoyaltyCardToProfileRequest {
      */
     loyaltyCardId: string;
     /**
-     * 
+     * body
      */
     loyaltyCardRegistration: LoyaltyCardRegistration;
 }
@@ -1277,7 +1277,7 @@ export interface ReturnCartItemsRequest {
      */
     customerSessionId: string;
     /**
-     * 
+     * body
      */
     returnIntegrationRequest: ReturnIntegrationRequest;
     /**
@@ -1302,14 +1302,14 @@ export interface SyncCatalogRequest {
      */
     catalogId: number;
     /**
-     * 
+     * body
      */
     catalogSyncRequest: CatalogSyncRequest;
 }
 
 export interface TrackEventV2Request {
     /**
-     * 
+     * body
      */
     integrationEventV2Request: IntegrationEventV2Request;
     /**
@@ -1337,7 +1337,7 @@ export interface TrackEventV2Request {
 
 export interface TrackEventV3Request {
     /**
-     * 
+     * body
      */
     integrationEventV3Request: IntegrationEventV3Request;
     /**
@@ -1378,7 +1378,7 @@ export interface UnlinkLoyaltyCardFromProfileRequest {
      */
     loyaltyCardId: string;
     /**
-     * 
+     * body
      */
     loyaltyCardRegistration: LoyaltyCardRegistration;
 }
@@ -1404,7 +1404,7 @@ export interface UpdateAudienceCustomersAttributesRequest {
      */
     audienceId: number;
     /**
-     * 
+     * body
      */
     body: object;
 }
@@ -1415,14 +1415,14 @@ export interface UpdateAudienceV2Request {
      */
     audienceId: number;
     /**
-     * 
+     * body
      */
     updateAudience: UpdateAudience;
 }
 
 export interface UpdateCustomerProfileAudiencesRequest {
     /**
-     * 
+     * body
      */
     customerProfileAudienceRequest: CustomerProfileAudienceRequest;
 }
@@ -1439,7 +1439,7 @@ export interface UpdateCustomerProfileV2Request {
      */
     integrationId: string;
     /**
-     * 
+     * body
      */
     customerProfileIntegrationRequestV2: CustomerProfileIntegrationRequestV2;
     /**
@@ -1471,7 +1471,7 @@ export interface UpdateCustomerProfileV2Request {
 
 export interface UpdateCustomerProfilesV2Request {
     /**
-     * 
+     * body
      */
     multipleCustomerProfileIntegrationRequest: MultipleCustomerProfileIntegrationRequest;
     /**
@@ -1498,7 +1498,7 @@ export interface UpdateCustomerSessionV2Request {
      */
     customerSessionId: string;
     /**
-     * 
+     * body
      */
     integrationRequest: IntegrationRequest;
     /**
@@ -1634,7 +1634,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns the best prior price based on historical pricing data for the specified SKUs within a defined timeframe. 
+     * Returns the best prior price based on price records (historical price data) for the specified SKUs within a defined timeframe.  For more information, see the [docs](https://docs.talon.one/docs/dev/integration-guides/best-prior-price). 
      * Fetch best prior price
      */
     async bestPriorPriceRaw(requestParameters: BestPriorPriceOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<BestPriorPrice>>> {
@@ -1645,7 +1645,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns the best prior price based on historical pricing data for the specified SKUs within a defined timeframe. 
+     * Returns the best prior price based on price records (historical price data) for the specified SKUs within a defined timeframe.  For more information, see the [docs](https://docs.talon.one/docs/dev/integration-guides/best-prior-price). 
      * Fetch best prior price
      */
     async bestPriorPrice(requestParameters: BestPriorPriceOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<BestPriorPrice>> {
@@ -3706,7 +3706,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Perform the following actions for a given cart item catalog:  - Add an item to the catalog. - Add multiple items to the catalog. - Update the attributes of an item in the catalog. - Update the attributes of multiple items in the catalog. - Remove an item from the catalog. - Remove multiple items from the catalog.  You can either add, update, or delete up to 1000 cart items in a single request. Each item synced to a catalog must have a unique `SKU`.  > [!important] You can perform only one type of action in a single sync request. Syncing items with duplicate `SKU` values in a single request returns an error message with a `400` status code.  For more information, read [managing cart item catalogs](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs).  ### Filtering cart items  Use [cart item attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes) to filter items and select the ones you want to edit or delete when editing or deleting more than one item at a time.  The `filters` array contains an object with the following properties:  - `attr`: A [cart item attribute](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes)   connected to the catalog. It is applied to all items in the catalog. - `op`: The filtering operator indicating the relationship between the value   of each cart item in the catalog and the value of the `value` property for the attribute selected   in `attr`.    The value of `op` can be one of the following:    - `EQ`: Equal to `value`   - `LT`: Less than `value`   - `LE`: Less than or equal to `value`   - `GT`: Greater than `value`   - `GE`: Greater than or equal to `value`   - `IN`: One of the comma-separated values that `value` is set to.    **Note:** `GE`, `LE`, `GT`, `LT` are for numeric values only. - `value`: The value of the attribute selected in `attr`.  For request examples of each action, see the **Request Body** examples. 
+     * Perform the following actions for a given cart item catalog:  - Add an item to the catalog. - Add multiple items to the catalog. - Update the attributes of an item in the catalog. - Update the attributes of multiple items in the catalog. - Remove an item from the catalog. - Remove multiple items from the catalog. - Add a [price adjustment](https://docs.talon.one/docs/dev/integration-guides/set-up-price-types#price-adjustments)   to an item in the catalog.  You can either add, update, or delete up to 1000 cart items in a single request. Each item synced to a catalog must have a unique `SKU`.  For examples of each action, see the request body.  > [!important] You can perform only one type of action in a single sync request. Syncing items with duplicate `SKU` values in a single request returns an error message with a `400` status code.   For more information, see [Sync a cart item catalog best practices](https://docs.talon.one/docs/dev/integration-guides/sync-cic#best-practices) and [Managing cart item catalogs](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs).  ### Filtering cart items  Use [cart item attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes) to filter items and select the ones you want to edit or delete when editing or deleting more than one item at a time.  The `filters` array contains an object with the following properties:  - `attr`: A [cart item attribute](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes)   connected to the catalog. It is applied to all items in the catalog. - `op`: The filtering operator indicating the relationship between the value   of each cart item in the catalog and the value of the `value` property for the attribute selected   in `attr`.    The value of `op` can be one of the following:    - `EQ`: Equal to `value`   - `LT`: Less than `value`   - `LE`: Less than or equal to `value`   - `GT`: Greater than `value`   - `GE`: Greater than or equal to `value`   - `IN`: One of the comma-separated values that `value` is set to.    **Note:** `GE`, `LE`, `GT`, `LT` are for numeric values only. - `value`: The value of the attribute selected in `attr`. 
      * Sync cart item catalog
      */
     async syncCatalogRaw(requestParameters: SyncCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Catalog>> {
@@ -3717,7 +3717,7 @@ export class IntegrationApi extends runtime.BaseAPI {
     }
 
     /**
-     * Perform the following actions for a given cart item catalog:  - Add an item to the catalog. - Add multiple items to the catalog. - Update the attributes of an item in the catalog. - Update the attributes of multiple items in the catalog. - Remove an item from the catalog. - Remove multiple items from the catalog.  You can either add, update, or delete up to 1000 cart items in a single request. Each item synced to a catalog must have a unique `SKU`.  > [!important] You can perform only one type of action in a single sync request. Syncing items with duplicate `SKU` values in a single request returns an error message with a `400` status code.  For more information, read [managing cart item catalogs](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs).  ### Filtering cart items  Use [cart item attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes) to filter items and select the ones you want to edit or delete when editing or deleting more than one item at a time.  The `filters` array contains an object with the following properties:  - `attr`: A [cart item attribute](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes)   connected to the catalog. It is applied to all items in the catalog. - `op`: The filtering operator indicating the relationship between the value   of each cart item in the catalog and the value of the `value` property for the attribute selected   in `attr`.    The value of `op` can be one of the following:    - `EQ`: Equal to `value`   - `LT`: Less than `value`   - `LE`: Less than or equal to `value`   - `GT`: Greater than `value`   - `GE`: Greater than or equal to `value`   - `IN`: One of the comma-separated values that `value` is set to.    **Note:** `GE`, `LE`, `GT`, `LT` are for numeric values only. - `value`: The value of the attribute selected in `attr`.  For request examples of each action, see the **Request Body** examples. 
+     * Perform the following actions for a given cart item catalog:  - Add an item to the catalog. - Add multiple items to the catalog. - Update the attributes of an item in the catalog. - Update the attributes of multiple items in the catalog. - Remove an item from the catalog. - Remove multiple items from the catalog. - Add a [price adjustment](https://docs.talon.one/docs/dev/integration-guides/set-up-price-types#price-adjustments)   to an item in the catalog.  You can either add, update, or delete up to 1000 cart items in a single request. Each item synced to a catalog must have a unique `SKU`.  For examples of each action, see the request body.  > [!important] You can perform only one type of action in a single sync request. Syncing items with duplicate `SKU` values in a single request returns an error message with a `400` status code.   For more information, see [Sync a cart item catalog best practices](https://docs.talon.one/docs/dev/integration-guides/sync-cic#best-practices) and [Managing cart item catalogs](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs).  ### Filtering cart items  Use [cart item attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes) to filter items and select the ones you want to edit or delete when editing or deleting more than one item at a time.  The `filters` array contains an object with the following properties:  - `attr`: A [cart item attribute](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes)   connected to the catalog. It is applied to all items in the catalog. - `op`: The filtering operator indicating the relationship between the value   of each cart item in the catalog and the value of the `value` property for the attribute selected   in `attr`.    The value of `op` can be one of the following:    - `EQ`: Equal to `value`   - `LT`: Less than `value`   - `LE`: Less than or equal to `value`   - `GT`: Greater than `value`   - `GE`: Greater than or equal to `value`   - `IN`: One of the comma-separated values that `value` is set to.    **Note:** `GE`, `LE`, `GT`, `LT` are for numeric values only. - `value`: The value of the attribute selected in `attr`. 
      * Sync cart item catalog
      */
     async syncCatalog(requestParameters: SyncCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Catalog> {

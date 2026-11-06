@@ -35,15 +35,15 @@ import {
  */
 export interface History {
     /**
-     * The ID of the historical price.
+     * The ID of the price record.
      */
     id: number;
     /**
-     * The date and time when the price was observed.
+     * The date and time from which the price record is effective.
      */
     observedAt: Date;
     /**
-     * The identifiers of the relevant context (the sales events, e.g. "Spring Sale", "Summer Sale") at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
+     * The identifiers of the relevant context (the sales events, e.g. "Spring Sale", "Summer Sale") at the time from which the price record is effective. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
      * 
      */
     contextIds: Array<string>;
@@ -60,11 +60,11 @@ export interface History {
      */
     target: LabelTarget;
     /**
-     * The date and time when the historical price ID was excluded.
+     * The date and time when the price record was excluded.
      */
     excludedAt?: Date;
     /**
-     * The reason for excluding this historical price ID.
+     * The reason for excluding this price record.
      */
     exclusionReason?: string;
 }

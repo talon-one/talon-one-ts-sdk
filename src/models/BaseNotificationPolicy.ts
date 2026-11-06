@@ -14,20 +14,6 @@
 
 import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import { selectOneOfBestMatch } from '../runtime';
-import type { AddedDeductedPointsBalancesNotificationPolicy } from './AddedDeductedPointsBalancesNotificationPolicy';
-import {
-    instanceOfAddedDeductedPointsBalancesNotificationPolicy,
-    AddedDeductedPointsBalancesNotificationPolicyFromJSON,
-    AddedDeductedPointsBalancesNotificationPolicyFromJSONTyped,
-    AddedDeductedPointsBalancesNotificationPolicyToJSON,
-} from './AddedDeductedPointsBalancesNotificationPolicy';
-import type { AddedDeductedPointsNotificationPolicy } from './AddedDeductedPointsNotificationPolicy';
-import {
-    instanceOfAddedDeductedPointsNotificationPolicy,
-    AddedDeductedPointsNotificationPolicyFromJSON,
-    AddedDeductedPointsNotificationPolicyFromJSONTyped,
-    AddedDeductedPointsNotificationPolicyToJSON,
-} from './AddedDeductedPointsNotificationPolicy';
 import type { CampaignNotificationPolicy } from './CampaignNotificationPolicy';
 import {
     instanceOfCampaignNotificationPolicy,
@@ -35,34 +21,13 @@ import {
     CampaignNotificationPolicyFromJSONTyped,
     CampaignNotificationPolicyToJSON,
 } from './CampaignNotificationPolicy';
-import type { CardAddedDeductedPointsBalancesNotificationPolicy } from './CardAddedDeductedPointsBalancesNotificationPolicy';
+import type { CouponCodeExpiringNotificationPolicy } from './CouponCodeExpiringNotificationPolicy';
 import {
-    instanceOfCardAddedDeductedPointsBalancesNotificationPolicy,
-    CardAddedDeductedPointsBalancesNotificationPolicyFromJSON,
-    CardAddedDeductedPointsBalancesNotificationPolicyFromJSONTyped,
-    CardAddedDeductedPointsBalancesNotificationPolicyToJSON,
-} from './CardAddedDeductedPointsBalancesNotificationPolicy';
-import type { CardAddedDeductedPointsNotificationPolicy } from './CardAddedDeductedPointsNotificationPolicy';
-import {
-    instanceOfCardAddedDeductedPointsNotificationPolicy,
-    CardAddedDeductedPointsNotificationPolicyFromJSON,
-    CardAddedDeductedPointsNotificationPolicyFromJSONTyped,
-    CardAddedDeductedPointsNotificationPolicyToJSON,
-} from './CardAddedDeductedPointsNotificationPolicy';
-import type { CardExpiringPointsNotificationPolicy } from './CardExpiringPointsNotificationPolicy';
-import {
-    instanceOfCardExpiringPointsNotificationPolicy,
-    CardExpiringPointsNotificationPolicyFromJSON,
-    CardExpiringPointsNotificationPolicyFromJSONTyped,
-    CardExpiringPointsNotificationPolicyToJSON,
-} from './CardExpiringPointsNotificationPolicy';
-import type { CatalogsStrikethroughNotificationPolicy } from './CatalogsStrikethroughNotificationPolicy';
-import {
-    instanceOfCatalogsStrikethroughNotificationPolicy,
-    CatalogsStrikethroughNotificationPolicyFromJSON,
-    CatalogsStrikethroughNotificationPolicyFromJSONTyped,
-    CatalogsStrikethroughNotificationPolicyToJSON,
-} from './CatalogsStrikethroughNotificationPolicy';
+    instanceOfCouponCodeExpiringNotificationPolicy,
+    CouponCodeExpiringNotificationPolicyFromJSON,
+    CouponCodeExpiringNotificationPolicyFromJSONTyped,
+    CouponCodeExpiringNotificationPolicyToJSON,
+} from './CouponCodeExpiringNotificationPolicy';
 import type { CouponsNotificationPolicy } from './CouponsNotificationPolicy';
 import {
     instanceOfCouponsNotificationPolicy,
@@ -70,27 +35,62 @@ import {
     CouponsNotificationPolicyFromJSONTyped,
     CouponsNotificationPolicyToJSON,
 } from './CouponsNotificationPolicy';
-import type { ExpiringCouponsNotificationPolicy } from './ExpiringCouponsNotificationPolicy';
+import type { LoyaltyAddedDeductedPointsBalancesNotificationPolicy } from './LoyaltyAddedDeductedPointsBalancesNotificationPolicy';
 import {
-    instanceOfExpiringCouponsNotificationPolicy,
-    ExpiringCouponsNotificationPolicyFromJSON,
-    ExpiringCouponsNotificationPolicyFromJSONTyped,
-    ExpiringCouponsNotificationPolicyToJSON,
-} from './ExpiringCouponsNotificationPolicy';
-import type { ExpiringPointsNotificationPolicy } from './ExpiringPointsNotificationPolicy';
+    instanceOfLoyaltyAddedDeductedPointsBalancesNotificationPolicy,
+    LoyaltyAddedDeductedPointsBalancesNotificationPolicyFromJSON,
+    LoyaltyAddedDeductedPointsBalancesNotificationPolicyFromJSONTyped,
+    LoyaltyAddedDeductedPointsBalancesNotificationPolicyToJSON,
+} from './LoyaltyAddedDeductedPointsBalancesNotificationPolicy';
+import type { LoyaltyCardAddedDeductedPointsBalancesNotificationPolicy } from './LoyaltyCardAddedDeductedPointsBalancesNotificationPolicy';
 import {
-    instanceOfExpiringPointsNotificationPolicy,
-    ExpiringPointsNotificationPolicyFromJSON,
-    ExpiringPointsNotificationPolicyFromJSONTyped,
-    ExpiringPointsNotificationPolicyToJSON,
-} from './ExpiringPointsNotificationPolicy';
-import type { PendingPointsNotificationPolicy } from './PendingPointsNotificationPolicy';
+    instanceOfLoyaltyCardAddedDeductedPointsBalancesNotificationPolicy,
+    LoyaltyCardAddedDeductedPointsBalancesNotificationPolicyFromJSON,
+    LoyaltyCardAddedDeductedPointsBalancesNotificationPolicyFromJSONTyped,
+    LoyaltyCardAddedDeductedPointsBalancesNotificationPolicyToJSON,
+} from './LoyaltyCardAddedDeductedPointsBalancesNotificationPolicy';
+import type { LoyaltyCardPointsAddedDeductedNotificationPolicy } from './LoyaltyCardPointsAddedDeductedNotificationPolicy';
 import {
-    instanceOfPendingPointsNotificationPolicy,
-    PendingPointsNotificationPolicyFromJSON,
-    PendingPointsNotificationPolicyFromJSONTyped,
-    PendingPointsNotificationPolicyToJSON,
-} from './PendingPointsNotificationPolicy';
+    instanceOfLoyaltyCardPointsAddedDeductedNotificationPolicy,
+    LoyaltyCardPointsAddedDeductedNotificationPolicyFromJSON,
+    LoyaltyCardPointsAddedDeductedNotificationPolicyFromJSONTyped,
+    LoyaltyCardPointsAddedDeductedNotificationPolicyToJSON,
+} from './LoyaltyCardPointsAddedDeductedNotificationPolicy';
+import type { LoyaltyCardPointsExpiringNotificationPolicy } from './LoyaltyCardPointsExpiringNotificationPolicy';
+import {
+    instanceOfLoyaltyCardPointsExpiringNotificationPolicy,
+    LoyaltyCardPointsExpiringNotificationPolicyFromJSON,
+    LoyaltyCardPointsExpiringNotificationPolicyFromJSONTyped,
+    LoyaltyCardPointsExpiringNotificationPolicyToJSON,
+} from './LoyaltyCardPointsExpiringNotificationPolicy';
+import type { LoyaltyPointsAddedDeductedNotificationPolicy } from './LoyaltyPointsAddedDeductedNotificationPolicy';
+import {
+    instanceOfLoyaltyPointsAddedDeductedNotificationPolicy,
+    LoyaltyPointsAddedDeductedNotificationPolicyFromJSON,
+    LoyaltyPointsAddedDeductedNotificationPolicyFromJSONTyped,
+    LoyaltyPointsAddedDeductedNotificationPolicyToJSON,
+} from './LoyaltyPointsAddedDeductedNotificationPolicy';
+import type { LoyaltyPointsExpiringNotificationPolicy } from './LoyaltyPointsExpiringNotificationPolicy';
+import {
+    instanceOfLoyaltyPointsExpiringNotificationPolicy,
+    LoyaltyPointsExpiringNotificationPolicyFromJSON,
+    LoyaltyPointsExpiringNotificationPolicyFromJSONTyped,
+    LoyaltyPointsExpiringNotificationPolicyToJSON,
+} from './LoyaltyPointsExpiringNotificationPolicy';
+import type { LoyaltyPointsPendingToActiveNotificationPolicy } from './LoyaltyPointsPendingToActiveNotificationPolicy';
+import {
+    instanceOfLoyaltyPointsPendingToActiveNotificationPolicy,
+    LoyaltyPointsPendingToActiveNotificationPolicyFromJSON,
+    LoyaltyPointsPendingToActiveNotificationPolicyFromJSONTyped,
+    LoyaltyPointsPendingToActiveNotificationPolicyToJSON,
+} from './LoyaltyPointsPendingToActiveNotificationPolicy';
+import type { StrikethroughPriceNotificationPolicy } from './StrikethroughPriceNotificationPolicy';
+import {
+    instanceOfStrikethroughPriceNotificationPolicy,
+    StrikethroughPriceNotificationPolicyFromJSON,
+    StrikethroughPriceNotificationPolicyFromJSONTyped,
+    StrikethroughPriceNotificationPolicyToJSON,
+} from './StrikethroughPriceNotificationPolicy';
 import type { TierDowngradeNotificationPolicy } from './TierDowngradeNotificationPolicy';
 import {
     instanceOfTierDowngradeNotificationPolicy,
@@ -118,12 +118,12 @@ import {
  * Indicates which notification properties to apply.
  * @export
  */
-export type BaseNotificationPolicy = AddedDeductedPointsBalancesNotificationPolicy | AddedDeductedPointsNotificationPolicy | CampaignNotificationPolicy | CardAddedDeductedPointsBalancesNotificationPolicy | CardAddedDeductedPointsNotificationPolicy | CardExpiringPointsNotificationPolicy | CatalogsStrikethroughNotificationPolicy | CouponsNotificationPolicy | ExpiringCouponsNotificationPolicy | ExpiringPointsNotificationPolicy | PendingPointsNotificationPolicy | TierDowngradeNotificationPolicy | TierUpgradeNotificationPolicy | TierWillDowngradeNotificationPolicy;
+export type BaseNotificationPolicy = CampaignNotificationPolicy | CouponCodeExpiringNotificationPolicy | CouponsNotificationPolicy | LoyaltyAddedDeductedPointsBalancesNotificationPolicy | LoyaltyCardAddedDeductedPointsBalancesNotificationPolicy | LoyaltyCardPointsAddedDeductedNotificationPolicy | LoyaltyCardPointsExpiringNotificationPolicy | LoyaltyPointsAddedDeductedNotificationPolicy | LoyaltyPointsExpiringNotificationPolicy | LoyaltyPointsPendingToActiveNotificationPolicy | StrikethroughPriceNotificationPolicy | TierDowngradeNotificationPolicy | TierUpgradeNotificationPolicy | TierWillDowngradeNotificationPolicy;
 /**
  * Check if a given object implements the BaseNotificationPolicy interface.
  */
 export function instanceOfBaseNotificationPolicy(value: any): value is BaseNotificationPolicy {
-    return typeof value === 'object' && value !== null && (instanceOfAddedDeductedPointsBalancesNotificationPolicy(value) || instanceOfAddedDeductedPointsNotificationPolicy(value) || instanceOfCampaignNotificationPolicy(value) || instanceOfCardAddedDeductedPointsBalancesNotificationPolicy(value) || instanceOfCardAddedDeductedPointsNotificationPolicy(value) || instanceOfCardExpiringPointsNotificationPolicy(value) || instanceOfCatalogsStrikethroughNotificationPolicy(value) || instanceOfCouponsNotificationPolicy(value) || instanceOfExpiringCouponsNotificationPolicy(value) || instanceOfExpiringPointsNotificationPolicy(value) || instanceOfPendingPointsNotificationPolicy(value) || instanceOfTierDowngradeNotificationPolicy(value) || instanceOfTierUpgradeNotificationPolicy(value) || instanceOfTierWillDowngradeNotificationPolicy(value));
+    return typeof value === 'object' && value !== null && (instanceOfCampaignNotificationPolicy(value) || instanceOfCouponCodeExpiringNotificationPolicy(value) || instanceOfCouponsNotificationPolicy(value) || instanceOfLoyaltyAddedDeductedPointsBalancesNotificationPolicy(value) || instanceOfLoyaltyCardAddedDeductedPointsBalancesNotificationPolicy(value) || instanceOfLoyaltyCardPointsAddedDeductedNotificationPolicy(value) || instanceOfLoyaltyCardPointsExpiringNotificationPolicy(value) || instanceOfLoyaltyPointsAddedDeductedNotificationPolicy(value) || instanceOfLoyaltyPointsExpiringNotificationPolicy(value) || instanceOfLoyaltyPointsPendingToActiveNotificationPolicy(value) || instanceOfStrikethroughPriceNotificationPolicy(value) || instanceOfTierDowngradeNotificationPolicy(value) || instanceOfTierUpgradeNotificationPolicy(value) || instanceOfTierWillDowngradeNotificationPolicy(value));
 }
 
 export function BaseNotificationPolicyFromJSON(json: any): BaseNotificationPolicy {
@@ -138,17 +138,17 @@ export function BaseNotificationPolicyFromJSONTyped(json: any, ignoreDiscriminat
         return json;
     }
     const matchedVariant = selectOneOfBestMatch(json, [
-        [instanceOfAddedDeductedPointsBalancesNotificationPolicy, AddedDeductedPointsBalancesNotificationPolicyFromJSONTyped],
-        [instanceOfAddedDeductedPointsNotificationPolicy, AddedDeductedPointsNotificationPolicyFromJSONTyped],
         [instanceOfCampaignNotificationPolicy, CampaignNotificationPolicyFromJSONTyped],
-        [instanceOfCardAddedDeductedPointsBalancesNotificationPolicy, CardAddedDeductedPointsBalancesNotificationPolicyFromJSONTyped],
-        [instanceOfCardAddedDeductedPointsNotificationPolicy, CardAddedDeductedPointsNotificationPolicyFromJSONTyped],
-        [instanceOfCardExpiringPointsNotificationPolicy, CardExpiringPointsNotificationPolicyFromJSONTyped],
-        [instanceOfCatalogsStrikethroughNotificationPolicy, CatalogsStrikethroughNotificationPolicyFromJSONTyped],
+        [instanceOfCouponCodeExpiringNotificationPolicy, CouponCodeExpiringNotificationPolicyFromJSONTyped],
         [instanceOfCouponsNotificationPolicy, CouponsNotificationPolicyFromJSONTyped],
-        [instanceOfExpiringCouponsNotificationPolicy, ExpiringCouponsNotificationPolicyFromJSONTyped],
-        [instanceOfExpiringPointsNotificationPolicy, ExpiringPointsNotificationPolicyFromJSONTyped],
-        [instanceOfPendingPointsNotificationPolicy, PendingPointsNotificationPolicyFromJSONTyped],
+        [instanceOfLoyaltyAddedDeductedPointsBalancesNotificationPolicy, LoyaltyAddedDeductedPointsBalancesNotificationPolicyFromJSONTyped],
+        [instanceOfLoyaltyCardAddedDeductedPointsBalancesNotificationPolicy, LoyaltyCardAddedDeductedPointsBalancesNotificationPolicyFromJSONTyped],
+        [instanceOfLoyaltyCardPointsAddedDeductedNotificationPolicy, LoyaltyCardPointsAddedDeductedNotificationPolicyFromJSONTyped],
+        [instanceOfLoyaltyCardPointsExpiringNotificationPolicy, LoyaltyCardPointsExpiringNotificationPolicyFromJSONTyped],
+        [instanceOfLoyaltyPointsAddedDeductedNotificationPolicy, LoyaltyPointsAddedDeductedNotificationPolicyFromJSONTyped],
+        [instanceOfLoyaltyPointsExpiringNotificationPolicy, LoyaltyPointsExpiringNotificationPolicyFromJSONTyped],
+        [instanceOfLoyaltyPointsPendingToActiveNotificationPolicy, LoyaltyPointsPendingToActiveNotificationPolicyFromJSONTyped],
+        [instanceOfStrikethroughPriceNotificationPolicy, StrikethroughPriceNotificationPolicyFromJSONTyped],
         [instanceOfTierDowngradeNotificationPolicy, TierDowngradeNotificationPolicyFromJSONTyped],
         [instanceOfTierUpgradeNotificationPolicy, TierUpgradeNotificationPolicyFromJSONTyped],
         [instanceOfTierWillDowngradeNotificationPolicy, TierWillDowngradeNotificationPolicyFromJSONTyped],
@@ -171,17 +171,17 @@ export function BaseNotificationPolicyToJSONTyped(value?: BaseNotificationPolicy
         return value;
     }
     const matchedVariant = selectOneOfBestMatch(value, [
-        [instanceOfAddedDeductedPointsBalancesNotificationPolicy, AddedDeductedPointsBalancesNotificationPolicyToJSON],
-        [instanceOfAddedDeductedPointsNotificationPolicy, AddedDeductedPointsNotificationPolicyToJSON],
         [instanceOfCampaignNotificationPolicy, CampaignNotificationPolicyToJSON],
-        [instanceOfCardAddedDeductedPointsBalancesNotificationPolicy, CardAddedDeductedPointsBalancesNotificationPolicyToJSON],
-        [instanceOfCardAddedDeductedPointsNotificationPolicy, CardAddedDeductedPointsNotificationPolicyToJSON],
-        [instanceOfCardExpiringPointsNotificationPolicy, CardExpiringPointsNotificationPolicyToJSON],
-        [instanceOfCatalogsStrikethroughNotificationPolicy, CatalogsStrikethroughNotificationPolicyToJSON],
+        [instanceOfCouponCodeExpiringNotificationPolicy, CouponCodeExpiringNotificationPolicyToJSON],
         [instanceOfCouponsNotificationPolicy, CouponsNotificationPolicyToJSON],
-        [instanceOfExpiringCouponsNotificationPolicy, ExpiringCouponsNotificationPolicyToJSON],
-        [instanceOfExpiringPointsNotificationPolicy, ExpiringPointsNotificationPolicyToJSON],
-        [instanceOfPendingPointsNotificationPolicy, PendingPointsNotificationPolicyToJSON],
+        [instanceOfLoyaltyAddedDeductedPointsBalancesNotificationPolicy, LoyaltyAddedDeductedPointsBalancesNotificationPolicyToJSON],
+        [instanceOfLoyaltyCardAddedDeductedPointsBalancesNotificationPolicy, LoyaltyCardAddedDeductedPointsBalancesNotificationPolicyToJSON],
+        [instanceOfLoyaltyCardPointsAddedDeductedNotificationPolicy, LoyaltyCardPointsAddedDeductedNotificationPolicyToJSON],
+        [instanceOfLoyaltyCardPointsExpiringNotificationPolicy, LoyaltyCardPointsExpiringNotificationPolicyToJSON],
+        [instanceOfLoyaltyPointsAddedDeductedNotificationPolicy, LoyaltyPointsAddedDeductedNotificationPolicyToJSON],
+        [instanceOfLoyaltyPointsExpiringNotificationPolicy, LoyaltyPointsExpiringNotificationPolicyToJSON],
+        [instanceOfLoyaltyPointsPendingToActiveNotificationPolicy, LoyaltyPointsPendingToActiveNotificationPolicyToJSON],
+        [instanceOfStrikethroughPriceNotificationPolicy, StrikethroughPriceNotificationPolicyToJSON],
         [instanceOfTierDowngradeNotificationPolicy, TierDowngradeNotificationPolicyToJSON],
         [instanceOfTierUpgradeNotificationPolicy, TierUpgradeNotificationPolicyToJSON],
         [instanceOfTierWillDowngradeNotificationPolicy, TierWillDowngradeNotificationPolicyToJSON],
