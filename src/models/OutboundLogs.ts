@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { OutboundLog } from './OutboundLog';
+import type { OutboundLogsDataInner } from './OutboundLogsDataInner';
 import {
-    OutboundLogFromJSON,
-    OutboundLogFromJSONTyped,
-    OutboundLogToJSON,
-    OutboundLogToJSONTyped,
-} from './OutboundLog';
+    OutboundLogsDataInnerFromJSON,
+    OutboundLogsDataInnerFromJSONTyped,
+    OutboundLogsDataInnerToJSON,
+    OutboundLogsDataInnerToJSONTyped,
+} from './OutboundLogsDataInner';
 
 /**
  * 
@@ -32,9 +32,9 @@ export interface OutboundLogs {
      */
     nextCursor?: string;
     /**
-     * List of outbound logs.
+     * List of outbound logs. When an error ends the response, an `OutboundLogStreamError` is the last item and the response is incomplete.
      */
-    data: Array<OutboundLog>;
+    data: Array<OutboundLogsDataInner>;
 }
 
 /**
@@ -57,7 +57,7 @@ export function OutboundLogsFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return {
         
         'nextCursor': json['nextCursor'] == null ? undefined : json['nextCursor'],
-        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(OutboundLogFromJSON)),
+        'data': (json['data'] == null ? undefined as any : (json['data'] as Array<any>).map(OutboundLogsDataInnerFromJSON)),
     };
 }
 
@@ -73,7 +73,7 @@ export function OutboundLogsToJSONTyped(value?: OutboundLogs | null, ignoreDiscr
     return {
         
         'nextCursor': value['nextCursor'],
-        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(OutboundLogToJSON)),
+        'data': (value['data'] == null ? undefined : (value['data'] as Array<any>).map(OutboundLogsDataInnerToJSON)),
     };
 }
 

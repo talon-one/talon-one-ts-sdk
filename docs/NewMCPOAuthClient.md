@@ -17,7 +17,7 @@ import type { NewMCPOAuthClient } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "clientName": My MCP Integration,
-  "redirectUris": ["http://localhost:3000/callback"],
+  "redirectUris": [http://localhost:3000/callback],
 } satisfies NewMCPOAuthClient
 
 console.log(example)

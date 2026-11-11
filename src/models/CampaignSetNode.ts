@@ -13,33 +13,27 @@
  */
 
 import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
-import { selectOneOfBestMatch } from '../runtime';
-import type { CampaignSetBranchNode } from './CampaignSetBranchNode';
-import {
-    instanceOfCampaignSetBranchNode,
-    CampaignSetBranchNodeFromJSON,
-    CampaignSetBranchNodeFromJSONTyped,
-    CampaignSetBranchNodeToJSON,
-} from './CampaignSetBranchNode';
-import type { CampaignSetLeafNode } from './CampaignSetLeafNode';
-import {
-    instanceOfCampaignSetLeafNode,
-    CampaignSetLeafNodeFromJSON,
-    CampaignSetLeafNodeFromJSONTyped,
-    CampaignSetLeafNodeToJSON,
-} from './CampaignSetLeafNode';
+import { type CampaignSetLeafNode, CampaignSetLeafNodeFromJSONTyped, CampaignSetLeafNodeToJSON } from './CampaignSetLeafNode';
+import { type CampaignSetBranchNode, CampaignSetBranchNodeFromJSONTyped, CampaignSetBranchNodeToJSON } from './CampaignSetBranchNode';
 
 /**
  * @type CampaignSetNode
  * 
  * @export
  */
-export type CampaignSetNode = CampaignSetBranchNode | CampaignSetLeafNode;
+export type CampaignSetNode = { type: 'CAMPAIGN' } & CampaignSetLeafNode | { type: 'SET' } & CampaignSetBranchNode;
 /**
  * Check if a given object implements the CampaignSetNode interface.
  */
 export function instanceOfCampaignSetNode(value: any): value is CampaignSetNode {
-    return typeof value === 'object' && value !== null && (instanceOfCampaignSetBranchNode(value) || instanceOfCampaignSetLeafNode(value));
+    const _v = value as Record<PropertyKey, unknown>;
+    switch (_v['type']) {
+        case 'CAMPAIGN':
+        case 'SET':
+            return true;
+        default:
+            return false;
+    }
 }
 
 export function CampaignSetNodeFromJSON(json: any): CampaignSetNode {
@@ -50,17 +44,14 @@ export function CampaignSetNodeFromJSONTyped(json: any, ignoreDiscriminator: boo
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
+    switch (json['type']) {
+        case 'CAMPAIGN':
+            return Object.assign({}, CampaignSetLeafNodeFromJSONTyped(json, true), { type: 'CAMPAIGN' } as const);
+        case 'SET':
+            return Object.assign({}, CampaignSetBranchNodeFromJSONTyped(json, true), { type: 'SET' } as const);
+        default:
+            return json;
     }
-    const matchedVariant = selectOneOfBestMatch(json, [
-        [instanceOfCampaignSetBranchNode, CampaignSetBranchNodeFromJSONTyped],
-        [instanceOfCampaignSetLeafNode, CampaignSetLeafNodeFromJSONTyped],
-    ], true);
-    if (matchedVariant !== undefined) {
-        return matchedVariant;
-    }
-    return {} as any;
 }
 
 export function CampaignSetNodeToJSON(json: any): any {
@@ -71,16 +62,13 @@ export function CampaignSetNodeToJSONTyped(value?: CampaignSetNode | null, ignor
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
+    switch (value['type']) {
+        case 'CAMPAIGN':
+            return Object.assign({}, CampaignSetLeafNodeToJSON(value), { 'type': 'CAMPAIGN' } as const);
+        case 'SET':
+            return Object.assign({}, CampaignSetBranchNodeToJSON(value), { 'type': 'SET' } as const);
+        default:
+            return value;
     }
-    const matchedVariant = selectOneOfBestMatch(value, [
-        [instanceOfCampaignSetBranchNode, CampaignSetBranchNodeToJSON],
-        [instanceOfCampaignSetLeafNode, CampaignSetLeafNodeToJSON],
-    ]);
-    if (matchedVariant !== undefined) {
-        return matchedVariant;
-    }
-    return {};
 }
 

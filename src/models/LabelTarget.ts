@@ -13,33 +13,27 @@
  */
 
 import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
-import { selectOneOfBestMatch } from '../runtime';
-import type { LabelTargetAudience } from './LabelTargetAudience';
-import {
-    instanceOfLabelTargetAudience,
-    LabelTargetAudienceFromJSON,
-    LabelTargetAudienceFromJSONTyped,
-    LabelTargetAudienceToJSON,
-} from './LabelTargetAudience';
-import type { LabelTargetNone } from './LabelTargetNone';
-import {
-    instanceOfLabelTargetNone,
-    LabelTargetNoneFromJSON,
-    LabelTargetNoneFromJSONTyped,
-    LabelTargetNoneToJSON,
-} from './LabelTargetNone';
+import { type LabelTargetAudience, LabelTargetAudienceFromJSONTyped, LabelTargetAudienceToJSON } from './LabelTargetAudience';
+import { type LabelTargetNone, LabelTargetNoneFromJSONTyped, LabelTargetNoneToJSON } from './LabelTargetNone';
 
 /**
  * @type LabelTarget
  * 
  * @export
  */
-export type LabelTarget = LabelTargetAudience | LabelTargetNone;
+export type LabelTarget = { type: 'AUDIENCE' } & LabelTargetAudience | { type: 'NONE' } & LabelTargetNone;
 /**
  * Check if a given object implements the LabelTarget interface.
  */
 export function instanceOfLabelTarget(value: any): value is LabelTarget {
-    return typeof value === 'object' && value !== null && (instanceOfLabelTargetAudience(value) || instanceOfLabelTargetNone(value));
+    const _v = value as Record<PropertyKey, unknown>;
+    switch (_v['type']) {
+        case 'AUDIENCE':
+        case 'NONE':
+            return true;
+        default:
+            return false;
+    }
 }
 
 export function LabelTargetFromJSON(json: any): LabelTarget {
@@ -50,17 +44,14 @@ export function LabelTargetFromJSONTyped(json: any, ignoreDiscriminator: boolean
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
+    switch (json['type']) {
+        case 'AUDIENCE':
+            return Object.assign({}, LabelTargetAudienceFromJSONTyped(json, true), { type: 'AUDIENCE' } as const);
+        case 'NONE':
+            return Object.assign({}, LabelTargetNoneFromJSONTyped(json, true), { type: 'NONE' } as const);
+        default:
+            return json;
     }
-    const matchedVariant = selectOneOfBestMatch(json, [
-        [instanceOfLabelTargetAudience, LabelTargetAudienceFromJSONTyped],
-        [instanceOfLabelTargetNone, LabelTargetNoneFromJSONTyped],
-    ], true);
-    if (matchedVariant !== undefined) {
-        return matchedVariant;
-    }
-    return {} as any;
 }
 
 export function LabelTargetToJSON(json: any): any {
@@ -71,16 +62,13 @@ export function LabelTargetToJSONTyped(value?: LabelTarget | null, ignoreDiscrim
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
+    switch (value['type']) {
+        case 'AUDIENCE':
+            return Object.assign({}, LabelTargetAudienceToJSON(value), { 'type': 'AUDIENCE' } as const);
+        case 'NONE':
+            return Object.assign({}, LabelTargetNoneToJSON(value), { 'type': 'NONE' } as const);
+        default:
+            return value;
     }
-    const matchedVariant = selectOneOfBestMatch(value, [
-        [instanceOfLabelTargetAudience, LabelTargetAudienceToJSON],
-        [instanceOfLabelTargetNone, LabelTargetNoneToJSON],
-    ]);
-    if (matchedVariant !== undefined) {
-        return matchedVariant;
-    }
-    return {};
 }
 
