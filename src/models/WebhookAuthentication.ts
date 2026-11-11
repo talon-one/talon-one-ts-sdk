@@ -12,92 +12,28 @@
  * Do not edit the class manually.
  */
 
-import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
-import type { WebhookAuthenticationAllOfData } from './WebhookAuthenticationAllOfData';
-import {
-    WebhookAuthenticationAllOfDataFromJSON,
-    WebhookAuthenticationAllOfDataFromJSONTyped,
-    WebhookAuthenticationAllOfDataToJSON,
-    WebhookAuthenticationAllOfDataToJSONTyped,
-} from './WebhookAuthenticationAllOfData';
-import type { WebhookAuthenticationWebhookRef } from './WebhookAuthenticationWebhookRef';
-import {
-    WebhookAuthenticationWebhookRefFromJSON,
-    WebhookAuthenticationWebhookRefFromJSONTyped,
-    WebhookAuthenticationWebhookRefToJSON,
-    WebhookAuthenticationWebhookRefToJSONTyped,
-} from './WebhookAuthenticationWebhookRef';
+import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
+import { type WebhookAuthenticationBasic, WebhookAuthenticationBasicFromJSONTyped, WebhookAuthenticationBasicToJSON } from './WebhookAuthenticationBasic';
+import { type WebhookAuthenticationCustom, WebhookAuthenticationCustomFromJSONTyped, WebhookAuthenticationCustomToJSON } from './WebhookAuthenticationCustom';
 
 /**
- * 
- * @export
- * @interface WebhookAuthentication
- */
-export interface WebhookAuthentication {
-    /**
-     * The internal ID of this entity.
-     */
-    id: number;
-    /**
-     * The time this entity was created.
-     */
-    created: Date;
-    /**
-     * The time this entity was last modified.
-     */
-    modified: Date;
-    /**
-     * The name of the user who created the webhook authentication.
-     */
-    createdBy: string;
-    /**
-     * The name of the user who last modified the webhook authentication.
-     */
-    modifiedBy: string;
-    /**
-     * 
-     */
-    webhooks: Array<WebhookAuthenticationWebhookRef>;
-    /**
-     * The name of the webhook authentication.
-     */
-    name: string;
-    /**
-     * 
-     */
-    type: WebhookAuthenticationTypeEnum;
-    /**
-     * 
-     */
-    data: WebhookAuthenticationAllOfData;
-}
-
-
-/**
+ * @type WebhookAuthentication
+ * A webhook authentication. The `type` field selects the concrete authentication variant.
  * @export
  */
-export const WebhookAuthenticationTypeEnum = {
-    Basic: 'basic',
-    Custom: 'custom',
-} as const;
-export type WebhookAuthenticationTypeEnum = typeof WebhookAuthenticationTypeEnum[keyof typeof WebhookAuthenticationTypeEnum];
-
-
+export type WebhookAuthentication = { type: 'basic' } & WebhookAuthenticationBasic | { type: 'custom' } & WebhookAuthenticationCustom;
 /**
  * Check if a given object implements the WebhookAuthentication interface.
  */
-export function instanceOfWebhookAuthentication(value: object): value is WebhookAuthentication {
+export function instanceOfWebhookAuthentication(value: any): value is WebhookAuthentication {
     const _v = value as Record<PropertyKey, unknown>;
-    if (!('id' in _v) || _v['id'] === undefined) return false;
-    if (!('created' in _v) || _v['created'] === undefined) return false;
-    if (!('modified' in _v) || _v['modified'] === undefined) return false;
-    if (!('createdBy' in _v) || _v['createdBy'] === undefined) return false;
-    if (!('modifiedBy' in _v) || _v['modifiedBy'] === undefined) return false;
-    if (!('webhooks' in _v) || _v['webhooks'] === undefined) return false;
-    if (!('name' in _v) || _v['name'] === undefined) return false;
-    if (!('type' in _v) || _v['type'] === undefined) return false;
-    if (!('data' in _v) || _v['data'] === undefined) return false;
-    return true;
+    switch (_v['type']) {
+        case 'basic':
+        case 'custom':
+            return true;
+        default:
+            return false;
+    }
 }
 
 export function WebhookAuthenticationFromJSON(json: any): WebhookAuthentication {
@@ -108,21 +44,17 @@ export function WebhookAuthenticationFromJSONTyped(json: any, ignoreDiscriminato
     if (json == null) {
         return json;
     }
-    return {
-        
-        'id': json['id'],
-        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
-        'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
-        'createdBy': json['createdBy'],
-        'modifiedBy': json['modifiedBy'],
-        'webhooks': (json['webhooks'] == null ? undefined as any : (json['webhooks'] as Array<any>).map(WebhookAuthenticationWebhookRefFromJSON)),
-        'name': json['name'],
-        'type': json['type'],
-        'data': WebhookAuthenticationAllOfDataFromJSON(json['data']),
-    };
+    switch (json['type']) {
+        case 'basic':
+            return Object.assign({}, WebhookAuthenticationBasicFromJSONTyped(json, true), { type: 'basic' } as const);
+        case 'custom':
+            return Object.assign({}, WebhookAuthenticationCustomFromJSONTyped(json, true), { type: 'custom' } as const);
+        default:
+            return json;
+    }
 }
 
-export function WebhookAuthenticationToJSON(json: any): WebhookAuthentication {
+export function WebhookAuthenticationToJSON(json: any): any {
     return WebhookAuthenticationToJSONTyped(json, false);
 }
 
@@ -130,18 +62,13 @@ export function WebhookAuthenticationToJSONTyped(value?: WebhookAuthentication |
     if (value == null) {
         return value;
     }
-
-    return {
-        
-        'id': value['id'],
-        'created': value['created'] == null ? undefined : serializeDateTime(value['created']),
-        'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
-        'createdBy': value['createdBy'],
-        'modifiedBy': value['modifiedBy'],
-        'webhooks': (value['webhooks'] == null ? undefined : (value['webhooks'] as Array<any>).map(WebhookAuthenticationWebhookRefToJSON)),
-        'name': value['name'],
-        'type': value['type'],
-        'data': WebhookAuthenticationAllOfDataToJSON(value['data']),
-    };
+    switch (value['type']) {
+        case 'basic':
+            return Object.assign({}, WebhookAuthenticationBasicToJSON(value), { 'type': 'basic' } as const);
+        case 'custom':
+            return Object.assign({}, WebhookAuthenticationCustomToJSON(value), { 'type': 'custom' } as const);
+        default:
+            return value;
+    }
 }
 

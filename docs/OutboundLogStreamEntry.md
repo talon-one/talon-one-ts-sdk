@@ -1,26 +1,25 @@
 
-# WebhookAuthenticationAllOfData
+# OutboundLogStreamEntry
 
+One line of an `ndjson` stream of outbound logs. The `type` field determines the kind of entry.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`username` | string
-`password` | string
-`headers` | { [key: string]: string; }
+`type` | [OutboundLogStreamEntryType](OutboundLogStreamEntryType.md)
+`data` | [OutboundLogStreamCursor](OutboundLogStreamCursor.md)
 
 ## Example
 
 ```typescript
-import type { WebhookAuthenticationAllOfData } from 'talon_one_sdk'
+import type { OutboundLogStreamEntry } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "username": null,
-  "password": null,
-  "headers": null,
-} satisfies WebhookAuthenticationAllOfData
+  "type": null,
+  "data": null,
+} satisfies OutboundLogStreamEntry
 
 console.log(example)
 
@@ -29,7 +28,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as WebhookAuthenticationAllOfData
+const exampleParsed = JSON.parse(exampleJSON) as OutboundLogStreamEntry
 console.log(exampleParsed)
 ```
 

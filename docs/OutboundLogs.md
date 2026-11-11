@@ -7,7 +7,7 @@
 Name | Type
 ------------ | -------------
 `nextCursor` | string
-`data` | [Array&lt;OutboundLog&gt;](OutboundLog.md)
+`data` | [Array&lt;OutboundLogsDataInner&gt;](OutboundLogsDataInner.md)
 
 ## Example
 

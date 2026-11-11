@@ -1,20 +1,21 @@
 
 # WebhookAuthentication
 
+A webhook authentication. The `type` field selects the concrete authentication variant.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`id` | number
-`created` | Date
-`modified` | Date
+`name` | string
+`type` | string
+`data` | [WebhookAuthenticationDataCustom](WebhookAuthenticationDataCustom.md)
 `createdBy` | string
 `modifiedBy` | string
 `webhooks` | [Array&lt;WebhookAuthenticationWebhookRef&gt;](WebhookAuthenticationWebhookRef.md)
-`name` | string
-`type` | string
-`data` | [WebhookAuthenticationAllOfData](WebhookAuthenticationAllOfData.md)
+`id` | number
+`created` | Date
+`modified` | Date
 
 ## Example
 
@@ -23,15 +24,15 @@ import type { WebhookAuthentication } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "id": 6,
-  "created": 2020-06-10T09:05:27.993483Z,
-  "modified": 2021-09-12T10:12:42Z,
+  "name": My custom auth,
+  "type": null,
+  "data": null,
   "createdBy": null,
   "modifiedBy": null,
   "webhooks": null,
-  "name": My basic auth,
-  "type": null,
-  "data": null,
+  "id": 6,
+  "created": 2020-06-10T09:05:27.993483Z,
+  "modified": 2021-09-12T10:12:42Z,
 } satisfies WebhookAuthentication
 
 console.log(example)
