@@ -8,7 +8,7 @@ Name | Type
 ------------ | -------------
 `loyaltyProgramId` | number
 `passTemplateId` | string
-`profileId` | string
+`profileIntegrationId` | string
 `loyaltyCardId` | string
 `platform` | string
 `attributes` | { [key: string]: string; }
@@ -21,8 +21,8 @@ import type { NewDigitalPass } from 'talon_one_sdk'
 // TODO: Update the object below with actual values
 const example = {
   "loyaltyProgramId": 42,
-  "passTemplateId": tmpl_summer_loyalty,
-  "profileId": 12412412421,
+  "passTemplateId": 3fa85f64-5717-4562-b3fc-2c963f66afa6,
+  "profileIntegrationId": 12412412421,
   "loyaltyCardId": summer-loyalty-0e2f,
   "platform": google,
   "attributes": {hm_member_name=Jane Doe},

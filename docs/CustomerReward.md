@@ -11,6 +11,7 @@ Name | Type
 `profileIntegrationId` | string
 `integrationId` | string
 `unlockedAt` | Date
+`expiryDate` | Date
 `usedAt` | Date
 
 ## Example
@@ -24,6 +25,7 @@ const example = {
   "profileIntegrationId": customer1,
   "integrationId": reward-unlock-123,
   "unlockedAt": 2024-01-01T00:00:00Z,
+  "expiryDate": 2024-03-31T23:59:59Z,
   "usedAt": 2024-01-02T00:00:00Z,
 } satisfies CustomerReward
 

@@ -72,6 +72,8 @@ export const CheckAchievementBlockOperatorEnum = {
     NotInProgress: 'not(inProgress)',
     Completed: 'completed',
     NotCompleted: 'not(completed)',
+    Expired: 'expired',
+    NotExpired: 'not(expired)',
 } as const;
 export type CheckAchievementBlockOperatorEnum = typeof CheckAchievementBlockOperatorEnum[keyof typeof CheckAchievementBlockOperatorEnum];
 

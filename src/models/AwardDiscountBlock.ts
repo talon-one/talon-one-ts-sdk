@@ -62,6 +62,10 @@ export interface AwardDiscountBlock {
      * 
      */
     target: AwardDiscountTarget;
+    /**
+     * When set to `true`, the applied discount is excluded from the item's [price history](https://docs.talon.one/docs/dev/integration-guides/best-prior-price#price-history).
+     */
+    excludedFromPriceHistory?: boolean;
 }
 
 /**
@@ -94,6 +98,7 @@ export function AwardDiscountBlockFromJSONTyped(json: any, ignoreDiscriminator: 
         'value': AwardDiscountBlock1ValueFromJSON(json['value']),
         'partial': json['partial'],
         'target': AwardDiscountTargetFromJSON(json['target']),
+        'excludedFromPriceHistory': json['excludedFromPriceHistory'] == null ? undefined : json['excludedFromPriceHistory'],
     };
 }
 
@@ -113,6 +118,7 @@ export function AwardDiscountBlockToJSONTyped(value?: Omit<AwardDiscountBlock, '
         'value': AwardDiscountBlock1ValueToJSON(value['value']),
         'partial': value['partial'],
         'target': AwardDiscountTargetToJSON(value['target']),
+        'excludedFromPriceHistory': value['excludedFromPriceHistory'],
     };
 }
 

@@ -36,6 +36,17 @@ export interface CustomerReward {
      */
     unlockedAt: Date;
     /**
+     * The date and time when the customer reward expires, based on the 
+     * `validityDuration` or `expiryDate` of the reward when the reward was 
+     * unlocked. If the reward does not specify either property, the customer reward 
+     * has unlimited validity and this field is omitted.
+     * 
+     * **Note**: The expiry date is calculated using the time zone of the 
+     * Application connected to the reward.
+     * 
+     */
+    expiryDate?: Date;
+    /**
      * The date and time when the reward was used.
      */
     usedAt?: Date;
@@ -67,6 +78,7 @@ export function CustomerRewardFromJSONTyped(json: any, ignoreDiscriminator: bool
         'profileIntegrationId': json['profileIntegrationId'],
         'integrationId': json['integrationId'],
         'unlockedAt': (json['unlockedAt'] == null ? json['unlockedAt'] : parseDateTime(json['unlockedAt'])),
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'usedAt': json['usedAt'] == null ? undefined : (parseDateTime(json['usedAt'])),
     };
 }
@@ -86,6 +98,7 @@ export function CustomerRewardToJSONTyped(value?: CustomerReward | null, ignoreD
         'profileIntegrationId': value['profileIntegrationId'],
         'integrationId': value['integrationId'],
         'unlockedAt': value['unlockedAt'] == null ? undefined : serializeDateTime(value['unlockedAt']),
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'usedAt': value['usedAt'] == null ? value['usedAt'] : serializeDateTime(value['usedAt']),
     };
 }

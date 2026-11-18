@@ -18,6 +18,7 @@ Name | Type
 `value` | [RedeemLoyaltyPointsBlock1Value](RedeemLoyaltyPointsBlock1Value.md)
 `partial` | boolean
 `target` | [AwardLoyaltyPointsTarget](AwardLoyaltyPointsTarget.md)
+`excludedFromPriceHistory` | boolean
 `expression` | Array&lt;any&gt;
 `notificationType` | string
 `title` | string
@@ -74,6 +75,7 @@ const example = {
   "value": null,
   "partial": false,
   "target": null,
+  "excludedFromPriceHistory": false,
   "expression": null,
   "notificationType": Info,
   "title": You earned a reward!,
