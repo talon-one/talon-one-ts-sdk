@@ -149,7 +149,7 @@ export interface CampaignTemplate {
      *   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
      * 
      */
-    campaignType?: CampaignTemplateCampaignTypeEnum;
+    campaignType: CampaignTemplateCampaignTypeEnum;
     /**
      * The number of Campaigns created from this template.
      */
@@ -222,6 +222,7 @@ export function instanceOfCampaignTemplate(value: object): value is CampaignTemp
     if (!('state' in _v) || _v['state'] === undefined) return false;
     if (!('reevaluateOnReturn' in _v) || _v['reevaluateOnReturn'] === undefined) return false;
     if (!('applicationsIds' in _v) || _v['applicationsIds'] === undefined) return false;
+    if (!('campaignType' in _v) || _v['campaignType'] === undefined) return false;
     if (!('validApplicationIds' in _v) || _v['validApplicationIds'] === undefined) return false;
     return true;
 }
@@ -258,7 +259,7 @@ export function CampaignTemplateFromJSONTyped(json: any, ignoreDiscriminator: bo
         'applicationsIds': json['applicationsIds'],
         'campaignCollections': json['campaignCollections'] == null ? undefined : ((json['campaignCollections'] as Array<any>).map(CampaignTemplateCollectionFromJSON)),
         'defaultCampaignGroupId': json['defaultCampaignGroupId'] == null ? undefined : json['defaultCampaignGroupId'],
-        'campaignType': json['campaignType'] == null ? undefined : json['campaignType'],
+        'campaignType': json['campaignType'],
         'campaignsCount': json['campaignsCount'] == null ? undefined : json['campaignsCount'],
         'updated': json['updated'] == null ? undefined : (parseDateTime(json['updated'])),
         'updatedBy': json['updatedBy'] == null ? undefined : json['updatedBy'],

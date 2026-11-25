@@ -18,9 +18,9 @@ import type { CatalogActionFilter } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "attr": null,
-  "op": null,
-  "value": null,
+  "attr": color,
+  "op": EQ,
+  "value": blue,
 } satisfies CatalogActionFilter
 
 console.log(example)

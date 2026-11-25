@@ -49,7 +49,7 @@ export interface CustomerProfile {
     /**
      * Arbitrary properties associated with this item.
      */
-    attributes?: { [key: string]: any; };
+    attributes: { [key: string]: any; };
     /**
      * The ID of the Talon.One account that owns this profile.
      */
@@ -102,6 +102,7 @@ export function instanceOfCustomerProfile(value: object): value is CustomerProfi
     if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('created' in _v) || _v['created'] === undefined) return false;
     if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
+    if (!('attributes' in _v) || _v['attributes'] === undefined) return false;
     if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
     if (!('closedSessions' in _v) || _v['closedSessions'] === undefined) return false;
     if (!('totalSales' in _v) || _v['totalSales'] === undefined) return false;
@@ -122,7 +123,7 @@ export function CustomerProfileFromJSONTyped(json: any, ignoreDiscriminator: boo
         'id': json['id'],
         'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'integrationId': json['integrationId'],
-        'attributes': json['attributes'] == null ? undefined : json['attributes'],
+        'attributes': json['attributes'],
         'accountId': json['accountId'],
         'closedSessions': json['closedSessions'],
         'totalSales': json['totalSales'],

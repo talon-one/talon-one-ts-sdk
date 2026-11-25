@@ -26,6 +26,7 @@ Name | Type
 `statusChangedBy` | number
 `statusChangedAt` | Date
 `modified` | Date
+`applicationName` | string
 `affectedEntities` | [Array&lt;RiskAffectedEntityItem&gt;](RiskAffectedEntityItem.md)
 
 ## Example
@@ -54,6 +55,7 @@ const example = {
   "statusChangedBy": 42,
   "statusChangedAt": 2026-06-06T09:12:45.000000Z,
   "modified": 2026-06-05T06:26:13.698884Z,
+  "applicationName": My Application,
   "affectedEntities": null,
 } satisfies RiskDetail
 

@@ -69,7 +69,7 @@ export interface OutboundMessage {
     /**
      * 
      */
-    request?: OutboundLogRequest;
+    request: OutboundLogRequest;
     /**
      * Timestamp of the first log entry for this message.
      */
@@ -103,6 +103,7 @@ export function instanceOfOutboundMessage(value: object): value is OutboundMessa
     const _v = value as Record<PropertyKey, unknown>;
     if (!('uuid' in _v) || _v['uuid'] === undefined) return false;
     if (!('notificationType' in _v) || _v['notificationType'] === undefined) return false;
+    if (!('request' in _v) || _v['request'] === undefined) return false;
     if (!('firstLogAt' in _v) || _v['firstLogAt'] === undefined) return false;
     if (!('lastLogAt' in _v) || _v['lastLogAt'] === undefined) return false;
     if (!('status' in _v) || _v['status'] === undefined) return false;
@@ -127,7 +128,7 @@ export function OutboundMessageFromJSONTyped(json: any, ignoreDiscriminator: boo
         'notificationType': json['notificationType'],
         'applicationId': json['applicationId'] == null ? undefined : json['applicationId'],
         'loyaltyProgramId': json['loyaltyProgramId'] == null ? undefined : json['loyaltyProgramId'],
-        'request': json['request'] == null ? undefined : OutboundLogRequestFromJSON(json['request']),
+        'request': OutboundLogRequestFromJSON(json['request']),
         'firstLogAt': (json['firstLogAt'] == null ? json['firstLogAt'] : parseDateTime(json['firstLogAt'])),
         'lastLogAt': (json['lastLogAt'] == null ? json['lastLogAt'] : parseDateTime(json['lastLogAt'])),
         'lastResponseCode': json['lastResponseCode'] == null ? undefined : json['lastResponseCode'],

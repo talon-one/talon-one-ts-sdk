@@ -55,7 +55,7 @@ const example = {
   "adjustmentReferenceId": 68851723-e6fa-488f-ace9-112581e6c19b,
   "adjustmentEffectiveFrom": 2021-09-12T10:12:42Z,
   "adjustmentEffectiveUntil": 2021-09-12T10:12:42Z,
-  "prices": {member={price=90, adjustmentReferenceId=68851723-e6fa-488f-ace9-112581e6c19b, effectiveFrom=2025-05-25T00:00:00Z, effectiveUntil=2025-05-30T00:00:00Z}, base={price=100}},
+  "prices": {member={price=90, adjustmentReferenceId=68851723-e6fa-488f-ace9-112581e6c19b, adjustmentEffectiveFrom=2025-05-25T00:00:00Z, adjustmentEffectiveUntil=2025-05-30T00:00:00Z}, base={price=100}},
 } satisfies CartItem
 
 console.log(example)

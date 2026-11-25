@@ -46,11 +46,11 @@ export interface TemplateDef {
     /**
      * A short description of the template that will be shown in the rule editor.
      */
-    description?: string;
+    description: string;
     /**
      * Extended help text for the template.
      */
-    help?: string;
+    help: string;
     /**
      * Used for grouping templates in the rule editor sidebar.
      */
@@ -82,6 +82,8 @@ export function instanceOfTemplateDef(value: object): value is TemplateDef {
     if (!('created' in _v) || _v['created'] === undefined) return false;
     if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
     if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
+    if (!('help' in _v) || _v['help'] === undefined) return false;
     if (!('category' in _v) || _v['category'] === undefined) return false;
     if (!('expr' in _v) || _v['expr'] === undefined) return false;
     if (!('args' in _v) || _v['args'] === undefined) return false;
@@ -103,8 +105,8 @@ export function TemplateDefFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'applicationId': json['applicationId'],
         'title': json['title'],
-        'description': json['description'] == null ? undefined : json['description'],
-        'help': json['help'] == null ? undefined : json['help'],
+        'description': json['description'],
+        'help': json['help'],
         'category': json['category'],
         'expr': json['expr'],
         'args': (json['args'] == null ? undefined as any : (json['args'] as Array<any>).map(TemplateArgDefFromJSON)),

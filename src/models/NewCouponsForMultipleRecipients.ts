@@ -23,7 +23,7 @@ export interface NewCouponsForMultipleRecipients {
      * The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
      * 
      */
-    usageLimit?: number;
+    usageLimit: number;
     /**
      * The total discount value that the code can give. Typically used to represent a gift card value.
      * 
@@ -72,6 +72,7 @@ export interface NewCouponsForMultipleRecipients {
  */
 export function instanceOfNewCouponsForMultipleRecipients(value: object): value is NewCouponsForMultipleRecipients {
     const _v = value as Record<PropertyKey, unknown>;
+    if (!('usageLimit' in _v) || _v['usageLimit'] === undefined) return false;
     if (!('recipientsIntegrationIds' in _v) || _v['recipientsIntegrationIds'] === undefined) return false;
     return true;
 }
@@ -86,7 +87,7 @@ export function NewCouponsForMultipleRecipientsFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
+        'usageLimit': json['usageLimit'],
         'discountLimit': json['discountLimit'] == null ? undefined : json['discountLimit'],
         'reservationLimit': json['reservationLimit'] == null ? undefined : json['reservationLimit'],
         'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),

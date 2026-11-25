@@ -18,6 +18,7 @@ Name | Type
 `value` | [RedeemLoyaltyPointsBlock1Value](RedeemLoyaltyPointsBlock1Value.md)
 `partial` | boolean
 `target` | [AwardLoyaltyPointsTarget](AwardLoyaltyPointsTarget.md)
+`excludedFromPriceHistory` | boolean
 `expression` | Array&lt;any&gt;
 `notificationType` | string
 `title` | string
@@ -51,6 +52,7 @@ Name | Type
 `pattern` | string
 `friendId` | string
 `recipient` | string
+`joinDate` | any
 `tier` | [TierBlockReference](TierBlockReference.md)
 `awaitsActivation` | boolean
 `validityDuration` | string
@@ -74,6 +76,7 @@ const example = {
   "value": null,
   "partial": false,
   "target": null,
+  "excludedFromPriceHistory": false,
   "expression": null,
   "notificationType": Info,
   "title": You earned a reward!,
@@ -107,6 +110,7 @@ const example = {
   "pattern": SUMMER-####-####,
   "friendId": {{$Profile.IntegrationId}},
   "recipient": Current,
+  "joinDate": {{$Now}},
   "tier": null,
   "awaitsActivation": false,
   "validityDuration": 30D,

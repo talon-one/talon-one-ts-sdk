@@ -33,7 +33,7 @@ export interface LedgerEntry {
      * **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
      * 
      */
-    profileId?: string;
+    profileId: string;
     /**
      * The ID of the Talon.One account that owns this profile.
      */
@@ -71,6 +71,7 @@ export function instanceOfLedgerEntry(value: object): value is LedgerEntry {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('profileId' in _v) || _v['profileId'] === undefined) return false;
     if (!('accountId' in _v) || _v['accountId'] === undefined) return false;
     if (!('loyaltyProgramId' in _v) || _v['loyaltyProgramId'] === undefined) return false;
     if (!('eventId' in _v) || _v['eventId'] === undefined) return false;
@@ -92,7 +93,7 @@ export function LedgerEntryFromJSONTyped(json: any, ignoreDiscriminator: boolean
         
         'id': json['id'],
         'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
-        'profileId': json['profileId'] == null ? undefined : json['profileId'],
+        'profileId': json['profileId'],
         'accountId': json['accountId'],
         'loyaltyProgramId': json['loyaltyProgramId'],
         'eventId': json['eventId'],

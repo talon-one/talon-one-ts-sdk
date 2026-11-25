@@ -47,6 +47,10 @@ export interface MCPOAuthServerMetadata {
      * List of supported PKCE code challenge methods.
      */
     codeChallengeMethodsSupported: Array<string>;
+    /**
+     * List of supported client authentication methods at the token endpoint. Public clients use `none`; confidential clients use `client_secret_post` or `client_secret_basic`.
+     */
+    tokenEndpointAuthMethodsSupported?: Array<string>;
 }
 
 /**
@@ -81,6 +85,7 @@ export function MCPOAuthServerMetadataFromJSONTyped(json: any, ignoreDiscriminat
         'responseTypesSupported': json['response_types_supported'],
         'grantTypesSupported': json['grant_types_supported'],
         'codeChallengeMethodsSupported': json['code_challenge_methods_supported'],
+        'tokenEndpointAuthMethodsSupported': json['token_endpoint_auth_methods_supported'] == null ? undefined : json['token_endpoint_auth_methods_supported'],
     };
 }
 
@@ -102,6 +107,7 @@ export function MCPOAuthServerMetadataToJSONTyped(value?: MCPOAuthServerMetadata
         'response_types_supported': value['responseTypesSupported'],
         'grant_types_supported': value['grantTypesSupported'],
         'code_challenge_methods_supported': value['codeChallengeMethodsSupported'],
+        'token_endpoint_auth_methods_supported': value['tokenEndpointAuthMethodsSupported'],
     };
 }
 

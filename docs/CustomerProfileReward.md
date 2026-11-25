@@ -17,6 +17,7 @@ Name | Type
 `status` | string
 `unlockedAt` | Date
 `unlockedByProfileIntegrationId` | string
+`expiryDate` | Date
 `usedAt` | Date
 `usedByProfileIntegrationId` | string
 `loyaltyProgramId` | number
@@ -39,6 +40,7 @@ const example = {
   "status": unlocked,
   "unlockedAt": 2026-07-01T09:00:00Z,
   "unlockedByProfileIntegrationId": customer2839,
+  "expiryDate": 2026-08-31T23:59:59Z,
   "usedAt": 2026-07-02T10:30:00Z,
   "usedByProfileIntegrationId": customer2840,
   "loyaltyProgramId": 9,

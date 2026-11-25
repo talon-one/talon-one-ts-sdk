@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface CatalogActionFilter {
     /**
-     * The name of the attribute to filter on.
+     * The name of the attribute to filter on. The attribute must exist in the catalog. For the `LT`, `LE`, `GT`, and `GE` comparison operators, the attribute must be of type `number`.
      */
     attr: string;
     /**
@@ -28,7 +28,7 @@ export interface CatalogActionFilter {
      */
     op: CatalogActionFilterOpEnum;
     /**
-     * The value to filter for.
+     * The value to filter for. For the `LT`, `LE`, `GT`, and `GE` comparison operators, the value must be a number or a numeric string.
      */
     value: any | null;
 }
