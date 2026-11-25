@@ -13,6 +13,7 @@ Name | Type
 `value` | [AwardDiscountBlock1Value](AwardDiscountBlock1Value.md)
 `partial` | boolean
 `target` | [AwardDiscountTarget](AwardDiscountTarget.md)
+`excludedFromPriceHistory` | boolean
 
 ## Example
 
@@ -28,6 +29,7 @@ const example = {
   "value": null,
   "partial": false,
   "target": null,
+  "excludedFromPriceHistory": false,
 } satisfies AwardDiscountBlock
 
 console.log(example)

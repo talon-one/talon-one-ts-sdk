@@ -19,6 +19,7 @@ Name | Type
 `campaignIds` | Array&lt;number&gt;
 `referencedByCampaigns` | [Array&lt;CampaignReference&gt;](CampaignReference.md)
 `target` | number
+`achievementPeriod` | string
 `achievementRecurrencePolicy` | string
 `achievementActivationPolicy` | string
 `achievementFixedStartDate` | Date
@@ -45,6 +46,7 @@ const example = {
   "campaignIds": [1, 14, 27],
   "referencedByCampaigns": null,
   "target": 10,
+  "achievementPeriod": 1W,
   "achievementRecurrencePolicy": no_recurrence,
   "achievementActivationPolicy": fixed_schedule,
   "achievementFixedStartDate": 2024-01-15T15:04:05Z07:00,

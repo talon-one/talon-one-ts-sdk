@@ -63,7 +63,7 @@ export interface CustomerSessionV2 {
      * **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
      * 
      */
-    profileId?: string;
+    profileId: string;
     /**
      * The integration ID of the store. You choose this ID when you create a store.
      */
@@ -118,12 +118,12 @@ export interface CustomerSessionV2 {
      * For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
      * 
      */
-    state?: CustomerSessionV2StateEnum;
+    state: CustomerSessionV2StateEnum;
     /**
      * The items to add to this session. **Do not exceed 1000 items** and ensure the sum of all cart item's `quantity` **does not exceed 10.000** per request.
      * 
      */
-    cartItems?: Array<CartItem>;
+    cartItems: Array<CartItem>;
     /**
      * The experiment variant allocations to add to this session.
      * 
@@ -159,7 +159,7 @@ export interface CustomerSessionV2 {
      * Custom attributes must be created in the Campaign Manager before you set them with this property.
      * 
      */
-    attributes?: { [key: string]: any; };
+    attributes: { [key: string]: any; };
     /**
      * Indicates whether this is the first session for the customer's profile. It's always `true` for anonymous sessions.
      */
@@ -212,6 +212,10 @@ export function instanceOfCustomerSessionV2(value: object): value is CustomerSes
     if (!('created' in _v) || _v['created'] === undefined) return false;
     if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
     if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('profileId' in _v) || _v['profileId'] === undefined) return false;
+    if (!('state' in _v) || _v['state'] === undefined) return false;
+    if (!('cartItems' in _v) || _v['cartItems'] === undefined) return false;
+    if (!('attributes' in _v) || _v['attributes'] === undefined) return false;
     if (!('firstSession' in _v) || _v['firstSession'] === undefined) return false;
     if (!('updateCount' in _v) || _v['updateCount'] === undefined) return false;
     if (!('total' in _v) || _v['total'] === undefined) return false;
@@ -236,19 +240,19 @@ export function CustomerSessionV2FromJSONTyped(json: any, ignoreDiscriminator: b
         'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'integrationId': json['integrationId'],
         'applicationId': json['applicationId'],
-        'profileId': json['profileId'] == null ? undefined : json['profileId'],
+        'profileId': json['profileId'],
         'storeIntegrationId': json['storeIntegrationId'] == null ? undefined : json['storeIntegrationId'],
         'evaluableCampaignIds': json['evaluableCampaignIds'] == null ? undefined : json['evaluableCampaignIds'],
         'couponCodes': json['couponCodes'] == null ? undefined : json['couponCodes'],
         'referralCode': json['referralCode'] == null ? undefined : json['referralCode'],
         'loyaltyCards': json['loyaltyCards'] == null ? undefined : json['loyaltyCards'],
         'rewardIntegrationIds': json['rewardIntegrationIds'] == null ? undefined : json['rewardIntegrationIds'],
-        'state': json['state'] == null ? undefined : json['state'],
-        'cartItems': json['cartItems'] == null ? undefined : ((json['cartItems'] as Array<any>).map(CartItemFromJSON)),
+        'state': json['state'],
+        'cartItems': (json['cartItems'] == null ? undefined as any : (json['cartItems'] as Array<any>).map(CartItemFromJSON)),
         'experimentVariantAllocations': json['experimentVariantAllocations'] == null ? undefined : ((json['experimentVariantAllocations'] as Array<any>).map(ExperimentVariantAllocationFromJSON)),
         'additionalCosts': json['additionalCosts'] == null ? undefined : (mapValues(json['additionalCosts'], AdditionalCostFromJSON)),
         'identifiers': json['identifiers'] == null ? undefined : json['identifiers'],
-        'attributes': json['attributes'] == null ? undefined : json['attributes'],
+        'attributes': json['attributes'],
         'firstSession': json['firstSession'],
         'updateCount': json['updateCount'],
         'total': json['total'],
@@ -282,7 +286,7 @@ export function CustomerSessionV2ToJSONTyped(value?: Omit<CustomerSessionV2, 'ca
         'loyaltyCards': value['loyaltyCards'],
         'rewardIntegrationIds': value['rewardIntegrationIds'],
         'state': value['state'],
-        'cartItems': value['cartItems'] == null ? undefined : ((value['cartItems'] as Array<any>).map(CartItemToJSON)),
+        'cartItems': (value['cartItems'] == null ? undefined : (value['cartItems'] as Array<any>).map(CartItemToJSON)),
         'experimentVariantAllocations': value['experimentVariantAllocations'] == null ? undefined : ((value['experimentVariantAllocations'] as Array<any>).map(ExperimentVariantAllocationToJSON)),
         'additionalCosts': value['additionalCosts'] == null ? undefined : (mapValues(value['additionalCosts'], AdditionalCostToJSON)),
         'identifiers': value['identifiers'],

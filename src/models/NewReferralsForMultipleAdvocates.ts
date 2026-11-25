@@ -31,7 +31,7 @@ export interface NewReferralsForMultipleAdvocates {
      * The number of times a referral code can be used. `0` means no limit but any campaign usage limits will still apply.
      * 
      */
-    usageLimit?: number;
+    usageLimit: number;
     /**
      * The ID of the campaign from which the referral received the referral code.
      */
@@ -62,6 +62,7 @@ export interface NewReferralsForMultipleAdvocates {
  */
 export function instanceOfNewReferralsForMultipleAdvocates(value: object): value is NewReferralsForMultipleAdvocates {
     const _v = value as Record<PropertyKey, unknown>;
+    if (!('usageLimit' in _v) || _v['usageLimit'] === undefined) return false;
     if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
     if (!('advocateProfileIntegrationIds' in _v) || _v['advocateProfileIntegrationIds'] === undefined) return false;
     return true;
@@ -79,7 +80,7 @@ export function NewReferralsForMultipleAdvocatesFromJSONTyped(json: any, ignoreD
         
         'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
         'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
-        'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
+        'usageLimit': json['usageLimit'],
         'campaignId': json['campaignId'],
         'advocateProfileIntegrationIds': json['advocateProfileIntegrationIds'],
         'attributes': json['attributes'] == null ? undefined : json['attributes'],

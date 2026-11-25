@@ -32,7 +32,7 @@ export interface OutboundLogs {
      */
     nextCursor?: string;
     /**
-     * List of outbound logs. When an error ends the response, an `OutboundLogStreamError` is the last item and the response is incomplete.
+     * List of outbound log entries. The `type` field determines the kind of entry. When an error ends the response, an `OutboundLogStreamErrorEntry` is the last item and the response is incomplete.
      */
     data: Array<OutboundLogsDataInner>;
 }

@@ -55,7 +55,7 @@ export interface RewardWithUnlocks {
      */
     rule: RuleMetadata;
     /**
-     * The customer profile's unlocks of this reward that are not yet `used`.
+     * The instances of this reward that the customer has unlocked but not used. Expired customer rewards are not returned.
      */
     unlocked?: Array<CustomerReward>;
 }

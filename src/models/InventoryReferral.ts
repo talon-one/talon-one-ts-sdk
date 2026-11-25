@@ -39,7 +39,7 @@ export interface InventoryReferral {
      * The number of times a referral code can be used. `0` means no limit but any campaign usage limits will still apply.
      * 
      */
-    usageLimit?: number;
+    usageLimit: number;
     /**
      * ID of the campaign from which the referral received the referral code.
      */
@@ -85,6 +85,7 @@ export function instanceOfInventoryReferral(value: object): value is InventoryRe
     const _v = value as Record<PropertyKey, unknown>;
     if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('usageLimit' in _v) || _v['usageLimit'] === undefined) return false;
     if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
     if (!('advocateProfileIntegrationId' in _v) || _v['advocateProfileIntegrationId'] === undefined) return false;
     if (!('code' in _v) || _v['code'] === undefined) return false;
@@ -107,7 +108,7 @@ export function InventoryReferralFromJSONTyped(json: any, ignoreDiscriminator: b
         'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),
         'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
-        'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
+        'usageLimit': json['usageLimit'],
         'campaignId': json['campaignId'],
         'advocateProfileIntegrationId': json['advocateProfileIntegrationId'],
         'friendProfileIntegrationId': json['friendProfileIntegrationId'] == null ? undefined : json['friendProfileIntegrationId'],

@@ -25,13 +25,12 @@ export interface NewDigitalPass {
     loyaltyProgramId: number;
     /**
      * The ID of the digital pass template used to generate the pass.
-     * 
      */
     passTemplateId: string;
     /**
      * The integration ID of the customer profile the pass is issued for.
      */
-    profileId: string;
+    profileIntegrationId: string;
     /**
      * The identifier of the loyalty card the pass is issued for.
      * 
@@ -49,7 +48,11 @@ export interface NewDigitalPass {
     platform: NewDigitalPassPlatformEnum;
     /**
      * A map of placeholder values that you provide to fill in the pass template.
-     * These values are not validated against the template.
+     * Pass templates reference each value as `CustomerProfile.Attributes.<key>`.
+     * 
+     * Each key must start with a letter or an underscore and can contain only
+     * letters, digits, and underscores.
+     * If the template requires a value that is missing, the request fails with a `422` error.
      * 
      */
     attributes?: { [key: string]: string; };
@@ -73,7 +76,7 @@ export function instanceOfNewDigitalPass(value: object): value is NewDigitalPass
     const _v = value as Record<PropertyKey, unknown>;
     if (!('loyaltyProgramId' in _v) || _v['loyaltyProgramId'] === undefined) return false;
     if (!('passTemplateId' in _v) || _v['passTemplateId'] === undefined) return false;
-    if (!('profileId' in _v) || _v['profileId'] === undefined) return false;
+    if (!('profileIntegrationId' in _v) || _v['profileIntegrationId'] === undefined) return false;
     if (!('platform' in _v) || _v['platform'] === undefined) return false;
     return true;
 }
@@ -90,7 +93,7 @@ export function NewDigitalPassFromJSONTyped(json: any, ignoreDiscriminator: bool
         
         'loyaltyProgramId': json['loyaltyProgramId'],
         'passTemplateId': json['passTemplateId'],
-        'profileId': json['profileId'],
+        'profileIntegrationId': json['profileIntegrationId'],
         'loyaltyCardId': json['loyaltyCardId'] == null ? undefined : json['loyaltyCardId'],
         'platform': json['platform'],
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
@@ -110,7 +113,7 @@ export function NewDigitalPassToJSONTyped(value?: NewDigitalPass | null, ignoreD
         
         'loyaltyProgramId': value['loyaltyProgramId'],
         'passTemplateId': value['passTemplateId'],
-        'profileId': value['profileId'],
+        'profileIntegrationId': value['profileIntegrationId'],
         'loyaltyCardId': value['loyaltyCardId'],
         'platform': value['platform'],
         'attributes': value['attributes'],

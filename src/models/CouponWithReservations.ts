@@ -49,12 +49,12 @@ export interface CouponWithReservations {
     /**
      * The coupon code.
      */
-    value?: string;
+    value: string;
     /**
      * The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
      * 
      */
-    usageLimit?: number;
+    usageLimit: number;
     /**
      * The total discount value that the code can give. Typically used to represent a gift card value.
      * 
@@ -147,6 +147,8 @@ export function instanceOfCouponWithReservations(value: object): value is Coupon
     if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('created' in _v) || _v['created'] === undefined) return false;
     if (!('campaignId' in _v) || _v['campaignId'] === undefined) return false;
+    if (!('value' in _v) || _v['value'] === undefined) return false;
+    if (!('usageLimit' in _v) || _v['usageLimit'] === undefined) return false;
     if (!('usageCounter' in _v) || _v['usageCounter'] === undefined) return false;
     return true;
 }
@@ -164,8 +166,8 @@ export function CouponWithReservationsFromJSONTyped(json: any, ignoreDiscriminat
         'id': json['id'],
         'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'campaignId': json['campaignId'],
-        'value': json['value'] == null ? undefined : json['value'],
-        'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
+        'value': json['value'],
+        'usageLimit': json['usageLimit'],
         'discountLimit': json['discountLimit'] == null ? undefined : json['discountLimit'],
         'reservationLimit': json['reservationLimit'] == null ? undefined : json['reservationLimit'],
         'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),

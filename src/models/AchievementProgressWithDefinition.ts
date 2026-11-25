@@ -82,6 +82,44 @@ export interface AchievementProgressWithDefinition {
      */
     target?: number;
     /**
+     * The relative duration after which the achievement ends and resets for
+     * a particular customer profile. This property is omitted for
+     * on-completion achievements which have no specified period.
+     * 
+     * The period is a positive real number followed by one letter indicating
+     * the time unit, and an optional rounding suffix.
+     * 
+     * Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`, `30D_D`, `1W_U`.
+     * 
+     * The letters indicate the following time units:
+     * 
+     * - `s`: Seconds.
+     * 
+     * - `m`: Minutes.
+     * 
+     * - `h`: Hours.
+     * 
+     * - `D`: Days.
+     * 
+     * - `W`: Weeks.
+     * 
+     * - `M`: Months.
+     * 
+     * - `Y`: Years.
+     * 
+     * If a suffix is present, it indicates the following rounding:
+     * 
+     * - `_D`: Rounds down, to the start of the day. It applies to days only.
+     * For example, `30D_D` ends at the start of the day, 30 days after the
+     * customer starts the achievement.
+     * 
+     * - `_U`: Rounds up, to the end of the day, week, month or year. It
+     * applies to days, weeks, months and years. For example, `1W_U` ends at
+     * the end of the week in which the one-week period would end.
+     * 
+     */
+    achievementPeriod?: string;
+    /**
      * The policy that determines if and how the achievement recurs.
      * - `no_recurrence`: The achievement can be completed only once.
      * - `on_expiration`: The achievement resets after it expires and becomes available again.
@@ -189,6 +227,7 @@ export function AchievementProgressWithDefinitionFromJSONTyped(json: any, ignore
         'campaignIds': json['campaignIds'],
         'referencedByCampaigns': (json['referencedByCampaigns'] == null ? undefined as any : (json['referencedByCampaigns'] as Array<any>).map(CampaignReferenceFromJSON)),
         'target': json['target'] == null ? undefined : json['target'],
+        'achievementPeriod': json['achievementPeriod'] == null ? undefined : json['achievementPeriod'],
         'achievementRecurrencePolicy': json['achievementRecurrencePolicy'],
         'achievementActivationPolicy': json['achievementActivationPolicy'],
         'achievementFixedStartDate': json['achievementFixedStartDate'] == null ? undefined : (parseDateTime(json['achievementFixedStartDate'])),
@@ -221,6 +260,7 @@ export function AchievementProgressWithDefinitionToJSONTyped(value?: Achievement
         'campaignIds': value['campaignIds'],
         'referencedByCampaigns': (value['referencedByCampaigns'] == null ? undefined : (value['referencedByCampaigns'] as Array<any>).map(CampaignReferenceToJSON)),
         'target': value['target'],
+        'achievementPeriod': value['achievementPeriod'],
         'achievementRecurrencePolicy': value['achievementRecurrencePolicy'],
         'achievementActivationPolicy': value['achievementActivationPolicy'],
         'achievementFixedStartDate': value['achievementFixedStartDate'] == null ? value['achievementFixedStartDate'] : serializeDateTime(value['achievementFixedStartDate']),

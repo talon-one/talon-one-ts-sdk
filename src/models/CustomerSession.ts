@@ -45,15 +45,15 @@ export interface CustomerSession {
      * **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
      * 
      */
-    profileId?: string;
+    profileId: string;
     /**
      * Any coupon code entered.
      */
-    coupon?: string;
+    coupon: string;
     /**
      * Any referral code entered.
      */
-    referral?: string;
+    referral: string;
     /**
      * Indicates the current state of the session. Sessions can be created as `open` or `closed`. The state transitions are:
      * 
@@ -65,11 +65,11 @@ export interface CustomerSession {
      * For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
      * 
      */
-    state?: CustomerSessionStateEnum;
+    state: CustomerSessionStateEnum;
     /**
      * Serialized JSON representation.
      */
-    cartItems?: Array<CartItem>;
+    cartItems: Array<CartItem>;
     /**
      * Session custom identifiers that you can set limits on or use inside your rules.
      * 
@@ -81,12 +81,12 @@ export interface CustomerSession {
     /**
      * The total sum of the cart in one session.
      */
-    total?: number;
+    total: number;
     /**
      * A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings.
      * 
      */
-    attributes?: object;
+    attributes: object;
     /**
      * Indicates whether this is the first session for the customer's profile. Will always be true for anonymous sessions.
      */
@@ -126,6 +126,13 @@ export function instanceOfCustomerSession(value: object): value is CustomerSessi
     if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
     if (!('created' in _v) || _v['created'] === undefined) return false;
     if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
+    if (!('profileId' in _v) || _v['profileId'] === undefined) return false;
+    if (!('coupon' in _v) || _v['coupon'] === undefined) return false;
+    if (!('referral' in _v) || _v['referral'] === undefined) return false;
+    if (!('state' in _v) || _v['state'] === undefined) return false;
+    if (!('cartItems' in _v) || _v['cartItems'] === undefined) return false;
+    if (!('total' in _v) || _v['total'] === undefined) return false;
+    if (!('attributes' in _v) || _v['attributes'] === undefined) return false;
     if (!('firstSession' in _v) || _v['firstSession'] === undefined) return false;
     if (!('updateCount' in _v) || _v['updateCount'] === undefined) return false;
     if (!('discounts' in _v) || _v['discounts'] === undefined) return false;
@@ -146,14 +153,14 @@ export function CustomerSessionFromJSONTyped(json: any, ignoreDiscriminator: boo
         'integrationId': json['integrationId'],
         'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'applicationId': json['applicationId'],
-        'profileId': json['profileId'] == null ? undefined : json['profileId'],
-        'coupon': json['coupon'] == null ? undefined : json['coupon'],
-        'referral': json['referral'] == null ? undefined : json['referral'],
-        'state': json['state'] == null ? undefined : json['state'],
-        'cartItems': json['cartItems'] == null ? undefined : ((json['cartItems'] as Array<any>).map(CartItemFromJSON)),
+        'profileId': json['profileId'],
+        'coupon': json['coupon'],
+        'referral': json['referral'],
+        'state': json['state'],
+        'cartItems': (json['cartItems'] == null ? undefined as any : (json['cartItems'] as Array<any>).map(CartItemFromJSON)),
         'identifiers': json['identifiers'] == null ? undefined : json['identifiers'],
-        'total': json['total'] == null ? undefined : json['total'],
-        'attributes': json['attributes'] == null ? undefined : json['attributes'],
+        'total': json['total'],
+        'attributes': json['attributes'],
         'firstSession': json['firstSession'],
         'updateCount': json['updateCount'],
         'discounts': json['discounts'],
@@ -179,7 +186,7 @@ export function CustomerSessionToJSONTyped(value?: CustomerSession | null, ignor
         'coupon': value['coupon'],
         'referral': value['referral'],
         'state': value['state'],
-        'cartItems': value['cartItems'] == null ? undefined : ((value['cartItems'] as Array<any>).map(CartItemToJSON)),
+        'cartItems': (value['cartItems'] == null ? undefined : (value['cartItems'] as Array<any>).map(CartItemToJSON)),
         'identifiers': value['identifiers'],
         'total': value['total'],
         'attributes': value['attributes'],

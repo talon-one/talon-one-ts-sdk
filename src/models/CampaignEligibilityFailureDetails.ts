@@ -21,6 +21,17 @@ import { mapValues } from '../runtime';
 export interface CampaignEligibilityFailureDetails {
     /**
      * A code identifying why the customer was not eligible for the campaign.
+     * 
+     * - `ALL_RULES_FAILED`: Every rule in the campaign failed for the customer, 
+     * so they are not eligible for the campaign.
+     * 
+     * - `SKIPPED`: The campaign was not applied in the current session because 
+     * it was not selected for evaluation. For example, another campaign in the 
+     * same evaluation group took precedence.
+     * 
+     * - `AUDIENCE_NOT_MATCHED`: The campaign was not evaluated because the 
+     * customer profile is not a member of any audience that the campaign targets.
+     * 
      */
     failureCode: CampaignEligibilityFailureDetailsFailureCodeEnum;
 }

@@ -64,7 +64,7 @@ export interface Campaign {
     /**
      * A detailed description of the campaign.
      */
-    description?: string;
+    description: string;
     /**
      * Timestamp when the campaign will become active.
      */
@@ -124,7 +124,7 @@ export interface Campaign {
      *   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
      * 
      */
-    type?: CampaignTypeEnum;
+    type: CampaignTypeEnum;
     /**
      * A list of store IDs that you want to link to the campaign.
      * 
@@ -392,11 +392,13 @@ export function instanceOfCampaign(value: object): value is Campaign {
     if (!('applicationId' in _v) || _v['applicationId'] === undefined) return false;
     if (!('userId' in _v) || _v['userId'] === undefined) return false;
     if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
     if (!('state' in _v) || _v['state'] === undefined) return false;
     if (!('tags' in _v) || _v['tags'] === undefined) return false;
     if (!('reevaluateOnReturn' in _v) || _v['reevaluateOnReturn'] === undefined) return false;
     if (!('features' in _v) || _v['features'] === undefined) return false;
     if (!('limits' in _v) || _v['limits'] === undefined) return false;
+    if (!('type' in _v) || _v['type'] === undefined) return false;
     if (!('frontendState' in _v) || _v['frontendState'] === undefined) return false;
     if (!('storesImported' in _v) || _v['storesImported'] === undefined) return false;
     return true;
@@ -417,7 +419,7 @@ export function CampaignFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'applicationId': json['applicationId'],
         'userId': json['userId'],
         'name': json['name'],
-        'description': json['description'] == null ? undefined : json['description'],
+        'description': json['description'],
         'startTime': json['startTime'] == null ? undefined : (parseDateTime(json['startTime'])),
         'endTime': json['endTime'] == null ? undefined : (parseDateTime(json['endTime'])),
         'attributes': json['attributes'] == null ? undefined : json['attributes'],
@@ -430,7 +432,7 @@ export function CampaignFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'referralSettings': json['referralSettings'] == null ? undefined : CodeGeneratorSettingsFromJSON(json['referralSettings']),
         'limits': (json['limits'] == null ? undefined as any : (json['limits'] as Array<any>).map(LimitConfigFromJSON)),
         'campaignGroups': json['campaignGroups'] == null ? undefined : json['campaignGroups'],
-        'type': json['type'] == null ? undefined : json['type'],
+        'type': json['type'],
         'linkedStoreIds': json['linkedStoreIds'] == null ? undefined : json['linkedStoreIds'],
         'couponAttributes': json['couponAttributes'] == null ? undefined : json['couponAttributes'],
         'budgets': json['budgets'] == null ? undefined : ((json['budgets'] as Array<any>).map(CampaignBudgetFromJSON)),

@@ -9,6 +9,7 @@ Name | Type
 `grantType` | string
 `code` | string
 `clientId` | string
+`clientSecret` | string
 `redirectUri` | string
 `codeVerifier` | string
 `refreshToken` | string
@@ -23,6 +24,7 @@ const example = {
   "grantType": authorization_code,
   "code": 4a3b2c1d9e6f78901234567890abcdef,
   "clientId": a3f8c1e2b4d56789,
+  "clientSecret": 7b1f0c9d8e2a4f6b1c3d5e7f9a0b2c4d,
   "redirectUri": http://localhost:3000/callback,
   "codeVerifier": dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk,
   "refreshToken": mcpor:9f8e7d6c,

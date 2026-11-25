@@ -45,15 +45,15 @@ export interface LoyaltyProgram {
     /**
      * The display title for the Loyalty Program.
      */
-    title?: string;
+    title: string;
     /**
      * Description of our Loyalty Program.
      */
-    description?: string;
+    description: string;
     /**
      * A list containing the IDs of all applications that are subscribed to this Loyalty Program.
      */
-    subscribedApplications?: Array<number>;
+    subscribedApplications: Array<number>;
     /**
      * The default duration after which new loyalty points should expire. Can be 'unlimited' or a specific time.
      * The time format is a number followed by one letter indicating the time unit, like '30s', '40m', '1h', '5D', '7W', or 10M'. These rounding suffixes are also supported:
@@ -61,7 +61,7 @@ export interface LoyaltyProgram {
      * - '_U' for rounding up. Can be used as a suffix after 'D', 'W', and 'M', and signifies the end of the day, week, and month.
      * 
      */
-    defaultValidity?: string;
+    defaultValidity: string;
     /**
      * The default duration of the pending time after which points should be valid. Accepted values: 'immediate', 'on_action' or a specific time.
      * The time format is a number followed by one letter indicating the time unit, like '30s', '40m', '1h', '5D', '7W', or 10M'. These rounding suffixes are also supported:
@@ -69,11 +69,11 @@ export interface LoyaltyProgram {
      * - '_U' for rounding up. Can be used as a suffix after 'D', 'W', and 'M', and signifies the end of the day, week, and month.
      * 
      */
-    defaultPending?: string;
+    defaultPending: string;
     /**
      * Indicates if this program supports subledgers inside the program.
      */
-    allowSubledger?: boolean;
+    allowSubledger: boolean;
     /**
      * The max amount of user profiles with whom a card can be shared. This can be set to 0 for no limit.
      * This property is only used when `cardBased` is `true`.
@@ -83,7 +83,7 @@ export interface LoyaltyProgram {
     /**
      * Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.
      */
-    sandbox?: boolean;
+    sandbox: boolean;
     /**
      * The policy that defines when the customer joins the loyalty program.
      *   - `not_join`: The customer does not join the loyalty program but can still earn and spend loyalty points.
@@ -245,6 +245,13 @@ export function instanceOfLoyaltyProgram(value: object): value is LoyaltyProgram
     const _v = value as Record<PropertyKey, unknown>;
     if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
+    if (!('subscribedApplications' in _v) || _v['subscribedApplications'] === undefined) return false;
+    if (!('defaultValidity' in _v) || _v['defaultValidity'] === undefined) return false;
+    if (!('defaultPending' in _v) || _v['defaultPending'] === undefined) return false;
+    if (!('allowSubledger' in _v) || _v['allowSubledger'] === undefined) return false;
+    if (!('sandbox' in _v) || _v['sandbox'] === undefined) return false;
     if (!('accountID' in _v) || _v['accountID'] === undefined) return false;
     if (!('name' in _v) || _v['name'] === undefined) return false;
     if (!('timezone' in _v) || _v['timezone'] === undefined) return false;
@@ -264,14 +271,14 @@ export function LoyaltyProgramFromJSONTyped(json: any, ignoreDiscriminator: bool
         
         'id': json['id'],
         'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
-        'title': json['title'] == null ? undefined : json['title'],
-        'description': json['description'] == null ? undefined : json['description'],
-        'subscribedApplications': json['subscribedApplications'] == null ? undefined : json['subscribedApplications'],
-        'defaultValidity': json['defaultValidity'] == null ? undefined : json['defaultValidity'],
-        'defaultPending': json['defaultPending'] == null ? undefined : json['defaultPending'],
-        'allowSubledger': json['allowSubledger'] == null ? undefined : json['allowSubledger'],
+        'title': json['title'],
+        'description': json['description'],
+        'subscribedApplications': json['subscribedApplications'],
+        'defaultValidity': json['defaultValidity'],
+        'defaultPending': json['defaultPending'],
+        'allowSubledger': json['allowSubledger'],
         'usersPerCardLimit': json['usersPerCardLimit'] == null ? undefined : json['usersPerCardLimit'],
-        'sandbox': json['sandbox'] == null ? undefined : json['sandbox'],
+        'sandbox': json['sandbox'],
         'programJoinPolicy': json['programJoinPolicy'] == null ? undefined : json['programJoinPolicy'],
         'tiersExpirationPolicy': json['tiersExpirationPolicy'] == null ? undefined : json['tiersExpirationPolicy'],
         'tierCycleStartDate': json['tierCycleStartDate'] == null ? undefined : (parseDateTime(json['tierCycleStartDate'])),

@@ -29,7 +29,7 @@ import {
 } from './OutboundLogStreamEntryType';
 
 /**
- * An outbound log entry in an `ndjson` stream.
+ * An outbound log entry in a stream of outbound logs.
  * @export
  * @interface OutboundLogStreamLogEntry
  */

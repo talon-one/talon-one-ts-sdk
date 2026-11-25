@@ -13,6 +13,7 @@ Name | Type
 `responseTypesSupported` | Array&lt;string&gt;
 `grantTypesSupported` | Array&lt;string&gt;
 `codeChallengeMethodsSupported` | Array&lt;string&gt;
+`tokenEndpointAuthMethodsSupported` | Array&lt;string&gt;
 
 ## Example
 
@@ -28,6 +29,7 @@ const example = {
   "responseTypesSupported": ["code"],
   "grantTypesSupported": ["authorization_code"],
   "codeChallengeMethodsSupported": ["S256"],
+  "tokenEndpointAuthMethodsSupported": ["none","client_secret_post","client_secret_basic"],
 } satisfies MCPOAuthServerMetadata
 
 console.log(example)

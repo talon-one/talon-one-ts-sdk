@@ -32,6 +32,10 @@ export interface MCPOAuthTokenRequest {
      */
     clientId?: string;
     /**
+     * Client secret for confidential (static) clients. May also be supplied via HTTP Basic authentication. Public clients registered via dynamic client registration omit it.
+     */
+    clientSecret?: string;
+    /**
      * Redirect URI. Required for `authorization_code` grant.
      */
     redirectUri?: string;
@@ -78,6 +82,7 @@ export function MCPOAuthTokenRequestFromJSONTyped(json: any, ignoreDiscriminator
         'grantType': json['grant_type'],
         'code': json['code'] == null ? undefined : json['code'],
         'clientId': json['client_id'] == null ? undefined : json['client_id'],
+        'clientSecret': json['client_secret'] == null ? undefined : json['client_secret'],
         'redirectUri': json['redirect_uri'] == null ? undefined : json['redirect_uri'],
         'codeVerifier': json['code_verifier'] == null ? undefined : json['code_verifier'],
         'refreshToken': json['refresh_token'] == null ? undefined : json['refresh_token'],
@@ -98,6 +103,7 @@ export function MCPOAuthTokenRequestToJSONTyped(value?: MCPOAuthTokenRequest | n
         'grant_type': value['grantType'],
         'code': value['code'],
         'client_id': value['clientId'],
+        'client_secret': value['clientSecret'],
         'redirect_uri': value['redirectUri'],
         'code_verifier': value['codeVerifier'],
         'refresh_token': value['refreshToken'],

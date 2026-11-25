@@ -111,6 +111,13 @@ export interface RiskDetail {
      */
     modified: Date;
     /**
+     * The current name of the Application this risk belongs to. Shown even if the
+     * user does not have access to that Application. Omitted if the Application
+     * has been deleted or the risk is not associated with an Application.
+     * 
+     */
+    applicationName?: string;
+    /**
      * The affected entities with the highest severity ratios, in descending order.
      */
     affectedEntities: Array<RiskAffectedEntityItem>;
@@ -228,6 +235,7 @@ export function RiskDetailFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'statusChangedBy': json['statusChangedBy'] == null ? undefined : json['statusChangedBy'],
         'statusChangedAt': json['statusChangedAt'] == null ? undefined : (parseDateTime(json['statusChangedAt'])),
         'modified': (json['modified'] == null ? json['modified'] : parseDateTime(json['modified'])),
+        'applicationName': json['applicationName'] == null ? undefined : json['applicationName'],
         'affectedEntities': (json['affectedEntities'] == null ? undefined as any : (json['affectedEntities'] as Array<any>).map(RiskAffectedEntityItemFromJSON)),
     };
 }
@@ -262,6 +270,7 @@ export function RiskDetailToJSONTyped(value?: RiskDetail | null, ignoreDiscrimin
         'statusChangedBy': value['statusChangedBy'],
         'statusChangedAt': value['statusChangedAt'] == null ? value['statusChangedAt'] : serializeDateTime(value['statusChangedAt']),
         'modified': value['modified'] == null ? undefined : serializeDateTime(value['modified']),
+        'applicationName': value['applicationName'],
         'affectedEntities': (value['affectedEntities'] == null ? undefined : (value['affectedEntities'] as Array<any>).map(RiskAffectedEntityItemToJSON)),
     };
 }

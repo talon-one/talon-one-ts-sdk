@@ -48,19 +48,19 @@ export interface AchievementV2 {
      * **Note**: The name should start with a letter. This cannot be changed after the achievement has been created.
      * 
      */
-    name?: string;
+    name: string;
     /**
      * The display name for the achievement in the Campaign Manager.
      */
-    title?: string;
+    title: string;
     /**
      * A description of the achievement.
      */
-    description?: string;
+    description: string;
     /**
      * The required number of actions or the transactional milestone to complete the achievement.
      */
-    target?: number;
+    target: number;
     /**
      * The relative duration after which the achievement ends and resets for a particular customer profile.
      * 
@@ -97,14 +97,14 @@ export interface AchievementV2 {
      * - `on_completion`: When the customer progress status reaches `completed`, the achievement resets and becomes available again.
      * 
      */
-    recurrencePolicy?: AchievementV2RecurrencePolicyEnum;
+    recurrencePolicy: AchievementV2RecurrencePolicyEnum;
     /**
      * The policy that determines how the achievement starts, ends, or resets.
      * - `user_action`: The achievement ends or resets relative to when the customer started the achievement.
      * - `fixed_schedule`: The achievement starts, ends, or resets for all customers following a fixed schedule.
      * 
      */
-    activationPolicy?: AchievementV2ActivationPolicyEnum;
+    activationPolicy: AchievementV2ActivationPolicyEnum;
     /**
      * The achievement's start date when `activationPolicy` is set to `fixed_schedule`.
      * 
@@ -126,7 +126,7 @@ export interface AchievementV2 {
     /**
      * A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.
      */
-    subscribedApplications?: Array<number>;
+    subscribedApplications: Array<number>;
     /**
      * The ID of the user that created this achievement.
      */
@@ -212,6 +212,13 @@ export function instanceOfAchievementV2(value: object): value is AchievementV2 {
     const _v = value as Record<PropertyKey, unknown>;
     if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('created' in _v) || _v['created'] === undefined) return false;
+    if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('title' in _v) || _v['title'] === undefined) return false;
+    if (!('description' in _v) || _v['description'] === undefined) return false;
+    if (!('target' in _v) || _v['target'] === undefined) return false;
+    if (!('recurrencePolicy' in _v) || _v['recurrencePolicy'] === undefined) return false;
+    if (!('activationPolicy' in _v) || _v['activationPolicy'] === undefined) return false;
+    if (!('subscribedApplications' in _v) || _v['subscribedApplications'] === undefined) return false;
     if (!('userId' in _v) || _v['userId'] === undefined) return false;
     if (!('sandbox' in _v) || _v['sandbox'] === undefined) return false;
     if (!('timezone' in _v) || _v['timezone'] === undefined) return false;
@@ -231,17 +238,17 @@ export function AchievementV2FromJSONTyped(json: any, ignoreDiscriminator: boole
         
         'id': json['id'],
         'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
-        'name': json['name'] == null ? undefined : json['name'],
-        'title': json['title'] == null ? undefined : json['title'],
-        'description': json['description'] == null ? undefined : json['description'],
-        'target': json['target'] == null ? undefined : json['target'],
+        'name': json['name'],
+        'title': json['title'],
+        'description': json['description'],
+        'target': json['target'],
         'period': json['period'] == null ? undefined : json['period'],
-        'recurrencePolicy': json['recurrencePolicy'] == null ? undefined : json['recurrencePolicy'],
-        'activationPolicy': json['activationPolicy'] == null ? undefined : json['activationPolicy'],
+        'recurrencePolicy': json['recurrencePolicy'],
+        'activationPolicy': json['activationPolicy'],
         'fixedStartDate': json['fixedStartDate'] == null ? undefined : (parseDateTime(json['fixedStartDate'])),
         'endDate': json['endDate'] == null ? undefined : (parseDateTime(json['endDate'])),
         'allowRollbackAfterCompletion': json['allowRollbackAfterCompletion'] == null ? undefined : json['allowRollbackAfterCompletion'],
-        'subscribedApplications': json['subscribedApplications'] == null ? undefined : json['subscribedApplications'],
+        'subscribedApplications': json['subscribedApplications'],
         'userId': json['userId'],
         'createdBy': json['createdBy'] == null ? undefined : json['createdBy'],
         'periodEndOverride': json['periodEndOverride'] == null ? undefined : TimePointFromJSON(json['periodEndOverride']),

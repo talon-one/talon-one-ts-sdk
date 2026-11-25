@@ -21,6 +21,13 @@ import { mapValues } from '../runtime';
 export interface RuleEligibilityFailureDetails {
     /**
      * A code identifying why the customer was not eligible for the rule in the current session.
+     * 
+     * - `CONDITION_NOT_MET`: One or more conditions of the rule did not evaluate 
+     * to `true` for the customer.
+     * 
+     * - `EFFECT_FAILED`: The conditions of the rule were met but one of its effects 
+     * could not be applied.
+     * 
      */
     failureCode: RuleEligibilityFailureDetailsFailureCodeEnum;
     /**

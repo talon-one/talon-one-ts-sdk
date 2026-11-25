@@ -934,11 +934,18 @@ export interface CreateCouponsRequest {
     newCoupons: NewCoupons;
     /**
      * Possible values: `yes` or `no`.
-     * - `yes`: Increases the performance of the API call by returning a 204 response.
-     * - `no`: Returns a 200 response that contains the updated customer profiles.
+     * - `yes`: Increases the performance of the API call by returning a 204 response. Requires `full` to be `no`; otherwise a 400 error is returned.
+     * - `no`: Returns a 200 response that contains the created coupons.
      * 
      */
     silent?: string;
+    /**
+     * Possible values: `yes` or `no`.
+     * - `yes`: Returns all created coupons. Requires `silent` to be `no`; otherwise a 400 error is returned.
+     * - `no`: Returns at most 1000 created coupons.
+     * 
+     */
+    full?: string;
 }
 
 export interface CreateCouponsAsynchronouslyRequest {
@@ -5893,6 +5900,10 @@ export class ManagementApi extends runtime.BaseAPI {
 
         if (requestParameters['silent'] != null) {
             queryParameters['silent'] = requestParameters['silent'];
+        }
+
+        if (requestParameters['full'] != null) {
+            queryParameters['full'] = requestParameters['full'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

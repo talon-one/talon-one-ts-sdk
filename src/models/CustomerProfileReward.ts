@@ -59,6 +59,7 @@ export interface CustomerProfileReward {
      * The status of the customer reward:
      * - `unlocked`: The reward is available for use.
      * - `used`: The reward has been used.
+     * - `expired`: The reward was not used before its expiry date.
      * 
      */
     status: CustomerProfileRewardStatusEnum;
@@ -74,6 +75,17 @@ export interface CustomerProfileReward {
      * 
      */
     unlockedByProfileIntegrationId?: string;
+    /**
+     * The date and time when the customer reward expires, based on the 
+     * `validityDuration` or `expiryDate` of the reward when the reward was 
+     * unlocked. If the reward does not specify either property, the customer reward 
+     * has unlimited validity and this field is omitted.
+     * 
+     * **Note**: The expiry date is calculated using the time zone of the 
+     * Application connected to the reward.
+     * 
+     */
+    expiryDate?: Date;
     /**
      * The date and time when the reward was used.
      */
@@ -105,6 +117,7 @@ export interface CustomerProfileReward {
 export const CustomerProfileRewardStatusEnum = {
     Unlocked: 'unlocked',
     Used: 'used',
+    Expired: 'expired',
 } as const;
 export type CustomerProfileRewardStatusEnum = typeof CustomerProfileRewardStatusEnum[keyof typeof CustomerProfileRewardStatusEnum];
 
@@ -144,6 +157,7 @@ export function CustomerProfileRewardFromJSONTyped(json: any, ignoreDiscriminato
         'status': json['status'],
         'unlockedAt': (json['unlockedAt'] == null ? json['unlockedAt'] : parseDateTime(json['unlockedAt'])),
         'unlockedByProfileIntegrationId': json['unlockedByProfileIntegrationId'] == null ? undefined : json['unlockedByProfileIntegrationId'],
+        'expiryDate': json['expiryDate'] == null ? undefined : (parseDateTime(json['expiryDate'])),
         'usedAt': json['usedAt'] == null ? undefined : (parseDateTime(json['usedAt'])),
         'usedByProfileIntegrationId': json['usedByProfileIntegrationId'] == null ? undefined : json['usedByProfileIntegrationId'],
         'loyaltyProgramId': json['loyaltyProgramId'] == null ? undefined : json['loyaltyProgramId'],
@@ -172,6 +186,7 @@ export function CustomerProfileRewardToJSONTyped(value?: CustomerProfileReward |
         'status': value['status'],
         'unlockedAt': value['unlockedAt'] == null ? undefined : serializeDateTime(value['unlockedAt']),
         'unlockedByProfileIntegrationId': value['unlockedByProfileIntegrationId'],
+        'expiryDate': value['expiryDate'] == null ? value['expiryDate'] : serializeDateTime(value['expiryDate']),
         'usedAt': value['usedAt'] == null ? value['usedAt'] : serializeDateTime(value['usedAt']),
         'usedByProfileIntegrationId': value['usedByProfileIntegrationId'],
         'loyaltyProgramId': value['loyaltyProgramId'],

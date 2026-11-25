@@ -13,33 +13,27 @@
  */
 
 import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
-import { selectOneOfBestMatch } from '../runtime';
-import type { OutboundLog } from './OutboundLog';
-import {
-    instanceOfOutboundLog,
-    OutboundLogFromJSON,
-    OutboundLogFromJSONTyped,
-    OutboundLogToJSON,
-} from './OutboundLog';
-import type { OutboundLogStreamError } from './OutboundLogStreamError';
-import {
-    instanceOfOutboundLogStreamError,
-    OutboundLogStreamErrorFromJSON,
-    OutboundLogStreamErrorFromJSONTyped,
-    OutboundLogStreamErrorToJSON,
-} from './OutboundLogStreamError';
+import { type OutboundLogStreamErrorEntry, OutboundLogStreamErrorEntryFromJSONTyped, OutboundLogStreamErrorEntryToJSON } from './OutboundLogStreamErrorEntry';
+import { type OutboundLogStreamLogEntry, OutboundLogStreamLogEntryFromJSONTyped, OutboundLogStreamLogEntryToJSON } from './OutboundLogStreamLogEntry';
 
 /**
  * @type OutboundLogsDataInner
  * 
  * @export
  */
-export type OutboundLogsDataInner = OutboundLog | OutboundLogStreamError;
+export type OutboundLogsDataInner = { type: 'error' } & OutboundLogStreamErrorEntry | { type: 'log' } & OutboundLogStreamLogEntry;
 /**
  * Check if a given object implements the OutboundLogsDataInner interface.
  */
 export function instanceOfOutboundLogsDataInner(value: any): value is OutboundLogsDataInner {
-    return typeof value === 'object' && value !== null && (instanceOfOutboundLog(value) || instanceOfOutboundLogStreamError(value));
+    const _v = value as Record<PropertyKey, unknown>;
+    switch (_v['type']) {
+        case 'error':
+        case 'log':
+            return true;
+        default:
+            return false;
+    }
 }
 
 export function OutboundLogsDataInnerFromJSON(json: any): OutboundLogsDataInner {
@@ -50,17 +44,14 @@ export function OutboundLogsDataInnerFromJSONTyped(json: any, ignoreDiscriminato
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
+    switch (json['type']) {
+        case 'error':
+            return Object.assign({}, OutboundLogStreamErrorEntryFromJSONTyped(json, true), { type: 'error' } as const);
+        case 'log':
+            return Object.assign({}, OutboundLogStreamLogEntryFromJSONTyped(json, true), { type: 'log' } as const);
+        default:
+            return json;
     }
-    const matchedVariant = selectOneOfBestMatch(json, [
-        [instanceOfOutboundLog, OutboundLogFromJSONTyped],
-        [instanceOfOutboundLogStreamError, OutboundLogStreamErrorFromJSONTyped],
-    ], true);
-    if (matchedVariant !== undefined) {
-        return matchedVariant;
-    }
-    return {} as any;
 }
 
 export function OutboundLogsDataInnerToJSON(json: any): any {
@@ -71,16 +62,13 @@ export function OutboundLogsDataInnerToJSONTyped(value?: OutboundLogsDataInner |
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
+    switch (value['type']) {
+        case 'error':
+            return Object.assign({}, OutboundLogStreamErrorEntryToJSON(value), { 'type': 'error' } as const);
+        case 'log':
+            return Object.assign({}, OutboundLogStreamLogEntryToJSON(value), { 'type': 'log' } as const);
+        default:
+            return value;
     }
-    const matchedVariant = selectOneOfBestMatch(value, [
-        [instanceOfOutboundLog, OutboundLogToJSON],
-        [instanceOfOutboundLogStreamError, OutboundLogStreamErrorToJSON],
-    ]);
-    if (matchedVariant !== undefined) {
-        return matchedVariant;
-    }
-    return {};
 }
 

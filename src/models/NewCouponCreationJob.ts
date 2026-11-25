@@ -31,7 +31,7 @@ export interface NewCouponCreationJob {
      * The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
      * 
      */
-    usageLimit?: number;
+    usageLimit: number;
     /**
      * The total discount value that the code can give. Typically used to represent a gift card value.
      * 
@@ -73,6 +73,7 @@ export interface NewCouponCreationJob {
  */
 export function instanceOfNewCouponCreationJob(value: object): value is NewCouponCreationJob {
     const _v = value as Record<PropertyKey, unknown>;
+    if (!('usageLimit' in _v) || _v['usageLimit'] === undefined) return false;
     if (!('numberOfCoupons' in _v) || _v['numberOfCoupons'] === undefined) return false;
     if (!('attributes' in _v) || _v['attributes'] === undefined) return false;
     return true;
@@ -88,7 +89,7 @@ export function NewCouponCreationJobFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'usageLimit': json['usageLimit'] == null ? undefined : json['usageLimit'],
+        'usageLimit': json['usageLimit'],
         'discountLimit': json['discountLimit'] == null ? undefined : json['discountLimit'],
         'reservationLimit': json['reservationLimit'] == null ? undefined : json['reservationLimit'],
         'startDate': json['startDate'] == null ? undefined : (parseDateTime(json['startDate'])),

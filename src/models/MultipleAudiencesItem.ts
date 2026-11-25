@@ -38,7 +38,7 @@ export interface MultipleAudiencesItem {
     /**
      * The ID of this audience in the third-party integration.
      */
-    integrationId?: string;
+    integrationId: string;
     /**
      * Indicates whether the audience is new, updated or unmodified by the request.
      * 
@@ -66,6 +66,7 @@ export function instanceOfMultipleAudiencesItem(value: object): value is Multipl
     if (!('id' in _v) || _v['id'] === undefined) return false;
     if (!('created' in _v) || _v['created'] === undefined) return false;
     if (!('name' in _v) || _v['name'] === undefined) return false;
+    if (!('integrationId' in _v) || _v['integrationId'] === undefined) return false;
     if (!('status' in _v) || _v['status'] === undefined) return false;
     return true;
 }
@@ -84,7 +85,7 @@ export function MultipleAudiencesItemFromJSONTyped(json: any, ignoreDiscriminato
         'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'name': json['name'],
         'subscribedApplicationsIds': json['subscribedApplicationsIds'] == null ? undefined : new Set(json['subscribedApplicationsIds']),
-        'integrationId': json['integrationId'] == null ? undefined : json['integrationId'],
+        'integrationId': json['integrationId'],
         'status': json['status'],
     };
 }

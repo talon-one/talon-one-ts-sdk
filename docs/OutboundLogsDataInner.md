@@ -6,20 +6,8 @@
 
 Name | Type
 ------------ | -------------
-`uuid` | string
-`notificationId` | number
-`notificationName` | string
-`webhookId` | number
-`webhookName` | string
-`notificationType` | string
-`applicationId` | number
-`loyaltyProgramId` | number
-`request` | [OutboundLogRequest](OutboundLogRequest.md)
-`createdAt` | Date
-`processingTimeMs` | number
-`response` | [OutboundLogResponse](OutboundLogResponse.md)
-`error` | string
-`id` | string
+`type` | [OutboundLogStreamEntryType](OutboundLogStreamEntryType.md)
+`data` | [OutboundLogStreamError](OutboundLogStreamError.md)
 
 ## Example
 
@@ -28,20 +16,8 @@ import type { OutboundLogsDataInner } from 'talon_one_sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "uuid": 67e55044-10b1-426f-9247-bb680e5fe0c8,
-  "notificationId": 1,
-  "notificationName": Notification name,
-  "webhookId": 101,
-  "webhookName": My webhook,
-  "notificationType": CampaignNotification,
-  "applicationId": 1,
-  "loyaltyProgramId": 2,
-  "request": null,
-  "createdAt": 2026-08-17T14:32:05Z,
-  "processingTimeMs": 180,
-  "response": null,
-  "error": internal server error,
-  "id": 67e55044-10b1-426f-9247-bb680e5fe0c8,
+  "type": null,
+  "data": null,
 } satisfies OutboundLogsDataInner
 
 console.log(example)
